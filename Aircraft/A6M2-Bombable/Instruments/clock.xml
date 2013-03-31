@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <path>clock.ac</path>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>CLOCK.hourhand</object-name>
+    <property>/instrumentation/clock/indicated-sec</property>
+    <factor>0.00833333333333</factor>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>CLOCK.minutehand</object-name>
+    <property>/instrumentation/clock/indicated-sec</property>
+    <factor>0.1</factor>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>CLOCK.secondhand</object-name>
+    <property>/instrumentation/clock/indicated-sec</property>
+    <factor>6</factor>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  
+  
+<!-- picks are not implemented yet
+Clock has two types of pick.
+One is adjusting time, and another is adjusting reminders
+I guess the blue arrow indicates hour and red indictes min.
+To set reminder, rotate bezel and moves blue arrow.
+The blue arrow pushes red so you can set the min part of the reminder.
+Then, you rotete the blue one to set the hour part.
+
+  <animation>
+  <type>pick</type>
+  <object-name>CLOCK.reminder.minus</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>true</repeatable>
+    <interval-sec>0.1</interval-sec>
+     <binding>
+       <command>property-adjust</command>
+       <property>/instrumentation/clock/reminder-hour</property>
+       <step>-1</step>
+       <min>0</min>
+       <max>36</max>
+       <wrap>false</wrap>
+     </binding>
+  </action>
+  <action>
+    <button>1</button>
+    <repeatable>true</repeatable>
+    <interval-sec>0.1</interval-sec>
+     <binding>
+       <command>property-adjust</command>
+       <property>/instrumentation/altimeter/reminder-hour</property>
+       <step>-5</step>
+       <min>0</min>
+       <max>36</max>
+       <wrap>false</wrap>
+     </binding>
+  </action>
+</animation>
+
+<animation>
+  <type>pick</type>
+  <object-name>CLOCK.reminder.plus</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>true</repeatable>
+    <interval-sec>0.1</interval-sec>
+     <binding>
+       <command>property-adjust</command>
+       <property>/instrumentation/clock/reminder-hour</property>
+       <step>1</step>
+       <min>-36</min>
+       <max>36</max>
+       <wrap>false</wrap>
+     </binding>
+  </action>
+  <action>
+    <button>1</button>
+    <repeatable>true</repeatable>
+    <interval-sec>0.1</interval-sec>
+     <binding>
+       <command>property-adjust</command>
+       <property>/instrumentation/clock/reminder-hour</property>
+       <step>1</step>
+       <min>-36</min>
+       <max>36</max>
+       <wrap>false</wrap>
+     </binding>
+  </action>
+</animation>
+-->
+
+</PropertyList>

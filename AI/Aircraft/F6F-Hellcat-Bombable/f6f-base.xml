@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+    <model>
+      <path>AI/AI/Aircraft/F6F-Hellcat-Bombable/Models/f6f.xml</path>
+      <livery>
+        <file type="string">default</file>
+      </livery>
+    </model>
+
+
+  <surface-positions>
+    <wing-fold-pos-norm alias="/instrumentation/doors/wings/position-norm" />
+  </surface-positions>
+
+  <engines>
+    <engine n="0">
+      <engine-num type="int">0</engine-num>
+      <running>true</running>
+    </engine>
+    <engine n="1">
+      <engine-num type="int">1</engine-num>
+      <running>true</running>
+    </engine>
+  </engines>
+
+
+</PropertyList>
+

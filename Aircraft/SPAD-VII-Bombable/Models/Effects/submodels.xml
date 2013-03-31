@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <submodel>
+    <name>gun-bullet-303</name>
+    <model>Models/Geometry/null.ac</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>2460.0</speed>
+    <repeat>true</repeat>
+    <delay>0.1</delay> <!--vickers .303 has 450-600 rounds per minute, or a delay of .1 to .13333-->
+    <count>400</count><!--250 is probably most historically accurate but apparently the Vickers came with 400 round belts at some point, and we have put 400 in the Sopwith Camel, so . . . -->
+    <x-offset> -8.32349 </x-offset> <!-- -2.537 m -->
+    <y-offset>  0.00000 </y-offset> <!--  0.000 m -->
+    <z-offset>  2.13911 </z-offset> <!--  0.652 m -->
+    <yaw-offset>0.0</yaw-offset>
+    <pitch-offset>0.1</pitch-offset>
+    <life>10.0</life>
+    <wind>false</wind>
+    <weight>0.0264554715</weight>  <!--vickers .303, same as Sopwith Camel-->
+    <cd>0.193</cd>
+    <eda>0.00236354</eda>
+    <collision>true</collision>
+    <collision-report>sim/ai/aircraft/collision/bullet</collision-report>
+    <impact>true</impact>
+    <impact-report>sim/ai/aircraft/impact/bullet</impact-report>
+    <!--<submodel-path>Aircraft/SPAD-VII-Bombable/Models/Effects/bullet-submodel.xml</submodel-path>-->
+  </submodel>
+
+  <submodel>
+    <name>tracer</name>
+    <model>Aircraft/SPAD-VII-Bombable/Models/Effects/apibullet-tracer.xml</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>2460.0</speed>
+    <repeat>true</repeat>
+    <delay>0.3</delay>
+    <count>108</count>
+    <x-offset> -8.32349 </x-offset> <!-- -2.537 m -->
+    <y-offset>  0.00000 </y-offset> <!--  0.000 m -->
+    <z-offset>  2.13911 </z-offset> <!--  0.652 m -->
+    <yaw-offset> 0.0 </yaw-offset>
+    <pitch-offset> 0.1 </pitch-offset>
+    <life>10.0</life>
+    <wind>false</wind>
+    <weight>0.07495</weight>
+    <cd>0.193</cd>
+    <eda>0.00571198</eda>
+<!-- 
+    <collision>true</collision>
+    <collision-report>sim/ai/aircraft/collision/gun</collision-report>
+    <impact>true</impact>
+    <impact-report>sim/ai/aircraft/impact/gun</impact-report>
+-->
+  </submodel>
+
+</PropertyList>

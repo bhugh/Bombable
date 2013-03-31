@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<sim>
+		<model>
+			<camel>
+				<show-pennants-flight-commander type="bool">false</show-pennants-flight-commander>
+			</camel>
+			<livery>
+				<name type="string">209 Sqn - Capt R Brown</name>
+				<index type="int">2</index>
+				<nose-texture type="bool">true</nose-texture>
+				<material>
+					<Wing-Upper-Top>
+						<texture type="string">Liveries/camel_plan_brown.png</texture>
+					</Wing-Upper-Top>
+					<Horizontal-Stabiliser-Fixed>
+						<texture type="string">Liveries/camel_plan_brown.png</texture>
+					</Horizontal-Stabiliser-Fixed>
+					<Elevator-Surface>
+						<texture type="string">Liveries/camel_plan_brown.png</texture>
+					</Elevator-Surface>
+					<Tail>
+						<texture type="string">Liveries/camel_side_brown.png</texture>
+					</Tail>
+					<Fuselage-Aft>
+						<texture type="string">Liveries/camel_side_brown.png</texture>
+					</Fuselage-Aft>
+					<Wheel-R>
+						<texture type="string">Liveries/camel_side_brown.png</texture>
+					</Wheel-R>
+					<Wheel-L>
+						<texture type="string">Liveries/camel_side_brown.png</texture>
+					</Wheel-L>
+					<Rudder-Surface>
+						<texture type="string">Liveries/camel_side_brown.png</texture>
+					</Rudder-Surface>
+					<Nose-Textured>
+						<texture type="string">Liveries/camel_side_brown.png</texture>
+					</Nose-Textured>
+				</material>
+			</livery>
+		</model>
+	</sim>
+</PropertyList>

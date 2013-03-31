@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList include="m1-bombableinclude.xml">
+
+	<path>Models/m1.ac</path>
+	
+	<description>Tank M1 Abrams. This tank is designed to be a static or moving (set as a ship or aircraft with heading, speed, rudder settings) air-to-ground target. You can damage it with heavy gun or bombs.
+	If the tank is really damaged you will see fire and smoke.
+	The more you damage it, the more it turn to black.
+	You can set the livery to a bright red to make the tanks easy to see or choose a realistic camouflage, which is very difficult to spot from a distance in some FlightGear terrains.
+	TODO: _ add MultiPlayer mode, in order to share scenario with multiple tanks and aircrafts.</description>
+	<author>Emmanuel BARANGER - David BASTIEN - Brent HUGH</author>
+  <!-- NOTE: Ver 2.0 Heavily modded by Brent Hugh to add ability to move while staying at ground level (use as aircraft OR as a ship with a speed, heading, and rudder seeting), change livery color, refine damage calculation and slow speed when damaged, and other misc.  8/2009.
+  Ver. 2.1 adds the ability to retain tank position when FG does a file/reset.
+  Ver. 2.2 adds pitch adjustment and other tweaks so tanks look more realistic
+  when going up/down hills.
+  Further changes as part of the Bombable FG add-on.
+  -->
+	<status>beta</status>
+	
+	<!-- animations -->
+	
+	<animation>
+		<name>M1-corps</name>
+		<object-name>corps</object-name>
+		<object-name>tourelle</object-name>
+		<object-name>canon</object-name>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>M1-corps</object-name>
+		<texture-prop>bombable/texture-corps-path</texture-prop>
+		<transparency>
+			<alpha>1.0</alpha>
+		</transparency>
+	</animation>
+
+
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>tourelle</object-name>
+		<object-name>canon</object-name>
+		<property>surface-positions/turret-pos-deg</property>
+		<interpolation>
+			<entry><ind>-150</ind><dep>-150</dep></entry><!-- right -->
+			<entry><ind>150</ind><dep>150</dep></entry><!-- left -->
+		</interpolation>
+		<center>
+			<x-m>0.696</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.799</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>canon</object-name>
+		<property>surface-positions/cannon-elev-deg</property>
+		<interpolation>
+			<entry><ind>-10</ind><dep>-10</dep></entry>
+			<entry><ind>30</ind><dep>30</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-0.967</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.656</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<!-- fire animations -->
+	<!-- model>
+		<path>AI/Aircraft/M1-Abrams-Bombable/Models/Effects/fire-particles.xml</path>
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>1.2</z-m>
+			<roll-deg>0.0</roll-deg>
+			<pitch-deg>0.0</pitch-deg>
+			<heading-deg>0.0</heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>10000</max-m>
+	</animation -->
+	
+
+
+</PropertyList>

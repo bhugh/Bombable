@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<?xml version="1.0"?>
+
+<PropertyList>
+ 
+
+ <description>Fokker Dr.1 (JSB)</description>
+ <author>Michael Selig (FDM) Erik Hofman (FDM) Ron Jensen (FDM), Erik Hofman (3D model)</author>
+ 
+ <path>../../../../Aircraft/fkdr1-Bombable/Models/dr1.ac</path> 
+ <texture-path>../../../../Aircraft/fkdr1-Bombable/Models</texture-path> 
+ 
+
+ <offsets>
+  <z-m>0.5</z-m>
+ </offsets>
+
+</PropertyList>

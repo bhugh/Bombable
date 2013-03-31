@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<!-- Electronic Horizontal Situational Indicator  EHSI -->
+
+<PropertyList>
+	<name>EHSI</name>
+	<w-base>270</w-base>
+	<h-base>270</h-base>
+
+	<layers>
+		<layer>
+			<name>background</name>
+			<w>256</w>
+			<h>256</h>
+			<texture>
+				<path>Aircraft/Instruments/Textures/radar_background.rgb</path>
+				<x1>0</x1>
+				<y1>0</y1>
+				<x2>1</x2>
+				<y2>1</y2>
+			</texture>
+			<emissive>true</emissive>
+		</layer>
+
+		<layer>
+			<name>weather data</name>
+			<emissive>true</emissive>
+			<w>256</w>
+			<h>256</h>
+			<texture>
+				<path>Aircraft/Instruments/Textures/od_wxradar.rgb</path>
+				<x1>0</x1>
+				<y1>0</y1>
+				<x2>1</x2>
+				<y2>1</y2>
+			</texture>
+		</layer>
+
+		<layer>
+			<name>TACAN ID</name>
+			<type>text</type>
+			<font>helvetica_bold</font>
+			<point-size>10</point-size>
+			<color>
+				<red>0.5</red>
+				<green>1.0</green>
+				<blue>0.5</blue>
+			</color>
+			<emissive>true</emissive>
+			<condition>
+				<and>
+					<equals>
+						<property>instrumentation/tacan/in-range</property>
+						<value>true</value>
+					</equals>
+					<equals>
+						<property>instrumentation/radar/mode-control</property>
+						<value>1</value>
+					</equals>
+					<less-than-equals>
+						<property>instrumentation/tacan/indicated-distance-nm</property>
+						<property>instrumentation/radar/range</property>
+					</less-than-equals>
+					<equals>
+						<property>instrumentation/radar/display-controls/data</property>
+						<value>true</value>
+					</equals>
+				</and>
+			</condition>
+			<chunks>
+				<chunk>
+					<type>text-value</type>
+					<property>instrumentation/tacan/ident</property>
+				</chunk>
+			</chunks>
+			<transformations>
+				<transformation>
+					<type>x-shift</type>
+					<property>instrumentation/tacan/display/x-shift-scaled</property>
+				</transformation>
+				<transformation>
+					<type>y-shift</type>
+					<property>instrumentation/tacan/display/y-shift-scaled</property>
+					<offset>-15</offset>
+				</transformation>
+				<transformation>
+					<type>rotation</type>
+					<property>instrumentation/tacan/display/rotation</property>
+				</transformation>
+			</transformations>
+		</layer>
+
+		<layer>
+			<name>outer range ring</name>
+			<type>text</type>
+			<font>helvetica_bold</font>
+			<point-size>12</point-size>
+			<color>
+				<red>0.5</red>
+				<green>1.0</green>
+				<blue>0.5</blue>
+			</color>
+			<emissive>true</emissive>
+			<chunks>
+				<chunk>
+					<type>number-value</type>
+					<property>instrumentation/radar/range</property>
+					<format>%2.1f</format>
+				</chunk>
+			</chunks>
+			<transformations>
+				<transformation>
+					<type>x-shift</type>
+					<offset>-90</offset>
+				</transformation>
+				<transformation>
+					<type>y-shift</type>
+					<offset>66</offset>
+				</transformation>
+			</transformations>
+		</layer>
+
+		<layer>
+			<name>inner range ring</name>
+			<type>text</type>
+			<font>helvetica_bold</font>
+			<point-size>12</point-size>
+			<color>
+				<red>0.5</red>
+				<green>1.0</green>
+				<blue>0.5</blue>
+			</color>
+			<emissive>true</emissive>
+			<chunks>
+				<chunk>
+					<type>number-value</type>
+					<property>instrumentation/radar/range</property>
+					<scale>0.5</scale>
+					<format>%2.1f</format>
+				</chunk>
+			</chunks>
+			<transformations>
+				<transformation>
+					<type>x-shift</type>
+					<offset>-50</offset>
+				</transformation>
+				<transformation>
+					<type>y-shift</type>
+					<offset>32</offset>
+				</transformation>
+			</transformations>
+		</layer>
+	</layers>
+
+	<actions>
+		<action>
+			<name>double range</name>
+			<button>0</button>
+			<x>-93</x>
+			<y>54</y>
+			<w>32</w>
+			<h>32</h>
+			<binding>
+				<command>nasal</command>
+				<script>
+					var p = "instrumentation/radar/range";
+					var v = getprop(p) * 2;
+					setprop(p, v > 640 ? 640 : v);
+				</script>
+			</binding>
+		</action>
+
+		<action>
+			<name>half range</name>
+			<button>0</button>
+			<x>-53</x>
+			<y>24</y>
+			<w>32</w>
+			<h>28</h>
+			<binding>
+				<command>nasal</command>
+				<script>
+					var p = "instrumentation/radar/range";
+					var v = getprop(p) * 0.5;
+					setprop(p, v &lt; 1.25 ? 1.25 : v);
+				</script>
+			</binding>
+		</action>
+
+		<action>
+			<name>wx toggle</name>
+			<button>0</button>
+			<x>-119</x>
+			<y>-119</y>
+			<w>50</w>
+			<h>30</h>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/radar/display-controls/WX</property>
+			</binding>
+		</action>
+
+		<action>
+			<name>data toggle</name>
+			<button>0</button>
+			<x>3</x>
+			<y>-119</y>
+			<w>50</w>
+			<h>30</h>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/radar/display-controls/data</property>
+			</binding>
+		</action>
+
+		<action>
+			<name>echo toggle</name>
+			<button>0</button>
+			<x>69</x>
+			<y>-119</y>
+			<w>50</w>
+			<h>30</h>
+			<binding>
+				<command>property-toggle</command>
+				<property>instrumentation/radar/display-controls/pos</property>
+			</binding>
+		</action>
+	</actions>
+</PropertyList>

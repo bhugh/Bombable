@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <sim>
+    <model>
+      <A6M2>
+        <livery>
+          <variant type="string">Green - II</variant>
+          <material>
+            <LHaileron_1>
+              <texture>Zero-green.png</texture>
+            </LHaileron_1>
+
+            <RHaileron_1>
+              <texture>Zero-green.png</texture>
+            </RHaileron_1>
+
+            <RHflap_1>
+              <texture>Zero-green.png</texture>
+            </RHflap_1>
+
+            <LHflap>
+              <texture>Zero-green.png</texture>
+            </LHflap>
+
+            <Fuselage>
+              <texture>Zero-green.png</texture>
+            </Fuselage>
+
+            <Elevator>
+              <texture>Zero-green.png</texture>
+            </Elevator>
+
+            <Hstab>
+              <texture>Zero-green.png</texture>
+            </Hstab>
+
+            <canopy>
+              <texture>Zero-green.png</texture>
+            </canopy>
+
+            <canopy.001>
+              <texture>Zero-green.png</texture>
+            </canopy.001>
+
+            <Rudder>
+              <texture>Zero-green.png</texture>
+            </Rudder>
+
+            <Wing>
+              <texture>Zero-green.png</texture>
+            </Wing>
+          </material>
+        </livery>
+      </A6M2>
+    </model>
+  </sim>
+</PropertyList>

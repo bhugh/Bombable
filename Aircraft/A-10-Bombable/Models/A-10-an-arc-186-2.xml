@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+
+
+<PropertyList>
+	<path>A-10-an-arc-186.ac</path>
+
+	<animation>
+		<type>select</type>
+		<object-name>25</object-name>
+		<object-name>50</object-name>
+		<object-name>75</object-name>
+		<condition>
+			<property>sim/model/A-10/dummy-node</property>
+		</condition>
+	</animation>
+
+<!-- lighting-->
+
+	<animation>
+		<object-name>mount</object-name> 
+		<type>material</type>
+		<emission>
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>numbers</object-name> 
+		<type>material</type>
+		<emission>
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+
+</PropertyList>

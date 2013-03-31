@@ -1,0 +1,606 @@
+SOPWITH CAMEL: A REALISTIC JSBSIM FLIGHT MODEL - NOTES
+
+Version 1.0
+
+Brent Hugh, 30 March 2013
+
+brent@brenthugh.com
+
+PURPOSE
+
+In flying the existing Sopwith Camel flight models in Flightgear with Bombable 
+in simulated combat situations, the shortcomings of these flight models became 
+apparent. Flightgear flight models are typically designed and optimized for 
+flying aircraft well within their design envelopes, and work very well in 
+those situations.
+
+However, combat aircraft are often operated near the limits--or even over the 
+limits--of their documented capabilities. Particularly for an aircraft like 
+the Camel, working with and against the quirks of its design was an integral 
+part of operating the aircraft in both everyday operations and in combat. 
+These operational quirks were openly exploited by combat pilots.
+
+As one writer said:
+
+  I enjoyed flying the Camel, but its vices of control instability, extreme 
+  control sensitivity and pronounced gyroscopic effects all combined to create 
+  the impression of balancing an egg on the point of a needle rather than flying 
+  an aircraft . . .
+
+  It was never forced into manoeuvres - they were executed by
+  light pressure on the controls and subsequently relaxing, or sometimes 
+  reversing, the pressure once the desired rate of response was attained.
+
+I set out to create a flight model of the Camel that would incorporate as many 
+of the documented combat flight characteristics of the Camel as possible, and 
+in as realistic a way as possible.
+
+Technical and operations manuals of the Camel are available that give a 
+baseline for its capabilities and operation, and the JSBSim flight model now 
+very closely matches those public specifications. However, extensive wind 
+tunnel testing data, which would give far more detailed data about performance 
+of the aircraft in different situations--and which is often available for more 
+modern aircraft--is not available for the Camel as far as I know.
+
+For that reason, I have relied on detailed reports by pilots of historical and 
+modern Sopwith Camels, which give an account of characteristics, quirks, and 
+typical solutions used by pilots, and used these first-hand sources to guide 
+the development of the flight model.
+
+CAMEL FLIGHT CHARACTERISTICS IMPLEMENTED IN THE FDM
+
+Camel flight characteristics are documented below and in the included files.
+
+Below is a list of Camel flight characteristics implemented in this JSBSim 
+flight model, with a rating of the effectiveness of the current implementation 
+on a scale of 1-5:
+
+    1 - Not implemented
+    
+    2 - Partially implemented
+    
+    3 - Well implemented
+    
+    4 - As well implemented as possible, as far as I (a non-pilot) can determine 5 
+    - As well implemented as possible, according to an expert Camel pilot
+
+4 Weight, fuel capacity & weight, hp, dimensions and other technical details 
+implemented as described in attached article, 'The Sopwith "Camel"', The 
+Automobile, Nov 7, 1918.
+
+4 Best available calculations for moment of inertia of engine/propellor, prop 
+thrust, moment of inertia of aircraft wings and body. See included file 
+Camel-JSBSim-calcs-2011-10D.xls. NOTE: These results could/should be verified 
+and improved by actual measurement and testing of an aircraft, by wind tunnel 
+data, or by extensive testing and feedback of the model by an experienced 
+Camel pilot.
+
+4 Speed, RPM, horsepower of climbing and horizontal flight closes matches 
+published number. See for example the speed/climb rate graphs comparing the 
+JSBSim Camel and a historical 1917 Camel in the Docs subdirectory, file 
+Camel-JSBSim-calcs-2011-10D.xls NOTE: The numbers to not match exactly, of 
+course--tweaking parameters in JSBSim you can match any single parameter 
+exactly put not several parameters of different types exactly. Nevertheless 
+the results are very close, definitely show the characteristics of the Camel 
+(vs any of the other similar aircraft of the period) and in fact is probably 
+close enough to be within the bounds of individual variation of production 
+Camels. TODO: Tweak dive rate/speed to better match historical Camel.
+
+3.5 Max sustained turn rate about 76 deg/sec (near stall speed, level flight, 
+sea level). TODO: Re-check turn rate.
+
+4 Quick/light response to controls
+
+4 The gyroscopic effect causes the nose to rise in a left-hand turn (moreso 
+that most other similar aircraft)
+
+4 The gyroscopic effect causes nose to drop in a right-hand turn
+
+4 Fairly large amounts of left rudder were needed in both L & R turns to 
+correct
+
+4 Sluggish in left turns. Quicker through 270 degrees to the right than 90 
+degrees to the left. TODO: This may require some more refinement
+
+4 Sensitive in a turn, if the turn were tightened just a little, it was likely 
+to whip into a tight spin.
+
+4 All the weight of the engine, guns, and pilot was concentrated in the first 
+seven feet of a short 18-foot fuselage.
+
+3.5 Camel's elevator was powerful and sensitive. TODO: May require some 
+further refinement.
+
+3.5 Rudder was too small and relatively ineffective. TODO: May require some 
+further refinement.
+
+4 Accelerating the aircraft caused the nose to climb, and swing to the left.
+
+4 At 110 miles per hour, there was about 15 to 20 pounds of back force on the 
+control column, which could not be trimmed out because the aircraft had no 
+pilot-adjustable, moveable horizontal stabilize
+
+3.7 Moving the stick forward to enter a dive caused the Camel to yaw left 
+because of gyroscopic force, and correcting this yaw with right rudder caused 
+the nose to pitch down sharply. TODO: Effect is definitely there but may 
+require some refinement
+
+4 Steerable tail skid of the Camel helped to overcome a slight swing to the 
+left as I opened the throttle.
+
+4 The tail came up at about 20 knots.
+
+4 Lifts off about 35-40 knots
+
+4 Able to take off & land in a very short distance, especially on a field and 
+with a headwind--see for instance: http://www.youtube.com/watch?v=VT9wtDNiKaI 
+With a 15 mph headwind, JSBSim Camel now matches this takeoff almost exactly. 
+The rollout matches pretty well, too--though obviously much depends on the 
+exact surface and other details.
+
+4 Right rudder needed to keep AC on course early in roll-out
+
+3.7 Left rudder needed later in roll-out as speed increases. NOTE: The JSBSim 
+doesn't currently require *full* L rudder, as some sources indicate, so some 
+refinement may be needed or these sources may be slightly exaggerating.
+
+3.7 In a wind of 10 to 15 knots you are airborne in a couple of plane lengths 
+at 35 mph. TODO: JSBSim is currently just a little over, this--airborn at 40 
+knots approx.
+
+4 Rate of climb of almost 1,000 feet a minute climbing out of take-off.
+
+4 Capable of looping, 110 mph required.
+
+4 Being slightly tail-heavy it goes up and over in an incredibly small circle 
+in the sky, and faster than any other WWI aircraft I have flown.
+
+4 Tail heavy with full fuel
+
+2.5 Slightly nose heavy with empty fuel. TODO: With fuel nearly empty it is 
+noticeably less tail heavy than with full fuel, but not quite to the point of 
+nose heavy. Requires further tweaking.
+
+4 As you slow down over the top of the loop you must feed in rudder against 
+the torque.
+
+2.5 On strafing runs, as soon as the airspeed reaches 130 to 140 mph the nose 
+begins to hunt up and down, and the elevator becomes extremely sensitive. I 
+feel this action is due largely to the square windshield between the two 
+Vickers guns, causing a substantial burble over the tail surfaces. TODO: 
+JSBSim model does become more unstable above 150 mph or so but this effect 
+could likely be modelled more precisely.
+
+3.5 In stalls at 35 to 40 mph the nose drops frighteningly fast and hard to 
+the right, but you also get control back quickly, although a surprising amount 
+of altitude has been lost. I have had the pleasure of limited dog fighting 
+with other WWI fighters, and there are none that can stay with a Camel in a 
+turn. TODO: JSBSim model stalls almost exactly as described, but nose drops 
+hard to L instead of R. This can likely be tweaked in the model.
+
+4 Very quick half-roll (a touch of left rudder for a half roll, then a quick 
+half-loop was a often-used maneuver to reverse direction).
+
+4 Twin Vickers machine guns, 400 round capacity (historically 250-400 seems to 
+have been the range), best known realistic mass, ballistic, and
+aerodynamic characteristics for rounds, firing rate, characteristics of tracer 
+rounds, etc. Historically realistic re-loading scenario (requires landing, 
+full stop, engine off). See camel-alternative-submodels.xml for information 
+and documentation. NOTE: Aerodynamic characteristics of machine gun rounds 
+could be tweaked if better data were available; tracer visuals could be made 
+more realistic.
+
+2 Mixture needed constant manual adjustment; first adjustment about 250 about 
+ground on liftoff. TODO: Mixture is does not require the constant adjustment 
+described by Camel pilots--it acts more as a typical modern auto-mixture. I'm 
+not sure if JSBSIM can do this more realistically out of the box; this may 
+require custom Nasal programming to implement.
+
+2.5 Control of engine thrust via blip switch and magneto rather than throttle. 
+NOTE: Pilots can simulate the realistic historical way of controlling the 
+Camel's engine using this method: Leave throttle at full position at all times;
+manipulate engine power through use of the magnetos and blip switch alone. 
+Engine power with one and with two magnetos engaged is very close to that 
+described in technical specifications; operating with one magneto creates a 
+low-power setting. TODO: A more realistic flight experience would be to 
+connect the joystick throttle control to the mixture, allowing constant 
+adjustment of the mixture as necessary, and leave throttle always at full with 
+engine power adjusted by magnetos and blip switch.
+
+1 Engine start. JSBSim engine start requires a very extended cranking period. 
+Camel engines were notoriously difficult to start, but given the manual engine 
+starting methods of the day, they must have started either with a quick crank 
+or not at all.
+
+
+DOCUMENTS
+A number of relevant documents and notes, including facsimiles, articles, and 
+calculations, are included in the Docs folder of this distribution.
+
+Below is a compilation of notes and comments by pilots with experience flying 
+the Camel.
+
+---
+
+Max sustained turn rate is about 76 deg/sec. That is near stall speed, level 
+flight, at sea level. p. 7 
+
+A graph of speed vs climb rate is given for the Camel and four other
+aircraft from the same era (p. 7).  
+
+http://home.comcast.net/~clipper-108/AIAAPaper2005-119.pdf 
+
+---
+
+"I lived its quick response - it was so remarkably swift and sensitive that it 
+demanded constant attention. The torque caused the nose to rise in aleft-hand 
+turn and rop in aright-hand turn. Fairly large amounts of left rudder were 
+needed in bothturns to correct for these idiosyncrasis. The tiny biplane was 
+so snesitive in a turn, however, that if the turn were tightened just a little,
+ it was likely to whip into a tight spin - quickly and without warning. Oddly 
+this very ease for spining was used in combat by many pilots to shake a 
+persisten German from their tails. sopwith Came vs Fokker Dr 1: Western Front 
+1917-18 by Jon Guttman, Harry Dempsey, quoting from mark Curtis Kinney's 
+memoir, I Flew a Camel
+
+---
+
+Here is a description about the Camel's traits from BARKER VC, (via author 
+Wayne Ralph at 
+http://www.theaerodrome.com/forum/2001/11306-sopwith-camel-flight-characteristics.html 
+):
+
+Quote:
+
+All the weight of the engine, guns, and pilot was concentrated in the first 
+seven feet of a short 18-foot fuselage. The various models of rotary engine 
+fitted to the Camel, from a 110-hp Le Rhone, to a 130-hp Clerget, to a 150-hp 
+Bentley, had the propeller attached to the engine crankcase and the crankshaft 
+to the aircraft so that the propeller and engine revolved together at more 
+than 1250 rpm. This heavy whirling engine was lubricated continually by castor 
+oil which was not recycled, but rather was burned in the combustion process 
+and vented overboard, soaking the aircraft, the pilot's flying suit, helmet 
+and goggles. The gyroscopic forces that were generated varied in intensity 
+based on a complex interaction of engine rpm, aircraft speed, and control 
+input. The scout had a different character turning left or right, as did all 
+the rotary-engined aeroplanes, but the Camel to an extreme degree. It was 
+sluggish in left turns and the nose always pitched up, while right turns were 
+very quick, with the nose dropping sharply. Without plenty of top (ie, left) 
+rudder to correct the pitch down, it would spin. A Camel pilot had to apply 
+left rudder turning left or right, the amount varying with aircraft speed and 
+engine rpm. Since the engine rotation countered the input of left stick and 
+rudder, some pilots made all turns to the right because the aircraft was 
+quicker through 270 degrees, than 90 degrees to the left. The Camel's elevator 
+was powerful and sensitive, while the rudder was too small and relatively 
+ineffective. Coordinated turns demanded a fine touch. Correcting sideslip, the 
+tendency of the aeroplane to slide to the inside of a banked turn, by applying 
+opposite rudder, caused the Camel to tighten up in the turn. In steep turns 
+over 45 degrees of bank, the aircraft tended to pitch up its nose, and tighten 
+up its bank angle as speed reduced, requiring continual adjustments in the 
+amount of forward pressure on the stick with engine rpm changes. In the words 
+of test pilot W/C Paul A. Hartman, RCAF, the Camel has no 'dynamic 
+longitudinal stability' in steep turns. Accelerating the aircraft caused the 
+nose to climb, and swing to the left. At 110 miles per hour, there was about 
+15 to 20 pounds of back force on the control column, which could not be 
+trimmed out because the aircraft had no pilot-adjustable, moveable horizontal 
+stabilizer. Therefore, Camel pilots had to fly two-to-three hour missions, 
+continually applying forward pressure just to maintain level flight. Letting 
+go resulted in the aircraft pitching up, and rolling inverted to the right. 
+Moving the stick forward to enter a dive caused the Camel to yaw left because 
+of gyroscopic force, and correcting this yaw with right rudder caused the nose 
+to pitch down sharply. By today's standards the Camel was completely 
+unacceptable, and yet many pilots of 1917-8, most with under 100 hours of 
+flying time used it as a lethal weapon.
+
+---
+
+http://www.theaerodrome.com/forum/2001/11306-sopwith-camel-flight-characteristics-3.html
+In 
+those notes are a description of when and why the mixture had to be adjusted. 
+If memory serves, it was perilously low to the ground, under 250 feet. The 
+shift to left rudder would have to have taken place either just before or just 
+after this, because the whole point of changing the mixture was that the 
+engine would have been on the verge of choking, which means that you'd be 
+trying to maintain flying speed.
+
+My guess is that the shift would have to happen within 10-20 seconds of 
+getting airborne under normal circumstances.
+
+---
+
+"...all flights of these early machines were conducted from the grass surface 
+of the airfield, not the paved runways, and the steerable tail skid of the 
+Camel helped to overcome a slight swing to the left as I opened the throttle. 
+The tail came up at about 20 knots.
+
+As the speed reached 40 knots I eased the stick back slightly and the Camel 
+became airborne. It accelerated rapidly to 55 knots and I held it in a climb 
+at that speed until I reached 500 feet. I leveled off, leaned the mixture, and 
+started a left hand turn. The gyroscopic effect from the rotary engine quickly 
+became apparent...
+
+...I enjoyed flying the Camel, but its vices of control instability, extreme 
+control sensitivity and pronounced gyroscopic effects all combined to create 
+the impression of balancing an egg on the point of a needle rather than flying 
+an aircraft...it was never forced into manoeuvres - they were executed by 
+light pressure on the controls and subsequently relaxing, or sometimes 
+reversing, the pressure once the desired rate of response was attained.
+
+By modern standards of stability and control, the Camel would be totally 
+unacceptable as a military aircraft...
+
+(quoted from Canada's National Aviation Museum - Its History and Collection, 
+by K.M. Molson)
+
+http://www.theaerodrome.com/forum/2001/11306-sopwith-camel-flight-characteristics.html
+---
+"As 
+I opened the throttle I simultaneously applied full left rudder and as I 
+became airborn I found that I had full left rudder on. (This was the answer 
+always, as I afterwards found, and I was never in trouble again from this 
+cause)"
+
+August 98 issue of FLight journal has the flying of the Camel by Rich King. 
+160 Hp Gnome engine (yes, rotary) qoute:
+
+..Right rudder is needed to keep the Camel tracking straight ahead while it is 
+on the runway, and as the tail comes up, I find that my rudder correction was 
+right on. I m facing straight down the center of the runway.........A little 
+back pressure on the control stick and the bumpy ground falls away behind me, 
+and the Camels speed continues to increase at an exhilarating rate. A little 
+forward pressure on the "closh handle" hold the aeroplane a few feet above the 
+runway while its speed continues to increase. .... Left Rudder is now needed 
+to keep the racing Camel straight....." end quote
+
+http://www.theaerodrome.com/forum/2001/11306-sopwith-camel-flight-characteristics-2.html
+---
+From 
+the Frank Tallman book "Flying the old planes"...
+
+My Sopwith Camel is, as far as I'm aware, the only original World War 1 Camel 
+ever brought back to flying condition. It was originally owned by Colonel 
+Jarrett of the Jarrett War Museum located on the old Steel Pier in Atlantic 
+City; who in the 1930's had the best museum of WWI equipment ever assembled, 
+including the Belgian War Museum in Brussels. The Jarrett Museum fell on hard 
+times following WWII and, with time and money on my side after my service 
+period, and a lifelong ambition of owning a WWI aircraft, I purchased for a 
+small sum (by today's standards) several antique aircraft including the Camel, 
+a Nieuport 28, a Pfalz D.XII, a Fokker D.VII and a SPAD VII.
+
+The Camel was the first WWI aircraft I brought back to flying condition and 
+required some major rebuilding, which took several years, many thousands of 
+dollars and a whole host of experts including Paul Poberzney of the 
+Experimental Aircraft Association, the gifted master craftsman Ned Kensinger, 
+the Hawker Siddeley Group and a number of very dedicated volunteer's.
+
+(NB: There is quite a bit on the rebuilding process in the Chapter but I have 
+left it out of this extract for the sake of space).
+
+When the day finally came to fly the air was filled with great anticipation. 
+On arrival at the airport though I was dismayed to hear from my team that they 
+had been trying to get the temperamental 110 h.p. Le Rhone started since 
+8.00am that morning, without success. The lack of knowledge amongst us 
+regarding the Le Rhone was appalling. Did we have spark? Yes. Was the mag set? 
+Yes. Had the commutator ring been wiped off? Yes. Had we primed it? Only every 
+other cylinder.
+
+With only a vague notion of what I was doing I clambered into the cockpit (a 
+very tight fit) and reviewed the cord-wrapped Spade stick, the Block tube, 
+carburettors next to one's knees, the flexible air intake to the outside air 
+scoops, the wood wire brace longerons, the instrument panel with it's clutter 
+and the duel control cables to the wooden rudder bar. At my request, the crew 
+forced open the intake valves as the engine was pushed through (switch off) 
+and shot a charge of fuel in each cylinder, as the cylinder came in front of 
+the hole in the cowling. By accident, rather than by knowledge, I advanced the 
+long lever controlling the air, and in pushing the manet (a small wheel knob 
+on the miniature control quadrant) forward and then returning it, I had hit on 
+the correct starting procedure. Wonder of wonders, as I flipped the 
+porcelain-mounted switch up and called for contact, the Le Rhone started with 
+a full-throated bellow, scaring both me and the crew!
+
+By shoving the fuel-controlling lever forward and using the coupe (cut-out) 
+button on the stick, I was able to keep the engine running. Soon the 
+never-to-be-forgotten smell of castor oil infused our area, and the sight of 
+oil splattering the leading edge of the low wings indicated that the engine 
+was lubricating properly. Taxiing practice ended ignominiously a hundred feet 
+from the starting point, when my newfound knowledge wasn't equal to the 
+delicate adjustment of fuel and air, and the Le Rhone quit.
+
+The revitalised ground crew hauled the 900 pound airplane over the grass and 
+faced me into the wind. For safety sake we changed the plugs, and the Le Rhone 
+started first try. I headed down the field with the throttle wide open. The 
+tail came up almost instantly, and visibility was good, except for the Aldis 
+sight and the twin Vickers. Not having planned on flight it came as something 
+of a shock to find the Camel airborne at about 35 mph after a ground run of 
+just 150 feet. Being afraid of jockeying with my ticklish fuel and air 
+controls I stayed low and just got used to the Camel's sensitive ailerons, 
+elevators and rudder.
+
+I circled the field once, got into position for landing, shut fuel air and 
+switch off, and made a light forward slip, touching down gently on three 
+points. Total landing couldn't have been much longer than the initial take-off 
+run.
+
+So much for my first (unintentional) flight in the Camel.
+
+Since then I've spent more time flying the Camel than any of the other 
+historical aircraft in our collection. I've also had more forced landings in 
+it than all the rest of the WWI aircraft combined. It's that temperamental Le 
+Rhone. Cylinders have blown, magneto's have failed, even fouled spark plugs 
+have brought me down unceremoniously, with sweating hands and my heart in my 
+mouth, desperately seeking a patch of open ground on which to land. Yet for 
+all that it's the one I turn to first for any show or exhibition, as the Camel 
+gets my blood going like no other. This is an aircraft that is a joy to fly.
+
+With the Le Rhone 9J, you cannot adjust either the fuel or air intake without 
+running the risk of a dead-stick landing. You must leave them alone and use 
+you Coupe (cut-out) button for all fight handling.
+
+The take-off run is easy. In a wind of 10 to 15 knots you are airborne in a 
+couple of plane lengths at 35 mph and climbing out at 60 mph, with a rate of 
+climb of almost 1,000 feet a minute. The elevators are sensitive, as is the 
+rudder. Consequently, when fling for any distance I often put the heels of my 
+shoes on the floor tie wires, because the vibration of the Le Rhone through 
+the rudder bar exaggerates the rudder movements.
+
+In level flight at 100 mph indicated, the Camel is delightful, with just a 
+hint of rudder being required for straight flight. The structure is rugged 
+enough to feel comfortable in loops, and being slightly tail-heavy it goes up 
+and over in an incredibly small circle in the sky, and faster than any other 
+WWI aircraft I have flown. Sneeze and your halfway through a loop before your 
+aware of what's happened. 110 mph is enough to carry you through, and as you 
+slow down over the top you must feed in rudder against the torque.
+
+In military shows I have ground strafed, and as soon as the airspeed reaches 
+130 to 140 mph the nose begins to hunt up and down, and the elevator becomes 
+extremely sensitive. I feel this action is due largely to the square 
+windshield between the two Vickers guns, causing a substantial burble over the 
+tail surfaces.
+
+Turns are what the Camel is all about. Turning to the right with the torque 
+requires the top rudder to hold the nose up, and the speed with which you can 
+complete a 360-degree turn is breathtaking. Left turns are slower, with the 
+nose wanting to rise during the turn. But small rudder input easily keeps the 
+nose level with the horizon. In stalls at 35 to 40 mph the nose drops 
+frighteningly fast and hard to the right, but you also get control back 
+quickly, although a surprising amount of altitude has been lost. I have had 
+the pleasure of limited dog fighting with other WWI fighters, and there are 
+none that can stay with a Camel in a turn.
+
+With the Le Rhone being temperamental as it is, flying the Camel is best done 
+at times when there are few other aircraft in the sky, leaving easy access to 
+the airport in cases of emergency. The Camel touches down easily but runs out 
+of rudder control almost instantly, and if you bounce your landing at all, you 
+are likely to find yourself in a hairy ground loop looking at a rapidly 
+bending aileron dragging in the grass.
+
+For a wide variety of reasons, the Camel is a fascinating airplane, 
+flight-wise as well as historically. But don't think I ever got out of the 
+Camel after being airborne even in the coldest weather without buckets of 
+perspiration and considerable gratitude that I had gotten the little girl home 
+again without breaking her into splinters!
+
+http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
+
+---
+
+Additional comments on Camel handling characteristics by Victor Yeates, author 
+of "Winged Victory" (yes, it's a fictional novel, but his experiences of 
+flying a camel were realistic, and are a valid, honest description)...
+
+Re training:
+
+"Camels were wonderful fliers when you had got used to them, which took about 
+three months of hard flying. At the end of that time you were either dead, a 
+nervous wreck, or the hell of a pilot and a terror to Huns . . ."
+
+Re turns:
+
+"And in the more legitimate matter of vertical turns, nothing in the skies 
+could follow in so tight a circle..."
+
+Re the half-roll (Split S):
+
+"The same with the half-roll. Nothing would half-roll like a Camel. A twitch 
+of the stick and flick of the rudder and you were on your back. The nose 
+dropped at once and you pulled out having made a complete reversal of 
+direction in the least possible time.
+
+Thomson, the squadron stunt expert told him that it (half-roll) was just the 
+first half of a roll followed by the second half of a loop; the only stunt 
+useful in fighting. If you were going the wrong way, it was the quickest known 
+method of returning in your slipstream."
+
+Re the loop (he didn't like looping a Camel):
+
+"But a Camel had to be flown carefully round with exactly the right amount of 
+left rudder, or else it would rear and buck and hang upside down and flop and 
+spin."
+
+Re general flight:
+
+" . . . a Camel had to be held in flying position all the time, and was out of 
+it in a flash. It was nose light, having a rotary engine weighing next to 
+nothing per horse power, and was rigged tail heavy so that you had to be 
+holding her down all the time. Take your hand off the stick and it would rear 
+right up with a terrific jerk and stand on its tail."
+
+Re ground strafing (which he hated due to ground anti-ac machine gun fire):
+
+"Unfortunately, they were good machines for ground-strafing. They could dive 
+straight down on anything, and when a few feet off the ground, go straight up 
+again."
+
+Re speed:"...a Camel was a wonderful machine in a scrap. If only it had been 
+fifty per cent faster! There was the rub. A Camel could neither catch anything 
+except by surprise, nor hurry away from an awkward situation, and seldom had 
+the option of accepting or declining combat...You couldn't have everything."
+
+http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
+
+---
+
+Indeed you are correct about the Rudder - it's area was a paltry 4.9 sq. ft. 
+(and fin at 3 sq. ft.) 
+http://www.theaerodrome.com/forum/aircraft/47951-sopwith-camel-myth-2-a.html
+
+---
+
+JSBSim seems to have the direction of force for the moment of inertia of the 
+gyroscopic effect of the engine reversed. This creates a difficult problem for 
+modelling the Camel, because the gyroscopic effect of the Camel is so 
+pronounced. Below are my notes on the problem and now it was resolved in the 
+Camel JSBSim flight modle:
+
+  The docs say that sense =1 for CW propeller as seen
+  from the cockpit.  The camel has a CW propeller by every example
+  I've been able to find. This source definitely says, "The 
+  direction of rotation was counter-clockwise as seen from the 
+  propeller-end of the engine." The photos also show a CCW (from 
+  propeller-end) rotating prop.  That would be clockwise as seen 
+  from the pilot's seat and sense=1. 
+  http://www.gracesguide.co.uk/Clerget
+   
+  But sense=1 makes the Camel climb on RH 
+  turn and dive on LH turn.  Lots of sources say the opposite,
+  especially including this experienced pilot who is clearly 
+  flying a craft with a CW propeller (as seen from cockpit) and 
+  yet he says the Camel dives on RH turn and climbs on LH.
+  
+    http://www.youtube.com/watch?v=j6PnKUEFX8g
+  
+  Wikipedia says, "To easily ascertain the direction of gyro effect, simply 
+  remember that a rolling wheel tends, when it leans to the side, to turn in the 
+  direction of the lean." http://en.wikipedia.org/wiki/Gyroscope#Properties That 
+  means, for a CW (from the rear) propeller, a turn to the right causes nose to 
+  drop, exactly what is reported for the Camel. 
+
+  My conclusion is that JSBSim has it backwards and sense=1 corresponds to CCW 
+  rotation of the prop, as seen from the rear, as far as gyroscopic moment is 
+  concerned.
+  
+  However, as far as p_factor & torque is concerned, JSBSim seems to have it 
+  right.
+  
+  So what we're going to do is put in sense=1 here to get correct p_factor and 
+  torque effects, but then put in a correction down in the aero section to 
+  correct the moments, which JSBSim seems to have reversed.
+                
+ACKNOWLEDGEMENTS
+The enclosed Sopwith Camel JSBSim flight model started as an 
+Aeromatic-generated model and was then heavily modified based on ideas from 
+the FlightGear and JSBSim forums, wiki, documentation, and other JSBSim models.
+
+In particular, the P-51D JSBSim FDM by Aeromatic, Jon Berndt, DATCOM, and 
+modified extensively by Hal V. Engel provided a model of a JSBSim FDM that 
+successful modeled asymmetric stall, snap rolls, induction of a spin during 
+stall, and other characteristics found in the Camel FDM.
+
+Other than the JSBSim FDM, adaption of weapons models for the Camel, and other 
+minor adaption as needed for these updated systems, the Camel models, sounds, 
+systems, and XML files are all the versions distributed with FlightGear, which 
+credits AJ MacLeod, Vivian Meazza.
+
+LICENSE, COPYING
+FlightGear is released under the GNU GENERAL PUBLIC LICENSE and this JSBSim 
+FDM and all associated files are released under the same license.

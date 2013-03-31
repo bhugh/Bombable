@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <key n="100">
+    <name>d</name>
+    <desc>Crew door</desc>
+    <binding>
+     <command>nasal</command>
+     <script>spadvii.doorsystem.crewexport();</script>
+    </binding>
+  </key>
+
+  <key n="101">
+     <name>e</name>
+     <desc>Guns</desc>
+     <binding>
+       <command>nasal</command>
+       <script>guns.fire_MG()</script>
+     </binding>
+     <mod-up>
+       <binding>
+         <command>nasal</command>
+         <script>guns.stop_MG()</script>
+       </binding>
+     </mod-up>
+  </key>
+
+</PropertyList>
+

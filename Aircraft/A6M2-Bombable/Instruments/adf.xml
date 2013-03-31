@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!-- 
+  Radio compass for A6M2
+  Dec. 2006 Tat Nishioka
+-->
+
+<PropertyList>
+ <path>adf.ac</path>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>ADF.needle</object-name>
+  <property>/instrumentation/adf/indicated-bearing-deg[0]</property>
+  <!-- range can be -90 - 450 -->
+  <min>-90</min>
+  <max>450</max>
+  <interpolation>
+   <entry><ind>-90</ind><dep>-45</dep></entry>
+   <entry><ind>0</ind><dep>0</dep></entry>
+   <entry><ind>90</ind><dep>45</dep></entry>
+   <entry><ind>180.9999999999</ind><dep>45</dep></entry>
+   <entry><ind>181</ind><dep>315</dep></entry>
+   <entry><ind>270</ind><dep>315</dep></entry>
+   <entry><ind>360</ind><dep>360</dep></entry>
+   <entry><ind>450</ind><dep>405</dep></entry>
+  </interpolation>
+  <center>
+    <x-m>0.0</x-m>
+    <y-m>0.0</y-m>
+    <z-m>-0.015</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+</PropertyList>

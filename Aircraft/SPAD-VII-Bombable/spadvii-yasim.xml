@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- S.P.A.D. VII - 2009 BARANGER Emmanuel
+
+     Sources      http://fr.wikipedia.org/wiki/SPAD_S.VII
+
+     Envergure    : 7.81 m   (25 ft  8 in )
+     Longueur     : 6.08 m   (19 ft 11 in )
+     Hauteur      : 2.20 m   ( 7 ft  2 in )
+     Masse a vide :  510 kg  (    1124 lb )
+     Moteur       : 1X Hispano-Suiza 8Aa inline engine, 112 kW (150 hp)
+     Vitesse max  : 192 km/h (     104 kt )
+-->
+
+<airplane mass="1124">
+
+  <!-- Approach configuration -->
+  <approach speed="60" aoa="4.3">
+    <control-setting axis="/controls/engines/engine[0]/throttle" value="0.5"/>
+    <control-setting axis="/controls/engines/engine[0]/mixture" value="1.0"/>
+  </approach>
+
+  <!-- Cruise configuration -->
+  <cruise speed="119" alt="0" fuel="0.5">
+    <control-setting axis="/controls/engines/engine[0]/throttle" value="1.0"/>
+    <control-setting axis="/controls/engines/engine[0]/mixture" value="1.0"/>
+  </cruise>
+
+  <!-- pilot's eyepoint -->
+  <cockpit x="1.209" y="0" z="0.661"/>
+
+  <fuselage ax="2.869" ay="0" az="0.127" bx="-3.041" by="0" bz="0.377" width="0.982" taper="0.8" midpoint="0.15"/>
+
+  <!-- upper wing -->
+  <wing x="1.565" y="0" z="0.895"
+        chord="1.633"
+        length="3.901"
+        taper="1.0"
+        camber="0.04">
+        <stall aoa="24" width="4" peak="1.5"/>
+        <flap1 start="0.518" end="1.0" lift="1.20" drag="1.35"/>
+
+        <control-input axis="/controls/flight/aileron" control="FLAP1" split="true"/>
+
+        <control-output control="FLAP1" side="left" prop="/surface-positions/left-aileron-pos-norm"/>
+        <control-output  control="FLAP1" side="right" prop="/surface-positions/right-aileron-pos-norm"/>
+
+        <control-speed control="FLAP1" transition-time="1"/>
+  </wing>
+
+  <!--lower wing -->
+  <mstab x="1.565" y="0.00" z="-0.213"
+         chord="1.633"
+         length="3.700"
+         taper="1"
+         camber="0.04">
+         <stall aoa="24" width="4" peak="1.5"/>
+  </mstab>
+
+  <!-- tailplane -->
+  <hstab x="-2.186" y="0" z="0.507"
+         chord="1.235"
+         length="1.404"
+         taper="1">
+         <stall aoa="22" width="6" peak="2.5"/>
+         <flap0 start="0" end="1" lift="1.4" drag="1.5"/>
+
+         <control-input axis="/controls/flight/elevator" control="FLAP0"/>
+         <control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
+         <control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
+
+         <control-speed control="FLAP0" transition-time="1"/>
+  </hstab>
+
+  <!-- tail -->
+  <vstab x="-2.128" y="0" z="0.184"
+         chord="1.803"
+         length="1.366"
+         sweep="15">
+         <stall aoa="20" width="4" peak="1.5"/>
+         <flap0 start="0" end="1" lift="1.3" drag="1.3"/>
+
+         <control-input axis="/controls/flight/rudder" control="FLAP0" invert="true"/> 
+
+         <control-output control="FLAP0" prop="/surface-positions/rudder-pos-norm"/>
+
+         <control-speed control="FLAP0" transition-time="1.0"/>
+  </vstab>
+
+  <!-- Engines   source            : http://en.wikipedia.org/wiki/Hispano-Suiza_8A
+
+                 name              : Hispano-Suiza 8
+                 type              : 8-cylinder liquid-cooled Vee piston engine
+                 power cruise      : 150 hp at 2000 rpm
+                 weight            : 215 kg (474 lb)
+                 Displacement      : 717.8 in3 (11.76 L)
+                 Propeller diameter: 2.4 m (7.87 ft)
+  -->
+  <propeller x="2.237" y="0" z="0.141"
+             mass="474"
+             moment="10"
+             radius="1.2"
+             cruise-speed="119"
+             cruise-rpm="2000"
+             cruise-power="150"
+             cruise-alt="0"
+             takeoff-power="150"
+             takeoff-rpm="2000">
+             <actionpt x="2.941" y="0" z="0.127"/>
+             <piston-engine eng-power="150"
+                            eng-rpm="2000"
+                            displacement="717.8">
+                            <control-input axis="/controls/engines/engine[0]/throttle" control="THROTTLE"/>
+                            <control-input axis="/controls/engines/engine[0]/starter" control="STARTER"/>
+                            <control-input axis="/controls/engines/engine[0]/magnetos" control="MAGNETOS"/>
+                            <control-input axis="/controls/engines/engine[0]/mixture" control="MIXTURE"/>
+             </piston-engine>
+  </propeller>
+
+  <!-- left main -->
+  <gear x="2.292" y="0.751" z="-1.323"
+        compression="0.15"
+        dfric="0.8"
+        sfric="1.0"
+        damp="0.8">
+        <control-input axis="/controls/gear/brake-parking" control="BRAKE" split="true"/>
+  </gear>
+
+  <!-- right main -->
+  <gear x="2.292" y="-0.751" z="-1.323"
+        compression="0.15"
+        dfric="0.8"
+        sfric="1.0"
+        damp="0.8">
+        <control-input axis="/controls/gear/brake-parking" control="BRAKE" split="true"/>
+  </gear>
+
+  <!-- Tail skid -->
+  <gear x="-2.137" y="0" z="-0.164"
+        compression="0.10"
+        castering="0"
+        dfric="0.5"
+        sfric="0.6">
+  </gear>
+
+  <!-- fuel -->
+  <tank x="1.565" y="0" z="0.895" capacity="200"/>
+
+  <!-- CG Theorique : x=1.565 y=0 z=0.127 -->
+  <ballast x="3" y="0.001" z="-4" mass="250"/>
+
+</airplane>

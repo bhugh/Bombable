@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This should produce nice flames and smoke for burning objects. -->
+<PropertyList>
+	<particlesystem>
+		<name>smoke</name>
+		<texture>smoke.png</texture>
+		<emissive>false</emissive>
+		<lighting>true</lighting>
+		<type>normal</type>
+		<align>billboard</align>
+		<attach>world</attach>
+		
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>5</z-m>
+			<pitch-deg>0.0</pitch-deg>
+		</offsets>
+		
+		<condition>
+				<property>/bombable/menusettings/fire-particles/fire-trigger</property>
+		</condition>
+    <shooter>
+      <speed>
+        <value>5</value>
+        <spread>2.5</spread>
+      </speed>
+    </shooter>
+		
+	
+		<placer>
+			<type>sector</type>
+			<radius-min-m>0.0</radius-min-m>
+			<radius-max-m>2.0</radius-max-m>
+		</placer>
+		
+		<counter>
+			<particles-per-sec>
+				<value>6</value>
+				<spread>0</spread>
+			</particles-per-sec>
+		</counter>
+		
+		<particle>
+			<start>
+				<color>
+					<red>
+						<value>0.12</value>
+					</red>
+					<green>
+						<value>0.12</value>
+					</green>
+					<blue>
+						<value>0.12</value>
+					</blue>
+					<alpha>
+						<value>1.0</value>
+					</alpha>
+				</color>
+				<size>
+					<!-- value>11</value -->
+					<property>/bombable/fire-particles/smoke-startsize</property>
+				</size>
+			</start>
+			<end>
+				<color>
+					<red>
+						<value>0.35</value>
+					</red>
+					<green>
+						<value>0.35</value>
+					</green>
+					<blue>
+						<value>0.35</value>
+					</blue>
+					<alpha>
+						<value>0.35</value>
+					</alpha>
+				</color>
+				<size>
+					<property>/bombable/fire-particles/smoke-endsize</property>
+				</size>
+			</end>
+			<life-sec>
+				<value>19</value>
+			</life-sec>
+			<mass-kg>680000</mass-kg><!-- Air density: 1,204Kg/m3 at 20°C -->
+			<radius-m>50</radius-m>
+		</particle>
+		
+		<program>
+			<fluid>air</fluid>
+			<gravity type="bool">true</gravity>
+			<wind type="bool">true</wind>
+		</program>
+	</particlesystem>
+	
+	
+</PropertyList>

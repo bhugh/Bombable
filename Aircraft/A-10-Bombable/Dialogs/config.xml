@@ -1,0 +1,301 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<name>A-10-config</name>
+	<x>-40</x>
+	<y>-40</y>
+	<width>325</width>
+	<height>480</height>
+	<modal>false</modal>
+
+	<text>
+		<x>70</x>
+		<y>450</y>
+		<label>External Stores Configuration</label>
+	</text>
+
+	<!-- Station[0] -->
+	<group>
+		<x>0</x>
+		<y>415</y>
+		<text>
+			<x>20</x>
+			<y>0</y>
+			<label>Pylon #1</label>
+		</text>
+		<combo>
+			<x>100</x>
+			<y>0</y>
+			<width>200</width>
+			<height>25</height>
+			<property>/sim/model/A-10/weapons/stations/station[0]/description</property>
+			<value>AN-ALQ-131</value>
+			<value>dual-AIM-9</value>
+			<value>single-MK-82-LD</value>
+			<value>none</value>
+		</combo>
+	</group>
+	<!-- Station[1] -->
+	<group>
+		<x>0</x>
+		<y>380</y>
+		<text>
+			<x>20</x>
+			<y>0</y>
+			<label>Pylon #2</label>
+		</text>
+		<combo>
+			<x>100</x>
+			<y>0</y>
+			<width>200</width>
+			<height>25</height>
+			<property>/sim/model/A-10/weapons/stations/station[1]/description</property>
+			<value>LAU-68</value>
+			<value>single-MK-82-LD</value>
+			<value>none</value>
+		</combo>
+	</group>
+	<!-- Station[2] -->
+	<group>
+		<x>0</x>
+		<y>345</y>
+		<text>
+			<x>20</x>
+			<y>0</y>
+			<label>Pylon #3</label>
+		</text>
+		<combo>
+			<x>100</x>
+			<y>0</y>
+			<width>200</width>
+			<height>25</height>
+			<property>/sim/model/A-10/weapons/stations/station[2]/description</property>
+			<value>LAU-68</value>
+			<value>single-MK-82-LD</value>
+			<value>triple-MK-82-LD</value>
+			<value>none</value>
+		</combo>
+	</group>
+	<!-- Station[3] -->
+	<group>
+		<x>0</x>
+		<y>310</y>
+		<text>
+			<x>20</x>
+			<y>0</y>
+			<label>Pylon #4</label>
+		</text>
+		<combo>
+			<x>100</x>
+			<y>0</y>
+			<width>200</width>
+			<height>25</height>
+			<property>/sim/model/A-10/weapons/stations/station[3]/description</property>
+			<value>LAU-68</value>
+			<value>single-MK-82-LD</value>
+			<value>triple-MK-82-LD</value>
+			<value>none</value>
+		</combo>
+	</group>
+	<!-- Station[4] -->
+	<group>
+		<x>0</x>
+		<y>275</y>
+		<text>
+			<x>20</x>
+			<y>0</y>
+			<label>Pylon #5</label>
+		</text>
+		<combo>
+			<x>100</x>
+			<y>0</y>
+			<width>200</width>
+			<height>25</height>
+			<property>/sim/model/A-10/weapons/stations/station[4]/description</property>
+			<value>single-MK-82-LD</value>
+			<value>none</value>
+		</combo>
+	</group>
+	<!-- Station[5] -->
+	<group>
+		<x>0</x>
+		<y>240</y>
+		<text>
+			<x>20</x>
+			<y>0</y>
+			<label>Pylon #6</label>
+		</text>
+		<combo>
+			<x>100</x>
+			<y>0</y>
+			<width>200</width>
+			<height>25</height>
+			<property>/sim/model/A-10/weapons/stations/station[5]/description</property>
+			<value>single-MK-82-LD</value>
+			<value>none</value>
+		</combo>
+	</group>
+	<!-- Station[6] -->
+	<group>
+		<x>0</x>
+		<y>205</y>
+		<text>
+			<x>20</x>
+			<y>0</y>
+			<label>Pylon #7</label>
+		</text>
+		<combo>
+			<x>100</x>
+			<y>0</y>
+			<width>200</width>
+			<height>25</height>
+			<property>/sim/model/A-10/weapons/stations/station[6]/description</property>
+			<value>single-MK-82-LD</value>
+			<value>none</value>
+		</combo>
+	</group>
+	<!-- Station[7] -->
+	<group>
+		<x>0</x>
+		<y>170</y>
+		<text>
+			<x>20</x>
+			<y>0</y>
+			<label>Pylon #8</label>
+		</text>
+		<combo>
+			<x>100</x>
+			<y>0</y>
+			<width>200</width>
+			<height>25</height>
+			<property>/sim/model/A-10/weapons/stations/station[7]/description</property>
+			<value>LAU-68</value>
+			<value>single-MK-82-LD</value>
+			<value>triple-MK-82-LD</value>
+			<value>none</value>
+		</combo>
+	</group>
+	<!-- Station[8] -->
+	<group>
+		<x>0</x>
+		<y>135</y>
+		<text>
+			<x>20</x>
+			<y>0</y>
+			<label>Pylon #9</label>
+		</text>
+		<combo>
+			<x>100</x>
+			<y>0</y>
+			<width>200</width>
+			<height>25</height>
+			<property>/sim/model/A-10/weapons/stations/station[8]/description</property>
+			<value>LAU-68</value>
+			<value>single-MK-82-LD</value>
+			<value>triple-MK-82-LD</value>
+			<value>none</value>
+		</combo>
+	</group>
+	<!-- Station[9] -->
+	<group>
+		<x>0</x>
+		<y>100</y>
+		<text>
+			<x>20</x>
+			<y>0</y>
+			<label>Pylon #10</label>
+		</text>
+		<combo>
+			<x>100</x>
+			<y>0</y>
+			<width>200</width>
+			<height>25</height>
+			<property>/sim/model/A-10/weapons/stations/station[9]/description</property>
+			<value>LAU-68</value>
+			<value>single-MK-82-LD</value>
+			<value>none</value>
+		</combo>
+	</group>
+	<!-- Station[10] -->
+	<group>
+		<x>0</x>
+		<y>65</y>
+		<text>
+			<x>20</x>
+			<y>0</y>
+			<label>Pylon #11</label>
+		</text>
+		<combo>
+			<x>100</x>
+			<y>0</y>
+			<width>200</width>
+			<height>25</height>
+			<property>/sim/model/A-10/weapons/stations/station[10]/description</property>
+			<value>dual-AIM-9</value>
+			<value>single-MK-82-LD</value>
+			<value>none</value>
+		</combo>
+	</group>
+
+
+ <!-- Button Box -->
+
+	<group>
+		<x>40</x>
+		<y>15</y>
+
+		<button>
+			<x>0</x>
+			<y>0</y>
+			<legend>OK</legend>
+			<default>true</default>
+			<equal>true</equal>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<binding>
+				<command>property-toggle</command>
+				<property>sim/model/A-10/weapons/stations-change-flag</property>
+			</binding>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+		<button>
+			<x>70</x>
+			<y>0</y>
+			<legend>Apply</legend>
+			<equal>true</equal>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<binding>
+				<command>property-toggle</command>
+				<property>sim/model/A-10/weapons/stations-change-flag</property>
+			</binding>
+		</button>
+		<button>
+			<x>140</x>
+			<y>0</y>
+			<legend>Reset</legend>
+			<equal>true</equal>
+			<binding>
+				<command>dialog-update</command>
+			</binding>
+		</button>
+		<button>
+			<x>210</x>
+			<y>0</y>
+			<legend>Cancel</legend>
+			<equal>true</equal>
+			<key>Esc</key>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	 </group>
+
+
+</PropertyList>
+
+

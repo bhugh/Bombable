@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<path>A-10-ils.ac</path>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-5</object-name>
+		<property>sim/model/A-10/instrumentation/nav[0]/frequencies/freq-whole</property>
+		<factor>0.1</factor>
+		<offset>-1</offset>
+		<axis><y>-1</y></axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-4</object-name>
+		<property>sim/model/A-10/instrumentation/nav[0]/frequencies/freq-whole</property>
+		<factor>0.01</factor>
+		<offset>-10</offset>
+		<step>10</step>
+		<scroll>0.5</scroll>
+		<axis><y>-1</y></axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-3</object-name>
+		<property>sim/model/A-10/instrumentation/nav[0]/frequencies/freq-whole</property>
+		<factor>0.001</factor>
+		<offset>-100</offset>
+		<step>100</step>
+		<scroll>0.5</scroll>
+		<axis><y>-1</y> </axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-2</object-name>
+		<property>sim/model/A-10/instrumentation/nav[0]/frequencies/freq-whole</property>
+		<factor>0.0001</factor>
+		<offset>-1000</offset>
+		<step>1000</step>
+		<scroll>0.5</scroll>
+		<axis><y>-1</y></axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-1</object-name>
+		<property>sim/model/A-10/instrumentation/nav[0]/frequencies/freq-whole</property>
+		<factor>0.00001</factor>
+		<offset>-10000</offset>
+		<step>10000</step>
+		<scroll>0.5</scroll>
+		<axis><y>-1</y></axis>
+	</animation>
+
+
+	<!-- lighting -->
+	<animation>
+		<object-name>mount</object-name>
+		<type>material</type>
+		<emission>
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>deci-knob</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>units-knob</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>digits</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+	<animation>
+	<type>range</type>
+	<min-m>0</min-m>
+	<max-m>5</max-m>
+	</animation>
+
+</PropertyList>

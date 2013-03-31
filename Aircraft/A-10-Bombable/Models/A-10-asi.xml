@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<name>ASI</name>
+	<path>A-10-asi.ac</path>
+
+	<animation>
+	<type>rotate</type>
+	<object-name>needle</object-name>
+	<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+	<interpolation>
+		<entry><ind>  25</ind><dep>   3</dep></entry>
+		<entry><ind>  50</ind><dep>   10</dep></entry>
+		<entry><ind>  100</ind><dep>   44</dep></entry>
+		<entry><ind>  150</ind><dep>   81</dep></entry>
+		<entry><ind>  200</ind><dep>   115</dep></entry>
+		<entry><ind>  250</ind><dep>  149</dep></entry>
+		<entry><ind> 300</ind><dep>  180</dep></entry>
+		<entry><ind> 350</ind><dep>  215</dep></entry>
+		<entry><ind> 400</ind><dep>  250</dep></entry>
+		<entry><ind> 450</ind><dep>  284</dep></entry>
+		<entry><ind> 500</ind><dep>  316</dep></entry>
+		<entry><ind> 550</ind><dep>  347</dep></entry>
+	</interpolation>
+	<axis><x>-1</x></axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>drum</object-name>
+		<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+		<factor>3.6</factor>
+		<center><x-m>-0.0157</x-m></center>
+		<axis><z>-1</z></axis>
+	</animation>
+
+	<animation> 
+		<object-name>mount</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>face</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>drum</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>needle</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+
+</PropertyList>

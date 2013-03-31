@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This should produce nice flames and smoke for burning objects. -->
+<!-- FG bug starting in 2.8 means that you can't include more than one
+particlesystem within a single XML file.  So for now we are leaving out
+the fire portion of the flare.  The include below does not work, but is just
+serving as a reminder that if the FG is ever fixed we can include both
+fire & smoke for the flare. -->
+<PropertyList>
+	<particlesystem>
+		<name>smoke</name>
+		<texture>smoke.png</texture>
+		<emissive>false</emissive>
+		<lighting>true</lighting>
+		<type>normal</type>
+		<align>billboard</align>               
+		<attach>world</attach>
+		
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>6</z-m>
+			<pitch-deg>0.0</pitch-deg>
+		</offsets>
+		
+		<condition>
+				<property>/bombable/menusettings/fire-particles/flare-trigger</property>
+		</condition>
+	
+		<placer>
+			<type>sector</type>
+			<radius-min-m>0.0</radius-min-m>
+			<radius-max-m>0.5</radius-max-m>
+		</placer>
+		
+		<counter>
+			<particles-per-sec>
+				<value>8</value>
+				<spread>0</spread>
+			</particles-per-sec>
+		</counter>
+		
+		<particle>
+			<start>
+				<color>
+					<red>
+						<value>0.8</value>
+					</red>
+					<green>
+						<value>0.8</value>
+					</green>
+					<blue>
+						<value>0.8</value>
+					</blue>
+					<alpha>
+						<value>0.95</value>
+					</alpha>
+				</color>
+				<size>
+					<value>1</value>
+				</size>
+			</start>
+			<end>
+				<color>
+					<red>
+						<value>0.9</value>
+					</red>
+					<green>
+						<value>0.9</value>
+					</green>
+					<blue>
+						<value>0.9</value>
+					</blue>
+					<alpha>
+						<value>0.95</value>
+					</alpha>
+				</color>
+				<size>
+					<value>8</value>
+				</size>
+			</end>
+			<life-sec>
+				<property>/bombable/fire-particles/flare-life-sec</property>
+			</life-sec>
+			<mass-kg>200</mass-kg><!-- Air density: 1,204Kg/m3 at 20°C -->
+			<radius-m>8.18666667</radius-m>
+		</particle>
+		
+		<program>
+			<fluid>air</fluid>
+			<gravity type="bool">true</gravity>
+			<wind type="bool">true</wind>
+		</program>
+	</particlesystem>
+	
+</PropertyList>

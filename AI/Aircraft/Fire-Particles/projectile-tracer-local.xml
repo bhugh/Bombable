@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This should produce a tracer-like, fast-moving object, like the tracers from a machine gun. -->
+<PropertyList>
+	<particlesystem>
+		<name>weapons tracer</name>
+		<!--texture>smoke.png</texture-->
+		<texture>smoke.png</texture>
+		<emissive>true</emissive>
+		<lighting>true</lighting>
+		<type>normal</type>
+		<align>billboard</align>
+		<attach>local</attach>
+		
+		
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
+			<!-- for some reach pitch=90, heading=180 is straight forwards, not sure why-->
+			<pitch-deg>90</pitch-deg>
+			<heading-deg>180</heading-deg>
+		</offsets>
+		
+		<condition>
+		  <and>
+				<property>/bombable/menusettings/fire-particles/ai-weapon-fire-visual-trigger</property><!--overall on/off-->
+				<property>/bombable/fire-particles/ai-weapon-firing</property><!--local on/off, whether or not firing at the moment-->
+			</and>	
+		</condition>
+	
+		<placer>
+			<type>sector</type>
+			<radius-min-m>0.0</radius-min-m>
+			<radius-max-m>.00</radius-max-m>
+			<theta-min-deg>0</theta-min-deg>
+			<theta-max-deg>0</theta-max-deg>
+			<phi-min-deg>0</phi-min-deg>
+			<phi-max-deg>0</phi-max-deg>
+
+		</placer>
+		<shooter>
+			<theta-min-deg>-.00</theta-min-deg>
+			<theta-max-deg>.00</theta-max-deg>
+			<phi-min-deg>-.00</phi-min-deg>
+			<phi-max-deg>.00</phi-max-deg>
+
+      <speed-mps>
+        <value>500</value>
+        <spread>0</spread>
+      </speed-mps>
+		</shooter>		
+		<counter>
+			<particles-per-sec>
+				<value>10</value>
+				<spread>0</spread>
+			</particles-per-sec>
+		</counter>
+		
+		<particle>
+			<start>
+				<color>
+					<red>
+						<value>0.92</value>
+					</red>
+					<green>
+						<value>0.92</value>
+					</green>
+					<blue>
+						<value>0.92</value>
+					</blue>
+					<alpha>
+						<value>.8</value>
+					</alpha>
+				</color>
+				<size>
+					<value>.07 </value>
+					<!--property>/bombable/fire-particles/tracer-startsize</property-->
+				</size>
+			</start>
+			<end>
+				<color>
+					<red>
+						<value>0.85</value>
+					</red>
+					<green>
+						<value>0.85</value>
+					</green>
+					<blue>
+						<value>0.85</value>
+					</blue>
+					<alpha>
+						<value>0.45</value>
+					</alpha>
+				</color>
+				<size>
+				  <value>.05</value>
+					<!--property>/bombable/fire-particles/tracer-endsize</property-->
+				</size>
+			</end>
+			<life-sec>
+				<value>10</value>
+			</life-sec>
+			<mass-kg>.05</mass-kg><!-- Air density: 1,204Kg/m3 at 20°C, 148000 seems to equal neutral bouyancy -->
+			<radius-m>.001</radius-m>
+		</particle>
+		
+		<program>
+			<fluid>air</fluid>
+			<gravity type="bool">true</gravity>
+			<wind type="bool">true</wind>
+		</program>
+	</particlesystem>
+	
+	              
+</PropertyList>

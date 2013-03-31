@@ -1,0 +1,61 @@
+<PropertyList>
+
+ <path>magneto.ac</path>
+  
+ <animation>
+  <type>rotate</type>
+  <object-name>Magneto.lever</object-name>
+  <property>/controls/engines/engine/magnetos</property>
+  <interpolation>
+   <entry><ind> 0</ind><dep> 0</dep></entry>
+   <entry><ind> 1</ind><dep> -30</dep></entry>
+   <entry><ind> 2</ind><dep> -60</dep></entry>
+   <entry><ind> 3</ind><dep> -90.0</dep></entry>
+  </interpolation>
+  <axis>
+   <x>1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+  <center>
+ <x-m>0</x-m>
+   <y-m>0</y-m>
+   <z-m>0</z-m>  
+</center>
+ </animation>
+ 
+ <animation>
+  <type>pick</type>
+  <object-name>Magneto.switchR</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/controls/engines/engine/magnetos</property>
+    <step>-1.0</step>
+    <min>0</min>
+    <max>3</max>
+    <wrap>0</wrap>
+    </binding>
+  </action>
+</animation>
+
+<animation>
+  <type>pick</type>
+  <object-name>Magneto.switchL</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>false</repeatable>
+    <binding>
+      <command>property-adjust</command>
+      <property>/controls/engines/engine/magnetos</property>
+    <step>1.0</step>
+    <min>0</min>
+    <max>3</max>
+    <wrap>0</wrap>
+    </binding>
+  </action>
+</animation>
+
+</PropertyList>

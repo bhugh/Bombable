@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+ 
+<PropertyList>
+
+ <fx>
+ 
+  <crank>
+   <name>crank</name>
+   <path>Sounds/cranking.wav</path>
+   <property>/engines/engine/cranking</property>
+   <volume>
+    <offset>0.5</offset>
+   </volume>
+  </crank>
+ 
+  <engine>
+   <name>engine</name>
+   <path>Sounds/wasp.wav</path>
+   <mode>looped</mode>
+   <property>/engines/engine/running</property>
+   <volume>
+    <property>/engines/engine/mp-osi</property>
+    <factor>0.005</factor>
+    <min>0.15</min>
+    <max>0.5</max>
+    <offset>0.15</offset>
+   </volume>
+   <pitch>
+    <property>/engines/engine/rpm</property>
+    <factor>0.0012</factor>        bB
+    <min>.3</min>
+    <max>5.0</max>
+    <offset>0.3</offset>
+   </pitch>
+  </engine>
+ 
+  <wind>
+   <name>wind</name>
+   <mode>looped</mode>
+   <path>Sounds/wind.wav</path>
+   <property>/velocities/airspeed-kt</property>
+   <volume>
+    <property>/position/altitude-ft</property>
+    <factor>-0.000015</factor>
+    <offset>1.0</offset>
+    <min>0.1</min>
+    <max>1.0</max>
+   </volume>
+   <volume>
+     <property>/velocities/airspeed-kt</property>
+     <factor>0.003</factor>
+     <min>0.03</min>
+     <max>1.2</max>
+   </volume>
+   <pitch>
+    <property>/velocities/airspeed-kt</property>
+    <factor>0.003</factor>
+    <offset>1.25</offset>
+   </pitch>
+  </wind>
+  
+  <guns>
+			<name>gunfire</name>
+			<mode>looped</mode>
+			<path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/vickers.wav</path>
+			<condition>
+			  <!-- Requires the trigger pressed AND ammo in at least one gun -->
+			  <property>controls/armament/trigger</property>
+				<or>
+				   <property>ai/submodels/submodel/count</property>
+				   <property>ai/submodels/submodel[3]/count</property>
+				</or>
+			</condition>
+			<volume>
+				<factor>1.2</factor>
+				<max>1.0</max>
+			</volume>
+	</guns>
+
+
+</fx>
+ 
+</PropertyList>

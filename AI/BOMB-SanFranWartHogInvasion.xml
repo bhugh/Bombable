@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<PropertyList>
+	<scenario>
+		<description>This scenario puts a fleet of Warthogs in the skies of San Francisco Bay near the San Francisco International Airport (KSFO).
+
+The fleet starts just east of the airport and proceeds on a northerly heading at 1300 feet AGL.  If you take off runway 1R or 1L, when you get airborne look to your right and you will see a row of Warthogs there.
+
+To aid visibility, by default the planes leave a contrail.  Without contrail the planes are nearly impossible to spot until you are right on top of them.
+
+The Warthogs are air-to-air targets, you can damage them with heavy guns, machine guns, or (if you can hit them!) heavy bombs.
+  
+When you shoot or bomb the Warthogs they will catch fire, slow down, fall, and finally crash (to see the smoke and fire you must have Particles enabled in View/Rendering Options).
+
+To damage the Warthogs takes one or more direct hits from a machine gun or heavy gun, or a close strike by a heavy bomb.   The Warthogs are fairly robust targets--similar to a tank in difficulty to kill.
+
+Install this scenario in the FlightGear/data/AI directory.
+
+Any aircraft that shoots guns or drops bombs can damage the Warthogs.  The Fairchild A-10 Thunderbolt is a great choice - http://wiki.flightgear.org/index.php/Fairchild_A-10
+		</description>
+		
+		<!-- COLUMN 1 (moving column)-->
+    <entry>
+      <type>aircraft</type>
+      <callsign>Warthog1_20</callsign>
+			<name>Warthog1_20</name>
+      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model>
+      <latitude type="double">37.608720</latitude>
+			<longitude type="double">-122.3076</longitude>
+			<altitude type="double">309</altitude>
+      <speed>270.0</speed>
+    
+      <bank type="double">-10</bank>
+      <heading type="double">355</heading>
+    </entry>
+
+
+    <entry>
+      <type>aircraft</type>
+      <callsign>Warthog1_23</callsign>
+			<name>Warthog1_23</name>
+      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model>
+      <latitude type="double">37.608200</latitude>
+			<longitude type="double">-122.2988</longitude>
+			<altitude type="double">309</altitude>
+      <speed>268.0</speed>
+     
+      <bank type="double">-10</bank>
+      <heading type="double">1200</heading>
+    </entry>
+
+
+    <entry>
+      <type>aircraft</type>
+      <callsign>Warthog1_26</callsign>
+			<name>Warthog1_26</name>
+      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model> 
+      <latitude type="double">37.608470</latitude>
+			<longitude type="double">-122.2692</longitude>
+			<altitude type="double">309</altitude>
+      <speed>272.0</speed>
+
+      <bank type="double">-10</bank>
+      <heading type="double">338</heading>
+    </entry>
+    
+    
+
+    <entry>
+      <type>aircraft</type>
+      <callsign>Warthog1_29</callsign>
+			<name>Warthog1_29</name>
+      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model> 
+      <latitude type="double">37.608100</latitude>
+			<longitude type="double">-122.2368</longitude>
+			<altitude type="double">309</altitude>
+      <speed>265.0</speed>
+
+      <bank type="double">10</bank>
+      <heading type="double">330</heading>
+    </entry>
+    
+    
+    <entry>
+      <type>aircraft</type>
+      <callsign>Warthog1_30</callsign>
+			<name>Warthog1_30</name>        
+      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model> 
+      <latitude type="double">37.608950</latitude>
+			<longitude type="double">-122.2059</longitude>
+			<altitude type="double">309</altitude>
+      <speed>226.0</speed>
+
+      <bank type="double">10</bank>
+      <heading type="double">325</heading>
+    </entry>
+
+    <entry>
+      <type>aircraft</type>
+      <callsign>Warthog1_31</callsign>
+			<name>Warthog1_31</name>
+      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model> 
+      <latitude type="double">37.608950</latitude>
+			<longitude type="double">-122.1759</longitude>
+			<altitude type="double">309</altitude>
+      <speed>290.0</speed>
+
+      <bank type="double">10</bank>
+      <heading type="double">325</heading>
+    </entry>
+    
+        <entry>
+      <type>aircraft</type>
+      <callsign>Warthog1_32</callsign>
+			<name>Warthog1_32</name>
+      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model> 
+      <latitude type="double">37.608950</latitude>
+			<longitude type="double">-122.14059</longitude>
+			<altitude type="double">309</altitude>
+      <speed>250.0</speed>
+
+      <bank type="double">5</bank>
+      <heading type="double">325</heading>
+    </entry>
+
+	</scenario>
+</PropertyList>

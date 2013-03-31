@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- <PropertyList include="spadvii-jsbsim-cnf.xml"> -->
+<PropertyList include="spadvii-yasim-cnf.xml">
+
+  <sim>
+    <description>S.P.A.D. VII (YASim, Guns/Bombable)</description>
+    <author>Emmanuel BARANGER (3D/FDM), Brent Hugh (Bombable compatibility, weapons dialog)</author>
+    
+    
+    <view n="0">
+			<internal archive="y">true</internal>
+			<config>
+				<x-offset-m archive="y">0.0</x-offset-m>
+				<!--Right-->
+				<y-offset-m archive="y">0.74</y-offset-m>
+				<!--Up0.654829-->
+				<z-offset-m archive="y">-1.48</z-offset-m>
+				<!--Back0.475-->
+
+			</config>
+		</view>
+
+  </sim>
+
+</PropertyList>
+

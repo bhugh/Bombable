@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<PropertyList> 
+
+	<path>pulsometer.ac</path>
+	<texture-path>Textures</texture-path>
+
+	<animation> 
+		<type>select</type>
+		<condition>
+			<property>sim/model/camel/extra-details</property>
+		</condition>
+	</animation> 
+
+	<!-- *** LoD *** -->
+	<animation> 
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+</PropertyList>

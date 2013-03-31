@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <path>spadvii.ac</path>
+
+  <nasal>
+    <load>
+      var livery_update = aircraft.livery_update.new("Aircraft/SPAD-VII-Bombable/Models/Liveries", 10);
+    </load>
+    <unload>
+      livery_update.stop();
+    </unload>
+  </nasal>
+
+  <animation>
+    <!-- Objets opaques -->
+    <object-name>fuselage</object-name>
+    <object-name>ailesH</object-name>
+    <object-name>aileronG</object-name>
+    <object-name>aileronD</object-name>
+    <object-name>ailesB</object-name>
+    <object-name>derive</object-name>
+    <object-name>profondeur</object-name>
+    <object-name>direction</object-name>
+    <object-name>jambes</object-name>
+    <object-name>axes</object-name>
+    <object-name>roueG</object-name>
+    <object-name>roueD</object-name>
+    <object-name>helice</object-name>
+    <object-name>bol</object-name>
+    <object-name>bequille</object-name>
+    <object-name>guns</object-name>
+    <object-name>structure</object-name>
+    <object-name>divers</object-name>
+    <object-name>tourvitres</object-name>
+    <object-name>trous</object-name>
+
+    <!-- Objets transparents -->
+    <object-name>propblur</object-name>
+    <object-name>propdisc</object-name>
+    <object-name>vitres</object-name>
+  </animation>
+
+  <animation>
+    <type>shader</type>
+    <shader>chrome</shader>
+    <texture>glass_shader.png</texture>
+    <object-name>vitres</object-name>
+  </animation>
+
+  <animation>
+    <type>noshadow</type>
+    <object-name>propblur</object-name>
+    <object-name>propdisc</object-name>
+    <object-name>vitres</object-name>
+  </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>fuselage</object-name>
+    <object-name>ailesH</object-name>
+    <object-name>aileronG</object-name>
+    <object-name>aileronD</object-name>
+    <object-name>ailesB</object-name>
+    <object-name>derive</object-name>
+    <object-name>profondeur</object-name>
+    <object-name>direction</object-name>
+    <object-name>jambes</object-name>
+    <object-name>axes</object-name>
+    <object-name>roueG</object-name>
+    <object-name>roueD</object-name>
+    <object-name>helice</object-name>
+    <object-name>bol</object-name>
+    <object-name>bequille</object-name>
+    <object-name>guns</object-name>
+    <object-name>structure</object-name>
+    <object-name>divers</object-name>
+    <object-name>tourvitres</object-name>
+    <object-name>trous</object-name>
+
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>texture</texture-prop>
+    <texture>texture.png</texture>
+<!--
+    <diffuse>
+      <red-prop>diffuse/red</red-prop>
+      <green-prop>diffuse/green</green-prop>
+      <blue-prop>diffuse/blue</blue-prop>
+    </diffuse>
+
+    <ambient>
+      <red-prop>ambient/red</red-prop>
+      <green-prop>ambient/green</green-prop>
+      <blue-prop>ambient/blue</blue-prop>
+    </ambient>
+-->
+    <specular>
+      <red-prop>specular/red</red-prop>
+      <green-prop>specular/green</green-prop>
+      <blue-prop>specular/blue</blue-prop>
+    </specular>
+
+    <emission>
+      <red-prop>emission/red</red-prop>
+      <green-prop>emission/green</green-prop>
+      <blue-prop>emission/blue</blue-prop>
+    </emission>
+<!--
+    <shininess>
+      <shininess-prop>shininess</shininess-prop>
+    </shininess>
+-->  
+  </animation>
+
+
+  <!-- Interieur -->
+<!--
+  <model>
+    <path>Aircraft/SPAD-VII-Bombable/Models/Interior/interior.xml</path>
+    <offsets>
+      <x-m> 0 </x-m>
+      <y-m> 0 </y-m>
+      <z-m> 0 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+-->
+  <!-- Effet de tir -->
+<!--
+  <model>
+    <path>Aircraft/SPAD-VII-Bombable/Models/Effects/fire.xml</path>
+    <offsets>
+      <x-m> -2.537 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m>  0.652 </z-m>
+    </offsets>
+  </model>
+-->
+  <!-- Lhlice -->
+  <animation>
+    <name>HeliceComplete</name>
+    <object-name>helice</object-name>
+    <object-name>bol</object-name>
+    <object-name>propdisc</object-name>
+    <object-name>propblur</object-name>
+  </animation>
+
+  <!-- Slction de l'objet visible en fonction des rpm -->
+  <animation>
+    <type>select</type>
+    <object-name>propdisc</object-name>
+    <condition>
+      <greater-than>
+        <property>/engines/engine[0]/rpm</property>
+        <value>900</value>
+      </greater-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>propblur</object-name>
+    <condition>
+    <and>
+      <greater-than>
+        <property>/engines/engine[0]/rpm</property>
+        <value>300.000</value>
+      </greater-than>
+      <less-than>
+        <property>/engines/engine[0]/rpm</property>
+        <value>900.001</value>
+      </less-than>
+    </and>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>helice</object-name>
+    <condition>
+      <less-than>
+        <property>/engines/engine[0]/rpm</property>
+	<value>900</value>
+      </less-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>spin</type>
+    <object-name>HeliceComplete</object-name>
+    <property>/engines/engine[0]/rpm</property>
+    <factor> -1 </factor>
+    <center>
+      <x-m> -2.941 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m>  0.127 </z-m>
+    </center>
+    <axis>
+      <x> 1 </x>
+      <y> 0 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <!-- Animations des ailerons -->
+<!--  
+  <animation>
+    <type>rotate</type>
+    <object-name>aileronG</object-name>
+    <property>/surface-positions/left-aileron-pos-norm</property>
+    <interpolation>
+      <entry><ind> -0.75 </ind><dep> -15.0 </dep></entry>
+      <entry><ind>  0.00 </ind><dep>   0.0 </dep></entry>
+      <entry><ind>  0.75 </ind><dep>  15.0 </dep></entry>
+    </interpolation>
+    <center>
+      <x-m> -1.292 </x-m>
+      <y-m> -2.965 </y-m>
+      <z-m>  0.907 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>aileronD</object-name>
+    <property>/surface-positions/right-aileron-pos-norm</property>
+    <interpolation>
+      <entry><ind> -0.75 </ind><dep> -15.0 </dep></entry>
+      <entry><ind>  0.00 </ind><dep>   0.0 </dep></entry>
+      <entry><ind>  0.75 </ind><dep>  15.0 </dep></entry>
+    </interpolation>
+    <center>
+      <x-m> -1.292 </x-m>
+      <y-m>  2.965 </y-m>
+      <z-m>  0.907 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+-->
+  <!-- Gouverne de direction -->
+<!--  
+  <animation>
+    <type>rotate</type>
+    <object-name>direction</object-name>
+    <property>/surface-positions/rudder-pos-norm</property>
+    <factor> -15 </factor>
+    <center>
+      <x-m> 2.433 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.629 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 0 </y>
+      <z> 1 </z>
+    </axis>
+  </animation>
+-->
+  <!-- Gouverne de profondeur -->
+<!--  
+  <animation>
+    <type>rotate</type>
+    <object-name>profondeur</object-name>
+    <property>/surface-positions/elevator-pos-norm</property>
+    <factor> 15 </factor>
+    <center>
+      <x-m> 2.328 </x-m>
+      <y-m> 0.000 </y-m>
+      <z-m> 0.501 </z-m>
+    </center>
+    <axis>
+      <x> 0 </x>
+      <y> 1 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+-->
+  <!-- Rotation des roues lors du roulage -->
+<!--  
+  <animation>
+    <type>spin</type>
+    <object-name>roueG</object-name>
+    <property>/gear/gear[0]/rollspeed-ms</property>
+    <factor> 30 </factor>
+    <center>
+      <x-m> -2.292 </x-m>
+      <y-m> -0.751 </y-m>
+      <z-m> -0.997 </z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>spin</type>
+    <object-name>roueD</object-name>
+    <property>/gear/gear[1]/rollspeed-ms</property>
+    <factor> 30 </factor>
+    <center>
+      <x-m> -2.292 </x-m>
+      <y-m>  0.751 </y-m>
+      <z-m> -0.997 </z-m>
+    </center>
+    <axis>
+      <x>  0 </x>
+      <y> -1 </y>
+      <z>  0 </z>
+    </axis>
+  </animation>
+-->
+</PropertyList>
+

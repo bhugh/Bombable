@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<!-- Mag Switch 1 -->
+<PropertyList> 
+	<path>mag_switch.ac</path>
+	<texture-path>Textures</texture-path>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>switch</object-name>
+		<property>controls/engines/engine/mag-switch-right</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>-45</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>45</dep>
+			</entry>
+		</interpolation>
+		<axis> 
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center> 
+			<x-m>0.0212</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
+		</center>
+	</animation>
+
+	<animation> 
+		<type>select</type>
+		<condition>
+			<property>sim/model/camel/extra-details</property>
+		</condition>
+	</animation> 
+
+  <!-- *** LoD *** -->
+    <animation> 
+      <type>range</type>
+      <min-m>0</min-m>
+      <max-m>5</max-m>
+    </animation>
+</PropertyList>

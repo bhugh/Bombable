@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<name>cam</name>
+	<layout>vbox</layout>
+	<x>0</x>
+	<y>24</y>
+	<pref-width>1024</pref-width>
+	<pref-height>24</pref-height>
+	<modal>false</modal>
+
+	<color>
+		<red>0.5</red>
+		<green>0.5</green>
+		<blue>0.5</blue>
+		<alpha>0.5</alpha>
+	</color>
+
+	<group>
+		<layout>hbox</layout>
+		<halign>left</halign>
+		<default-padding>2</default-padding>
+
+		<checkbox>
+			<label>AI</label>
+			<property>/sim/cam/target-ai</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</checkbox>
+
+		<checkbox>
+			<label>MP</label>
+			<property>/sim/cam/target-mp</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</checkbox>
+
+		<button>
+			<color>
+				<red>0.5</red>
+				<green>0.5</green>
+				<blue>0.5</blue>
+			</color>
+			<pref-width>20</pref-width>
+			<pref-height>20</pref-height>
+			<legend>^</legend>
+			<binding>
+				<command>nasal</command>
+				<script>cam.callsign_dialog.toggle()</script>
+			</binding>
+		</button>
+
+		<text>
+			<label>000000</label>
+			<format>No# %d</format>
+			<property>/sim/cam/target-number</property>
+			<live>true</live>
+		</text>
+
+		<text>
+			<label>000000000000000000</label>
+			<format>Name: %s</format>
+			<property>/sim/cam/target-name</property>
+			<live>true</live>
+		</text>
+
+		<button>
+			<color>
+				<red>0.5</red>
+				<green>0.5</green>
+				<blue>0.5</blue>
+			</color>
+			<pref-width>35</pref-width>
+			<pref-height>20</pref-height>
+			<legend>&lt;&lt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>
+					cam.update_aircraft_list();
+					cam.select_aircraft(getprop("/sim/cam/target-number") - 1);
+				</script>
+			</binding>
+		</button>
+
+		<button>
+			<halign>left</halign>
+			<color>
+				<red>0.5</red>
+				<green>0.5</green>
+				<blue>0.5</blue>
+			</color>
+			<pref-width>35</pref-width>
+			<pref-height>20</pref-height>
+			<legend>&gt;&gt;</legend>
+			<binding>
+				<command>nasal</command>
+				<script>
+					cam.update_aircraft_list();
+					cam.select_aircraft(getprop("/sim/cam/target-number") + 1);
+				</script>
+			</binding>
+		</button>
+
+		<empty><pref-width>4</pref-width></empty>
+
+		<button>
+			<color>
+				<red>0.5</red>
+				<green>0.5</green>
+				<blue>0.5</blue>
+			</color>
+			<pref-width>45</pref-width>
+			<pref-height>20</pref-height>
+			<legend>Goto</legend>
+			<binding>
+				<command>nasal</command>
+				<script>cam.goto_target()</script>
+			</binding>
+		</button>
+
+		<empty><pref-width>4</pref-width></empty>
+
+		<checkbox>
+			<width>20</width>
+			<height>24</height>
+			<label>CHASE</label>
+			<live>true</live>
+			<property>/sim/cam/chase</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</checkbox>
+
+		<checkbox>
+			<width>20</width>
+			<height>24</height>
+			<label>FOCUS</label>
+			<live>true</live>
+			<property>/sim/cam/focus</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</checkbox>
+
+		<checkbox>
+			<width>20</width>
+			<height>24</height>
+			<label>ALT</label>
+			<live>true</live>
+			<property>/sim/cam/alt</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</checkbox>
+
+		<checkbox>
+			<width>20</width>
+			<height>24</height>
+			<label>SPEED</label>
+			<live>true</live>
+			<property>/sim/cam/speed</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</checkbox>
+
+		<!--checkbox>
+			<width>20</width>
+			<height>24</height>
+			<label>LOCK</label>
+			<live>true</live>
+			<property>/sim/cam/lock</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</checkbox-->
+	</group>
+
+	<nasal>
+		<open>cmdarg().getNode("pref-width").setValue(getprop("/sim/startup/xsize"))</open>
+	</nasal>
+</PropertyList>
+

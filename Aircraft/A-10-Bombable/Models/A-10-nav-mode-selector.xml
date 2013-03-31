@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+
+
+
+<PropertyList>
+	<path>A-10-nav-mode-selector.ac</path>
+
+	<!-- HARS, VLOCS, TILS, NAV CRS, MAN, ILS, TCN switches/indicators state -->
+
+	<animation>
+		<type>select</type>
+		<object-name>index-hars</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/A-10/A-10-nav/selector-hars</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>index-vlocs</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/A-10/A-10-nav/selector-vlocs</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>index-tils</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/A-10/A-10-nav/selector-tils</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>index-nav_crs</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/A-10/A-10-nav/selector-nav_crs</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>index-man</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/A-10/A-10-nav/selector-man</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>index-ils</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/A-10/A-10-nav/selector-ils</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>index-tcn</object-name>
+		<condition>
+			<equals>
+				<property>instrumentation/tacan/switch-position</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>homing-light-fm-on</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/nav-mode</property>
+				<value>24</value>
+			</greater-than>
+			<equals>
+				<property>sim/model/A-10/instrumentation/vhf/mode</property>
+				<value>2</value>
+			</equals>
+			<greater-than>
+				<property>sim/model/A-10/instrumentation/vhf/selector</property>
+				<value>2</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>homing-light-fm-off</object-name>
+		<condition>
+			<or>
+				<less-than>
+					<property>systems/electrical/outputs/nav-mode</property>
+					<value>24</value>
+				</less-than>
+				<not>
+					<equals>
+						<property>sim/model/A-10/instrumentation/vhf/mode</property>
+						<value>2</value>
+					</equals>
+				</not>
+				<less-than>
+					<property>sim/model/A-10/instrumentation/vhf/selector</property>
+					<value>3</value>
+				</less-than>
+			</or>
+		</condition>
+	</animation>
+
+	<!-- PTR switch  -->
+
+	<animation>
+		<object-name>ptr-switch</object-name>
+		<type>rotate</type>
+		<property>sim/model/A-10/A-10-nav/selector-ptr</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-30</dep></entry>
+			<entry><ind>1</ind><dep>30</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0.005</x-m>
+			<y-m>-0.0163</y-m>
+		</center>
+		<axis><z>1</z></axis>
+	</animation>
+
+
+	<!-- lighting -->
+
+	<animation>
+		<object-name>mount</object-name> 
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>lights-on</object-name> 
+		<type>material</type>
+		<emission> 
+			<red>0.80</red>
+			<green>0.80</green>
+			<blue>0.80</blue>
+		</emission>
+	</animation>
+	<animation>
+		<object-name>lights-off</object-name> 
+		<type>material</type>
+		<emission> 
+			<red>0.275</red>
+			<green>0.12</green>
+			<blue>0.05</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>ptr-switch</object-name> 
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>indices</object-name> 
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>buttons-face</object-name> 
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>buttons-bkg</object-name> 
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+
+</PropertyList>

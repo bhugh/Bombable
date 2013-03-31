@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <path>asi.ac</path>
+
+  <animation>
+    <object-name>fond</object-name>
+    <object-name>face</object-name>
+    <object-name>needle</object-name>
+
+    <object-name>vitre</object-name>
+  </animation>
+
+  <animation>
+    <type>noshadow</type>
+    <object-name>vitre</object-name>
+  </animation>
+
+  <animation>
+    <type>shader</type>
+    <shader>chrome</shader>
+    <texture>Aircraft/Generic/Effects/glass_shader.png</texture>
+    <object-name>vitre</object-name>
+  </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>face</object-name>
+    <object-name>needle</object-name>
+    <emission>
+      <red>   1.0 </red>
+      <green> 0.2 </green>
+      <blue>  0.0 </blue>
+      <factor-prop>/systems/electrical/outputs/instrument-lights</factor-prop>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>needle</object-name>
+    <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+    <interpolation> 
+      <entry><ind>   0.00 </ind><dep>   0 </dep></entry> 
+      <entry><ind>  52.14 </ind><dep>  10 </dep></entry>
+      <entry><ind>  69.52 </ind><dep>  30 </dep></entry>
+      <entry><ind>  86.90 </ind><dep>  50 </dep></entry>
+      <entry><ind> 104.28 </ind><dep>  90 </dep></entry>
+      <entry><ind> 121.66 </ind><dep> 130 </dep></entry>
+      <entry><ind> 139.04 </ind><dep> 170 </dep></entry>
+      <entry><ind> 156.41 </ind><dep> 210 </dep></entry>
+      <entry><ind> 173.79 </ind><dep> 250 </dep></entry>
+      <entry><ind> 191.17 </ind><dep> 290 </dep></entry>
+      <entry><ind> 208.55 </ind><dep> 330 </dep></entry>
+      <entry><ind> 225.93 </ind><dep> 365 </dep></entry>
+      <entry><ind> 243.31 </ind><dep> 400 </dep></entry>
+      <entry><ind> 260.69 </ind><dep> 435 </dep></entry>
+      <entry><ind> 278.07 </ind><dep> 470 </dep></entry>
+      <entry><ind> 295.45 </ind><dep> 505 </dep></entry>
+      <entry><ind> 312.83 </ind><dep> 540 </dep></entry>
+      <entry><ind> 330.21 </ind><dep> 575 </dep></entry>
+      <entry><ind> 347.59 </ind><dep> 610 </dep></entry>
+    </interpolation>
+    <center>
+      <x-m> 0 </x-m>
+      <y-m> 0 </y-m>
+      <z-m> 0 </z-m>
+    </center>
+    <axis>
+      <x> -1 </x>
+      <y>  0 </y> 
+      <z>  0 </z>
+    </axis>
+  </animation>
+ 
+</PropertyList>

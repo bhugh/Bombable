@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<PropertyList>
+  <path>oiltemp.ac</path>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>OilTemp.needle</object-name>
+    <property>/engines/engine/oil-temperature-degf[0]</property>
+    <min>86</min>
+    <max>300</max> 
+    <interpolation>
+      <entry><ind>86</ind><dep>0</dep></entry>
+      <entry><ind>300</ind><dep>270</dep></entry>
+    </interpolation>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+</PropertyList>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This should produce nice flames and smoke for burning objects. -->
+<PropertyList>
+			
+	<particlesystem>
+		<name>fire</name>
+		<texture>smoke.png</texture>
+		<emissive>false</emissive>
+		<lighting>false</lighting>
+		<type>normal</type>
+		<align>billboard</align>
+		<attach>world</attach>
+		
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
+			<pitch-deg>0.0</pitch-deg>
+		</offsets>
+		
+		<condition>
+			<property>/bombable/menusettings/fire-particles/fire-trigger</property>
+		</condition>
+
+   <shooter>
+      <theta-min-deg>-90</theta-min-deg>
+      <theta-max-deg>90</theta-max-deg>
+      <phi-min-deg>-90</phi-min-deg>
+      <phi-max-deg>90</phi-max-deg>
+      <speed>
+        <value>20</value>
+        <spread>20</spread>
+      </speed>
+      <rotation-speed>
+        <x-min-deg-sec>0</x-min-deg-sec>
+        <y-min-deg-sec>0</y-min-deg-sec>
+        <z-min-deg-sec>0</z-min-deg-sec>
+        <x-max-deg-sec>0</x-max-deg-sec>
+        <y-max-deg-sec>0</y-max-deg-sec>
+        <z-max-deg-sec>0</z-max-deg-sec>
+      </rotation-speed>
+    </shooter>
+		
+	
+		<placer>
+			<type>sector</type>
+			<radius-min-m>0.0</radius-min-m>
+			<radius-max-m>25.0</radius-max-m>
+		</placer>
+		
+		<counter>
+			<particles-per-sec>
+				<value>12</value>
+				<spread>4</spread>
+			</particles-per-sec>
+		</counter>
+		
+		<particle>
+			<start>
+				<color>
+					<red>
+						<value>0.9</value>
+					</red>
+					<green>
+						<value>0.08</value>
+					</green>
+					<blue>
+						<value>0.08</value>
+					</blue>
+					<alpha>
+						<value>1.0</value>
+					</alpha>
+				</color>
+				<size>
+					<value>2</value>
+				</size>
+			</start>
+			<end>
+				<color>
+					<red>
+						<value>0.99</value>
+					</red>
+					<green>
+						<value>0.92</value>
+					</green>
+					<blue>
+						<value>0.12</value>
+					</blue>
+					<alpha>
+						<value>0.6</value>
+					</alpha>
+				</color>
+				<size>
+					<value>32</value><!-- equal to start-size of smoke -->
+				</size>
+			</end>
+			<life-sec>
+				<value>1</value>
+			</life-sec>
+			<mass-kg>2500</mass-kg><!-- Air density: 1,204Kg/m3 at 20°C -->
+			<radius-m>10</radius-m>
+		</particle>
+		
+		<program>
+			<fluid>air</fluid>
+			<gravity type="bool">true</gravity>
+			<wind type="bool">true</wind>
+		</program>
+	</particlesystem>
+	
+</PropertyList>

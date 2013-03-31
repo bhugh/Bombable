@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This should produce nice flames and smoke for burning objects. -->
+<PropertyList>
+	<particlesystem>
+		<name>smoke</name>
+		<texture>smoke.png</texture>
+		<emissive>false</emissive>
+		<lighting>true</lighting>
+		<type>normal</type>
+		<align>billboard</align>
+		<attach>world</attach>
+		
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>7.5</z-m>
+			<pitch-deg>0.0</pitch-deg>
+		</offsets>
+		
+		<condition>
+				<property>/bombable/menusettings/fire-particles/fire-trigger</property>
+		</condition>
+
+    
+   <shooter>
+      <theta-min-deg>-90</theta-min-deg>
+      <theta-max-deg>90</theta-max-deg>
+      <phi-min-deg>-90</phi-min-deg>
+      <phi-max-deg>90</phi-max-deg>
+      <speed>
+        <value>7</value>
+        <spread>4.5</spread>
+      </speed>
+      <rotation-speed>
+        <x-min-deg-sec>0</x-min-deg-sec>
+        <y-min-deg-sec>0</y-min-deg-sec>
+        <z-min-deg-sec>0</z-min-deg-sec>
+        <x-max-deg-sec>0</x-max-deg-sec>
+        <y-max-deg-sec>0</y-max-deg-sec>
+        <z-max-deg-sec>0</z-max-deg-sec>
+      </rotation-speed>
+    </shooter>
+		
+	
+		<placer>
+			<type>sector</type>
+			<radius-min-m>0.0</radius-min-m>
+			<radius-max-m>0.3</radius-max-m>
+		</placer>
+		
+		<counter>
+			<particles-per-sec>
+				<value>9</value>
+				<spread>0</spread>
+			</particles-per-sec>
+		</counter>
+		
+		<particle>
+			<start>
+				<color>
+					<red>
+						<value>0.06</value>
+					</red>
+					<green>
+						<value>0.06</value>
+					</green>
+					<blue>
+						<value>0.06</value>
+					</blue>
+					<alpha>
+						<value>1.0</value>
+					</alpha>
+				</color>
+				<size>
+					<!-- value>11</value -->
+					<property>/bombable/fire-particles/smoke-startsize-large</property>
+				</size>
+			</start>
+			<end>
+				<color>
+					<red>
+						<value>0.35</value>
+					</red>
+					<green>
+						<value>0.35</value>
+					</green>
+					<blue>
+						<value>0.35</value>
+					</blue>
+					<alpha>
+						<value>0.35</value>
+					</alpha>
+				</color>
+				<size>
+					<property>/bombable/fire-particles/smoke-endsize-large</property>
+				</size>
+			</end>
+			<life-sec>
+				<value>27</value>
+			</life-sec>
+			<mass-kg>590000</mass-kg><!-- Air density: 1,204Kg/m3 at 20°C -->
+			<radius-m>50</radius-m>
+		</particle>
+		
+		<program>
+			<fluid>air</fluid>
+			<gravity type="bool">true</gravity>
+			<wind type="bool">true</wind>
+		</program>
+	</particlesystem>
+	
+		
+</PropertyList>

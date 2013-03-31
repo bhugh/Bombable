@@ -1,0 +1,593 @@
+WHAT'S NEW WITH BOMBABLE
+(for FlightGear ver 1.9.0, 1.9.1, 2.0, 2.4.0, 2.6.0, 2.8.0, 2.10.0)
+
+Brent Hugh, brent@brenthugh.com
+Available at http://brenthugh.com/flightgear/bombable4-4.zip
+
+4.5
+------------------------
+Bombable is now compatible with FG 2.10 (as well as 2.8, 2.6 
+and earlier versions) and includes a new, far more realistic
+and true-to-life JSBSim flight model for the Sopwith Camel.
+
+* The new JSBSim version of Sopwith Camel is far more realistic
+as a fighter aircraft, implementing nearly every documented
+flight characteristic of the original Camel.  The new JSBSim
+Camel is very quirky and difficult to fly--just as the original
+Camel was.  See separate file documenting the JSBSim flight 
+model.  To try the new Camel flight model, in FGRun select:
+
+ - sopwithCamel-Bombable
+   - Sopwith Camel 1F.1 (JSBSim, Experimental, Guns/Bombable)
+    
+Improvements to make Bombable more compatible with FG 2.10 (as
+well as 2.6 and 2.8):
+
+* Continue to refined workaround for the FG bug allowing only one 
+particlesystem per XML file.  Huge thanks and shout-out to Bombable
+user Voudoun da Vinci for tracking down this error and the solution.
+ 
+* Workarounds for a stricter XML parser that was adopted by 
+FG somewhere between FG 2.4 and 2.10.  Several of the aircraft
+XML files would not parse due to the special or foreign characters
+included in comments.  
+
+* Updated sound files to mono format (required by FG 2.10 3-D sound
+system).
+
+* Minor updates/bugfixes to aircraft, scenarios
+
+4.4zf
+------------------------
+This version has only one change above ver 4.4, to make the 
+Bombable release compatible with FG 2.8.0.  Files in 
+AI/Aircraft/Fire-Particles have been reconfigured to be 
+compatible with FG 2.8.0.
+
+Huge thanks to FG and Bombable user Voudoun da Vinci for tracking
+down the cause of this problem and for working out and sharing
+the solution--included in this latest release. 
+
+4.4 
+------------------------
+Version 4.4 is a complete revamping of Bombable into more of a 
+complete, cohesive system for Multiplayer and AI dogfighting 
+and bombing. The accuracy of all the basic functions has been
+improved and made more realistic, and a number of new "Bombable-
+compatible" aircraft have been included, from WWI fighters to
+modern-day jet fighters.
+
+* AI AIRCRAFT SHOOT AT YOU (VISUALLY): AI aircraft have been able to shoot
+at you for a few versions, but now there is a visual indication--
+projectiles coming at you, and sometimes from several different 
+places on one ship or bomber.
+
+* MULTIPLAYER AIRCRAFT SHOOT AT YOU (VISUALLY): Until now, Multiplayer
+aircraft simply reported their damage to you via a popup message.
+With Bombable 4.4, you can see the Multiplayer aircraft firing
+its weapons at you, whenever the remote pilot is pulling the trigger. 
+
+* WEAPON HIT DETECTION GREATLY IMPROVED: Complete re-vamped system 
+for detecting your weapon hits on AI or Multiplayeraircraft. It is 
+no longer limited by FG's built-in, large "damage cylinder". It now 
+extends the weapon's flight path within that cylinder to determine 
+precisely how close the weapon hit on your target--allowing much 
+better modeling of hits, damage, and results.
+
+* RELOCATE ANY SCENARIO TO YOUR LOCATION: Have an AI scenario based 
+in San Francisco, but want to fly in London?  No problem, just hit a 
+button in the Bombable menu and your scenario comes to you, wherever 
+you are. Damage levels for AI aircraft and objects are re-set.  It's 
+like loading a new scenario without having to re-start FlightGear.
+
+* RE-SPAWN AI AIRCRAFT & OBJECTS: After you have shot down (or 
+been shot down by!) AI aircraft or objects in scenarios, you can 
+instantly re-spawn them and try again. (Available in the Bombable menu.)
+
+* DAMAGE ANALYSIS SYSTEM GREATLY IMPROVED: In addition, the damage 
+analysis system, which calculates how much damage your hit has done
+to the other aircraft or object has been updated to calculate and 
+use the momentum of weapons as the basis for determing damage of 
+weapon hits. This has proven to be far more realistic and gives 
+much better results than the previous ad-hoc method.
+
+* GREATLY IMPROVED DAMAGE IMPACT VISUALS: Previous versions of
+Bombable relied on FG's built-in impact animations.  The result was that
+FG often showed the damage impact explosion when the projectile had
+actually made a clean miss of the aircraft.  In Bombable 4.4, this problem is
+solved, with impact explosions being shown exactly where Bombable calculates
+they happen, and only when Bombable detects an actual hit with damage. 
+So you have much tigher correspondence between what you see and what 
+damage is recorded.
+
+The impact animations work for all types of small and large caliber guns and 
+bombs. The system uses FG's excellent particle system to draw the gun and bomb 
+impacts with almost not impact on framerate, and far less jerkiness than FG's 
+usual submodel method. As a bonus, the new animations look much, much better 
+as well, and the visual of the impact matches the actual damage of the impact 
+quite well--that is, the visual size of a bomb explosion closely matches the 
+actual damage area of the bomb; small caliber weapons hits show as smaller 
+impacts that large caliber weapons, etc.
+
+* BLOW UP THE WORLD: If you drop a bomb on a scenery or a building--or, more 
+properly, an officially designated bombing range--you see an explosion and a 
+long-lasting fire, just as you do when you bomb a jeep, tank, or airplane.  
+Previously, the bombs, guns, rockets, and other armament only had an effect on 
+AI and MP aircraft, tanks, ships, and so on.  Now armament hits affect almost 
+everything in the FlightGear world.
+
+* AI AIRCRAFT MOVE VERTICALLY--AND DO LOOPS: AI aircraft now move much more 
+realistically in the vertical direction.  They do loops, dive, and all the 
+rest. Their behavior (climb rates, dive rates, and so on) matches those of 
+the corresponding FG aircraft.  This makes for a much more realistic 3-D 
+dogfighting experience in FlightGear.
+
+* AI AIRCRAFT HAVE LIMITED AMMO AND FUEL: In FlightGear, YOU have limited ammo 
+and fuel. Now the AI aircraft do, too. If they run low on ammo or fuel they 
+will retire from the combat area and won't attack you unless you attack them. 
+Once they leave the combat area they will refuel and re-load their ammo and 
+you can re-engage them if you like. Or they may re-engage you. This makes 
+combat much more realistic--when you run low on ammo you can disengage, land, 
+and re-load your ammo as the AI aircraft are doing the same. Then take off and 
+re-engage. You may come across enemy aircraft that are low on fuel or out of
+ammunition.  You can devise strategies to take advantage of the enemy fighters
+when they are low on fuel or ammo.
+
+* REPORTS AND STATISTICS: How many hits, how much damage--look in the Bombable 
+menu for Bombable Statistics.
+
+* YOUR OWN WEAPONS CAN DAMAGE YOU: Drop a bomb on your own aircraft or too 
+near it? You'll see the results--damage to your aircraft.  This makes bombing 
+runs far more realistic--if you get too close to the bomb impact, you'll feel 
+the results.
+
+* REALISTIC ROLL RATES FOR AI AIRCRAFT: Roll rates are one the most 
+important factors determining the effectiveness of fighter aircraft--
+aircraft that can roll faster can turn faster.  Now the roll rate for
+AI aircraft in scenarios can be customized, and bugs in the roll & turn
+routines for AI aircraft have been fixed.
+
+* SIGNIFICANT PERFORMANCE IMPROVEMENTS: Bombable now makes much less of 
+an impact on your framerate, and much less stuttering & slowdown at
+key points, like when numerous machine gun rounds are impacting.
+
+* BOMBABLE GRUMMAN F6F HELLCAT ADDED: Added a new Bombable-compatible 
+aircraft, the Grumman F6F Hellcat. This makes a great foil to the 
+A6M2 Zero, as they fought against each other in WWII. (As always, 
+mucho thanks must go to the authors of the F6F aircraft--all I've 
+done is update the weaponry to be historically accurate and add a 
+thin veneer of tweaks to make the aircraft completely compatible with 
+Bombable. All credit for aircraft design, systems, FDM, and 
+everything else goes to the original authors, in this case Emanuel 
+Baranger and others.)
+
+* BOMBABLE FOKKER DR.1 FIXED AND WORKS WELL WITH BOMBABLE: Fixed/update 
+the Fokker Dr.1 aircraft. It is now the same aircraft as distributed 
+in FG 2.4.0 but with added historically accurate guns and an aircraft 
+help file.
+
+* BOMBABLE SOPWITH CAMEL IMPROVED/MORE REALISTIC: The flyable Sopwith Camel
+YASim settings have been updated to more closely reflect the performance
+capabilities of a real Sopwith Camel aircraft, particularly the maximum speed,
+which had been almost 20 knots slower in FG than in real life.  The attributes
+of the AI version of the Camel, SPAD VII, and Fokker DR.1 were also updated
+so that all very closely match historical performance data for the aircraft and
+all can be flown against each other on comparable terms (ie, fly the Camel vs 
+the Fokker or SPAD over Multiplayer; fly the Camel, Fokker, or SPAD against the
+AI scenarios involving the Camel, Fokker, and SPAD, while maintaining good 
+realism)
+
+* BOMBABLE A-10 WARTHOG IMPROVED: The YASim file for the A-10 Warthog has been
+tweaked to make the aircraft more precisely match the perform of the real
+A-10 and to make it handle better a lower speeds (one of the main 
+characteristics of the real A-10).  Still, if you're dogfighting with the A-10
+you'll likely want to jettison all the bombs and a lighten the fuel load as 
+well . . .
+
+* NEW SCENARIOs: New scenarios to show off the F6F, one to show off
+the Bombable UFO, and one to help with testing: 
+
+ BOMB-LakeTahoeWWIIB17BombersWithF6FCover.xml
+ BOMB-WWIIB17BombersWithF6FHellcatCover.xml 
+ BOMB-MarinCountyUFOInvasion.xml
+ BOMB-Kansas-City-Bombable-Testbed.xml
+ BOMB-LakeTahoe-TwoF6FHellcats.xml
+ BOMB-MarinCounty-TwoZeros.xml
+ 
+With the new "Re-spawn AI objects" capability, the scenarios with just a few 
+aircraft, such as two F6F Hellcats, two Zeros, and the 'simple' Camel 
+invasions (with only three aircraft in each) work very well. You can fly 
+against just a few opponents, without being overwhelmed by huge numbers of 
+opponents as in some of the larger scenarios, and then re-spawn them as 
+necessary.  
+
+* BOMBABLE A-10 WARTHOG ADDED: The A-10 is the best plane to fly several
+scenarios and including it in the package means that it can be 
+used to fly multiplayer bombable as well.  It has several tweaks making
+it easier to use with the Bombable package and also improves an annoying bug
+where the A-10 slows FG's framerate massively after a few re-init/re-locates.
+(Again, all credit to the A-10 original authors--all I have done is add
+a few Bombable tweaks and specifics.)
+
+* BOMBABLE UFO ADDED: This is mostly for testing; keys 1-9, 0, q, and w 
+fire different weapons.  A working AI version is included--so you can
+have dueling Bombable UFOs over Multiplayer or try the UFO dogfighting 
+scenario (surprisingly fun!).  Also a testbed scenario is included, and 
+using the UFO with the BOMB-Kansas-City-Bombable-Testbed.xml
+scenario is the easiest way to test most Bombable functions, aircraft,
+and AI aircraft. (Based on FG's stock UFO, but with Bombable capabilities
+added.)
+
+* BOMB DAMAGE: Reconfigured damage impact of bombs; the bombs now act--look
+and create damage--far closer to real data.
+
+* NEW MENU: Re-vamped Bombable menu with new/streamlined/more 
+sensible options.
+
+* RESET DAMAGE: In the new Bombable menu you can reset damage for main aircraft 
+and AI aircraft and objects.
+
+* BOMBABLE SCENARIOS RENAMED: Renamed all scenarios that come with the 
+package with prefix "BOMB-".  This should make it easier to find the 
+scenarios and also update or remove them when necessary.
+
+* SMALLER SMOKE/FIRE OPTION: A small fire option, used where 
+appropriate, so that fires/explosions/damage don't always look so 
+overly huge.
+
+* UNUSABLE AIRCRAFT REMOVED: Removed unused/unusable aircraft from 
+the distribution. Some of these are perfectly fine for general flying,
+but weapons or other features don't work well with Bombable, and 
+having them listed in the menus when they didn't really work made for 
+confusion.
+
+* SCENARIO FIXES: Some scenarios were not loading properly for some 
+people in ver. 4.3. This might be because of inconsistencies in the 
+case of some file and directory names. I worked on resolving this 
+issue, but please let me know if it is still happening.
+
+* SCENARIOS RENAMED: Renamed all scenarios to start with "BOMB-". 
+This should help us keep straight which scenarios work with 
+Bombable and also troubleshoot and track down & fix problems with 
+scenarios.
+
+* AI WEAPONS IMPROVED: AI weapons now malfunction when the AI 
+aircraft, vehicle, or ship is damaged.
+
+* MISC. UPDATES: Updated included AI aircraft and scenarios to fit 
+with the new impact detection system.
+
+* FOR BOMBABLE AIRCRAFT DESIGNERS: If you have designed aircraft to 
+use with Bombable, you should look at the sample AI aircraft provided 
+to see updates to the Bombable dimensions, vulnerabilities, and 
+weapons sections. You will need to re-tool your aircraft slightly, 
+but when finished the results will be much better.
+
+* BUG FIXES: Various small bug fixed and improvements, fixed a lot 
+of the programs with scenarios, AI Aircraft, directories.
+
+* BOMBABLE IN THE FLIGHTGEAR WIKI: A new article on Bombable and and explanation of how to add Bombable to existing aircraft is here:
+
+  http://wiki.flightgear.org/Bombable
+  http://wiki.flightgear.org/Howto:_Adding_Bombable_to_FlightGear_Aircraft#Notes
+
+See the To Do file (many of which have now been done) for many more 
+changes, updates, and improvements.
+
+
+4.3 
+------------------------ 
+
+* Multiplayer dogfighting is now working in FG 2.4.0. (It broke 
+sometime in the FG 2.X.X. series.) Use one of the MP-dogfighting- 
+enabled planes included in the packet (Sopwith Camel-Bombable/Yasim,
+SPAD VII-Bombable, or FKDR1-Bombable/JSB, or 
+A6M2-Bombable/YASim--use the versions marked as Guns/Bombable, not 
+the default FG installs) and make sure your opponent does the 
+same--you will both be able to shoot and damage each other, see 
+damage reports, etc.
+
+* Weapons on AI aircraft--which will shoot at you as you attack 
+them--can now be placed in different locations and aimed in 
+different directions.
+
+In combat, they will shoot you if that location/direction is lined 
+up with you. The AI B-17 Bomber included in the package will shoot 
+at you from the rear; the M-1 tank will shoot towards the front at 
+about a 45 degree angle, Jeep will shoot forwards and upwards, 
+Ferries will shoot forward or backwards, etc.
+
+The result is a far more realistic experience. Shooting bombers 
+used to be like shooting fish in a barrel--now between the bombers 
+shooting at you and the fighter planes coming in from high cover, 
+you're lucky to score a few small hits and get out of there 
+alive . . .
+
+* The AI Weapons system was generally improved and weapon strength, 
+direction, size, location, and effectiveness can be specified in the 
+XML file for each AI aircraft type. (If you're creating your own 
+Bombable-enable aircraft, just add weapons specs in the WEAPONS 
+section of AI aircraft; see enclosed AI/Aircraft files for examples.)
+
+* Generally tweaked AI aircraft, attack & weapons routines, and AI 
+scenarios for a better, more realistic experience. In particular, 
+try:
+
+ - MarinCountyWWIIBombersWithCover.xml (fly A6M2-Bombable/YASim)
+ - MarinCountyCamelInvasion1-Simple.xml (fly Sopwith Camel-Bombable/YASim)  
+
+* Again worked on the problem of getting AI aircraft to climb and 
+dive more realistically instead of sedately. The AI aircraft are far 
+more realistic/active in the vertical direction now.
+
+* Bombable no longer overwrites existing aircraft or anything else 
+in FG's installation. It will add new aircraft and a few other 
+Bombable-specific files. All new/added aircraft have the suffix 
+-Bombable. Bombable will overwrite-replace things from its own 
+previous installation, but no other files.
+
+Generally when flying Bombable's AI scenarios or flying over 
+multiplayer with another person using Bombable, your best 
+experience will be to use one of the aircraft provided (and 
+identifiable by the -Bombable extension) or another aircraft 
+specifically set up to use Bombable's capabilities.
+
+
+
+4.2
+------------------------
+* Made numerous changes/updates/improvements related to getting 
+Bombable working with FG 2.4.0.
+
+* Found the FG 2.4.0 "reinit" problem in both M-1 and Jeep in 
+AI/Aircraft & fixed
+
+* Reconfigured the damage calculations for light weapons in the 
+test_impact function. Result may be that it is harder/takes more 
+hits than before to damage aircraft or objects. If it is too hard 
+you can select both "Easy Mode" and "Super Easy Mode" together to 
+make it quite a bit easier to both hit targets and create damage. 
+This still needs some refinement but it is setting the groundwork 
+for a better, more consistent way of dealing with damage.
+
+* Small refinements in display, damage reports, etc.
+
+* FG 2.4.0 is doing this crazy thing where it reinitializes AI 
+objects in scenario repeatedly and also (sometimes!) slips in non-AI 
+objects like joystick inputs for initialization as AI/scenario 
+objects. This results in massive slowdowns and other bizarre 
+behavior. So I've set up checks to disallow repeated re-inits of AI 
+objects and only allow AI and Multiplayer objects (as opposed 
+joystick input devices, etc) to initialize themselves with Bombable. 
+The ultimate solution here is a FG code fix, but in the meanwhile 
+some of the worst effects might be mitigated.
+
+
+4.0
+------------------------
+This is a beta release that works with Flightgear 2.4.0. Some AI 
+aircraft characteristics have changed in FG 2.4.0 so there are some 
+problems and different behavior in the AI aircraft.
+
+* Removed the "reinit" command in bombable.nas that made FG 2.4.0 
+croak.
+
+* Removed the mp_broadcast.nas file that is no longer necessary with 
+FG 2.4.0 (and in fact the old version included with Bombable made FG 
+2.4.0 choke).
+
+* FG 2.4.0 doesn't make the weight or mass of the armament available 
+on impact (previous versions}}} did!), so a kludgy work-around was 
+created.
+
+* Numerous other tweaks and bug fixes.
+
+3.0p
+------------------------
+This is a bit of an alpha release and has not been as thoroughly 
+tested with all scenarios as previous releases.
+
+AI AIRCRAFT ARE MORE MOBILE VERTICALLY: AI Aircraft dodge and chase 
+you more vertically, diving and climbing.
+
+VARIOUS BUGFIXES
+
+
+3.0o
+------------------------
+AI AIRCRAFT SHOOT AT AND DAMAGE YOU: When in an AI dogfight, if you 
+let the AI aircraft get into position they have a chance to shoot at 
+and possibly damage you. This is working best with WWI AI Aircraft 
+(Camel, SPAD, Fokker) as in the Marin County Camel Invasion 
+scenarios, but it will also work with the Zero and Warthog scenarios.
+
+MOSTLY FIXED MENU/OPTIONS SAVE/RESTORE BUG: Some of the options 
+still don't save/restore correctly, but most do now.
+
+NUMEROUS OTHER BUGFIXES/SMALL IMPROVEMENTS
+
+
+
+3.0n
+------------------------
+AI AIRCRAFT DODGE AND 'ATTACK' REALISTICALLY: AI dogfights just 
+became 10X as realistic, as fighter planes will turn and attack, 
+just as fighter planes did in WWI and WWII. Try the Marin County 
+Camel Invasion and Marin County Zero Invasion scenarios for a taste 
+of how this works. (No weapons for AI aircraft yet--maybe in the 
+future.)
+
+NEW SCENARIO--B-17 BOMBERS WITH FIGHTER COVER: Fly out of Marin 
+Ranch and attack a squadron of 6 B-17 Bombers. As you do so, the 
+fighter squadrons descend and swarm you. They don't fire at you 
+(yet! fodder for future versions!) but they turn aggressively 
+towards you, evade your shots, etc., just as real fighters would.
+
+DAMAGED AI AIRCRAFT CRASH MORE REALISTICALLY
+
+GREATLY IMPROVED, MORE REALISTIC DAMAGE ANALYSIS: Damage assessment 
+for guns is a lot more realistic, giving greater damage when you hit 
+closer to the center of the object and allowing for the possibility 
+that even small arms might strike a vital or explosive point, 
+causing catastrophic damage. For instance, you can now damage the 
+Nimitz or Eisenhower*--though it's still tough to sink.
+
+MORE REALISTIC FIRE STARTING: One of the chief causes of combat 
+aircraft damage is the fires that even small caliber weapons can 
+cause--and fires are even more likely with heavier ammo that 
+includes incendiary (high explosive) materials. Bombable now models 
+that any hit may start a fire, and heavier rounds are more likely to 
+start files. Fires progressively damage the aircraft and eventually 
+bring it down. Beware that fires sometimes go out before completely 
+disabling the aircraft--so monitor the enemy aircraft to make sure 
+they do not recover and escape.
+
+MORE REALISTIC AIRCRAFT SMOKE STARTING: Similar to fire starting, 
+each damaging hit has the possibility to cause damage that causes 
+the aircraft to emit a trail of smoke. The bigger/closer the hit, 
+the more likely to cause this damage.
+
+BOMBABLE PREFERENCES/SETTINGS SAVED AND RESTORED AT STARTUP
+
+FIXED EXCESSIVE DAMAGE REPORT PROBLEM: Aircraft would continually 
+report damage even after objects received 100% damage--now fixed.
+
+NUMEROUS SMALL BUGFIXES
+
+* Note: You can bomb the Nimitz/Eisenhower carriers if you have the 
+bombable carriers add-on: 
+http://www.flightgear.org/forums/viewtopic.php?f=2&t=7082
+
+
+3.0m
+------------------------
+Positive and negative G-force limits are now settable separately 
+(most aircraft have different limits for positive vs negative G, so 
+this adds some realism)
+
+Bugfixes on damage & damage report
+
+Every hit now registers via on-screen popup (vs previous behavior of 
+only showing damage when it increased past multiples of 5%)
+
+Bugfixes on g-force damage that caused extraneous very high g forces 
+to cause random damage
+
+Bugfixes in multiplayer communication, fixed problems when MP is 
+disabled or doesn't exist
+
+Bugfix on bombable multiplayer unload (runtime error "listenerids") 
+and improvement to unload routines
+
+Fixed Easy/Super Easy Mode malfunction (Super Easy Mode never 
+engaged; new default mode is Easy Mode which should give same 
+performance as previous default mode)
+
+Tuned damage/vulnerabilities on ferries (San Francisco Ferry 
+Invasion scenario)
+
+
+3.0L
+------------------------
+OVERSPEED DETECTION/DAMAGE
+
+G-FORCE AND OVERSPEED DETECTION OPTIONAL - Switches in the Bombable 
+menu to turn it off; turned off by default except for planes 
+included in Bombable package.
+
+VULNERABILITIES FRAMEWORK FOR PRIMARY AIRCRAFT - allows max 
+acceleration, max speed parameters to be set individually per 
+aircraft (main aircraft) and then damage from 
+overspeed/overacceleration is accrued when those limits are exceeded.
+
+BLACKOUT/REDOUT TUNABLE PER AIRCRAFT - allows blackout & redout 
+values to be set per aircraft--for instance to reflect that WWI 
+aircraft had no pressure suits or special high-G training. This will 
+help level the playing field and create uniformity in MP dogfighting 
+with similar aircraft.
+
+G-FORCE AND OVERSPEED LIMITS AND DAMAGE AMOUNTS TUNED - for the four 
+aircraft included in the Bombable package (A6M2 Zero, Sopwith Camel, 
+SPAD VII, Fokker DR1) the g-force damage & overspeed damage 
+parameters have been individually tuned and are fairly realistic.
+
+FIRES ONLY FOR APPROPRIATE DAMAGE - Overspeed & overacceleration 
+(g-force) damage doesn't start a fire, though it will still rack up 
+100% damage and shut you down.
+
+BUGFIXES - a large number of bugfixes
+
+
+3.0k
+------------------------
+EXCESSIVE G-FORCE DAMAGES YOUR AIRCRAFT: Excessive g-force now adds 
+damage to your airframe and can even make you crash. To avoid 
+damaging your aircraft due to excessive g-force, always fly with 
+blackout/redout turned on and avoid pulling g-forces much beyond 
+those that make you blackout or redout.
+
+ZEROS OVER MARIN COUNTY SCENARIO: Marin County Zero Invasion 
+scenario added.
+
+
+3.0j (private release)
+------------------------
+BURN/SMOKE ON CRASH: Aircraft now catch fire, burn, and instantly go 
+to 100% damage when they crash. This is broadcast via MP so others 
+will see you burn when you crash.
+
+A5MW ZERO FOR DOGFIGHTING: A6M2 ready for MP dogfighting included in 
+release.
+
+A6M2 ZERO: Added historically accurate guns and cannons (fire with e 
+and E) to A6M2 Zero.
+
+BOMBABLE A62M ZERO: Included Bombable version of the AI A6M2 Zero 
+from Hellcat's Carrier Bombable project, but also made a few 
+tweaks/improvements to he AI A6M2 for improved realism. See 
+http://www.4shared.com/file/235605076/6101800f/carrier_bombable.html
+
+DOGFIGHTING: Greatly improved dogfighting/multiplayer communication 
+of damages
+
+BUGFIX DR 1: Added keyboard firing switch to Fokker DR 1 (use the 
+'e' key to fire the weapons).
+
+BUGFIXES: Many other miscellaneous bug fixes and improvements.
+
+
+3.0i
+------------------------
+RESET RESETS DAMAGE: In dogfighting, resetting or using the Location 
+menu to change your location resets your damage to 0% and broadcasts 
+that to others flying with you via multiplayer
+
+FLIGHTGEAR 2.0 COMPATIBLE: Tested and works with FG 2.0 as well as 
+FG 1.9 and CVS versions between 1.9 and 2.0
+
+BUGFIXES: Various small bugfixes
+
+
+
+Versions 3.0 through 3.0h
+-------------------------
+BOMBABLE/SHOOTABLE: Code to make objects, AI aircraft, MP aircraft 
+bombable and shootable.
+
+MOVING AI BOMBABLE/SHOOTABLE OBJECTS: Code to allow AI aircraft, 
+naval vessels, and surface vehicles to move (sort of) realistically 
+and act as bombable/moving aerial targets.
+
+SCENARIOS: Bombing and dogfighting scenarios using these AI aircraft.
+
+MULTIPLAYER DOGFIGHTING: Code to allow multiplayer (MP) 
+communication of damage to aircraft, allowing multiplayer dogfighting
+
+AIRCRAFT ENHANCEMENTS--WEAPONS AND DOGFIGHTING: Three WWI era 
+aircraft enhanced with historically accurate weapons systems and 
+prepared for MP dogfighting (Sopwith Camel, Fokker DR1, SPAD-VII)
+
+CONTRAILS AND SMOKE: MP aircraft capable of dogfighting, and some 
+other MP and AI aircraft automatically have contrails and engine 
+smoke trails. This makes it possible to locate the aircraft when 
+doing MP dogfighting and generally adds to the realism.

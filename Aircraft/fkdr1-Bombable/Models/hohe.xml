@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>hohe.ac</path>
+
+<!--
+  -     0 ft (sea level)	101.325 kPa	29.92  inches Hg
+  - 27480 ft ( 8.376 km)	 33.775 kPa	10.66  inches Hg
+  -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>needle</object-name>
+  <property>systems/static/pressure-inhg</property>
+  <factor>18.7</factor>
+  <offset-deg>-176</offset-deg>
+<!--
+  <min-deg>-180</min-deg>
+  <max-deg>180</max-deg>
+-->
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+</PropertyList>

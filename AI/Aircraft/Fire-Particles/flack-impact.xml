@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This should produce a bullet, projectile, or bomb impact, depending on parameters given. -->
+<PropertyList>
+	<particlesystem>
+		<name>flack impact</name>
+		<texture>smoke.png</texture>
+		<emissive>false</emissive>
+		<lighting>true</lighting>
+		<type>normal</type>
+		<align>billboard</align>
+		<attach>world</attach>
+		
+		
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
+			<pitch-deg>0</pitch-deg>
+			<heading-deg>0</heading-deg>
+		</offsets>
+		
+		<condition>
+				<property>/bombable/menusettings/fire-particles/flack-trigger</property>
+		</condition>
+	
+		<placer>
+			<type>sector</type>
+			<radius-min-m>0.0</radius-min-m>
+			<radius-max-m>.5</radius-max-m>
+			<theta-min-deg>-15.5</theta-min-deg>
+			<theta-max-deg>15.5</theta-max-deg>
+			<phi-min-deg>-15.5</phi-min-deg>
+			<phi-max-deg>15.5</phi-max-deg>
+
+		</placer>
+		<shooter>
+			<theta-min-deg>-15.5</theta-min-deg>
+			<theta-max-deg>15.5</theta-max-deg>
+			<phi-min-deg>-15.5</phi-min-deg>
+			<phi-max-deg>15.5</phi-max-deg>
+
+      <speed-mps>
+
+        <value>0</value>
+        <spread>0</spread>
+      </speed-mps>
+		</shooter>		
+		<counter>
+			<particles-per-sec>
+				<value>12</value>
+				<spread>0</spread>
+			</particles-per-sec>
+		</counter>
+		
+		<particle>
+			<start>
+				<color>
+					<red>
+						<value>0.12</value>
+					</red>
+					<green>
+						<value>0.12</value>
+					</green>
+					<blue>
+						<value>0.12</value>
+					</blue>
+					<alpha>
+						<value>.8</value>
+					</alpha>
+				</color>
+				<!-- size appears to be in feet-->
+        <size>
+					<!-- value>11</value -->
+					<property>/bombable/fire-particles/flack-startsize</property>
+				</size>
+			</start>
+			<end>
+				<color>
+					<red>
+						<value>0.35</value>
+					</red>
+					<green>
+						<value>0.35</value>
+					</green>
+					<blue>
+						<value>0.35</value>
+					</blue>
+					<alpha>
+						<value>0.45</value>
+					</alpha>
+				</color>
+				<size>
+					<property>/bombable/fire-particles/flack-endsize</property>
+				</size>
+			</end>
+			<life-sec>
+				<value>10</value>
+			</life-sec>
+			<mass-kg>156000</mass-kg><!-- Air density: 1,204Kg/m3 at 20°C, 148000 seems to equal neutral bouyancy -->
+			<radius-m>30</radius-m>
+		</particle>
+		
+		<program>
+			<fluid>air</fluid>
+			<gravity type="bool">true</gravity>
+			<wind type="bool">true</wind>
+		</program>
+	</particlesystem>
+	
+	              
+</PropertyList>

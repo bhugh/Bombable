@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<PropertyList> 
+
+	<path>markVAaltimeter.ac</path>
+	<texture-path>Textures</texture-path>
+
+	<animation> 
+		<type>rotate</type>
+		<object-name>needle</object-name>
+		<property>/position/altitude-ft</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>15000</ind><dep>330</dep></entry>
+			<entry><ind>20000</ind><dep>435</dep></entry>
+		</interpolation>
+		<axis> 
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation> 
+		<type>rotate</type>
+		<object-name>main_face</object-name>
+		<property>instrumentation/altimeter/setting-inhg</property>
+		<offset>0</offset>
+		<factor>0.5</factor>
+		<axis> 
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation> 
+		<type>rotate</type>
+		<object-name>knob</object-name>
+		<property>instrumentation/altimeter/setting-inhg</property>
+		<factor>10</factor>
+		<axis> 
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0.00757943</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.0471272</z-m>
+		</center>
+	</animation>
+		
+	<!-- *** LoD *** -->
+	<animation> 
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+</PropertyList>

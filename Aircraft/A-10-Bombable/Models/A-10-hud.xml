@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+
+
+<PropertyList>
+
+	<path>A-10-hud.ac</path>
+
+	<animation>
+		<type>select</type>
+		<object-name>gun-cross</object-name>
+		<condition>
+			<greater-than>
+				<property>sim/model/A-10/controls/hud/mode-selector</property>
+				<value>0</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>gun-cross</object-name>
+		<property>sim/model/A-10/controls/hud/depr</property>
+		<factor>0.03</factor>
+		<axis>
+			<x>0.00</x>
+			<y>0.00</y>
+			<z>1.00</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>ccip</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/A-10/controls/hud/mode-selector</property>
+				<value>3</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>translate</type>
+		<object-name>ccip</object-name>
+		<property>sim/model/A-10/controls/hud/depr</property>
+		<factor>0.03</factor>
+		<axis>
+			<x>0.00</x>
+			<y>0.00</y>
+			<z>1.00</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>ccip</object-name>
+		<property>sim/model/A-10/instrumentation/hud/ccip_dev_m</property>
+		<axis>
+			<x>0.00</x>
+			<y>0.00</y>
+			<z>-1.00</z>
+		</axis>
+	</animation>
+
+<!-- lighting -->
+
+	<animation>
+		<object-name>gun-cross</object-name>
+		<type>material</type>
+		<emission>
+			<factor-prop>sim/model/A-10/controls/hud/intens</factor-prop>
+			<red>0.4</red>
+			<green>0.8</green>
+			<blue>0.32</blue>
+		</emission>
+		<transparency>
+			<alpha-prop>sim[0]/hud/color/alpha</alpha-prop>
+		</transparency>
+	</animation>
+
+	<animation>
+		<object-name>ccip</object-name>
+		<type>material</type>
+		<emission>
+			<factor-prop>sim/model/A-10/controls/hud/intens</factor-prop>
+			<red>0.4</red>
+			<green>0.8</green>
+			<blue>0.32</blue>
+		</emission>
+		<transparency>
+			<alpha-prop>sim[0]/hud/color/alpha</alpha-prop>
+		</transparency>
+	</animation>
+
+
+
+</PropertyList>

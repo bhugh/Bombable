@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>boost.ac</path>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Boost.needle</object-name>
+  <property>engines/engine/boost-gauge-mmhg</property>
+  <interpolation>
+     <entry><ind>-400</ind><dep>-202.5</dep></entry> <!-- -400mmHg  -->  
+     <entry><ind>0</ind><dep>0</dep></entry>
+     <entry><ind>250</ind><dep>112.5</dep></entry> <!-- 250mmHg-->
+     <entry><ind>300</ind><dep>114</dep></entry> <!-- overshoot --> 
+  </interpolation>
+  <center>
+   <x-m>0</x-m>
+   <y-m>0</y-m>
+   <z-m>0</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+</PropertyList>

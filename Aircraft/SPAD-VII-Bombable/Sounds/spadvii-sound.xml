@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <fx>
+
+    <crank> 
+      <name>engstart</name>
+      <path>Aircraft/SPAD-VII-Bombable/Sounds/start.wav</path>
+      <property>/engines/engine/cranking</property>
+      <volume> 
+        <property>/orientation/alpha-deg</property>
+        <type>log</type>
+        <min>0.5</min>
+        <max>1.0</max>
+      </volume>
+      <volume> 
+        <factor>1.2</factor>
+        <max>1.0</max>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>
+    </crank>
+
+    <crank> 
+      <name>cough</name>
+      <path>Aircraft/SPAD-VII-Bombable/Sounds/coughing.wav</path>
+      <property>/engines/engine/running</property>
+      <volume> 
+        <property>/orientation/alpha-deg</property>
+        <type>log</type>
+        <min>0.5</min>
+        <max>1.0</max>
+      </volume>
+      <volume> 
+        <factor>1.2</factor>
+        <max>1.0</max>
+      </volume>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>
+    </crank>
+
+    <engine> 
+      <name>engineslowrun</name>
+      <mode>looped</mode>
+      <path>Aircraft/SPAD-VII-Bombable/Sounds/R-1535Slow.wav</path>
+      <condition> 
+        <property>/engines/engine/running</property>
+        <less-than> 
+          <property>/engines/engine/rpm</property>
+          <value> 1500 </value>
+        </less-than>
+      </condition>
+      <volume> 
+        <property>/orientation/alpha-deg</property>
+        <type>log</type>
+        <min> 1.0 </min>
+        <max> 1.5 </max>
+      </volume>
+      <volume> 
+        <property>/sim/current-view/internal</property>
+        <offset>  1.0 </offset>
+        <factor> -0.4 </factor>
+      </volume>
+      <pitch> 
+        <property>/engines/engine/rpm</property>
+        <factor> 0.0006 </factor>
+        <min> 0.4 </min>
+        <max> 3.0 </max>
+        <offset> 0 </offset>
+      </pitch>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>
+    </engine>
+
+    <engine>
+      <name>enginerun</name>
+      <mode>looped</mode>
+      <path>Aircraft/SPAD-VII-Bombable/Sounds/R-1535.wav</path>
+      <condition>
+        <property>/engines/engine/running</property>
+        <greater-than-equals> 
+          <property>/engines/engine/rpm</property>
+          <value> 1500 </value>
+        </greater-than-equals>
+      </condition>
+      <volume>
+        <property>/controls/engines/engine/throttle</property>
+        <min> 0.5 </min>
+        <max> 1.0 </max>
+      </volume>
+      <pitch>
+        <property>/engines/engine/rpm</property>
+        <factor> 0.00033 </factor>
+        <min> 0.0 </min>
+        <max> 1.0 </max>
+        <offset> 0.0 </offset>
+      </pitch>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>
+    </engine>
+
+    <rumble>
+      <name>rumble</name>
+      <mode>looped</mode>
+      <path>Sounds/rumble.wav</path>
+      <condition>
+        <and>
+          <or>
+            <property>/gear/gear[0]/wow</property>
+            <property>/gear/gear[1]/wow</property>
+          </or>
+          <property>/gear/gear[0]/ground-is-solid</property>
+        </and>
+      </condition>
+      <volume>
+        <property>/velocities/groundspeed-kt</property>
+        <factor> 0.4 </factor>
+      </volume>
+      <position>
+        <x> -1.0 </x>
+        <y>  0.0 </y>
+        <z> -2.0 </z>
+      </position>
+      <reference-dist> 2.0 </reference-dist>
+      <max-dist> 5.0 </max-dist>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>
+    </rumble>
+
+    <splash>
+      <name>splash</name>
+      <mode>looped</mode>
+      <path>Sounds/rumble.wav</path>
+      <condition>
+        <and>
+          <or>
+            <property>/gear/gear[0]/wow</property>
+            <property>/gear/gear[1]/wow</property>
+          </or>
+          <not>
+            <property>/gear/gear[0]/ground-is-solid</property>
+          </not>
+        </and>
+      </condition>
+      <volume>
+        <property>/velocities/groundspeed-kt</property>
+        <offset> 0.00 </offset>
+        <factor> 0.02 </factor>
+        <min> 0.0 </min>
+        <max> 0.5 </max>
+      </volume>
+      <pitch>
+        <property>/velocities/airspeed-kt</property>
+        <factor> 0.01 </factor>
+        <offset> 1.20 </offset>
+        <max> 1.5 </max> 
+      </pitch>
+      <position>
+        <x> -1.0 </x>
+        <y>  0.0 </y>
+        <z> -2.0 </z>
+      </position>
+      <reference-dist> 2.0 </reference-dist>
+      <max-dist> 5.0 </max-dist>
+    </splash>
+
+    <squeal>
+      <name>squeal</name>
+      <path>Sounds/squeal.wav</path>
+      <condition>
+        <or>
+          <property>/gear/gear[0]/wow</property>
+          <property>/gear/gear[1]/wow</property>
+        </or>
+      </condition>
+      <volume>
+        <property>/velocities/speed-down-fps</property>
+        <factor> 0.5 </factor>
+        <max> 1.0 </max>
+      </volume>
+      <volume>
+        <property>/velocities/airspeed-kt</property>
+        <factor> 0.01 </factor>
+        <max> 1.0 </max>
+      </volume>
+      <volume>
+        <internal>dt_stop</internal>
+        <factor> 0.05 </factor>
+        <max> 1.0 </max>
+      </volume>
+      <pitch>
+        <property>/velocities/airspeed-kt</property>
+        <factor> 0.0025 </factor>
+        <offset> 0.5000 </offset>
+        <max> 1.0 </max>
+      </pitch>
+      <position>
+        <x> -1.0 </x>
+        <y>  0.0 </y>
+        <z> -2.0 </z>
+      </position>
+      <reference-dist> 5.0 </reference-dist>
+      <max-dist> 10.0 </max-dist>
+    </squeal>
+
+    <flap>
+      <name>flaps</name>
+      <mode>in-transit</mode>
+      <path>Sounds/flaps.wav</path>
+      <property>/surface-positions/flap-pos-norm</property>
+      <volume>
+        <factor> 0.15 </factor>
+      </volume>
+      <position>
+        <x> 1.0 </x>
+        <y> 0.0 </y>
+        <z> 1.0 </z>
+      </position>
+      <reference-dist> 2.5 </reference-dist>
+      <max-dist> 5.0 </max-dist>
+    </flap>
+
+    <wind>
+      <name>wind</name>
+      <mode>looped</mode>
+      <path>Sounds/wind.wav</path>
+      <property>velocities/airspeed-kt</property>
+      <volume>
+        <property>position/altitude-ft</property>
+        <factor> -0.000015 </factor>
+        <offset>  1.000000 </offset>
+        <min> 0.1 </min>
+        <max> 1.0 </max>
+      </volume>
+      <volume>
+        <property>velocities/airspeed-kt</property>
+        <factor> 0.0015 </factor>
+        <min> 0.03 </min>
+        <max> 0.25 </max>
+      </volume>
+      <pitch>
+        <property>velocities/airspeed-kt</property>
+        <factor> 0.01 </factor>
+        <offset> 1.00 </offset>
+      </pitch>
+      <position>
+        <x> 0 </x>
+        <y> 0 </y>
+        <z> 0 </z>
+      </position>
+      <max-dist> 2 </max-dist>
+      <reference-dist> 1 </reference-dist>
+    </wind>
+
+    <stall>
+      <name>stall</name>
+      <mode>looped</mode>
+      <path>Sounds/stall.wav</path>
+      <property>sim/alarms/stall-warning</property>
+      <volume>
+        <property>/sim/alarms/stall-warning</property>
+        <max> 1.0 </max>
+      </volume>
+      <position>
+        <x> -0.5 </x>
+        <y>  0.0 </y>
+        <z>  0.0 </z>
+      </position>
+      <reference-dist> 2.0 </reference-dist>
+      <max-dist> 4.0 </max-dist>
+    </stall>
+
+    <!--                  Toggle Switches                  -->     
+    <switch>
+      <name>click on</name>
+      <mode>once</mode>
+      <path>Sounds/click.wav</path>
+      <condition>
+        <property>sim/Sounds/switch</property>
+      </condition>
+      <volume>
+        <offset> 0.7 </offset>
+      </volume>
+      <position>
+        <x> -0.5 </x>
+        <y>  0.0 </y>
+        <z>  0.0 </z>
+      </position>
+      <reference-dist> 2.0 </reference-dist>
+      <max-dist> 4.0 </max-dist>
+    </switch>
+
+    <switch>
+      <name>click off</name>
+      <mode>once</mode>
+      <path>Sounds/click.wav</path>
+      <condition>
+        <not>
+          <property>sim/Sounds/switch</property>
+        </not>
+      </condition>
+      <volume>
+        <offset> 0.7 </offset>
+      </volume>
+      <position>
+        <x> -0.5 </x>
+        <y>  0.0 </y>
+        <z>  0.0 </z>
+      </position>
+      <reference-dist> 2.0 </reference-dist>
+      <max-dist> 4.0 </max-dist>
+    </switch>
+
+    <rain>
+      <name>rain</name>
+      <mode>looped</mode>
+      <path>Aircraft/SPAD-VII-Bombable/Sounds/rain_canopy.wav</path>
+      <condition>
+        <greater-than>
+          <property>/environment/metar/rain-norm</property>
+          <value>0.2</value>
+        </greater-than>
+      </condition>
+      <volume>
+        <property>/environment/metar/rain-norm</property>
+        <factor>1.00</factor>
+        <offset>0.00</offset>
+        <min>0.4</min>
+        <max>0.9</max>
+      </volume>
+      <pitch>
+        <property>/velocities/airspeed-kt</property>
+        <factor>0.001</factor>
+        <offset>1.0</offset>
+      </pitch>
+      <reference-dist>2</reference-dist>
+      <max-dist>4</max-dist>
+    </rain>
+
+    <gun>
+      <name>Gun up left</name>
+      <mode>looped</mode>
+      <path>Aircraft/SPAD-VII-Bombable/Sounds/gunfire_1.wav</path>
+      <condition>
+        <and>
+          <property>controls/armament/trigger</property>
+          <property>ai/submodels/submodel[0]/count</property>
+        </and>
+      </condition>
+      <position>
+        <x> -3.469 </x>
+        <y> -0.260 </y>
+        <z>  0.586 </z>
+      </position>
+      <reference-dist>100</reference-dist>
+      <max-dist>500</max-dist>
+    </gun>
+
+    <gun>
+      <name>Gun up right</name>
+      <mode>looped</mode>
+      <path>Aircraft/SPAD-VII-Bombable/Sounds/gunfire_1.wav</path>
+      <condition>
+        <and>
+          <property>controls/armament/trigger</property>
+          <property>ai/submodels/submodel[0]/count</property>
+        </and>
+      </condition>
+      <position>
+        <x> -3.469 </x>
+        <y>  0.260 </y>
+        <z>  0.586 </z>
+      </position>
+      <reference-dist>100</reference-dist>
+      <max-dist>500</max-dist>
+    </gun>
+
+  </fx>
+
+</PropertyList>

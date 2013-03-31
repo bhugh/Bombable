@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<PropertyList>
+	<scenario>
+		<description>This scenario puts a fleet of A6M2 Zeros in the skies over Marin County, starting at the Marin Ranch Airport, CA35.
+
+If you take off from runway 22 of the Marin Ranch Airport (CA35), the planes will be directly above you and around the airport as you take off, headed in a westerly direction.  
+
+The A6M2s are air-to-air targets, you can damage them with heavy guns, machine guns, or (if you can hit them!) heavy bombs.
+  
+When you shoot or bomb the Zeros they will catch fire, slow down, fall, and finally crash (to see the smoke and fire you must have Particles enabled in View/Rendering Options).
+
+To damage the aircraft takes one or more direct hits from a machine gun or heavy gun, or a close strike by a heavy bomb.   The Zeros are fairly easy targets for heavy guns or bombs, less so for light bombs.
+
+Install this scenario in the FlightGear/data/AI directory.
+
+Any aircraft that shoots guns or drops bombs can damage the Zeros.  A great choice is to use the A6M2 aircraft included in this distribution.
+		</description>
+		
+		<!-- COLUMN 1 (moving column)-->
+    <entry>
+      <type>aircraft</type>
+      <callsign>A6M2-20</callsign>
+			<name>A6M220</name>
+      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
+      <latitude type="double">38.01099548720</latitude>
+			<longitude type="double">-122.4876</longitude>
+			<altitude type="double">2170</altitude>
+      <speed>170</speed>
+      <blag>304</blag>
+    
+      <bank type="double">-10</bank>
+      <heading type="double">280</heading>
+    </entry>
+
+
+    <entry>
+      <type>aircraft</type>
+      <callsign>A6M2-1</callsign>
+			<name>A6M21</name>
+      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
+      <latitude type="double">37.0119878200</latitude>
+			<longitude type="double">-122.4888</longitude>
+			<altitude type="double">1209</altitude>
+      <speed>196</speed>
+     
+      <bank type="double">-10</bank>
+      <heading type="double">290</heading>
+    </entry>
+
+
+    <entry>
+      <type>aircraft</type>
+      <callsign>A6M231</callsign>
+			<name>A6M231</name>
+      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model> 
+      <latitude type="double">38.0181470</latitude>
+			<longitude type="double">-122.4792</longitude>
+			<altitude type="double">1524</altitude>
+      <speed>153</speed>
+
+      <bank type="double">-10</bank>
+      <heading type="double">277</heading>
+    </entry>
+    
+    
+
+    <entry>
+      <type>aircraft</type>
+      <callsign>A6M2-29</callsign>
+			<name>A6M229</name>
+      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model> 
+      <latitude type="double">38.0168100</latitude>
+			<longitude type="double">-122.4868</longitude>
+			<altitude type="double">1200</altitude>
+      <speed>155</speed>
+
+      <bank type="double">10</bank>
+      <heading type="double">292</heading>
+    </entry>
+    
+    
+    <entry>
+      <type>aircraft</type>
+      <callsign>A6M2-8</callsign>
+			<name>A6M28</name>        
+      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model> 
+      <latitude type="double">38.0138950</latitude>
+			<longitude type="double">-122.4959</longitude>
+			<altitude type="double">2159</altitude>
+      <speed>204</speed>
+
+      <bank type="double">10</bank>
+      <heading type="double">301</heading>
+    </entry>
+
+    <entry>
+      <type>aircraft</type>
+      <callsign>A6M262</callsign>
+			<name>A6M262</name>
+      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model> 
+      <latitude type="double">38.0118950</latitude>
+			<longitude type="double">-122.4859</longitude>
+			<altitude type="double">1759</altitude>
+      <speed>169</speed>
+
+      <bank type="double">10</bank>
+      <heading type="double">279</heading>
+    </entry>
+    
+        <entry>
+      <type>aircraft</type>
+      <callsign>A6M2-32</callsign>
+			<name>A6M232</name>
+      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model> 
+      <latitude type="double">38.0178950</latitude>
+			<longitude type="double">-122.49059</longitude>
+			<altitude type="double">3803</altitude>
+      <speed>201</speed>
+
+      <bank type="double">5</bank>
+      <heading type="double">305</heading>
+    </entry>
+
+     <entry>
+      <type>aircraft</type>
+      <callsign>A6M2-31</callsign>
+			<name>A6M231</name>
+      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model> 
+      <latitude type="double">38.0158950</latitude>
+			<longitude type="double">-122.4959</longitude>
+			<altitude type="double">3170</altitude>
+      <speed>191</speed>
+
+      <bank type="double">10</bank>
+      <heading type="double">283</heading>
+    </entry>
+
+     <entry>
+      <type>aircraft</type>
+      <callsign>A6M2-93</callsign>
+			<name>SPAD3</name>
+      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model> 
+      <latitude type="double">38.0178950</latitude>
+			<longitude type="double">-122.4959</longitude>
+			<altitude type="double">1505</altitude>
+      <speed>205</speed>
+
+      <bank type="double">10</bank>
+      <heading type="double">293</heading>
+    </entry>
+
+    <!-- Green Zeros to go with them  -->
+    
+        <entry>
+      <type>aircraft</type>
+      <callsign>A6M2-42</callsign>
+			<name>A6M231</name>
+      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2b-green.xml</model> 
+      <latitude type="double">38.0112950</latitude>
+			<longitude type="double">-122.4819</longitude>
+			<altitude type="double">1259</altitude>
+      <speed>219</speed>
+
+      <bank type="double">10</bank>
+      <heading type="double">272</heading>
+    </entry>
+    
+        <entry>
+      <type>aircraft</type>
+      <callsign>A6M2-43</callsign>
+			<name>A6M232</name>
+      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2b-green.xml</model> 
+      <latitude type="double">38.0172950</latitude>
+			<longitude type="double">-122.49859</longitude>
+			<altitude type="double">2203</altitude>
+      <speed>199</speed>
+
+      <bank type="double">5</bank>
+      <heading type="double">300</heading>
+    </entry>
+
+     <entry>
+      <type>aircraft</type>
+      <callsign>A6M2-2</callsign>
+			<name>A6M22</name>
+      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2b-green.xml</model> 
+      <latitude type="double">38.0152950</latitude>
+			<longitude type="double">-122.4939</longitude>
+			<altitude type="double">4876</altitude>
+      <speed>213</speed>
+
+      <bank type="double">10</bank>
+      <heading type="double">283</heading>
+    </entry>
+
+     <entry>
+      <type>aircraft</type>
+      <callsign>A6M2-3</callsign>
+			<name>A6M23</name>
+      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2b-green.xml</model> 
+      <latitude type="double">38.0172950</latitude>
+			<longitude type="double">-122.4909</longitude>
+			<altitude type="double">5105</altitude>
+      <speed>227</speed>
+
+      <bank type="double">10</bank>
+      <heading type="double">294</heading>
+    </entry>
+
+    
+        
+	</scenario>
+</PropertyList>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <sim include="Nasal/views.xml">
+
+    <author>Emmanuel BARANGER (3D/FDM), Brent Hugh (Bombable compatibility, weapons dialog)</author>
+    <aircraft-version>0.1</aircraft-version>
+    <status>Alpha</status>
+
+    <fuel-fraction>0.8</fuel-fraction>
+
+    <startup>
+     <splash-texture>Aircraft/SPAD-VII-Bombable/spadvii-splash.png</splash-texture>
+    </startup>
+
+    <systems>
+      <electrical>
+        <path>Aircraft/j3cub/cub-electrical.xml</path>
+      </electrical>
+    </systems> 
+
+    <sound>
+      <path>Aircraft/SPAD-VII-Bombable/Sounds/spadvii-sound.xml</path>
+    </sound>
+
+    <model>
+      <path archive="y">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</path>
+      <livery>
+        <file type="string">default</file>
+      </livery>
+    </model>
+
+    <submodels> 
+      <serviceable type="bool">true</serviceable>
+      <path>Aircraft/SPAD-VII-Bombable/Models/Effects/submodels.xml</path>
+    </submodels>
+
+    <!-- Required to make Bombable work over multiplayer are these generic multiplayer values -->
+    <!-- String 9 is for Bombable damage/reset messages -->
+    <!-- Int 10,11,... are for various weapons triggers as particular to this aircraft -->
+
+    <multiplay>
+      <chat_display>1</chat_display>
+      <generic>
+        <int type="int">0</int>
+        <int type="int">0</int>
+        <int type="int">0</int>
+        <int type="int">0</int>
+        <int type="int">0</int>
+        <int type="int">0</int>
+				<string n="9"
+							 type="string"/>
+        <int n="10"
+							 alias="/controls/armament/trigger" />                  
+      </generic>
+    </multiplay>
+
+    <help>
+      <title>S.P.A.D. VII</title>
+      <key>
+        <name>d</name>
+        <desc>Open/Close canopy</desc>
+      </key>
+      <key>
+        <name>e</name>
+        <desc>Guns fire</desc>
+      </key>
+    </help>
+
+    <menubar include="Dialogs/spadvii-menu.xml"/>
+
+  </sim>
+
+  <yasim>
+    <la5>
+      <pilot-lb>180</pilot-lb>
+    </la5>
+  </yasim>
+
+  <engines>
+    <engine>
+      <rpm type="double">700</rpm>
+    </engine>
+  </engines>
+
+  <input>
+    <keyboard include="Nasal/spadvii-keyboard.xml"/>
+  </input>
+ 
+  <nasal>
+    <la5>
+      <file>Aircraft/SPAD-VII-Bombable/Nasal/doors.nas</file>
+      <file>Aircraft/SPAD-VII-Bombable/Nasal/immat.nas</file>
+      <file>Aircraft/SPAD-VII-Bombable/Nasal/liveries.nas</file>
+    </la5>
+    <guns>
+      <file>Aircraft/SPAD-VII-Bombable/Nasal/weapons.nas</file>
+      <file>Aircraft/SPAD-VII-Bombable/Nasal/revi.nas</file>
+    </guns>
+  </nasal>
+
+</PropertyList>
+

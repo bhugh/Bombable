@@ -1,0 +1,480 @@
+<?xml version="1.0"?>
+<!DOCTYPE PropertyList SYSTEM "panel.dtd">
+
+<PropertyList> 
+  <name>A-10 L Panel Hotspots</name>
+  <background>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</background>
+  <w>1024</w>
+  <h>768</h>
+  <y-offset>0</y-offset>
+
+  <instruments> 
+    <instrument> 
+      <name>L panel</name>
+      <y>384</y>
+      <w>1024</w>
+      <h>768</h>
+      <w-base>1024</w-base>
+      <h-base>1024</h-base>
+      <x>512</x>
+  
+      <layers> 
+  
+        <layer> 
+          <name>background</name>
+          <texture> 
+          <path>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</path>
+            <x1>0.0</x1>
+            <y1>0.0</y1>
+            <x2>1.0</x2>
+            <y2>1.0</y2>
+          </texture>
+        </layer>
+  
+        <!--<layer>
+          <name>grid</name>
+          <texture>
+            <path>Aircraft/A-10-Bombable/Models/hotspotgrid.rgb</path>
+            <x1>0.0</x1>
+            <y1>0.0</y1>
+            <x2>1.0</x2>
+            <y2>1.0</y2>
+          </texture>
+        </layer>-->
+  
+      </layers>
+
+      <!-- define hotspot actions below -->
+      <actions> 
+
+        <!-- hud-depression -->
+        <action> 
+          <name>depression-up</name>
+          <button>0</button>
+          <x>85</x>
+          <y>187</y>
+          <w>37</w>
+          <h>30</h>
+          <binding> 
+            <command>property-adjust</command>
+            <property>sim/model/A-10/controls/hud/depr</property>
+            <step>-0.05</step>
+            <min>-1.0</min>
+            <max>1.0</max>
+            <wrap>false</wrap>
+          </binding>
+        </action>
+        <action> 
+          <name>depression-down</name>
+          <button>0</button>
+          <x>85</x>
+          <y>220</y>
+          <w>37</w>
+          <h>30</h>
+          <binding> 
+            <command>property-adjust</command>
+            <property>sim/model/A-10/controls/hud/depr</property>
+            <step>0.05</step>
+            <min>-1.0</min>
+            <max>1.0</max>
+            <wrap>false</wrap>
+          </binding>
+        </action>
+
+        <!-- hud-intensity -->
+        <action> 
+          <name>intensity-up</name>
+          <button>0</button>
+          <x>-85</x>
+          <y>187</y>
+          <w>37</w>
+          <h>30</h>
+          <binding> 
+            <command>property-adjust</command>
+            <property>sim/model/A-10/controls/hud/intens</property>
+            <step>-0.1</step>
+            <min>0.0</min>
+            <max>1.0</max>
+            <wrap>false</wrap>
+          </binding>
+        </action>
+        <action> 
+          <name>intensity-down</name>
+          <button>0</button>
+          <x>-85</x>
+          <y>220</y>
+          <w>37</w>
+          <h>30</h>
+          <binding> 
+            <command>property-adjust</command>
+            <property>sim/model/A-10/controls/hud/intens</property>
+            <step>0.1</step>
+            <min>0.0</min>
+            <max>1.0</max>
+            <wrap>false</wrap>
+          </binding>
+        </action>
+
+        <!-- hud mode knob -->
+        <action> 
+          <name>hud-mode-knob-ccw</name>
+          <button>0</button>
+          <x>5</x>
+          <y>270</y>
+          <w>48</w>
+          <h>65</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10hud.hud_mode_knob_move(-1)</script>
+          </binding>
+        </action>
+        <action> 
+          <name>hud-mode-knob-cw</name>
+          <button>0</button>
+          <x>60</x>
+          <y>270</y>
+          <w>48</w>
+          <h>65</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10hud.hud_mode_knob_move(1)</script>
+          </binding>
+        </action>
+
+
+        <!-- land-taxi lights -->
+        <action> 
+          <name>land-lights-up</name>
+          <button>0</button>
+          <x>-180</x>
+          <y>-50</y>
+          <w>55</w>
+          <h>50</h>
+          <binding> 
+            <command>nasal</command>
+            <script>electrical.land_lights_switcher(1)</script>
+          </binding>
+        </action>
+        <action> 
+          <name>land-lights-down</name>
+          <button>0</button>
+          <x>-180</x>
+          <y>-103</y>
+          <w>55</w>
+          <h>50</h>
+          <binding> 
+            <command>nasal</command>
+            <script>electrical.land_lights_switcher(-1)</script>
+          </binding>
+        </action>
+
+        <!-- master arm switch -->
+        <action>
+          <name>master-arm-up</name>
+          <button>0</button>
+          <x>-28</x>
+          <y>-42</y>
+          <w>55</w>
+          <h>50</h>
+          <binding>
+            <command>nasal</command>
+            <script>A10weapons.master_arm_switch(1)</script>
+          </binding>
+        </action>
+        <action>
+          <name>master-arm-down</name>
+          <button>0</button>
+          <x>-28</x>
+          <y>-95</y>
+          <w>55</w>
+          <h>50</h>
+          <binding>
+            <command>nasal</command>
+            <script>A10weapons.master_arm_switch(-1)</script>
+          </binding>
+        </action>
+		
+        <!-- gun rate switch -->
+        <!--<action> 
+          <name>gun-rate-up</name>
+          <button>0</button>
+          <x>420</x>
+          <y>-42</y>
+          <w>55</w>
+          <h>50</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.gun_rate_switch(1)</script>
+          </binding>
+        </action>
+        <action> 
+          <name>gun-rate-down</name>
+          <button>0</button>
+          <x>420</x>
+          <y>-95</y>
+          <w>55</w>
+          <h>50</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.gun_rate_switch(-1)</script>
+          </binding>
+        </action>-->
+	<action>
+		<name>gun-rate-toggle</name>
+		<button>0</button>
+		<x>420</x>
+		<y>-70</y>
+		<w>55</w>
+		<h>100</h>
+		<binding>
+			<command>nasal</command>
+			<script>A10weapons.gun_rate_switch()</script>
+		</binding>
+        </action>
+
+        <!-- ripples counter -->
+        <action> 
+          <name>rip-down</name>
+          <button>0</button>
+          <x>-17</x>
+          <y>-275</y>
+          <w>27</w>
+          <h>40</h>
+          <binding> 
+            <command>property-adjust</command>
+            <property>sim/model/A-10/weapons/rip</property>
+            <step>-1</step>
+            <min>0</min>
+            <max>99</max>
+            <wrap>false</wrap>
+          </binding>
+        </action>
+        <action> 
+          <name>rip-up</name>
+          <button>0</button>
+          <x>15</x>
+          <y>-275</y>
+          <w>27</w>
+          <h>40</h>
+          <binding> 
+            <command>property-adjust</command>
+            <property>sim/model/A-10/weapons/rip</property>
+            <step>1</step>
+            <min>0</min>
+            <max>99</max>
+            <wrap>false</wrap>
+          </binding>
+        </action>
+
+        <!-- interval counter -->
+        <action> 
+          <name>interval-down</name>
+          <button>0</button>
+          <x>420</x>
+          <y>-275</y>
+          <w>27</w>
+          <h>40</h>
+          <binding> 
+            <command>property-adjust</command>
+            <property>sim/model/A-10/weapons/interval</property>
+            <step>-0.01</step>
+            <min>0.0</min>
+            <max>1</max>
+            <wrap>false</wrap>
+          </binding>
+        </action>
+        <action> 
+          <name>interval-up</name>
+          <button>0</button>
+          <x>452</x>
+          <y>-275</y>
+          <w>27</w>
+          <h>40</h>
+          <binding> 
+            <command>property-adjust</command>
+            <property>sim/model/A-10/weapons/interval</property>
+            <step>0.01</step>
+            <min>0.0</min>
+            <max>1</max>
+            <wrap>false</wrap>
+          </binding>
+        </action>
+
+        <!-- Aim-9 knob -->
+        <action> 
+          <name>aim-9-knob-cw</name>
+          <button>0</button>
+          <x>100</x>
+          <y>-335</y>
+          <w>48</w>
+          <h>65</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.aim9_knob_switch(1)</script>
+          </binding>
+        </action>
+        <action> 
+          <name>aim-9-knob-ccw</name>
+          <button>0</button>
+          <x>47</x>
+          <y>-335</y>
+          <w>48</w>
+          <h>65</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.aim9_knob_switch(-1)</script>
+          </binding>
+        </action>
+
+        <!-- station #5 -->
+        <action> 
+          <name>station-5</name>
+          <button>0</button>
+          <x>137</x>
+          <y>-100</y>
+          <w>46</w>
+          <h>45</h>
+          <binding>
+            <command>nasal</command>
+            <script>A10weapons.select_station(4)</script>
+          </binding>
+        </action>
+        <!-- station #6 -->
+        <action> 
+          <name>station-6</name>
+          <button>0</button>
+          <x>198</x>
+          <y>-100</y>
+          <w>46</w>
+          <h>45</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.select_station(5)</script>
+          </binding>
+        </action>
+        <!-- station #7 -->
+        <action> 
+          <name>station-7</name>
+          <button>0</button>
+          <x>259</x>
+          <y>-100</y>
+          <w>46</w>
+          <h>45</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.select_station(6)</script>
+          </binding>
+        </action>
+
+        <!-- station #1 -->
+        <action> 
+          <name>station-1</name>
+          <button>0</button>
+          <x>-11</x>
+          <y>-223</y>
+          <w>46</w>
+          <h>45</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.select_station(0)</script>
+          </binding>
+        </action>
+        <!-- station #2 -->
+        <action> 
+          <name>station-2</name>
+          <button>0</button>
+          <x>49</x>
+          <y>-223</y>
+          <w>46</w>
+          <h>45</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.select_station(1)</script>
+          </binding>
+        </action>
+        <!-- station #3 -->
+        <action> 
+          <name>station-3</name>
+          <button>0</button>
+          <x>109</x>
+          <y>-223</y>
+          <w>46</w>
+          <h>45</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.select_station(2)</script>
+          </binding>
+        </action>
+        <!-- station #4 -->
+        <action> 
+          <name>station-4</name>
+          <button>0</button>
+          <x>169</x>
+          <y>-223</y>
+          <w>46</w>
+          <h>45</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.select_station(3)</script>
+          </binding>
+        </action>
+        <!-- station #8 -->
+        <action> 
+          <name>station-8</name>
+          <button>0</button>
+          <x>231</x>
+          <y>-223</y>
+          <w>46</w>
+          <h>45</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.select_station(7)</script>
+          </binding>
+        </action>
+        <!-- station #9 -->
+        <action> 
+          <name>station-9</name>
+          <button>0</button>
+          <x>292</x>
+          <y>-223</y>
+          <w>46</w>
+          <h>45</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.select_station(8)</script>
+          </binding>
+        </action>
+        <!-- station #10 -->
+        <action> 
+          <name>station-10</name>
+          <button>0</button>
+          <x>352</x>
+          <y>-223</y>
+          <w>46</w>
+          <h>45</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.select_station(9)</script>
+          </binding>
+        </action>
+        <!-- station #11 -->
+        <action> 
+          <name>station-11</name>
+          <button>0</button>
+          <x>413</x>
+          <y>-223</y>
+          <w>46</w>
+          <h>45</h>
+          <binding> 
+            <command>nasal</command>
+            <script>A10weapons.select_station(10)</script>
+          </binding>
+        </action>
+
+      </actions> 
+
+    </instrument>
+  </instruments>
+
+
+</PropertyList>

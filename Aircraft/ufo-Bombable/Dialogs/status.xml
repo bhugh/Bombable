@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<name>ufo-status</name>
+	<layout>vbox</layout>
+	<x>8</x>
+	<y>8</y>
+	<pref-width>300</pref-width>
+	<default-padding>0</default-padding>
+
+	<color>
+		<red>0</red>
+		<green>0</green>
+		<blue>0</blue>
+		<alpha>0</alpha>
+	</color>
+
+	<font>
+		<name>HELVETICA_12</name>
+		<size>13</size>
+	</font>
+
+	<input>
+		<name>input</name>
+		<halign>left</halign>
+		<pref-width>300</pref-width>
+		<live>1</live>
+		<property>/sim/gui/dialogs/ufo-status/input</property>
+
+		<color>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+			<alpha>0</alpha>
+		</color>
+
+		<color-legend>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+			<alpha>1</alpha>
+		</color-legend>
+
+		<color-background>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+			<alpha>0</alpha>
+		</color-background>
+
+		<color-highlight>
+			<red>0</red>
+			<green>0</green>
+			<blue>0</blue>
+			<alpha>0</alpha>
+		</color-highlight>
+
+		<binding>
+			<command>dialog-apply</command>
+			<object-name>input</object-name>
+		</binding>
+		<binding>
+			<command>nasal</command>
+			<script>ufo.modelmgr.update_legend()</script>
+		</binding>
+	</input>
+
+	<group>
+		<layout>vbox</layout>
+		<default-padding>2</default-padding>
+		<text>
+			<pref-width>0</pref-width>
+			<halign>left</halign>
+			<property>/sim/model/ufo/status</property>
+			<live>1</live>
+			<color>
+				<red>0.6</red>
+				<green>1</green>
+				<blue>0.6</blue>
+				<alpha>1</alpha>
+			</color>
+		</text>
+	</group>
+</PropertyList>
+

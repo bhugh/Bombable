@@ -1,0 +1,261 @@
+<!--  A-10 yasim config.  This is a hack and not an authentic
+      representation of the aircraft.  Having said that, the
+      numbers, where I could find them, roughly match those of
+      the original aircraft.
+      Lee Elliott.
+-->
+
+<!--
+     Aircraft mass comprises pilot, oxygen, unusable fuel & oil, gun and
+     six pylons.  The solve weight used in the approach and cruise
+     configurations represent a full ammunition load (1350 x 2lbs)
+-->
+<airplane mass="24959">
+
+<!-- Approach configuration -->
+  <approach speed="120" aoa="8" fuel="0.2">
+    <control-setting axis="/controls/engines/engine[0]/throttle" value="0.5"/>
+    <control-setting axis="/controls/engines/engine[1]/throttle" value="0.5"/>
+    <control-setting axis="/controls/flight/flaps" value="1.0"/>
+    <control-setting axis="/controls/flight/spoilers" value=".5"/>
+    <control-setting axis="/controls/gear/gear-down" value="1"/>
+    <solve-weight idx="0" weight="2700"/>
+  </approach>
+
+<!-- Cruise configuration -->
+  <cruise speed="384" alt="10000" fuel=".5">
+    <control-setting axis="/controls/engines/engine[0]/throttle" value="1"/>
+    <control-setting axis="/controls/engines/engine[1]/throttle" value="1"/>
+    <control-setting axis="/controls/flight/flaps" value="0.0"/>
+    <control-setting axis="/controls/flight/spoilers" value="0"/>
+    <control-setting axis="/controls/gear/gear-down" value="0"/>
+    <solve-weight idx="0" weight="5400"/>
+  </cruise>
+
+  <cockpit x="-3.25" y="0.0" z="1.2"/>
+
+  <fuselage ax="0" ay="0" az="0" bx="-16.16" by="0" bz="0"
+            width="1.4" taper="0.4"/>
+
+<!-- Left Engine -->
+
+  <fuselage ax="-9.44" ay="1.50" az="1.3" bx="-12.73" by="1.50" bz="1.18"
+            width="1.5"/>
+
+<!-- Right Engine -->
+
+  <fuselage ax="-9.44" ay="-1.50" az="1.3" bx="-12.73" by="-1.50" bz="1.18"
+            width="1.5"/>
+
+  <wing x="-8.32" y="0.63" z="0.0" taper="0.7" incidence="-1.0"
+        length="8.31" chord="3.23" sweep="0.0" dihedral="3.0"
+        camber="0.0">
+    <stall aoa="20" width="3" peak="1.3"/>
+    <flap0 start="0.04" end="0.51" lift="1.3" drag="1.3"/>
+    <flap1 start="0.54" end="0.86" lift="1.5" drag="1.3"/>
+    <spoiler start="0.54" end="0.86" lift="0.6" drag="10.0"/>
+
+    <control-input axis="/controls/flight/flaps" control="FLAP0"/>
+    <control-input axis="/controls/flight/aileron" control="FLAP1" split="true"/>
+    <control-input axis="/controls/flight/aileron-trim" control="FLAP1" split="true"/>
+    <control-input axis="/controls/flight/spoilers" control="SPOILER"/>
+
+    <control-output control="FLAP0" side="left"
+                    prop="/surface-positions/left-flap-pos-norm"/>
+    <control-output control="FLAP0" side="right"
+                    prop="/surface-positions/right-flap-pos-norm"/>
+    <control-output control="FLAP0" prop="/surface-positions/flap-pos-norm"/>
+
+    <control-output control="FLAP1" side="left"
+                    prop="/surface-positions/left-aileron-pos-norm"/>
+    <control-output control="FLAP1" side="right"
+                    prop="/surface-positions/right-aileron-pos-norm"/>
+    <control-output control="FLAP1" prop="/surface-positions/aileron-pos-norm"/>
+
+    <control-output control="SPOILER" side="left"
+                    prop="/surface-positions/left-spoiler-pos-norm"/>
+    <control-output control="SPOILER" side="right"
+                    prop="/surface-positions/right-spoiler-pos-norm"/>
+    <control-output control="SPOILER" prop="/surface-positions/spoiler-pos-norm"/>
+
+    <control-speed control="FLAP0" transition-time="15"/>
+    <control-speed control="FLAP1" transition-time="0.5"/>
+    <control-speed control="SPOILER" transition-time="1.0"/>
+
+  </wing>
+
+  <hstab x="-14.88" y="0.42" z="0.41" taper="0.0" effectiveness="2"
+         length="2.38" chord="1.95" sweep="0.0" dihedral="0.0"
+         camber="-0.0">
+    <stall aoa="20" width="3" peak="1.3"/>
+    <flap0 start="0" end="1" lift="1.55" drag="1.7"/>
+    <control-input axis="sim/model/A-10/controls/flight/sas-elevator" control="FLAP0"
+                   square="true"/>
+    <control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
+
+    <control-output control="FLAP0" side="left"
+                    prop="surface-positions/left-elevator-pos-norm"/>
+    <control-output control="FLAP0" side="right"
+                    prop="surface-positions/right-elevator-pos-norm"/>
+    <control-output control="FLAP0" prop="surface-positions/elevator-pos-norm"/>
+
+    <control-speed control="FLAP0" transition-time="0.2"/>
+  </hstab>
+
+  <vstab x="-14.88" y="2.85" z="0.0" taper="0.6" effectiveness="2"
+         length="2.8" chord="2.14" sweep="0.0">
+    <stall aoa="20" width="5" peak="1.5"/>
+    <flap0 start="0" end="1" lift="2.4" drag="1.5"/>
+    <control-input axis="/controls/flight/rudder" control="FLAP0"
+                   square="true" invert="true"/>
+    <control-input axis="/controls/flight/rudder-trim" control="FLAP0"
+                   invert="true"/>
+    <control-output control="FLAP0" prop="/surface-positions/rudder-pos-norm"/>
+    <control-speed control="FLAP0" transition-time="0.5"/>
+  </vstab>
+
+  <vstab x="-14.88" y="-2.85" z="0.0" taper="0.6" effectiveness="2"
+         length="2.8" chord="2.14" sweep="0.0">
+    <stall aoa="20" width="5" peak="1.5"/>
+    <flap0 start="0" end="1" lift="2.4" drag="1.5"/>
+    <control-input axis="/controls/flight/rudder" control="FLAP0"
+                   square="true" invert="true"/>
+    <control-input axis="/controls/flight/rudder-trim" control="FLAP0"
+                   invert="true"/>
+    <control-output control="FLAP0" prop="/surface-positions/rudder-pos-norm"/>
+    <control-speed control="FLAP0" transition-time="0.5"/>
+ </vstab>
+
+<!-- 2 x GE TF34-100 -->
+<!-- GE TF34-100 characteristics:
+     thrust (at sea level):	9065 lbs (40422 N)
+     weight:			1,458 lbs
+     fuel consumption:		0.363 lbs per pound of thrust
+     bypass ratio:		6.42
+     pressure ratio:		21
+     fan/core thrust ratio:	0.85
+     spool time (idle to 100%):	10 sec
+     fan airflow:		338 lb/sec
+     fan airflow speed:		223.6 m/s (=> 434.64 kt) ( Vo(m/s)-Vi(m/s)=Thrust(N)/Dm(Kg/s) => (40422*0.85)/(338/2.2) , at takeoff we consider Ve = 0)
+     fan speed:			7,365 rpm
+     compressor airflow:	47 lb/sec
+     compressor airflow speed:	283.8 m/s (=> 551.7 kt)
+     compressor speed:		17,900 rpm
+     exhaust gas temperature:	813 °C
+     -->
+	<jet x="-10.8" y="1.5" z="1.27" mass="1440" thrust="9065" spool-time="8" tsfc="0.371" n1-idle="20" n1-max="100" n2-idle="56" n2-max="102" epr="1.42" egt="1086" rotate="9" exhaust-speed="1555">
+		<actionpt x="-12.5" y="1.5" z="1.15"/>
+		<control-input axis="/controls/engines/engine[0]/throttle" control="THROTTLE"/>
+	</jet>
+	<jet x="-10.8" y="-1.5" z="1.27" mass="1440" thrust="9065" spool-time="8" tsfc="0.371" n1-idle="20" n1-max="100" n2-idle="56" n2-max="102" epr="1.42" egt="1086" rotate="9" exhaust-speed="1555">
+		<actionpt x="-12.5" y="-1.5" z="1.15"/>
+		<control-input axis="/controls/engines/engine[1]/throttle" control="THROTTLE"/>
+	</jet>
+	
+
+	<!-- Internal tanks -->
+	<tank x="-8.3" y="2.0" z="0.0" jet="true" capacity="2089.92"/><!-- ppg=6.72, real tank capacity : 311 gallons -> 311*6.72 = 2089.92 lbs -->
+	<tank x="-8.8" y="0.0" z="0.63" jet="true" capacity="3433.92"/><!-- real tank capacity: 511 gallons -> 511*6.72 = 3433.92 lbs -->
+	<tank x="-7.2" y="0.0" z="0.63" jet="true" capacity="3433.92"/>
+	<tank x="-8.3" y="-2.0" z="0.0" jet="true" capacity="2089.92"/>
+	<!-- Ferry Tanks -->
+	<tank x="-7.6" y="1.29" z="-0.86" jet="true" capacity="4032"/> <!-- 600*6.72 = 4032 -->
+	<tank x="-7.6" y="0" z="-0.86" jet="true" capacity="4032"/>
+	<tank x="-7.6" y="-1.29" z="-0.86" jet="true" capacity="4032"/>
+
+	<!-- Undercarriage -->
+	<!-- nose -->
+	<gear x="-2.85" y="0.4" z="-2.33" compression="0.30" spring="0.25" damp="1.4">
+		<control-input axis="/controls/flight/rudder" control="STEER" square="true"/>
+		<control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+		<control-speed control="EXTEND" transition-time="7"/>
+		<control-output control="EXTEND" prop="/gear/gear[0]/position-norm"/>
+	</gear>
+
+	<!-- left main -->
+	<gear x="-8.3" y="2.5" z="-2.37" compression="0.4" spring="0.25" damp="1.4">
+		<control-input axis="/controls/gear/brake-left" control="BRAKE"/>
+		<control-input axis="/controls/gear/brake-parking" control="BRAKE"/>
+		<control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+		<control-speed control="EXTEND" transition-time="7"/>
+		<control-output control="EXTEND" prop="gear/gear[1]/position-norm"/>
+	</gear>
+	
+	<!-- right main -->
+	<!--<gear x="-8.3" y="-2.5" z="-2.22" retract-time="6" compression="0.7" spring="1.6" damp="1.4">-->
+	<gear x="-8.3" y="-2.5" z="-2.37" compression="0.4" spring="0.25" damp="1.4">
+		<control-input axis="/controls/gear/brake-right" control="BRAKE"/>
+		<control-input axis="/controls/gear/brake-parking" control="BRAKE"/>
+		<control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+		<control-speed control="EXTEND" transition-time="7"/>
+		<control-output control="EXTEND" prop="gear/gear[2]/position-norm"/>
+	</gear>
+
+	<!-- Ballast -->
+	<ballast x="-3.16" y="0" z="0.78" mass="1200" /><!-- Titanium bathtub (for the mass see: http://www.plane-crazy.net/links/a10.htm) -->
+	<ballast x="-1.71" y="0.183" z="-0.823" mass="620"/><!-- GAU-8 barrel (length: 2800mm + 620mm) -->
+	<ballast x="-4.91" y="0" z="0" mass="2310"/><!-- GAU-8 feed system + ammunition drum + aluminium alloy cases + plastic driving bands -->
+	<ballast x="-6.1" y="0" z="0.0" mass="1000"/> <!-- avionics -->
+	<ballast x="-4" y="0" z="0.0" mass="2500"/> <!-- CG trim trim  -->
+
+
+<!--
+       GAU-8/A characteristics:
+    Magazine capacity:		1,350 max (1,174 is the normal load)
+    Rate of fire:		3900 RPM
+    Barrel length:		2.80 m
+    Total length:		6.4 m (from the muzzle to the rearmost point of the ammunition system)
+    Barrel weight:		620 lb
+    Total weight:		4,029 lb (complete weapon + ammunition load)
+    Recoil force:		10,000 lb
+       Ammo types:
+    PGU-14/B API:		Armor Piercing Incendiary (with depleted uranium)
+    projectile weight:		425 grams
+    velocity:			3250 ft/sec
+    PGU-13/B HEI:		High Explosive Incendiary
+    projectile weight:		360 grams
+    velocity:			3425 ft/sec
+    
+    Note: The standard ammunition mixture for anti-armor use is a four-to-one mix of PGU-14/B and PGU-13/B rounds.
+-->
+  <weight x="-4.91" y="0" z="0.0" size="0" mass-prop="yasim/weights/ammunition-weight-lbs"/>
+  <!-- Stations, weight is dynamicly configured while choosing the weapons,
+       drag should be too, but it's not possible yet in YASim-->
+  <weight x="-7.56" y="5.90"   z="0.00"
+      size="1.5"
+      mass-prop="sim/weight[0]/weight-lb"/><!-- #1 extern L-->
+  <weight x="-7.56" y="4.83"   z="-0.22"
+      size="1.5"
+      mass-prop="sim/weight[1]/weight-lb"/>
+  <weight x="-7.56" y="3.62"   z="-0.37"
+      size="1.5"
+      mass-prop="sim/weight[2]/weight-lb"/>
+  <weight x="-7.56" y="1.69"   z="-0.44"
+      size="1.5"
+      mass-prop="sim/weight[3]/weight-lb"/>
+  <weight x="-7.56" y="0.56"   z="-0.44"
+      size="1.5"
+      mass-prop="sim/weight[4]/weight-lb"/><!--fuse L-->
+  <weight x="-7.56" y="0.00"   z="-0.44"
+      size="1.5"
+      mass-prop="sim/weight[5]/weight-lb"/><!--center-->
+  <weight x="-7.56" y="-0.56"   z="-0.44"
+      size="1.5"
+      mass-prop="sim/weight[6]/weight-lb"/><!--fuse R-->
+  <weight x="-7.56" y="-1.69"   z="-0.44"
+      size="1.5"
+      mass-prop="sim/weight[7]/weight-lb"/>
+  <weight x="-7.56" y="-3.62"   z="-0.37"
+      size="1.5"
+      mass-prop="sim/weight[8]/weight-lb"/>
+  <weight x="-7.56" y="-4.83"   z="-0.22"
+      size="1.5"
+      mass-prop="sim/weight[9]/weight-lb"/>
+  <weight x="-7.56" y="-5.9"   z="0.00"
+      size="1.5"
+      mass-prop="sim/weight[10]/weight-lb"/><!-- #11 extern R-->
+  <weight x="-7.56" y="-5.9"   z="0.00"
+      size="1.5"
+      mass-prop="sim/weight[11]/weight-lb"/><!-- #11 extern R-->
+
+</airplane>

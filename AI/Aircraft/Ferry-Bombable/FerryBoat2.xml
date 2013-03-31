@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+
+<PropertyList include="FerryBoat-bombableinclude.xml">
+	<description>Ferry</description>
+	<author>Dene Maxwell, animations Vivian Meazza</author>
+	<status>early-production</status>
+	<path>FerryBoat1.ac</path>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>radar-antenna</object-name>
+		<property>/sim/time/elapsed-sec</property>
+		<factor>50</factor>
+		<center>
+			<x-m>-57.2526</x-m>
+			<y-m>0</y-m>
+			<z-m>23.3218</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+
+  <!-- Unfortunately the wake causes many of the dreaded triangleintersect
+  errors AND when the ship sinks the wake sticks up in the air and looks
+  funny.  For now, until those problems can be fixed, we will just remove
+  the wake. -->
+	<!-- animation>
+		<type>blend</type>
+		<object-name>Wake</object-name>
+		<property>velocities/true-airspeed-kt</property>
+		<factor>-0.2</factor>
+		<offset>1</offset>
+		<min>0.1</min>
+		<max>1</max>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Wake</object-name>
+		<property>orientation/roll-deg</property>
+		<factor>1</factor>
+		<center>
+			<x-m>1.2012</x-m>
+			<y-m>0.00</y-m>
+			<z-m>0.6258</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Wake</object-name>
+		<property>surface-positions/rudder-pos-deg</property>
+		<factor>-0.334</factor>
+		<center>
+			<x-m>-74.0</x-m>
+			<y-m>0.00</y-m>
+			<z-m>0.093</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>scale</type>
+		<object-name>Wake</object-name>
+		<property>velocities/true-airspeed-kt</property>
+		<x-factor>0.075</x-factor>
+		<x-offset>0.5</x-offset>
+		<x-min>0.5</x-min>
+		<x-max>2.0</x-max>
+		<y-factor>0.1</y-factor>
+		<y-offset>1.0</y-offset>
+		<z-factor>0.05</z-factor>
+		<z-offset>0.5</z-offset>
+		<z-min>0</z-min>
+		<z-max>1.20</z-max>
+		<center>
+			<x-m>-74.51</x-m>
+			<y-m>0</y-m>
+			<z-m>-6.0</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>blend</type>
+		<object-name>Wake-Stern</object-name>
+		<property>velocities/true-airspeed-kt</property>
+		<factor>0.2</factor>
+		<offset>1</offset>
+		<min>0.1</min>
+		<max>1</max>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Wake-Stern</object-name>
+		<property>orientation/roll-deg</property>
+		<factor>-1</factor>
+		<center>
+			<x-m>1.2012</x-m>
+			<y-m>0.00</y-m>
+			<z-m>0.6258</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>Wake-Stern</object-name>
+		<property>surface-positions/rudder-pos-deg</property>
+		<factor>0.334</factor>
+		<center>
+			<x-m>99.0</x-m>
+			<y-m>0.00</y-m>
+			<z-m>0.093</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>scale</type>
+		<object-name>Wake-Stern</object-name>
+		<property>velocities/true-airspeed-kt</property>
+		<x-factor>-0.075</x-factor>
+		<x-offset>0.5</x-offset>
+		<x-min>0.5</x-min>
+		<x-max>2.0</x-max>
+		<y-factor>0.1</y-factor>
+		<y-offset>1.0</y-offset>
+		<z-factor>-0.05</z-factor>
+		<z-offset>0.5</z-offset>
+		<z-min>0</z-min>
+		<z-max>1.20</z-max>
+		<center>
+			<x-m>99.1</x-m>
+			<y-m>0</y-m>
+			<z-m>-6.0</z-m>
+		</center>
+	</animation-->
+
+	<!-- *** LoD *** -->
+	<animation>
+		<type>range</type>
+		<max-m>40000</max-m>
+	</animation>
+	
+</PropertyList>

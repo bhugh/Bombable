@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<!DOCTYPE PropertyList SYSTEM "panel.dtd">
+
+
+<PropertyList>
+
+	<name>A-10 r2 Panel Hotspots</name>
+	<background>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</background>
+	<w>1024</w>
+	<h>768</h>
+	<y-offset>0</y-offset>
+
+	<instruments> 
+		<instrument> 
+			<name>r2 panel</name>
+			<y>384</y>
+			<w>1024</w>
+			<h>768</h>
+			<w-base>1024</w-base>
+			<h-base>1024</h-base>
+			<x>512</x>
+
+			<layers> 
+
+				<layer> 
+					<name>background</name>
+					<texture> 
+					<path>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</path>
+					<x1>0.0</x1>
+					<y1>0.0</y1>
+					<x2>1.0</x2>
+					<y2>1.0</y2>
+					</texture>
+				</layer>
+
+				<!--<layer>
+					<name>grid</name>
+					<texture>
+					<path>Aircraft/A-10-Bombable/Models/hotspotgrid.rgb</path>
+					<x1>0.0</x1>
+					<y1>0.0</y1>
+					<x2>1.0</x2>
+					<y2>1.0</y2>
+					</texture>
+				</layer>-->
+
+			</layers>
+
+			<!-- define hotspot actions below -->
+			<actions> 
+
+				<!-- channel left knob-->
+				<action>
+					<name>tacan-channel-tenths-down</name>
+					<button>0</button>
+					<x>-450</x>
+					<y>130</y>
+					<w>120</w>
+					<h>45</h>
+					<binding>
+						<command>nasal</command>
+						<script>nav_scripts.tacan_tenth_adjust(-10)</script>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>nav_scripts.nav1_freq_update()</script>
+					</binding>
+				</action>
+
+				<action>
+					<name>tacan-channel-tenths-up</name>
+					<button>0</button>
+					<x>-320</x>
+					<y>130</y>
+					<w>120</w>
+					<h>45</h>
+					<binding>
+						<command>nasal</command>
+						<script>nav_scripts.tacan_tenth_adjust(10)</script>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>nav_scripts.nav1_freq_update()</script>
+					</binding>
+				</action>
+
+				<!-- channel right knob units -->
+				<action>
+					<name>tacan-channel-units-down</name>
+					<button>0</button>
+					<x>-65</x>
+					<y>130</y>
+					<w>120</w>
+					<h>45</h>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/tacan/frequencies/selected-channel[3]</property>
+						<step>-1</step>
+						<min>0</min>
+						<max>10</max>
+						<wrap>true</wrap>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>nav_scripts.nav1_freq_update()</script>
+					</binding>
+				</action>
+
+				<action>
+					<name>tacan-channel-units-up</name>
+					<button>0</button>
+					<x>70</x>
+					<y>130</y>
+					<w>120</w>
+					<h>45</h>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/tacan/frequencies/selected-channel[3]</property>
+						<step>1</step>
+						<min>0</min>
+						<max>10</max>
+						<wrap>true</wrap>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>nav_scripts.nav1_freq_update()</script>
+					</binding>
+				</action>
+
+				<!-- channel right knob X/Y sign -->
+				<action>
+					<name>tacan-channel-xysign-toogle</name>
+					<button>1</button>
+					<x>-65</x>
+					<y>130</y>
+					<w>120</w>
+					<h>45</h>
+					<binding>
+						<command>nasal</command>
+						<script>nav_scripts.tacan_XYtoggle()</script>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>nav_scripts.nav1_freq_update()</script>
+					</binding>
+				</action>
+
+				<action>
+					<name>tacan-channel-xysign-toogle-bis</name>
+					<button>1</button>
+					<x>70</x>
+					<y>130</y>
+					<w>120</w>
+					<h>45</h>
+					<binding>
+						<command>nasal</command>
+						<script>nav_scripts.tacan_XYtoggle()</script>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>nav_scripts.nav1_freq_update()</script>
+					</binding>
+				</action>
+
+			</actions> 
+
+		</instrument>
+	</instruments>
+
+</PropertyList>

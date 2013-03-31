@@ -1,0 +1,337 @@
+<?xml version="1.0"?>
+
+<PropertyList> 
+	
+ <!-- Nasal code -->
+	<nasal>
+	  
+
+		<load>
+			<![CDATA[
+			print("Loading ferry ", cmdarg().getPath());
+
+        var nodeName = cmdarg().getPath(); 
+        ##checks whether it has been initialized already; if so, just return
+        if ( bombable.check_overall_initialized (nodeName) ) return;
+			
+			
+
+############################################
+#Ferry INITIALIZER
+			var ferry_init = func() {
+				# Datas of this object are under: cmdarg().getPath()
+				var thisNodeName = cmdarg().getPath();
+				var thisNode = props.globals.getNode(thisNodeName);
+
+                        
+				
+        ########################################################################
+        ########################################################################
+        # INITIALIZE BOMBABLE
+        # 
+        # Initialize constants and main routines for maintaining altitude
+        # relative to ground-level, relocating after file/reset, and 
+        # creating bombable/shootable objects.
+        # 
+        # These routines are found in FG/nasal/bombable.nas
+        #  
+        ########################################################################               
+        # INITIALIZE BOMBABLE Object
+        # This object will be slurped in the object's node as a child
+        # node named "bombable".                 
+        # All distances are specified in meters.
+        # All altitudes are relative to current ground level at the object's 
+        # location
+        # 
+         
+        thisNodeName = cmdarg().getPath(); 
+
+        var bombableObject = {  
+          
+          
+          objectNodeName : thisNodeName,
+          objectNode : props.globals.getNode(thisNodeName),
+          updateTime_s : 1/2, #time, in seconds, between the updates that 
+          #keep the object at its AGL. Tradeoff is high-speed updates look more
+          #realistic but slow down the framerate/cause jerkiness.  Faster-moving
+          #objects will need more frequent updates to look realistic.
+
+		                        
+          #########################################                              
+          # ALTITUDE DEFINITIONS
+          #         
+          altitudes : {	
+            wheelsOnGroundAGL_m : 0 , #altitude correction to add to your aircraft or ship that is needed to put wheels on ground (or, for a ship, make it float in the water at the correct level).  For most objects this is 0 but some models need a small correction to place them exactly at ground level
+            
+            minimumAGL_m : 0, #minimum altitude above ground level this object is allowed to fly
+            maximumAGL_m : 0, #maximum altitude AGL this object is allowed to fly	    
+            crashedAGL_m : -86, #altitude AGL when crashed.  Ships will sink to this level, aircraft or vehicles will sink into the ground as landing gear collapses or tires deflate. Should be negative, even just -0.001.
+          },
+          #  
+          #########################################
+          # VELOCITIES DEFINITIONS
+          # 
+          velocities : {               
+            maxSpeedReduce_percent : 3, #max % to reduce speed, per step, when damaged
+            minSpeed_kt : 0, #minimum speed to reduce to when damaged.  Ground vehicles and ships might stop completely when damaged but aircraft will need a minimum speed so they keep moving until they hit the ground.
+
+            cruiseSpeed_kt : 18, #cruising speed, typical/optimal cruising speed, V C for aircraft
+            
+            attackSpeed_kt : 26, #typical/optimal speed when aggressively attacking or evading, in
+                                 #level flight for aircraft
+            
+            maxSpeed_kt : 35 , #Maximum possible speed under dive or downhill conditions, V NE for aircraft
+            
+    
+            damagedAltitudeChangeMaxRate_meterspersecond : .051, #max rate to sink or fly downwards when damaged, in meters/second
+          },
+          #  
+          #########################################
+          # EVASION DEFINITIONS
+          # 
+          # The evasion system makes the AI aircraft dodge when they come under
+          # fire. 
+          evasions : {               
+            dodgeDelayMax_sec : 60, #max time to delay/wait between dodges
+            dodgeDelayMin_sec : 30, #minimum time to delay/wait between dodges
+            dodgeMax_deg : 88, #Max amount to turn when dodging
+                              #90 degrees = instant turn, unrealistic
+                              #up to 80 is usually OK, somewhere in 80-85 starts to be unrealistically fast
+                              #>85 is usually very unrealistic.  You must test this in your scenario, however.
+            
+            dodgeMin_deg : 15, #minimum amount to turn when dodging 
+            dodgeROverLPreference_percent : 50, # Preference for right turns vs. left when dodging.  90% means 90% right turns, 50% means 50% right turns.
+            dodgeAltMin_m : 0, #Aircraft will begin to move up or down 
+            dodgeAltMax_m : 0, #Max & Min are relative to current alt
+          },          
+          
+          #  
+          #########################################
+          # ATTACK DEFINITIONS
+          # 
+          # The attack system makes the AI aircraft turn and fly towards 
+          # other aircraft 
+          attacks : {               
+            maxDistance_m : 1, #max distance to turn & attack main aircraft
+            minDistance_m : 10000, #min distance to turn & attack main aircraft, 
+               #ie, fly away this far before turning to attack again.  If you 
+               #make this short it will be more like a turning fighter (Zero),
+               #longer will become more like an energy fighter that zooms
+               #way out, turns around, etc.
+            
+            continueAttackAngle_deg : 60, #when within minDistance_m, the aircraft will continue to turn towards the main aircraft and attack *if* if the angle is less than this amount from dead ahead.  A wider angle will make it work more like a twisty/turning fighter, narrower angle more like an energy fighter.
+            altitudeHigherCutoff_m : 5000, # will attack the main aircraft unless this amount higher than it or more
+            altitudeLowerCutoff_m : 1, # will attack the main aircraft unless this amount lower than it or more 
+            rollMin_deg : 0, #when turning on attack, roll to this angle min
+            rollMax_deg : 0, #when turning on attack, roll to this angle max
+            climbPower : 0, # How powerful the aircraft is when climbing during an attack; 4000 would be typical for, say a Zero--scale accordingly for others; higher is stronger
+            divePower : 0, # How powerful the aircraft is when diving during and attack; 6000 typical of a Zero--could be much more than climbPower if the aircraft is a weak climber but a strong diver             
+            attackCheckTime_sec : 10, # check for need to attack/correct course this often  
+            attackCheckTimeEngaged_sec : 1, # once engaged with enemy, check/update course this frequently
+    
+          },          
+
+          #  
+          #########################################
+          # WEAPONS DEFINITIONS
+          # 
+          # The weapons system makes the AI aircraft fire on the main aircraft 
+          # You can define any number of weapons--just enclose each in curly brackets
+          # and separate with commas (,).           
+          weapons : {
+             front_gun :  #internal name - this can be any name you want; must be a valid nasal variable name
+              {               
+                name : "Anti-Aircraft Gun - Front", # name presented to users, ie in on-screen messages
+                maxDamage_percent : 4, # maximum percentage damage one hit from the aircraft's main weapon/machine guns will do to an opponent
+                maxDamageDistance_m : 300, # maximum distance at which the aircrafts main weapon/maching guns will be able to damage an opponent
+                weaponAngle_deg  :  { heading: 0, elevation: 45 }, # direction the aircraft's main weapon is aimed.   
+                                                                  # 0,0 = straight ahead, 90,0=directly right, 0,90=directly up, 0,180=directly back, etc.
+                weaponOffset_m : {x:0, y:-20, z:10}, # Offset of the weapon from the main aircraft center
+                weaponSize_m : {start:.45, end:.45}, # Visual size of the weapon's projectile, in meters, at start & end of its path
+                
+              },
+             
+             rear_gun :  #internal name - this can be any name you want; must be a valid nasal variable name
+              {               
+                name : "Anti-Aircraft Gun - Rear", # name presented to users, ie in on-screen messages
+                maxDamage_percent : 4, # maximum percentage damage one hit from the aircraft's main weapon/machine guns will do to an opponent
+                maxDamageDistance_m : 700, # maximum distance at which the aircrafts main weapon/maching guns will be able to damage an opponent
+                weaponAngle_deg  :  { heading: 180, elevation: 45 }, # direction the aircraft's main weapon is aimed.   
+                                                                  # 0,0 = straight ahead, 90,0=directly right, 0,90=directly up, 0,180=directly back, etc.
+                weaponOffset_m : {x:0, y:-20, z:10}, # Offset of the weapon from the main aircraft center
+                weaponSize_m : {start:.33, end:.33}, # Visual size of the weapon's projectile, in meters, at start & end of its path
+
+              }, 
+              right_side_forward_gun :  #internal name - this can be any name you want; must be a valid nasal variable name
+              {               
+                name : "Anti-Aircraft Gun - Right/Front", # name presented to users, ie in on-screen messages
+                maxDamage_percent : 4, # maximum percentage damage one hit from the aircraft's main weapon/machine guns will do to an opponent
+                maxDamageDistance_m : 700, # maximum distance at which the aircrafts main weapon/maching guns will be able to damage an opponent
+                weaponAngle_deg  :  { heading: 60, elevation: 45 }, # direction the aircraft's main weapon is aimed.   
+                                                                  # 0,0 = straight ahead, 90,0=directly right, 0,90=directly up, 0,180=directly back, etc.
+                weaponOffset_m : {x:10, y:-10, z:10}, # Offset of the weapon from the main aircraft center
+                weaponSize_m : {start:.3, end:.3}, # Visual size of the weapon's projectile, in meters, at start & end of its path
+
+              },
+              right_side_rearward_gun :  #internal name - this can be any name you want; must be a valid nasal variable name
+              {               
+                name : "Anti-Aircraft Gun - Right/Rear", # name presented to users, ie in on-screen messages
+                maxDamage_percent : 4, # maximum percentage damage one hit from the aircraft's main weapon/machine guns will do to an opponent
+                maxDamageDistance_m : 700, # maximum distance at which the aircrafts main weapon/maching guns will be able to damage an opponent
+                weaponAngle_deg  :  { heading: 120, elevation: 45 }, # direction the aircraft's main weapon is aimed.   
+                                                                  # 0,0 = straight ahead, 90,0=directly right, 0,90=directly up, 0,180=directly back, etc.
+                weaponOffset_m : {x:10, y:-10, z:10}, # Offset of the weapon from the main aircraft center
+                weaponSize_m : {start:.5, end:.5}, # Visual size of the weapon's projectile, in meters, at start & end of its path
+
+              }, 
+              left_front_gun :  #internal name - this can be any name you want; must be a valid nasal variable name
+              {               
+                name : "Anti-Aircraft Gun - Left", # name presented to users, ie in on-screen messages
+                maxDamage_percent : 4, # maximum percentage damage one hit from the aircraft's main weapon/machine guns will do to an opponent
+                maxDamageDistance_m : 700, # maximum distance at which the aircrafts main weapon/maching guns will be able to damage an opponent
+                weaponAngle_deg  :  { heading: -60, elevation: 45 }, # direction the aircraft's main weapon is aimed.   
+                                                                  # 0,0 = straight ahead, 90,0=directly right, 0,90=directly up, 0,180=directly back, etc.
+                weaponOffset_m : {x:0, y:-20, z:10}, # Offset of the weapon from the main aircraft center
+                weaponSize_m : {start:.3, end:.3}, # Visual size of the weapon's projectile, in meters, at start & end of its path
+
+              },
+              left_rear_gun :  #internal name - this can be any name you want; must be a valid nasal variable name
+              {               
+                name : "Anti-Aircraft Gun - Left", # name presented to users, ie in on-screen messages
+                maxDamage_percent : 4, # maximum percentage damage one hit from the aircraft's main weapon/machine guns will do to an opponent
+                maxDamageDistance_m : 700, # maximum distance at which the aircrafts main weapon/maching guns will be able to damage an opponent
+                weaponAngle_deg  :  { heading: -120, elevation: 45 }, # direction the aircraft's main weapon is aimed.   
+                                                                  # 0,0 = straight ahead, 90,0=directly right, 0,90=directly up, 0,180=directly back, etc.
+                weaponOffset_m : {x:0, y:-20, z:10}, # Offset of the weapon from the main aircraft center
+                weaponSize_m : {start:.4, end:.4}, # Visual size of the weapon's projectile, in meters, at start & end of its path
+
+              },                    
+                                  
+          },  
+          
+
+          
+          #  
+          #########################################
+          # DIMENSION DEFINITIONS
+          #
+          # All dimensions are in meters
+          # Note that the width/length must extend outside of the object.
+          # Also some ships that have a wake included in the model cause a 
+          # problem--these dimensions must extend past the wake out to 
+          # earth/water beyond the model          
+          #           
+          dimensions : {                  
+            width_m : 1000,  #width of your object, ie, for aircraft, wingspan
+            length_m : 2000, #length of your object, ie, for aircraft, distance nose to tail
+            height_m : 35, #height of your object, ie, for aircraft ground to highest point when sitting on runway
+            damageRadius_m : 60, #typically 1/2 the longest dimension of the object. Hits within this distance of the 
+                                #center of object have some possibility of damage
+            vitalDamageRadius_m : 25, #typically the radius of the fuselage or cockpit or other most 
+                                     # vital area at the center of the object.  Always smaller than damageRadius_m
+            crashRadius_m : 25, #if the main aircraft comes within this radius
+                                #both it and this aircraft will crash 
+          },
+          #
+          #########################################
+          # VULNERABILITIES DEFINITIONS        
+          #
+          vulnerabilities : {                   
+            damageVulnerability : 0.004, #Vulnerability to damage from armament, 1=normal M1 tank; higher to make objects easier to kill and lower to make them more difficult.  This is a multiplier, so 5 means 5X easier to kill than an M1, 1/5 means 5X harder to kill. 
+            
+            engineDamageVulnerability_percent : 9, #Chance that a small-caliber machine-gun round will damage the engine.       
+            
+            fireVulnerability_percent : 75, #Vulnerability to catching on fire. 100% means even the slightest impact will set it on fire; 20% means quite difficult to set on fire; 0% means set on fire only when completely damaged; -1% means never set on fire.                          
+            
+            fireDamageRate_percentpersecond : .03, #Amount of damage to add, per second, when on fire.  100%=completely damaged.
+            
+            fireExtinguishMaxTime_seconds : 1400, #Once a fire starts, for this many seconds there is a chance to put out the fire; fires lasting longer than this won't be put out until the object burns out.
+            
+            fireExtinguishSuccess_percentage : 95, #Chance of the crew putting out the fire within the MaxTime above.
+            
+            explosiveMass_kg : 3500000 , #mass of the object in KG, but give at least a 2-10X bonus to anything carrying flammables or high explosives.
+          },
+          #
+          #########################################
+          # LIVERY DEFINITIONS
+          #
+          # Path to livery files to use at different damage levels.
+          # Path is relative to the AI aircraft's directory.
+          # The object will start with the first livery listed and 
+          # change to succeeding liveries as the damage
+          # level increases. The final livery should indicate full damage/
+          # object destroyed.        
+          # 
+          # If you don't want to specify any special liveries simply set 
+          # damageLivery : nil and the object's normal livery will be used.  
+          #                                                            
+          damageLiveries : {
+            damageLivery : [  ]                        
+          },
+                            
+        };
+
+        #########################################
+        # INITIALIZE ROUTINES
+        # 
+        # OVERALL INITIALIZER: Needed to make all the others work
+        bombable.initialize ( bombableObject );
+        #
+        # LOCATION: Relocate object to maintain its position after file/reset       
+        # (best not used for airplanes)
+        # bombable.location_init ( thisNodeName );
+        #
+        # GROUND: Keep object at altitude relative to ground level
+        bombable.ground_init ( thisNodeName );
+        #
+        # WEAPONS: Make the object shoot the main aircraft        
+        bombable.weapons_init ( thisNodeName );        
+        #
+        # BOMBABLE: Make the object bombable/damageable        
+        bombable.bombable_init ( thisNodeName );
+        #
+        # SMOKE/CONTRAIL: Start a flare, contrail, smoke trail, or exhaust 
+        # trail for the object.
+        # Smoke types available: flare, jetcontrail, pistonexhaust, smoketrail,
+        # damagedengine                        
+        bombable.startSmoke("pistonexhaust", thisNodeName );
+        #
+        # END INITIALIZE BOMBABLE
+        ########################################################################
+        ########################################################################                
+	      
+
+				
+			}
+
+			
+			ferry_init();
+			]]>
+		</load>
+		<unload>
+			<![CDATA[
+			print("Unload ferry.");
+
+      ########################################################################
+      ########################################################################                
+			# BOMBABLE DESTRUCTORS      			
+			# 			
+      var nodeName= cmdarg().getPath();  
+      bombable.de_overall_initialize( nodeName );
+      bombable.initialize_del( nodeName );
+      bombable.ground_del( nodeName );
+      bombable.location_del (nodeName);
+      bombable.weapons_del (nodeName);      
+      bombable.bombable_del( nodeName );
+      #
+	    ########################################################################
+      ########################################################################                
+
+
+#  </unload>
+
+			]]>
+		</unload>
+ </nasal>  
+
+</PropertyList> 

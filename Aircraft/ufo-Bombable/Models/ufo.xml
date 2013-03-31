@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>ufo.ac</path>
+
+ <animation>
+  <type>select</type>
+  <condition>
+   <or>
+    <equals>
+     <property>/sim/flight-model</property>
+     <value>ufo</value>
+    </equals>
+    <property>/sim/model/always-show-in-MP</property>
+   </or>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>blend</type>
+  <object-name>body</object-name>
+  <property>/velocities/airspeed-kt</property>
+  <factor>0.00025</factor>
+  <min>0.2</min>
+  <max>0.7</max>
+ </animation>
+
+ <animation>
+  <type>spin</type>
+  <object-name>body</object-name>
+  <object-name>green_navigation_lights</object-name>
+  <object-name>red_navigation_lights</object-name>
+  <object-name>propulsion_lights</object-name>
+  <property>/velocities/airspeed-kt</property>
+  <factor>0.004</factor>
+  <center>
+   <x-m>0</x-m>
+   <y-m>0</y-m>
+   <z-m>0</z-m>
+  </center>
+  <axis>
+   <x>0</x>
+   <y>0</y>
+   <z>1</z>
+  </axis>
+ </animation>
+
+</PropertyList>

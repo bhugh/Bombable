@@ -1,0 +1,384 @@
+<?xml version="1.0"?>
+
+  <PropertyList> 
+    <path>A-10-engines-gauges.ac</path>
+
+
+<!-- temp -->
+    <animation>
+      <name>temp-l</name>
+      <type>rotate</type>
+      <object-name>needle-temp-l</object-name>
+      <property>engines/engine[0]/itt-norm</property>
+      <interpolation> 
+        <entry><ind>0.0000</ind><dep>118</dep></entry><!--0-->
+        <entry><ind>0.0213</ind><dep>179</dep></entry><!--iddle-->
+        <entry><ind>0.2310</ind><dep>164</dep></entry><!--25% thrust-->
+        <entry><ind>0.9870</ind><dep>295</dep></entry><!--max thrust-->
+      </interpolation>
+      <center>
+       <x-m>0.0047</x-m>
+       <y-m>-0.0781</y-m>
+       <z-m>0.0547</z-m>
+      </center>
+      <axis> 
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+    <animation>
+      <name>temp-r</name>
+      <type>rotate</type>
+      <object-name>needle-temp-r</object-name>
+      <property>engines/engine[1]/itt-norm</property>
+      <interpolation> 
+        <entry><ind>0.0000</ind><dep>118</dep></entry><!--0-->
+        <entry><ind>0.0213</ind><dep>179</dep></entry><!--iddle-->
+        <entry><ind>0.2310</ind><dep>164</dep></entry><!--25% thrust-->
+        <entry><ind>0.9870</ind><dep>295</dep></entry><!--max thrust-->
+      </interpolation>
+      <center>
+       <x-m>0.0047</x-m>
+       <y-m>-0.0263</y-m>
+       <z-m>0.0547</z-m>
+      </center>
+      <axis> 
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+
+<!-- fan percent -->
+    <animation>
+      <name>fan-percent-l</name>
+      <type>rotate</type>
+      <object-name>needle-fan-l</object-name>
+      <property>sim/model/A-10/engines/engine[0]/n1</property>
+      <interpolation>
+	      <entry><ind>0</ind><dep>0</dep></entry>
+	      <entry><ind>25</ind><dep>47.3</dep></entry>
+	      <entry><ind>50</ind><dep>94.6</dep></entry>
+	      <entry><ind>75</ind><dep>137.4</dep></entry>
+	      <entry><ind>80</ind><dep>173.2</dep></entry>
+	      <entry><ind>85</ind><dep>207.4</dep></entry>
+	      <entry><ind>90</ind><dep>243.7</dep></entry>
+	      <entry><ind>95</ind><dep>280.7</dep></entry>
+	      <entry><ind>100</ind><dep>314.6</dep></entry>
+      </interpolation>
+      <center>
+       <x-m>0.0047</x-m>
+       <y-m>0.0260</y-m>
+       <z-m>0.0547</z-m>
+     </center>
+      <axis> 
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+
+    <animation>
+      <name>fan-percent-r</name>
+      <type>rotate</type>
+      <object-name>needle-fan-r</object-name>
+      <property>sim/model/A-10/engines/engine[1]/n1</property>
+      <interpolation>
+	      <entry><ind>0</ind><dep>0</dep></entry>
+	      <entry><ind>25</ind><dep>47.3</dep></entry>
+	      <entry><ind>50</ind><dep>94.6</dep></entry>
+	      <entry><ind>75</ind><dep>137.4</dep></entry>
+	      <entry><ind>80</ind><dep>173.2</dep></entry>
+	      <entry><ind>85</ind><dep>207.4</dep></entry>
+	      <entry><ind>90</ind><dep>243.7</dep></entry>
+	      <entry><ind>95</ind><dep>280.7</dep></entry>
+	      <entry><ind>100</ind><dep>314.6</dep></entry>
+      </interpolation>
+      <center>
+       <x-m>0.0047</x-m>
+       <y-m>0.0786</y-m>
+       <z-m>0.0547</z-m>
+      </center>
+      <axis> 
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+
+
+<!-- core rpm -->
+    <animation>
+      <name>core-rpm-l</name>
+      <type>rotate</type>
+      <object-name>needle-core-l</object-name>
+      <property>sim/model/A-10/engines/engine[0]/n2</property>
+      <interpolation>
+		<entry><ind>0</ind><dep>0</dep></entry>
+		<entry><ind>10</ind><dep>25</dep></entry>
+		<entry><ind>20</ind><dep>50</dep></entry>
+		<entry><ind>30</ind><dep>75</dep></entry>
+		<entry><ind>40</ind><dep>102.2</dep></entry>
+		<entry><ind>50</ind><dep>128</dep></entry>
+		<entry><ind>60</ind><dep>154</dep></entry>
+		<entry><ind>70</ind><dep>184</dep></entry>
+		<entry><ind>80</ind><dep>210</dep></entry>
+		<entry><ind>90</ind><dep>238</dep></entry>
+		<entry><ind>105</ind><dep>272.5</dep></entry>
+      </interpolation>
+      <center>
+       <x-m>0.0047</x-m>
+       <y-m>-0.0781</y-m>
+       <z-m>0.0016</z-m>
+      </center>
+      <axis> 
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+    <animation>
+      <name>core-rpm-r</name>
+      <type>rotate</type>
+      <object-name>needle-core-r</object-name>
+      <property>sim/model/A-10/engines/engine[1]/n2</property>
+      <interpolation>
+		<entry><ind>0</ind><dep>0</dep></entry>
+		<entry><ind>10</ind><dep>25</dep></entry>
+		<entry><ind>20</ind><dep>50</dep></entry>
+		<entry><ind>30</ind><dep>75</dep></entry>
+		<entry><ind>40</ind><dep>102.2</dep></entry>
+		<entry><ind>50</ind><dep>128</dep></entry>
+		<entry><ind>60</ind><dep>154</dep></entry>
+		<entry><ind>70</ind><dep>184</dep></entry>
+		<entry><ind>80</ind><dep>210</dep></entry>
+		<entry><ind>90</ind><dep>238</dep></entry>
+		<entry><ind>105</ind><dep>272.5</dep></entry>
+      </interpolation>
+      <center>
+       <x-m>0.0047</x-m>
+       <y-m>-0.0263</y-m>
+       <z-m>0.0016</z-m>
+      </center>
+      <axis> 
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+
+
+
+<!-- fuel flow -->
+    <animation>
+      <name>fuel-flow-ppm-l</name>
+      <type>rotate</type>
+      <object-name>needle-fuel-l</object-name>
+      <property>engines/engine[0]/fuel-flow-pph</property>
+      <interpolation> 
+        <entry><ind>0</ind><dep>135.8</dep></entry><!-- 0 -->
+        <entry><ind>1000</ind><dep>201.2</dep></entry>
+        <entry><ind>1500</ind><dep>232.1</dep></entry>
+	<entry><ind>2000</ind><dep>262</dep></entry>
+	<entry><ind>2500</ind><dep>293.2</dep></entry>
+	<entry><ind>3000</ind><dep>325.3</dep></entry>
+	<entry><ind>3500</ind><dep>354.6</dep></entry>
+	<entry><ind>4000</ind><dep>386.3</dep></entry>
+	<entry><ind>4500</ind><dep>416.45</dep></entry>
+	<entry><ind>5000</ind><dep>449</dep></entry>
+      </interpolation>
+      <center>
+       <x-m>0.0047</x-m>
+       <y-m>0.0260</y-m>
+        <z-m>0.0016</z-m>
+      </center>
+      <axis> 
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+    <animation>
+      <name>fuel-flow-ppm-r</name>
+      <type>rotate</type>
+      <object-name>needle-fuel-r</object-name>
+      <property>engines/engine[1]/fuel-flow-pph</property>
+      <interpolation> 
+	<entry><ind>0</ind><dep>135.8</dep></entry><!-- 0 -->
+	<entry><ind>1000</ind><dep>201.2</dep></entry>
+	<entry><ind>1500</ind><dep>232.1</dep></entry>
+	<entry><ind>2000</ind><dep>262</dep></entry>
+	<entry><ind>2500</ind><dep>293.2</dep></entry>
+	<entry><ind>3000</ind><dep>325.3</dep></entry>
+	<entry><ind>3500</ind><dep>354.6</dep></entry>
+	<entry><ind>4000</ind><dep>386.3</dep></entry>
+	<entry><ind>4500</ind><dep>416.45</dep></entry>
+	<entry><ind>5000</ind><dep>449</dep></entry>
+       </interpolation>
+      <center>
+       <x-m>0.0047</x-m>
+       <y-m>0.0786</y-m>
+       <z-m>0.0016</z-m>
+      </center>
+      <axis> 
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+
+
+
+
+<!-- oil pressure -->
+    <animation>
+      <name>oil-pressure-psi-l</name>
+      <type>rotate</type>
+      <object-name>needle-oil-l</object-name>
+      <property>engines/engine[0]/oilp-norm</property>
+      <interpolation> 
+        <entry><ind>0.0000</ind><dep>159</dep></entry><!--0-->
+        <entry><ind>0.0214</ind><dep>265</dep></entry><!--iddle-->
+        <entry><ind>0.1804</ind><dep>302</dep></entry><!--25% thrust-->
+        <entry><ind>0.9870</ind><dep>386</dep></entry><!--max thrust-->
+      </interpolation>
+      <center>
+       <x-m>0.0047</x-m>
+       <y-m>-0.0781</y-m>
+       <z-m>-0.0513</z-m>
+      </center>
+      <axis> 
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+    <animation>
+      <name>oil-pressure-psi-r</name>
+      <type>rotate</type>
+      <object-name>needle-oil-r</object-name>
+      <property>engines/engine[1]/oilp-norm</property>
+      <interpolation> 
+        <entry><ind>0.0000</ind><dep>159</dep></entry><!--0-->
+        <entry><ind>0.0214</ind><dep>265</dep></entry><!--iddle-->
+        <entry><ind>0.1804</ind><dep>302</dep></entry><!--25% thrust-->
+        <entry><ind>0.987</ind><dep>386</dep></entry><!--max thrust-->
+      </interpolation>
+      <center>
+       <x-m>0.0047</x-m>
+       <y-m>-0.0263</y-m>
+       <z-m>-0.0513</z-m>
+      </center>
+      <axis> 
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+
+
+<!-- apu egt -->
+    <animation>
+      <name>apu-temp</name>
+      <type>rotate</type>
+      <object-name>needle-apu-egt</object-name>
+      <property>sim/model/A-10/systems/apu/temp</property>
+      <interpolation> 
+        <entry><ind>0</ind><dep>90.5</dep></entry><!--0-->
+	<entry><ind>100</ind><dep>115</dep></entry>
+	<entry><ind>200</ind><dep>139.5</dep></entry>
+	<entry><ind>300</ind><dep>164</dep></entry>
+	<entry><ind>400</ind><dep>189.5</dep></entry>
+	<entry><ind>500</ind><dep>214.5</dep></entry>
+	<entry><ind>600</ind><dep>241</dep></entry>
+	<entry><ind>700</ind><dep>269</dep></entry>
+	<entry><ind>800</ind><dep>298.5</dep></entry>
+	<entry><ind>900</ind><dep>324</dep></entry>
+        <entry><ind>1000</ind><dep>347.5</dep></entry><!--1000-->
+      </interpolation>
+      <center>
+       <x-m>0.0047</x-m>
+       <y-m>0.0782</y-m>
+       <z-m>-0.0502</z-m>
+      </center>
+      <axis> 
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+
+<!-- apu rpm -->
+
+    <animation>
+      <name>apu-rpm</name>
+      <type>rotate</type>
+      <object-name>needle-apu-rpm</object-name>
+      <property>sim/model/A-10/systems/apu/rpm-norm</property>
+      <interpolation> 
+        <entry><ind>0</ind><dep>87.5</dep></entry><!--0-->
+	<entry><ind>20</ind><dep>127</dep></entry>
+	<entry><ind>40</ind><dep>167.5</dep></entry>
+	<entry><ind>60</ind><dep>211</dep></entry>
+	<entry><ind>80</ind><dep>255</dep></entry>
+	<entry><ind>100</ind><dep>303.5</dep></entry>
+        <entry><ind>120</ind><dep>347.5</dep></entry><!--max rpm-->
+      </interpolation>
+      <center>
+       <x-m>0.0047</x-m>
+       <y-m>0.0258</y-m>
+       <z-m>-0.0517</z-m>
+      </center>
+      <axis> 
+        <x>-1</x>
+        <y>0</y>
+        <z>0</z>
+      </axis>
+    </animation>
+
+
+<!-- lighting -->
+
+  <animation> 
+   <object-name>mount</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>controls/lighting/panel-norm</factor-prop>
+        <red>0.45</red>
+        <green>0.22</green>
+        <blue>0.12</blue>
+      </emission>
+  </animation>
+
+  <animation>
+   <object-name>face</object-name>
+   <type>material</type>
+     <emission> 
+      <factor-prop>controls/lighting/instruments-norm</factor-prop>
+        <red>0.50</red>
+        <green>0.25</green>
+        <blue>0.14</blue>
+      </emission>
+  </animation>
+
+  <animation>
+   <object-name>needles</object-name>
+   <type>material</type>
+    <emission> 
+      <factor-prop>controls/lighting/instruments-norm</factor-prop>
+        <red>0.70</red>
+        <green>0.35</green>
+        <blue>0.15</blue>
+      </emission>
+  </animation>
+
+
+
+    <!-- *** LoD *** -->
+    <animation> 
+      <type>range</type>
+      <min-m>0</min-m>
+      <max-m>5</max-m>
+    </animation>
+  </PropertyList>

@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<sim include="help.xml">
+		<description type="string">Sopwith Camel 1F.1 (JSBSim, Experimental, Guns/Bombable)</description>
+		<author type="string">AJ MacLeod, Vivian Meazza, Brent Hugh (JSBSim, Bombable compatibility, weapons dialogs)</author>
+		<status type="string">alpha, guns work</status>
+
+		<flight-model>jsb</flight-model>
+		<aero>sopwithCamel1F1jsb</aero>
+
+		<startup>
+			<splash-texture>Aircraft/sopwithCamel-Bombable/splash.rgb</splash-texture>
+		</startup>
+
+		<sound>
+			<path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/sopwithCamel-sound.xml</path>
+		</sound>
+
+		<virtual-cockpit archive="y">true</virtual-cockpit>
+		<allow-toggle-cockpit archive="y">false</allow-toggle-cockpit>
+		<rendering>
+			<camera-group>
+				<znear type="double">0.1</znear>
+			</camera-group>
+		</rendering>
+		<model>
+			<path>Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model-Y.xml</path>
+			<livery>
+				<file type="string">10sqn</file>
+				<nose-texture type="bool">false</nose-texture>
+			</livery>
+			<variant type="int" >0</variant>
+			<!--<texture-path>Aircraft/sopwithCamel-Bombable/Models/Textures</texture-path>-->
+			<camel>
+				<extra-details archive="y"
+											 type="bool">true</extra-details>
+				<show-pilot archive="y"
+										type="bool">true</show-pilot>
+				<show-pennants-flight-commander archive="y"
+												type="bool">true</show-pennants-flight-commander>
+			</camel>
+		</model>
+
+		<ai>
+			<engines>
+				<engine>
+					<smoking type="bool">true</smoking>
+				</engine>
+			</engines>
+		</ai>
+
+		<submodels>
+			<serviceable type="bool">true</serviceable>
+			<path>Aircraft/sopwithCamel-Bombable/Models/camel-alternative-submodels.xml</path>
+		</submodels>
+
+    <!-- Required to make Bombable work over multiplayer -->
+    <!-- String 9 is for Bombable damage/reset messages -->
+    <!-- Int 10,11,... are for various weapons triggers as particular to this aircraft -->
+		<multiplay>
+			<generic>
+				<int n="0"
+							type="int"/>
+				<int n="1"
+						 type="int"/>
+				<float n="0"
+							 type="float"/>
+				<float n="1"
+							 type="float"/>
+				<float n="2"
+							 type="float"/>
+				<string n="9"
+							 type="string"/>			
+				<int n="10"
+							 alias="/controls/armament/trigger" />
+			</generic>
+		</multiplay>
+
+		<view n="0">
+			<internal archive="y">true</internal>
+			<config>
+				<x-offset-m archive="y">0.0</x-offset-m>
+				<!--Right-->
+				<y-offset-m archive="y">0.675</y-offset-m>
+				<!--Up0.654829-->
+				<z-offset-m archive="y">1.5749</z-offset-m>
+				<!--Back0.475-->
+
+				<pitch-offset-deg>-15</pitch-offset-deg>
+				<default-field-of-view-deg>65</default-field-of-view-deg>
+			</config>
+		</view>
+		<view n="1">
+			<config>
+				<target-z-offset-m archive="y"
+													 type="double">1.1044</target-z-offset-m>
+			</config>
+		</view>
+		<view n="2">
+			<config>
+				<target-z-offset-m archive="y"
+													 type="double">1.1044</target-z-offset-m>
+			</config>
+		</view>
+		<view n="3">
+			<config>
+				<target-z-offset-m archive="y"
+													 type="double">1.1044</target-z-offset-m>
+			</config>
+		</view>
+		<view n="4">
+			<config>
+				<target-z-offset-m archive="y"
+													 type="double">1.1044</target-z-offset-m>
+			</config>
+		</view>
+		<view n="5">
+			<config>
+				<target-z-offset-m archive="y"
+													 type="double">1.1044</target-z-offset-m>
+			</config>
+		</view>
+		<view n="6">
+			<config>
+				<target-z-offset-m archive="y"
+													 type="double">1.1044</target-z-offset-m>
+			</config>
+		</view>
+
+		<menubar>
+			<default>
+				<menu n="10">
+					<label>Camel</label>
+					<enabled type="bool">true</enabled>
+					<item>
+						<label>Toggle extra details</label>
+						<binding>
+							<command>property-toggle</command>
+							<property>sim/model/camel/extra-details</property>
+						</binding>
+					</item>
+					<item>
+						<label>Toggle pilot model</label>
+						<binding>
+							<command>property-toggle</command>
+							<property>sim/model/camel/show-pilot</property>
+						</binding>
+					</item>
+					<item>
+						<label>Toggle pilot face mask</label>
+						<binding>
+							<command>property-toggle</command>
+							<property>sim/model/camel/show-face-mask</property>
+						</binding>
+					</item>
+					<item>
+						<label>Toggle flight-commander's pennants</label>
+						<binding>
+							<command>property-toggle</command>
+							<property>sim/model/camel/show-pennants-flight-commander</property>
+						</binding>
+					</item>
+					<item>
+						<label>Reload guns</label>
+						<binding>
+							<command>nasal</command>
+							<script>camel.reload_guns();</script>
+						</binding>
+					</item>
+					<item>
+						<label>Unlimited guns</label>
+						<binding>
+							<command>nasal</command>
+							<script>camel.unlimited_guns();</script>
+						</binding>
+					</item>
+				</menu>
+			</default>
+		</menubar>
+	</sim>
+
+	<input>
+		<keyboard>
+			<!-- map keys for mag switches  -->
+			<key n="123">
+				<name>{</name>
+				<desc>Mag Switch Left Toggle.</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+
+						camel.magneto.toggleleftMagswitch();
+
+					</script>
+				</binding>
+			</key>
+			<key n="125">
+				<name>}</name>
+				<desc>Mag Switch Right Toggle.</desc>
+				<binding>
+					<command>nasal</command>
+					<script>
+
+						camel.magneto.togglerightMagswitch();
+
+					</script>
+				</binding>
+			</key>
+			<!-- map keys for seat vertical adjust -->
+			<key n="21">
+				<name>CTRL-U</name>
+				<desc>Seat Default.</desc>
+				<binding>
+					<command>property-assign</command>
+					<property>/controls/seat/vertical-adjust</property>
+					<value type="double">0</value>
+				</binding>
+				<binding>
+					<condition>
+						<equals>
+							<property>sim/current-view/view-number</property>
+							<value>0</value>
+						</equals>
+					</condition>
+					<command>property-assign</command>
+					<property>sim/current-view/y-offset-m</property>
+					<value type="double">0.675</value>
+				</binding>
+			</key>
+			<key n="85">
+				<name>U</name>
+				<desc>Seat Down.</desc>
+				<binding>
+					<command>property-adjust</command>
+					<property>/controls/seat/vertical-adjust</property>
+					<step type="double">-0.01</step>
+					<min type="double">-0.05</min>
+					<max type="double">0.05</max>
+				</binding>
+				<binding>
+					<condition>
+						<equals>
+							<property>sim/current-view/view-number</property>
+							<value>0</value>
+						</equals>
+					</condition>
+					<command>property-adjust</command>
+					<property>sim/current-view/y-offset-m</property>
+					<step type="double">-0.01</step>
+					<min type="double">0.625</min>
+					<max type="double">0.725</max>
+				</binding>
+			</key>
+			<key n="117">
+				<name>u</name>
+				<desc>Seat Up.</desc>
+				<binding>
+					<command>property-adjust</command>
+					<property>controls/seat/vertical-adjust</property>
+					<step type="double">0.01</step>
+					<min type="double">-0.05</min>
+					<max type="double">0.05</max>
+				</binding>
+				<binding>
+					<condition>
+						<equals>
+							<property>sim/current-view/view-number</property>
+							<value>0</value>
+						</equals>
+					</condition>
+					<command>property-adjust</command>
+					<property>sim/current-view/y-offset-m</property>
+					<step type="double">0.01</step>
+					<min type="double">0.625</min>
+					<max type="double">0.725</max>
+				</binding>
+			</key>
+			<!-- Livery Box -->
+			<key n="108">
+				<name>l</name>
+				<desc>Show livery select dialog</desc>
+				<binding>
+					<command>nasal</command>
+					<script>aircraft.livery.dialog.toggle()</script>
+				</binding>
+			</key>
+                        <!-- Fire gun -->
+                        <!-- We do both triggers just to be safe -->
+                        <key n="101">
+                           <name>e</name>
+                           <desc>Gun Trigger</desc> 
+                           <binding>
+                            <command>property-assign</command>
+                            <property>ai/submodels/trigger</property>
+                            <value>true</value>
+                           </binding>
+                           <binding>
+                            <command>property-assign</command>
+                            <property>controls/armament/trigger</property>
+                            <value>true</value>
+                           </binding>
+                           <mod-up>
+                            <binding>
+                             <command>property-assign</command>
+                             <property>ai/submodels/trigger</property>
+                             <value>false</value>
+                            </binding>
+                            <binding>
+                            <command>property-assign</command>
+                            <property>controls/armament/trigger</property>
+                            <value>false</value>
+                           </binding> 
+                           </mod-up>
+                        </key>
+                </keyboard>
+
+	</input>
+	<yasim>
+		<weights>
+			<pilot-lb type="double">200</pilot-lb>
+			<round-lb type="double">0.33</round-lb>
+		</weights>
+	</yasim>
+
+	<nasal>
+		<camel>
+			<file>Aircraft/sopwithCamel-Bombable/Models/camel-utils.nas</file>
+			<file>Aircraft/sopwithCamel-Bombable/Models/fuel.nas</file>
+			<file>Aircraft/sopwithCamel-Bombable/Models/yawstring.nas</file>
+			<file>Aircraft/sopwithCamel-Bombable/Nasal/weapons.nas</file>         
+			<file>Aircraft/sopwithCamel-Bombable/Nasal/JSBSim.nas</file>
+			<file>Aircraft/sopwithCamel-Bombable/Nasal/crashmenu.nas</file>
+ 		</camel>
+	</nasal>
+</PropertyList>

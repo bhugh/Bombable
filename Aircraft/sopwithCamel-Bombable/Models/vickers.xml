@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<!-- Vickers Machine Gun Mk1* -->
+<PropertyList> 
+	<path>vickersMG-ver6.ac</path>
+	<texture-path>Textures</texture-path>
+
+	<animation> 
+		<type>select</type>
+		<object-name>rivets</object-name>
+		<object-name>cocking-lever-asmbly</object-name>
+		<object-name>mechanism</object-name>
+		<object-name>cooling-jacket-high</object-name>
+		<object-name>butt-plate-assmbly</object-name>
+		<condition>
+			<property>sim/model/camel/extra-details</property>
+		</condition>
+	</animation> 
+
+	<animation> 
+		<type>select</type>
+		<object-name>cooling-jacket-low</object-name>
+		<condition>
+			<not>
+				<property>sim/model/camel/extra-details</property>
+			</not>
+		</condition>
+	</animation> 
+
+	<animation> 
+		<type>select</type>
+		<object-name>construction</object-name>
+	</animation> 
+
+  <!-- *** LoD *** 
+    <animation> 
+      <type>range</type>
+      <min-m>0</min-m>
+      <max-m>5</max-m>
+    </animation>-->
+</PropertyList>

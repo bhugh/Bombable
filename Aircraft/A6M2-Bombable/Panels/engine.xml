@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+
+<!--
+Engine data display 
+David Culp, Mar 2003, davidculp2@attbi.com, based on:
+_______________________________________________________________________________
+
+Based on Default by David Megginson, david@megginson.com.
+
+This is an instrument configuration file for the open-source flight
+simulator FlightGear (www.flightgear.org).  The file is an XML-encoded
+FlightGear property list defining the instrument's layers and actions.
+
+Each instrument is composed of layers stacked on top of each other.
+A layer may be a texture (with transparent parts to show the layers
+underneath), text, or a special layer that switches between two
+others (say, to turn an indicator light on or off).  Each layer can
+move independently in proportion to a property value, and text
+can be generated from property values as well: all of the layer's
+movements are defined as transformations.
+
+Actions are hotspots on the instrument that will respond to a mouse
+click.  Actions always modify the values of properties, either by
+adjusting them, toggling them, or swaping them with other
+properties' values.
+-->
+
+<PropertyList>
+
+ <name>Aero data</name>
+ 
+  <w-base>200</w-base>
+  <h-base>140</h-base>
+   
+   <layers>
+
+    <layer>
+     <name>gauge face</name>
+     <texture>   
+     <path>Aircraft/A6M2-Bombable/Panels/engine.rgb</path>
+     <x1>0.0</x1>
+     <y1>0.44531</y1>
+     <x2>0.78516</x2>
+     <y2>1.0</y2>
+     </texture>
+     <w>200</w>
+     <h>140</h>
+    </layer>
+
+  <layer>
+    <name>Display field 1</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>1.0</red>
+     <green>1.0</green>
+     <blue>1.0</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/engines/engine[0]/thrust_lb</property>
+      <format>%6.0f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>30</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>42</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+    <name>Display field 2</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>1.0</red>
+     <green>1.0</green>
+     <blue>1.0</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/engines/engine[0]/mp-osi</property>
+      <format>%6.1f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>30</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>20</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+    <name>Display field 3</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>1.0</red>
+     <green>1.0</green>
+     <blue>1.0</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/engines/engine[0]/thruster/rpm</property>
+      <format>%6.0f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>30</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>-3</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+    <name>Display field 4</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>1.0</red>
+     <green>1.0</green>
+     <blue>1.0</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/fdm/jsbsim/propulsion/engine/advance-ratio</property>
+<!--
+      <property>/engines/engine[0]/fuel-flow-gph</property>
+-->
+      <format>%6.1f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+     <offset>30</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>-26</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  <layer>
+    <name>Display field 5</name>
+    <type>text</type>
+    <font>led</font>
+    <point-size>6</point-size>
+    <color>
+     <red>1.0</red>
+     <green>1.0</green>
+     <blue>1.0</blue>
+    </color>
+    <chunks>
+     <chunk>
+      <type>number-value</type>
+      <property>/engines/engine[0]/thruster/pitch</property>
+      <format>%6.1f</format>
+     </chunk>
+    </chunks>
+    <transformations>
+     <transformation>
+      <type>x-shift</type>
+      <offset>30</offset>
+     </transformation>
+     <transformation>
+      <type>y-shift</type>
+      <offset>-50</offset>
+     </transformation>
+    </transformations>
+  </layer>
+
+  </layers>
+</PropertyList>
+
+
+

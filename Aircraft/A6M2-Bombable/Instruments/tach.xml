@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>tach.ac</path>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>TACH.needle</object-name>
+  <property>/engines/engine/rpm</property>
+  <interpolation>
+   <entry><ind>500</ind><dep>0</dep></entry>
+   <entry><ind>3500</ind><dep>540</dep></entry>
+  </interpolation>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+</PropertyList>
+

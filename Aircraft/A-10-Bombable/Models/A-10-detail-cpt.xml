@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+
+<PropertyList>
+
+	<path>detail-cpt.ac</path>
+
+<!-- panels-light -->
+	<animation> 
+		<object-name>CPT-video-frame-l</object-name>
+		<object-name>CPT-video-frame-r</object-name>
+		<object-name>CPT-video-screen</object-name>
+		<object-name>CPT-main-panel</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.45</red>
+			<green>0.34</green>
+			<blue>0.18</blue>
+		</emission>
+	</animation>
+	<animation>
+		<object-name>CPT-fake-panel</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.50</red>
+			<green>0.25</green>
+			<blue>0.18</blue>
+		</emission>
+	</animation>
+
+
+	<!-- aux-lg-ext-handle -->
+	<animation>
+		<type>translate</type>
+		<object-name>aux-lg-ext-handle</object-name>
+		<property>sim/model/A-10/controls/gear/aux-lg-ext</property>
+		<factor>0.04</factor>
+		<axis>
+			<x>0.1372</x>
+			<y>0.00</y>
+			<z>0.0232</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>range</type>
+		<object-name>CPT-main-panel</object-name>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+	<animation>
+		<type>range</type>
+		<object-name>CPT-fake-panel</object-name>
+		<min-m>5</min-m>
+		<max-m>200</max-m>
+	</animation>
+
+
+</PropertyList>

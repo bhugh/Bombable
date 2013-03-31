@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>umlaufe.ac</path>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>needle</object-name>
+  <property>/engines/engine[0]/rpm</property>
+  <factor>-0.2175</factor>
+  <offset-deg>-6</offset-deg>
+  <max-deg>360</max-deg>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+</PropertyList>

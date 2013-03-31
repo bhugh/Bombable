@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<!--Towards historically accurate Sopwith Camel Ammo by Brent Hugh
+      Copyright (C) 2010  Brent Hugh  (brent@brenthugh.com)
+      This file is licensed under the GPL license version 2 or later.
+-->
+
+<!-- 
+  Reminder!  Don't use a double dash within comments - a double dash will cause the XML interpreter to reject the whole file - and FG doesn't give any error when it does so.
+  
+  You can check your XML for validity:
+    http://www.w3schools.com/XML/xml_validator.asp
+  
+  Or trying loading the file in a browser like Internet Explorer.
+-->
+
+
+<!-- Submodels are objects which can be dropped or launched from the user aircraft.
+      The trigger is a boolean property, which you define, which when "true" causes
+      the submodel to be released/launched. 
+      A submodel will create an AIBallistic object which will follow a ballistic path.
+      By default one submodel will be released when the corresponding trigger is "true".
+      The initial conditions (IC) define the object's starting point (relative to the
+      user aircraft's "reported position"), and its initial speed and direction
+      (relative to the user aircraft).  If you want to release many similar objects
+      with similar IC, then you may use the <repeat>, <delay> and <count> properties
+      to define this.  The allowed properties are:
+
+      <name>         The name of the submodel.
+      <model>        The path to the visual model.
+      <trigger>      The property which will act as the trigger. 
+      <speed>        Initial speed, in feet/sec, relative to user aircraft.
+      <repeat>       Set "true" if you want multiple releases of this submodel.
+      <delay>        Time, in seconds, between repeated releases.
+      <count>        Number of submodels available for multiple release.
+      <slaved>       Not used yet.
+      <x-offset>     Submodel's initial fore/aft position relative to user aircraft.  
+                     Fore is positive.
+      <y-offset>     Submodel's initial left/right position relative to user aircraft.  
+                     Right is positive.
+      <z-offset>     Submodel's initial up/down position relative to user aircraft.  
+                     Up is positive.
+      <yaw-offset>   Submodel's initial azimuth, in degrees, relative to user aircraft's
+                     nose.  Right is positive.
+      <pitch-offset> Submodel's initial elevation, in degrees, relative to user aircraft's
+                     pitch.  Up is positive.
+      <cd>           Coefficient of drag.  A value about 0.193 is reasonable for a bullet.         
+      <eda>          Equivalent Drag Area in ft squared.  The object is assumed to have a 
+                     mass of 0.03 slugs and a drag coefficient of 0.295, and sea-level air
+                     density is assumed.  Adjust the EDA to give the model the ballistics you need.
+                     The default value is 0.007.
+      <life>         Life span in seconds.  Default is 900.0.
+      <buoyancy>     In ft/sec/sec.  Works opposite acceleration of gravity.  For example, if
+                     set to 32 the submodel will feel no gravity. If greater than 32 the object
+                     will rise. Default is 0.
+      <wind>         Set to true if you want the submodel to react to the wind.  Default is "false". 
+-->
+
+
+<!--
+Current sopwith camel guns seem to cause many FG crashes.  
+
+I'm trying these replacement gun models based on the F16 bullets, which seem to work OK - at least without crashing FG or giving the dreaded triangle error.
+
+According to Wikipedia the Vickers uses the .303 (British) cartridge; the bullet weight was 150 gr, 174 gr or 180 gr, muzzle velocity 844, 761, or 783 m/s respectively.  It fires 450-600 round/min, with an effective range of 810 yd and maximum range (indirect fire) of 4500 yd.  It can fire 450-600 rounds per minute.
+
+150 gr = 12 grams = 0.0264554715 lb and 783 m/s = 2569 ft/sec.  At muzzle velocity it can travel 4500 yd in about 5.5 seconds but of course it isn't going at muzzle velocity after it leaves the muzzle . . . say lifetime of 15 seconds would be pretty much all we'd need.  A shorter lifetime might help framerate in FG, as 15 definitely kills it when you have fired a lot of rounds - let's go with 7.5.
+
+And 450 rounds per minute means 7.5 per second or a delay of 0.1333.
+
+I don't know what proportion of rounds were tracers.  (Apparently there is some discussion about whether tracers were ever used in Vickers machine guns during WWI, at least on the ground.  But in the air - almost certainly.  It looks like early rounds showed for about 2 seconds and by the end of the war they were working on rounds showing for 5 secons or more.  See http://1914-1918.invisionzone.com/forums/index.php?showtopic=104583.)  
+
+So what proportion of rounds where tracers?  One out of four seems a common proportion today. 
+
+That would mean a tracer every 0.5333 seconds and 63 tracers out of 250 rounds.  Let's make the L and R gun timings just a bit different - if they are exactly synchronized it seems a bit fake.  The guns were synchronized with the propellor but how are they synchronized with each other? (It seems unlikely that both guns can fire at exactly the same time - wouldn't one of them be too close to the propellor blade?) 
+
+I cant find any documentation about how much ammunition the planes carried.  
+However, the .303 ammo came in 250-round canvas belts, later up to 400 in a belt.  Was it possible to re-load the guns with a new belt while flying?  
+Apparently not - it required a helper on the ground.
+
+cd: the given value of 0.193 is probably pretty reasonable for a bullet or similarly shaped object traveling at less than 1000 ft/sec. http://en.wikipedia.org/wiki/Drag_coefficient indicates cd of 0.295 for a bullet (subsonic, and with flat (ie not pointed or "ogive" frontal area). This reference gives values between about 0.15 and .225 for CD of a typical .308 bullet traveling at less than 1000 ft/sec: http://www.frfrogspad.com/extbal.htm 
+
+eda is a complete guess; no data.
+
+
+-->
+
+<PropertyList>
+
+<!-- RIGHT bullets, tracers, smoke -->
+
+  <submodel>
+    <name>gun-bullet-R-303</name>
+    <model>Models/Geometry/null.ac</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>2569</speed>
+    <repeat>true</repeat>
+    <delay>0.1233</delay>
+    <!-- count>400</count -->		
+    <count>400</count>
+		<x-offset>1.66</x-offset>
+		<y-offset>0.50045</y-offset>
+		<z-offset>1.62352</z-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>5.0</life>
+    <wind>false</wind>
+    <weight>0.0264554715</weight>
+    <cd>0.193</cd>
+    <eda>0.00236354</eda>
+    <collision>true</collision>
+    <collision-report>sim/ai/aircraft/collision/bullet</collision-report>
+    <impact>true</impact>
+    <impact-report>sim/ai/aircraft/impact/bullet</impact-report>
+    <!--<submodel-path>Aircraft/sopwithCamel-Bombable/Models/guns/bullet-submodel.xml</submodel-path>-->
+  </submodel>
+
+  <submodel>
+    <name>tracer-r</name>
+    <model>Aircraft/sopwithCamel-Bombable/Models/guns/tracer.xml</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>2569</speed>
+    <repeat>true</repeat>
+    <delay>0.4932</delay>
+		<!-- count>100</count -->
+		<count>100</count>
+		<x-offset>1.66</x-offset>
+		<y-offset>0.50045</y-offset>
+		<z-offset>1.62352</z-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>3.0</life>
+    <wind>false</wind>
+    <weight>0.0264554715</weight>
+    <cd>0.193</cd>
+    <eda>0.00236354</eda>
+  </submodel>
+
+
+
+  <submodel>
+    <name>gunsmoke-R</name>
+    <model>Aircraft/sopwithCamel-Bombable/Models/guns/smoke.xml</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>10</speed>
+    <repeat>true</repeat>
+    <delay>0.2466</delay>
+		<!-- count>400</count -->
+		<count>400</count>
+		<x-offset>1.66</x-offset>
+		<y-offset>0.50045</y-offset>
+		<z-offset>1.62352</z-offset>
+    <yaw-offset>0.0</yaw-offset>
+    <pitch-offset>0.0</pitch-offset>
+    <eda>10</eda>
+    <wind>true</wind>
+    <buoyancy>33</buoyancy>
+    <life>3</life>
+  </submodel>
+
+<!-- LEFT bullets, tracers, smoke -->
+  <submodel>
+    <name>gun-bullet-L-303</name>
+    <model>Models/Geometry/null.ac</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>2569</speed>
+    <repeat>true</repeat>
+    <delay>0.1373</delay>
+    <!-- count>400</count -->
+    <count>400</count>		
+		<x-offset>1.66</x-offset>
+		<y-offset>-0.50045</y-offset>
+		<z-offset>1.62352</z-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>5.00</life>
+    <wind>false</wind>
+    <weight>0.0264554715</weight>
+    <cd>0.193</cd>
+    <eda>0.00236354</eda>
+    <collision>true</collision>
+    <collision-report>sim/ai/aircraft/collision/bullet</collision-report>
+    <impact>true</impact>
+    <impact-report>sim/ai/aircraft/impact/bullet</impact-report>
+    <!--<submodel-path>Aircraft/sopwithCamel-Bombable/Models/guns/bullet-submodel.xml</submodel-path>-->
+  </submodel>
+
+
+  <submodel>
+    <name>tracer-l</name>
+    <model>Aircraft/sopwithCamel-Bombable/Models/guns/tracer.xml</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>2569</speed>
+    <repeat>true</repeat>
+    <delay>0.5492</delay>
+		<!-- count>100</count-->
+		<count>100</count>
+    <x-offset>1.66</x-offset>
+		<y-offset>-0.50045</y-offset>
+		<z-offset>1.62352</z-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>3.0</life>
+    <wind>false</wind>
+    <weight>0.0264554715</weight>
+    <cd>0.193</cd>
+    <eda>0.00236354</eda>
+  </submodel>
+
+
+
+  <submodel>
+    <name>gunsmoke-L</name>
+    <model>Aircraft/sopwithCamel-Bombable/Models/guns/smoke.xml</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>10</speed>
+    <repeat>true</repeat>
+    <delay>0.2746</delay>
+		<!-- count>400</count-->
+		<count>400</count>
+    <x-offset>1.66</x-offset>
+		<y-offset>-0.50045</y-offset>
+		<z-offset>1.62352</z-offset>
+    <yaw-offset>0.0</yaw-offset>
+    <pitch-offset>0.0</pitch-offset>
+    <eda>10</eda>
+    <wind>true</wind>
+    <buoyancy>33</buoyancy>
+    <life>3</life>
+  </submodel>
+
+</PropertyList>

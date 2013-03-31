@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This should produce nice flames and smoke for burning objects. -->
+<PropertyList>
+	<particlesystem>
+		<name>smoke</name>
+		<texture>smoke.png</texture>
+		<emissive>false</emissive>
+		<lighting>true</lighting>
+		<type>normal</type>
+		<align>billboard</align>
+		<attach>world</attach>
+		
+    <offsets>
+			<x-m>1.8</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.7</z-m>
+			<pitch-deg>0.0</pitch-deg>
+		</offsets>
+		
+		<condition>
+				<property>/bombable/menusettings/fire-particles/pistonexhaust-trigger</property>
+		</condition>
+
+   <shooter>
+      <theta-min-deg>84</theta-min-deg>
+      <theta-max-deg>86</theta-max-deg>
+      <phi-min-deg>-1.5</phi-min-deg>
+      <phi-max-deg>1.5</phi-max-deg>
+      <speed>
+        <value>300</value>
+        <spread>2.5</spread>
+      </speed>
+      <rotation-speed>
+        <x-min-deg-sec>0</x-min-deg-sec>
+        <y-min-deg-sec>0</y-min-deg-sec>
+        <z-min-deg-sec>0</z-min-deg-sec>
+        <x-max-deg-sec>0</x-max-deg-sec>
+        <y-max-deg-sec>0</y-max-deg-sec>
+        <z-max-deg-sec>0</z-max-deg-sec>
+      </rotation-speed>
+    </shooter>
+ 
+	
+		<placer>
+			<type>sector</type>
+			<radius-min-m>0.0</radius-min-m>
+			<radius-max-m>0.25</radius-max-m>
+		</placer>
+		
+		<counter>
+			<particles-per-sec>
+				<value>3</value>
+				<spread>0</spread>
+			</particles-per-sec>
+		</counter>
+		
+		<particle>
+			<start>
+				<color>
+					<red>
+						<value>0.6</value>
+					</red>
+					<green>
+						<value>0.6</value>
+					</green>
+					<blue>
+						<value>0.6</value>
+					</blue>
+					<alpha>
+						<value>1.0</value>
+					</alpha>
+				</color>
+				<size>
+					<value>0.25</value>
+					
+				</size>
+			</start>
+			<end>
+				<color>
+					<red>
+						<value>0.7</value>
+					</red>
+					<green>
+						<value>0.7</value>
+					</green>
+					<blue>
+						<value>0.7</value>
+					</blue>
+					<alpha>
+						<value>0.1</value>
+					</alpha>
+				</color>
+				<size>
+					<value>10</value>
+				</size>
+			</end>
+			<life-sec>
+				<property>/bombable/fire-particles/pistonexhaust-life-sec</property>
+			</life-sec>
+			<mass-kg>1204</mass-kg><!-- Air density: 1,204Kg/m3 at 20°C -->
+			<radius-m>4.18667</radius-m>
+		</particle>
+		
+		<program>
+			<fluid>air</fluid>
+			<!--  because this is skywriting we'll just let it hang there, no gravity-->
+			<gravity type="bool">false</gravity>
+			<wind type="bool">true</wind>
+		</program>
+	</particlesystem>
+	
+
+</PropertyList>

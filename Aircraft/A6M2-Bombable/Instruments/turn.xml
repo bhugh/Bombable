@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+ <path>turn.ac</path>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>TURN.ball</object-name>
+  <property>/instrumentation/slip-skid-ball/indicated-slip-skid</property>
+  <min>-1.1</min>
+  <max>1.1</max>
+  <interpolation>
+   <entry>
+    <ind>-1.1</ind>
+    <dep>-7.2</dep>
+   </entry>
+   <entry>
+    <ind>1.1</ind>
+    <dep>7.2</dep>
+   </entry>
+  </interpolation>
+  <center>
+   <x-m>0</x-m>
+   <y-m>0</y-m>
+   <z-m>0.098</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>TURN.needle</object-name>
+  <property>/instrumentation/turn-indicator/indicated-turn-rate</property>
+  <interpolation>
+  <entry>
+    <ind>-2.0</ind>
+    <dep>-15.0</dep>
+  </entry>
+  <entry>
+    <ind>2.0</ind>
+    <dep>15.0</dep>
+  </entry>
+  </interpolation>
+  <center>
+   <x-m>0</x-m>
+   <y-m>0</y-m>
+   <z-m>-0.019</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+</PropertyList>
+

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<PropertyList>
+<path>FO-psi.ac</path>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>Fuel.needle</object-name>
+    <property>/engines/engine/fuel-pump-psi[0]</property>
+    <min>0</min>
+    <max>71.1167</max>
+    <interpolation>
+      <entry>
+	<ind>0</ind>
+	<dep>0</dep>
+      </entry>
+      <entry>
+	<ind>71.11673</ind>
+	<dep>-180</dep>
+      </entry>
+    </interpolation>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0.003</y-m>
+      <z-m>0.000</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>Oil.needle</object-name>
+    <property>/engines/engine/oil-pressure-psi[0]</property>
+    <min>0</min>
+    <max>142.233</max>
+    <interpolation>
+      <entry>
+	<ind>0</ind>
+	<dep>0</dep>
+      </entry>
+      <entry>
+	<ind>142.233</ind>
+	<dep>180</dep>
+      </entry>
+    </interpolation>
+    <center>
+      <x-m>0</x-m>
+      <y-m>-0.003</y-m>
+      <z-m>0.0</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+</PropertyList>
+

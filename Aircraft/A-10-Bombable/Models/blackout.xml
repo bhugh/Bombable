@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+  <PropertyList> 
+    <path>blackout.ac</path>
+    
+	<animation> 
+      <type>material</type>
+      <nopreview/>
+      <object-name>Blackout-Sphere</object-name>
+      <transparency> 
+        <alpha-prop>accelerations/pilot-g-damped</alpha-prop>
+        <factor>0.6667</factor>
+        <offset>-2.3333</offset>
+		<max>1</max>
+		<min>0</min>
+      </transparency>
+    </animation>
+	
+	<animation> 
+      <type>material</type>
+      <nopreview/>
+      <object-name>Redout-Sphere</object-name>
+      <transparency> 
+        <alpha-prop>accelerations/pilot-g-damped</alpha-prop>
+        <factor>-0.5</factor>
+        <offset>-1.5</offset>
+		<max>1</max>
+		<min>0</min>
+      </transparency>
+    </animation>
+ 
+    <animation> 
+      <type>select</type>
+      <object-name>Blackout-Sphere</object-name>
+      <condition> 
+        <equals> 
+            <property>sim/current-view/view-number</property>
+            <value>0</value>
+          </equals>
+       </condition>
+    </animation>
+	
+	<animation> 
+      <type>select</type>
+      <object-name>Redout-Sphere</object-name>
+      <condition> 
+        <equals> 
+            <property>sim/current-view/view-number</property>
+            <value>0</value>
+          </equals>
+       </condition>
+    </animation>
+
+	<animation>
+		<object-name>Blackout-Sphere</object-name>
+		<type>noshadow</type>
+	</animation>
+
+	<animation>
+		<object-name>Redout-Sphere</object-name>
+		<type>noshadow</type>
+	</animation>
+      
+  </PropertyList>

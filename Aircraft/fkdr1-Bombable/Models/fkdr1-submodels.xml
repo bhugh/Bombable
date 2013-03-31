@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+
+
+<!-- Submodels are objects which can be dropped or launched from the user aircraft.
+      The trigger is a boolean property, which you define, which when "true" causes
+      the submodel to be released/launched. 
+      A submodel will create an AIBallistic object which will follow a ballistic path.
+      By default one submodel will be released when the corresponding trigger is "true".
+      The initial conditions (IC) define the object's starting point (relative to the
+      user aircraft's "reported position"), and its initial speed and direction
+      (relative to the user aircraft).  If you want to release many similar objects
+      with similar IC, then you may use the <repeat>, <delay> and <count> properties
+      to define this.  The allowed properties are:
+
+      <name>         The name of the submodel.
+      <model>        The path to the visual model.
+      <trigger>      The property which will act as the trigger. 
+      <speed>        Initial speed, in feet/sec, relative to user aircraft.
+      <repeat>       Set "true" if you want multiple releases of this submodel.
+      <delay>        Time, in seconds, between repeated releases.
+      <count>        Number of submodels available for multiple release.
+      <slaved>       Not used yet.
+      <x-offset>     Submodel's initial fore/aft position relative to user aircraft.  
+                     Fore is positive.
+      <y-offset>     Submodel's initial left/right position relative to user aircraft.  
+                     Right is positive.
+      <z-offset>     Submodel's initial up/down position relative to user aircraft.  
+                     Up is positive.
+      <yaw-offset>   Submodel's initial azimuth, in degrees, relative to user aircraft's
+                     nose.  Right is positive.
+      <pitch-offset> Submodel's initial elevation, in degrees, relative to user aircraft's
+                     pitch.  Up is positive.
+      <eda>          Equivalent Drag Area in ft squared.  The object is assumed to have a 
+                     mass of 0.03 slugs and a drag coefficient of 0.295, and sea-level air
+                     density is assumed.  Adjust the EDA to give the model the ballistics you need.
+                     The default value is 0.007.
+      <life>         Life span in seconds.  Default is 900.0.
+      <buoyancy>     In ft/sec/sec.  Works opposite acceleration of gravity.  For example, if
+                     set to 32 the submodel will feel no gravity. If greater than 32 the object
+                     will rise. Default is 0.
+      <wind>         Set to true if you want the submodel to react to the wind.  Default is "false". 
+-->
+
+
+<!--
+Fokker DR1 weaponary:
+
+Source: http://en.wikipedia.org/wiki/Fokker_Dr.I
+
+Maschinengewehr 08, or lMG08 - l = luftgekuehlt, ie, air cooled.
+
+Cartridge	8x57 IS
+13x92 TuF mm (TuF variant)
+Action	Short recoil,Toggle locked
+Rate of fire	450-500 rounds/min
+Muzzle velocity	900 metres per second (3,000 ft/s)
+Effective range	2,000 metres (2,200 yd)
+Maximum range	3,500 metres (3,800 yd)
+Feed system	250-round fabric belt
+Source: http://en.wikipedia.org/wiki/Maschinengewehr_08
+
+8X57mm IS cartridge
+Bullet weight/type	Velocity	Energy
+11.7 g (181 gr) RWS DK	820 m/s (2,700 ft/s)	3,934 J (2,902 ft x lbf)
+12.1 g (187 gr) RWS HMK	820 m/s (2,700 ft/s)	4,068 J (3,000 ft x lbf)
+12.7 g (196 gr) RWS TMR	800 m/s (2,600 ft/s)	4,064 J (2,997 ft x lbf)
+12.8 g (198 gr) RWS ID Classic
+Source: http://en.wikipedia.org/wiki/8x57_IS
+
+12.7 g = 0.0279987073 lb.
+-->
+
+<PropertyList>
+
+<!-- RIGHT bullets, tracers, smoke -->
+
+  <submodel>
+    <name>gun-bullet-R</name>
+    <model>Models/Geometry/null.ac</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>3000</speed>
+    <repeat>true</repeat>
+    <delay>0.1263</delay>
+    <!-- count>400</count -->		
+    <count>250</count>
+		<x-offset>1.66</x-offset>
+		<y-offset>0.250045</y-offset>
+		<z-offset>1.62352</z-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>5.0</life>
+    <wind>false</wind>
+    <weight>0.0279987073</weight>
+    <cd>0.193</cd>
+    <eda>0.00236354</eda>
+    <collision>true</collision>
+    <collision-report>sim/ai/aircraft/collision/bullet</collision-report>
+    <impact>true</impact>
+    <impact-report>sim/ai/aircraft/impact/bullet</impact-report>
+    <!--<submodel-path>Aircraft/fkdr1-Bombable/Models/guns/bullet-submodel.xml</submodel-path>-->
+  </submodel>
+
+  <submodel>
+    <name>tracer-r</name>
+    <model>Aircraft/fkdr1-Bombable/Models/guns/tracer.xml</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>3000</speed>
+    <repeat>true</repeat>
+    <delay>0.3789</delay>
+		<!-- count>100</count -->
+		<count>83</count>
+		<x-offset>1.66</x-offset>
+		<y-offset>0.250045</y-offset>
+		<z-offset>1.62352</z-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>5.0</life>
+    <wind>false</wind>
+    <weight>0.0279987073</weight>
+    <cd>0.193</cd>
+    <eda>0.00236354</eda>
+  </submodel>
+
+
+
+  <submodel>
+    <name>gunsmoke-R</name>
+    <model>Aircraft/fkdr1-Bombable/Models/guns/smoke.xml</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>10</speed>
+    <repeat>true</repeat>
+    <delay>0.252</delay>
+		<!-- count>400</count -->
+		<count>250</count>
+		<x-offset>1.66</x-offset>
+		<y-offset>0.250045</y-offset>
+		<z-offset>1.62352</z-offset>
+    <yaw-offset>0.0</yaw-offset>
+    <pitch-offset>0.0</pitch-offset>
+    <eda>10</eda>
+    <wind>true</wind>
+    <buoyancy>33</buoyancy>
+    <life>2</life>
+  </submodel>
+
+<!-- LEFT bullets, tracers, smoke -->
+  <submodel>
+    <name>gun-bullet-L</name>
+    <model>Models/Geometry/null.ac</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>3000</speed>
+    <repeat>true</repeat>
+    <delay>0.137</delay>
+    <!-- count>400</count -->
+    <count>250</count>		
+		<x-offset>1.66</x-offset>
+		<y-offset>-0.250045</y-offset>
+		<z-offset>1.62352</z-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>5</life>
+    <wind>false</wind>
+    <weight>0.0279987073</weight>
+    <cd>0.193</cd>
+    <eda>0.00236354</eda>
+    <collision>true</collision>
+    <collision-report>sim/ai/aircraft/collision/bullet</collision-report>
+    <impact>true</impact>
+    <impact-report>sim/ai/aircraft/impact/bullet</impact-report>
+    <!--<submodel-path>Aircraft/fkdr1-Bombable/Models/guns/bullet-submodel.xml</submodel-path>-->
+  </submodel>
+
+
+  <submodel>
+    <name>tracer-l</name>
+    <model>Aircraft/fkdr1-Bombable/Models/guns/tracer.xml</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>2569</speed>
+    <repeat>true</repeat>
+    <delay>0.411</delay>
+		<!-- count>100</count-->
+		<count>83</count>
+    <x-offset>1.66</x-offset>
+		<y-offset>-0.250045</y-offset>
+		<z-offset>1.62352</z-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>5.0</life>
+    <wind>false</wind>
+    <weight>0.0279987073</weight>
+    <cd>0.193</cd>
+    <eda>0.00236354</eda>
+  </submodel>
+
+
+
+  <submodel>
+    <name>gunsmoke-L</name>
+    <model>Aircraft/fkdr1-Bombable/Models/guns/smoke.xml</model>
+    <trigger>controls/armament/trigger</trigger>
+    <speed>10</speed>
+    <repeat>true</repeat>
+    <delay>0.274</delay>
+		<!-- count>400</count-->
+		<count>250</count>
+    <x-offset>1.66</x-offset>
+		<y-offset>-0.250045</y-offset>
+		<z-offset>1.62352</z-offset>
+    <yaw-offset>0.0</yaw-offset>
+    <pitch-offset>0.0</pitch-offset>
+    <eda>10</eda>
+    <wind>true</wind>
+    <buoyancy>33</buoyancy>
+    <life>3</life>
+  </submodel>
+
+</PropertyList>

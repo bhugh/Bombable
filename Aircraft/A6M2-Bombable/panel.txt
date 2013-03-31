@@ -1,0 +1,3 @@
+NOTE:
+This aircraft uses a clickable panel that works only with the OSG version.
+Instrument operation in the PLIB version can use keys and the menu.

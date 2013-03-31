@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<path>puff-impact.ac</path>
+
+	<animation>
+		<type>billboard</type>
+		<spherical>true</spherical>
+	</animation>
+
+	<animation>
+		<type>dist-scale</type>
+		<object-name>disk</object-name>
+		<use-personality>true</use-personality>
+		<factor>0.001</factor>
+		<center>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>scale</type>
+		<object-name>puff</object-name>
+		<use-personality>true</use-personality>
+		<property>sim/time/elapsed-sec</property>
+		<x-min>0.15</x-min>
+		<y-min>0.15</y-min>
+		<z-min>0.15</z-min>
+		<x-factor>0.3</x-factor>
+		<y-factor>0.3</y-factor>
+		<z-factor>0.3</z-factor>
+	</animation>
+
+	<animation>
+		<type>blend</type>
+		<object-name>puff</object-name>
+		<use-personality>true</use-personality>
+		<property>sim/time/elapsed-sec</property>
+		<factor>0.20</factor>
+		<!--<offset>0.8</offset>-->
+		<min>0.1</min>
+		<max>1.0</max>
+	</animation>
+
+	<animation>
+		<type>blend</type>
+		<object-name>disk</object-name>
+		<use-personality>true</use-personality>
+		<property>sim/time/elapsed-sec</property>
+		<factor>0.8</factor>
+		<!--<offset>0.8</offset>-->
+		<min>0.2</min>
+		<max>1.0</max>
+	</animation>
+</PropertyList>

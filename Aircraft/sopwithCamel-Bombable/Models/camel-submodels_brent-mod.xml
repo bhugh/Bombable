@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<PropertyList>
+
+
+	<submodel>
+		<name>Vickers L</name>
+		<model>Models/Geometry/null.ac</model>
+		<trigger>controls/armament/trigger</trigger>
+		<speed>2444.2</speed>
+		<repeat>true</repeat>
+		<delay>0</delay> <!-- should be 0.4720 -->
+		<count>-1</count> <!-- should be 50, -1 for testing -->
+		<x-offset>1.66</x-offset>
+		<y-offset>-0.50045</y-offset>
+		<z-offset>1.62352</z-offset>
+		<pitch-offset>0</pitch-offset>
+		<cd>0.193</cd>
+		<weight>0.0249122356</weight>
+		<eda>0.000500740417</eda>
+		<life>15</life>
+                <wind>false</wind>
+		<collision>true</collision>
+		<collision-report>sim/ai/aircraft/collision/bullet</collision-report>
+		<impact>true</impact>
+		<impact-report>ai/models/model-impact</impact-report>
+		<submodel-path>Aircraft/f16/Models/guns/bullet-submodel.xml</submodel-path>
+	</submodel>
+
+	<submodel>
+		<name>Vickers L smoke</name>
+                <model>Aircraft/f16/Models/guns/smoke.xml</model>
+ 		<trigger>controls/armament/trigger</trigger>
+		<speed>10</speed>
+		<repeat>true</repeat>
+		<delay>0.052631579</delay>
+		<count>250</count>
+		<x-offset>1.66</x-offset>
+		<y-offset>-0.50045</y-offset>
+		<z-offset>1.62352</z-offset>
+		<yaw-offset>0</yaw-offset>
+		<pitch-offset>0</pitch-offset>
+		<eda>10</eda>
+		<wind>true</wind>
+		<buoyancy>33</buoyancy>
+		<life>5</life>
+	</submodel>
+
+
+
+</PropertyList>

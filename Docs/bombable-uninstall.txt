@@ -1,0 +1,90 @@
+BOMBABLE: FLIGHTGEAR BOMBING RANGE, DOGFIGHTING, AND TANK SCENARIOS
+Brent Hugh, brent@brenthugh.com
+
+HOW TO UNINSTALL BOMBABLE
+
+As of version 4.4 and later, Bombable no longer overwrites any 
+existing files or aircraft in the standard FlightGear installation. 
+
+It adds new aircraft, AI aircraft, and scenarios but does not change any 
+currently installed aircraft. It will overwrite files from any 
+previous Bombable installation but will not change any other files in your
+FlightGear directories.
+
+That means it is very easy to disable or uninstall Bombable--you don't 
+need to wipe & re-install your FlightGear installation.
+
+DO YOU NEED TO UNINSTALL BOMBABLE?
+
+You can disable the Bombable module, leaving it installed and ready to use 
+when you want it, but having very little effect on your FlightGear experience. 
+Start FlightGear, click the Bombable menu/Bombable Options. Uncheck "Bombable 
+module enabled" and click Save.
+
+With the Bombable module disabled, you may wish to leave it in place.  You
+can re-enable it whenever you like or leave it disabled.
+
+However, if you'd like to remove Bombable altogether, here are the instructions.
+
+STEP BY STEP UNINSTALLATION
+
+1. Delete file data/Nasal/bombable.nas
+
+  This will be found in your FlightGear installation directory, subdirectories 
+  data/Nasal.
+  
+  This is the main step you need to disable/uninstall Bombable.
+
+  Once you have done this, the Aircraft, AI Aircraft, and scenarios that 
+  Bombable installed still remain. You can remove these if you like with the 
+  following three steps.
+
+2. Remove Aircraft files  
+
+  Bombable installs a number of aircraft in the data/Aircraft directory.
+  
+  All of these directories include "-Bombable" at the end of the name.  
+  
+  Examples:
+  
+     A-10-Bombable
+     F6F-Hellcat-Bombable
+     etc.
+  
+  Simple delete these directories and these aircraft will be removed 
+  from your installation.
+
+3. Remove AI Aircraft files
+  
+  Bombable installs a number of AI aircraft in the data/Aircraft directory.
+  
+  With one exception, these directories include "-Bombable" at the end of the name.  
+  
+  Examples:
+  
+     Fire-Particles
+     sopwithCamel-Bombable
+     SPAD-VII-Bombable
+     ufo-Bombable
+     etc.
+  
+  Simple delete these directories and these aircraft will be removed 
+  from your installation.  
+  
+4. Remove scenarios
+  
+  Bombable installs a number of scenarios in the data/AI directory.
+  
+  All of these scenarios include "Bomb-" at the start of the filename.
+  
+  Examples:  
+  
+    BOMB-Columbia-CA-Tank-Invasion1.xml
+    BOMB-Kansas-City-Bombable-Testbed.xml
+    BOMB-MarinCountyB-17BombersWithZeroCover.xml
+    etc.  
+  
+  Simple delete these files and these scenarios will be removed 
+  from your installation. 
+
+That's it!  Your Bombable installation is un-installed.

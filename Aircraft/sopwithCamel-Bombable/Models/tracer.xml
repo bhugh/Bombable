@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!-- Red Tracer -->
+<PropertyList>
+  <path>tracer2.ac</path>
+
+	<model>
+		<path>Models/Geometry/smoke.xml</path>
+		<name>smoke</name>
+		<offsets>
+			<x-m>10.0</x-m>
+			<y-m>0</y-m>
+			<z-m>-1.43238</z-m>
+		</offsets>
+	</model>
+
+	<animation>
+		<type>dist-scale</type>
+		<object-name>tracer</object-name>
+		<factor>0.001</factor>
+		<offset>0</offset>
+		<center>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>tracer</object-name>
+		<emission>
+			<factor>1</factor>
+			<offset>1</offset>
+			<red>0.75</red>
+			<green>0.25</green>
+			<blue>0.25</blue>
+		</emission>
+	</animation>
+	
+</PropertyList>

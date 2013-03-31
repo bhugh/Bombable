@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <path>interior.ac</path>
+
+  <animation>
+    <!-- Objets opaques -->
+    <object-name>interieur</object-name>
+    <object-name>inttour</object-name>
+
+    <!-- Objets transparents -->
+    <object-name>intvitres</object-name>
+  </animation>
+
+  <animation>
+    <type>shader</type>
+    <shader>chrome</shader>
+    <texture>shader.png</texture>
+    <object-name>intvitres</object-name>
+  </animation>
+
+  <animation>
+    <type>noshadow</type>
+    <object-name>intvitres</object-name>
+  </animation>
+
+  <!-- Pilot -->
+  <model>
+    <path>Aircraft/SPAD-VII-Bombable/Models/Pilot/pilot.xml</path>
+    <offsets>
+      <x-m> -1.348 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m> -0.117 </z-m>
+    </offsets>
+  </model>
+
+  <!-- Planches de bord -->
+  <model>
+    <path>Aircraft/SPAD-VII-Bombable/Models/Interior/Panel/panel.xml</path>
+    <offsets>
+      <x-m> -1.284 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m>  0.562 </z-m>
+    </offsets>
+  </model>
+
+</PropertyList>
+

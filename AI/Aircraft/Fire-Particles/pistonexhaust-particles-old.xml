@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This should produce little bit of smoke. -->
+<PropertyList>
+	<particlesystem>
+		<name>lightsmoke</name>
+		<texture>smoke.png</texture>
+		<emissive>false</emissive>
+		<lighting>false</lighting>
+		<type>normal</type>
+		<align>billboard</align>
+		<attach>world</attach>
+		
+		<offsets>
+			<x-m>1.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-.5</z-m>
+			<pitch-deg>200.0</pitch-deg>
+		</offsets>
+		
+		<condition>
+				<property>/bombable/menusettings/fire-particles/pistonexhaust-trigger</property>
+		</condition>
+	
+		<placer>
+			<type>sector</type>
+			<radius-min-m>0.0</radius-min-m>
+			<radius-max-m>0.2</radius-max-m>
+		</placer>
+		
+		<counter>
+			<particles-per-sec>
+				<value>4</value>
+				<spread>20</spread>
+			</particles-per-sec>
+		</counter>
+		
+		<particle>
+			<start>
+				<color>
+					<red>
+						<value>1</value>
+					</red>
+					<green>
+						<value>1</value>
+					</green>
+					<blue>
+						<value>1</value>
+					</blue>
+					<alpha>
+						<value>1</value>
+					</alpha>
+				</color>
+				<size>
+					<value>.5</value>
+					
+				</size>
+			</start>
+			<end>
+				<color>
+					<red>
+						<value>0.5</value>
+					</red>
+					<green>
+						<value>0.5</value>
+					</green>
+					<blue>
+						<value>0.5</value>
+					</blue>
+					<alpha>
+						<value>.5</value>
+					</alpha>
+				</color>
+				<size>
+					<value>3</value>
+				</size>
+			</end>
+			<life-sec>
+				<property>/fire-particles/pistonexhaust-life-sec</property>
+			</life-sec>
+			<mass-kg>1204</mass-kg><!-- Air density: 1,204Kg/m3 at 20°C -->
+			<radius-m>4.18667</radius-m>
+		</particle>
+		
+		<program>
+			<fluid>air</fluid>
+			<!--  because this is exhaust we'll just let it hang there, no gravity-->
+			<gravity type="bool">false</gravity>
+			<wind type="bool">true</wind>
+		</program>
+	</particlesystem>
+	
+
+</PropertyList>

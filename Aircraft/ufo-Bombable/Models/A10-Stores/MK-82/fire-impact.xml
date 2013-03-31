@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<path>fire-impact.ac</path>
+
+
+	<animation>
+		<type>billboard</type>
+		<object-name>sphere2</object-name>
+		<spherical>true</spherical>
+	</animation>
+	<animation>
+		<type>scale</type>
+		<object-name>sphere2</object-name>
+		<property>sim/time/elapsed-sec</property>
+		<x-min>0</x-min>
+		<y-min>0</y-min>
+		<z-min>0</z-min>
+		<x-max>3</x-max>
+		<y-max>3</y-max>
+		<z-max>2</z-max>
+		<x-factor>6</x-factor>
+		<y-factor>6</y-factor>
+	</animation>
+	<animation>
+		<type>blend</type>
+		<object-name>sphere2</object-name>
+		<property>sim/time/elapsed-sec</property>
+		<factor>0.01</factor>
+		<min>0</min>
+		<max>1</max>
+	</animation>
+	<animation>
+		<type>dist-scale</type>
+		<object-name>sphere2</object-name>
+		<interpolation>
+			<entry><ind>0</ind><dep>1</dep></entry>
+			<entry><ind>3000</ind><dep>4</dep></entry>
+		</interpolation>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>sphere2</object-name>
+		<use-personality>true</use-personality>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+
+
+	<animation>
+		<type>billboard</type>
+		<object-name>sphere</object-name>
+		<spherical>true</spherical>
+	</animation>
+	<animation>
+		<type>scale</type>
+		<object-name>sphere</object-name>
+		<property>sim/time/elapsed-sec</property>
+		<x-min>0</x-min>
+		<y-min>0</y-min>
+		<z-min>0</z-min>
+		<x-max>20</x-max>
+		<y-max>20</y-max>
+		<z-max>1</z-max>
+		<x-factor>300</x-factor>
+		<y-factor>300</y-factor>
+	</animation>
+	<animation>
+		<type>blend</type>
+		<object-name>sphere</object-name>
+		<property>sim/time/elapsed-sec</property>
+		<factor>1</factor>
+		<min>0</min>
+		<max>1</max>
+	</animation>
+	<animation>
+		<type>dist-scale</type>
+		<object-name>sphere</object-name>
+		<interpolation>
+			<entry><ind>0</ind><dep>1</dep></entry>
+			<entry><ind>3000</ind><dep>4</dep></entry>
+		</interpolation>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>sphere</object-name>
+		<emission>
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+
+
+
+
+
+
+
+	<animation>
+		<type>billboard</type>
+		<object-name>puff-black2</object-name>
+		<spherical>true</spherical>
+	</animation>
+	<animation>
+		<type>scale</type>
+		<object-name>puff-black2</object-name>
+		<property>sim/time/elapsed-sec</property>
+		<x-min>0</x-min>
+		<y-min>0</y-min>
+		<z-min>0</z-min>
+		<x-max>8</x-max>
+		<y-max>8</y-max>
+		<z-max>8</z-max>
+		<x-factor>1</x-factor>
+		<y-factor>1</y-factor>
+		<z-factor>1</z-factor>
+	</animation>
+	<animation>
+		<type>dist-scale</type>
+		<object-name>puff-black2</object-name>
+		<interpolation>
+			<entry><ind>0</ind><dep>1</dep></entry>
+			<entry><ind>3000</ind><dep>4</dep></entry>
+		</interpolation>
+	</animation>
+	<animation>
+		<type>material</type>
+		<object-name>puff-black2</object-name>
+		<emission>
+			<red>0.5</red>
+			<green>0.5</green>
+			<blue>0.5</blue>
+		</emission>
+	</animation>
+
+
+
+
+</PropertyList>

@@ -1,0 +1,2033 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<submodel>
+		<name>trajectory marker</name>
+		<model>Aircraft/A-10-Bombable/Models/Trajectory-Marker.xml</model>
+		<trigger>ai/submodels/trajectory-markers</trigger>
+		<speed>0</speed>
+		<repeat>true</repeat>
+		<delay>1.0</delay>
+		<count>-1</count>
+		<x-offset>-20.0</x-offset>
+		<y-offset>0</y-offset>
+		<z-offset>0.10</z-offset>
+		<yaw-offset>0.0</yaw-offset>
+		<pitch-offset>0.0</pitch-offset>
+		<eda>1000000000.00</eda>
+		<life>900</life>
+		<buoyancy>32</buoyancy>
+		<wind>false</wind>
+		<aero-stabilised>true</aero-stabilised>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+
+  <!--some tweaks here to make it work better with Bombable/help framerate (Brent Hugh)-->
+	<submodel>
+		<name>GAU-8/A API round</name>
+		<model>Aircraft/A-10-Bombable/Models/Stores/GAU-8A/apibullet-tracer.xml</model>
+		<trigger>sim/model/A-10/weapons/gun/running[0]</trigger>
+		<speed>3250.0</speed>
+		<fuse-range>0.0</fuse-range>
+		<repeat>true</repeat>
+		<!--<delay>0.01538461538461538462</delay>-->
+		<delay>0.0308</delay><!-- normal delay * 2 to reduce fps loss -->
+		<count>1174</count>
+		<x-offset>0.1</x-offset>
+		<y-offset>0.0</y-offset>
+		<z-offset>-0.9</z-offset>
+		<yaw-offset>0.0</yaw-offset>
+		<pitch-offset>-3.0</pitch-offset>
+		<life>4.5</life>
+		<buoyancy>0</buoyancy>
+		<wind>false</wind>
+		<cd>0.193</cd>
+		<random>false</random>
+		<eda>0.007609</eda>
+		<weight>0.9369635</weight>
+		<no-roll>false</no-roll>
+		<collision>true</collision>
+		<impact>true</impact>
+		<impact-reports>ai/models/model-impact</impact-reports>
+		<!--submodel-path>Aircraft/A-10-Bombable/Models/Stores/GAU-8A/gau-8a-submodels.xml</submodel-path-->
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+  </submodel>
+
+
+
+	
+	<submodel>
+		<name>GAU-8/A nuzzle smoke</name>
+		<model>Aircraft/A-10-Bombable/Models/Stores/GAU-8A/smoke-nuzzle.xml</model>
+		<trigger alias="../../GAU-8/trigger"/>
+		<speed>20</speed>
+		<repeat>true</repeat>
+		<delay>0.3</delay>
+		<!-- bhugh, to reduce FPS probs by longer delay & short life-->
+		<count>-1</count>
+		<x-offset>0.1</x-offset>
+		<y-offset>0.0</y-offset>
+		<z-offset>-0.9</z-offset>
+		<yaw-offset>0</yaw-offset>
+		<pitch-offset>-20.0</pitch-offset>
+		<life>4.5</life>
+		<buoyancy>33</buoyancy>
+		<wind>true</wind>
+		<cd>0.045</cd>
+		<random>true</random>
+		<eda>5</eda>
+		<weight>1</weight>
+		<no-roll>true</no-roll>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+
+	<submodel>
+		<name>aim-9-0-0</name>
+		<model>Aircraft/A-10-Bombable/Models/Stores/AIM-9/aim-9smoke.xml</model>
+		<trigger>sim/model/A-10/weapons/stations/station[0]/dual-AIM-9/trigger[1]</trigger>
+		<speed>300</speed>
+		<repeat>false</repeat>
+		<delay>0.1</delay>
+		<count>1</count>
+		<x-offset>7.2544</x-offset>
+		<y-offset>-20.7197</y-offset>
+		<z-offset>-0.4666</z-offset>
+		<yaw-offset>0</yaw-offset>
+		<pitch-offset>1</pitch-offset>
+		<cd>0</cd>
+		<weight>191</weight>
+		<eda>2.81</eda>
+		<life>25</life>
+		<buoyancy>32.5</buoyancy>
+		<collision>true</collision>
+		<impact>true</impact>
+		<impact-report>ai/models/model-impact</impact-report>		
+		<aero-stabilised>true</aero-stabilised>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	
+	<submodel>
+		<name>aim-9-0-1</name>
+		<model>Aircraft/A-10-Bombable/Models/Stores/AIM-9/aim-9smoke.xml</model>
+		<trigger>sim/model/A-10/weapons/stations/station[0]/dual-AIM-9/trigger[0]</trigger>
+		<speed>300</speed>
+		<repeat>false</repeat>
+		<delay>0.1</delay>
+		<count>1</count>
+		<x-offset>7.2544</x-offset>
+		<y-offset>-18.6398</y-offset>
+		<z-offset>-0.4666</z-offset>
+		<yaw-offset>0</yaw-offset>
+		<pitch-offset>-3</pitch-offset>
+		<cd>0</cd>
+		<weight>191</weight>
+		<eda>0.000001</eda>
+		<life>25</life>
+		<buoyancy>32.5</buoyancy>
+		<collision>true</collision>
+		<impact>true</impact>
+		<impact-report>ai/models/model-impact</impact-report>
+		
+		<aero-stabilised>true</aero-stabilised>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>aim-9-10-0</name>
+		<model>Aircraft/A-10-Bombable/Models/Stores/AIM-9/aim-9smoke.xml</model>
+		<trigger>sim/model/A-10/weapons/stations/station[10]/dual-AIM-9/trigger[0]</trigger>
+		<speed>300</speed>
+		<repeat>false</repeat>
+		<delay>0.1</delay>
+		<count>1</count>
+		<x-offset>7.2544</x-offset>
+		<y-offset>18.6398</y-offset>
+		<z-offset>-0.4666</z-offset>
+		<yaw-offset>0</yaw-offset>
+		<pitch-offset>1</pitch-offset>
+		<cd>0</cd>
+		<weight>191</weight>
+		<eda>0.000001</eda>
+		<life>25</life>
+		<buoyancy>32.5</buoyancy>
+		<collision>true</collision>
+		<impact>true</impact>
+		<impact-report>ai/models/model-impact</impact-report>
+		
+		<aero-stabilised>true</aero-stabilised>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>aim-9-10-1</name>
+		<model>Aircraft/A-10-Bombable/Models/Stores/AIM-9/aim-9smoke.xml</model>
+		<trigger>sim/model/A-10/weapons/stations/station[10]/dual-AIM-9/trigger[1]</trigger>
+		<speed>300</speed>
+		<repeat>false</repeat>
+		<delay>0.1</delay>
+		<count>1</count>
+		<x-offset>7.2544</x-offset>
+		<y-offset>20.7197</y-offset>
+		<z-offset>-0.4666</z-offset>
+		<yaw-offset>0</yaw-offset>
+		<pitch-offset>1</pitch-offset>
+		<cd>0</cd>
+		<weight>191</weight>
+		<eda>0.000001</eda>
+		<life>25</life>
+		<buoyancy>32.5</buoyancy>
+		<aero-stabilised>true</aero-stabilised>
+		<collision>true</collision>
+		<impact>true</impact>
+		<impact-report>ai/models/model-impact</impact-report>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+
+	<LAU-68>
+		<model>Aircraft/A-10-Bombable/Models/Stores/LAU-68/wp.xml</model>
+		<speed>300</speed>
+		<repeat>false</repeat>
+		<delay>0</delay>
+		<count>1</count>
+		<x-offset>-25.1808</x-offset>
+		<yaw-offset>0</yaw-offset>
+		<pitch-offset>-2</pitch-offset>
+		<cd>0</cd>
+		<weight>23.9</weight>
+		<eda>0.000001</eda>
+		<life>25</life>
+		<buoyancy>32.5</buoyancy>
+		<aero-stabilised>true</aero-stabilised>
+		<collision>true</collision>
+		<impact>true</impact>
+		<impact-report>ai/models/model-impact</impact-report>
+		<submodel-path>Aircraft/A-10-Bombable/Models/Stores/LAU-68/LAU-68-submodels.xml</submodel-path>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</LAU-68>
+
+	<submodel>
+		<name>WP-1-0</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[1]/LAU-68/trigger[0]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-15.8996</y-offset>
+		<z-offset>-1.2703</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-1-1</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[1]/LAU-68/trigger[1]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-16.0604</y-offset>
+		<z-offset>-1.0003</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-1-2</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[1]/LAU-68/trigger[2]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-15.8996</y-offset>
+		<z-offset>-1.5751</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-1-3</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[1]/LAU-68/trigger[3]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-16.0604</y-offset>
+		<z-offset>-1.5404</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-1-4</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[1]/LAU-68/trigger[4]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-15.7388</y-offset>
+		<z-offset>-1.5404</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-1-5</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[1]/LAU-68/trigger[5]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-15.8996</y-offset>
+		<z-offset>-0.9656</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-1-6</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[1]/LAU-68/trigger[6]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-15.7388</y-offset>
+		<z-offset>-1.0003</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+
+	<submodel>
+		<name>WP-2-0</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[2]/LAU-68/trigger[0]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-11.9206</y-offset>
+		<z-offset>-1.8668</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-2-1</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[2]/LAU-68/trigger[1]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-12.0702</y-offset>
+		<z-offset>-1.4439</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-2-2</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[2]/LAU-68/trigger[2]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-11.9094</y-offset>
+		<z-offset>-2.0187</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+	</submodel>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	<submodel>
+		<name>WP-2-3</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[2]/LAU-68/trigger[3]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-12.0702</y-offset>
+		<z-offset>-1.9839</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-2-4</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[2]/LAU-68/trigger[4]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-11.7487</y-offset>
+		<z-offset>-1.9839</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-2-5</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[2]/LAU-68/trigger[5]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-11.9094</y-offset>
+		<z-offset>-1.4091</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-2-6</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[2]/LAU-68/trigger[6]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-11.7487</y-offset>
+		<z-offset>-1.4439</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+
+	<submodel>
+		<name>WP-3-0</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[3]/LAU-68/trigger[0]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-5.5394</y-offset>
+		<z-offset>-2.1644</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-3-1</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[3]/LAU-68/trigger[1]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-5.7001</y-offset>
+		<z-offset>-1.8944</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-3-2</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[3]/LAU-68/trigger[2]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-5.5394</y-offset>
+		<z-offset>-2.4692</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-3-3</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[3]/LAU-68/trigger[3]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-5.7001</y-offset>
+		<z-offset>-2.4344</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-3-4</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[3]/LAU-68/trigger[4]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-5.3786</y-offset>
+		<z-offset>-2.4344</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-3-5</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[3]/LAU-68/trigger[5]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-5.5394</y-offset>
+		<z-offset>-1.8596</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-3-6</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[3]/LAU-68/trigger[6]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>-5.3786</y-offset>
+		<z-offset>-1.8944</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+
+	<submodel>
+		<name>WP-7-0</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[7]/LAU-68/trigger[0]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>5.5394</y-offset>
+		<z-offset>-2.1644</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-7-1</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[7]/LAU-68/trigger[1]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>5.7001</y-offset>
+		<z-offset>-1.8944</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-7-2</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[7]/LAU-68/trigger[2]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>5.5394</y-offset>
+		<z-offset>-2.4692</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-7-3</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[7]/LAU-68/trigger[3]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>5.7001</y-offset>
+		<z-offset>-2.4344</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-7-4</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[7]/LAU-68/trigger[4]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>5.3786</y-offset>
+		<z-offset>-2.4344</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-7-5</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[7]/LAU-68/trigger[5]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>5.5394</y-offset>
+		<z-offset>-1.8596</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-7-6</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[7]/LAU-68/trigger[6]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>5.3786</y-offset>
+		<z-offset>-1.8944</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+
+	<submodel>
+		<name>WP-8-0</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[8]/LAU-68/trigger[0]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>11.9206</y-offset>
+		<z-offset>-1.8668</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-8-1</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[8]/LAU-68/trigger[1]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>12.0702</y-offset>
+		<z-offset>-1.4439</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-8-2</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[8]/LAU-68/trigger[2]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>11.9094</y-offset>
+		<z-offset>-2.0187</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-8-3</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[8]/LAU-68/trigger[3]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>12.0702</y-offset>
+		<z-offset>-1.9839</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-8-4</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[8]/LAU-68/trigger[4]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>11.7487</y-offset>
+		<z-offset>-1.9839</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-8-5</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[8]/LAU-68/trigger[5]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>11.9094</y-offset>
+		<z-offset>-1.4091</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-8-6</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[8]/LAU-68/trigger[6]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>11.7487</y-offset>
+		<z-offset>-1.4439</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+
+	<submodel>
+		<name>WP-9-0</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[9]/LAU-68/trigger[0]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>15.8996</y-offset>
+		<z-offset>-1.2703</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-9-1</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[9]/LAU-68/trigger[1]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>16.0604</y-offset>
+		<z-offset>-1.0003</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-9-2</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[9]/LAU-68/trigger[2]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>15.8996</y-offset>
+		<z-offset>-1.5751</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-9-3</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[9]/LAU-68/trigger[3]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>16.0604</y-offset>
+		<z-offset>-1.5404</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-9-4</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[9]/LAU-68/trigger[4]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>15.7388</y-offset>
+		<z-offset>-1.5404</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-9-5</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[9]/LAU-68/trigger[5]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>15.8996</y-offset>
+		<z-offset>-0.9656</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>WP-9-6</name>
+		<model alias="../../LAU-68/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[9]/LAU-68/trigger[6]</trigger>
+		<speed alias="../../LAU-68/speed"/>
+		<repeat alias="../../LAU-68/repeat"/>
+		<delay alias="../../LAU-68/delay"/>
+		<count alias="../../LAU-68/count"/>
+		<x-offset alias="../../LAU-68/x-offset"/>
+		<y-offset>15.7388</y-offset>
+		<z-offset>-1.0003</z-offset>
+		<yaw-offset alias="../../LAU-68/yaw-offset"/>
+		<pitch-offset alias="../../LAU-68/pitch-offset"/>
+		<cd alias="../../LAU-68/cd"/>
+		<weight alias="../../LAU-68/weight"/>
+		<eda alias="../../LAU-68/eda"/>
+		<life alias="../../LAU-68/life"/>
+		<buoyancy alias="../../LAU-68/buoyancy"/>
+		<aero-stabilised alias="../../LAU-68/aero-stabilised"/>
+		<collision alias="../../LAU-68/buoyancy"/>
+		<impact alias="../../LAU-68/impact"/>
+		<impact-report alias="../../LAU-68/impact-report"/>
+		<submodel-path alias="../../LAU-68/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+
+	<MK-82-LD>
+		<model>Aircraft/A-10-Bombable/Models/Stores/MK-82/MK-82-LD.xml</model>
+		<speed>0</speed>
+		<repeat>false</repeat>
+		<delay>0.1</delay>
+		<count>-1</count>
+		<x-offset>-25.1808</x-offset>
+		<yaw-offset>0</yaw-offset>
+		<pitch-offset>-2</pitch-offset>
+		<cd>0.16</cd>
+		<weight>500</weight>
+		<fuse-range>2.2</fuse-range><!-- meter or feet ? -->
+		<eda>0.61629</eda>
+		<life>50</life>
+		<buoyancy>0</buoyancy>
+		<aero-stabilised>true</aero-stabilised>
+		<collision>true</collision>
+		<impact>true</impact>
+		<impact-reports>ai/models/model-impact</impact-reports>
+		<submodel-path>Aircraft/A-10-Bombable/Models/Stores/MK-82/MK-82-submodels.xml</submodel-path>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</MK-82-LD>
+
+	<submodel>
+		<name>MK-82-LD-ter-2-0</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[2]/triple-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset alias="../../MK-82-LD/x-offset"/>
+		<y-offset>-12.8343</y-offset>
+		<z-offset>-1.7936</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-ter-2-1</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[2]/triple-MK-82-LD/trigger[1]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset alias="../../MK-82-LD/x-offset"/>
+		<y-offset>-11.9081</y-offset>
+		<z-offset>-2.6866</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-ter-2-2</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[2]/triple-MK-82-LD/trigger[2]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset alias="../../MK-82-LD/x-offset"/>
+		<y-offset>-10.9820</y-offset>
+		<z-offset>-1.7936</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-ter-3-0</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[3]/triple-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset>-24.8493</x-offset>
+		<y-offset>-6.4659</y-offset>
+		<z-offset>-2.1797</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-ter-3-1</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[3]/triple-MK-82-LD/trigger[1]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset>-24.8493</x-offset>
+		<y-offset>-5.5420</y-offset>
+		<z-offset>-3.0727</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-ter-3-2</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[3]/triple-MK-82-LD/trigger[2]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset>-24.8493</x-offset>
+		<y-offset>-4.6135</y-offset>
+		<z-offset>-2.1797</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-ter-7-0</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[7]/triple-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset>-24.8493</x-offset>
+		<y-offset>4.6135</y-offset>
+		<z-offset>-2.1797</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-ter-7-1</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[7]/triple-MK-82-LD/trigger[1]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset>-24.8493</x-offset>
+		<y-offset>5.5420</y-offset>
+		<z-offset>-3.0727</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-ter-7-2</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[7]/triple-MK-82-LD/trigger[2]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset>-24.8493</x-offset>
+		<y-offset>6.4659</y-offset>
+		<z-offset>-2.1797</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-ter-8-0</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[8]/triple-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset alias="../../MK-82-LD/x-offset"/>
+		<y-offset>10.9820</y-offset>
+		<z-offset>-1.7936</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-ter-8-1</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[8]/triple-MK-82-LD/trigger[1]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset alias="../../MK-82-LD/x-offset"/>
+		<y-offset>11.9081</y-offset>
+		<z-offset>-2.6866</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-ter-8-2</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[8]/triple-MK-82-LD/trigger[2]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset alias="../../MK-82-LD/x-offset"/>
+		<y-offset>12.8343</y-offset>
+		<z-offset>-1.7936</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+
+	<submodel>
+		<name>MK-82-LD-single-0</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[0]/single-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset>-24.1808</x-offset>
+		<y-offset>-19.3652</y-offset>
+		<z-offset>-0.6909</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-single-1</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[1]/single-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset alias="../../MK-82-LD/x-offset"/>
+		<y-offset>-15.8960</y-offset>
+		<z-offset>-1.1886</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-single-2</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[2]/single-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset alias="../../MK-82-LD/x-offset"/>
+		<y-offset>-11.8488</y-offset>
+		<z-offset>-1.6644</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-single-3</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[3]/single-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset>-24.9323</x-offset>
+		<y-offset>-5.5548</y-offset>
+		<z-offset>-2.0380</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-single-4</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[4]/single-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset>-24.8323</x-offset>
+		<y-offset>-1.8615</y-offset>
+		<z-offset>-2.1380</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-single-5</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[5]/single-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset>-24.8323</x-offset>
+		<y-offset>0</y-offset>
+		<z-offset>-2.1380</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-single-6</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[6]/single-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset>-24.8323</x-offset>
+		<y-offset>1.8615</y-offset>
+		<z-offset>-2.1380</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-single-7</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[7]/single-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset>-24.9323</x-offset>
+		<y-offset>5.5548</y-offset>
+		<z-offset>-2.0380</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-single-8</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[8]/single-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset alias="../../MK-82-LD/x-offset"/>
+		<y-offset>11.8488</y-offset>
+		<z-offset>-1.6644</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-single-9</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[9]/single-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset alias="../../MK-82-LD/x-offset"/>
+		<y-offset>15.8960</y-offset>
+		<z-offset>-1.1886</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+	<submodel>
+		<name>MK-82-LD-single-10</name>
+		<model alias="../../MK-82-LD/model"/>
+		<trigger>sim/model/A-10/weapons/stations/station[10]/single-MK-82-LD/trigger[0]</trigger>
+		<speed alias="../../MK-82-LD/speed"/>
+		<repeat alias="../../MK-82-LD/repeat"/>
+		<delay alias="../../MK-82-LD/delay"/>
+		<count alias="../../MK-82-LD/count"/>
+		<x-offset>-24.1808</x-offset>
+		<y-offset>19.3652</y-offset>
+		<z-offset>-0.6909</z-offset>
+		<yaw-offset alias="../../MK-82-LD/yaw-offset"/>
+		<pitch-offset alias="../../MK-82-LD/pitch-offset"/>
+		<cd alias="../../MK-82-LD/cd"/>
+		<weight alias="../../MK-82-LD/weight"/>
+		<fuse-range alias="../../MK-82-LD/fuse-range"/>
+		<eda alias="../../MK-82-LD/eda"/>
+		<life alias="../../MK-82-LD/life"/>
+		<buoyancy alias="../../MK-82-LD/buoyancy"/>
+		<aero-stabilised alias="../../MK-82-LD/aero-stabilised"/>
+		<collision alias="../../MK-82-LD/collision"/>
+		<impact alias="../../MK-82-LD/impact"/>
+		<impact-reports alias="../../MK-82-LD/impact-reports"/>
+		<submodel-path alias="../../MK-82-LD/submodel-path"/>
+		<animation>
+			<enable-hot type="bool">false</enable-hot>
+		</animation>
+	</submodel>
+
+</PropertyList>

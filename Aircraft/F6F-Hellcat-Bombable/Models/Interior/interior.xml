@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <path>interior.ac</path>
+
+  <animation>
+    <!-- Objets opaques -->
+    <object-name>interieur</object-name>
+    <object-name>inttour</object-name>
+    <object-name>inttourvitres</object-name>
+    <object-name>inttourverriere</object-name>
+
+    <!-- Objets transparents -->
+    <object-name>intvitres</object-name>
+    <object-name>intverriere</object-name>
+  </animation>
+
+  <animation>
+    <type>shader</type>
+    <shader>chrome</shader>
+    <texture>Aircraft/Generic/Effects/glass_shader.png</texture>
+    <object-name>intverriere</object-name>
+    <object-name>intvitres</object-name>
+  </animation>
+
+  <animation>
+    <type>noshadow</type>
+    <object-name>intverriere</object-name>
+    <object-name>intvitres</object-name>
+  </animation>
+
+  <!-- Pilote -->
+  <model>
+    <path>Aircraft/F6F-Hellcat-Bombable/Models/Pilot/pilot.xml</path>
+    <offsets>
+      <x-m> -1.260 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m>  0.770 </z-m>
+    </offsets>
+  </model>
+
+  <!-- Tableau de bord -->
+  <model>
+    <path>Aircraft/F6F-Hellcat-Bombable/Models/Interior/Panel/panel.xml</path>
+    <offsets>
+      <x-m> -1.923 </x-m>
+      <y-m>  0.000 </y-m>
+      <z-m>  0.843 </z-m>
+    </offsets>
+  </model>
+
+  <!-- Canopy -->
+  <animation>
+    <name>IntCanopy</name>
+    <object-name>intverriere</object-name>
+    <object-name>inttourverriere</object-name>
+  </animation>
+
+  <animation>
+    <type>translate</type>
+    <object-name>IntCanopy</object-name>
+    <property>/instrumentation/doors/crew/position-norm</property>
+    <factor> 0.64 </factor>
+    <axis>
+      <x> 1 </x>
+      <y> 0 </y>
+      <z> 0 </z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>translate</type>
+    <object-name>IntCanopy</object-name>
+    <property>/instrumentation/doors/crew/position-norm</property>
+    <factor> -0.04 </factor>
+    <axis>
+      <x> 0 </x>
+      <y> 0 </y>
+      <z> 1 </z>
+    </axis>
+  </animation>
+
+</PropertyList>
+

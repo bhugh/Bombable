@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE PropertyList SYSTEM "panel.dtd">
+
+
+<PropertyList>
+	<name>A-10 R Panel Hotspots</name>
+	<background>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</background>
+	<w>1024</w>
+	<h>768</h>
+	<y-offset>0</y-offset>
+
+	<instruments>
+		<instrument>
+			<name>R panel</name>
+			<y>384</y>
+			<w>1024</w>
+			<h>768</h>
+			<w-base>1024</w-base>
+			<h-base>1024</h-base>
+			<x>512</x>
+
+			<layers>
+				<layer>
+					<name>background</name>
+					<texture>
+						<path>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</path>
+						<x1>0.0</x1>
+						<y1>0.0</y1>
+						<x2>1.0</x2>
+						<y2>1.0</y2>
+					</texture>
+				</layer>
+			</layers>
+
+			<!-- define hotspot actions below -->
+			<actions>
+
+				<!-- Fuel quantity selector -->
+				<action>
+					<name>fuel_sel_dec</name>
+					<button>0</button>
+					<x>88</x>
+					<y>-410</y>
+					<w>82</w>
+					<h>100</h>
+					<binding>
+						<command>nasal</command>
+						<script>A10fuel.fuel_sel_knob_move(-1)</script>
+					</binding>
+				</action>
+				<action>
+					<name>fuel_sel_inc</name>
+					<button>0</button>
+					<x>185</x>
+					<y>-410</y>
+					<w>82</w>
+					<h>100</h>
+					<binding>
+						<command>nasal</command>
+						<script>A10fuel.fuel_sel_knob_move(1)</script>
+					</binding>
+				</action>
+
+				<!-- Fuel test indicator -->
+				<action>
+					<name>fuel_test_ind</name>
+					<button>0</button>
+					<x>280</x>
+					<y>-345</y>
+					<w>32</w>
+					<h>32</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>sim/model/A-10/controls/fuel/fuel-test-ind</property>
+					</binding>
+				</action>
+
+			</actions>
+		</instrument>
+	</instruments>
+
+</PropertyList>

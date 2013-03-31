@@ -1,0 +1,157 @@
+MODDING AIRCRAFT AND SCENERY OBJECTS TO BECOME BOMBABLE
+
+**Following are instructions for modding an aircraft to become 
+Bombable able to use multiplayer dogfighting. This works with the 
+Bombable mod for FlightGear 1.9.1 and 2.X.X. See bombable-readme.txt 
+for details about getting the whole package installed and working.**
+
+**Your best instructions for modding a FG aircraft to use with
+Bombable is to look at the example aircraft (both AI aircraft and
+normal aircraft) that are included in this package. The instructions
+below and in the Wiki will make much more sense with these real-world,
+working examples at your fingertips as you read the instructions.**
+
+The techniques used here to make objects bombable, detect hits, 
+create contrails, smoke columns, flares, drive objects along the 
+ground (moving tanks/jeeps), navigate ships through the water, 
+create ground-hugging aircraft, etc., create aircraft that will 
+dogfight with the main aircraft, can all be added to any AI aircraft 
+by including a few lines of code in their XML files.
+
+Conceivably they could be included in any Sim aircraft as well, 
+making all aircraft bombable. Scenery objects, too, could 
+potentially become "bombable".
+
+More information about Bombable is on the FlightGear wiki:
+  http://wiki.flightgear.org/Bombable
+  
+A more detailed and up-to-date version of how to make AI and 
+MP aircraft bombable is here:
+http://wiki.flightgear.org/Howto:_Adding_Bombable_to_FlightGear_Aircraft#Notes
+
+BRIEF INSTRUCTIONS
+To make an existing aircraft bombable and work with MP dogfighting requires:
+
+ - Create an AI version of the aircraft
+ 
+ - Include working armament in the aircraft, preferably set to report impacts 
+to ai/models/model-impact (but any of the standard places to report impacts 
+should work). See further details below.
+
+ - Add lines of code to make the AI version bombable (see the AI 
+aircraft in this release for examples you can copy/paste/modify). 
+Here you can specify everything from how easy/hard it is to damage 
+the object to how vigorously and turns and attacks the main aircraft.
+
+ - If you want to use different liveries for different levels of damage you can 
+do that. See further instructions below and the M1-Abrams and Jeep-bombable 
+XML files for examples.
+
+ - To enable multiplayer dogfighting, in the aircraft's -set.xml file, add a 
+generic multiplayer communications port (string) in the <sim> section of the 
+file. To avoid conflicts with other MP items we've chosen to use string[9] for 
+bombable communication. The lines needed look something like this:
+
+ <sim>
+ 
+       .... (a whole bunch of stuff)
+       
+       <multiplay>
+         <generic>
+           <string n="9" type="string"/>
+           <int n="10" alias="controls/armament/trigger" />
+         </generic>
+       </multiplay>    
+       .... (more bunches of stuff)
+       
+  </sim>
+  
+
+HELPING BOMBABLE DETECT YOUR IMPACTS
+
+The listener function to detect impacts listens on all known impact-reports 
+nodes used by aircraft in the FG CVS version as of August 2009.  This means
+the impacts should be detected from weapons used in these aircraft, and
+most likely many others:
+
+A-10	Arsenal VG-33	B-1B	BF109	BO105	F4U	F-16	F-117	FW190	Horten-O
+Hunter	IL-2	LA-5	ME-262	ME-262 HGIII	Seahawk	Sopwith Camel	SPAD VII	
+Spitfire	Submarine Scout	Vulcan 2B
+
+Note that not all of these have actual weapons--some may have something
+like a drop-tank that is ballistic and can impact other objects.
+
+The listener function also listens to the standard impact-reports node, 
+ai/models/model-impact, so any aircraft using that standard node should work 
+fine.
+
+If you are an aircraft designer and want to make sure your aircraft's 
+armaments work with this system, just make sure your armament's impact
+uses one of the standard impact-reports nodes used by other FG aircraft,
+or preferably use the standard FG default reporting.   In a submodel XML
+file the impact reports line would look like this:
+
+   <impact-reports>ai/models/model-impact</impact-reports>
+  
+  
+ADDING CHANGEABLE LIVERY COLORS THAT DEPEND ON DAMAGE LEVEL 
+
+With the code above, bombable.nas will handle setting the livery colors and
+automatically changing them as the object becomes damaged.  
+For this to work your model must have different liveries available
+and then animate the liveries so that the texture used is the one shown
+in this path: /ai/model/model[X]/bombable/texture-corps-path.  The /ai/model/model[X]/ part is assumed for AI craft so you need to add <texture-prop>bombable/texture-corps-path</texture-prop> in the right place of your XML file. 
+
+Example from Jeep.xml in the jeep-bombable directory:
+
+<animation>
+		<type>material</type>
+		<object-name>jeep-body</object-name>
+				<object-name>roof1</object-name>
+    <object-name>roof2</object-name>
+    <object-name>softroof</object-name>
+		<object-name>chassis</object-name>
+		<object-name>chassis.002</object-name>
+		<object-name>Plane</object-name>
+		<object-name>hinge</object-name>
+		<object-name>screen</object-name>
+		<object-name>wiper.L</object-name>
+		<object-name>wiper.R</object-name>
+		<object-name>seat.L</object-name>
+		<object-name>seat.R</object-name>
+    <texture-prop>bombable/texture-corps-path</texture-prop>
+		<transparency>
+			<alpha>1.0</alpha>
+		</transparency>
+	</animation>
+  
+
+Additionally, if you want to change your object's the livery color programmatically (for instance, if you include a menu item to select different liveries) you can use the following code to change all liveries, including damage liveries, that the object uses:
+
+Example:
+     liveries = [
+         "Models/livery_nodamage.png", 
+         "Models/livery_slightdamage.png", 
+         "Models/livery_highdamage.png");
+     ];
+
+     bombable.set_livery (cmdarg().getPath(), liveries); 
+
+You can include liveries for as many different levels of damage (ie, fine gradations of change from undamaged to completely damaged) as you like.  For instance:
+
+
+Example:
+     liveries = [
+         "Models/livery_nodamage.png", 
+         "Models/livery_barelydamaged.png", 
+         "Models/livery_justslightlydamaged.png", 
+         "Models/livery_alittlemoredamage.png", 
+         "Models/livery_fairlydamaged.png",          
+         "Models/livery_kindadamaged.png",
+         "Models/livery_prettydamaged.png",
+         "Models/livery_whoawereintroublenow.png",                   
+         "Models/livery_finishedoff.png");
+     ];
+
+     bombable.set_livery (cmdarg().getPath(), liveries);  
+

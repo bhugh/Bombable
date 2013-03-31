@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<PropertyList>
+	<help>
+		<title>Camel 1F1</title>
+		<key>
+			<name>s</name>
+			<desc>Start</desc>
+		</key>
+		<key>
+			<name>b (or press brakes)</name>
+			<desc>blip switch - both magnetos OFF </desc>
+		</key>
+		<key>
+			<name>B</name>
+			<desc>toggle chocks</desc>
+		</key>
+		<key>
+			<name>{ }</name>
+			<desc>toggle left/right magneto switch</desc>
+		</key>
+		<key>
+			<name>u/U</name>
+			<desc>adjust pilot viewpoint up/down</desc>
+		</key>
+		<key>
+			<name>ctrl u</name>
+			<desc>select default pilot viewpoint </desc>
+		</key>
+		<key>
+			<name>e</name>
+			<desc>fire guns </desc>
+			
+		</key>
+		<line> </line>
+		<line>Starting</line>
+		<line> </line>
+		<line>Press { and } once each--so that both L and R magneto switches are in center position.</line>
+		<line>Give it some throttle and hold the s key for several seconds</line>
+    <line>until you hear the engine catch.</line> 
+		<line> </line>
+		<line>Take Off</line>
+		<line> </line>
+		<line>Zoom the view out so you can see the edges of the runway with your </line>
+		<line>peripheral vision.  As you speed up, gently pull back on the stick - this</line>
+		<line>avoids the spin-out that otherwise happens around 40-45 MPH. </line>
+		<line>As you lift off, about 45 MPH, the torque of the engine will twist </line>
+		<line>you clockwise--counter it with the stick.  Just a slight pressure back</line>
+    <line>and then left is all it takes to counter these effects. </line>
+    <line>Similarly, be prepared to use gentle rudder pressure to counter a tendency to </line>
+    <line>yaw just after takeoff. </line>
+    <line> </line>
+    <line>The blip switch </line>
+    <line> </line>
+		<line>The blip switch (b) disengages both magnetos and cuts power.</line>
+		<line>Engaging either R or L brake (via keyboard, joystick, or rudder/pedals)</line>
+    <line>also engages the blip switch.  Releasing the brake (or pressing the b key)</line>
+    <line>releases the blip switch.</line>
+		<line> </line>
+		<line>Approach and landing</line>
+		<line> </line>
+		<line>Speed 55 MPH IAS</line>
+		<line>Throttle OPEN</line>
+		<line>Use the blip switch to control speed NOT throttle</line>
+		<line>Blip switch ON/OFF as required</line>
+		<line>Touchdown speed: 50-55 MPH IAS</line>
+		<line>Stall speed 48 MPH IAS</line>
+		<line> </line>
+		<line>Guns</line>
+		<line> </line>
+		<line>Guns have 250 rounds each, the maximum capacity of the Camel.</line>
+	  <line>Note that guns will not work if AI models are disabled (the bullets</line> 
+    <line>and smoke are AI objects - tracer rounds will appear but they won't move).</line>
+    <line>Fire with the e key or a joystick trigger linked to /controls/armament/trigger. </line>
+    <line>Reload guns: Use the menu--you must be on ground and stopped. </line>
+    
+	</help>
+</PropertyList>

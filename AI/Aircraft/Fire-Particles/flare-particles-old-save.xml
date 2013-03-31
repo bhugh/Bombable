@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This should produce nice flames and smoke for burning objects. -->
+<PropertyList include="flare-smoke-particles.xml">
+	<particlesystem>
+		<name>fire</name>
+		<texture>smoke.png</texture>
+		<emissive>false</emissive>
+		<lighting>false</lighting>
+		<type>normal</type>
+		<align>billboard</align>
+		<attach>world</attach>
+		
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.5</z-m>
+			<pitch-deg>0.0</pitch-deg>
+		</offsets>
+		
+		<condition>
+			<property>/bombable/menusettings/fire-particles/flare-trigger</property>
+		</condition>
+	
+		<placer>
+			<type>sector</type>
+			<radius-min-m>0.0</radius-min-m>
+			<radius-max-m>0.1</radius-max-m>
+		</placer>
+		
+		<counter>
+			<particles-per-sec>
+				<value>2</value>
+				<spread>0</spread>
+			</particles-per-sec>
+		</counter>
+		
+		<particle>
+			<start>
+				<color>
+					<red>
+						<value>0.8</value>
+					</red>
+					<green>
+						<value>0.08</value>
+					</green>
+					<blue>
+						<value>0.08</value>
+					</blue>
+					<alpha>
+						<value>1.0</value>
+					</alpha>
+				</color>
+				<size>
+					<value>2</value>
+				</size>
+			</start>
+			<end>
+				<color>
+					<red>
+						<value>0.99</value>
+					</red>
+					<green>
+						<value>0.92</value>
+					</green>
+					<blue>
+						<value>0.06</value>
+					</blue>
+					<alpha>
+						<value>0.6</value>
+					</alpha>
+				</color>
+				<size>
+					<value>.1</value><!-- equal to start-size of smoke -->
+				</size>
+			</end>
+			<life-sec>
+				<value>1</value>
+			</life-sec>
+			<mass-kg>100</mass-kg><!-- Air density: 1,204Kg/m3 at 20°C -->
+			<radius-m>4.18667</radius-m>
+		</particle>
+		
+		<program>
+			<fluid>air</fluid>
+			<gravity type="bool">true</gravity>
+			<wind type="bool">true</wind>
+		</program>
+	</particlesystem>
+	
+</PropertyList>

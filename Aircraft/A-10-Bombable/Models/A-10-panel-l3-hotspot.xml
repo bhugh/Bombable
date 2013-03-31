@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE PropertyList SYSTEM "panel.dtd">
+
+<PropertyList>
+	<name>A-10 l3 Panel Hotspots</name>
+	<background>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</background>
+	<w>1024</w>
+	<h>768</h>
+	<y-offset>0</y-offset>
+	<instruments>
+		<instrument>
+			<name>l3 panel</name>
+			<y>384</y>
+			<w>1024</w>
+			<h>768</h>
+			<w-base>1024</w-base>
+			<h-base>1024</h-base>
+			<x>512</x>
+			<layers>
+				<layer>
+					<name>background</name>
+					<texture>
+					<path>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</path>
+					<!--<path>Aircraft/A-10-Bombable/Models/hotspotgrid.rgb</path>-->
+					<x1>0.0</x1>
+					<y1>0.0</y1>
+					<x2>1.0</x2>
+					<y2>1.0</y2>
+					</texture>
+				</layer>
+			</layers>
+
+			<!-- define hotspot actions below -->
+
+			<actions>
+
+				<!-- toggle Pitch SAS -->
+				<action>
+					<name>pitch-sas-toggle</name>
+					<button>0</button>
+					<x>100</x>
+					<y>-260</y>
+					<w>300</w>
+					<h>160</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>sim/model/A-10/controls/sas/pitch-sas-switch</property>
+					</binding>
+				</action>
+
+
+			</actions>
+		</instrument>
+	</instruments>
+
+</PropertyList>

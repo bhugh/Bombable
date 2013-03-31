@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<sim>
+		<description type="string">Sopwith Camel 1F.1 (uiuc, with guns)</description>
+		<author type="string">AJ MacLeod, Vivian Meazza, Michael Selig(FDM)</author>
+		<status type="string">early production, guns don't work</status>
+
+		<flight-model>larcsim</flight-model>
+		<aero>uiuc</aero>
+		<aircraft-dir>Aircraft/UIUC/sopwithCamel-v2-nl</aircraft-dir>
+
+		<startup>
+			<splash-texture>Aircraft/sopwithCamel-Bombable/splash.rgb</splash-texture>
+		</startup>
+
+		<sound> 
+			<path>Aircraft/sopwithCamel-Bombable/Sounds/uiuc/sopwithCamel-sound.xml</path>
+		</sound>
+
+		<virtual-cockpit archive="y">true</virtual-cockpit>
+		<allow-toggle-cockpit archive="y">false</allow-toggle-cockpit>
+
+		<model>
+			<path>Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</path>
+			<texture-path>Aircraft/sopwithCamel-Bombable/Models/Textures</texture-path>
+			<camel>
+				<extra-details archive="y" type="bool">true</extra-details>
+			</camel>
+		</model>
+
+
+		<submodels>
+			<serviceable type="bool">true</serviceable>
+			<path>Aircraft/sopwithCamel-Bombable/Models/camel-alternative-submodels.xml</path>
+		</submodels>
+		
+	  <multiplay>
+			<generic>
+  		<string n="9"
+							 type="string"/>
+			</generic>
+		</multiplay>
+
+		<view n="0">
+			<internal archive="y">true</internal>
+			<config>
+				<x-offset-m archive="y">0.0</x-offset-m> <!--Right-->
+				<y-offset-m archive="y">0.6563</y-offset-m> <!--Up-->
+				<z-offset-m archive="y">0.475</z-offset-m> <!--Back-->
+				<pitch-offset-deg>-15</pitch-offset-deg>
+				<default-field-of-view-deg>60</default-field-of-view-deg>
+			</config>
+		</view>
+
+		<menubar>
+			<default>
+				<menu n="10">
+					<label>Camel</label>
+					<enabled type="bool">true</enabled>
+					<item>
+						<label>Toggle extra details</label>
+						<binding>
+							<command>property-toggle</command>
+							<property>sim/model/camel/extra-details</property>
+						</binding>
+					</item>
+				</menu>
+			</default>
+  		</menubar>
+
+	</sim>
+        <input>
+
+            <keyboard>
+                  <!-- Fire gun -->
+                  <!-- We do both triggers just to be safe -->
+                  <key n="101">
+                     <name>e</name>
+                     <desc>Gun Trigger</desc> 
+                     <binding>
+                      <command>property-assign</command>
+                      <property>ai/submodels/trigger</property>
+                      <value>true</value>
+                     </binding>
+                     <binding>
+                      <command>property-assign</command>
+                      <property>controls/armament/trigger</property>
+                      <value>true</value>
+                     </binding>
+                     <mod-up>
+                      <binding>
+                       <command>property-assign</command>
+                       <property>ai/submodels/trigger</property>
+                       <value>false</value>
+                      </binding>
+                      <binding>
+                      <command>property-assign</command>
+                      <property>controls/armament/trigger</property>
+                      <value>false</value>
+                     </binding> 
+                     </mod-up>
+                  </key>
+            </keyboard>
+       </input>
+
+
+	<nasal>
+		<camel>
+			<file>Aircraft/sopwithCamel-Bombable/Models/camel.nas</file>
+			<file>Aircraft/sopwithCamel-Bombable/Nasal/weapons.nas</file>
+		</camel>
+	</nasal>
+</PropertyList>

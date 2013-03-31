@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <path>panel.ac</path>
+
+  <animation>
+    <!-- Objets opaques -->
+    <object-name>panel</object-name>
+
+    <!-- Objets transparents -->
+  </animation>
+
+  <!-- ai -->
+  <model>
+    <path>AI/Aircraft/F6F-Hellcat-Bombable/Models/Interior/Panel/Instruments/ai/ai.xml</path>
+    <offsets>
+      <x-m> 0.056 </x-m>
+      <y-m> 0.147 </y-m>
+      <z-m> 0.004 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+  <!-- alt -->
+  <model>
+    <path>AI/Aircraft/F6F-Hellcat-Bombable/Models/Interior/Panel/Instruments/alt/alt.xml</path>
+    <offsets>
+      <x-m>  0.058 </x-m>
+      <y-m> -0.245 </y-m>
+      <z-m> -0.157 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+  <!-- asi -->
+  <model>
+    <path>AI/Aircraft/F6F-Hellcat-Bombable/Models/Interior/Panel/Instruments/asi/asi.xml</path>
+    <offsets>
+      <x-m>  0.056 </x-m>
+      <y-m> -0.121 </y-m>
+      <z-m> -0.157 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+  <!-- turn -->
+  <model>
+    <path>AI/Aircraft/F6F-Hellcat-Bombable/Models/Interior/Panel/Instruments/turn/turn.xml</path>
+    <offsets>
+      <x-m>  0.060 </x-m>
+      <y-m> -0.002 </y-m>
+      <z-m> -0.157 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+  <!-- rpm -->
+  <model>
+    <path>AI/Aircraft/F6F-Hellcat-Bombable/Models/Interior/Panel/Instruments/rpm/rpm.xml</path>
+    <offsets>
+      <x-m>  0.058 </x-m>
+      <y-m>  0.295 </y-m>
+      <z-m> -0.038 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+  <!-- compass -->
+  <model>
+    <path>AI/Aircraft/F6F-Hellcat-Bombable/Models/Interior/Panel/Instruments/compass/compass.xml</path>
+    <offsets>
+      <x-m>  0.057 </x-m>
+      <y-m> -0.160 </y-m>
+      <z-m>  0.020 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+  <!-- vsi -->
+  <model>
+    <path>AI/Aircraft/F6F-Hellcat-Bombable/Models/Interior/Panel/Instruments/vsi/vsi.xml</path>
+    <offsets>
+      <x-m>  0.056 </x-m>
+      <y-m>  0.121 </y-m>
+      <z-m> -0.157 </z-m>
+      <roll-deg>    0 </roll-deg>
+      <pitch-deg>   0 </pitch-deg>
+      <heading-deg> 0 </heading-deg>
+    </offsets>
+  </model>
+
+</PropertyList>
+

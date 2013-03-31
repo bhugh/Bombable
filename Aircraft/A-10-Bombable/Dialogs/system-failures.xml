@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+<!-- A-10 system failure dialog box -->
+
+	<name>A10-system-failures</name>
+	<width>450</width>
+	<height>270</height>
+	<modal>false</modal>
+	
+	<text>
+		<x>10</x>
+		<y>240</y>
+		<label>System Failures (Uncheck a system to fail it.)</label>
+	</text>
+	
+	<!-- Column 1 of checkbox -->
+	<checkbox>
+		<x>30</x>
+		<y>210</y>
+		<width>20</width>
+		<height>20</height>
+		<label>Left hydraulic system</label>
+		<property>/controls/engines/engine[0]/faults/hydraulic-pump-serviceable</property>
+	</checkbox>
+
+	<checkbox>
+		<x>30</x>
+		<y>180</y>
+		<width>20</width>
+		<height>20</height>
+		<label>Right hydraulic system</label>
+		<property>/controls/engines/engine[1]/faults/hydraulic-pump-serviceable</property>
+	</checkbox>
+
+	<checkbox>
+		<x>30</x>
+		<y>150</y>
+		<width>20</width>
+		<height>20</height>
+		<label>Left engine</label>
+		<property>/controls/engines/engine[0]/faults/serviceable</property>
+	</checkbox>
+
+	<checkbox>
+		<x>30</x>
+		<y>120</y>
+		<width>20</width>
+		<height>20</height>
+		<label>Right engine</label>
+		<property>/controls/engines/engine[1]/faults/serviceable</property>
+	</checkbox>
+ 
+	<checkbox>
+		<x>30</x>
+		<y>90</y>
+		<width>20</width>
+		<height>20</height>
+		<label>APU</label>
+		<property>/controls/APU/serviceable</property>
+	</checkbox>
+ 
+	<checkbox>
+		<x>30</x>
+		<y>60</y>
+		<width>20</width>
+		<height>20</height>
+		<label>APU generator</label>
+		<property>/controls/APU/generator-serviceable</property>
+	</checkbox>
+	
+	<!-- Column 2 of checkbox -->
+	<checkbox>
+		<x>225</x>
+		<y>210</y>
+		<width>20</width>
+		<height>20</height>
+		<label>Left wing fuel tank pump</label>
+		<property>/controls/fuel/tank[0]/boost-pump-serviceable</property>
+	</checkbox>
+	
+	<checkbox>
+		<x>225</x>
+		<y>180</y>
+		<width>20</width>
+		<height>20</height>
+		<label>Left main fuel tank pump</label>
+		<property>/controls/fuel/tank[1]/boost-pump-serviceable</property>
+	</checkbox>
+	
+	<checkbox>
+		<x>225</x>
+		<y>150</y>
+		<width>20</width>
+		<height>20</height>
+		<label>Right main fuel tank pump</label>
+		<property>/controls/fuel/tank[2]/boost-pump-serviceable</property>
+	</checkbox>
+	
+	<checkbox>
+		<x>225</x>
+		<y>120</y>
+		<width>20</width>
+		<height>20</height>
+		<label>Right wing fuel tank pump</label>
+		<property>/controls/fuel/tank[3]/boost-pump-serviceable</property>
+	</checkbox>
+	
+	<checkbox>
+		<x>225</x>
+		<y>90</y>
+		<width>20</width>
+		<height>20</height>
+		<label>DC pump</label>
+		<property>/controls/fuel/tank[1]/DC-boost-pump-serviceable</property>
+	</checkbox>
+
+	<group>
+		<y>10</y>
+
+		<button>
+			<x>95</x>
+			<y>0</y>
+			<legend>OK</legend>
+			<default>true</default>
+			<equal>true</equal>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+
+		<button>
+			<x>145</x>
+			<y>0</y>
+			<legend>Apply</legend>
+			<equal>true</equal>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</button>
+
+		<button>
+			<x>225</x>
+			<y>0</y>
+			<legend>Reset</legend>
+			<equal>true</equal>
+			<binding>
+				<command>dialog-update</command>
+			</binding>
+		</button>
+
+		<button>
+			<x>305</x>
+			<y>0</y>
+			<legend>Cancel</legend>
+			<equal>true</equal>
+			<key>Esc</key>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
+
+</PropertyList>

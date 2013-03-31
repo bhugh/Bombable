@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE PropertyList SYSTEM "panel.dtd">
+
+<PropertyList>
+	<name>ufo radar panel</name>
+	<background>Aircraft/ufo-Bombable/Instruments/empty.rgb</background>
+	<w>1024</w>
+	<h>768</h>
+	<y-offset>0</y-offset>
+	<view-height>768</view-height>
+
+	<instruments>
+		<instrument include="ehsi.xml">
+			<name>radar</name>
+			<x>128</x>
+			<y>640</y>
+			<w>256</w>
+			<h>256</h>
+		</instrument>
+	</instruments>
+</PropertyList>

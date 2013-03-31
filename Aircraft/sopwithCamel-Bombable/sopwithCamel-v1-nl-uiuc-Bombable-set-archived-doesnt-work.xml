@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+Sopwith Camel simulation config.  This file ties together all the
+components used by FGFS to represent the flight data model, instrument
+panel, and external model.
+
+Flight model details: 
+Aircraft/UIUC/sopwithCamel-v1-nl/README.sopwithCamel.html
+
+External model details:  
+Aircraft/sopwithCamel-Bombable/Models/uiuc/sopwithCamel/README.TXT
+(courtesy of Scrubby PC, af_scrubbypc@hotmail.com)
+
+Last update: Nov 9, 2002 Michael Selig, m-selig@uiuc.edu
+************************************************************************
+-->
+
+<PropertyList>
+
+ <sim>
+
+  <description>Sopwith Camel (larcsim, Guns/Bombable)</description>
+  <author>Michael Selig, Scrubby PC</author>
+  <status>production, guns don't work</status>
+
+  <flight-model>larcsim</flight-model>
+  <aero>uiuc-bombable</aero>
+  <aircraft-dir>Aircraft/UIUC/sopwithCamel-v1-nl</aircraft-dir>
+
+  <sound>
+   <path>Aircraft/sopwithCamel-Bombable/Sounds/uiuc/sopwithCamel-sound.xml</path>
+  </sound>
+
+  <panel>
+   <path>Aircraft/Generic/Panels/generic-vfr-panel.xml</path>
+   <visibility>true</visibility>
+  </panel>
+
+  <panel_2>
+   <path>Aircraft/Generic/Panels/generic-trans-mini-panel.xml</path>
+  </panel_2>
+
+  <model>
+   <path>Aircraft/sopwithCamel-Bombable/Models/uiuc/sopwithCamel/sopwithCamel-model.xml</path>
+  </model>
+
+  <submodels>
+	<serviceable type="bool">true</serviceable>
+        <path>Aircraft/sopwithCamel-Bombable/Models/camel-alternative-submodels.xml</path>
+  </submodels>
+
+
+  <view n="1">
+   <config>
+    <eye-heading-deg-path>/orientation/gamma-horiz-deg</eye-heading-deg-path>
+   </config>
+  </view>
+  
+  <multiplay>
+			<generic>
+				<string n="9"
+							 type="string"/>
+			</generic>
+	</multiplay>
+
+  <help>
+    <title>Sopwith Camel</title>
+    <key>
+	<name>e</name>
+	<desc>fire guns </desc>
+    </key>
+    <line></line>
+    <line>To fire the gun with your joystick,</line>
+    <line>set the trigger to toggle property</line>
+    <line>ai/submodels/trigger</line>
+  </help>
+
+
+ </sim>
+ <input>
+	       <keyboard>
+                        <!-- Fire gun -->
+                        <!-- We do both triggers just to be safe -->
+                        <key n="101">
+                           <name>e</name>
+                           <desc>Gun Trigger</desc> 
+                           <binding>
+                            <command>property-assign</command>
+                            <property>ai/submodels/trigger</property>
+                            <value>true</value>
+                           </binding>
+                           <binding>
+                            <command>property-assign</command>
+                            <property>controls/armament/trigger</property>
+                            <value>true</value>
+                           </binding>
+                           <mod-up>
+                            <binding>
+                             <command>property-assign</command>
+                             <property>ai/submodels/trigger</property>
+                             <value>false</value>
+                            </binding>
+                            <binding>
+                            <command>property-assign</command>
+                            <property>controls/armament/trigger</property>
+                            <value>false</value>
+                           </binding> 
+                           </mod-up>
+                        </key>
+         </keyboard>
+ </input>
+
+ <nasal>
+			<file>Aircraft/sopwithCamel-Bombable/Nasal/weapons.nas</file> 
+ </nasal>
+ 
+</PropertyList>

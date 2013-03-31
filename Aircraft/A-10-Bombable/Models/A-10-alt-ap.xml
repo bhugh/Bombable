@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<name>altitude autopilot</name>
+	<path>A-10-alt-ap.ac</path>
+
+	
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>50</max-m>
+	</animation>
+
+</PropertyList>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <sim>
+    <model>
+      <A6M2>
+        <livery>
+          <variant type="string">Camouflage</variant>
+          <material>
+            <LHaileron_1>
+              <texture>Zero camo.png</texture>
+            </LHaileron_1>
+
+            <RHaileron_1>
+              <texture>Zero camo.png</texture>
+            </RHaileron_1>
+
+            <RHflap_1>
+              <texture>Zero camo.png</texture>
+            </RHflap_1>
+
+            <LHflap>
+              <texture>Zero camo.png</texture>
+            </LHflap>
+
+            <Fuselage>
+              <texture>Zero camo.png</texture>
+            </Fuselage>
+
+            <Elevator>
+              <texture>Zero camo.png</texture>
+            </Elevator>
+
+            <Hstab>
+              <texture>Zero camo.png</texture>
+            </Hstab>
+
+            <canopy>
+              <texture>Zero camo.png</texture>
+            </canopy>
+
+            <canopy.001>
+              <texture>Zero camo.png</texture>
+            </canopy.001>
+
+            <Rudder>
+              <texture>Zero camo.png</texture>
+            </Rudder>
+
+            <Wing>
+              <texture>Zero camo.png</texture>
+            </Wing>
+          </material>
+        </livery>
+      </A6M2>
+    </model>
+  </sim>
+</PropertyList>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <path>cyltemp.ac</path>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>Ctemp.needle</object-name>
+    <property>/engines/engine/cyl-temp</property>
+    <interpolation>
+    <entry><ind>0</ind><dep>0</dep></entry>
+    <entry><ind>1.0</ind><dep>80</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.023</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+</PropertyList>

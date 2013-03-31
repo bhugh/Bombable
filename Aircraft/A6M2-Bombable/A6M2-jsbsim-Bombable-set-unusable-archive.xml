@@ -1,0 +1,36 @@
+<!--
+    ************************************************************************
+    A6M2 'Zero'
+    Dec 2006 Syd Adams and Tat Nishioka
+    ************************************************************************
+  -->
+
+<PropertyList include="A6M2-base.xml">
+  <sim>
+    <description> A6M2 Zero (JSBSim, Guns/Bombable) </description>
+    
+    <flight-model>jsb</flight-model>
+    <aero>A6M2-jsbsim</aero>
+
+    <panel>
+      <path>Aircraft/A6M2-Bombable/Panels/Test-panel.xml</path>
+      <visibility archive="y">true</visibility>
+    </panel> 
+  </sim>
+
+  <consumables>
+    <fuel>
+      <tank n="0">
+	<level-gal_us>10</level-gal_us>
+      </tank>
+      <tank n="1">
+	<level-gal_us>10</level-gal_us>
+      </tank>
+      <tank n="2">
+	<level-gal_us>10</level-gal_us>
+      </tank>
+    </fuel>
+  </consumables>
+</PropertyList>
+
+

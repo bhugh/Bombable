@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<!DOCTYPE PropertyList SYSTEM "panel.dtd">
+
+<PropertyList>
+
+  <name>A-10 r3 Panel Hotspots</name>
+  <background>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</background>
+  <w>1024</w>
+  <h>768</h>
+  <y-offset>0</y-offset>
+
+  <instruments> 
+    <instrument> 
+      <name>r3 panel</name>
+      <y>384</y>
+      <w>1024</w>
+      <h>768</h>
+      <w-base>1024</w-base>
+      <h-base>1024</h-base>
+      <x>512</x>
+  
+      <layers> 
+  
+        <layer> 
+          <name>background</name>
+          <texture> 
+            <path>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</path>
+            <x1>0.0</x1>
+            <y1>0.0</y1>
+            <x2>1.0</x2>
+            <y2>1.0</y2>
+          </texture>
+        </layer>
+  
+      <!--<layer>
+        <name>grid</name>
+        <texture>
+          <path>Aircraft/A-10-Bombable/Models/hotspotgrid.rgb</path>
+          <x1>0.0</x1>
+          <y1>0.0</y1>
+          <x2>1.0</x2>
+          <y2>1.0</y2>
+        </texture>
+      </layer>-->
+  
+      </layers>
+  
+  <!-- define hotspot actions below -->
+  
+  
+      <actions> 
+  
+  <!-- strobe-switch-->
+        <action>
+          <name>strobe-lights-toggle</name>
+          <button>0</button>
+          <x>240</x>
+          <y>5</y>
+          <w>120</w>
+          <h>65</h>
+          <binding>
+            <command>property-toggle</command>
+            <property>controls/lighting/strobe</property>
+          </binding>
+        </action>
+  
+        <!-- nav-flash-switch-->
+        <action>
+          <name>nav-lights-switch-up</name>
+            <button>0</button>
+            <x>-330</x>
+            <y>40</y>
+            <w>120</w>
+            <h>32</h>
+            <binding>
+              <command>nasal</command>
+              <script>electrical.nav_lights_switcher(1)</script>
+            </binding>
+         </action>
+      
+        <action>
+          <name>nav-lights-switch-down</name>
+          <button>0</button>
+          <x>-330</x>
+          <y>5</y>
+          <w>120</w>
+          <h>32</h>
+          <binding>
+            <command>nasal</command>
+            <script>electrical.nav_lights_switcher(-1)</script>
+          </binding>
+         </action>
+  
+        <!-- formation-->
+        <action>
+          <name>formation-light-up</name>
+          <button>0</button>
+          <x>40</x>
+          <y>5</y>
+          <w>150</w>
+          <h>65</h>
+          <binding>
+            <command>property-adjust</command>
+            <property>sim/model/A-10/controls/lighting/formation</property>
+            <step>0.1</step>
+            <max>1.0</max>
+          </binding>
+        </action>
+  
+        <action>
+          <name>formation-light-down</name>
+          <button>0</button>
+          <x>-120</x>
+          <y>5</y>
+          <w>150</w>
+          <h>65</h>
+          <binding>
+            <command>property-adjust</command>
+            <property>sim/model/A-10/controls/lighting/formation</property>
+            <step>-0.1</step>
+            <min>0.0</min>
+          </binding>
+        </action>
+  
+        <!-- panel-norm-->
+        <action>
+          <name>fly-inst-light-up</name>
+          <button>0</button>
+          <x>40</x>
+          <y>-160</y>
+          <w>150</w>
+          <h>65</h>
+          <binding>
+            <command>property-adjust</command>
+            <property>controls/lighting/instruments-norm</property>
+            <step>0.1</step>
+          </binding>
+        </action>
+  
+        <action>
+          <name>fly-inst-light-down</name>
+          <button>0</button>
+          <x>-120</x>
+          <y>-160</y>
+          <w>150</w>
+          <h>65</h>
+          <binding>
+            <command>property-adjust</command>
+            <property>controls/lighting/instruments-norm</property>
+            <step>-0.1</step>
+          </binding>
+        </action>
+  
+        <!-- instruments-norm-->
+        <action>
+          <name>fly-inst-light-up</name>
+          <button>0</button>
+          <x>250</x>
+          <y>-232</y>
+          <w>150</w>
+          <h>65</h>
+          <binding>
+            <command>property-adjust</command>
+            <property>controls/lighting/panel-norm</property>
+            <step>0.1</step>
+          </binding>
+        </action>
+  
+        <action>
+          <name>fly-inst-light-down</name>
+          <button>0</button>
+          <x>85</x>
+          <y>-232</y>
+          <w>150</w>
+          <h>65</h>
+          <binding>
+            <command>property-adjust</command>
+            <property>controls/lighting/panel-norm</property>
+            <step>-0.1</step>
+          </binding>
+        </action>
+  
+      </actions> 
+  
+    </instrument>
+  </instruments>
+
+</PropertyList>

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>cambelg.ac</path>
+
+ <offsets>
+  <z-m>0</z-m>
+  <x-m>0</x-m>
+  <pitch-deg>0</pitch-deg>
+ </offsets>
+
+ <animation>
+  <type>select</type>
+  <object-name>Propeller</object-name>
+  <condition>
+   <less-than>
+    <property>/engines/engine[0]/rpm</property>
+    <value>1000</value>
+   </less-than>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>PropDisk</object-name>
+  <condition>
+   <greater-than>
+    <property>/engines/engine[0]/rpm</property>
+    <value>400</value>
+   </greater-than>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>spin</type>
+  <object-name>Propeller</object-name>
+  <property>/engines/engine[0]/rpm</property>
+  <factor>-0.5</factor>
+  <center>
+   <x-m>1.50</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.0</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Rudder</object-name>
+  <property>/controls/flight/rudder</property>
+  <factor>30.0</factor>
+
+  <center>
+   <x-m>3.950000</x-m>
+   <y-m>0.000000</y-m>
+   <z-m>0.600000</z-m>
+  </center>
+
+  <axis>
+   <x>0.000000</x>
+   <y>0.000000</y>
+   <z>1.000000</z>
+  </axis>
+ </animation>
+
+
+
+</PropertyList>

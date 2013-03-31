@@ -1,0 +1,369 @@
+<!--?xml version="1.0"? -->
+<!-- the line above remarked out because it causes browsers to try to display 
+the file as XML rather than plain text.  To actually use this file, remove the 
+"!--" and "--" in the line above -->
+
+<PropertyList>
+  <!--Towards historically accurate A6M2 Ammo by Brent Hugh
+      Copyright (C) 2010  Brent Hugh  (brent@brenthugh.com)
+      This file is licensed under the GPL license version 2 or later.
+  -->
+  <!-- 
+   Machine guns are triggered by /controls/armament/trigger
+   Cannons are triggered by /controls/armament/trigger1 
+  -->
+  
+  <!-- Submodels are objects which can be dropped or launched from the user aircraft.
+      The trigger is a boolean property, which you define, which when "true" causes
+      the submodel to be released/launched. 
+      A submodel will create an AIBallistic object which will follow a ballistic path.
+      By default one submodel will be released when the corresponding trigger is "true".
+      The initial conditions (IC) define the object's starting point (relative to the
+      user aircraft's "reported position"), and its initial speed and direction
+      (relative to the user aircraft).  If you want to release many similar objects
+      with similar IC, then you may use the <repeat>, <delay> and <count> properties
+      to define this.  The allowed properties are:
+
+      <name>         The name of the submodel.
+      <model>        The path to the visual model.
+      <trigger>      The property which will act as the trigger. 
+      <speed>        Initial speed, in feet/sec, relative to user aircraft.
+      <repeat>       Set "true" if you want multiple releases of this submodel.
+      <delay>        Time, in seconds, between repeated releases.
+      <count>        Number of submodels available for multiple release.
+      <slaved>       Not used yet.
+      <x-offset>     Submodel's initial fore/aft position relative to user aircraft.  
+                     Fore is positive.
+      <y-offset>     Submodel's initial left/right position relative to user aircraft.  
+                     Right is positive.
+      <z-offset>     Submodel's initial up/down position relative to user aircraft.  
+                     Up is positive.
+      <yaw-offset>   Submodel's initial azimuth, in degrees, relative to user aircraft's
+                     nose.  Right is positive.
+      <pitch-offset> Submodel's initial elevation, in degrees, relative to user aircraft's
+                     pitch.  Up is positive.
+      <cd>           Coefficient of drag.  A value about 0.193 is reasonable for a bullet.                     
+      <eda>          Equivalent Drag Area in ft squared.  The object is assumed to have a 
+                     mass of 0.03 slugs and a drag coefficient of 0.295, and sea-level air
+                     density is assumed.  Adjust the EDA to give the model the ballistics you need.
+                     The default value is 0.007.
+      <life>         Life span in seconds.  Default is 900.0.
+      <buoyancy>     In ft/sec/sec.  Works opposite acceleration of gravity.  For example, if
+                     set to 32 the submodel will feel no gravity. If greater than 32 the object
+                     will rise. Default is 0.
+      <wind>         Set to true if you want the submodel to react to the wind.  Default is "false". 
+-->
+
+
+<!--
+
+According to Wikipedia the A6M2 used uses:
+
+
+2× 7.7 mm (0.303 in) Type 97 machine guns in the engine cowling, with 500 rounds per gun. 
+2× 20 mm Type 99 cannons in the wings, with 60 rounds per gun. 
+
+
+The Type 97
+
+For details, see: http://en.wikipedia.org/wiki/Type_97_machine_gun
+
+The 7.7 mm ammo is essentially the same as the .303 (British) cartridge; see 
+http://en.wikipedia.org/wiki/7.7x58mm_Arisaka
+
+ The bullet weight was 174 gr, muzzle velocity 724 m/s (2375 ft/s).  It fires 
+500 round/min, with an effective range of 540 m and maximum range (indirect 
+fire) of about 4500 yd.  It can fire 500 rounds per minute.
+
+174 gr = 11.3 grams = 0.0249122356 lb.  At muzzle velocity it can travel 4500 yd 
+in about 5.5 seconds but of course it isn't going at muzzle velocity after it 
+leaves the muzzle . . . say lifetime of 15 seconds would be pretty much all we'd
+need.  A shorter lifetime might help framerate in FG, as 15 definitely kills it 
+when you have fired a lot of rounds - let's go with 7.5.
+
+And 500 rounds per minute means 8.33 per second or a delay of 0.12 seconds.
+
+I don't know what proportion of rounds were tracers.  One out of four seems a 
+common proportion today. 
+
+That would mean a tracer every 0.48 seconds and 125 tracers out of 500 rounds. 
+Let's make the L and R gun timings just a bit different - if they are exactly 
+synchronized it seems a bit fake.  
+
+It was not possible to reload in the air, so let's include that bit of realism.
+
+cd: the given value of 0.193 is probably pretty reasonable for a bullet or 
+similarly shaped object traveling at less than 1000 ft/sec. http://en.wikipedia.
+org/wiki/Drag_coefficient indicates cd of 0.295 for a bullet (subsonic, and with 
+flat (ie not pointed or "ogive" frontal area). This reference gives values 
+between about 0.15 and .225 for CD of a typical .308 bullet traveling at less 
+than 1000 ft/sec: http://www.frfrogspad.com/extbal.htm 
+
+eda is a complete guess; no data.
+
+
+Type 99-1 cannon
+
+Details: http://en.wikipedia.org/wiki/Type_99_cannon
+
+Rate of fire: 520 rounds/min  or a round every 0.115 seconds 
+Muzzle velocity: 600 m/s (1970 ft/s) 
+Caliber: 20 mm 
+60 rounds
+
+Type 99-2 cannon was introduced in 1942 and used in the A6M3 but apparently never in the A6M2.
+
+Below is a helpful summary of the relative effectiveness of this cannon and ammo 
+from http://eaw.wikispaces.com/Technical+Tools--Gun+Power
+
+GUN 20mm Type 99-1
+CARTRIDGE 20x72RB
+RoF RPS 8
+CARTRIDGE POWER 12
+GUN POWER 108
+GUN WEIGHT KG 24
+GUN EFFICIENCY  4.5
+
+CARTRIDGE 20x72RB
+TYPE HE
+ROUND WEIGHT 200
+MV M/SEC 600
+PROJECTILE WEIGHT GM 128
+% HEI CONTENT  6
+DAMAGE  123
+POWER 12
+
+128 grams = 0.282191696 pounds
+
+Power is relative to rifle caliber rounds, which score a 1.  So this cannon is 
+about 12 times as powerful (in terms of causing damage) as a rifle or small-
+caliber machine gun round.  Most of this is due to increased mass compared with 
+the small-caliber bullet, but about 20% of the increase is due to incorporation 
+of incendiary material (high explosive, HE) in the round.
+
+eda we'll assume is 4X the value for the .303 round.  So 0.00236354 x 4 = 0.00945416
+
+-->
+
+
+  <submodel>
+    <name>left-guns-tracers</name>
+    <model>Aircraft/A6M2-Bombable/Models/guns/tracer.xml</model>
+    <trigger>/controls/armament/trigger1</trigger>
+    <speed>1970</speed>
+    <repeat>true</repeat>
+    <delay>0.46</delay>
+    <count>15</count>
+    <x-offset> 2.0</x-offset>
+    <y-offset>-4.50</y-offset>
+    <z-offset>-1.0</z-offset>
+    <yaw-offset>0.0</yaw-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>3.0</life>
+    <wind>false</wind>
+    <weight>0.282191696</weight>
+    <cd>0.193</cd>
+    <eda>0.00945416</eda> 
+  </submodel>
+
+  <submodel>
+    <name>left-guns-bullets</name>
+    <model>Models/Geometry/null.ac</model>
+    <trigger>/controls/armament/trigger1</trigger>
+    <speed>1970</speed>
+    <repeat>true</repeat>
+    <delay>0.115</delay>
+    <count>60</count>
+    <x-offset>  2.0</x-offset>
+    <y-offset> -4.50</y-offset>
+    <z-offset> -1.0</z-offset>
+    <yaw-offset>0.2578</yaw-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>7.5</life>
+    <wind>false</wind>
+    <weight>0.282191696</weight>
+    <cd>0.193</cd>
+    <eda>0.00945416</eda> 
+    <collision>true</collision>
+    <collision-report>sim/ai/aircraft/collision/bullet</collision-report>
+    <impact>true</impact>
+    <impact-report>sim/ai/aircraft/impact/bullet</impact-report>
+    <submodel-path>Aircraft/A6M2-Bombable/Models/guns/bullet-submodel.xml</submodel-path>
+  </submodel>
+  
+ <submodel>
+    <name>cowl-guns-tracers1</name>
+    <model>Aircraft/A6M2-Bombable/Models/guns/tracer.xml</model>
+    <trigger>/controls/armament/trigger</trigger>
+    <speed>2569</speed>
+    <repeat>true</repeat>
+    <delay>0.48</delay>
+    <count>125</count>
+    <x-offset> 2.0</x-offset>
+    <y-offset>-0.6</y-offset>
+    <z-offset>1.43</z-offset>
+    <yaw-offset>0.0</yaw-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>3.0</life>
+    <wind>false</wind>
+    <weight>0.0249122356</weight>
+    <cd>0.193</cd>
+    <eda>0.00236354</eda> 
+  </submodel>
+
+  <submodel>
+    <name>cowl-guns-bullets</name>
+    <model>Models/Geometry/null.ac</model>
+    <trigger>/controls/armament/trigger</trigger>
+    <speed>2569</speed>
+    <repeat>true</repeat>
+    <delay>0.12</delay>
+    <count>500</count>
+    <x-offset> 2.0</x-offset>
+    <y-offset>-0.6</y-offset>
+    <z-offset>1.43</z-offset>
+    <yaw-offset>0.2578</yaw-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>7.5</life>
+    <wind>false</wind>
+    <weight>0.0249122356</weight>
+    <cd>0.193</cd>
+    <eda>0.00236354</eda> 
+    <collision>true</collision>
+    <collision-report>sim/ai/aircraft/collision/bullet</collision-report>
+    <impact>true</impact>
+    <impact-report>sim/ai/aircraft/impact/bullet</impact-report>
+    <submodel-path>Aircraft/A6M2-Bombable/Models/guns/bullet-submodel.xml</submodel-path>
+  </submodel>
+
+ <submodel>
+    <name>cowl-guns-tracers2</name>
+    <model>Aircraft/A6M2-Bombable/Models/guns/tracer.xml</model>
+    <trigger>/controls/armament/trigger</trigger>
+    <speed>2569</speed>
+    <repeat>true</repeat>
+    <delay>0.48</delay>
+    <count>125</count>
+    <x-offset> 2.0</x-offset>
+    <y-offset>0.6</y-offset>
+    <z-offset>1.43</z-offset>
+    <yaw-offset>0.0</yaw-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>3.0</life>
+    <wind>false</wind>
+    <weight>0.0249122356</weight>
+    <cd>0.193</cd>
+    <eda>0.00236354</eda> 
+  </submodel>
+
+  <submodel>
+    <name>cowl-guns-bullets2</name>
+    <model>Models/Geometry/null.ac</model>
+    <trigger>/controls/armament/trigger</trigger>
+    <speed>2569</speed>
+    <repeat>true</repeat>
+    <delay>0.12</delay>
+    <count>500</count>
+    <x-offset> 2.0</x-offset>
+    <y-offset>0.60</y-offset>
+    <z-offset>1.43</z-offset>
+    <yaw-offset>0.2578</yaw-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>7.5</life>
+    <wind>false</wind>
+    <weight>0.0249122356</weight>
+    <cd>0.193</cd>
+    <eda>0.00236354</eda> 
+    <collision>true</collision>
+    <collision-report>sim/ai/aircraft/collision/bullet</collision-report>
+    <impact>true</impact>
+    <impact-report>sim/ai/aircraft/impact/bullet</impact-report>
+    <submodel-path>Aircraft/A6M2-Bombable/Models/guns/bullet-submodel.xml</submodel-path>
+  </submodel>
+
+  <submodel>
+    <name>right-guns-tracers</name>
+    <model>Aircraft/A6M2-Bombable/Models/guns/tracer.xml</model>
+    <trigger>/controls/armament/trigger</trigger>
+    <speed>1970</speed>
+    <repeat>true</repeat>
+    <delay>0.44</delay>
+    <count>15</count>
+    <x-offset> 2.0</x-offset>
+    <y-offset>4.50</y-offset>
+    <z-offset>-1.0</z-offset>
+    <yaw-offset>0.0</yaw-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>3.0</life>
+    <wind>false</wind>
+    <weight>0.282191696</weight>
+    <cd>0.193</cd>
+    <eda>0.00945416</eda> 
+  </submodel>
+
+  <submodel>
+    <name>right-guns-bullets</name>
+    <model>Models/Geometry/null.ac</model>
+    <trigger>/controls/armament/trigger</trigger>
+    <speed>1970</speed>
+    <repeat>true</repeat>
+    <delay>0.11</delay>
+    <count>60</count>
+    <x-offset>  2.0</x-offset>
+    <y-offset> 4.50</y-offset>
+    <z-offset> -1.0</z-offset>
+    <yaw-offset>0.2578</yaw-offset>
+    <pitch-offset>0</pitch-offset>
+    <life>7.5</life>
+    <wind>false</wind>
+    <weight>0.282191696</weight>
+    <cd>0.193</cd>
+    <eda>0.00945416</eda> 
+    <collision>true</collision>
+    <collision-report>sim/ai/aircraft/collision/bullet</collision-report>
+    <impact>true</impact>
+    <impact-report>sim/ai/aircraft/impact/bullet</impact-report>
+    <submodel-path>Aircraft/A6M2-Bombable/Models/guns/bullet-submodel.xml</submodel-path>
+  </submodel>
+
+  <submodel> 
+    <name>left-smoke</name>
+    <model>Aircraft/A6M2-Bombable/Models/guns/smoke.xml</model>
+    <trigger>controls/armament/trigger1</trigger>
+    <speed>10</speed>
+    <repeat>true</repeat>
+    <delay>0.0375</delay>
+    <count>1200</count>
+    <x-offset> 2.0</x-offset>
+    <y-offset>4.50</y-offset>
+    <z-offset>-1.0</z-offset>
+    <yaw-offset>0.0</yaw-offset>
+    <pitch-offset>0.0</pitch-offset>
+    <eda>10</eda>
+    <wind>true</wind>
+    <buoyancy>33</buoyancy>
+    <life>1</life>
+  </submodel>
+
+  <submodel> 
+    <name>right-smoke</name>
+    <model>Aircraft/A6M2-Bombable/Models/guns/smoke.xml</model>
+    <trigger>controls/armament/trigger1</trigger>
+    <speed>10</speed>
+    <repeat>true</repeat>
+    <delay>0.0375</delay>
+    <count>1200</count>
+    <x-offset> 2.0</x-offset>
+    <y-offset>-4.50</y-offset>
+    <z-offset>-1.0</z-offset>
+    <yaw-offset>0.0</yaw-offset>
+    <pitch-offset>0.0</pitch-offset>
+    <eda>10</eda>
+    <wind>true</wind>
+    <buoyancy>33</buoyancy>
+    <life>1</life>
+  </submodel>
+
+
+
+</PropertyList>

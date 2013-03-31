@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+
+<PropertyList> 
+	<path>A-10-ld-gear-panel.ac</path>
+
+	<!-- flaps guauge -->
+	<animation>
+		<name>flaps</name>
+		<type>rotate</type>
+		<object-name>needle</object-name>
+		<property>surface-positions/left-flap-pos-norm</property>
+		<interpolation> 
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>0.333</ind><dep>30</dep></entry>
+			<entry><ind>0.666</ind><dep>60</dep></entry>
+			<entry><ind>1</ind><dep>90</dep></entry>
+		</interpolation>
+		<center>
+			<y-m>-0.0167</y-m>
+			<z-m>-0.0314</z-m>
+		</center>
+		<axis><x>-1</x></axis>
+	</animation>
+
+	<!-- gear warning lights -->
+	<!-- nose -->
+	<animation>
+		<type>select</type>
+		<object-name>n-gear-warn</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/ldg-warning-system</property>
+				<value>24</value>
+			</greater-than>
+			<greater-than>
+				<property>gear/gear[0]/position-norm</property>
+				<value>0</value>
+			</greater-than>
+			<less-than>
+				<property>gear/gear[0]/position-norm</property>
+				<value>1</value>
+			</less-than>
+		</condition>
+	</animation>
+
+	<!-- left -->
+	<animation>
+		<type>select</type>
+		<object-name>l-gear-warn</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/ldg-warning-system</property>
+				<value>24</value>
+			</greater-than>
+			<greater-than>
+				<property>gear/gear[1]/position-norm</property>
+				<value>0</value>
+			</greater-than>
+			<less-than>
+				<property>gear/gear[1]/position-norm</property>
+				<value>1</value>
+			</less-than>
+		</condition>
+	</animation>
+
+	<!-- right -->
+	<animation>
+		<type>select</type>
+		<object-name>r-gear-warn</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/ldg-warning-system</property>
+				<value>24</value>
+			</greater-than>
+			<greater-than>
+				<property>gear/gear[2]/position-norm</property>
+				<value>0</value>
+			</greater-than>
+			<less-than>
+				<property>gear/gear[2]/position-norm</property>
+				<value>1</value>
+			</less-than>
+		</condition>
+	</animation>
+
+	<!-- gear safe lights -->
+	<!-- nose -->
+	<animation>
+		<type>select</type>
+		<object-name>n-gear-safe</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/ldg-warning-system</property>
+				<value>24</value>
+			</greater-than>
+			<equals>
+				<property>gear/gear[0]/position-norm</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<!-- left -->
+	<animation>
+		<type>select</type>
+		<object-name>l-gear-safe</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/ldg-warning-system</property>
+				<value>24</value>
+			</greater-than>
+			<equals>
+				<property>gear/gear[1]/position-norm</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<!-- right -->
+	<animation>
+		<type>select</type>
+		<object-name>r-gear-safe</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/ldg-warning-system</property>
+				<value>24</value>
+			</greater-than>
+			<equals>
+				<property>gear/gear[2]/position-norm</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<!-- ld-gear-handle -->
+	<animation>
+		<name>ld-gear-handle</name>
+		<type>rotate</type>
+		<object-name>ld-gear-handle</object-name>
+		<property>sim/model/A-10/controls/gear/ld-gear-handle-anim</property>
+		<factor>52</factor>
+		<center>
+			<x-m>-0.0121</x-m>
+			<z-m>-0.0177</z-m>
+		</center>
+		<axis><y>-1</y></axis>
+	</animation>
+
+
+	<!-- light-land-switch -->
+	<animation>
+		<object-name>light-land-switch</object-name>
+		<type>rotate</type>
+		<property>sim/model/A-10/controls/lighting/land-lights-switch</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>-30</dep></entry>
+			<entry><ind>1</ind><dep>0</dep></entry>
+			<entry><ind>2</ind><dep>30</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-0.0027</x-m>
+			<z-m>0.0636</z-m>
+		</center>
+		<axis><y>-1</y></axis>
+	</animation>
+
+
+	<!-- lighting -->
+	<animation>
+		<object-name>panel</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>instrument</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+
+	<animation> 
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+
+</PropertyList>

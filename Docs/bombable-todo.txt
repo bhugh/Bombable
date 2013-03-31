@@ -1,0 +1,585 @@
+TODO LIST FOR BOMBABLE
+(for FlightGear ver 1.9.0, 1.9.1, 2.0, 2.4.0)
+
+Brent Hugh, brent@brenthugh.com
+Available at http://brenthugh.com/flightgear/bombable4-2.zip
+
+Some of these have been accomplished--marked with an X.
+
+Before 4.5 release
+-------------------
+* Bug: If the terminal velocity code is omitted, FG crashes.  http://flightgear.org/forums/viewtopic.php?f=6&t=5742&p=141749#p141688 
+ 
+* Bug: After say 15 minutes of dogfighting, the AI will sometimes just start hugging the ground. They fly so low that you need nerves of steel to track them. They're not taxiing, but they're flying at less than 25 AGL, even though I've set the combat ops floor to 2000 AGL! http://flightgear.org/forums/viewtopic.php?f=6&t=5742&p=141748#p141763
+ 
+* Some users report the AI bullets are never seen.
+
+* Excessive speed damages aircraft checkbox doesn't always disabled accel damage of main Ac from Bombable.  
+ 
+* Damage is still added to the main AC even when bombable is disabled. Need a separate check box to completely disable main AC damage separately from the rest of the functions.
+
+
+For 4.4 
+-------------- 
+
+X All scenarios work but any attempt to select livery or logo on any 
+aircraft results in an immediate crash with: Fatal error: "$" found 
+in property name after "
+
+X Bombable gets extra menus on re-init, reposition.
+
+X Bombable could move the submodels (bomb explosion, bullet hits) 
+from the point that FG detects (at the fairly large damage cylinder 
+around objects) to their point of nearest approach to the object, 
+which is what Bombable uses to calculate damage. It would probably 
+look a lot more realistic.
+
+
+* Bombable resets the blackout & redout values whenever it is 
+running. This is to ensure fairness/compatibility between different 
+people playing with Bombable over MP, but Bombable probably 
+shouldn't do this except for its own specially set up Bombable 
+aircraft. [As of 4.4 this is turned off for all aircraft except the 
+ones distributed with the Bombable release, but this may require
+testing/refinement to be sure.]
+
+X Smoke/contrails seem to be missing from the main aircraft.
+
+X Users are reporting that smoke/flares/fires 
+don't work. [Might be fixed in 4.4]
+
+X Need to test whether damage reset broadcasts properly over MP.
+
+X Damage radius for bombs (especially smaller ones) may need some 
+tweaking. They seem to severely damage objects too far distant.
+
+* After AI aircraft damage is repaired aircraft still stay 
+sunk/crashed/immobile.
+
+* Bombable assumes that that damage radius is centered at the (0,0,0)
+point of the aircraft. This appears to be wrong in many cases 
+(often (0,0,0) is in the nose or front/middle, rather than the 
+center of the aircraft) so figuring out this offset per aircraft 
+would increase realism quite a bit. There could be a different 
+damage radius center for the main damage radius and the vital damage 
+radius.
+
+* Bombs/rockets may need to have fuse distance taken into consideration. 
+Currently in Bombable, any armament that comes within FG's damage 
+cylinder (50 ft above & below the aircraft & 100 ft radius) is 
+assumed to have exploded at the point of the armament's nearest 
+approach to the target aircraft. Then the armament's damage radius 
+is applied (which is quite large, for large-sized ordinance). This 
+doesn't take into account the fact that some ordinance may just go 
+harmlessly whistling by, ie if it exploded at 20 meters distance 
+there would be huge damage, but if it just passes by at 20 meters 
+and explodes 4000 meters down, there could be zero damage. Right now 
+this isn't a huge problem because FG also explodes the ordinance at 
+the point where it enters the impact cylinder (ie, the 'fuse' 
+setting for submodels actually sets a fuse at the given fuse 
+distance **from the impact cylinder** not from the object itself.) 
+So (in most cases) it does look real--the ordinance explodes and 
+then has the distance effects it would have if it exploded (at the 
+nearest point to the target aircraft, though--that is Bombable's way 
+of calculating it).
+
+* Code clean-up; removing dead code and un-needed comments from 
+previous version.
+
+* Integrate into main FG for next FG release.
+ 
+* Put Bombable into a subdirectory of the Nasal directory & split it 
+into several smaller, better organized files
+
+X Revamp menu.
+
+X Ferries' weapons are extremely/too damaging, even when set to very 
+weak/ineffective levels.
+
+* A-10 starts with G-force/Acceleration damage off though it should 
+be on.
+
+* Make sure that **everything** turns off when the Bombable Module 
+Enabled button is de-selected. For instance, the smoke/fire/contrails 
+may still show up, even when Bombable is deselected in the main menu.
+
+* Make sure that everything turns back on properly when the Bombable 
+Module Enabled button is re-selected after being de-selected.
+
+X Add 'reset your aircraft damage to 0%' and 'reset all AI objects 
+damage levels to 0%' buttons to menu.
+
+* When multiplayers change their callsign in-game using the FG menu 
+Bombable MP gets messed up or confused for a while or permanently.  
+Not sure why.
+
+* Create damage/vulnerabilities/dimensions/etc. system to hold 
+needed properties for **main aircraft** similar to the one existing 
+for AI/Multiplayer aircraft. And integrate it with the current 
+system so you could create one file that would apply to both AI and 
+Main aircraft.
+
+* Make the bombable settings files for both AI and Main aircraft an 
+XML file rather than Nasal code (current situation). Make the 
+different options (attack, weapons, smoke, etc) settable as options 
+in the XML file rather than requiring calls to bombable functions on 
+load/unload. Bombable can check which aircraft are added/removed 
+under AI/models and update appropriately with the needed timers & 
+listeners, rather than having each AI object call its own code.
+
+X Bombable menu loses debug/print setting on relocate/reinit.
+
+X Lee's Summit scenario tanks are hanging way up in the air. [They 
+were mis-labeled as type=aircraft in the scenario files, thus 
+causing them to take extreme measures to avoid ground collision. 
+This was fixed in this scenario and a few others.]
+
+X Scenario files - wrong directory name in some (-bombable vs 
+-Bombable).  Other technical problems in others [fixed].  [Some 
+problems might remain.]
+
+* Generally need scenario file and AI Aircraft cleanup. [Some work 
+on this accomplished for 4.4.]
+
+* If AI damage is reset and the aircraft is crashing, it keeps on 
+crashing even though damage is reset.  Also if aircraft are crashed/
+stopped they stay stopped even though damage is reset.
+
+Feature requests:
+
+* AI aircraft could fire at the main aircraft using the particle
+system.  Just mount a particle generator at each gun point,
+in the same direction & location, and with a trigger in the 
+property tree, and appropriate shooter with speed 500-1000mps.  
+Whenever that aircraft has the main aircraft in its sights, 
+pull the trigger.  It wouldn't actually create impacts (the
+particle system doesn't do impacts) but it would look great
+and could be done with essentially no impact on the framerate.
+The is the way to show MP aircraft shooting (on the remote FG)
+as well--just have a particle generator mounted at the proper
+point and direction and trigger it whenever the MP aircraft
+shoots.  It won't exactly mirror the remote aircraft's aim
+but at least it would give a good visual indication of shooting,
+and aim/damage detection is done on the remote computer anyway.  
+
+* Scoring system/way to keep track of how many hits, misses, 
+enemies downed.
+
+* MP pilots menu showing stats/damage level for all MP bombable 
+pilots online, when they reset damage, etc.
+
+* Notify other MP pilots when one pilot reloads ammo (esp. if not 
+on the ground/stopped)
+
+* Enemy pilots exit plane & parachute after the plane is 100% 
+disabled (could be easily done with the particle system and perhaps 
+a bit of nasal code to make the parachutes sway convincingly). *
+
+* Main pilot can eject (could be done with a Nasal script to change 
+the pilot viewpoint & eject, then float down).
+
+* Allow heading/altitude 'swivel distances' for Ai weapons, rather 
+than just a single fixed angle. For now, the guns could fire 
+randomly or aim within their range of motion and eventually you 
+could realisticaly model their rate of movement as they aim, track, 
+etc.
+
+* System failures depending on damage (even better, depending on 
+location of damage). Be able to reset this when the damage is reset 
+to zero.
+
+For 4.3 
+--------------
+
+X We can now calculate kinetic energy using the speed_mps of impact. 
+However we need to integrate this into the damage calculations of 
+test_impact. [We switched this to momentum, however, on the basis of 
+http://eaw.wikispaces.com/Technical+Tools--Gun+Power]
+
+* For some reason FG 2.4.0 is re-initializing all of the AI models 
+at certain points. Without unloading them. The result is they are 
+all loaded twice (or even 3, 4 times) and this is one reason things 
+tend to slow down after FG hfas been running a while. We have 
+duplicate listeners set up for each AI object, etc. Not sure why 
+this is happening or how it can be prevented. Sometimes crazy other 
+items (like joystick input devices) introduce themselves to Bombable 
+and ask it to initialize them as a Bombable object. I've set up some 
+code to block all this from happening but the ultimate solution is 
+to stop it from happening on the FG end. [Kludge code is implemented 
+to fix the immediate problem but FG needs to implement internal 
+fixes for a more permanent solution.]
+
+* Need to thoroughly test different aircraft/armament/scenarios in 
+FG 2.4.0.
+
+X Need to test multiplayer in FG 2.4.0.
+
+* Some AI objects, ie Fokker and perhaps others, are having a 
+problem with detecting when they have hit the ground/crashed. Might 
+be related to the re-init problem.
+
+X Damaging SPAD/Fokker/Camel with Camel seems too easy/too large 
+damage too often. Meanwhile they don't have any change of doing 
+large damage to you.
+
+X AI Aircraft suddenly flip in roll degrees when maneuvering, rather 
+than rolling smoothly, in some situations. [Not fixed, but worked on 
+it and it won't be fixed by changes to Bombable, but to FG. Found 
+the cause of this but unfortunately the solution cause *much* bigger 
+problems. We are about at the end of what Bombable can do in 
+controlling aircraft while 'fighting' the FG AI aircraft control 
+system. We need to integrate at least a few key functions that 
+Bombable is doing in controling aircraft into the AI system and get 
+them out of Bombable. In the meanwhile, this is about the best we 
+can do for controlling aircraft in a realistic way to attack, dodge, 
+etc.]
+
+* On changing location in FG 2.4.0 (via the menu), AI aircraft seem 
+to lose all damage and start moving but their smoke/fires are still 
+burning and don't move.
+
+X AI A10s (Warthogs) seem to be pathetically bad at hitting you with 
+their weapons.  [Accuracy and power of weapons can now be set per 
+aircraft.]
+
+X Weapons parameters in AI aircraft files so that different guns can 
+be mounted in different places & aiming in different directions; 
+also range, accuracy etc can be set per gun/per AI aircraft. [Partly 
+implement in 4.3, but ability to add several weapons in different 
+locations/directions is needed.]
+
+* Make main aircraft crash (ie, force down/lose control) rather than 
+just stop engines suddenly in flight. Even more sophisticated, make 
+it lose different capabilities or control depending on damage.
+
+* Make AI aircraft dodge/try to miss main aircraft at last moment 
+rather than just flying straight in.
+
+* Real weapons fire/submodels for AI aircraft, rather than the 'fake 
+simulated/probabalistic weapons' now working.
+
+X Some menu items still don't save/restore correctly, particularly 
+the debug print option.
+
+X Need to revamp the Bombable menu a bit to make the difficulty 
+levels more sensible--make a different control like a radio button 
+to select overall difficult level (easy/super easy etc)
+
+* When MP dogfighting, damage levels seems to rise a few percentage 
+points higher when the remote aircraft sends back its damage level, 
+than the levels actually registered by the attacking craft
+
+* MP dogfighting, sometimes when the remote person resets/0% damage 
+the damage doesn't get reset locally. Result is, next time a weapon 
+hits that plane it transfers all the previous damage level.
+
+* When MP dogfighting, on reinit when damage is reset to 0 and sent 
+to other players on the MP network, there needs to be a handshaking 
+thing happen where the other aircraft send back to the main aircraft 
+that they have received the re-init signal and set damage back to 0. 
+If acknowledgement is not received then it could re-try several 
+times & then, if no acknowledgement received, ignore damage totals 
+sent from that aircraft from that time forward.
+
+* Include even more damage sources similar to 
+acceleration/g-force/overspeed--overheating/damaging engine, hard 
+landings, etc.
+
+* Improve the vulnerabilities/velocities/dimensions/etc framework 
+for main aircraft similar to that we have in place for AI/MP 
+aircraft. This could record the maximum velocity, maximum 
+accelerations, and other limits of the aircraft, as well as damage 
+rates when the limits are exceeded. Then each aircraft can have this 
+framework customised to its particular characteristics.
+
+* Put Bombable into the main development tree for FG.  To do this it needs
+   - its own communications node (similar to wildfire module)
+   - transfer the bombable menu into the Environment menu (similar to wildfire 
+   module)
+   - turn off bombable by default
+   - turn off debug messages by default
+   
+* Improve the vulnerability parameters for AI/MP aircraft, along the 
+lines of density of vulnerable components, overall mass (which 
+approximates how resistant the craft is to damage), etc. Per 
+discussion here, 
+http://www.flightgear.org/forums/viewtopic.php?f=17&t=5742&p=82743#p82650
+
+* Some way to coordinate difficulty level (easy mode, etc) between MP 
+players, or at least inform various players about which difficulty 
+level each is using.
+
+X Listeners still give an error when MP aircraft unload.
+
+X A way to control climb/descent realistically and as easily as 
+turns/roll. [Not fixed but improved in ver. 4.3.]
+
+* Remove some of the locks & excess complexity in the MPsend/receive 
+routines now that the underpinnings have been improved.
+
+
+For 3.0p
+--------------
+
+* AI fighters with their new more aggressive altitude maneuvering 
+have a tendency to crash into mountains etc. Partly but not 
+completely fixed in 3.0p.
+
+* AI fighters have a few strange quirks/maneuvers. They will 
+suddenly change from one roll angle to another rather than smoothly 
+changing. Similarly when first reaching 100% damage, they will flip 
+around randomly/not smoothly.
+
+* Make main aircraft crash (ie, force down/lose control) rather than 
+just stop engines suddenly in flight. Even more sophisticated, make 
+it lose different capabilities or control depending on damage.
+
+* Make AI aircraft dodge/try to miss main aircraft at last moment 
+rather than just flying straight in.
+
+* Make AI aircraft adjustments to avoid ground collisions smooth 
+rather than jerky.       [Improved ver 4.3.]
+
+* Real weapons fire/submodels for AI aircraft, rather than the 'fake 
+simulated/probabalistic weapons' now working.
+
+X Weapons parameters in AI aircraft files so that different guns can 
+be mounted in different places & aiming in different directions; 
+also range, accuracy etc can be set per gun/per AI aircraft
+
+* Some menu items still don't save/restore correctly.
+
+* Need to revamp the Bombable menu a bit to make the difficulty 
+levels more sensible--make a different control like a radio button 
+to select overall difficult level (easy/super easy etc)
+
+* When MP dogfighting, damage levels seems to rise a few percentage 
+points higher when the remote aircraft sends back its damage level, 
+than the levels actually registered by the attacking craft
+
+* MP dogfighting, sometimes when the remote person resets/0% damage 
+the damage doesn't get reset locally. Result is, next time a weapon 
+hits that plane it transfers all the previous damage level.
+
+* When MP dogfighting, on reinit when damage is reset to 0 and sent 
+to other players on the MP network, there needs to be a handshaking 
+thing happen where the other aircraft send back to the main aircraft 
+that they have received the re-init signal and set damage back to 0. 
+If acknowledgement is not received then it could re-try several 
+times & then, if no acknowledgement received, ignore damage totals 
+sent from that aircraft from that time forward.
+
+* Include even more damage sources similar to 
+acceleration/g-force/overspeed--overheating/damaging engine, hard 
+landings, etc.
+
+* Improve the vulnerabilities/velocities/dimensions/etc framework 
+for main aircraft similar to that we have in place for AI/MP 
+aircraft. This could record the maximum velocity, maximum 
+accelerations, and other limits of the aircraft, as well as damage 
+rates when the limits are exceeded. Then each aircraft can have this 
+framework customised to its particular characteristics.
+
+* Put Bombable into the main development tree for FG.  To do this it needs
+   - its own communications node (similar to wildfire module)
+   - transfer the bombable menu into the Environment menu (similar to wildfire 
+   module)
+   - turn off bombable by default
+   - turn off debug messages by default
+   
+* Improve the vulnerability parameters for AI/MP aircraft, along the 
+lines of like density of vulnerable components, overall mass (which 
+approximates how resistant the craft is to damage), etc. Per 
+discussion here, 
+http://www.flightgear.org/forums/viewtopic.php?f=17&t=5742&p=82743#p82650
+
+* Some way to coordinate difficulty level (easy mode, etc) between MP 
+players, or at least inform various players about which difficulty 
+level each is using.
+
+X Listeners still give an error when MP aircraft unload.
+
+X A way to control climb/descent realistically and as easily as 
+turns/roll. [Not fixed but improved in ver. 4.3.]
+
+* Remove some of the locks & excess complexity in the MPsend/receive 
+routines now that the underpinnings have been improved.
+
+
+
+For 3.0n
+--------------
+
+* AI fighters have a few strange quirks/maneuvers. They will 
+suddenly change from one roll angle to another rather than smoothly 
+changing.
+
+* When MP dogfighting, damage levels seems to rise a few percentage 
+points higher when the remote aircraft sends back its damage level, 
+than the levels actually registered by the attacking craft
+
+* MP dogfighting, sometimes when the remote person resets/0% damage 
+the damage doesn't get reset locally. Result is, next time a weapon 
+hits that plane it transfers all the previous damage level.
+
+* When MP dogfighting, on reinit when damage is reset to 0 and sent 
+to other players on the MP network, there needs to be a handshaking 
+thing happen where the other aircraft send back to the main aircraft 
+that they have received the re-init signal and set damage back to 0. 
+If acknowledgement is not received then it could re-try several 
+times & then, if no acknowledgement received, ignore damage totals 
+sent from that aircraft from that time forward.
+
+* Include even more damage sources similar to 
+acceleration/g-force/overspeed--overheating/damaging engine, hard 
+landings, etc.
+
+* Improve the vulnerabilities/velocities/dimensions/etc framework 
+for main aircraft similar to that we have in place for AI/MP 
+aircraft. This could record the maximum velocity, maximum 
+accelerations, and other limits of the aircraft, as well as damage 
+rates when the limits are exceeded. Then each aircraft can have this 
+framework customised to its particular characteristics.
+
+* Put Bombable into the main development tree for FG.  To do this it needs
+   - its own communications node (similar to wildfire module)
+   - transfer the bombable menu into the Environment menu (similar to wildfire 
+   module)
+   - turn off bombable by default
+   - turn off debug messages by default
+   
+* Improve the vulnerability parameters for AI/MP aircraft, along the 
+lines of like density of vulnerable components, overall mass (which 
+approximates how resistant the craft is to damage), etc. Per 
+discussion here, 
+http://www.flightgear.org/forums/viewtopic.php?f=17&t=5742&p=82743#p82650
+* 
+Some way to coordinate difficulty level (easy mode, etc) between MP 
+players, or at least inform various players about which difficulty 
+level each is using.
+
+* Listeners still give an error when MP aircraft unload.
+
+* A way to control climb/descent realistically and as easily as 
+turns/roll.
+
+* Remove some of the locks & excess complexity in the MPsend/receive 
+routines now that the underpinnings have been improved.
+
+
+For 3.0m
+--------------
+
+* When MP dogfighting, damage levels seems to rise a few percentage 
+points higher when the remote aircraft sends back its damage level, 
+than the levels actually registered by the attacking craft
+
+* Include even more damage sources similar to 
+acceleration/g-force/overspeed--overheating/damaging engine, hard 
+landings, etc.
+
+* Improve the vulnerabilities/velocities/dimensions/etc framework 
+for main aircraft similar to that we have in place for AI/MP 
+aircraft. This could record the maximum velocity, maximum 
+accelerations, and other limits of the aircraft, as well as damage 
+rates when the limits are exceeded. Then each aircraft can have this 
+framework customised to its particular characteristics.
+
+* Put Bombable into the main development tree for FG.  To do this it needs
+   - its own communications node (similar to wildfire module)
+   - transfer the bombable menu into the Environment menu (similar to wildfire 
+   module)
+   - turn off bombable by default
+   - turn off debug messages by default
+   
+   
+X Make an "aircraft crash" routine for AI ( and MP ) aircraft that will take control of it once it reaches 100% damage and fly/crash it into the ground very quickly.
+
+X Could make right/left turn routines similar to AI crash routines that would give AI aircraft much more realism & make them much harder targets.
+
+X Add more vulnerability parameters for AI/MP aircraft, along the lines of like density of vulnerable components, overall mass (which approximates how resistant the craft is to damage), etc.  Per discussion here, http://www.flightgear.org/forums/viewtopic.php?f=17&t=5742&p=82743#p82650
+ 
+X Save/Restore menu options  
+
+X Excessive damage report bug
+
+
+For 3.0L
+--------------
+X bombableListenerid is not found when destructor for bombable AI or 
+MP objects runs; runtime error
+
+* When MP dogfighting, damage levels seems to rise a few percentage 
+points higher when the remote aircraft sends back its damage level, 
+than the levels actually registered by the attacking craft
+
+* Include even more damage sources similar to 
+acceleration/g-force/overspeed--overheating/damaging engine, hard 
+landings, etc.
+
+* Improve the vulnerabilities/velocities/dimensions/etc framework 
+for main aircraft similar to that we have in place for AI/MP 
+aircraft. This could record the maximum velocity, maximum 
+accelerations, and other limits of the aircraft, as well as damage 
+rates when the limits are exceeded. Then each aircraft can have this 
+framework customised to its particular characteristics.
+
+* Put Bombable into the main development tree for FG.  To do this it needs
+   - its own communications node (similar to wildfire module)
+   - transfer the bombable menu into the Environment menu (similar to wildfire 
+   module)
+   - turn off bombable by default
+   - turn off debug messages by default
+   
+   
+* Make an "aircraft crash" routine for AI ( and MP ) aircraft that 
+will take control of it once it reaches 100% damage and fly/crash it 
+into the ground very quikcly.
+
+* Add more vulnerability parameters for AI/MP aircraft, along the 
+lines of like density of vulnerable components, overall mass (which 
+approximates how resistant the craft is to damage), etc. Per 
+discussion here, 
+http://www.flightgear.org/forums/viewtopic.php?f=17&t=5742&p=82743#p82650
+   
+
+
+For 3.0K
+--------------
+
+* bombableListenerid is not found when destructor for bombable AI or 
+MP objects runs; runtime error
+
+* When MP dogfighting, damage levels seems to rise a few percentage 
+points higher when the remote aircraft sends back its damage level, 
+than the levels actually registered by the attacking craft
+
+X Include more damage sources similar to 
+acceleration/g-force--overspeed, overheating/damaging engine, hard 
+landings, etc.
+
+X Related, make a vulnerabilities/velocities/dimensions/etc 
+framework for the main aircraft similar to that we have in place for 
+AI/MP aircraft. This could record the maximum velocity, maximum 
+accelerations, and other limits of the aircraft, as well as damage 
+rates when the limits are exceeded. Then each aircraft can have this 
+framework customised to its particular characteristics.
+
+* Put Bombable into the main development tree for FG.  To do this it needs
+   - its own communications node (similar to wildfire module)
+   - transfer the bombable menu into the Environment menu (similar to wildfire 
+   module)
+   - turn off bombable by default
+   - turn off debug messages by default
+   
+   
+* Make an "aircraft crash" routine for AI ( and MP ) aircraft that 
+will take control of it once it reaches 100% damage and fly/crash it 
+into the ground very quikcly.
+
+* Add vulnerability parameters for AI/MP aircraft, like density of 
+vulnerable components, overall mass (which approximates how 
+resistant the craft is to damage), etc. Per discussion here, 
+http://www.flightgear.org/forums/viewtopic.php?f=17&t=5742&p=82743#p82650
+
+ 

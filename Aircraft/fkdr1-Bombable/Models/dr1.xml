@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+ <path>dr1.ac</path>
+
+ <offsets>
+  <z-m>0.5</z-m>
+ </offsets>
+
+ <model>
+  <name>cockpit</name>
+  <path>Aircraft/fkdr1-Bombable/Models/cockpit.xml</path>
+ </model>
+
+ <animation>
+  <type>spin</type>
+  <object-name>power_plant</object-name>
+  <object-name>propeller</object-name>
+  <property>/engines/engine[0]/rpm</property>
+  <factor>-1.0</factor>
+  <center>
+   <x-m>-0.88</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-0.40</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>left_aileron</object-name>
+  <property>/surface-positions/flight/right-aileron-pos-norm</property>
+  <factor>-17.35</factor>
+  <center>
+   <x-m>0.18</x-m>
+   <y-m>-2.185</y-m>
+   <z-m>0.86</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>right_aileron</object-name>
+  <property>/surface-positions/flight/right-aileron-pos-norm</property>
+  <factor>17.35</factor>
+  <center>
+   <x-m>0.18</x-m>
+   <y-m>2.185</y-m>
+   <z-m>0.86</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>elevator</object-name>
+  <property>/surface-positions/flight/elevator-pos-norm</property>
+  <factor>17.9</factor>
+  <center>
+   <x-m>4.070</x-m>
+   <y-m>-1.27</y-m>
+   <z-m>-0.21</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>rudder</object-name>
+  <property>/surface-positions/flight/rudder-pos-norm</property>
+  <factor>25.0</factor>
+  <center>
+   <x-m>4.2</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.705</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+ </animation>
+
+ <model>
+  <name>leftMGgun</name>
+  <path>Aircraft/fkdr1-Bombable/Models/MG-ver6.ac</path>
+  <offsets>
+   <x-m>0.535</x-m>
+   <y-m>-0.15</y-m>
+   <z-m>0.149</z-m>
+  </offsets>
+ </model>
+
+ <model>
+  <name>rightMGgun</name>
+  <path>Aircraft/fkdr1-Bombable/Models/MG-ver6.ac</path>
+  <offsets>
+   <x-m>0.535</x-m>
+   <y-m>0.15</y-m>
+   <z-m>0.149</z-m>
+  </offsets>
+ </model>
+
+</PropertyList>

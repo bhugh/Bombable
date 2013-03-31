@@ -1,0 +1,63 @@
+AC3Db
+MATERIAL "ac3dmat2" rgb 0.627451 0.25098 0.25098  amb 0.627451 0.25098 0.25098  emis 0 0 0  spec 0 0 0  shi 10  trans 0
+MATERIAL "ac3dmat4" rgb 1 0.466667 0  amb 1 0.466667 0  emis 0 0 0  spec 0 0 0  shi 10  trans 0
+MATERIAL "ac3dmat5" rgb 1 1 0  amb 1 1 0  emis 0 0 0  spec 0 0 0  shi 10  trans 0
+MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 0.89 0.969  spec 0 0 0  shi 10  trans 0
+OBJECT world
+kids 4
+OBJECT poly
+name "line"
+loc -2.67992 0 0
+crease 45.000000
+numvert 2
+2.49987 0 0
+-2.49987 0 0
+numsurf 1
+SURF 0x22
+mat 0
+refs 2
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "line"
+loc -7.72226 0 0
+crease 45.000000
+numvert 2
+-2.49987 0 0
+2.49987 0 0
+numsurf 1
+SURF 0x22
+mat 1
+refs 2
+0 0 0
+1 1 0
+kids 0
+OBJECT poly
+name "line"
+loc -12.7291 0 0
+crease 45.000000
+numvert 2
+2.49987 0 0
+-2.49987 0 0
+numsurf 1
+SURF 0x22
+mat 2
+refs 2
+1 0 0
+0 1 0
+kids 0
+OBJECT poly
+name "line"
+loc -17.7004 0 0
+crease 45.000000
+numvert 2
+-2.49987 0 0
+2.49987 0 0
+numsurf 1
+SURF 0x22
+mat 3
+refs 2
+0 0 0
+1 1 0
+kids 0

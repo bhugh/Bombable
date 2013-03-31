@@ -1,0 +1,549 @@
+<PropertyList include="a6m2-bombableinclude.xml">
+
+<path>a6m2.ac</path>
+
+
+<animation>
+  <type>select</type>
+  <object-name>pilot</object-name>
+  <condition>
+   <greater-than>
+    <property>sim/current-view/view-number</property>
+    <value>0</value>
+   </greater-than>
+  </condition>
+ </animation>
+
+
+<animation>
+  <type>select</type>
+  <object-name>propdisc</object-name>
+  <condition>
+   <greater-than>
+    <property>engines/engine[0]/rpm</property>
+    <value>1500.000</value>
+   </greater-than>
+  </condition>
+ </animation>
+
+
+<animation>
+  <type>select</type>
+  <object-name>propblur</object-name>
+  <condition>
+  <and>
+   <greater-than>
+    <property>engines/engine[0]/rpm</property>
+    <value>600.000</value>
+   </greater-than>
+   <less-than>
+    <property>engines/engine[0]/rpm</property>
+    <value>1500.001</value>
+   </less-than>
+   </and>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>select</type>
+  <object-name>propeller</object-name>
+  <condition>
+   <less-than>
+    <property>engines/engine/rpm</property>
+    <value>600.001</value>
+   </less-than>
+  </condition>
+ </animation>
+
+ <animation>
+  <type>spin</type>
+  <object-name>propeller</object-name>
+  <property>engines/engine/rpm</property>
+  <center>
+  <x-m>-2.391</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-0.031</z-m>
+  </center>
+  <axis>
+   <x>-1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>spin</type>
+  <object-name>propblur</object-name>
+  <property>engines/engine/rpm</property>
+  <center>
+  <x-m>-2.391</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-0.031</z-m>
+  </center>
+  <axis>
+   <x>-1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>spin</type>
+  <object-name>propdisc</object-name>
+  <property>engines/engine/rpm</property>
+  <factor>0.005</factor>
+  <center>
+  <x-m>-2.391</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-0.031</z-m>
+  </center>
+  <axis>
+   <x>-1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+
+<!-- CONTROL SURFACES -->
+
+ <animation>
+  <type>translate</type>
+  <object-name>glass</object-name>
+  <object-name>canopy</object-name>
+  <property>controls/canopy/position-norm</property>
+  <factor>0.73</factor>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Elevator</object-name>
+  <property>surface-positions/elevator-pos-norm</property>
+  <factor>20</factor>
+  <center>
+   <x-m>4.955</x-m>
+   <y-m>0.0</y-m>
+   <z-m>0.099</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>Rudder</object-name>
+  <property>controls/flight/rudder</property>
+  <factor>20</factor>
+  <center>
+   <x-m>5.402</x-m>
+   <y-m>0</y-m>
+   <z-m>0.248</z-m>
+  </center>
+  <axis>
+   <x>0</x>
+   <y>0</y>
+   <z>1</z>
+  </axis>
+ </animation>
+ 
+  <animation>
+  <type>rotate</type>
+  <object-name>LHflap</object-name>
+  <property>surface-positions/flap-pos-norm</property>
+  <factor>-30</factor>
+  <center>
+   <x-m>0.946</x-m>
+   <y-m>-0.673</y-m>
+   <z-m>-0.464</z-m>
+  </center>
+  <axis>
+   <x>-0.121</x>
+   <y>-0.984</y>
+   <z>0.131</z>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>RHflap</object-name>
+  <property>surface-positions/flap-pos-norm</property>
+  <factor>30</factor>
+  <center>
+   <x-m>0.946</x-m>
+   <y-m>0.673</y-m>
+   <z-m>-0.464</z-m>
+  </center>
+  <axis>
+   <x>-0.121</x>
+   <y>0.984</y>
+   <z>0.131</z>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>LHaileron</object-name>
+  <property>surface-positions/left-aileron-pos-norm</property>
+  <factor>-15</factor>
+  <center>
+   <x-m>0.718</x-m>
+   <y-m>-2.527</y-m>
+   <z-m>-0.193</z-m>
+  </center>
+  <axis>
+   <x>-0.119</x>
+   <y>-0.985</y>
+   <z>0.122</z>
+  </axis>
+ </animation>
+ 
+ <animation>
+  <type>rotate</type>
+  <object-name>RHaileron</object-name>
+  <property>surface-positions/right-aileron-pos-norm</property>
+  <factor>15</factor>
+  <center>
+   <x-m>0.718</x-m>
+   <y-m>2.527</y-m>
+   <z-m>-0.193</z-m>
+  </center>
+  <axis>
+   <x>-0.119</x>
+   <y>0.985</y>
+   <z>0.122</z>
+  </axis>
+ </animation>
+ 
+  <animation>
+  <type>rotate</type>
+  <object-name>hook</object-name>
+  <property>gear/tailhook/position-norm</property>
+  <interpolation>
+   <entry>
+    <ind>0.0</ind>
+    <dep>0.0</dep>
+   </entry>
+  <entry>
+    <ind>1.00</ind>
+    <dep>70.0</dep>
+   </entry>
+  </interpolation>
+  <center>
+   <x-m>4.47</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-0.378</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Yoke</object-name>
+  <property>controls/flight/aileron</property>
+  <factor>-15</factor>
+  <center>
+   <x-m>0.032</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-0.198</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Yoke</object-name>
+  <property>controls/flight/elevator</property>
+  <factor>-15</factor>
+  <center>
+   <x-m>0.032</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-0.198</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+<!--  Gear -->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Lstrut</object-name>
+  <object-name>Lwheel</object-name>
+  <property>gear/gear[0]/position-norm</property>
+  <interpolation>
+    <entry>
+      <ind>0</ind>
+      <dep>0</dep>
+    </entry>
+    <entry>
+      <ind>0.2</ind>
+      <dep>0</dep>
+    </entry>
+    <entry>
+      <ind>1.0</ind>
+      <dep>85</dep>
+    </entry>
+  </interpolation>
+  <center>
+   <x-m>-0.602</x-m>
+   <y-m>-1.730</y-m>
+   <z-m>-0.294</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>rotate</type>
+  <object-name>Rstrut</object-name>
+  <object-name>Rwheel</object-name>
+  <property>gear/gear[1]/position-norm</property>
+  <interpolation>
+    <entry>
+      <ind>0</ind>
+      <dep>0</dep>
+    </entry>
+    <entry>
+      <ind>0.2</ind>
+      <dep>0</dep>
+    </entry>
+    <entry>
+      <ind>1.0</ind>
+      <dep>-85</dep>
+    </entry>
+  </interpolation>
+  <center>
+   <x-m>-0.602</x-m>
+   <y-m>1.730</y-m>
+   <z-m>-0.294</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>rotate</type>
+  <object-name>RGdoor</object-name>
+  <property>gear/gear[1]/position-norm</property>
+  <interpolation>
+    <entry>
+      <ind>0</ind>
+      <dep>0</dep>
+    </entry>
+    <entry>
+      <ind>0.2</ind>
+      <dep>85</dep>
+    </entry>
+    <entry>
+      <ind>1.0</ind>
+      <dep>85</dep>
+    </entry>
+  </interpolation>
+  <center>
+   <x-m>-0.657</x-m>
+   <y-m>0.196</y-m>
+   <z-m>-0.549</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>rotate</type>
+  <object-name>LGdoor</object-name>
+  <property>gear/gear[0]/position-norm</property>
+  <interpolation>
+    <entry>
+      <ind>0</ind>
+      <dep>0</dep>
+    </entry>
+    <entry>
+      <ind>0.2</ind>
+      <dep>-85</dep>
+    </entry>
+    <entry>
+      <ind>1.0</ind>
+      <dep>-85</dep>
+    </entry>
+  </interpolation>
+  <center>
+   <x-m>-0.657</x-m>
+   <y-m>-0.196</y-m>
+   <z-m>-0.549</z-m>
+  </center>
+  <axis>
+   <x>-1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+  <animation>
+  <type>rotate</type>
+  <object-name>rrstrut</object-name>
+  <property>gear/gear[0]/position-norm</property>
+  <interpolation>
+    <entry>
+      <ind>0</ind>
+      <dep>0</dep>
+    </entry>
+    <entry>
+      <ind>1.0</ind>
+      <dep>40</dep>
+    </entry>
+  </interpolation>
+  <center>
+   <x-m>5.479</x-m>
+   <y-m>0</y-m>
+   <z-m>-0.253</z-m>
+  </center>
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+ </animation>
+
+ <!-- cockpit -->
+ <animation>
+  <type>rotate</type>
+  <object-name>throttleLever</object-name>
+  <property>controls/engines/engine[0]/throttle</property>
+  <factor>-30</factor>
+  <center>
+    <x-m>-0.06</x-m>
+    <y-m>-0.36</y-m>
+    <z-m> 0.38</z-m>
+  </center>
+  <axis>
+    <x>0</x>
+    <y>0.93969</y>
+    <z>-0.3420</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>propPitchLever</object-name>
+  <property>controls/engines/engine[0]/propeller-pitch</property>
+  <factor>80</factor>
+  <center>
+    <x-m>-0.06</x-m>
+    <y-m>-0.31</y-m>
+    <z-m> 0.36</z-m>
+  </center>
+  <axis>
+    <x>0</x>
+    <y>0.93969</y>
+    <z>-0.3420</z>
+  </axis>
+ </animation>
+
+
+ <!-- liverties -->
+ <animation>
+  <type>material</type>
+  <object-name>LHaileron_1</object-name>
+  <property-base>sim/model/A6M2/livery/material/LHaileron_1</property-base>
+   <texture-prop>texture</texture-prop>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>RHaileron_1</object-name>
+  <property-base>sim/model/A6M2/livery/material/RHaileron_1</property-base>
+   <texture-prop>texture</texture-prop>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>RHflap_1</object-name>
+  <property-base>sim/model/A6M2/livery/material/RHflap_1</property-base>
+   <texture-prop>texture</texture-prop>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>LHflap</object-name>
+  <property-base>sim/model/A6M2/livery/material/LHflap</property-base>
+   <texture-prop>texture</texture-prop>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>Fuselage</object-name>
+  <property-base>sim/model/A6M2/livery/material/Fuselage</property-base>
+   <texture-prop>texture</texture-prop>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>Elevator</object-name>
+  <property-base>sim/model/A6M2/livery/material/Elevator</property-base>
+   <texture-prop>texture</texture-prop>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>Hstab</object-name>
+  <property-base>sim/model/A6M2/livery/material/Hstab</property-base>
+   <texture-prop>texture</texture-prop>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>canopy</object-name>
+  <property-base>sim/model/A6M2/livery/material/canopy</property-base>
+   <texture-prop>texture</texture-prop>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>canopy.001</object-name>
+  <property-base>sim/model/A6M2/livery/material/canopy.001</property-base>
+   <texture-prop>texture</texture-prop>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>Rudder</object-name>
+  <property-base>sim/model/A6M2/livery/material/Rudder</property-base>
+   <texture-prop>texture</texture-prop>
+ </animation>
+
+ <animation>
+  <type>material</type>
+  <object-name>Wing</object-name>
+  <property-base>sim/model/A6M2/livery/material/Wing</property-base>
+   <texture-prop>texture</texture-prop>
+ </animation>
+
+</PropertyList>

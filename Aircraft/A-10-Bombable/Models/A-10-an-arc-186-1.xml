@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+
+
+
+<PropertyList>
+	<path>A-10-an-arc-186.ac</path>
+
+	<animation>
+		<type>select</type>
+		<object-name>00</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/A-10/instrumentation/vhf/frequencies/alt-selected-mhz-x0001</property>
+				<value>0</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>25</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/A-10/instrumentation/vhf/frequencies/alt-selected-mhz-x0001</property>
+				<value>25</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>50</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/A-10/instrumentation/vhf/frequencies/alt-selected-mhz-x0001</property>
+				<value>50</value>
+			</equals>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>75</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/A-10/instrumentation/vhf/frequencies/alt-selected-mhz-x0001</property>
+				<value>75</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ring-01</object-name>
+		<property>sim/model/A-10/instrumentation/vhf/frequencies/alt-selected-mhz-x01</property>
+		<factor>0.1</factor>
+		<offset>-1</offset>
+		<step>1</step>
+		<scroll>0.5</scroll>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ring-1</object-name>
+		<property>sim/model/A-10/instrumentation/vhf/frequencies/alt-selected-mhz-x1</property>
+		<factor>0.1</factor>
+		<offset>-1</offset>
+		<step>1</step>
+		<scroll>0.5</scroll>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>ring-10</object-name>
+		<property>sim/model/A-10/instrumentation/vhf/frequencies/alt-selected-mhz-x10</property>
+		<factor>0.0625</factor>
+		<offset>-1</offset>
+		<step>1</step>
+		<scroll>0.5</scroll>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<!-- preset -->
+	<animation>
+		<type>textranslate</type>
+		<object-name>pressets-01</object-name>
+		<property>sim/model/A-10/instrumentation/vhf/selected-preset</property>
+		<factor>0.1</factor>
+		<offset>-1</offset>
+		<step>1</step>
+		<scroll>0.5</scroll>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>pressets-10</object-name>
+		<property>sim/model/A-10/instrumentation/vhf/selected-preset</property>
+		<factor>0.01</factor>
+		<offset>-10</offset>
+		<step>10</step>
+		<scroll>0.5</scroll>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<!-- selector knob -->
+	<animation>
+	<type>rotate</type>
+		<object-name>freq-select-knob</object-name>
+		<property>sim/model/A-10/instrumentation/vhf/selector</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>53</dep></entry>
+			<entry><ind>2</ind><dep>107</dep></entry>
+			<entry><ind>3</ind><dep>143</dep></entry>
+			<entry><ind>4</ind><dep>181</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0.0173</x-m>
+			<y-m>-0.0546</y-m>
+			<z-m>0.0000</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+	</animation>
+
+	<!-- mode knob -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>mode-knob</object-name>
+		<property>sim/model/A-10/instrumentation/vhf/mode</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>36</dep></entry>
+			<entry><ind>2</ind><dep>75</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0.0173</x-m>
+			<y-m>0.0556</y-m>
+			<z-m>0.0000</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+	</animation>
+
+	<!-- load button -->
+	<animation>
+		<type>translate</type>
+		<object-name>load-button</object-name>
+		<property>sim/model/A-10/instrumentation/vhf/load-state</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0.0020</dep></entry>
+			<entry><ind>1</ind><dep>-0.0030</dep></entry>
+		</interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+
+
+<!-- lighting-->
+
+	<animation>
+		<object-name>mount</object-name> 
+		<type>material</type>
+		<emission>
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>numbers</object-name> 
+		<type>material</type>
+		<emission>
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+
+</PropertyList>

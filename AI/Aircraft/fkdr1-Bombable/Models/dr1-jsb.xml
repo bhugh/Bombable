@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<PropertyList include="dr1-bombableinclude.xml">
+ 
+ <description>Fokker Dr.1</description>
+ <author>Erik Hofman (3D model)</author>
+
+ <path>../../../../Aircraft/fkdr1-Bombable/Models/dr1.ac</path> 
+ <texture-path>../../../../Aircraft/fkdr1-Bombable/Models</texture-path>
+
+ <offsets>
+  <z-m>0.5</z-m>
+ </offsets>
+ 
+ 
+ <animation>
+  <type>spin</type>
+  <object-name>power_plant</object-name>
+  <object-name>propeller</object-name>
+  <center>
+   <x-m>-0.88</x-m>
+   <y-m>0.0</y-m>
+   <z-m>-0.40</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <model>
+  <name>leftMGgun</name>
+  <path>Aircraft/fkdr1-Bombable/Models/MG-ver6.ac</path>
+  <offsets>
+   <x-m>0.535</x-m>
+   <y-m>-0.15</y-m>
+   <z-m>0.149</z-m>
+  </offsets>
+ </model>
+
+ <model>
+  <name>rightMGgun</name>
+  <path>Aircraft/fkdr1-Bombable/Models/MG-ver6.ac</path>
+  <offsets>
+   <x-m>0.535</x-m>
+   <y-m>0.15</y-m>
+   <z-m>0.149</z-m>
+  </offsets>
+ </model>
+
+ 
+
+</PropertyList>

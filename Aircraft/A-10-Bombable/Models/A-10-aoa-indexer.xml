@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>A-10-aoa-indexer.ac</path>
+
+	<animation>
+		<type>select</type>
+		<object-name>aoa-too-slow</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/aoa-indexer</property>
+				<value>23</value>
+			</greater-than>
+			<greater-than>
+				<property>orientation/alpha-deg</property>
+			<property>sim/aoa-indexer/too-slow-deg</property>
+			</greater-than>
+			<equals>
+				<property>gear/gear[0]/position-norm</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>aoa-slow</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/aoa-indexer</property>
+				<value>23</value>
+			</greater-than>
+			<less-than>
+				<property>orientation/alpha-deg</property>
+				<property>sim/aoa-indexer/too-slow-deg</property>
+			</less-than>
+			<greater-than>
+				<property>orientation/alpha-deg</property>
+				<property>sim/aoa-indexer/slow-deg</property>
+			</greater-than>
+			<equals>
+				<property>gear/gear[0]/position-norm</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>aoa-on-speed</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/aoa-indexer</property>
+				<value>23</value>
+			</greater-than>
+			<less-than>
+				<property>orientation/alpha-deg</property>
+				<property>sim/aoa-indexer/slow-deg</property>
+			</less-than>
+			<greater-than>
+				<property>orientation/alpha-deg</property>
+				<property>sim/aoa-indexer/fast-deg</property>
+			</greater-than>
+			<equals>
+				<property>gear/gear[0]/position-norm</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>aoa-fast</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/aoa-indexer</property>
+				<value>23</value>
+			</greater-than>
+			<less-than>
+				<property>orientation/alpha-deg</property>
+				<property>sim/aoa-indexer/fast-deg</property>
+			</less-than>
+			<greater-than>
+				<property>orientation/alpha-deg</property>
+				<property>sim/aoa-indexer/too-fast-deg</property>
+			</greater-than>
+			<equals>
+				<property>gear/gear[0]/position-norm</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>aoa-too-fast</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/aoa-indexer</property>
+				<value>23</value>
+			</greater-than>
+			<less-than>
+				<property>orientation/alpha-deg</property>
+				<property>sim/aoa-indexer/too-fast-deg</property>
+			</less-than>
+			<equals>
+				<property>gear/gear[0]/position-norm</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+</PropertyList>

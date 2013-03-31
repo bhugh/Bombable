@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+
+<PropertyList>
+	<path>A-10-ivsi.ac</path>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>needle</object-name>
+		<property>instrumentation/vertical-speed-indicator/indicated-speed-fpm</property>
+		<interpolation>
+			<entry><ind>-6000.0</ind><dep>-255.0</dep></entry>
+			<entry><ind>-4000.0</ind><dep>-214.8</dep></entry>
+			<entry><ind>-2000.0</ind><dep>-170.0</dep></entry>
+			<entry><ind>-1000.0</ind><dep>-135.0</dep></entry>
+			<entry><ind>-500.0</ind><dep>-112.4</dep></entry>
+			<entry><ind>0.0</ind><dep>-90.0</dep></entry>
+			<entry><ind>500.0</ind><dep>-67.6</dep></entry>
+			<entry><ind>1000.0</ind><dep>-45.0</dep></entry>
+			<entry><ind>2000.0</ind><dep>-10.0</dep></entry>
+			<entry><ind>4000.0</ind><dep>34.8</dep></entry>
+			<entry><ind>6000.0</ind><dep>75.0</dep></entry>
+		</interpolation>
+		<axis><x>-1</x></axis>
+	</animation>
+
+	<!-- lighting -->
+	<animation> 
+		<object-name>mount</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+ 	<animation>
+		<object-name>face</object-name> 
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+	<animation>
+		<object-name>needle-w</object-name> 
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+	<!-- LOD -->
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+
+</PropertyList>

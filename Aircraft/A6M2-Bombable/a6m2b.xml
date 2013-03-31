@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+
+<!--
+************************************************************************
+A6M2 model 21 (A6M2b without holdable wing)
+Author: Syd Adams
+Modified: Tat Nishioka
+************************************************************************
+References
+[1] "Oozara no Samurai (Samurai in the Sky)" by Saburo Sakai 
+[2] "Mitsubishi A6M Reisen", http://www.combinedfleet.com/ijna/a6m.htm
+[3] "Design Analysis of the Zeke 32, http://rwebs.net/avhistory/history/Zeke32.htm
+[4] "Mitsubishi A6M Zero-Sen", http://www.aviation-history.com/mitsubishi/zero.html
+[5] "Zero-sen", http://www5d.biglobe.ne.jp/~cocoro/sub82.htm (Japanese)
+[6] "Mitsubishi Zero", http://www.jplanes.com/zero%20page.html
+[7] "A6M Zero - Wikipedia", http://en.wikipedia.org/wiki/A6M_Zero
+************************************************************************
+Engine: Nakajima - Sakae Type-12 2500 rpm [2,3,5,6]
+Spec: 950 hp @ 2500 rpm
+Takeoff power: 940 hp
+Maximum power: 950 hp @ 4200 m (13780 ft)
+Bore: 130 mm (5.1in) [3,5]
+Stroke: 150 mm (5.9 in) [3,5]
+Displacement: 27.9 L (1,703 in) [3,5]
+Engine weight: 533kg (1,175 lb) [3]
+************************************************************************
+Performance [2,6,7]
+Maximum speed: 533 km/h (288 kt, 331 mph) @ 4550 m (14927 ft)
+Never exceed speed: 660 km/h (356 kt, 410 mph) @ 4550 m (14927 ft)
+Rate of climb: 15.7 m/s (3100 ft/min)
+Wing loading: 107.4kg/sq m (21.99 lb/sq ft) [6]
+Power weight ratio: 294 W/kg (0.39 hp/kg, 0.18 hp/lb)
+Normal range: 1870 km (1010 nm, 1162 mi) 
+Maximum range: 3105 km (1675 nm, 1930 mi) 
+Service Ceiling: 10000 m (33000 ft)
+
+Decent speed : 67-73 kts
+Landing speed:  62 kts
+Takeoff speed: 71 - 79 kts
+
+Climbing time:
+  0 -  4000 m:  1 min / 1000 m
+  0 -  5000 m:  5 min 30 sec
+  0 -  6000 m:  6 min 30 sec
+  0 -  7000 m:  7 min 40 sec
+  0 -  8000 m:  9 min 30 sec
+  0 -  9000 m: 19 min
+  0 - 10000 m: 32 min
+************************************************************************
+Propeller: Hamlton based constant speed 3 blade propeller
+Diameter: 2.9m (9.514 ft)
+
+************************************************************************
+Pressure / Temp [5]
+Oil pressure: 4.0 ; 3.5-6.5kg/sq cm (assume 4.0 according to [5])
+Fuel pump pressure: 0.32kg/sq cm = 4.266994 psi
+Oil temp: max 85 C, long flight: 60, min: 40
+Cylinder temp: max 260 C, long flight: 200 C, min: 100 C
+
+***************************************
+Weight: [2,6,7]
+Empty : 3,704 lbs (1,680 kg)
+Loaded: 5,313 lbs (2,410 kg)
+Max   : 6,164 lbs (2,796 kg)
+
+************************************
+Measurement: [2,3,4,6,7]
+Length 9.06 m (29 ft 9 in)
+Height  3.05 (10 ft 0 in)
+Wing span 12 m  (39 ft 9 in)
+Wing aspect ratio 6.42
+Wing area 241.54 sq ft (22.44 sq m)
+Chord @ root: 2.464 m (8 ft 1 in)
+Chord @ tip: 1.25 m (4 ft 1 1/4 in))
+Dihedral: 6.5 [3]
+
+*********************************
+Fuel capacity: 520L (134 US gal) [3]
+87 gal drop tank
+
+-->
+
+<!-- Weight of everything but fuel  (7010 empty) -->
+<airplane mass="3704">
+
+  <!-- Approach configuration -->
+  <!-- stalls at 67kt(78mph) with no flaps, 56kt(65mph) with full flaps [3]. -->
+  <!-- approach speed should be 56-60 for carrier approach -->
+  <approach speed="60" aoa="9">
+    <control-setting axis="/controls/engines/engine[0]/throttle" value="0.30"/>
+    <control-setting axis="/controls/engines/engine[0]/mixture" value="0.55"/>
+    <control-setting axis="/controls/engines/engine[0]/propeller-pitch" value="0.6"/>
+    <control-setting axis="/controls/engines/engine[0]/boost" value="0.0"/>
+    <control-setting axis="/controls/flight/flaps" value="1.0"/>
+    <control-setting axis="/controls/gear/gear-down" value="1"/>
+  </approach>
+
+  <!-- Cruise configuration -->
+  <!-- Top speed; 288kt @ 4550 m (14927 ft) [1, 5] -->
+  <cruise speed="288" alt="14927">
+    <control-setting axis="/controls/engines/engine[0]/throttle" value="1.0"/>
+    <control-setting axis="/controls/engines/engine[0]/mixture" value="1.0"/>
+    <control-setting axis="/controls/engines/engine[0]/propeller-pitch" value="1.0"/>
+    <control-setting axis="/controls/engines/engine[0]/boost" value="1.0"/>
+    <control-setting axis="/controls/flight/flaps" value="0.0"/>
+    <control-setting axis="/controls/gear/gear-down" value="0"/>
+  </cruise>
+
+  <!-- pilot's eyepoint -->
+  <cockpit x="-0.44" y="0" z="0.774"/>
+
+  <fuselage ax="2.25" ay="0.0" az="0.0" bx="-6.3" by="0.0" bz="0.3"
+            width="0.8" taper="0.3" midpoint="0.2"/>
+
+  <!--
+    Wing characteristics; Based on A6M2 and A6M3 
+    Sweep and twist are 'guesstimate'
+   -->
+  <wing x="0.0" y="0.4" z="-0.35" taper="0.44" incidence="0.075"
+	length="5.6" chord="2.464" sweep="0.1" dihedral="6.5" camber="0.1"
+	twist="0.2" idrag="1.25">
+    <stall aoa="14" width="12" peak="1.5"/>
+    <flap0 start="0.0" end="0.4" lift="1.7" drag="1.9"/>
+    <flap1 start="0.4" end="1.0" lift="1.4" drag="1.1"/>
+    <control-input axis="/controls/flight/flaps" control="FLAP0"/>
+    <control-output control="FLAP0" prop="/surface-positions/flap-pos-norm"/>
+    <control-speed control="FLAP0" transition-time="7"/>
+    <control-input axis="/controls/flight/aileron" control="FLAP1" split="true"/>
+    <control-output control="FLAP1" side="left"
+		    prop="surface-positions/left-aileron-pos-norm"/>
+    <control-output control="FLAP1" side="right"
+	            prop="surface-positions/right-aileron-pos-norm"/>
+    <control-speed control="FLAP1" transition-time="1"/>
+    <control-input axis="/controls/flight/aileron-trim" control="FLAP1" split="true"/>
+  </wing>
+
+  <hstab x="-4.73" y="0.22" z="0.46" taper="0.439" 
+	 length="2.0" chord="1.43" sweep="0" incidence="0.0" effectiveness="2.5">
+    <stall aoa="16" width="8" peak="1.5"/>
+    <flap0 start="0.0" end="1.1" lift="1.6" drag="1.6"/>
+    <control-input axis="/controls/flight/elevator" square="true" control="FLAP0"/>
+    <control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
+    <control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
+  </hstab>
+
+  <vstab x="-5.0" y="0" z="-0.6" taper="0.5" effectiveness="3.5"
+	 length="1.6" chord="1.65" sweep="0">
+    <stall aoa="15" width="14" peak="1.5"/>
+    <flap0 start="0" end="1" lift="1.6" drag="1.6"/>
+    <control-input axis="/controls/flight/rudder" square="true" control="FLAP0" invert="true"/>
+    <control-input axis="/controls/flight/rudder-trim" control="FLAP0" invert="true"/>
+    <control-output control="FLAP0" prop="/surface-positions/rudder-pos-norm"
+		    min="1" max="-1"/>
+  </vstab>
+
+  <!-- 
+    Propeller characteristics
+    mass is the weight of the engine. I don't know the weight of the propeller.
+    curise rpm=2500*gear_ratio, takeoff-rpm=2500 * gear_ratio * 940/950 (estimate)
+    moment is 432.37 according to README.yasim, but I'm not sure.
+
+   -->
+  <propeller   x="1.8" y="0" z="0"
+               radius="1.56"
+               mass="1175" moment="80"
+               cruise-alt="15000" cruise-power="950"
+               cruise-speed="288" cruise-rpm="1719"
+               takeoff-power="940" takeoff-rpm="1700"
+               gear-ratio="0.6875"
+               fine-stop="0.9"
+               min-rpm="550" max-rpm="1719"
+	       >
+    <actionpt x="2.36" y="0" z="0"/>
+    <control-input axis="/controls/engines/engine[0]/propeller-pitch" control="ADVANCE" />
+    <!-- turbo-mul and wastegate-mp are set to +250mmHg (1.33 bar) -->
+    <piston-engine
+       eng-power="950" eng-rpm="2500"
+       turbo-mul="1.333" wastegate-mp="39.372"
+       supercharger="1"
+       >
+      <control-input axis="/controls/engines/engine[0]/throttle" control="THROTTLE"/>
+      <control-input axis="/controls/engines/engine[0]/starter" control="STARTER"/>
+      <control-input axis="/controls/engines/engine[0]/magnetos" control="MAGNETOS"/>
+      <control-input axis="/controls/engines/engine[0]/mixture" control="MIXTURE"/>
+      <control-input axis="/controls/engines/engine[0]/boost" control="BOOST"/>
+    </piston-engine>
+  </propeller>
+
+
+  <!-- left main -->
+  <gear x="0.61" y="1.75" z="-1.918" compression="0.3" spring="0.7" damp="2.8"
+	dfric="0.3" sfric ="0.60">
+    <control-input axis="/controls/gear/brake-left" control="BRAKE"/>
+    <control-input axis="/controls/gear/brake-parking" control="BRAKE" split="true"/>
+    <control-input control="EXTEND" axis="/gear/gear[0]/position-norm"/>
+  </gear>
+
+  <!-- right main -->
+  <gear x="0.61" y="-1.75" z="-1.918" compression="0.3" spring="0.7" damp="2.8"
+	dfric="0.3" sfric ="0.60">
+    <control-input axis="/controls/gear/brake-right" control="BRAKE"/>
+    <control-input axis="/controls/gear/brake-parking" control="BRAKE" split="true"/>
+    <control-input control="EXTEND" axis="/gear/gear[0]/position-norm"/>
+  </gear>
+
+  <!-- Tail wheel -->
+
+  <gear x="-5.67" y="0" z="-0.546" compression="0.1" castering="1"
+	dfric="0.2" sfric ="0.30">
+    <control-input axis="/controls/gear/tailwheel-lock" src0="0" src1="1"
+                   dst0="1" dst1="0" control="CASTERING"/>
+    <control-input axis="/controls/gear/gear-down" control="EXTEND"/>
+    <control-speed control="EXTEND" transition-time="4"/>
+    <control-output control="EXTEND" prop="/gear/gear[2]/position-norm"/>
+    src0="-1.0" src1="1.0"
+    dst0="0.5" dst1="-0.5"/>
+  </gear>
+
+  <hook x="-4.00" y="0.0" z="-0.400" length="1.5" down-angle="70" up-angle="-5"> 
+    <control-input axis="/controls/gear/tailhook" control="HEXTEND"/>
+    <control-speed control="HEXTEND" transition-time="3"/>
+  </hook>
+
+  <launchbar    x="0.0" y="0.0" z="-0.99"
+              length="1.470" 
+              down-angle="90"
+              up-angle="0"
+              holdback-x="1.33" holdback-y="0.0" holdback-z="-0.69" holdback-length="1.65">
+    <control-input axis="/controls/gear/launchbar" control="LEXTEND"/>
+    <control-speed control="LEXTEND" transition-time="1"/>
+  </launchbar>
+
+  <tank x="-0.0" y="1.15" z="-0.297" capacity="482.5"/> 
+  <tank x="-0.0" y="-1.15" z="-0.297" capacity="482.5"/> 
+
+  <!-- pilot -->
+  <ballast x="-0.5" y="0" z="-0.3" mass="180"/>
+  <ballast x="1.5" y="0" z="-0.0." mass="350"/>
+</airplane>

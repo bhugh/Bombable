@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+
+<PropertyList> 
+	<path>A-10-fuel-gauge.ac</path>
+
+	<!-- fuel L -->
+	<animation>
+		<type>rotate</type>
+		<object-name>needle-l</object-name>
+		<property>sim/model/A-10/consumables/fuel/fuel-dsp-left</property>
+		<interpolation> 
+			<entry><ind>0</ind><dep>189</dep></entry>
+			<entry><ind>3000</ind><dep>270</dep></entry>
+			<entry><ind>6000</ind><dep>351</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0.0023</x-m>
+			<y-m>0.0000</y-m>
+			<z-m>0.0024</z-m>
+		</center>
+		<axis><x>-1</x></axis>
+	</animation>
+
+<!-- fuel R -->
+	<animation>
+		<type>rotate</type>
+		<object-name>needle-r</object-name>
+		<property>sim/model/A-10/consumables/fuel/fuel-dsp-right</property>
+		<interpolation> 
+			<entry><ind>0</ind><dep>171</dep></entry>
+			<entry><ind>3000</ind><dep>90</dep></entry>
+			<entry><ind>6000</ind><dep>9</dep></entry>
+		</interpolation>
+		<center>
+			<y-m>0.0000</y-m>
+			<z-m>0.0024</z-m>
+		</center>
+		<axis><x>-1</x></axis>
+	</animation>
+
+	<!-- fuel selector knob -->
+	<animation>
+		<object-name>knob</object-name>
+		<type>rotate</type>
+		<property>sim/model/A-10/controls/fuel/fuel-dsp-sel</property>
+		<factor>45</factor>
+		<center>
+			<y-m>-0.0123</y-m>
+			<z-m>-0.0801</z-m>
+		</center>
+		<axis><x>-1</x></axis>
+	</animation>
+
+	<!-- fuel test indicator -->
+	<animation>
+		<object-name>test-button</object-name>
+		<type>translate</type>
+		<property>sim/model/A-10/controls/fuel/fuel-test-ind</property>
+		<factor>-0.005</factor>
+		<axis><x>1</x></axis>
+	</animation>
+
+
+<!-- total fuel drum counter -->
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-1</object-name>
+		<property>sim/model/A-10/consumables/fuel/fuel-dsp-drum</property>
+		<factor>0.1</factor>
+		<offset>-1</offset>
+		<axis><y>-1</y></axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-2</object-name>
+		<property>sim/model/A-10/consumables/fuel/fuel-dsp-drum</property>
+		<factor>0.01</factor>
+		<offset>-10</offset>
+		<step>10</step>
+		<scroll>0.5</scroll>
+		<axis><y>-1</y></axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-3</object-name>
+		<property>sim/model/A-10/consumables/fuel/fuel-dsp-drum</property>
+		<factor>0.001</factor>
+		<offset>-100</offset>
+		<step>100</step>
+		<scroll>0.5</scroll>
+		<axis><y>-1</y></axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-4</object-name>
+		<property>sim/model/A-10/consumables/fuel/fuel-dsp-drum</property>
+		<factor>0.0001</factor>
+		<offset>-1000</offset>
+		<step>1000</step>
+		<scroll>0.5</scroll>
+		<axis><y>-1</y></axis>
+	</animation>
+
+	<animation>
+		<type>textranslate</type>
+		<object-name>drum-5</object-name>
+		<property>sim/model/A-10/consumables/fuel/fuel-dsp-drum</property>
+		<factor>0.00001</factor>
+		<offset>-10000</offset>
+		<step>10000</step>
+		<scroll>0.5</scroll>
+		<axis><y>-1</y></axis>
+	</animation>
+
+	<!-- Left hydraulic systems pressure in psi -->
+	<animation>
+		<name>hydraulic-system-l</name>
+		<type>rotate</type>
+		<object-name>needle-hyd-l</object-name>
+		<property>systems/A-10-hydraulics/hyd-psi[0]</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>117.9</dep></entry>
+			<entry><ind>500</ind><dep>152</dep></entry>
+			<entry><ind>1000</ind><dep>198.5</dep></entry>
+			<entry><ind>1500</ind><dep>231</dep></entry>
+			<entry><ind>2000</ind><dep>270</dep></entry>
+			<entry><ind>2500</ind><dep>309</dep></entry>
+			<entry><ind>3000</ind><dep>350</dep></entry>
+			<entry><ind>3500</ind><dep>390</dep></entry>
+			<entry><ind>4000</ind><dep>427</dep></entry>
+		</interpolation>
+		<center>
+			<y-m>-0.0168</y-m>
+			<z-m>0.0688</z-m>
+		</center>
+		<axis><x>-1</x></axis>
+	</animation>
+
+	<!-- Hydraulic Systems presure R -->
+	<animation>
+		<name>hydraulic-system-r</name>
+		<type>rotate</type>
+		<object-name>needle-hyd-r</object-name>
+		<property>systems/A-10-hydraulics/hyd-psi[1]</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>117.9</dep></entry>
+			<entry><ind>500</ind><dep>152</dep></entry>
+			<entry><ind>1000</ind><dep>198.5</dep></entry>
+			<entry><ind>1500</ind><dep>231</dep></entry>
+			<entry><ind>2000</ind><dep>270</dep></entry>
+			<entry><ind>2500</ind><dep>309</dep></entry>
+			<entry><ind>3000</ind><dep>350</dep></entry>
+			<entry><ind>3500</ind><dep>390</dep></entry>
+			<entry><ind>4000</ind><dep>427</dep></entry>
+		</interpolation>
+		<center>
+			<y-m>0.0182</y-m>
+			<z-m>0.0688</z-m>
+		</center>
+		<axis><x>-1</x></axis>
+	</animation>
+
+
+<!-- lighting -->
+
+	<animation> 
+		<object-name>mount</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+	<animation> 
+		<object-name>knob</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>face</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>needles</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>drums</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/instruments-norm</factor-prop>
+			<red>0.55</red>
+			<green>0.24</green>
+			<blue>0.10</blue>
+		</emission>
+	</animation>
+
+	<animation> 
+		<object-name>test-button</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+	<!-- LoD -->
+	<animation> 
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+
+</PropertyList>

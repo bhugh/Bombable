@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+Fokker Dr.1 (triplane) simulation config.  This file ties together all
+the components used by FGFS to represent the flight data model,
+instrument panel, and external model.
+
+Flight model details: 
+Aircraft/UIUC/fkdr1-v1-nl/README.fkdr1.html
+
+External model details:  
+- Currently no GNU GPL version exists.
+- To obtain an external model, separately download the file
+  fokdr1m2.zip from http://www.flightsim.com.  There are several
+  variants of this which can also be used, namely these files:
+
+  dr-1cfs.zip
+  dr1mp98.zip
+  dr1mpcfs.zip
+  fkdr1blk.zip
+  fokdr-15.zip
+
+- The read the file Aircraft/UIUC/fkdr1-v1-nl/README.fkdr1.html
+
+Last update: Nov 10, 2002 Michael Selig, m-selig@uiuc.edu
+Sep 9, 2011: Added weapons. Brent Hugh, brent@brenthugh.com
+Guns seem to work fine.  Todo: Research on precise type of ammunition, caliber,
+mass, amount carried etc.  Right now it is simply the same as the Sopwith
+Camel ammunition.
+************************************************************************
+-->
+
+<PropertyList>
+
+	<sim include="help.xml">
+
+    <description>Fokker Dr.1 (JSB)</description>
+    <author>Michael Selig (FDM) Erik Hofman (FDM) Ron Jensen (FDM), Erik Hofman (3D model), Brent Hugh (weapons)</author>
+    <status>alpha, guns working</status>
+    <flight-model>jsb</flight-model>
+    <aero>dr1</aero>
+  
+    <sound>
+     <path>Aircraft/fkdr1-Bombable/Sounds/fkdr1-sound.xml</path>
+    </sound>
+  
+    <panel_2>
+     <path>Aircraft/Generic/Panels/generic-vfr-panel.xml</path>
+     <visibility>true</visibility>
+    </panel_2>
+  
+    <virtual-cockpit archive="y">true</virtual-cockpit>
+  
+    <panel>
+     <path>Aircraft/Generic/Panels/generic-trans-mini-panel.xml</path>
+     <visibility>true</visibility>
+    </panel>
+  
+    <model>
+     <path>Aircraft/fkdr1-Bombable/Models/dr1-jsb.xml</path>
+    </model>
+  
+    <submodels>
+  			<serviceable type="bool">true</serviceable>
+  			<path>Aircraft/fkdr1-Bombable/Models/fkdr1-submodels.xml</path>
+    </submodels>
+  
+    <rendering>
+     <camera-group>
+      <znear>0.15</znear>
+     </camera-group>
+    </rendering>
+  
+    <view n="0">
+     <internal archive="y">true</internal>
+     <config>
+      <x-offset-m archive="y">0.0</x-offset-m>
+      <z-offset-m archive="y">1.20</z-offset-m>
+      <y-offset-m archive="y">0.75</y-offset-m>
+     </config>
+    </view>
+  
+    <!-- Required to make Bombable work over multiplayer -->
+    <!-- String 9 is for Bombable damage/reset messages -->
+    <!-- Int 10,11,... are for various weapons triggers as particular to this aircraft -->
+    <multiplay>
+			<generic>
+		  	<string n="9"
+							 type="string"/>
+				<int n="10"
+							 alias="/controls/armament/trigger" />
+			</generic>
+		</multiplay>
+  
+    <menubar>
+  			<default>
+  				<menu n="10">
+  					<label>Fokker Dr. 1</label>
+  					<enabled type="bool">true</enabled>				
+  					<item>
+  						<label>Reload guns</label>
+  						<binding>
+  							<command>nasal</command>
+  							<script>fkdr1.reload_guns();</script>
+  						</binding>
+  					</item>
+  					<item>
+  						<label>Unlimited guns</label>
+  						<binding>
+  							<command>nasal</command>
+  							<script>fkdr1.unlimited_guns();</script>
+  						</binding>
+  					</item>
+  				</menu>
+  			</default>
+  	</menubar>
+
+  </sim>
+ 
+  <nasal>
+		<fkdr1>
+			<file>Aircraft/fkdr1-Bombable/Nasal/weapons.nas</file>         
+ 		</fkdr1>
+  </nasal>
+ 
+  <input>
+    <keyboard>
+        <!-- Fire gun -->
+        <!-- We do both triggers just to be safe -->
+        <key n="101">
+           <name>e</name>
+           <desc>Gun Trigger</desc> 
+           <binding>
+            <command>property-assign</command>
+            <property>ai/submodels/trigger</property>
+            <value>true</value>
+           </binding>
+           <binding>
+            <command>property-assign</command>
+            <property>controls/armament/trigger</property>
+            <value>true</value>
+           </binding>
+           <mod-up>
+            <binding>
+             <command>property-assign</command>
+             <property>ai/submodels/trigger</property>
+             <value>false</value>
+            </binding>
+            <binding>
+            <command>property-assign</command>
+            <property>controls/armament/trigger</property>
+            <value>false</value>
+           </binding> 
+           </mod-up>
+        </key>
+    </keyboard>
+  </input>
+
+</PropertyList>

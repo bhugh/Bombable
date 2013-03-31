@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+
+<!--
+-->
+
+<PropertyList>
+
+ <name>Digital Fuel Tot display</name>
+ <w-base>40</w-base>
+ <h-base>10</h-base>
+
+ <layers>
+
+  <layer>
+   <name>background</name>
+   <texture>
+    <path>Aircraft/A-10-Bombable/Panels/Instruments/Textures/trans-purple-bg.rgb</path>
+   </texture>
+    <w>124</w>
+    <h>20</h>
+   <transformations>
+    <transformation>
+     <type>x-shift</type>
+     <offset>62</offset>
+    </transformation>
+    <transformation>
+     <type>y-shift</type>
+     <offset>10</offset>
+    </transformation>
+   </transformations>
+  </layer>
+
+  <layer>
+   <name>Title</name>
+   <type>text</type>
+   <point-size>18</point-size>
+   <color>
+    <red>0.5</red>
+    <green>0.0</green>
+    <blue>1.0</blue>
+   </color>
+   <chunks>
+    <chunk>
+     <type>literal</type>
+     <text>FUEL: </text>
+    </chunk>
+   </chunks>
+   <transformations>
+    <transformation>
+     <type>x-shift</type>
+     <offset>4</offset>
+    </transformation>
+    <transformation>
+     <type>y-shift</type>
+     <offset>4</offset>
+    </transformation>
+   </transformations>
+  </layer>
+
+  <layer>
+   <name>Fuel FLow display</name>
+   <type>text</type>
+   <font>led</font>
+   <point-size>7</point-size>
+   <color>
+    <red>0.5</red>
+    <green>0.0</green>
+    <blue>1.0</blue>
+   </color>
+   <chunks>
+    <chunk>
+     <type>number-value</type>
+     <property>/consumables/fuel/total-fuel-gals</property>
+     <format>%02.2f</format>
+    </chunk>
+   </chunks>
+   <transformations>
+    <transformation>
+     <type>x-shift</type>
+     <offset>60</offset>
+    </transformation>
+    <transformation>
+     <type>y-shift</type>
+     <offset>3</offset>
+    </transformation>
+   </transformations>
+  </layer>
+
+ </layers>
+
+</PropertyList>

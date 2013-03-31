@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <default>
+    <menu n="10">
+      <label>F6F Hellcat</label>
+      <enabled type="bool">true</enabled>
+      <item>
+        <label>Select Livery</label>
+        <binding>
+          <command>nasal</command>
+          <script>aircraft.livery.dialog.toggle()</script>
+        </binding>
+      </item>
+    	<item>
+					<label>Reload guns</label>
+					<binding>
+						<command>nasal</command>
+						<script>guns.reload_guns()</script>
+					</binding>
+			</item>
+			<item>
+					<label>Unlimited guns</label>
+					<binding>
+						<command>nasal</command>
+						<script>guns.unlimited_guns()</script>
+					</binding>
+			</item>
+			      
+<!--
+      <item>
+        <label>Immatriculation</label>
+        <binding>
+          <command>nasal</command>
+          <script>f6f.immat_dialog.toggle()</script>
+        </binding>
+      </item>
+-->
+    </menu>
+  </default>
+
+</PropertyList>
+

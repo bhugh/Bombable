@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <sim>
+    <model>
+      <A6M2>
+        <livery>
+          <variant type="string">訓練</variant>
+          <material>
+            <LHaileron_1>
+              <texture>Training.png</texture>
+            </LHaileron_1>
+
+            <RHaileron_1>
+              <texture>Training.png</texture>
+            </RHaileron_1>
+
+            <RHflap_1>
+              <texture>Training.png</texture>
+            </RHflap_1>
+
+            <LHflap>
+              <texture>Training.png</texture>
+            </LHflap>
+
+            <Fuselage>
+              <texture>Training.png</texture>
+            </Fuselage>
+
+            <Elevator>
+              <texture>Training.png</texture>
+            </Elevator>
+
+            <Hstab>
+              <texture>Training.png</texture>
+            </Hstab>
+
+            <canopy>
+              <texture>Training.png</texture>
+            </canopy>
+
+            <canopy.001>
+              <texture>Training.png</texture>
+            </canopy.001>
+
+            <Rudder>
+              <texture>Training.png</texture>
+            </Rudder>
+
+            <Wing>
+              <texture>Training.png</texture>
+            </Wing>
+          </material>
+        </livery>
+      </A6M2>
+    </model>
+  </sim>
+</PropertyList>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+
+<PropertyList>
+
+	<path>A-10-master-caution.ac</path>
+	<animation>
+		<type>select</type>
+		<object-name>master-caution-on</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/A-10/instrumentation/warnings/master-caution</property>
+				<value>true</value>
+			</equals>
+		</condition>  
+	</animation>
+	
+	<!-- lighting -->
+	
+	<animation> 
+		<object-name>master-caution-on</object-name>
+		<type>material</type>
+		<emission> 
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+	
+	<animation> 
+		<object-name>master-caution-off</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.45</red>
+			<green>0.34</green>
+			<blue>0.18</blue>
+		</emission>
+	</animation>
+
+</PropertyList>

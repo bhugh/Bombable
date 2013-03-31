@@ -1,0 +1,64 @@
+<?xml version="1.0"?> <PropertyList> 
+<scenario> 
+<description>
+This scenario puts two Grumman F6F Hellcats in the Sierra Nevada mountains near Lake Tahoe.
+
+Your mission is to down the fighters - which will swarm and attack you.
+
+Take off from the Nervino, California Airport (O02), runway 07. After you take off, head due east, heading 90 degress. As you pass through about 6000 feet, you will see the fighters straight ahead and above you.
+
+You can use your map to locate the fighters (Menu:Equipment/Map).
+
+To damage the aircraft takes one or more direct hits from a machinegun or heavy gun, or a close strike by a heavy bomb.
+
+The F6F is well shielded and a fairly difficult target to destroy, especially for an A6M2 Zero. B-17s are heavier, even better shielded,and more difficult to damage.
+
+If you fly an A6M2 Zero, you'll probably have best luck 'dogfighting' the F6Fs, twisting and turning, getting on their tail, and following them.
+
+If you fly the F6F, you'll have more luck as an 'energy fighter'--dive away to gain speed, gain some distance, then turn andfire head-on into your opponents over repeated passes.
+
+Either way, the Sierra Nevada terrain provides excellentopportunities to use the terrain to your advantage.
+
+Install this scenario in the FlightGear/data/AI directory.
+
+Any aircraft that shoots guns or drops bombs can damage the F6F and B-17. A good historically appropriate choice is to use the A6M2 aircraft included in this distribution;the F6F will also work well.
+
+The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, and more resistant to damage. In WW2, the F6F held a 13:1 kill ratio over the Zero. So if you fly the Zero against the F6F, you have your work cut out for you!
+</description>
+		
+
+
+<!--  First Hellcate Squadron -->
+    <entry>
+      <type>aircraft</type>
+      <callsign>Agate</callsign>
+			<name>F6F21</name>
+      <model type="string">AI/Aircraft/F6F-Hellcat-Bombable/Models/f6f.xml</model>
+      <latitude type="double">39.6551097548720</latitude>
+			<longitude type="double">-120.2784</longitude>
+			<altitude type="double">13000</altitude>
+      <speed>260</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+      <performance-class>ww2_fighter</performance-class>
+      
+    </entry>
+    
+    <entry>
+      <type>aircraft</type>
+      <callsign>Tampa 3</callsign>
+			<name>F6F3</name>
+      <model type="string">AI/Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
+      <latitude type="double">39.6551097548720</latitude>
+			<longitude type="double">-120.2776</longitude>
+			<altitude type="double">13000</altitude>
+      <speed>245</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+      <performance-class>ww2_fighter</performance-class>
+    </entry>
+    
+    
+        
+	</scenario>
+</PropertyList>

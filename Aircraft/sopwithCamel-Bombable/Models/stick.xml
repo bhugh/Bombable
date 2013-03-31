@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<PropertyList>
+	<path>stick.ac</path>
+	<texture-path>Textures</texture-path>
+
+	<!-- Main Stick -->
+	<!-- Ailerons -->
+	<animation>
+		<type>rotate</type>
+		<object-name>main_stick</object-name>
+		<object-name>aileron_lever</object-name>
+		<object-name>blip_switch</object-name>
+		<property>controls/flight/aileron</property>
+		<factor>15</factor>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0.0637268</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>elevator_control_rod</object-name>
+		<property>controls/flight/aileron</property>
+		<factor>3.5</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+		<center>
+			<x-m>0.562615</x-m>
+			<y-m>0</y-m>
+			<z-m>0.114258</z-m>
+		</center>
+	</animation>
+	<!-- Elevators -->
+	<animation>
+		<type>rotate</type>
+		<object-name>main_stick</object-name>
+		<object-name>blip_switch</object-name>
+		<property>controls/flight/elevator</property>
+		<factor>10</factor>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+		<center>
+			<x-m>0.0637268</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+	</animation>
+	<animation>
+		<type>scale</type>
+		<object-name>elevator_control_rod</object-name>
+		<property>controls/flight/elevator</property>
+		<x-offset>1</x-offset>
+		<y-offset>0</y-offset>
+		<z-offset>0</z-offset>
+		<x-factor>-0.5</x-factor>
+		<y-factor>0</y-factor>
+		<z-factor>0</z-factor>
+	</animation>
+
+	<!-- Blip Switch -->
+	<animation>
+		<type>translate</type>
+		<object-name>switch_button</object-name>
+		<object-name>switch_shaft</object-name>
+		<property>sim/model/camel/blip_switch</property>
+		<factor>-0.0055</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<!-- Linkages -->
+	<!-- Port -->
+	<animation>
+		<type>translate</type>
+		<object-name>aileron_control_links_port</object-name>
+		<property>controls/flight/aileron</property>
+		<factor>-0.022</factor>
+		<axis>
+			<x>0</x>
+			<y>-0.425441</y>
+			<z>0.0369531</z>
+		</axis>
+	</animation>
+
+	<!-- Stbd -->
+	<animation>
+		<type>translate</type>
+		<object-name>aileron_control_links_stbd</object-name>
+		<property>controls/flight/aileron</property>
+		<factor>-0.022</factor>
+		<axis>
+			<x>0</x>
+			<y>-0.425441</y>
+			<z>0.0369531</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>aileron_control_links_port</object-name>
+		<object-name>aileron_control_links_stbd</object-name>
+		<condition>
+			<property>sim/model/camel/extra-details</property>
+		</condition>
+	</animation>
+
+	<!-- *** LoD *** -->
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>30</max-m>
+	</animation>
+</PropertyList>

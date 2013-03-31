@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<PropertyList> 
+	<path>A-10-hud-panel.ac</path>
+
+	<animation>
+		<object-name>mode-selector</object-name>
+		<type>rotate</type>
+		<property>sim/model/A-10/controls/hud/mode-selector</property>
+		<factor>45</factor>
+		<center>
+			<y-m>0.0238</y-m>
+			<z-m>0.0180</z-m>
+		</center>
+		<axis><x>-1</x></axis>
+	</animation>
+
+<!-- lighting -->
+	<animation>
+		<object-name>hud-panel</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+		<animation>
+			<type>range</type>
+			<min-m>0</min-m>
+			<max-m>5</max-m>
+		</animation>
+	</PropertyList>

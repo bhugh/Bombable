@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+  <key n="68">
+    <name>D</name>
+    <desc>Bomber bay</desc>
+    <binding>
+      <command>nasal</command>
+      <script>doors.doorsystem.passengerexport();</script>
+    </binding>
+  </key>
+
+  <key n="100">
+    <name>d</name>
+    <desc>Crew door</desc>
+    <binding>
+      <command>nasal</command>
+      <script>doors.doorsystem.crewexport();</script>
+    </binding>
+  </key>
+
+  <key n="69">
+    <name>E</name>
+    <desc>Wings</desc>
+    <binding>
+      <command>nasal</command>
+      <script>doors.doorsystem.wingsexport();</script>
+    </binding>
+  </key>
+
+  <key n="101">
+    <name>e</name>
+    <desc>Guns</desc>
+    <binding>
+      <command>nasal</command>
+      <script>guns.fire_MG()</script>
+    </binding>
+    <mod-up>
+      <binding>
+        <command>nasal</command>
+        <script>guns.stop_MG()</script>
+      </binding>
+    </mod-up>
+  </key>
+
+  <!-- Input/Keyboard/Carrier-bindings.xml here for the moment -->
+  <!-- map keys for catapult launch -->
+  <key n="67"> 
+    <name>C</name>
+    <desc>Catapult Launch Command.</desc>
+    <binding>
+      <command>property-assign</command>
+      <property>/controls/gear/catapult-launch-cmd</property>
+      <value type="bool"> true </value>
+    </binding>
+    <mod-up>
+      <binding>
+        <command>property-assign</command>
+        <property>/controls/gear/catapult-launch-cmd</property>
+        <value type="bool"> false </value>
+      </binding>
+    </mod-up>
+  </key>
+
+  <!-- map keys for launch-bar -->
+  <key n="76"> 
+    <name>L</name>
+    <desc>Launch-bar engage.</desc>
+    <binding>
+      <command>property-assign</command>
+      <property>/controls/gear/launchbar</property>
+      <value type="bool"> true </value>
+    </binding>
+    <mod-up>
+      <binding>
+        <command>property-assign</command>
+        <property>/controls/gear/launchbar</property>
+        <value type="bool"> false </value>
+      </binding>
+    </mod-up>
+  </key>
+
+  <!-- map keys for arrester hook -->
+  <key n="79"> 
+    <name>O</name>
+    <desc>Hook down</desc>
+    <binding> 
+      <command>property-assign</command>
+      <property>/controls/gear/tailhook</property>
+      <value type="double"> 1 </value>
+    </binding>
+  </key>
+
+  <key n="111"> 
+    <name>o</name>
+    <desc>Hook Up</desc>
+    <binding> 
+      <command>property-assign</command>
+      <property>/controls/gear/tailhook</property>
+      <value type="double"> 0 </value>
+    </binding>
+  </key>
+
+</PropertyList>
+

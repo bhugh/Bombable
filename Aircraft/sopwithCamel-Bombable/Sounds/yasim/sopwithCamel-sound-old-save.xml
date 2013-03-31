@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<fx>
+
+		<crank>
+			<name>crank</name>
+			<path>Sounds/coughing.wav</path>
+			<mode>looped</mode>
+			<condition>
+				<property>/engines/engine/cranking</property>
+				<not>
+					<property>/engines/engine/running</property>
+				</not>
+			</condition>
+			<volume>
+				<property>/orientation/alpha-deg</property>
+				<type>log</type>
+				<min>0.5</min>
+				<max>1.0</max>
+			</volume>
+			<volume>
+				<factor>1.2</factor>
+				<max>1.0</max>
+			</volume>
+		</crank>
+
+		<engine>
+			<name>engine</name>
+			<path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/leclerget.wav</path>
+			<mode>looped</mode>
+			<property>/engines/engine/running</property>
+			<volume>
+				<property>/engines/engine/mp-osi</property>
+				<factor>0.035</factor>
+				<min>0.15</min>
+				<max>1.0</max>
+				<offset>0.15</offset>
+			</volume>
+			<pitch>
+				<property>/engines/engine/rpm</property>
+				<factor>0.0008</factor>
+				<min>.3</min>
+				<max>1</max>
+				<offset>0.3</offset>
+			</pitch>
+		</engine>
+
+		<wind>
+			<name>wind</name>
+			<mode>looped</mode>
+			<path>Sounds/wind.wav</path>
+			<property>/velocities/airspeed-kt</property>
+			<volume>
+				<property>/position/altitude-ft</property>
+				<factor>-0.000015</factor>
+				<offset>1.0</offset>
+				<min>0.1</min>
+				<max>1.0</max>
+			</volume>
+			<volume>
+				<property>/velocities/airspeed-kt</property>
+				<factor>0.003</factor>
+				<min>0.03</min>
+				<max>1.2</max>
+			</volume>
+			<pitch>
+				<property>/velocities/airspeed-kt</property>
+				<factor>0.003</factor>
+				<offset>1.25</offset>
+			</pitch>
+		</wind>
+
+		<guns>
+			<name>gunfire</name>
+			<mode>looped</mode>
+			<path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/vickers.wav</path>
+			<!-- sound when the trigger is pressed AND ammo left in 
+      at least one of the two guns -->
+			<condition>
+				  <property>controls/armament/trigger</property>
+				<or>
+				   <property>ai/submodels/submodel/count</property>
+				   <property>ai/submodels/submodel[3]/count</property>
+				</or>
+			</condition>
+			<volume>
+				<factor>1.2</factor>
+				<max>1.0</max>
+			</volume>
+		</guns>
+
+	</fx>
+
+</PropertyList>

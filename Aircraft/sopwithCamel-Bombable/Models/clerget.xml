@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<PropertyList>  
+
+	<path>clerget.ac</path>
+	<texture-path>Textures</texture-path>
+
+	<animation> 
+		<type>spin</type>
+		<object-name>complete_engine</object-name>
+		<property>engines/engine/rpm</property>
+		<factor>0.5</factor>
+		<offset>100</offset>
+		<axis> 
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<!-- ***** Propeller ***** -->
+    <animation> 
+      <type>select</type>
+      <object-name>Blade-1</object-name>
+      <object-name>Blade-2</object-name>
+      <condition> 
+        <less-than> 
+          <property>/engines/engine[0]/rpm</property>
+          <value>1000</value>
+        </less-than>
+      </condition>
+    </animation>
+		
+    <animation> 
+      <type>select</type>
+      <object-name>Propeller-Disk</object-name>
+      <condition> 
+        <greater-than> 
+          <property>/engines/engine[0]/rpm</property>
+          <value>900</value>
+        </greater-than>
+      </condition>
+    </animation>
+		
+    <animation> 
+      <type>blend</type>
+      <object-name>Propeller-Disk</object-name>
+      <property>/engines/engine[0]/rpm</property>
+      <factor>0.0005</factor>
+      <offset>-0.5</offset>
+      <min>0.0</min>
+      <max>1</max>
+    </animation>
+
+	<!-- *** LoD *** -->
+	<animation> 
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>700</max-m>
+	</animation>
+</PropertyList>

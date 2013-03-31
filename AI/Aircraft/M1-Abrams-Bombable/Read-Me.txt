@@ -1,0 +1,32 @@
+English/Français
+
+[English]
+----------
+Low-poly M1 Abrams as static scenery for virtual meetings, now a moveable, bombable, shootable target which burns and smokes when hit.
+
+===============
+BARANGER Emmanuel
+January 27, 2008. 
+
+http://helijah.free.fr/flightgear/hangar.htm
+embaranger@free.fr
+
+Ver 2.0 Modified by Brent Hugh to allow dynamic movement etc.  3 Aug 2009.
+
+Ver 2.1 Retains tank position after FG does a file/reset (ie, after your aircraft crashes). 8 Aug 2009.
+
+Ver 2.2 Aligns pitch of tanks for going up/down hill and makes other tweaks so tanks look more realistic moving across the ground.  9 Aug 2009.
+
+http://brenthugh.com/flightgear/Sun_Valley_Tank_Invasion1.zip
+
+
+[Français]
+----------
+M1 Abrams basse résolution réalisé en tant que décors statique
+
+===============
+BARANGER Emmanuel
+27 Janvier 2008.
+
+http://helijah.free.fr/flightgear/hangar.htm
+embaranger@free.fr

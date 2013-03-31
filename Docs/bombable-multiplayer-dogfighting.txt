@@ -1,0 +1,173 @@
+MULTIPLAYER DOGFIGHTING WITH BOMBABLE
+
+**Following are instructions for dogfighting with the Bombable mod 
+for FlightGear (tested with 1.9.1,2.0, 2.4.0). See 
+bombable-readme.txt for details about getting the whole package 
+installed and working.**
+
+VERY IMPORTANT NOTE: MULTIPLAYER DOGFIGHTING ONLY WORKS WITH CERTAIN 
+VERY SPECIFIC AIRCRAFT THAT ARE SPECIALLY SET UP FOR MULTIPLAYER 
+DOGFIGHTING. AND IT WORKS **ONLY IF BOTH YOU AND THE PERSON YOU ARE 
+DOGFIGHTING** HAVE BOMBABLE INSTALLED ***AND*** ARE USING THOSE 
+SPECIFIC DOGFIGHTING-ENABLED AIRCRAFT.
+
+If you install the Bombable package you will soon note that you can 
+shoot at and destroy pretty much any aircraft, and any aircraft that 
+can shoot weapons or drop bombs seems to work fine as the main 
+aircraft.
+
+True! But this **does not mean that those same aircraft will work for 
+multiplayer dogfighting!** If you want to dogfight over multi-player, 
+please read the instructions below very carefully.
+
+Both people MUST install bombable, both people must enable 
+FlightGear's multi-player option on FlightGear startup, both people 
+must check the "Multiplayer enabled" checkbox in the Bombable menu 
+within FlightGear, AND both people must use one of the few 
+dogfighting-enabled aircraftm, which are listed below and included
+in the Bombable distribution.
+
+
+GETTING STARTED WITH MULTIPLAYER DOGFIGHTING 
+
+1. Get a partner to also load the bombable package
+
+2. Both choose one of these aircraft--look for the aircraft in the FGRun listing with the suffix -Bombable:
+
+   - Sopwith Camel (YASim, Guns/Bombable)
+   - SPAD VII (YASim, Guns/Bombable)
+   - Fokker DR 1 Triplane (Fokker Dr.1, JSB, Guns/Bombable)
+   - A6M2 Zero (YASim, Guns/Bombable)
+   - F6F Hellcat - Bombable
+   - A10-Bombable
+   - ufo-Bombable (mostly just for testing, but you can have UFO dogfights if you like!)
+
+   
+    NOTE: If you choose a different aircraft from those listed above, 
+    Bombable Multiplayer will not work. Note that there are similar 
+    aircraft but without the Guns/Bombable additions, which are included 
+    in the base FG distribution. If you choose one of those aircraft 
+    (lacking the Guns/Bombable additions), Bombable Multiplayer will not 
+    work.
+   
+3. Enable multiplayer (see general FG instructions for doing this).
+
+4. Enable multiplayer in the Bombable menu within FlightGear (it is 
+enabled by default).
+
+5. Go to same location within FG and dogfight each other.
+
+It is helpful to open an MPMap in a browser window to help you locate 
+each other. In FG 2.4.0 and higher you can use Equipment/Map in the 
+main FG dialog. Enable "Traffic" to see the other Multiplayer and AI 
+aircraft. Again, see general FG multiplayer instructions for details.
+
+You will be able to see the damage you are doing to the other person 
+(or people) and status messages will appear with your own damage 
+level.
+
+The aircraft stay coordinated so that, for instance, if you shoot a 
+plane and it catches on fire the person on the other end of the 
+multiplayer sees that their plane has been hit and started on fire.
+
+Once your damage reaches 100% your engines stop (magnetos off and 
+throttle to zero). This is simply an indication to you that you have 
+been defeated--Bombable doesn't try to model aircraft damage 
+realistically beyond this simple indication.
+
+To reset your damage level simply choose file/reset or use the 
+Location menu to reposition yourself--either will stop all 
+smoke/fires and reset your damage level to 0%.
+
+
+AIRPLANES FOR MULTIPLAYER DOGFIGHTS
+
+So far only these planes work with Multiplayer Dogfighting:
+
+   - Sopwith Camel (YASim, Guns/Bombable)
+   - SPAD VII (YASim, Guns/Bombable)
+   - Fokker DR 1 Triplane (Fokker Dr.1, JSB, Guns/Bombable)
+   - A6M2 Zero (YASim, Guns/Bombable)
+
+
+Other planes, such as the A-10 or any FG aircraft with working 
+weapons, could easily be modded to work with Bombable dogfighting. 
+(The aircraft need to have a generic multiplayer string added in 
+their -set.xml file, plus have their AI versions installed with 
+bombable; see included files for examples.)
+
+EASY MODE & MULTIPLAYER
+
+In MP mode, everyone dogfighting together should choose same settings 
+for Easy Mode, Super Easy mode, and Realistic Mode, or it won't be 
+fair. To change those settings, use the "Bombable" menu within 
+FlightGear.
+
+When starting, I strongly suggest choosing BOTH Easy and Super Easy 
+Modes (they add together to make a Super-duper Easy Mode). If you 
+don't do that, you will soon become VERY frustrated trying to hit 
+another plane.
+
+However I believe based on some research and reading that with Easy & 
+Super Easy Modes disabled the difficulty is very, very close to real 
+dogfighting. It was NOT easy to get a hit or a kill and most kills 
+happened at very close range.
+
+(Or by luck, as with the single shot that downed the Red Baron--but 
+you can get lucky with a single shot in FG also. Just like in real 
+life it doesn't happen very often, though--most often it takes a 
+large number of hits and near hits made at close range.)
+
+FILE RESET & MULTIPLAYER
+
+When you choose "File/reset" or reposition your aircraft using the 
+"Location" menu, your aircraft's fire, smoke, and damage will be 
+reset to 0%.
+
+When another player resets, a message will appear on your screen 
+indicating the reset.
+
+STRATEGY
+
+See the included file "dicta-boelcke-rules-for-ww1-dogfighting.txt" 
+for ideas on strategy and tactics--it all applies in the FG world.
+
+Keep in mind that WWI era fighter pilots were aggressive fighters who 
+wanted to engage and down other aircraft and found the best strategy 
+when attacked was, "Always turn and face the attack."
+
+Obviously there is a way to do this strategically but in general 
+dogfighting happens when you turn and engage other pilots. Unless 
+your aircraft are terribly mismatched, if you have some distance on 
+the other pilot you can generally avoid any fight by simply flying 
+away from the attacking aircraft.
+
+So if you want to avoid a dogfight, there is your strategy--just fly 
+away. If, on the other hand, you want to dogfight, put yourself and 
+partner(s) in well-matched aircraft and then--seek each other out and 
+attack. That's how they did it in real life.
+
+
+SIMULATION VS GAME
+
+"FlightGear is a simulation, not a game" is a commonly heard dictum 
+in the FlightGear world.
+
+True--yet military aircraft do have weapons and those weapons are 
+designed to be used, both in training and, when the time comes, in 
+armed conflict. A simulation that omits this important aspect of 
+military aircraft is not a complete simulation. Many of the 
+aeronautical capabilities of military aircraft are created 
+specifically to meet the needs of the weapons systems they carry and 
+the combat roles the aircraft is designed for.
+
+Weapons in a flight simulator can certainly be abused to turn the 
+simulator into a simplistic shoot-em-up game, but by the same token 
+they can be used to simulate realistic flying and realistic missions 
+in a way that most of us will never be able to experience first hand.
+
+And, yeah--they can make it more fun.
+
+Is that a problem?
+
+ 

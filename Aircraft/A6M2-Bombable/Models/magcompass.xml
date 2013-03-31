@@ -1,0 +1,74 @@
+<PropertyList>
+<path>magcompass.ac</path>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Compass.rose</object-name>
+  <property>/instrumentation/magnetic-compass/indicated-heading-deg</property>
+  <center>
+   <x-m>-0.015</x-m>
+   <y-m>0</y-m>
+   <z-m>0</z-m>
+  </center>
+  <axis>
+   <x>0</x>
+   <y>0</y>
+   <z>1</z>
+  </axis>
+ </animation>
+
+ <animation>
+  <type>rotate</type>
+  <object-name>Hdg.Ring</object-name>
+  <property>/instrumentation/magnetic-compass/correction-deg</property>
+  <center>
+   <x-m>0.0</x-m>
+   <y-m>0</y-m>
+   <z-m>0</z-m>
+  </center>
+  <axis>
+   <x>1</x>
+   <y>0</y>
+   <z>0</z>
+  </axis>
+ </animation>
+ 
+<animation>
+  <type>pick</type>
+  <object-name>Correct.minus</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>true</repeatable>
+    <interval-sec>0.1</interval-sec>
+    <binding>
+      <command>property-adjust</command>
+      <property>instrumentation/magnetic-compass/correction-deg</property>
+    <step>-1.0</step>
+    <min>0</min>
+    <max>360</max>
+    <wrap>1</wrap>
+    </binding>
+  </action>
+</animation>
+
+<animation>
+  <type>pick</type>
+  <object-name>Correct.plus</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>true</repeatable>
+    <interval-sec>0.1</interval-sec>
+    <binding>
+      <command>property-adjust</command>
+      <property>instrumentation/magnetic-compass/correction-deg</property>
+    <step>1.0</step>
+    <min>0</min>
+    <max>360</max>
+    <wrap>1</wrap>
+    </binding>
+  </action>
+
+</animation>
+
+</PropertyList>
+

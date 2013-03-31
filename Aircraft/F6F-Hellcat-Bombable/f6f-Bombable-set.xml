@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- <PropertyList include="f6f-jsbsim-cnf.xml"> -->
+<PropertyList include="f6f-base.xml">
+  
+  <sim>
+    <description>GRUMANN F6F Hellcat (Yasim)</description>
+    <author>Emmanuel BARANGER (3D/FDM), Brent HUGH (Ammo re-load, Bombable compatibility)</author>
+    <flight-model>yasim</flight-model>
+    <aero>f6f-yasim</aero>
+  </sim>
+
+</PropertyList>
+

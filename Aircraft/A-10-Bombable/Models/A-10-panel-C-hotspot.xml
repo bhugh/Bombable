@@ -1,0 +1,288 @@
+<?xml version="1.0"?>
+<!DOCTYPE PropertyList SYSTEM "panel.dtd">
+
+
+<PropertyList>
+	<name>A-10 C Panel Hotspots</name>
+	<background>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</background>
+	<w>1024</w>
+	<h>768</h>
+	<y-offset>0</y-offset>
+
+	<instruments>
+		<instrument>
+			<name>C panel</name>
+			<y>384</y>
+			<w>1024</w>
+			<h>768</h>
+			<w-base>1024</w-base>
+			<h-base>1024</h-base>
+			<x>512</x>
+
+			<layers>
+				<layer>
+					<name>background</name>
+					<texture>
+					<path>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</path>
+					<x1>0.0</x1>
+					<y1>0.0</y1>
+					<x2>1.0</x2>
+					<y2>1.0</y2>
+					</texture>
+				</layer>
+			</layers>
+
+<!-- define hotspot actions below -->
+			<actions>
+				<!-- Audio Altitude warning volume knob -->
+				<action>
+					<name>vol-ccw</name>
+					<button>0</button>
+					<x>290</x>
+					<y>435</y>
+					<w>70</w>
+					<h>50</h>
+					<binding>
+						<command>property-adjust</command>
+						<property>sim/model/A-10/instrumentation/warnings/audio-alt-volume</property>
+						<step>-0.1</step>
+						<min>0</min>
+						<max>1</max>
+						<wrap>false</wrap>
+					</binding>
+				</action>
+				<action>
+					<name>vol-cw</name>
+					<button>0</button>
+					<x>370</x>
+					<y>435</y>
+					<w>70</w>
+					<h>50</h>
+					<binding>
+						<command>property-adjust</command>
+						<property>sim/model/A-10/instrumentation/warnings/audio-alt-volume</property>
+						<step>0.1</step>
+						<min>0</min>
+						<max>1</max>
+						<wrap>false</wrap>
+					</binding>
+				</action>
+
+				<!-- HSI -->
+				<!-- course knob (OBS) CCW -->
+				<action>
+					<name>course-cw</name>
+					<button>0</button>
+					<x>260</x>
+					<y>-350</y>
+					<w>120</w>
+					<h>70</h>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/nav[1]/radials/selected-deg</property>
+						<step>-5</step>
+						<min>0</min>
+						<max>360</max>
+						<wrap>true</wrap>
+					</binding>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/nav[2]/radials/selected-deg</property>
+						<step>-5</step>
+						<min>0</min>
+						<max>360</max>
+						<wrap>true</wrap>
+					</binding>
+				</action>
+
+				<action>
+					<name>course-cw</name>
+					<button>1</button>
+					<x>260</x>
+					<y>-350</y>
+					<w>120</w>
+					<h>70</h>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/nav[1]/radials/selected-deg</property>
+						<step>-1</step>
+						<min>0</min>
+						<max>360</max>
+						<wrap>true</wrap>
+					</binding>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/nav[2]/radials/selected-deg</property>
+						<step>-1</step>
+						<min>0</min>
+						<max>360</max>
+						<wrap>true</wrap>
+					</binding>
+				</action>
+
+				<!-- course knob (OBS) CW -->
+				<action>
+					<name>course-ccw</name>
+					<button>0</button>
+					<x>388</x>
+					<y>-350</y>
+					<w>120</w>
+					<h>70</h>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/nav[1]/radials/selected-deg</property>
+						<step>5</step>
+						<min>0</min>
+						<max>360</max>
+						<wrap>true</wrap>
+					</binding>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/nav[2]/radials/selected-deg</property>
+						<step>5</step>
+						<min>0</min>
+						<max>360</max>
+						<wrap>true</wrap>
+					</binding>
+				</action>
+
+				<action>
+					<name>course-ccw</name>
+					<button>1</button>
+					<x>388</x>
+					<y>-350</y>
+					<w>120</w>
+					<h>70</h>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/nav[1]/radials/selected-deg</property>
+						<step>1</step>
+						<min>0</min>
+						<max>360</max>
+						<wrap>true</wrap>
+					</binding>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/nav[2]/radials/selected-deg</property>
+						<step>1</step>
+						<min>0</min>
+						<max>360</max>
+						<wrap>true</wrap>
+					</binding>
+				</action>
+
+				<!-- heading set knob -->
+				<action>
+					<name>heading-ccw</name>
+					<button>0</button>
+					<x>-347</x>
+					<y>-350</y>
+					<w>120</w>
+					<h>70</h>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/heading-indicator-fg/offset-deg</property>
+						<step>1</step>
+						<min>-180</min>
+						<max>180</max>
+						<wrap>true</wrap>
+					</binding>
+				</action>
+
+				<action>
+					<name>heading-ccw</name>
+					<button>1</button>
+					<x>-347</x>
+					<y>-350</y>
+					<w>120</w>
+					<h>70</h>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/heading-indicator-fg/offset-deg</property>
+						<step>5</step>
+						<min>-180</min>
+						<max>180</max>
+						<wrap>true</wrap>
+					</binding>
+				</action>
+
+				<action>
+					<name>heading-cw</name>
+					<button>0</button>
+					<x>-475</x>
+					<y>-350</y>
+					<w>120</w>
+					<h>70</h>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/heading-indicator-fg/offset-deg</property>
+						<step>-1</step>
+						<min>-180</min>
+						<max>180</max>
+						<wrap>true</wrap>
+					</binding>
+				</action>
+
+				<action>
+					<name>heading-cw</name>
+					<button>1</button>
+					<x>-475</x>
+					<y>-350</y>
+					<w>120</w>
+					<h>70</h>
+					<binding>
+						<command>property-adjust</command>
+						<property>instrumentation/heading-indicator-fg/offset-deg</property>
+						<step>-5</step>
+						<min>-180</min>
+						<max>180</max>
+						<wrap>true</wrap>
+					</binding>
+				</action>
+
+				<!-- nav-mode-selector -->
+				<!-- PTR switch -->
+				<action>
+					<name>PTR-switch-toggle</name>
+					<button>0</button>
+					<x>-178</x>
+					<y>-408</y>
+					<w>155</w>
+					<h>48</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>sim/model/A-10/A-10-nav/selector-ptr</property>
+					</binding>
+				</action>
+				<!-- HARS=0, VLOCS=1, TISL=2, NAV-CRS=3, MAN=4, ILS=5, TCN=6 -->
+				<!-- ils switch -->
+				<action>
+					<name>ils-switch-toggle</name>
+					<button>0</button>
+					<x>21</x>
+					<y>-468</y>
+					<w>98</w>
+					<h>46</h>
+					<binding>
+						<command>nasal</command>
+						<script>nav_scripts.nav_mode_selector(5)</script>
+					</binding>
+				</action>
+
+				<!-- tacan switch -->
+				<action>
+					<name>tacan-switch-toggle</name>
+					<button>0</button>
+					<x>158</x>
+					<y>-468</y>
+					<w>98</w>
+					<h>46</h>
+					<binding>
+						<command>nasal</command>
+						<script>nav_scripts.nav_mode_selector(6)</script>
+					</binding>
+				</action>
+			</actions>
+		</instrument>
+	</instruments>
+</PropertyList>

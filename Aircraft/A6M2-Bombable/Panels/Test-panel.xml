@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<!--
+Test instrument panel.
+Ron Jensen, wino@jentronics.com, January, 2008
+License:  GPL
+_______________________________________________________________________
+-->
+
+<PropertyList>
+ <name>Test Panel</name>
+ <background>Aircraft/Instruments/Textures/panel-mini-bg.rgb</background>
+ <w>180</w>
+ <h>300</h>
+ <y-offset>0</y-offset>
+ <view-height>300</view-height>
+
+ <instruments>
+
+  <instrument include="./aero.xml">
+   <name>Aero data</name>
+   <x>90</x>
+   <y>215</y>
+   <w>160</w>
+   <h>140</h>
+  </instrument>
+
+  <instrument include="./engine.xml">
+   <name>Engine data</name>
+   <x>90</x>
+   <y>75</y>
+   <w>160</w>
+   <h>140</h>
+  </instrument>
+
+ </instruments>
+
+</PropertyList>

@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<name>central-up-warning</name>
+	<path>A-10-central-up-warning.ac</path>
+
+	<power-supply>systems/electrical/outputs/rwr</power-supply>
+	<mininal-volts>20</mininal-volts>
+
+
+	<animation>
+		<type>select</type>
+		<object-name>alt-warning</object-name>
+		<condition>
+			<less-than>
+				<property>position/altitude-agl-ft</property>
+				<value>200</value>
+			</less-than>
+			<equals>
+				<property>gear/gear[0]/position-norm</property>
+				<value>0</value>
+			</equals>
+			<property>sim/model/A-10/lighting/warn-medium-lights/state</property>
+		</condition>  
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>search-warning1</object-name>
+		<condition>
+			<and>
+				<property>sim/model/A-10/lighting/warn-slow-lights/state</property>
+				<property>instrumentation/ecm/on-off</property>
+				<property>instrumentation/ecm/alert-type1</property>
+				<not>
+					<property>instrumentation/ecm/alert-type2</property>
+				</not>
+				<greater-than>
+					<property>systems/electrical/outputs/rwr</property>
+					<value>20</value>
+				</greater-than>
+			</and>
+		</condition>
+	</animation>
+	<animation>
+		<type>select</type>
+		<object-name>search-warning2</object-name>
+		<condition>
+			<and>
+				<property>instrumentation/ecm/on-off</property>
+				<property>instrumentation/ecm/alert-type2</property>
+				<greater-than>
+					<property>systems/electrical/outputs/rwr</property>
+					<value>20</value>
+				</greater-than>
+			</and>
+		</condition>
+	</animation>
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>button-audio</object-name>
+		<property>sim/model/A-10/instrumentation/warnings/audio-alt-volume</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>1</ind><dep>270</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0.0000</x-m>
+			<y-m>0.0472</y-m>
+			<z-m>0.0106</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>  
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>canopy-warning</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/ldg-warning-system</property>
+				<value>24</value>
+			</greater-than>
+			<greater-than>
+				<property>canopy/position-norm</property>
+				<value>0</value>
+			</greater-than>
+		</condition>  
+	</animation>
+
+	<animation>
+		<type>select</type> 
+		<object-name>steering-engaged</object-name>
+		<condition>
+			<greater-than>
+				<property>systems/electrical/outputs/ldg-warning-system</property>
+				<value>24</value>
+			</greater-than>
+			<less-than>
+				<property>velocities/airspeed-kt</property>
+				<value>95</value>
+			</less-than>
+			<equals>
+				<property>gear/gear[0]/position-norm</property>
+				<value>1</value>
+			</equals>
+		</condition>  
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>gun-ready</object-name>
+		<condition>
+			<property>sim/model/A-10/weapons/gun/ready</property>
+			<greater-than>
+				<property>systems/electrical/outputs/gau-8</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+<!-- lighting -->
+
+	<animation> 
+		<object-name>mount</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.45</red>
+			<green>0.34</green>
+			<blue>0.18</blue>
+		</emission>
+	</animation>
+
+	<animation> 
+		<object-name>gun-steering-marker-canopy</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.45</red>
+			<green>0.34</green>
+			<blue>0.18</blue>
+		</emission>
+	</animation>
+	
+	<animation> 
+		<object-name>button-dim</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.30</red>
+			<green>0.16</green>
+			<blue>0.08</blue>
+		</emission>
+	</animation>
+	
+	<animation> 
+		<object-name>button-audio</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.30</red>
+			<green>0.16</green>
+			<blue>0.08</blue>
+		</emission>
+	</animation>
+	
+	<animation> 
+		<object-name>lights</object-name>
+		<type>material</type>
+		<emission> 
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+	
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+
+</PropertyList>

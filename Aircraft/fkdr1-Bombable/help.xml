@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<PropertyList>
+	<help>
+   <title>Fokker Dr.1</title>
+		<key>
+			<name>s</name>
+			<desc>Start Engine</desc>
+		</key>
+		<key>
+			<name>{</name>
+			<desc>magneto OFF </desc>
+		</key>
+		<key>
+			<name>}</name>
+			<desc>magneto ON</desc>
+		</key>
+		<key>
+			<name>e</name>
+			<desc>fire guns </desc>
+			
+		</key>
+		<line> </line>
+		<line>Starting</line>
+		<line> </line>
+		<line>To start, press '}' to turn the magneto on. Engage full throttle. Then press and </line>
+		<line>hold 's' until the engine catches--it may take several seconds.</line> 
+		<line> </line>
+		<line>Take Off</line>
+		<line> </line>
+		<line>Zoom the view out so you can see the edges of the runway with your </line>
+		<line>peripheral vision.  Start the engine according to the instructions </line>
+		<line>above. As soon as the engine starts, the aircraft will start to roll</line>
+		<line> down the runway. (The DR.1 was not equipped with brakes.)</line>
+		<line>As soon as the aircraft starts to move, pull back firmly on the stick </line>
+		<line>to counter the aircraft's tendency to nose over.  As the aircraft picks up </line>
+		<line>speed, be prepared to firmly counter the aircraft's tendency to yaw right </line>
+		<line>and roll left. Countering this requires firm left rudder and right aileron, </line>
+		<line>while continuing to apply firm up elevator to counter the tendency to </line>
+		<line>nose over.</line>
+		<line></line>
+		<line>As the aircraft starts to lift off, gently ease the stick forward so as </line>
+		<line>to avoid a too-steep rate of climb. If you keep the stick pulled back the </line>
+		<line>aircraft will climb too rapidly and lose airspeed, leading to an invitible </line>
+		<line>stall, roll, and crash.</line>
+		<line></line>
+		<line>Similarly, be prepared to ease off the rudder and aileron as the aircraft </line>
+		<line>picks up speed.</line>
+    <line> </line>
+		<line>Guns</line>
+		<line> </line>
+		<line>Guns have 250 rounds each, the maximum capacity of the Spandau lMG08 that was</line>
+		<line>standard on the DR1.</line>
+		<line></line>
+	  <line>Note that guns will not work if AI models are disabled (the bullets</line> 
+    <line>and smoke are AI objects - tracer rounds will appear but they won't move).</line>
+    <line>Fire with the e key or a joystick trigger linked to /controls/armament/trigger. </line>
+    <line>Reload guns: Use the menu--you must be on ground and stopped. </line>
+    
+	</help>
+</PropertyList>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<PropertyList> 
+
+	<path>asi.ac</path>
+	<texture-path>Textures</texture-path>
+
+	<animation> 
+		<type>rotate</type>
+		<object-name>needle</object-name>
+		<property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+		<interpolation>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>86.8976</ind><dep>180</dep></entry>
+			<entry><ind>156.4157</ind><dep>326</dep></entry>
+		</interpolation>
+		<axis> 
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+		<center> 
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+	</animation>
+		
+	<animation> 
+		<type>select</type>
+		<object-name>pipes</object-name>
+		<object-name>screws</object-name>
+		<condition>
+			<property>sim/model/camel/extra-details</property>
+		</condition>
+	</animation> 
+
+	<!-- *** LoD *** -->
+	<animation> 
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+</PropertyList>

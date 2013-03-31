@@ -1,0 +1,334 @@
+<?xml version="1.0"?>
+<PropertyList>
+   <particlesystem>
+	    <name>blaze</name>
+			<type>normal</type>
+      <texture>blaze.png</texture>
+	    <emissive>true</emissive>
+	    <lighting>false</lighting>
+	    
+	    <offsets>
+	      <x-m>0</x-m>
+	      <y-m>0</y-m>
+	      <z-m>0</z-m>
+	      <!--<pitch-deg>90</pitch-deg>-->
+	    </offsets>
+	    
+	    
+	    <condition>
+	      <equals>
+	        <property>controls/armament/trigger</property>
+	        <value>true</value>
+	      </equals>
+	    </condition>-->
+	      
+	    <attach>local</attach>
+	    
+	    <placer>
+	      <type>point</type>
+	    </placer>
+
+	    
+	    <shooter>
+	      <theta-min-deg>-88</theta-min-deg>
+	      <theta-max-deg>-92</theta-max-deg>
+	      <phi-min-deg>-1.5</phi-min-deg>
+	      <phi-max-deg>1.5</phi-max-deg>
+	      <speed-mps>
+	        <value>50</value>
+	        <spread>2.5</spread>
+	      </speed-mps>
+	      <rotation-speed>
+	        <x-min-deg-sec>0</x-min-deg-sec>
+	        <y-min-deg-sec>0</y-min-deg-sec>
+	        <z-min-deg-sec>0</z-min-deg-sec>
+	        <x-max-deg-sec>0</x-max-deg-sec>
+	        <y-max-deg-sec>0</y-max-deg-sec>
+	        <z-max-deg-sec>0</z-max-deg-sec>
+	      </rotation-speed>
+	    </shooter>
+	    
+	    <counter>
+	      <particles-per-sec>
+	        <value>9</value>
+	        <spread>6</spread>
+	      </particles-per-sec>
+	    </counter>
+	    
+	    <align>billboard</align>
+	    
+	    <particle>
+	      <start>
+	        <color>
+	          <red>
+	            <value>0.8</value>
+	          </red>
+	          <green>
+	            <value>0.7</value>
+	          </green>
+	          <blue>
+	            <value>0.0</value>
+	          </blue>
+	          <alpha>
+	            <value>1.0</value>
+	          </alpha>
+	        </color>
+	        <size>
+	          <value>0.36</value>
+	        </size>
+	      </start>
+	      <end>
+	        <color>
+	          <red>
+	            <value>1</value>
+	          </red>
+	          <green>
+	            <value>1</value>
+	          </green>
+	          <blue>
+	            <value>1</value>
+	          </blue>
+	          <alpha>
+	            <value>0.0</value>
+	          </alpha>
+	        </color>
+	        <size>
+	          <value>0.1</value>
+	        </size>
+	      </end>
+	      <life-sec>
+	        <value>0.1</value>
+	      </life-sec>
+	      <mass-kg>0.01</mass-kg>
+	      <radius-m>0.1</radius-m>
+	    </particle>
+	    
+	    <program>
+	      <fluid>air</fluid>
+	      <gravity>false</gravity>
+	      <wind>false</wind>
+	    </program>
+	    
+	</particlesystem>
+   <particlesystem>
+	    <name>blaze</name>
+			<type>normal</type>
+      <texture>blaze.png</texture>
+	    <emissive>true</emissive>
+	    <lighting>false</lighting>
+	    
+	    <offsets>
+	      <x-m>0</x-m>
+	      <y-m>0.2</y-m>
+	      <z-m>0</z-m>
+	      <!--<pitch-deg>90</pitch-deg>-->
+	    </offsets>
+	    
+	    
+	    <condition>
+	      <equals>
+	        <property>controls/armament/trigger</property>
+	        <value>true</value>
+	      </equals>
+	    </condition>-->
+	      
+	    <attach>local</attach>
+	    
+	    <placer>
+	      <type>point</type>
+	    </placer>
+
+	    
+	    <shooter>
+	      <theta-min-deg>-88</theta-min-deg>
+	      <theta-max-deg>-92</theta-max-deg>
+	      <phi-min-deg>-1.5</phi-min-deg>
+	      <phi-max-deg>1.5</phi-max-deg>
+	      <speed-mps>
+	        <value>50</value>
+	        <spread>2.5</spread>
+	      </speed-mps>
+	      <rotation-speed>
+	        <x-min-deg-sec>0</x-min-deg-sec>
+	        <y-min-deg-sec>0</y-min-deg-sec>
+	        <z-min-deg-sec>0</z-min-deg-sec>
+	        <x-max-deg-sec>0</x-max-deg-sec>
+	        <y-max-deg-sec>0</y-max-deg-sec>
+	        <z-max-deg-sec>0</z-max-deg-sec>
+	      </rotation-speed>
+	    </shooter>
+	    
+	    <counter>
+	      <particles-per-sec>
+	        <value>7</value>
+	        <spread>8</spread>
+	      </particles-per-sec>
+	    </counter>
+	    
+	    <align>billboard</align>
+	    
+	    <particle>
+	      <start>
+	        <color>
+	          <red>
+	            <value>0.8</value>
+	          </red>
+	          <green>
+	            <value>0.7</value>
+	          </green>
+	          <blue>
+	            <value>0.0</value>
+	          </blue>
+	          <alpha>
+	            <value>1.0</value>
+	          </alpha>
+	        </color>
+	        <size>
+	          <value>0.36</value>
+	        </size>
+	      </start>
+	      <end>
+	        <color>
+	          <red>
+	            <value>1</value>
+	          </red>
+	          <green>
+	            <value>1</value>
+	          </green>
+	          <blue>
+	            <value>1</value>
+	          </blue>
+	          <alpha>
+	            <value>0.0</value>
+	          </alpha>
+	        </color>
+	        <size>
+	          <value>0.1</value>
+	        </size>
+	      </end>
+	      <life-sec>
+	        <value>0.1</value>
+	      </life-sec>
+	      <mass-kg>0.01</mass-kg>
+	      <radius-m>0.1</radius-m>
+	    </particle>
+	    
+	    <program>
+	      <fluid>air</fluid>
+	      <gravity>false</gravity>
+	      <wind>false</wind>
+	    </program>
+	    
+	</particlesystem>
+   <particlesystem>
+	    <name>blaze</name>
+			<type>normal</type>
+      <texture>blaze.png</texture>
+	    <emissive>true</emissive>
+	    <lighting>false</lighting>
+	    
+	    <offsets>
+	      <x-m>0</x-m>
+	      <y-m>-0.2</y-m>
+	      <z-m>0</z-m>
+	      <!--<pitch-deg>90</pitch-deg>-->
+	    </offsets>
+	    
+	    
+	    <condition>
+	      <equals>
+	        <property>controls/armament/trigger</property>
+	        <value>true</value>
+	      </equals>
+	    </condition>-->
+	      
+	    <attach>local</attach>
+	    
+	    <placer>
+	      <type>point</type>
+	    </placer>
+
+	    
+	    <shooter>
+	      <theta-min-deg>-88</theta-min-deg>
+	      <theta-max-deg>-92</theta-max-deg>
+	      <phi-min-deg>-1.5</phi-min-deg>
+	      <phi-max-deg>1.5</phi-max-deg>
+	      <speed-mps>
+	        <value>50</value>
+	        <spread>2.5</spread>
+	      </speed-mps>
+	      <rotation-speed>
+	        <x-min-deg-sec>0</x-min-deg-sec>
+	        <y-min-deg-sec>0</y-min-deg-sec>
+	        <z-min-deg-sec>0</z-min-deg-sec>
+	        <x-max-deg-sec>0</x-max-deg-sec>
+	        <y-max-deg-sec>0</y-max-deg-sec>
+	        <z-max-deg-sec>0</z-max-deg-sec>
+	      </rotation-speed>
+	    </shooter>
+	    
+	    <counter>
+	      <particles-per-sec>
+	        <value>9</value>
+	        <spread>7</spread>
+	      </particles-per-sec>
+	    </counter>
+	    
+	    <align>billboard</align>
+	    
+	    <particle>
+	      <start>
+	        <color>
+	          <red>
+	            <value>0.8</value>
+	          </red>
+	          <green>
+	            <value>0.7</value>
+	          </green>
+	          <blue>
+	            <value>0.0</value>
+	          </blue>
+	          <alpha>
+	            <value>1.0</value>
+	          </alpha>
+	        </color>
+	        <size>
+	          <value>0.36</value>
+	        </size>
+	      </start>
+	      <end>
+	        <color>
+	          <red>
+	            <value>1</value>
+	          </red>
+	          <green>
+	            <value>1</value>
+	          </green>
+	          <blue>
+	            <value>1</value>
+	          </blue>
+	          <alpha>
+	            <value>0.0</value>
+	          </alpha>
+	        </color>
+	        <size>
+	          <value>0.1</value>
+	        </size>
+	      </end>
+	      <life-sec>
+	        <value>0.1</value>
+	      </life-sec>
+	      <mass-kg>0.01</mass-kg>
+	      <radius-m>0.1</radius-m>
+	    </particle>
+	    
+	    <program>
+	      <fluid>air</fluid>
+	      <gravity>false</gravity>
+	      <wind>false</wind>
+	    </program>
+	    
+	</particlesystem>
+
+</PropertyList>

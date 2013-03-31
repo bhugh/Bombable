@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<name>Jeep-config</name>
+	<x>-360</x>
+	<y>-40</y>
+	<width>300</width>
+	<height>225</height>
+	<modal>false</modal>
+
+	<text>
+		<x>80</x>
+		<y>200</y>
+		<label>Jeep Livery Config</label>
+	</text>
+
+
+
+	
+
+		<checkbox>
+		<x>70</x>
+		<y>160</y>		
+			<label>Use red coloring scheme</label>
+			<width>15</width>
+			<height>15</height>
+			<property>/ai/jeep/usered</property>
+			
+		</checkbox>
+	
+	
+<group>
+ <x>20</x>
+ <y>120</y>
+	<text>
+		
+		
+			<x>0</x>
+			<y>0</y>
+			<label>Normal Jeep color is camouflage.  But 
+in FlightGear, depending on the terrain, it 
+can be very, very challenging to see at a 
+distance.  The red color scheme is not realistic 
+but improves visibility dramatically. 
+      </label>
+		</text>
+</group>		
+	
+
+
+
+	<group>
+		<x>40</x>
+		<y>15</y>
+
+		<button>
+			<x>0</x>
+			<y>0</y>
+			<legend>OK</legend>
+			<default>true</default>
+			<equal>true</equal>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+			<binding>
+			  <command>dialog-close</command>
+			</binding>
+		</button>
+		<button>
+			<x>70</x>
+			<y>0</y>
+			<legend>Apply</legend>
+			<equal>true</equal>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+
+		</button>
+
+		<button>
+			<x>140</x>
+			<y>0</y>
+			<legend>Cancel</legend>
+			<equal>true</equal>
+			<key>Esc</key>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+				
+ </group>
+
+</PropertyList>
+
+

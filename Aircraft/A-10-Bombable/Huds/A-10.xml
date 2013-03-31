@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<enable3d>true</enable3d>
+
+	<ladder>
+		<name>Pitch Ladder</name>
+		<type>pitch</type>
+		<x>-10</x>
+		<y>-95</y>
+		<width>20</width>
+		<height>130</height>
+		<roll-input>
+			<property>instrumentation/attitude-indicator/indicated-roll-deg</property>
+		</roll-input>
+		<pitch-input>
+			<property>instrumentation/attitude-indicator/indicated-pitch-deg</property>
+		</pitch-input>
+		<compression-factor>10.00</compression-factor>
+		<display-span>14.0</display-span>
+		<divisions>5.0</divisions>
+		<screen-hole>0</screen-hole>
+		<lbl-pos>0</lbl-pos>
+		<enable-fuselage-ref-line>false</enable-fuselage-ref-line>
+		<enable-target-spot>false</enable-target-spot>
+		<enable-velocity-vector>true</enable-velocity-vector>
+		<enable-drift-marker>false</enable-drift-marker>
+		<enable-alpha-bracket>false</enable-alpha-bracket>
+		<enable-energy-marker>false</enable-energy-marker>
+		<enable-climb-dive-marker>false</enable-climb-dive-marker>
+		<enable-glide-slope-marker>false</enable-glide-slope-marker>
+		<glide-slope>0.0</glide-slope>
+		<enable-energy-worm>true</enable-energy-worm>
+		<enable-waypoint-marker>true</enable-waypoint-marker>
+		 <zero-bar-overlength>150</zero-bar-overlength>
+	</ladder>
+
+	<label>
+		<name>KIAS</name>
+		<x>-66</x>
+		<y>-45</y>
+		<width>50</width>
+		<height>40</height>
+		<input>
+			<property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+		</input>
+		<format>%4.0f</format>
+		<halign>left</halign>
+	</label>
+
+	<label>
+		<name>Altitude</name>
+		<x>39</x>
+		<y>-45</y>
+		<width>50</width>
+		<height>40</height>
+		<input>
+			<property>instrumentation/altimeter/indicated-altitude-ft</property>
+		</input>
+		<format>%4.0f</format>
+		<halign>left</halign>
+	</label>
+
+	<label>
+		<name>Altitude AGL</name>
+		<x>35</x>
+		<y>-57</y>
+		<width>50</width>
+		<height>40</height>
+		<input>
+			<property>position/altitude-agl-ft</property>
+		</input>
+		<format>%4.0fR</format>
+		<halign>left</halign>
+	</label>
+
+	<label>
+		<name>Pitch</name>
+		<x>35</x>
+		<y>-71</y>
+		<width>28</width>
+		<height>8</height>
+		<box>true</box>
+		<input>
+			<property>instrumentation/attitude-indicator/indicated-pitch-deg</property>
+		</input>
+		<format>%4.2f</format>
+		<halign>right</halign>
+	</label>
+
+	<label>
+		<name>Depression</name>
+		<x>-66</x>
+		<y>-71</y>
+		<width>28</width>
+		<height>8</height>
+		<box>false</box>
+		<input>
+			<property>sim/model/A-10/controls/hud/depr</property>
+		</input>
+		<format>%4.2fD</format>
+		<halign>left</halign>
+	</label>
+
+	<tape>
+		<name>Heading</name>
+		<x>-50</x>
+		<y>-115</y>
+		<width>100</width>
+		<height>10</height>
+		<input>
+			<property>instrumentation/heading-indicator-fg/indicated-heading-deg</property>
+			<factor>0.1</factor>
+			<max>85</max>
+			<min>0</min>
+		</input>
+		<major-divisions>1</major-divisions>
+		<minor-divisions>0.5</minor-divisions>
+		<display-span>3.5</display-span>
+		<option>left</option>
+		<option>horizontal</option>
+		<tick-bottom>false</tick-bottom>
+		<tick-top>false</tick-top>
+		<tick-right>false</tick-right>
+		<tick-left>false</tick-left>
+		<cap-bottom>false</cap-bottom>
+		<cap-top>false</cap-top>
+		<cap-right>false</cap-right>
+		<cap-left>false</cap-left>
+		<marker-offset>5</marker-offset>
+		<enable-pointer>false</enable-pointer>
+		<pointer-type>fixed</pointer-type>
+	</tape>
+
+	<gauge>
+		<name>rudder</name>
+		<x>-60</x>
+		<y>-118</y>
+		<width>120</width>
+		<height>5</height>
+		<option>top</option>
+		<option>notext</option>
+		<major-divisions>50</major-divisions>
+		<minor-divisions>0</minor-divisions>
+		<tick-bottom>false</tick-bottom>
+		<tick-top>false</tick-top>
+		<tick-right>true</tick-right>
+		<tick-left>true</tick-left>
+		<cap-bottom>false</cap-bottom>
+		<cap-top>false</cap-top>
+		<cap-right>false</cap-right>
+		<cap-left>false</cap-left>
+		<marker-offset>0.0</marker-offset>
+		<enable-pointer>true</enable-pointer>
+		<pointer-type>fixed</pointer-type>
+		<input>
+			<property>controls/flight/rudder</property>
+			<max>1.0</max>
+			<min>-1.0</min>
+		</input>
+	</gauge>
+
+	<aiming-reticle>
+		<x>-23</x>
+		<y>-55</y>
+		<width>48</width> <!-- defines the diameter of the constant/inner circle -->
+		<height>48</height>
+		<active-condition>
+			<equals>
+				<property>sim/model/A-10/weapons/dual-AIM-9/aim9-knob</property>
+				<value>2</value>
+			</equals>
+		</active-condition>
+		<diameter-input>1</diameter-input>
+	</aiming-reticle>
+
+</PropertyList>

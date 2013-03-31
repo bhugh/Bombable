@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<!--  Submodels are objects which can be dropped or launched from the user aircraft.
+      The trigger is a boolean property, which you define, which when "true" causes
+      the submodel to be released/launched. 
+      A submodel will create an AIBallistic object which will follow a ballistic path.
+      By default one submodel will be released when the corresponding trigger is "true".
+      The initial conditions (IC) define the object's starting point (relative to the
+      user aircraft's "reported position"), and its initial speed and direction
+      (relative to the user aircraft).  If you want to release many similar objects
+      with similar IC, then you may use the <repeat>, <delay> and <count> properties
+      to define this.  The allowed properties are:
+
+      <name>         The name of the submodel.
+      <model>        The path to the visual model.
+      <trigger>      The property which will act as the trigger. 
+      <speed>        Initial speed, in feet/sec, relative to user aircraft.
+      <repeat>       Set "true" if you want multiple releases of this submodel.
+      <delay>        Time, in seconds, between repeated releases.
+      <count>        Number of submodels available for multiple release.
+      <x-offset>     Submodel's initial fore/aft position relative to user aircraft.  
+                     Fore is positive.
+      <y-offset>     Submodel's initial left/right position relative to user aircraft.  
+                     Right is positive.
+      <z-offset>     Submodel's initial up/down position relative to user aircraft.  
+                     Up is positive.
+      <yaw-offset>   Submodel's initial azimuth, in degrees, relative to user aircraft's
+                     nose.  Right is positive.
+      <pitch-offset> Submodel's initial elevation, in degrees, relative to user aircraft's
+                     pitch.  Up is positive.
+	<buoyancy>     Submodel's upward acceleration (fps) due to buoyancy in air. 32 is neutral
+	               (contrails),  > 32 exhaust gas, smoke. 
+      <wind>	   If true, Submodel is affected by local wind. Defaults to false.
+	<cd>           The Coeffient of Drag. Varies with submodel shape - 0.295 for a bullet, 
+	               0.045 for an airfoil. Enter an appropriate value. Defaults to 0.295.
+	<eda>          Effective drag area (sq ft). Usually the cross-sectional area of the 
+                     submodel normal to the airflow.
+      <weight>       The weight of the submodel (lbs). Defaults to 0.25	 
+-->
+<PropertyList>
+	<submodel>
+		<name>Vickers L</name>
+		<model>Aircraft/sopwithCamel-Bombable/Models/tracer.xml</model>
+		<trigger>ai/submodels/trigger</trigger>
+		<speed>2444.2</speed>
+		<repeat>true</repeat>
+		<delay>0.4720</delay>
+		<count>250</count>
+		<x-offset>1.66</x-offset>
+		<y-offset>-0.50045</y-offset>
+		<z-offset>1.62352</z-offset>
+		<yaw-offset>0</yaw-offset>
+		<pitch-offset>0</pitch-offset>
+		<cd>0.193</cd>
+		<weight>0.0249122356</weight>
+		<eda>0.000500740417</eda>
+		<life>10</life>
+		<wind>false</wind>
+		<collision>true</collision>
+		<collision-report>sim/ai/aircraft/collision/cannon</collision-report>
+		<impact>true</impact>
+		<impact-report>sim/ai/aircraft/impact/droptank</impact-report>
+		<submodel-path>Aircraft/sopwithCamel-Bombable/Models/camel-subsubmodels.xml</submodel-path>
+	</submodel>
+
+	<submodel>
+		<name>Vickers L smoke</name>
+		<model>Aircraft/sopwithCamel-Bombable/Models/smoke.xml</model>
+		<trigger>ai/submodels/trigger</trigger>
+		<speed>10</speed>
+		<repeat>true</repeat>
+		<delay>0.052631579</delay>
+		<count>2500</count>
+		<x-offset>1.66</x-offset>
+		<y-offset>-0.50045</y-offset>
+		<z-offset>1.62352</z-offset>
+		<yaw-offset>0</yaw-offset>
+		<pitch-offset>0</pitch-offset>
+		<eda>10</eda>
+		<wind>true</wind>
+		<buoyancy>33</buoyancy>
+		<life>5</life>
+	</submodel>
+
+	<submodel>
+		<name>Vickers R </name>
+		<model>/Aircraft/sopwithCamel-Bombable/Models/tracer.xml</model>
+		<trigger>ai/submodels/trigger</trigger>
+		<speed>2444.2</speed>
+		<repeat>true</repeat>
+		<delay>0.4510</delay>
+		<count>250</count>
+		<x-offset>1.66</x-offset>
+		<y-offset>0.50045</y-offset>
+		<z-offset>1.62352</z-offset>
+		<yaw-offset>0</yaw-offset>
+		<pitch-offset>0</pitch-offset>
+		<wind>false</wind>
+		<cd>0.193</cd>
+		<weight>0.0249122356</weight>
+		<eda>0.000500740417</eda>
+		<life>10</life>
+		<collision>true</collision>
+		<collision-report>sim/ai/aircraft/collision/cannon</collision-report>
+		<impact>true</impact>
+		<impact-report>sim/ai/aircraft/impact/droptank</impact-report>
+		<submodel-path>Aircraft/sopwithCamel-Bombable/Models/camel-subsubmodels.xml</submodel-path>
+	</submodel>
+
+	<submodel>
+		<name>Vickers R smoke</name>
+		<model>/Aircraft/sopwithCamel-Bombable/Models/smoke.xml</model>
+		<trigger>ai/submodels/trigger</trigger>
+		<speed>10</speed>
+		<repeat>true</repeat>
+		<delay>0.052631579</delay>
+		<count>2500</count>
+		<x-offset>1.66</x-offset>
+		<y-offset>0.50045</y-offset>
+		<z-offset>1.62352</z-offset>
+		<yaw-offset>0</yaw-offset>
+		<pitch-offset>0</pitch-offset>
+		<wind>true</wind>
+		<eda>10</eda>
+		<wind>true</wind>
+		<buoyancy>33</buoyancy>
+		<life>5</life>
+	</submodel>
+
+	<submodel>
+		<name>exhaust smoke r </name>
+		<model>/Aircraft/sopwithCamel-Bombable/Models/exhaust.xml</model>
+		<trigger>sim/ai/engines/engine/smoking</trigger>
+		<speed>5</speed>
+		<repeat>true</repeat>
+		<delay>0.1</delay>
+		<count>-1</count>
+		<x-offset>-1.5</x-offset>
+		<y-offset>0.5</y-offset>
+		<z-offset>-1.65</z-offset>
+		<yaw-offset>-120</yaw-offset>
+		<pitch-offset>-15</pitch-offset>
+		<eda>5</eda>
+		<life>3</life>
+		<buoyancy>36</buoyancy>
+		<wind>true</wind>
+		<random>true</random>
+	</submodel>
+	
+	<submodel>
+		<name>exhaust smoke l </name>
+		<model>/Aircraft/sopwithCamel-Bombable/Models/exhaust2.xml</model>
+		<trigger>/sim/ai/engines/engine/smoking</trigger>
+		<speed>5</speed>
+		<repeat>true</repeat>
+		<delay>0.1</delay>
+		<count>-1</count>
+		<x-offset>-1.5</x-offset>
+		<y-offset>-0.5</y-offset>
+		<z-offset>-1.65</z-offset>
+		<yaw-offset>120</yaw-offset>
+		<pitch-offset>-15</pitch-offset>
+		<eda>5</eda>
+		<life>3</life>
+		<buoyancy>36</buoyancy>
+		<wind>true</wind>
+		<random>true</random>
+	</submodel>
+
+
+</PropertyList>

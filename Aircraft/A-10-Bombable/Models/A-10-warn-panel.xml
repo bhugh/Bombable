@@ -1,0 +1,547 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>A-10-warn-panel.ac</path>
+
+<!-- row 1 -->
+
+	<animation>
+		<type>select</type>
+		<object-name>eng-start-cycle</object-name>
+		<condition>
+			<!--<property>sim/model/A-10/engines/eng-start-cycle</property>-->
+			<or>
+				<property>systems/bleed-air/ats-valve[0]</property>
+				<property>systems/bleed-air/ats-valve[1]</property>
+			</or>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>l-hyd-press</object-name>
+		<condition>
+			<less-than>
+				<property>systems/A-10-hydraulics/hyd-psi[0]</property>
+				<value>900</value>
+			</less-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>r-hyd-press</object-name>
+		<condition>
+			<less-than>
+				<property>systems/A-10-hydraulics/hyd-psi[1]</property>
+				<value>900</value>
+			</less-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>gun-unsafe</object-name>
+		<condition>
+			<property>sim/model/A-10/weapons/gun/gun-unsafe</property>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+<!-- row 2 -->
+
+	<animation>
+		<type>select</type>
+		<object-name>anti-skid</object-name>
+		<condition>
+			<equals>
+				<property>controls/gear/antiskid</property>
+				<value>0</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>l-hyd-res</object-name>
+		<condition>
+			<less-than>
+				<property>systems/A-10-hydraulics/hyd-res[0]</property>
+				<value>50</value>
+			</less-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>r-hyd-res</object-name>
+		<condition>
+			<less-than>
+				<property>systems/A-10-hydraulics/hyd-res[1]</property>
+				<value>50</value>
+			</less-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>oxy-low</object-name>
+		<condition>
+			<less-than>
+				<property>systems/A-10-oxygen/oxy-level</property>
+				<value>0.5</value>
+			</less-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+<!-- row 3 -->
+
+	<animation>
+		<type>select</type>
+		<object-name>seat-not-armed</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-ejectable-seat/armed</property>
+				<value>0</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>bleed-air-leak</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-bleed-air/warn-light</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+<!-- row 4 -->
+
+	<animation>
+		<type>select</type>
+		<object-name>service-air-hot</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-service-air/service-air-warn-light</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+<!-- row 5 -->
+
+	<animation>
+		<type>select</type>
+		<object-name>l-eng-hot</object-name>
+		<condition>
+			<greater-than>
+				<property>engines/engine/itt-norm</property>
+				<value>0.99</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>r-eng-hot</object-name>
+		<condition>
+			<greater-than>
+				<property>engines/engine[1]/itt-norm</property>
+				<value>0.99</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+<!-- row 6 -->
+
+	<animation>
+		<type>select</type>
+		<object-name>l-eng-oil-press</object-name>
+		<condition>
+			<less-than>
+				<property>engines/engine[0]/oilp-norm</property>
+				<value>0.0170</value>
+			</less-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than> 
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>r-eng-oil-press</object-name>
+		<condition>
+			<less-than>
+				<property>engines/engine[1]/oilp-norm</property>
+				<value>0.0170</value>
+			</less-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+<!-- row 7 -->
+
+	<animation>
+		<type>select</type>
+		<object-name>l-main-pump</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-fuel/tank[1]/boost-pump[0]</property>
+				<value>0</value>
+			</equals>
+			<equals>
+				<property>systems/A-10-fuel/tank[0]/boost-pump[0]</property>
+				<value>0</value>
+			</equals>
+			<greater-than>
+				<property>consumables/fuel/tank[1]/level-gal_us</property>
+				<value>1.56</value>
+			</greater-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>r-main-pump</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-fuel/tank[2]/boost-pump[0]</property>
+				<value>0</value>
+			</equals>
+			<equals>
+				<property>systems/A-10-fuel/tank[3]/boost-pump[0]</property>
+				<value>0</value>
+			</equals>
+			<greater-than>
+				<property>consumables/fuel/tank[2]/level-gal_us</property>
+				<value>1.56</value>
+			</greater-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>inu-air-hot</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-inertial-navigation-unit/inu-hot-warn-light</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+<!-- row 8 -->
+
+	<animation>
+		<type>select</type>
+		<object-name>l-wing-pump</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-fuel/tank[0]/boost-pump[0]</property>
+				<value>0</value>
+			</equals>
+			<greater-than>
+				<property>consumables/fuel/tank[0]/level-gal_us</property>
+				<value>1.56</value>
+			</greater-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>r-wing-pump</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-fuel/tank[3]/boost-pump[0]</property>
+				<value>0</value>
+			</equals>
+			<greater-than>
+				<property>consumables/fuel/tank[3]/level-gal_us</property>
+				<value>1.56</value>
+			</greater-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>hars</object-name>
+		<condition>
+			<equals>
+				<property>sim/model/A-10/A-10-nav/hars/hars-warn-light</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+<!-- row 9 -->
+
+	<animation>
+		<type>select</type>
+		<object-name>iff-mode-4</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-iff/iff-warn-light</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>l-main-fuel-low</object-name>
+		<condition>
+			<less-than>
+				<property>consumables/fuel/tank[1]/level-gal_us</property>
+				<value>102</value>
+			</less-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>r-main-fuel-low</object-name>
+		<condition>
+			<less-than>
+				<property>consumables/fuel/tank[2]/level-gal_us</property>
+				<value>78</value>
+			</less-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>l-r-tks-unequal</object-name>
+		<condition>
+			<greater-than>
+				<property>sim/model/A-10/consumables/fuel/diff-lbs</property>
+				<value>750</value>
+			</greater-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+<!-- row 10 -->
+
+	<animation>
+		<type>select</type>
+		<object-name>l-fuel-press</object-name>
+		<condition>
+			<less-than>
+				<property>systems/A-10-fuel/feed-line-press[0]</property>
+				<value>5</value>
+			</less-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>r-fuel-press</object-name>
+		<condition>
+			<less-than>
+				<property>systems/A-10-fuel/feed-line-press[1]</property>
+				<value>5</value>
+			</less-than>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>inertial-nav</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-inertial-navigation-unit/inu-caution-light</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+<!-- row 11 -->
+
+
+	<animation>
+		<type>select</type>
+		<object-name>stall-sys</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-alpha-mach-computer/stall-sys-caution-light</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>l-conv</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-electrical/l-converter-failure</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>r-conv</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-electrical/r-converter-failure</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>cadc</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-cadc/cadc-sys-caution-light</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+
+<!-- row 12 -->
+
+	<animation>
+	<type>select</type>
+	<object-name>apu-gen</object-name>
+	<condition>
+		<equals>
+			<property>systems/A-10-electrical/apu-gen-caution-light</property>
+			<value>1</value>
+		</equals>
+		<greater-than>
+			<property>systems/electrical/outputs/caution-panel</property>
+			<value>24</value>
+		</greater-than>
+	</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>l-gen</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-electrical/l-generator-caution-light</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>r-gen</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-electrical/r-generator-caution-light</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>inst-inv</object-name>
+		<condition>
+			<equals>
+				<property>systems/A-10-electrical/instrument-inverter-caution-light</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+<!-- lighting -->
+
+	<animation> 
+		<object-name>mount</object-name>
+		<type>material</type>
+		<emission> 
+			<factor-prop>controls/lighting/panel-norm</factor-prop>
+			<red>0.385</red>
+			<green>0.168</green>
+			<blue>0.07</blue>
+		</emission>
+	</animation>
+
+
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>5</max-m>
+	</animation>
+
+</PropertyList>

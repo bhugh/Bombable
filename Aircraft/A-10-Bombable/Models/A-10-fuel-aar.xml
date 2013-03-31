@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>A-10-fuel-aar.ac</path>
+
+	<animation>
+		<type>select</type>
+		<object-name>refuel-ready</object-name>
+		<condition>
+			<equals>
+				<!--<property>systems/A-10-fuel/aar-state</property>-->
+				<property>systems/refuel/state</property>
+				<value>1</value>
+			</equals>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+      			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>refuel-latched</object-name>
+		<condition>
+			<equals>
+				<property>systems/refuel/state</property>
+				<value>2</value>
+			</equals>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+      			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>refuel-disconnect</object-name>
+		<condition>
+			<equals>
+				<property>systems/refuel/state</property>
+				<value>3</value>
+			</equals>
+			<greater-than>
+				<property>systems/electrical/outputs/caution-panel</property>
+				<value>24</value>
+      			</greater-than>
+		</condition>
+	</animation>
+
+	<!-- lighting -->
+
+	<animation>
+		<object-name>refuel-ready</object-name>
+		<type>material</type>
+		<emission> 
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>refuel-latched</object-name>
+		<type>material</type>
+		<emission> 
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<object-name>refuel-disconnect</object-name>
+		<type>material</type>
+		<emission> 
+			<red>1</red>
+			<green>1</green>
+			<blue>1</blue>
+		</emission>
+	</animation>
+
+</PropertyList>

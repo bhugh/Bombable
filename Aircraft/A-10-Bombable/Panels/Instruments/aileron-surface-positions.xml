@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+  <name>Elevator surface positions indicator gauge</name>
+  <w-base>128</w-base>
+  <h-base>128</h-base>
+
+  <params>
+    <pt0-select>/autopilot/internal/target-aileron-deflection-norm</pt0-select>
+    <pt1-select>/surface-positions/left-aileron-pos-norm</pt1-select>
+    <pt2-select>/surface-positions/right-aileron-pos-norm</pt2-select>
+  </params>
+
+  <layers>
+    <layer>
+      <name>gauge face</name>
+      <texture>
+        <path>Aircraft/A-10-Bombable/Panels/Instruments/Textures/faces-LE000.rgb</path>
+        <x1>0.0</x1>
+        <x2>1.0</x2>
+        <y1>0.0</y1>
+        <y2>1.0</y2>
+      </texture>
+      <w>128</w>
+      <h>128</h>
+    </layer>
+
+    <layer>
+      <name>Left Target needle</name>
+      <texture>
+        <path>Aircraft/A-10-Bombable/Panels/Instruments/Textures/needles-LE000.rgb</path>
+        <x1>0.0</x1>
+        <x2>0.1</x2>
+        <y1>0.0</y1>
+        <y2>0.5</y2>
+      </texture>
+      <w>12</w>
+      <h>44</h>
+      <transformations>
+        <transformation>
+          <type>rotation</type>
+          <property alias="../../../../../params/pt0-select"/>
+          <min>-1</min>
+          <max>1</max>
+          <scale>60</scale>
+          <offset>270</offset>
+        </transformation>
+        <transformation>
+          <type>x-shift</type>
+          <offset>-1</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>32</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>Right Target needle</name>
+      <texture>
+        <path>Aircraft/A-10-Bombable/Panels/Instruments/Textures/needles-LE000.rgb</path>
+        <x1>0.0</x1>
+        <x2>0.1</x2>
+        <y1>0.0</y1>
+        <y2>0.5</y2>
+      </texture>
+      <w>12</w>
+      <h>44</h>
+      <transformations>
+        <transformation>
+          <type>rotation</type>
+          <property alias="../../../../../params/pt0-select"/>
+          <min>-1</min>
+          <max>1</max>
+          <scale>60</scale>
+          <offset>90</offset>
+        </transformation>
+        <transformation>
+          <type>x-shift</type>
+          <offset>0</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>32</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>left deflection needle</name>
+      <texture>
+        <path>Aircraft/A-10-Bombable/Panels/Instruments/Textures/needles-LE000.rgb</path>
+        <x1>0.0</x1>
+        <x2>0.1</x2>
+        <y1>0.5</y1>
+        <y2>1.0</y2>
+      </texture>
+      <w>12</w>
+      <h>34</h>
+      <transformations>
+        <transformation>
+          <type>rotation</type>
+          <property alias="../../../../../params/pt1-select"/>
+          <min>-1</min>
+          <max>1</max>
+          <scale>60</scale>
+          <offset>270</offset>
+        </transformation>
+        <transformation>
+          <type>x-shift</type>
+          <offset>-1</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>32</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>right deflection needle</name>
+      <texture>
+        <path>Aircraft/A-10-Bombable/Panels/Instruments/Textures/needles-LE000.rgb</path>
+        <x1>0.0</x1>
+        <x2>0.1</x2>
+        <y1>0.5</y1>
+        <y2>1.0</y2>
+      </texture>
+      <w>12</w>
+      <h>34</h>
+      <transformations>
+        <transformation>
+          <type>rotation</type>
+          <property alias="../../../../../params/pt1-select"/>
+          <min>-1</min>
+          <max>1</max>
+          <scale>60</scale>
+          <offset>90</offset>
+        </transformation>
+        <transformation>
+          <type>x-shift</type>
+          <offset>0</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>32</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+  </layers>
+
+</PropertyList>

@@ -1,0 +1,1199 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+Fairchild A-10 simulation config.
+
+2006-02-02 Lee Elliott (Original 3D model and FDM)
+2006-2010 Alexis Bory (Cockpit, avionics, engines, weapons, 3D model revamping)
+************************************************************************
+-->
+
+<PropertyList>
+
+	<ai>
+		<submodels>
+			<trajectory-markers type="bool">0</trajectory-markers>
+		</submodels>
+	</ai>
+
+	<sim>
+
+		<startup>
+			<splash-texture>Aircraft/A-10-Bombable/A-10-splash.rgb</splash-texture>
+		</startup>
+
+		<flight-model>yasim</flight-model>
+		<status>production</status>
+		<author>Lee Elliott - Alexis Bory - David Bastien - Brent Hugh (Bombable mods)</author>
+		<aero>A-10-yasim</aero>
+		<fuel-fraction>1.0</fuel-fraction>
+		<description>Fairchild A-10 (YASim FDM, Bombable mods)</description>
+		<virtual-cockpit archive="y">false</virtual-cockpit>
+		<chase-distance-m type="double" archive="y">-30.0</chase-distance-m>
+
+		<tutorials>
+			<tutorial include="Tutorials/startup_tutorial.xml"/>
+		</tutorials>
+
+		<view n="0">
+			<name>Cockpit View</name>
+			<type>lookfrom</type>         
+			<internal archive="y">true</internal>
+			<config>
+				<x-offset-m archive="y">0.0</x-offset-m>
+				<y-offset-m archive="y">1.50</y-offset-m>
+				<z-offset-m archive="y">3.20</z-offset-m>
+				<pitch-offset-deg>-15</pitch-offset-deg>
+				<default-field-of-view-deg>55</default-field-of-view-deg>
+				<limits>
+					<enabled type="bool">true</enabled>
+					<left>
+						<heading-max-deg>155</heading-max-deg>
+						<x-offset-threshold-deg>65</x-offset-threshold-deg>
+						<x-offset-max-m>0.29</x-offset-max-m>
+					</left>
+					<right>
+						<heading-max-deg>155</heading-max-deg>
+						<x-offset-threshold-deg>65</x-offset-threshold-deg>
+						<x-offset-max-m>0.29</x-offset-max-m>
+					</right>
+				</limits>
+			</config>
+		</view>
+		<view n="1">
+			<config>
+				<target-z-offset-m archive="y" type="double">3</target-z-offset-m>
+				<pitch-offset-deg>0</pitch-offset-deg>
+			</config>
+		</view>
+		<view n="2">
+			<config>
+				<y-offset-m archive="y" type="double">6.0</y-offset-m>
+				<z-offset-m archive="y">-19.7</z-offset-m>
+				<target-z-offset-m archive="y" type="double">8.0</target-z-offset-m>
+			</config>
+		</view>
+		<view n="3">
+			<config>
+				<target-z-offset-m archive="y" type="double">8.0</target-z-offset-m>
+			</config>
+		</view>
+		<view n="4">
+			<config>
+				<target-z-offset-m archive="y" type="double">8.0</target-z-offset-m>
+			</config>
+		</view>
+		<view n="5">
+			<config>
+				<target-z-offset-m archive="y" type="double">8.0</target-z-offset-m>
+			</config>
+		</view>
+		<view n="6">
+			<config>
+				<target-z-offset-m archive="y" type="double">8.0</target-z-offset-m>
+			</config>
+		</view>
+		<view n="100">
+			<name>Internal Nose UC</name>
+			<type>lookfrom</type>
+			<ground-level-nearplane-m type="double">0</ground-level-nearplane-m>
+			<internal archive="y">true</internal>
+			<config>
+				<from-model type="bool">true</from-model>
+				<x-offset-m archive="y">0.43</x-offset-m>
+				<y-offset-m archive="y">0.3</y-offset-m>
+				<z-offset-m archive="y">1.5</z-offset-m>
+				<pitch-offset-deg>-47</pitch-offset-deg>
+				<heading-offset-deg>182.5</heading-offset-deg>
+				<default-field-of-view-deg>61.5</default-field-of-view-deg>
+			</config>
+		</view>
+
+		<instrumentation>
+			<path>Aircraft/A-10-Bombable/Systems/instrumentation.xml</path>
+		</instrumentation>
+
+		<systems>
+			<autopilot>
+				<path>Aircraft/A-10-Bombable/Systems/A-10-autopilot.xml</path>
+			</autopilot>
+			<electrical>
+				<path></path><!-- intentionally left empty -->
+			</electrical>
+		</systems>
+
+		<rendering>
+			<redout>
+				<parameters>
+					<blackout-onset-g type="double">6.5</blackout-onset-g>
+					<blackout-complete-g type="double">8.5</blackout-complete-g>
+					<redout-onset-g type="double">-2.5</redout-onset-g>
+					<redout-complete-g type="double">-3.5</redout-complete-g>
+				</parameters>
+			</redout>
+			<camera-group>
+				<znear type="double">0.1</znear>
+			</camera-group>
+		</rendering>
+
+		<weight n="0">
+			<name>Pylon 0</name>
+			<weight-lb type="float">0</weight-lb>
+			<selected>single-MK-82-LD</selected>
+			<opt><name>none</name><lbs>0</lbs></opt>
+			<opt><name>AN-ALQ-131</name><lbs>535</lbs></opt>
+			<opt><name>dual-AIM-9</name><lbs>612</lbs></opt>
+			<opt><name>single-MK-82-LD</name><lbs>500</lbs></opt>
+		</weight>
+		<weight n="1">
+			<name>Pylon 1</name>
+			<weight-lb type="float">0</weight-lb>
+			<selected>single-MK-82-LD</selected>
+			<opt><name>none</name><lbs>0</lbs></opt>
+			<opt><name>LAU-68</name><lbs>202.5</lbs></opt>
+			<opt><name>single-MK-82-LD</name><lbs>500</lbs></opt>
+		</weight>
+		<weight n="2">
+			<name>Pylon 2</name>
+			<weight-lb type="float">0</weight-lb>
+			<selected>triple-MK-82-LD</selected>
+			<opt><name>none</name><lbs>0</lbs></opt>
+			<opt><name>LAU-68</name><lbs>202.5</lbs></opt>
+			<opt><name>single-MK-82-LD</name><lbs>500</lbs></opt>
+			<opt><name>triple-MK-82-LD</name><lbs>1800</lbs></opt>
+		</weight>
+		<weight n="3">
+			<name>Pylon 3</name>
+			<tank>4</tank> <!-- FDM tank index on this pylon -->
+			<weight-lb type="float">0</weight-lb>
+			<selected>triple-MK-82-LD</selected>
+			<opt><name>none</name><lbs>0</lbs></opt>
+			<opt><name>LAU-68</name><lbs>202.5</lbs></opt>
+			<opt><name>single-MK-82-LD</name><lbs>500</lbs></opt>
+			<opt><name>triple-MK-82-LD</name><lbs>1800</lbs></opt>
+			<opt><name>600 Gallons Fuel Tank</name><lbs>280</lbs><gals>600</gals></opt>
+		</weight>
+		<weight n="4">
+			<name>Pylon 4</name>
+			<weight-lb type="float">0</weight-lb>
+			<selected>single-MK-82-LD</selected>
+			<opt><name>none</name><lbs>0</lbs></opt>
+			<opt><name>single-MK-82-LD</name><lbs>500</lbs></opt>
+		</weight>
+		<weight n="5">
+			<name>Pylon 5</name>
+			<tank>5</tank> <!-- FDM tank index on this pylon -->
+			<weight-lb type="float">0</weight-lb>
+			<selected>single-MK-82-LD</selected>
+			<opt><name>none</name><lbs>0</lbs></opt>
+			<opt><name>single-MK-82-LD</name><lbs>500</lbs></opt>
+			<opt><name>600 Gallons Fuel Tank</name><lbs>280</lbs><gals>600</gals></opt>
+		</weight>
+		<weight n="6">
+			<name>Pylon 6</name>
+			<weight-lb type="float">0</weight-lb>
+			<selected>single-MK-82-LD</selected>
+			<opt><name>none</name><lbs>0</lbs></opt>
+			<opt><name>single-MK-82-LD</name><lbs>500</lbs></opt>
+		</weight>
+		<weight n="7">
+			<name>Pylon 7</name>
+			<tank>6</tank> <!-- FDM tank index on this pylon -->
+			<weight-lb type="float">0</weight-lb>
+			<selected>triple-MK-82-LD</selected>
+			<opt><name>none</name><lbs>0</lbs></opt>
+			<opt><name>LAU-68</name><lbs>202.5</lbs></opt>
+			<opt><name>single-MK-82-LD</name><lbs>500</lbs></opt>
+			<opt><name>triple-MK-82-LD</name><lbs>1800</lbs></opt>
+			<opt><name>600 Gallons Fuel Tank</name><lbs>280</lbs><gals>600</gals></opt>
+		</weight>
+		<weight n="8">
+			<name>Pylon 8</name>
+			<weight-lb type="float">0</weight-lb>
+			<selected>triple-MK-82-LD</selected>
+			<opt><name>none</name><lbs>0</lbs></opt>
+			<opt><name>LAU-68</name><lbs>202.5</lbs></opt>
+			<opt><name>single-MK-82-LD</name><lbs>500</lbs></opt>
+			<opt><name>triple-MK-82-LD</name><lbs>1800</lbs></opt>
+		</weight>
+		<weight n="9">
+			<name>Pylon 9</name>
+			<weight-lb type="float">0</weight-lb>
+			<selected>single-MK-82-LD</selected>
+			<opt><name>none</name><lbs>0</lbs></opt>
+			<opt><name>LAU-68</name><lbs>202.5</lbs></opt>
+			<opt><name>single-MK-82-LD</name><lbs>500</lbs></opt>
+		</weight>
+		<weight n="10">
+			<name>Pylon 10</name>
+			<weight-lb type="float">0</weight-lb>
+			<selected>single-MK-82-LD</selected>
+			<opt><name>none</name><lbs>0</lbs></opt>
+			<opt><name>dual-AIM-9</name><lbs>612</lbs></opt>
+			<opt><name>single-MK-82-LD</name><lbs>500</lbs></opt>
+		</weight>
+
+		<canopy>
+			<position-norm type="double">0</position-norm>
+		</canopy>
+
+		<model>
+			<path>Aircraft/A-10-Bombable/Models/A-10-model.xml</path>
+			<A-10>
+				<weapons>
+					<master-arm-switch type="int">0</master-arm-switch><!-- -1: CAMERA 0:SAFE, 1:ARM -->
+					<gun-rate-switch type="bool">false</gun-rate-switch> <!-- false is SAFE, true is HI -->
+					<release_lock type="bool">0</release_lock>
+					<station-light-test type="bool">false</station-light-test>
+					<selected-stations></selected-stations>
+					<rip type="int">1</rip>
+					<interval type="float">0.35</interval>
+
+					<tank-600-gals>
+						<description type="string">tank-600-gals</description>
+						<weight-lb type="float">280</weight-lb>
+						<ammo-weight-lb type="float">0</ammo-weight-lb>
+						<available type="int">1</available>
+						<ready-number>0</ready-number>
+					</tank-600-gals>
+
+					<AN-ALQ-131>
+						<description type="string">AN-ALQ-131</description>
+						<weight-lb type="float">535</weight-lb>
+						<ammo-weight-lb type="float">0</ammo-weight-lb>
+						<available type="int">1</available>
+						<ready-number>0</ready-number>
+					</AN-ALQ-131>
+
+					<dual-AIM-9>
+						<description type="string">dual-AIM-9</description>
+						<weight-lb type="float">612</weight-lb>
+						<ammo-weight-lb type="float">191</ammo-weight-lb>
+						<aim9-knob type="int">0</aim9-knob>
+						<available type="int">2</available>
+						<ready-number>2</ready-number>
+						<search-sound type="bool">false</search-sound>
+						<reticle-diam type="int">20</reticle-diam>
+					</dual-AIM-9>
+
+					<LAU-68>
+						<description type="string">LAU-68</description>
+						<weight-lb type="float">202.5</weight-lb>
+						<ammo-weight-lb type="float">23.9</ammo-weight-lb>
+						<available type="int">7</available>
+						<ready-number>1</ready-number>
+					</LAU-68>
+
+					<triple-MK-82-LD>
+						<description type="string">triple-MK-82-LD</description>
+						<weight-lb type="float">1800</weight-lb>
+						<ammo-weight-lb type="float">500</ammo-weight-lb>
+						<available type="int">3</available>
+						<ready-number>3</ready-number>
+					</triple-MK-82-LD>
+
+					<single-MK-82-LD>
+						<description type="string">single-MK-82-LD</description>
+						<weight-lb type="float">500</weight-lb>
+						<ammo-weight-lb type="float">500</ammo-weight-lb>
+						<available type="int">1</available>
+						<ready-number>1</ready-number>
+					</single-MK-82-LD>
+
+					<gun>
+						<running type="bool">false</running>
+						<unsafe type="bool">false</unsafe>
+						<ready type="bool">false</ready>
+						<hydr-drive-serviceable n="0" type="bool">true</hydr-drive-serviceable><!-- Left hydraulic drive motor -->
+						<hydr-drive-serviceable n="1" type="bool">true</hydr-drive-serviceable>
+					</gun>
+					
+					<stations>
+						<station n="0">
+							<ammo-weight-lb type="float">0</ammo-weight-lb>
+							<available type="int">0</available>
+							<description type="string">none</description>
+							<error type="bool">true</error>
+							<ready-0 type="bool">false</ready-0>
+							<ready-1 type="bool">false</ready-1>
+							<ready-2 type="bool">false</ready-2>
+							<selected type="bool">false</selected>
+						</station>
+						<station n="1">
+							<ammo-weight-lb type="float">0</ammo-weight-lb>
+							<available type="int">0</available>
+							<description type="string">none</description>
+							<error type="bool">true</error>
+							<ready-0 type="bool">false</ready-0>
+							<ready-1 type="bool">false</ready-1>
+							<ready-2 type="bool">false</ready-2>
+							<selected type="bool">false</selected>
+						</station>
+						<station n="2">
+							<ammo-weight-lb type="float">0</ammo-weight-lb>
+							<available type="int">0</available>
+							<description type="string">none</description>
+							<error type="bool">true</error>
+							<ready-0 type="bool">false</ready-0>
+							<ready-1 type="bool">false</ready-1>
+							<ready-2 type="bool">false</ready-2>
+							<selected type="bool">false</selected>
+						</station>
+						<station n="3">
+							<ammo-weight-lb type="float">0</ammo-weight-lb>
+							<available type="int">0</available>
+							<description type="string">none</description>
+							<error type="bool">true</error>
+							<ready-0 type="bool">false</ready-0>
+							<ready-1 type="bool">false</ready-1>
+							<ready-2 type="bool">false</ready-2>
+							<selected type="bool">false</selected>
+						</station>
+						<station n="4">
+							<ammo-weight-lb type="float">0</ammo-weight-lb>
+							<available type="int">0</available>
+							<description type="string">none</description>
+							<error type="bool">true</error>
+							<ready-0 type="bool">false</ready-0>
+							<ready-1 type="bool">false</ready-1>
+							<ready-2 type="bool">false</ready-2>
+							<selected type="bool">false</selected>
+						</station>
+						<station n="5">
+							<ammo-weight-lb type="float">0</ammo-weight-lb>
+							<available type="int">0</available>
+							<description type="string">none</description>
+							<error type="bool">true</error>
+							<ready-0 type="bool">false</ready-0>
+							<ready-1 type="bool">false</ready-1>
+							<ready-2 type="bool">false</ready-2>
+							<selected type="bool">false</selected>
+						</station>
+						<station n="6">
+							<ammo-weight-lb type="float">0</ammo-weight-lb>
+							<available type="int">0</available>
+							<description type="string">none</description>
+							<error type="bool">true</error>
+							<ready-0 type="bool">false</ready-0>
+							<ready-1 type="bool">false</ready-1>
+							<ready-2 type="bool">false</ready-2>
+							<selected type="bool">false</selected>
+						</station>
+						<station n="7">
+							<ammo-weight-lb type="float">0</ammo-weight-lb>
+							<available type="int">0</available>
+							<description type="string">none</description>
+							<error type="bool">true</error>
+							<ready-0 type="bool">false</ready-0>
+							<ready-1 type="bool">false</ready-1>
+							<ready-2 type="bool">false</ready-2>
+							<selected type="bool">false</selected>
+						</station>
+						<station n="8">
+							<ammo-weight-lb type="float">0</ammo-weight-lb>
+							<available type="int">0</available>
+							<description type="string">none</description>
+							<error type="bool">true</error>
+							<ready-0 type="bool">false</ready-0>
+							<ready-1 type="bool">false</ready-1>
+							<ready-2 type="bool">false</ready-2>
+							<selected type="bool">false</selected>
+						</station>
+						<station n="9">
+							<ammo-weight-lb type="float">0</ammo-weight-lb>
+							<available type="int">0</available>
+							<description type="string">none</description>
+							<error type="bool">true</error>
+							<ready-0 type="bool">false</ready-0>
+							<ready-1 type="bool">false</ready-1>
+							<ready-2 type="bool">false</ready-2>
+							<selected type="bool">false</selected>
+						</station>
+						<station n="10">
+							<ammo-weight-lb type="float">0</ammo-weight-lb>
+							<available type="int">0</available>
+							<description type="string">none</description>
+							<error type="bool">true</error>
+							<ready-0 type="bool">false</ready-0>
+							<ready-1 type="bool">false</ready-1>
+							<ready-2 type="bool">false</ready-2>
+							<selected type="bool">false</selected>
+						</station>
+					</stations>
+				</weapons>
+				<canopy-safe type="bool">true</canopy-safe>
+				<consumables>
+					<fuel>
+						<diff-lbs type="double">0</diff-lbs>
+						<fuel-dsp-left type="double">0</fuel-dsp-left>
+						<fuel-dsp-right type="double">0</fuel-dsp-right>
+						<fuel-dsp-drum type="double">0</fuel-dsp-drum>
+					</fuel>
+				</consumables>
+				<controls>
+					<flight>
+						<sas-elevator type="double">0</sas-elevator>
+					</flight>
+					<canopy>
+						<canopy-switch type="int">2</canopy-switch>
+					</canopy>
+					<engines>
+						<engine n="0">
+							<starter-switch-position type="int">1</starter-switch-position><!-- 0(Motor),1(Norm) or 2(Ignit) -->
+							<throttle type="double">0</throttle>
+						</engine>
+						<engine n="1">
+							<starter-switch-position type="int">1</starter-switch-position>
+							<throttle type="double">0</throttle>
+						</engine>
+					</engines>
+					<fuel>
+						<fuel-dsp-sel type="int">0</fuel-dsp-sel> <!-- -1 to 3 -->
+						<fuel-test-ind type="bool">false</fuel-test-ind>
+						<tk-gate-switch type="bool">false</tk-gate-switch>
+						<cross-feed-sw type="bool">false</cross-feed-sw>
+					</fuel>
+					<gear>
+						<ld-gear-handle-anim type="double">-1.0</ld-gear-handle-anim>
+						<aux-lg-ext type="bool">false</aux-lg-ext><!-- Auxiliary landing gear extend -->
+					</gear>
+					<hud>
+						<intens type="double">1</intens>
+						<depr type="float">-0.35</depr>
+						<mode-selector type="int">0</mode-selector>
+						<func-selector type="int">0</func-selector>
+					</hud>
+					<lighting>
+						<nav-lights-switch type="int">1</nav-lights-switch>
+						<nav-lights-flash type="bool">false</nav-lights-flash>
+						<formation type="double">0.0</formation>
+						<land-lights-switch type="int">1</land-lights-switch>
+						<warn-medium-lights-switch type="bool">1</warn-medium-lights-switch>
+					</lighting>
+					<sas>
+						<pitch-sas-switch type="bool">1</pitch-sas-switch>
+						<yaw-sas-switch type="bool">1</yaw-sas-switch>
+					</sas>
+				</controls>
+				<engines>
+					<!--<eng-start-cycle  type="bool">false</eng-start-cycle>--> <!-- warn-panel model value -->
+					<engine n="0">
+						<running type="bool">false</running>
+						<n1 type="float">0.0</n1>
+						<n2 type="float">0.0</n2>
+						<start-state type="float">0.0</start-state>
+						<egt-degc type="float">0.0</egt-degc>
+					</engine>
+					<engine n="1">
+						<running type="bool">false</running>
+						<n1 type="float">0.0</n1>
+						<n2 type="float">0.0</n2>
+						<start-state type="float">0.0</start-state>
+						<egt-degc type="float">0.0</egt-degc>
+					</engine>
+				</engines>
+				<A-10-nav>
+					<selector-hars type="bool">false</selector-hars>
+					<selector-vlocs type="bool">false</selector-vlocs>
+					<selector-tils type="bool">false</selector-tils>
+					<selector-nav_crs type="bool">false</selector-nav_crs>
+					<selector-man type="bool">false</selector-man>
+					<selector-ils type="bool">false</selector-ils>
+					<selector-ptr type="bool">true</selector-ptr>
+					<hars>
+						<hars-warn-light type="bool">false</hars-warn-light>
+					</hars>
+					<homing-FM type="bool">false</homing-FM>
+					<homing-UHF type="bool">false</homing-UHF>
+				</A-10-nav>
+				<instrumentation>
+					<cdi>
+						<from-flag type="bool">false</from-flag>
+						<to-flag type="bool">false</to-flag>
+						<needle-deflection type="double">0</needle-deflection>
+					</cdi>
+					<g-meter>
+						<g-max archive="y" type="double">1</g-max>
+						<g-min archive="y" type="double">1</g-min>
+					</g-meter>
+					<tacan>
+						<indicated-bearing-mag-deg type="double">0</indicated-bearing-mag-deg>
+					</tacan>
+					<vhf>
+						<selector type="int">0</selector>
+						<mode type="int">0</mode>
+						<selected-preset type="int">1</selected-preset>
+						<load-state type="int">0</load-state>
+						<presets>
+							<preset n="1" type="float">0</preset>
+							<preset n="2" type="float">0</preset>
+							<preset n="3" type="float">0</preset>
+							<preset n="4" type="float">0</preset>
+							<preset n="5" type="float">0</preset>
+							<preset n="6" type="float">0</preset>
+							<preset n="7" type="float">0</preset>
+							<preset n="8" type="float">0</preset>
+							<preset n="9" type="float">0</preset>
+							<preset n="10" type="float">0</preset>
+							<preset n="11" type="float">0</preset>
+							<preset n="12" type="float">0</preset>
+							<preset n="13" type="float">0</preset>
+							<preset n="14" type="float">0</preset>
+							<preset n="15" type="float">0</preset>
+							<preset n="16" type="float">0</preset>
+							<preset n="17" type="float">0</preset>
+							<preset n="18" type="float">0</preset>
+							<preset n="19" type="float">0</preset>
+							<preset n="20" type="float">0</preset>
+						</presets>
+						<frequencies>
+							<alt-selected-mhz-x10 type="int">0</alt-selected-mhz-x10>
+							<alt-selected-mhz-x1 type="int">0</alt-selected-mhz-x1>
+							<alt-selected-mhz-x01 type="int">0</alt-selected-mhz-x01>
+							<alt-selected-mhz-x0001 type="int">0</alt-selected-mhz-x0001>
+						</frequencies>
+					</vhf>
+					<warnings>
+						<master-caution type="bool">false</master-caution>
+						<audio-alt type="bool">false</audio-alt>
+						<audio-alt-volume type="float">0.7</audio-alt-volume>
+					</warnings>
+				</instrumentation>
+				<mp-systems>
+					<radar-enabled type="bool">false</radar-enabled>
+					<ecm-rwr-enabled type="bool">false</ecm-rwr-enabled>
+					<combat-enabled type="bool">true</combat-enabled>
+				</mp-systems>
+				<systems>
+					<apu>
+						<egt-overt type="bool">false</egt-overt>
+						<fuel-consumed-lbs type="float">0</fuel-consumed-lbs>
+						<out-of-fuel type="bool">true</out-of-fuel>
+						<rpm-norm type="float">0</rpm-norm>
+						<running type="bool">false</running>
+						<start-state type="float">0</start-state>
+						<temp type="float">0</temp>
+					</apu>
+					<utilities>
+						<numeral-1 type="int">1</numeral-1>
+					</utilities>
+				</systems>
+			</A-10>
+		</model>
+
+		<!--sub models -->
+		<submodels>
+			<serviceable type="bool">1</serviceable>
+			<path>Aircraft/A-10-Bombable/A-10-submodels.xml</path>
+		</submodels>
+
+		<!-- Flap settings -->
+		<flaps>
+			<setting>0.00</setting>
+			<setting>0.233</setting>
+			<setting>0.666</setting>
+		</flaps>
+		
+		<!-- Speedbrake settings -->
+		<spoilers>
+			<setting>0.00</setting>
+			<setting>0.5</setting>
+			<setting>1.0</setting>
+		</spoilers>
+
+		<aoa-indexer>
+			<too-slow-deg>9.5</too-slow-deg>  <!-- target +1.5 deg -->
+			<slow-deg>8.5</slow-deg>          <!-- target +0.5 deg -->
+			<fast-deg>7.5</fast-deg>          <!-- target -0.5 deg -->
+			<too-fast-deg>6.5</too-fast-deg>  <!-- target -1.5 deg -->
+		</aoa-indexer>
+
+		<help>
+			<title>Fairchild A-10</title>
+			<!-- Not working . . .  
+      <key>
+				<name>Ctrl-I</name>
+				<desc>Open/close A-10 weapons dialog</desc>
+			</key>
+			-->
+			<key>
+				<name>C</name>
+				<desc>Open/close canopy</desc>
+			</key>
+			<key>
+				<name>e</name>
+				<desc>Fire the GAU-8/A cannon</desc>
+			</key>
+			<key>
+				<name>,</name>
+				<desc>Release weapons on selected pylon</desc>
+			</key>
+			<key>
+				<name>j/k</name>
+				<desc>Decrease/increase spoilers</desc>
+			</key>
+			<key>
+				<name>K</name>
+				<desc>Toggle trajectory markers</desc>
+			</key>
+			<line>A-10 Quick Start for use with Bombable</line>
+			<line></line>
+			<line>1. Menu > A-10 > Engines autostart</line>
+			<line>2. Mouse click "Master Arm" and "Gun Rate - Hi" to enable weapons systems</line>
+			<line>3. Mouse click HUD knob from "Off" to "Nav"; turns on green HUD display </line>
+			<line>4. Mouse click some of the 11 squares under "Weapon Stations" to activate bombs</line>
+			<line>(Comes loaded with MK-82-LD bombs; "Equipment > Fuel and Payload" to change this)</line>
+			<line>5. RIP QTY and RIP INTVL (mouse click)) allow you to release several bombs at one go.</line>
+			<line>6. Aim GAU-8/A gatling gun with the cross on the HUD; aim bombs via the circle. </line>
+			<line>7. Shoot GAU-8/A with 'e'; release bombs with ','.</line>		
+			<line>__________________________________________________</line>
+			<line>How to start it ?</line>
+			<line>  Menu > Help > Start Tutorial > Engines Start</line>
+			<line>__________________________________________________</line>
+			<line>External fuel tanks ?</line>
+			<line>  Menu > Equipment > Fuel and Payload</line>
+			<line>__________________________________________________</line>
+			<line>External stores ? (ECM Pod, AIM-9, LAU-68...)</line>
+			<line>  Menu > Equipment > Fuel and Payload</line>
+			<line>__________________________________________________</line>
+			<line>Reload GAU-8/A Avenger gatling gun?</line>
+			<line>  Menu > A-10 > Reload</line>
+			<line>__________________________________________________</line>
+			<line>Find more A-10 information on wiki.flightgear.org</line>
+		</help>
+
+		<!-- Hud -->
+		<hud>
+			<path n="1">Aircraft/A-10-Bombable/Huds/A-10.xml</path>
+			<visibility n="1">true</visibility>
+			<color>
+				<transparent type="bool">true</transparent>
+				<antialiased type="bool">true</antialiased>
+				<brightness type="float">0.85</brightness>
+				<alpha type="float">0.85</alpha>
+			</color>
+			<palette>
+				<color n="0">
+					<red type="float">0.38</red>
+					<green type="float">1.0</green>
+					<blue type="float">0.22</blue>
+				</color>
+				<color n="1">
+					<red type="float">1.0</red>
+					<green type="float">0.0</green>
+					<blue type="float">0.0</blue>
+				</color>
+			</palette>
+			<clipping>
+				<left type="double">-70</left>
+				<right type="double">70</right>
+				<top type="double">21</top>
+				<bottom type="double">-118</bottom>
+			</clipping>
+		</hud>
+		<menubar>
+			<default>
+				<menu n="10">
+					<label>A-10</label>
+					<enabled type="bool">true</enabled>
+					<item>
+						<label>Engines autostart</label>
+						<binding>
+							<command>nasal</command>
+							<script>A10engines.eng_autostart()</script>
+						</binding>
+					</item>
+					<item>
+						<label>System failures</label>
+						<binding>
+							<command>nasal</command>
+							<script>A10.A10_dlg_syst_fail.open()</script>
+						</binding>
+					</item>
+					<item>
+						<label>Reload GAU-8/A gatling gun</label>
+						<binding>
+							<command>nasal</command>
+							<script>A10weapons.reload_guns()</script>
+						</binding>
+					</item>
+					<item>
+						<label>Unlimited ammo for GAU-8/A gatling gun</label>
+						<binding>
+							<command>nasal</command>
+							<script>A10weapons.unlimited_guns()</script>
+						</binding>
+					</item>
+
+
+				</menu>
+			</default>
+		</menubar>
+
+		<sound>
+			<audible>true</audible>
+			<path>Aircraft/A-10-Bombable/Sounds/A-10-sound.xml</path>
+		</sound>
+
+    <!-- Required to make Bombable work over multiplayer -->
+    <!-- String 9 is for Bombable damage/reset messages -->
+    <!-- Int 10,11,... are for various weapons triggers as particular to this aircraft -->
+    <multiplay>
+			<generic>
+		  	<string n="9"
+							 type="string"/>
+				<int n="10"
+							 alias="/sim/model/A-10/weapons/gun/running[0]" />			 
+			</generic>
+		</multiplay>
+
+
+	</sim>
+
+	<input>
+
+		<keyboard>
+			<!-- bhugh, 2011-09, this doesnt appear to work & I can't figure out how to fix it
+      <key n="9">
+				<name>Ctrl-I</name>
+				<desc>Show configuration dialog</desc>
+				<binding>
+					<command>nasal</command>            
+              <script>A10weapons.config_dialog.toggle()</script>
+				</binding>
+			</key -->
+			<key n="44">
+				<name>,</name>
+				<desc>Left brake</desc>
+				<binding>
+					<command>nasal</command>
+					<script>A10weapons.release()</script>
+				</binding>
+			</key>
+			<key n="67">
+				<name>C</name>
+				<desc>Toggle canopy on or off</desc>
+				<binding>
+				   <command>nasal</command>
+				   <script>canopy.canopy_switch(2)</script>
+				</binding>
+			</key>
+			<key n="101">
+				<name>e</name>
+				<desc>Fire GAU-8/A cannon</desc>
+				<binding>
+					<command>nasal</command>
+					<script>A10weapons.fire_gau8a()</script>
+				</binding>
+				<mod-up>
+					<binding>
+						<command>nasal</command>
+						<script>A10weapons.cfire_gau8a()</script>
+					</binding>
+				</mod-up>
+			</key>
+			<key n="102">
+				<name>f</name>
+				<desc>Extend Slats.</desc>
+				<binding>
+					<command>property-adjust</command>
+					<property>controls/flight/slats</property>
+				<step type="double">0.25</step>
+				</binding>
+			</key>
+			<key n="75">
+				<name>K</name>
+				<desc>Toggle trajectory markers</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>A10.toggle_traj_mkr()</script>
+				</binding>
+			</key>
+			<!-- Update Drop View position -->
+			<key n="85">
+				<name>U</name>
+				<desc>Update Drop View position</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>A10.update_drop_view_pos()</script>
+				</binding>
+			</key>
+		</keyboard>
+
+	</input>
+
+	<autopilot>
+
+		<locks>
+			<aoa type="string">initialised</aoa>
+			<auto-flap-control type="string">manual</auto-flap-control>
+			<auto-landing type="string">enabled</auto-landing>
+			<auto-take-off type="string">enabled</auto-take-off>
+			<common-aileron-control type="string">off</common-aileron-control>
+			<common-elevator-control type="string">off</common-elevator-control>
+			<ca-roll-hold type="string">initialised</ca-roll-hold>
+			<ca-true-heading-hold type="string">initialised</ca-true-heading-hold>
+			<ca-dg-heading-hold type="string">initialised</ca-dg-heading-hold>
+			<ca-nav1-hold type="string">initialised</ca-nav1-hold>
+			<ce-altitude-hold type="string">initialised</ce-altitude-hold>
+			<ce-aoa-hold type="string">initialised</ce-aoa-hold>
+			<ce-mach-climb-hold type="string">initialised</ce-mach-climb-hold>
+			<ce-pitch-hold type="string">initialised</ce-pitch-hold>
+			<ce-agl-hold type="string">initialised</ce-agl-hold>
+			<ce-vfps-hold type="string">initialised</ce-vfps-hold>
+			<rudder-control type="string">initialised</rudder-control>
+		</locks>
+
+		<settings>
+			<approach-aoa-deg type="float">8.0</approach-aoa-deg>
+			<auto-flap-target-aoa-deg type="float">0.0</auto-flap-target-aoa-deg>
+			<auto-landing-touchdown-alt-ft type="float">300.0</auto-landing-touchdown-alt-ft>
+			<auto-landing-circuit-speed-kt type="float">260.0</auto-landing-circuit-speed-kt>
+			<climb-out-pitch-trans-time-sec type="float">8.0</climb-out-pitch-trans-time-sec>
+			<ground-roll-heading-deg type="float">-999.9</ground-roll-heading-deg>
+			<ground-roll-rotate-speed-kts type="float">100</ground-roll-rotate-speed-kts>
+			<take-off-initial-pitch-deg type="float">0.0</take-off-initial-pitch-deg>
+			<take-off-final-pitch-deg type="float">7.0</take-off-final-pitch-deg>
+			<target-agl-ft type="float">1000</target-agl-ft>
+			<target-altitude-ft type="float">3000</target-altitude-ft>
+			<target-aoa-deg type="float">1.5</target-aoa-deg>
+			<target-climb-rate-fps type="float">30</target-climb-rate-fps>
+			<target-pitch-deg type="float">0</target-pitch-deg>
+			<target-speed-kt type="float">320.0</target-speed-kt>
+			<target-mach type="float">0.48</target-mach>
+		</settings>
+	</autopilot>
+
+	<instrumentation>
+		<ecm>
+			<enabled type="bool">true</enabled>			
+			<on-off type="bool">true</on-off>
+		</ecm>
+		<g-meter>
+			<g-max type="float">1</g-max>
+			<g-min type="float">1</g-min>
+		</g-meter>
+		<tacan>
+			<switch-position>0</switch-position>
+		</tacan>
+		<radar>
+			<enabled type="bool">false</enabled>			
+			<range type="double">150</range>
+		</radar>
+		<rwr>
+			<display-lighting-intens type="double">0.4</display-lighting-intens>
+			<symbology-lighting-intens type="double">1</symbology-lighting-intens>
+		</rwr>
+		<nav n="2">
+			<radials>
+				<selected-deg type="double">029.0</selected-deg>
+			</radials>
+			<serviceable>true</serviceable>
+			<cdi>
+				<serviceable>true</serviceable>
+			</cdi>
+			<gs>
+				<serviceable>true</serviceable>
+			</gs>
+			<to-from>
+				<serviceable>true</serviceable>
+			</to-from>
+			<slaved-to-gps type="bool">false</slaved-to-gps>
+		</nav>
+	</instrumentation>
+
+	<controls>
+		<APU>
+			<generator-switch type="bool">false</generator-switch>
+			<off-start-switch type="bool">false</off-start-switch>
+			<serviceable type="bool">true</serviceable>
+			<generator-serviceable type="bool">true</generator-serviceable>
+		</APU>
+		<armament>
+			<trigger type="bool">false</trigger>
+		</armament>
+		<engines>
+			<engine n="0">
+				<faults>
+					<hydraulic-pump-serviceable type="bool">true</hydraulic-pump-serviceable>
+					<serviceable type="bool">true</serviceable>
+				</faults>
+				<engines-ignitors n="0" type="bool">false</engines-ignitors>
+				<engines-ignitors n="1" type="bool">false</engines-ignitors>
+			</engine>
+			<engine n="1">
+				<faults>
+					<hydraulic-pump-serviceable type="bool">true</hydraulic-pump-serviceable>
+					<serviceable type="bool">true</serviceable>
+				</faults>
+				<engines-ignitors n="0" type="bool">false</engines-ignitors>
+				<engines-ignitors n="1" type="bool">false</engines-ignitors>
+			</engine>
+		</engines>
+		<fuel>
+			<tank n="0">
+				<boost-pump n="0" type="bool">true</boost-pump>
+				<boost-pump-serviceable type="bool">true</boost-pump-serviceable>
+				<fill-dis type="bool">false</fill-dis>
+			</tank>
+			<tank n="1">
+				<boost-pump n="0" type="bool">true</boost-pump>
+				<boost-pump-serviceable type="bool">true</boost-pump-serviceable>
+				<DC-boost-pump-serviceable type="bool">true</DC-boost-pump-serviceable>
+				<fill-dis type="bool">false</fill-dis>
+			</tank>
+			<tank n="2">
+				<boost-pump n="0" type="bool">true</boost-pump>
+				<boost-pump-serviceable type="bool">true</boost-pump-serviceable>
+				<fill-dis type="bool">false</fill-dis>
+			</tank>
+			<tank n="3">
+				<boost-pump n="0" type="bool">true</boost-pump>
+				<boost-pump-serviceable type="bool">true</boost-pump-serviceable>
+				<fill-dis type="bool">false</fill-dis>
+			</tank>
+			<tank n="4">
+				<boost-pump n="0" type="bool">false</boost-pump>
+				<boost-pump-serviceable type="bool">true</boost-pump-serviceable>
+				<fill-dis type="bool">false</fill-dis>
+			</tank>
+			<tank n="5">
+				<boost-pump n="0" type="bool">false</boost-pump>
+				<boost-pump-serviceable type="bool">true</boost-pump-serviceable>
+				<fill-dis type="bool">false</fill-dis>
+			</tank>
+			<tank n="6">
+				<boost-pump n="0" type="bool">false</boost-pump>
+				<boost-pump-serviceable type="bool">true</boost-pump-serviceable>
+				<fill-dis type="bool">false</fill-dis>
+			</tank>
+		</fuel>
+		<gear>
+			<!-- Start with the Parking Brake on -->
+			<brake-parking type="double">1.0</brake-parking>
+		</gear>
+		<lighting>
+			<strobe type="bool">false</strobe>
+		</lighting>
+	</controls>
+
+	<!-- Start with the Canopy open -->
+	<canopy>
+		<position-norm type="double">1.0</position-norm>
+	</canopy>
+
+	<engines>
+		<engine n="0">
+			<collector-tank type="float">0</collector-tank>
+		</engine>
+		<engine n="1">
+			<collector-tank type="float">0</collector-tank>
+		</engine>
+	</engines>
+
+	<systems>
+		<!-- hydraulic system -->
+		<A-10-hydraulics>
+			<hyd-res n="0" type="float">100</hyd-res>
+			<hyd-res n="1" type="float">100</hyd-res>
+			<hyd-psi n="0" type="float">0</hyd-psi><!-- Left hydraulic circuit pressure -->
+			<hyd-psi n="1" type="float">0</hyd-psi><!-- Right hydraulic circuit pressure -->
+			<aux-lg-ext-accumulator type="float">0</aux-lg-ext-accumulator><!-- Auxiliary landing gear extend -->
+		</A-10-hydraulics>
+		<!-- electrical system (logical three remains under /systems/electrical) -->
+		<A-10-electrical>
+			<l-converter-failure type="bool">false</l-converter-failure>
+			<r-converter-failure type="bool">false</r-converter-failure>
+			<l-generator-caution-light type="bool">false</l-generator-caution-light>
+			<r-generator-caution-light type="bool">false</r-generator-caution-light>
+			<instrument-inverter-caution-light type="bool">false</instrument-inverter-caution-light>
+			<apu-gen-caution-light type="bool">false</apu-gen-caution-light>
+		</A-10-electrical>
+		<!-- oxygen system -->
+		<A-10-oxygen>
+			<oxy-level type="float">5</oxy-level>
+		</A-10-oxygen>
+		<!-- ejectable seat -->
+		<A-10-ejectable-seat>
+			<armed type="bool">1</armed>
+		</A-10-ejectable-seat>
+		<!-- bleed air system -->
+		<!-- service air system -->
+		<A-10-service-air>
+			<service-air-warn-light type="bool">0</service-air-warn-light>
+		</A-10-service-air>
+		<!-- inertial navigation -->
+		<A-10-inertial-navigation-unit>
+			<inu-hot-warn-light type="bool">0</inu-hot-warn-light>
+			<inu-caution-light type="bool">0</inu-caution-light>
+		</A-10-inertial-navigation-unit>
+		<!-- stall system -->
+		<A-10-alpha-mach-computer>
+			<stall-sys-caution-light type="bool">0</stall-sys-caution-light>
+		</A-10-alpha-mach-computer>
+		<!-- central air data computer -->
+		<A-10-cadc>
+			<cadc-sys-caution-light type="bool">0</cadc-sys-caution-light>
+		</A-10-cadc>
+		<!-- fuel system -->
+		<A-10-fuel>
+			<apu-collector-tank type="float">0</apu-collector-tank>
+			<!--<apu-pressure type="float">0</apu-pressure>-->
+			<feed-line-press n="0" type="float">0</feed-line-press>
+			<feed-line-press n="1" type="float">0</feed-line-press>
+			<eng-valve-apu-fire type="bool">true</eng-valve-apu-fire>
+			<eng-valve-left-fire type="bool">true</eng-valve-left-fire>
+			<eng-valve-right-fire type="bool">true</eng-valve-right-fire>
+		</A-10-fuel>
+		<!-- iff system in prevision of future impl. -->
+		<A-10-iff>
+			<iff-warn-light type="bool">0</iff-warn-light>
+		</A-10-iff>
+		<bleed-air>
+			<psi type="double">0</psi>
+			<warn-light type="bool">0</warn-light>
+			<ats-valve n="0" type="bool">false</ats-valve>
+			<ats-valve n="1" type="bool">false</ats-valve>
+			<shutoff-valve n="0" type="bool">true</shutoff-valve>
+			<shutoff-valve n="1" type="bool">true</shutoff-valve>
+			<ecs-shutoff-valve type="bool">true</ecs-shutoff-valve>
+		</bleed-air>
+		<electrical>
+			<APU-gen-volts type="float">0</APU-gen-volts>
+			<outputs>
+				<apu-start-system type="double">0</apu-start-system>
+				<fuel-gauge-sel type="double">0</fuel-gauge-sel>
+				<hud type="double">0</hud>
+				<engine n="0">
+					<engines-ignitors n="0" type="double">0</engines-ignitors>
+					<engines-ignitors n="1" type="double">0</engines-ignitors>
+				</engine>
+				<engine n="1">
+					<engines-ignitors n="0" type="double">0</engines-ignitors>
+					<engines-ignitors n="1" type="double">0</engines-ignitors>
+				</engine>
+			</outputs>
+		</electrical>
+		<refuel>
+			<door-lock type="bool">false</door-lock>
+			<receiver-lever type="bool">false</receiver-lever>
+			<serviceable type="bool">true</serviceable>
+			<state type="int">0</state> <!-- 0: nil 1:ready 2:latched 3:disconnected -->
+			<type>boom</type>
+		</refuel>
+	</systems>
+
+	<!-- Fuel Tank indexes -->
+	<consumables>
+		<fuel>
+			<tank n="0">
+				<name type="string">Left Wing</name>
+				<tank-num type="int">0</tank-num>
+				<boost-pump n="0" type="bool">false</boost-pump>
+				<kill-when-empty type="bool">false</kill-when-empty>
+				<fill-valve type="bool">true</fill-valve>
+			</tank>
+			<tank n="1">
+				<name type="string">Left Main (Aft)</name>
+				<tank-num type="int">1</tank-num>
+				<boost-pump n="0" type="bool">false</boost-pump>
+				<DC-boost-pump n="0" type="bool">false</DC-boost-pump>
+				<kill-when-empty type="bool">false</kill-when-empty>
+				<fill-valve type="bool">true</fill-valve>
+			</tank>
+			<tank n="2">
+				<name type="string">Right Main (Fwd)</name>
+				<tank-num type="int">2</tank-num>
+				<boost-pump n="0" type="bool">false</boost-pump>
+				<kill-when-empty type="bool">false</kill-when-empty>
+				<fill-valve type="bool">true</fill-valve>
+			</tank>
+			<tank n="3">
+				<name type="string">Right Wing</name>
+				<tank-num type="int">3</tank-num>
+				<boost-pump n="0" type="bool">false</boost-pump>
+				<kill-when-empty type="bool">false</kill-when-empty>
+				<fill-valve type="bool">true</fill-valve>
+			</tank>
+			<tank n="4">
+				<name type="string">Left Wing External</name>
+				<tank-num type="int">4</tank-num>
+				<boost-pump n="0" type="bool">false</boost-pump>
+				<kill-when-empty type="bool">false</kill-when-empty>
+				<fill-valve type="bool">false</fill-valve>
+			</tank>
+			<tank n="5">
+				<name type="string">Fuselage External</name>
+				<tank-num type="int">5</tank-num>
+				<boost-pump n="0" type="bool">false</boost-pump>
+				<kill-when-empty type="bool">false</kill-when-empty>
+				<fill-valve type="bool">false</fill-valve>
+			</tank>
+			<tank n="6">
+				<name type="string">Right Wing External</name>
+				<tank-num type="int">6</tank-num>
+				<boost-pump n="0" type="bool">false</boost-pump>
+				<kill-when-empty type="bool">false</kill-when-empty>
+				<fill-valve type="bool">false</fill-valve>
+			</tank>
+		</fuel>
+	</consumables>
+
+
+	<!-- Weight entry for the GAU-8/A ammunition -->
+	<yasim>
+		<weights>
+			<ammunition-weight-lbs type="float">1099.995</ammunition-weight-lbs>
+		</weights>
+	</yasim>
+
+	<!-- Nasal files & scripts -->
+	<nasal>
+		<!--<A10test_impact>
+			<file>Aircraft/A-10-Bombable/Nasal/test_impact.nas</file>
+		</A10test_impact>-->
+		<A10fuel>
+			<file>Aircraft/A-10-Bombable/Nasal/A-10-fuel.nas</file>
+		</A10fuel>
+		<A10>
+			<file>Aircraft/A-10-Bombable/Nasal/A-10.nas</file>
+		</A10>
+		<nav_scripts>
+			<file>Aircraft/A-10-Bombable/Nasal/nav_scripts.nas</file>
+		</nav_scripts>
+		<landing_gear_handle>
+			<file>Aircraft/A-10-Bombable/Nasal/landing_gear_handle.nas</file>
+		</landing_gear_handle>
+		<canopy>
+			<file>Aircraft/A-10-Bombable/Nasal/canopy.nas</file>
+		</canopy>
+		<electrical>
+			<file>Aircraft/A-10-Bombable/Nasal/electrical.nas</file>
+		</electrical>
+		<apu>
+			<file>Aircraft/A-10-Bombable/Nasal/apu.nas</file>
+		</apu>
+		<A10engines>
+			<file>Aircraft/A-10-Bombable/Nasal/engines.nas</file>
+		</A10engines>
+		<pilot_g>
+			<file>Aircraft/A-10-Bombable/Nasal/pilot-g.nas</file>
+		</pilot_g>
+		<A10weapons>
+			<file>Aircraft/A-10-Bombable/Nasal/A-10-weapons.nas</file>
+		</A10weapons>
+		<A10hud>
+			<file>Aircraft/A-10-Bombable/Nasal/hud.nas</file>
+		</A10hud>
+		<A10autopilot>
+			<file>Aircraft/A-10-Bombable/Nasal/autopilot.nas</file>
+		</A10autopilot>
+		<rwr>
+			<file>Aircraft/Instruments-3d/rwr/rwr.nas</file>
+		</rwr>
+		<radardist>
+			<file>Aircraft/Instruments-3d/radardist/radardist.nas</file>
+		</radardist>
+	</nasal>
+
+</PropertyList>

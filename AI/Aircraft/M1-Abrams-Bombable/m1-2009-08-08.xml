@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+
+	<path>Models/m1.ac</path>
+	
+	<description>Tank M1 Abrams. This tank is designed to be a static or moving (set as a ship or aircraft with heading, speed, rudder settings) air-to-ground target. You can damage it with heavy gun or bombs.
+	If the tank is really damaged you will see fire and smoke.
+	The more you damage it, the more it turn to black.
+	You can set the livery to a bright red to make the tanks easy to see or choose a realistic camouflage, which is very difficult to spot from a distance in some FlightGear terrains.
+	TODO: _ add MultiPlayer mode, in order to share scenario with multiple tanks and aircrafts.</description>
+	<author>Emmanuel BARANGER - David BASTIEN </author>
+  <!-- NOTE: Heavily modded by Brent Hugh to add ability to move while staying at ground level (use as aircraft OR as a ship with a speed, heading, and rudder seeting), change livery color, refine damage calculation and slow speed when damaged, and other misc.  8/2009.-->
+	<status>beta</status>
+	
+	<!-- animations -->
+	
+	<animation>
+		<name>M1-corps</name>
+		<object-name>corps</object-name>
+		<object-name>tourelle</object-name>
+		<object-name>canon</object-name>
+	</animation>
+	
+	<animation>
+		<type>material</type>
+		<object-name>M1-corps</object-name>
+		<texture-prop>effects/texture-corps-path</texture-prop>
+		<transparency>
+			<alpha>1.0</alpha>
+		</transparency>
+	</animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>Light</object-name>
+    <condition>
+      <property>lights/beacon/state</property>
+    </condition>
+  </animation>
+
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>tourelle</object-name>
+		<object-name>canon</object-name>
+		<property>surface-positions/turret-pos-deg</property>
+		<interpolation>
+			<entry><ind>-150</ind><dep>-150</dep></entry><!-- right -->
+			<entry><ind>150</ind><dep>150</dep></entry><!-- left -->
+		</interpolation>
+		<center>
+			<x-m>0.696</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.799</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	
+	<animation>
+		<type>rotate</type>
+		<object-name>canon</object-name>
+		<property>surface-positions/cannon-elev-deg</property>
+		<interpolation>
+			<entry><ind>-10</ind><dep>-10</dep></entry>
+			<entry><ind>30</ind><dep>30</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>-0.967</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.656</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	
+	<!-- fire animations -->
+	<model>
+		<path>AI/Aircraft/M1-Abrams-Bombable/Models/Effects/fire-particles.xml</path>
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>1.2</z-m>
+			<roll-deg>0.0</roll-deg>
+			<pitch-deg>0.0</pitch-deg>
+			<heading-deg>0.0</heading-deg>
+		</offsets>
+	</model>
+	
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>10000</max-m>
+	</animation>
+	
+
+	
+	<!-- Nasal code -->
+	<nasal>
+	  
+
+		<load>
+			<![CDATA[
+			print("Loading tank ", cmdarg().getPath());
+			var loopid = 0;
+			
+			var m1_main_loop = func(id, myTankNodeName) {
+				id == loopid or return;
+				if(getprop(""~myTankNodeName~"/effects/general-fire/trigger")) 
+					update_fire_params(myTankNodeName);
+				
+        #bhugh, update altitude to keep moving tanks at ground level the ground	
+				var lat = getprop(""~myTankNodeName~"/position/latitude-deg");
+        var lon = getprop(""~myTankNodeName~"/position/longitude-deg");
+        var info = geodinfo(lat, lon);
+        
+        var alt=info[0];
+        if (alt==nil) alt=0;
+        
+        setprop (""~myTankNodeName~"/controls/flight/target-alt", alt/0.3048 + 3);
+        setprop (""~myTankNodeName~"/position/altitude-ft", alt/0.3048 + 3);
+        # add rand() so that all tanks don't do this function simultaneously 
+				settimer(func { m1_main_loop(id, myTankNodeName); }, 0.5 + rand());
+			}
+			
+			#listener function to change livery color if value is change (via dialogue for instance)
+			var m1_change_color = func(myTankNodeName) {
+          
+          var damageValue = getprop(""~myTankNodeName~"/effects/damage");
+          
+          var use_red = getprop("/ai/m1-abrams/usered");
+          
+          if (use_red) var base_color = "Models/red"
+          else var base_color = "Models/camo";
+          
+      		if((damageValue >= 0.15) and (damageValue < 1.0))
+				  	setprop(""~myTankNodeName~"/effects/texture-corps-path", base_color~"2.png");
+					elsif(damageValue == 1.0)
+						setprop(""~myTankNodeName~"/effects/texture-corps-path" , base_color~"3.png");
+					else 
+						setprop(""~myTankNodeName~"/effects/texture-corps-path" , base_color~".png");
+          
+      }
+			
+			var m1_test_impact = func(myTankNodeName) {
+				
+				var impactNodeName = props.globals.getNode("ai/models/model-impact").getValue();
+				var impactNode = props.globals.getNode(impactNodeName);
+				var ballisticMass = impactNode.getNode("mass-slug").getValue() * 32.174049; #in lbs
+				
+				# ignore smoke etc.
+				if (ballisticMass<0.26) return;
+				
+        var impactTerrain = impactNode.getNode("impact/type").getValue();
+				
+				var tankNode = props.globals.getNode(myTankNodeName);
+				# update tank position
+				var tankGeoCoord = geo.Coord.new();
+				tankGeoCoord.set_latlon(tankNode.getNode("position/latitude-deg").getValue(), tankNode.getNode("position/longitude-deg").getValue(), (tankNode.getNode("position/altitude-ft").getValue()*0.3048));
+				var impactGeoCoord = geo.Coord.new();
+				impactGeoCoord.set_latlon(impactNode.getNode("impact/latitude-deg").getValue(), impactNode.getNode("impact/longitude-deg").getValue(), impactNode.getNode("impact/elevation-m").getValue());
+				var impactDistance = tankGeoCoord.direct_distance_to(impactGeoCoord);
+        var impactSurfaceDistance = tankGeoCoord.distance_to(impactGeoCoord);
+				var heightDifference=math.abs(impactNode.getNode("impact/elevation-m").getValue() - tankNode.getNode("position/altitude-ft").getValue()*0.3048);
+        
+        #ignore anything more than 200 meters distant
+        if (impactDistance > 200 ) return;
+        
+				
+				#upping impact distance to 6.0 from 4.0, because it seems to ignore
+				#legitimate hits at times.  added surface/height distance to make it more forgiving if the impact registers close to the tank horizontally but above or below, which seems to happen a lot. bhugh 8/2009.
+				if(((impactDistance <= 6.0) or (impactSurfaceDistance <= 4.0 and heightDifference <= 10.0 )) and (impactTerrain != "terrain")) {
+					# case of a direct impact, TODO: damage depend on mass and speed of the ballistic
+					if(ballisticMass < 0.8) {
+						# light bullet
+						add_damage(0.05, myTankNodeName);
+					} elsif((ballisticMass >= 0.8) and  (ballisticMass < 1.2)) {
+						# such be a big gun, like the GAU-8 gatling gun.
+						add_damage(0.8, myTankNodeName);
+					} else {
+						# tank is surely dead
+						add_damage(1.0, myTankNodeName);
+					}
+				} else {
+					# check submodel blast effect distance.
+					if((ballisticMass >= 200) and (ballisticMass < 350)) {
+						# Mk-81 class
+						if(impactDistance <= 10)
+							add_damage(1.0, myTankNodeName);
+						elsif((impactDistance > 10) and (impactDistance < 30))
+							add_damage(0.2, myTankNodeName);
+					} elsif((ballisticMass >= 350) and (ballisticMass < 750)) {
+						# Mk-82 class
+						if(impactDistance <= 33)
+							add_damage(1.0, myTankNodeName);
+						elsif((impactDistance > 33) and (impactDistance < 50))
+							add_damage(0.25, myTankNodeName);
+					} elsif(ballisticMass >= 750) {
+						# Mk-83 class and upper
+						if(impactDistance <= 70)
+							add_damage(1.0, myTankNodeName);
+						elsif((impactDistance > 70) and (impactDistance < 200))
+							add_damage(0.25, myTankNodeName);
+					}
+				}
+			}
+			
+			var add_damage = func(damageRise, myTankNodeName) {
+
+        var damageValue = getprop(""~myTankNodeName~"/effects/damage");
+        #for moving tanks (ships), reduce velocity each time damage added
+				#eventually stopping when damage = 1.  bhugh 8/2009
+				#we put it here outside the "if" statement so that burning
+				#tanks continue to slow/stop even if there damage is already at 1
+				# (this happens when file/reset is chosen in FG)
+				setprop(""~myTankNodeName~"/controls/tgt-speed-kts", 
+           getprop (""~myTankNodeName~"/controls/tgt-speed-kts") 
+           * (1 - damageValue));
+				setprop(""~myTankNodeName~"/velocities/true-airspeed-kt", 
+           getprop (""~myTankNodeName~"/velocities/true-airspeed-kt") 
+           * (1 - damageValue));				
+        
+        # update effects/damage: 0.0 mean no damage, 1.0 mean full damage
+        
+				if(damageValue < 1.0) {
+					damageValue += damageRise;
+					if(damageValue > 1.0)
+						damageValue = 1.0;
+					elsif(damageValue < 0.0)
+						damageValue = 0.0;
+					setprop(""~myTankNodeName~"/effects/damage", damageValue);
+					
+					
+					# start fire if there is enough damages.
+					if((damageValue >= 0.75) and !getprop(""~myTankNodeName~"/effects/general-fire/trigger"))
+						setprop(""~myTankNodeName~"/effects/general-fire/trigger", 1);
+					
+					# user red livery color if selected
+          var use_red = getprop("/ai/m1-abrams/usered");
+          
+          if (use_red) var base_color = "Models/red"
+          else var base_color = "Models/camo";
+          
+          # Change livery according to the damage level
+      		if((damageValue >= 0.15) and (damageValue < 1.0))
+				  	setprop(""~myTankNodeName~"/effects/texture-corps-path", base_color~"2.png");
+					elsif(damageValue == 1.0) {
+						setprop(""~myTankNodeName~"/effects/texture-corps-path" , base_color~"3.png");
+						# Stop fire and smoke after 60 minutes.
+						settimer(func { setprop(""~myTankNodeName~"/effects/general-fire/trigger", 0); }, 3600);
+					}
+				}
+			}
+			
+			var update_fire_params = func(myTankNodeName) {
+				# random end smoke size, between 50 and 150.
+				var smokeEndsize = rand();
+				smokeEndsize = smokeEndsize*100;
+				smokeEndsize += 50;
+				setprop(""~myTankNodeName~"/effects/general-fire/smoke-endsize", smokeEndsize);
+				# The tank is burning, so we regularly add damage.
+				add_damage(0.005, myTankNodeName);
+			}
+			
+			
+			# Set up M1 Menu with livery change option
+			
+			var init_m1_dialogs = func () {
+        
+        #only do this once even if we have multiple m1s loaded in this scenario
+        if (getprop ("ai/m1-abrams/init_m1_dialogs")) return;  #it's been done already, so exit
+        props.globals.getNode ("ai/m1-abrams/init_m1_dialogs", 1).setBoolValue(1); #so we know it's been done
+        
+        
+        aircraft.m1abrams_dlg_config = gui.Dialog.new("ai/m1-abrams/config/dialog","AI/Aircraft/M1-Abrams-Bombable/Dialogs/config.xml");
+				
+				#aircraft.m1abrams_dlg_config.toggle();
+        
+        #Doing this via a hot key wouldwork too but the menu option seems better
+        #making the keyboard option unnecessary
+        setprop ("/input/keyboard/key[15]", "desc", "change M1 Abrams Tank livery color");
+        setprop ("/input/keyboard/key[15]", "name", "Ctrl-O");      
+        setprop ("/input/keyboard/key[15]/binding", "command", "nasal");
+        setprop ("/input/keyboard/key[15]/binding", "module", "__kbd");
+        setprop ("/input/keyboard/key[15]/binding", "script", "aircraft.m1abrams_dlg_config.toggle()");
+   
+        #make the GUI menu
+        props.globals.getNode ("/sim/menubar/default/menu[99]/enabled", 1).setBoolValue(1);
+        props.globals.getNode ("/sim/menubar/default/menu[99]/label", 1).setValue("M1 Abrams");
+        props.globals.getNode ("/sim/menubar/default/menu[99]/item/enabled", 1).setBoolValue(1);
+        props.globals.getNode ("/sim/menubar/default/menu[99]/item/label", 1).setValue("Change livery color");
+        props.globals.getNode ("/sim/menubar/default/menu[99]/item/binding/command", 1).setValue("nasal");
+        props.globals.getNode ("/sim/menubar/default/menu[99]/item/binding/script", 1).setValue("aircraft.m1abrams_dlg_config.open()");
+        
+       #reinit makes the property changes to both the GUI & input become active 
+       fgcommand("reinit");
+      }
+			
+			var m1_init = func() {
+				# Datas of this tank are under: cmdarg().getPath()
+				var tankNodeName = cmdarg().getPath();
+				var tankNode = props.globals.getNode(tankNodeName);
+				# Add some useful nodes
+
+				#set to use red color (high visibility) by default
+				props.globals.getNode ("ai/m1-abrams/usered", 1).setBoolValue(1);
+				# function to change color of tank if it is changed in the master dialog box
+				setlistener("ai/m1-abrams/usered", func { m1_change_color (tankNodeName); });
+				
+			  var use_red = getprop("/ai/m1-abrams/usered");
+          
+        if (use_red) var base_color = "Models/red"
+        else var base_color = "Models/camo";
+				
+				tankNode.getNode("effects/texture-corps-path", 1).setValue(base_color~".png");
+				tankNode.getNode("effects/general-fire/smoke-endsize", 1).setDoubleValue(50.0);
+				tankNode.getNode("effects/general-fire/trigger", 1).setBoolValue(0);
+				tankNode.getNode("effects/damage", 1).setDoubleValue(0.0);
+				tankNode.getNode("surface-positions/cannon-elev-deg", 1).setDoubleValue(0.0);
+				tankNode.getNode("surface-positions/turret-pos-deg", 1).setDoubleValue(0.0);
+				
+				
+				
+				setlistener("ai/models/model-impact", func { m1_test_impact(tankNodeName); });
+				
+				# set up menu to change livery etc
+				init_m1_dialogs();
+
+	
+
+				
+				 #m1abrams.m1abrams_dlg_config.toggle();
+				
+				#beacon_switch = props.globals.getNode(""~tankNodeName~"/controls/switches/beacon", 2);
+        #var beacon = aircraft.light.new( ""~tankNodeName~"/lights/beacon", [0, 3], ""~tankNodeName~"/controls/lighting/beacon" );
+
+				loopid += 1;
+				#loopident="m1abrams_"~loopid;
+				#print("Tank loaded "~loopid);
+				print ("Tank loopid ", loopid);
+				settimer(func { m1_main_loop(loopid, tankNodeName); }, 5.0);
+			}
+			
+			m1_init();
+			]]>
+		</load>
+		<unload>
+			<![CDATA[
+			print("Unload tank.");
+			loopid += 1;
+			]]>
+		</unload>
+ </nasal>  
+
+</PropertyList>
+

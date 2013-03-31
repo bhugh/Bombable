@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<PropertyList include="c172-bombableinclude.xml">
+
+ <description>c172</description>
+
+ <author>me</author>  
+
+ <path>Models/c172p.ac</path>
+
+ <texture-path>Textures/c-fgfs</texture-path>
+ 
+ 
+ 
+   <animation>
+		<type>material</type>
+		<object-name>RearNavLightOff</object-name>
+				<object-name>Fuselage</object-name>
+    <object-name>LeftDoor</object-name>
+    <object-name>RightDoor</object-name>
+		<object-name>Rudder</object-name>
+		<object-name>VTail</object-name>
+		<object-name>VHFAntennas</object-name>
+    <texture-prop>bombable/texture-corps-path</texture-prop>
+		<transparency>
+			<alpha>1.0</alpha>
+		</transparency>
+	</animation>
+
+
+</PropertyList>
+

@@ -1,0 +1,664 @@
+<?xml version="1.0"?>
+
+<!--Autopilot Configuration for the A-10. Based upon the generic FG Autopilot.
+	This is still in development, so not all of the controllers are
+	currently used, or work properly. -->
+
+<PropertyList>
+
+<!--=============================================================
+	Common Aileron controllers.
+	All controllers use the same final stage.
+	============================================================= -->
+
+<!--Common final stage aileron driver controller.
+	Drives the aileron-trim to achieve the desired deflection. -->
+
+	<!-- Common Aileron Controller - stage 2 -->
+	<pid-controller>
+		<name>Common Aileron Controller - stage 2</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/common-aileron-control</prop>
+			<value>engaged</value>
+		</enable>
+		<input>
+			<prop>surface-positions/aileron-pos-norm</prop>
+		</input>
+		<reference>
+			<prop>autopilot/internal/target-aileron-deflection-norm</prop>
+		</reference>
+		<output>
+			<prop>controls/flight/aileron</prop>
+		</output>
+		<config>
+			<Ts>0.01</Ts>
+			<Kp>0.6</Kp>
+			<beta>1.0</beta>
+			<alpha>0.1</alpha>
+			<gamma>0.0</gamma>
+			<Ti>0.5</Ti>
+			<Td>0.00000000000000000000000000000000000000001</Td>
+			<u_min>-1.0</u_min>
+			<u_max>1.0</u_max>
+		</config>
+	</pid-controller>
+
+<!--Roll hold (common aileron) controller - stage1.
+	Sets the target aileron deflection for the common aileron controller. -->
+
+	<!--Roll Hold (common aileron) filter -->
+	<filter>
+		<name>Roll Hold (common aileron) filter</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>autopilot/settings/target-roll-deg</input>
+		<output>autopilot/internal/target-roll-deg-filtered</output>
+		<max-rate-of-change>10.0</max-rate-of-change>
+	</filter>
+
+	<!--Roll Hol -->
+	<pid-controller>
+		<name>Roll Hold</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/ca-roll-hold</prop>
+			<value>engaged</value>
+		</enable>
+		<input>
+			<prop>orientation/roll-deg</prop>
+		</input>
+		<reference>
+			<prop>autopilot/internal/target-roll-deg-filtered</prop>
+		</reference>
+		<output>
+			<prop>autopilot/internal/target-aileron-deflection-norm</prop>
+		</output>
+		<config>
+			<Ts>0.02</Ts>
+			<Kp>0.1</Kp>
+			<beta>1.0</beta>
+			<alpha>0.1</alpha>
+			<gamma>0.0</gamma>
+			<Ti>8.0</Ti>
+			<Td>0.0001</Td>
+			<u_min>-1.0</u_min>
+			<u_max>1.0</u_max>
+		</config>
+	</pid-controller>
+
+<!--True Heading hold (common aileron) controller - stage1.
+	Sets the target roll deg for the Roll Hold controller. -->
+
+	<!--True Heading Hold filter -->
+	<filter>
+		<name>True Heading Hold filter</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>autopilot/internal/true-heading-error-deg</input>
+		<output>autopilot/internal/true-heading-error-deg-filtered</output>
+		<max-rate-of-change>10.0</max-rate-of-change>
+	</filter>
+
+	<!-- True Heading Hold Stage 1 -->
+	<pid-controller>
+		<name>True Heading Hold Stage 1</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/ca-true-heading-hold</prop>
+			<value>engaged</value>
+		</enable>
+		<input>
+			<prop>autopilot/internal/true-heading-error-deg-filtered</prop>
+		</input>
+		<reference>
+			<value>0.0</value>
+		</reference>
+		<output>
+			<prop>autopilot/settings/target-roll-deg</prop>
+		</output>
+		<config>
+			<Ts>0.02</Ts>
+			<Kp>-2.0</Kp>
+			<beta>1.0</beta>
+			<alpha>0.1</alpha>
+			<gamma>0.0</gamma>
+			<Ti>20.0</Ti>
+			<Td>0.00001</Td>
+			<u_min>-50.0</u_min>
+			<u_max>50.0</u_max>
+		</config>
+	</pid-controller>
+
+<!--Nav1 Heading hold (common aileron) controller - stage 1.
+
+	The moving average filter is used to smooth the nav1 heading error deg at
+	extreme ranges but two filters are needed to overcome a bug that seems to
+	occur when a moving average filter is used on an input that hasn't been
+	initialised yet and which results in a permenent offset to the output.
+	The noise spike filter isn't affected by this problem and so provides a
+	valid input to the moving average filter.
+	
+	The output from the moving average filter is also used by the nasal
+	scripts. -->
+
+	<!--Nav1 filter 1 -->
+	<filter>
+		<name>Nav1 filter 1</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>autopilot/internal/nav1-heading-error-deg</input>
+		<output>autopilot/internal/nav1-heading-error-deg-filtered[0]</output>
+		<max-rate-of-change>10.0</max-rate-of-change>
+	</filter>
+
+	<!--Nav1 filter -->
+	<filter>
+		<name>Nav1 filter</name>
+		<debug>false</debug>
+		<type>moving-average</type>
+		<input>autopilot/internal/nav1-heading-error-deg-filtered[0]</input>
+		<output>autopilot/internal/nav1-heading-error-deg-filtered[1]</output>
+		<samples>20</samples>
+	</filter>
+
+	<!--Nav1 Hold Stage 1 -->
+	<pid-controller>
+		<name>Nav1 Hold Stage 1</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/heading</prop>
+			<value>nav1-hold</value>
+		</enable>
+		<input>
+			<prop>autopilot/internal/nav1-heading-error-deg-filtered[1]</prop>
+		</input>
+		<reference>
+			<value>0.0</value>
+		</reference>
+		<output>
+			<prop>autopilot/settings/target-roll-deg</prop>
+		</output>
+		<config>
+			<Ts>0.02</Ts>
+			<Kp>-2.0</Kp>
+			<beta>1.0</beta>
+			<alpha>0.1</alpha>
+			<gamma>0.0</gamma>
+			<Ti>10</Ti>
+			<Td>0.00001</Td>
+			<u_min>-30.0</u_min>
+			<u_max>30.0</u_max>
+		</config>
+	</pid-controller>
+
+
+<!-- =============================================================
+     Common Elevator controllers.
+     All controllers use the same final stage.
+     ============================================================= -->
+
+<!-- Common final stage elevator driver controller.
+     Drives the elevator-trim to achieve the desired deflection.-->
+
+	<!--Common Elevator Controller - Stage 2-->
+	<pid-controller>
+		<name>Common Elevator Controller - Stage 2</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/common-elevator-control</prop>
+			<value>engaged</value>
+		</enable>
+		<input>
+			<prop>surface-positions/elevator-pos-norm</prop>
+		</input>
+		<reference>
+			<prop>autopilot/internal/target-elevator-deflection-norm</prop>
+		</reference>
+		<output>
+			<prop>controls/flight/elevator-trim</prop>
+		</output>
+		<config>
+			<Ts>0.01</Ts>
+			<Kp>0.6</Kp>
+			<beta>1.0</beta>
+			<alpha>0.1</alpha>
+			<gamma>0.0</gamma>
+			<Ti>0.5</Ti>
+			<Td>0.00000000000000000000000000000000000000001</Td>
+			<u_min>-1.0</u_min>
+			<u_max>1.0</u_max>
+		</config>
+	</pid-controller>
+
+<!--VFPS hold (common elevator) controller - stage1.
+	Sets the target elevator deflection for the common elevator controller. -->
+
+	<!--VFPS Hold (common elevator) filter -->
+	<filter>Mach Lock Climb (common elevator) Stage 1
+		<name>VFPS Hold (common elevator) filter</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>autopilot/settings/target-climb-rate-fps</input>
+		<output>autopilot/internal/target-climb-rate-fps-filtered</output>
+		<max-rate-of-change>20.0</max-rate-of-change>
+	</filter>
+
+	<!--VFPS Hold -->
+	<pid-controller>
+		<name>VFPS Hold</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/ce-vfps-hold</prop>
+			<value>engaged</value>
+		</enable>
+		<input>
+			<prop>velocities/vertical-speed-fps</prop>
+		</input>
+		<reference>
+			<prop>autopilot/internal/target-climb-rate-fps-filtered</prop>
+		</reference>
+		<output>
+			<prop>autopilot/internal/target-elevator-deflection-norm</prop>
+		</output>
+		<config>
+			<Ts>0.02</Ts>
+			<Kp>-0.008</Kp>
+			<beta>1.0</beta>
+			<alpha>0.1</alpha>
+			<gamma>0.0</gamma>
+			<Ti>10.0</Ti>
+			<Td>0.1</Td>
+			<u_min>-1.0</u_min>
+			<u_max>1.0</u_max>
+		</config>
+	</pid-controller>
+
+<!-- Pitch hold (common elevator) controller.
+	Sets the target elevator deflection for the common elevator controller. -->
+
+	<!--Pitch Hold (common elevator) filter -->
+	<filter>
+		<name>Pitch Hold (common elevator) filter</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>autopilot/settings/target-pitch-deg</input>
+		<output>autopilot/internal/target-pitch-deg-filtered</output>
+		<max-rate-of-change>1.0</max-rate-of-change>
+	</filter>
+
+	<!-- Pitch Hold -->
+	<pid-controller>
+		<name>Pitch Hold</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/ce-pitch-hold</prop>
+			<value>engaged</value>
+		</enable>
+		<input>
+			<prop>orientation/pitch-deg</prop>
+		</input>
+		<reference>
+			<prop>autopilot/internal/target-pitch-deg-filtered</prop>
+		</reference>
+		<output>
+			<prop>autopilot/internal/target-elevator-deflection-norm</prop>
+		</output>
+		<config>
+			<Ts>0.02</Ts>
+			<Kp>-0.08</Kp>
+			<beta>1.0</beta>
+			<alpha>0.1</alpha>
+			<gamma>0.0</gamma>
+			<Ti>4.0</Ti>
+			<Td>0.2</Td>
+			<u_min>-1.0</u_min>
+			<u_max>1.0</u_max>
+		</config>
+	</pid-controller>
+
+<!--Altitude hold (common elevator) controller.
+	Sets a target climb rate for the VFPS controller. -->
+
+	<!--Atitude Hold (common elevator) filter -->
+	<filter>
+		<name>Atitude Hold (common elevator) filter</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>autopilot/settings/target-altitude-ft</input>
+		<output>autopilot/internal/target-altitude-ft-filtered</output>
+		<max-rate-of-change>100.0</max-rate-of-change>
+	</filter>
+
+	<!--Altitude Hold (common elevator) stage 1 -->
+	<pid-controller>
+		<name>Altitude Hold (common elevator) stage 1</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/ce-altitude-hold</prop>
+			<value>engaged</value>
+		</enable>
+		<input>
+			<prop>position/altitude-ft</prop>
+		</input>
+		<reference>
+			<prop>autopilot/internal/target-altitude-ft-filtered</prop>
+		</reference>
+		<output>
+			<prop>autopilot/settings/target-climb-rate-fps</prop>
+		</output>
+		<config>
+			<Ts>0.02</Ts>
+			<Kp>0.2</Kp>
+			<beta>1.0</beta>
+			<alpha>0.01</alpha>
+			<gamma>0.0</gamma>
+			<Ti>18.0</Ti>
+			<Td>0.0000000000000000000000001</Td>
+			<u_min>-60.0</u_min>
+			<u_max>40.0</u_max>
+		</config>
+	</pid-controller>
+
+<!--AGL hold (common elevator) controller.
+	Sets a target climb rate for the A-10-autopilot.xmlVFPS controller -->
+
+	<!--AGL Hold filter -->
+	<filter>
+		<name>AGL Hold filter</name>
+		<debug>false</debug>
+		<type>noise-spike</type>
+		<input>position/altitude-agl-ft</input>
+		<output>autopilot/internal/altitude-agl-ft-filtered</output>
+		<max-rate-of-change>100</max-rate-of-change>
+	</filter>
+
+
+	<!-- AGL Hold (common elevator) Stage 1 -->
+	<pid-controller>
+		<name>AGL Hold (common elevator) Stage 1</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/ce-agl-hold</prop>
+			<value>engaged</value>
+		</enable>
+		<input>
+			<prop>autopilot/internal/altitude-agl-ft-filtered</prop>
+		</input>
+		<reference>
+			<prop>autopilot/settings/target-agl-ft</prop>
+		</reference>
+		<output>
+			<prop>autopilot/settings/target-climb-rate-fps</prop>
+		</output>
+		<config>
+			<Ts>0.02</Ts>
+			<Kp>0.5</Kp>
+			<beta>1.0</beta>
+			<alpha>0.01</alpha>
+			<gamma>0.0</gamma>
+			<Ti>20.0</Ti>
+			<Td>0.0000000000000000000000000000000000001</Td>
+			<u_min>-30.0</u_min>
+			<u_max>180.0</u_max>
+		</config>
+	</pid-controller>
+
+	<!-- vertical speed hold -->
+	<pid-controller>
+		<name>Vertical Speed Hold</name>
+		<debug>false</debug>
+		<enable>
+			<prop>/autopilot/locks/altitude</prop>
+			<value>vertical-speed-hold</value>
+		</enable>
+		<input>
+			<prop>/velocities/vertical-speed-fps</prop>
+		</input>
+		<reference>
+			<prop>/autopilot/settings/vertical-speed-fpm</prop>
+		</reference>
+		<output>
+			<prop>/controls/flight/elevator-trim</prop>
+		</output>
+		<config>
+			<Ts>0.01</Ts>
+			<Kp>-0.004</Kp>
+			<beta>3.5</beta>
+			<alpha>0.1</alpha>
+			<gamma>20.0</gamma>
+			<Ti>5</Ti>
+			<Td>0.01</Td>
+			<u_min>-0.08</u_min>
+			<u_max>0.08</u_max>
+		</config>
+	</pid-controller>
+
+
+
+	<!--Mach Lock Climb (common elevator) Stage 1 -->
+	<pid-controller>
+		<name>Mach Lock Climb (common elevator) Stage 1</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/altitude</prop>
+			<value>mach-climb</value>
+		</enable>
+		<input>
+			<prop>autopilot/settings/target-mach</prop>
+		</input>
+		<reference>
+			<prop>velocities/mach</prop>
+		</reference>
+		<output>
+			<prop>autopilot/settings/target-climb-rate-fps</prop>
+			</output>
+			<config>
+			<Ts>0.02</Ts>
+			<Kp>400.0</Kp>
+			<beta>10.0</beta>
+			<alpha>0.1</alpha>
+			<gamma>0.0</gamma>
+			<Ti>120.0</Ti>
+			<Td>0.0000000000000000000000000000000001</Td>
+			<u_min>0.0</u_min>
+			<u_max>80.0</u_max>
+		</config>
+	</pid-controller>
+
+
+<!--==============
+	Velocity Modes
+	============== -->
+
+	<!-- Simple Auto throttle -->
+	<pid-controller>
+		<name>Auto Throttle (5 sec lookahead)</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/speed</prop>
+			<value>speed-with-throttle</value>
+		</enable>
+		<input>
+			<prop>autopilot/internal/lookahead-5-sec-airspeed-kt</prop>
+		</input>
+		<reference>
+			<prop>autopilot/settings/target-speed-kt</prop>
+		</reference>
+		<output>
+			<prop>controls/engines/engine[0]/throttle</prop>
+			<prop>controls/engines/engine[1]/throttle</prop>
+		</output>
+		<config>
+			<Kp>0.05</Kp>       <!-- proportional gain -->
+			<beta>1.0</beta>    <!-- input value weighing factor -->
+			<alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
+			<gamma>0.0</gamma>  <!-- input value weighing factor for -->
+								<!-- unfiltered derivative error -->
+			<Ti>10.0</Ti>       <!-- integrator time -->
+			<Td>0.00001</Td>    <!-- derivator time -->
+			<u_min>0.0</u_min>  <!-- minimum output clamp -->
+			<u_max>1.0</u_max>  <!-- maximum output clamp -->
+		</config>
+	</pid-controller>
+
+<!-- Hold speed by varying pitch (Two stage cascading controller) -->
+	<!--Speed hold (vary pitch) Stage #1 -->
+	<pid-controller>
+		<name>Speed hold (vary pitch) Stage #1</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/speed</prop>
+			<value>speed-with-pitch</value>
+		</enable>
+		<input>
+			<prop>autopilot/internal/lookahead-5-sec-airspeed-kt</prop>
+		</input>
+		<reference>
+			<prop>autopilot/settings/target-speed-kt</prop>
+		</reference>
+		<output>
+			<prop>autopilot/settings/target-pitch-deg</prop>
+			</output>
+			<config>
+			<Kp>-1.0</Kp>       <!-- proportional gain -->
+			<beta>1.0</beta>    <!-- input value weighing factor -->
+			<alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
+			<gamma>0.0</gamma>  <!-- input value weighing factor for -->
+								<!-- unfiltered derivative error -->
+			<Ti>1.0</Ti>        <!-- integrator time -->
+			<Td>0.00001</Td>    <!-- derivator time -->
+			<u_min>-15.0</u_min><!-- minimum output clamp -->
+			<u_max>15.0</u_max> <!-- maximum output clamp -->
+		</config>
+	</pid-controller>
+
+	<!--Speed hold (vary pitch) Stage #2 -->
+	<pid-controller>
+		<name>Speed hold (vary pitch) Stage #2</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/speed</prop>
+			<value>speed-with-pitch</value>
+		</enable>
+		<input>
+			<prop>orientation/pitch-deg</prop>
+		</input>
+		<reference>
+			<prop>autopilot/settings/target-pitch-deg</prop>
+		</reference>
+		<output>
+			<prop>controls/flight/elevator-trim</prop>
+		</output>
+		<config>
+			<Kp>-0.05</Kp>      <!-- proportional gain -->
+			<beta>1.0</beta>    <!-- input value weighing factor -->
+			<alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
+			<gamma>0.0</gamma>  <!-- input value weighing factor for -->
+							    <!-- unfiltered derivative error -->
+			<Ti>1.0</Ti>        <!-- integrator time -->
+			<Td>0.00001</Td>    <!-- derivator time -->
+			<u_min>-1.0</u_min> <!-- minimum output clamp -->
+			<u_max>1.0</u_max>  <!-- maximum output clamp -->
+		</config>
+	</pid-controller>
+
+
+
+<!--==================
+	Custom Controllers
+	================== -->
+
+	<!--Auto throttle (Mach Hold)-->
+	<pid-controller>
+		<name>Auto Throttle (Mach Hold)</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/speed</prop>
+			<value>mach-with-throttle</value>
+		</enable>
+		<input>
+			<prop>velocities/mach</prop>
+		</input>
+		<reference>
+			<prop>autopilot/settings/target-mach</prop>
+		</reference>
+		<output>
+			<prop>controls/engines/engine[0]/throttle</prop>
+			<prop>controls/engines/engine[1]/throttle</prop>
+		</output>
+		<config>
+			<Kp>8.0</Kp>        <!-- proportional gain -->
+			<beta>1.0</beta>    <!-- input value weighing factor -->
+			<alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
+			<gamma>0.0</gamma>  <!-- input value weighing factor for -->
+								<!-- unfiltered derivative error -->
+			<Ti>8.0</Ti>		<!-- integrator time -->
+			<Td>0.00001</Td>    <!-- derivator time -->
+			<u_min>0.0</u_min>  <!-- minimum output clamp -->
+			<u_max>1.0</u_max>  <!-- maximum output clamp -->
+		</config>
+	</pid-controller>
+
+
+	<!-- Simple Ground Roll Rudder Heading Hold -->
+	<pid-controller>
+		<name>Ground Roll Rudder hold</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/rudder-control</prop>
+			<value>rudder-hold</value>
+		</enable>
+		<input>
+			<prop>orientation/heading-deg</prop>
+		</input>
+		<reference>
+			<prop>autopilot/settings/ground-roll-heading-deg</prop>
+		</reference>
+		<output>
+			<prop>controls/flight/rudder</prop>
+		</output>
+		<config>
+			<Kp>0.4</Kp>        <!-- proportional gain -->
+			<beta>1.0</beta>    <!-- input value weighing factor -->
+			<alpha>0.1</alpha>  <!-- low pass filter weighing factor -->
+			<gamma>0.0</gamma>  <!-- input value weighing factor for -->
+							    <!-- unfiltered derivative error -->
+			<Ti>5.0</Ti>        <!-- integrator time -->
+			<Td>0.1</Td>        <!-- derivator time -->
+			<u_min>-1.0</u_min> <!-- minimum output clamp -->
+			<u_max>1.0</u_max>  <!-- maximum output clamp -->
+		</config>
+		</pid-controller>
+
+	<!-- Simple AoA-by-speed Hold -->
+	<pid-controller>
+	<name>AoA-by-speed Hold</name>
+		<debug>false</debug>
+		<enable>
+			<prop>autopilot/locks/aoa</prop>
+			<value>aoa-with-speed</value>
+		</enable>
+		<input>
+			<prop>orientation/alpha-deg</prop>
+		</input>
+		<reference>
+			<prop>autopilot/settings/target-aoa-deg</prop>
+		</reference>
+		<output>
+			<prop>autopilot/settings/target-speed-kt</prop>
+		</output>
+		<config>
+			<Kp>-2.0</Kp>        <!-- proportional gain -->
+			<beta>1.0</beta>     <!-- input value weighing factor -->
+			<alpha>0.1</alpha>   <!-- low pass filter weighing factor -->
+			<gamma>0.0</gamma>   <!-- input value weighing factor for -->
+								 <!-- unfiltered derivative error -->
+			<Ti>16.0</Ti>        <!-- integrator time -->
+			<Td>0.00001</Td>     <!-- derivator time -->
+			<u_min>90.0</u_min>  <!-- minimum output clamp -->
+			<u_max>160.0</u_max> <!-- maximum output clamp -->
+		</config>
+	</pid-controller>
+
+</PropertyList>

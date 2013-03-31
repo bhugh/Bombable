@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This should produce nice flames and smoke for burning objects. -->
+<PropertyList>
+	<particlesystem>
+		<name>smoke</name>
+		<texture>smoke.png</texture>
+		<emissive>false</emissive>
+		<lighting>true</lighting>
+		<type>normal</type>
+		<align>billboard</align>
+		<attach>world</attach>
+		
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0</z-m>
+			<pitch-deg>0.0</pitch-deg>
+		</offsets>
+		
+		<condition>
+				<property>/bombable/menusettings/fire-particles/jetcontrail-trigger</property>
+		</condition>
+	
+		<placer>
+			<type>sector</type>
+			<radius-min-m>0.0</radius-min-m>
+			<radius-max-m>0.25</radius-max-m>
+		</placer>
+		
+		<counter>
+			<particles-per-sec>
+				<value>10</value>
+				<spread>0</spread>
+			</particles-per-sec>
+		</counter>
+		
+		<particle>
+			<start>
+				<color>
+					<red>
+						<value>0.8</value>
+					</red>
+					<green>
+						<value>0.8</value>
+					</green>
+					<blue>
+						<value>0.8</value>
+					</blue>
+					<alpha>
+						<value>1.0</value>
+					</alpha>
+				</color>
+				<size>
+					<value>0.75</value>
+					
+				</size>
+			</start>
+			<end>
+				<color>
+					<red>
+						<value>0.2</value>
+					</red>
+					<green>
+						<value>0.2</value>
+					</green>
+					<blue>
+						<value>0.2</value>
+					</blue>
+					<alpha>
+						<value>0.2</value>
+					</alpha>
+				</color>
+				<size>
+					<value>50</value>
+				</size>
+			</end>
+			<life-sec>
+				<property>/bombable/fire-particles/jetcontrail-life-sec</property>
+			</life-sec>
+			<mass-kg>1204</mass-kg><!-- Air density: 1,204Kg/m3 at 20°C -->
+			<radius-m>4.18667</radius-m>
+		</particle>
+		
+		<program>
+			<fluid>air</fluid>
+			<!--  because this is skywriting we'll just let it hang there, no gravity-->
+			<gravity type="bool">false</gravity>
+			<wind type="bool">true</wind>
+		</program>
+	</particlesystem>
+	
+
+</PropertyList>

@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<!DOCTYPE PropertyList SYSTEM "panel.dtd">
+
+<PropertyList>
+	<name>A-10 l1 Panel Hotspots</name>
+	<background>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</background>
+	<w>1024</w>
+	<h>768</h>
+	<y-offset>0</y-offset>
+	<instruments>
+		<instrument>
+			<name>l1 panel</name>
+			<y>384</y>
+			<w>1024</w>
+			<h>768</h>
+			<w-base>1024</w-base>
+			<h-base>1024</h-base>
+			<x>512</x>
+			<layers>
+				<layer>
+					<name>background</name>
+					<texture>
+					<path>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</path>
+					<!--<path>Aircraft/A-10-Bombable/Models/hotspotgrid.rgb</path>-->
+					<x1>0.0</x1>
+					<y1>0.0</y1>
+					<x2>1.0</x2>
+					<y2>1.0</y2>
+					</texture>
+				</layer>
+			</layers>
+<!-- define hotspot actions below -->
+
+			<actions>
+
+				<!-- close refueling receiver door lever -->
+				<!--<action>
+					<name>lever-up</name>
+					<button>0</button>
+					<x>370</x>
+					<y>170</y>
+					<w>160</w>
+					<h>120</h>
+					<binding>
+						<command>nasal</command>
+						<script>A10fuel.aar_receiver_lever(0)</script>
+					</binding>
+				</action>-->
+
+				<!-- open refueling receiver door lever -->
+				<!--<action>
+					<name>lever-down</name>
+					<button>0</button>
+					<x>370</x>
+					<y>30</y>
+					<w>160</w>
+					<h>120</h>
+					<binding>
+						<command>nasal</command>
+						<script>A10fuel.aar_receiver_lever(1)</script>
+					</binding>
+				</action>-->
+
+				<!-- toggle fill disable buttons -->
+				<!--<action>
+					<name>fill-dis-wing-l</name>
+					<button>0</button>
+					<x>-10</x>
+					<y>140</y>
+					<w>110</w>
+					<h>60</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>controls/fuel/tank[0]/fill-dis</property>
+					</binding>
+				</action>-->
+
+				<!--<action>
+					<name>fill-dis-wing-r</name>
+					<button>0</button>
+					<x>130</x>
+					<y>140</y>
+					<w>110</w>
+					<h>60</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>controls/fuel/tank[3]/fill-dis</property>
+					</binding>
+				</action>-->
+
+				<!--<action>
+					<name>fill-dis-main-l</name>
+					<button>0</button>
+					<x>-10</x>
+					<y>14</y>
+					<w>110</w>
+					<h>60</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>controls/fuel/tank[1]/fill-dis</property>
+					</binding>
+				</action>-->
+
+				<!--<action>
+					<name>fill-dis-main-r</name>
+					<button>0</button>
+					<x>130</x>
+					<y>14</y>
+					<w>110</w>
+					<h>60</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>controls/fuel/tank[2]/fill-dis</property>
+					</binding>
+				</action>-->
+
+				<!-- toggle EXT tanks switches -->
+				<!--<action>
+					<name>ext-tanks-wing</name>
+					<button>0</button>
+					<x>-410</x>
+					<y>380</y>
+					<w>130</w>
+					<h>80</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>controls/fuel/tank[4]/boost-pump[0]</property>
+					</binding>
+				</action>-->
+
+				<!--<action>
+					<name>ext-tanks-fus</name>
+					<button>0</button>
+					<x>-190</x>
+					<y>380</y>
+					<w>130</w>
+					<h>80</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>controls/fuel/tank[5]/boost-pump[0]</property>
+					</binding>
+				</action>-->
+
+				<!-- toggle Tank Gate switch -->
+				<!--<action>
+					<name>tk-gate-open</name>
+					<button>0</button>
+					<x>-410</x>
+					<y>255</y>
+					<w>130</w>
+					<h>80</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>sim/model/A-10/controls/fuel/tk-gate-open</property>
+					</binding>
+				</action>-->
+
+				<!--<action>
+					<name>cross-feed-sw</name>
+					<button>0</button>
+					<x>-190</x>
+					<y>255</y>
+					<w>130</w>
+					<h>80</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>sim/model/A-10/controls/fuel/cross-feed-sw</property>
+					</binding>
+				</action>-->
+
+
+				<!-- toggle Wing Boost Pumps switches -->
+				<!--<action>
+					<name>boost-pumps-wing-l</name>
+					<button>0</button>
+					<x>-410</x>
+					<y>130</y>
+					<w>130</w>
+					<h>80</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>controls/fuel/tank[0]/boost-pump[0]</property>
+					</binding>
+				</action>-->
+
+				<!--<action>
+					<name>boost-pumps-wing-r</name>
+					<button>0</button>
+					<x>-190</x>
+					<y>130</y>
+					<w>130</w>
+					<h>80</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>controls/fuel/tank[3]/boost-pump[0]</property>
+					</binding>
+				</action>-->
+
+				<!-- toggle Main Boost Pumps switches -->
+				<!--<action>
+					<name>boost-pumps-main-l</name>
+					<button>0</button>
+					<x>-410</x>
+					<y>5</y>
+					<w>130</w>
+					<h>80</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>controls/fuel/tank[1]/boost-pump[0]</property>
+					</binding>
+				</action>-->
+
+				<!--<action>
+					<name>boost-pumps-main-r</name>
+					<button>0</button>
+					<x>-190</x>
+					<y>5</y>
+					<w>130</w>
+					<h>80</h>
+					<binding>
+						<command>property-toggle</command>
+						<property>controls/fuel/tank[2]/boost-pump[0]</property>
+					</binding>
+				</action>-->
+
+
+				<!-- APU starter switch -->
+				<action>
+					<name>APU-switch</name>
+					<button>0</button>
+					<x>178</x>
+					<y>-389</y>
+					<w>140</w>
+					<h>90</h>
+					<binding>
+						<command>nasal</command>
+						<script>apu.toggle_off_start_switch()</script>
+					</binding>
+				</action>
+
+				<!-- left engine starter switch -->
+				<action>
+					<name>left-engine-oper-up</name>
+					<button>0</button>
+					<repeatable>false</repeatable>
+					<x>85</x>
+					<y>-210</y>
+					<w>120</w>
+					<h>45</h>
+					<binding>
+						<command>nasal</command>
+						<script>A10engines.eng_oper_switch_move(0, 1)</script>
+					</binding>
+				</action>
+
+				<action>
+					<name>left-engine-oper-down</name>
+					<button>0</button>
+					<repeatable>false</repeatable>
+					<x>85</x>
+					<y>-270</y>
+					<w>120</w>
+					<h>45</h>
+					<binding>
+						<command>nasal</command>
+						<script>A10engines.eng_oper_switch_move(0, 0)</script>
+					</binding>
+				</action>
+
+				<!-- right engine starter switch -->
+				<action>
+					<name>right-engine-oper-up</name>
+					<button>0</button>
+					<repeatable>false</repeatable>
+					<x>280</x>
+					<y>-210</y>
+					<w>120</w>
+					<h>45</h>
+					<binding>
+						<command>nasal</command>
+						<script>A10engines.eng_oper_switch_move(1, 1)</script>
+					</binding>
+				</action>
+
+				<action>
+					<name>right-engine-oper-down</name>
+					<button>0</button>
+					<repeatable>false</repeatable>
+					<x>280</x>
+					<y>-270</y>
+					<w>120</w>
+					<h>45</h>
+					<binding>
+						<command>nasal</command>
+						<script>A10engines.eng_oper_switch_move(1, 0)</script>
+					</binding>
+				</action>
+				
+				<!-- Throttle cut off -->
+				<action>
+					<name>left-throttle-cutoff</name>
+					<button>0</button>
+					<x>-320</x>
+					<y>-450</y>
+					<w>150</w>
+					<h>250</h>
+					<binding>
+						<command>nasal</command>
+						<script>A10engines.throttle_cutoff_mov(0)</script>
+					</binding>
+				</action>
+				<action>
+					<name>right-throttle-cutoff</name>
+					<button>0</button>
+					<x>-120</x>
+					<y>-450</y>
+					<w>150</w>
+					<h>250</h>
+					<binding>
+						<command>nasal</command>
+						<script>A10engines.throttle_cutoff_mov(1)</script>
+					</binding>
+				</action>
+			</actions>
+		</instrument>
+	</instruments>
+
+</PropertyList>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+  File:     Sakae-Type12.xml
+  Author:   Aero-Matic v 0.8, and Tat Nishioka
+
+  Inputs:
+    name:           Sakae-Type12
+    type:           piston
+    power:          950 hp
+    minrpm:         1800
+    maxrpm:         2550
+    augmented?      no
+    injected?       no
+-->
+
+<piston_engine name="Sakae-Type12">
+  <minmp unit="INHG">          6.000 </minmp>
+  <maxmp unit="INHG">         61.00 </maxmp>
+  <displacement unit="IN3"> 1703.000 </displacement>
+  <maxhp>        950.00 </maxhp>
+  <cycles>         2.0 </cycles>
+  <idlerpm>      550.0 </idlerpm>
+  <maxthrottle>    1.0 </maxthrottle>
+  <minthrottle>    0.2 </minthrottle>
+<!--
+  <numboostspeeds>1</numboostspeeds>
+  <boostoverride>0</boostoverride>
+  <ratedpower1>950</ratedpower1>
+  <ratedrpm1>2500</ratedrpm1>
+  <ratedaltitude1>13779</ratedaltitude1>
+  <ratedboost1> 5.903</ratedboost1>
+  <takeoffboost>3.940</takeoffboost>
+-->
+ <!-- data below will be ignored in the current FGPiston -->
+ <!-- +-200mmHg to adjust engine power for constant speed prop -->
+ <maxgovernorpressure>20.0</maxgovernorpressure> 
+ <governorrate>0.1</governorrate>
+  <!-- RPM \ FT -->
+  <table name="C_POWER" type="internal">
+    <tableData>
+         <!--   0  1000  2000  3000  4000  4200  5000  6000  7000  8000  9000 10000 -->
+                0  3281  6562  9843 13123 13780 16404 19685 22966 26247 29528 32808
+          0     0     0     0     0     0     0     0     0     0     0     0     0
+       1800   628   647   629   565   505   496   450   395   345   305   268   225
+       1900   665   678   700   635   572   555   508   451   399   350   302   261
+       2000   688   713   733   704   646   624   574   512   450   397   346   299
+       2100   725   750   775   780   702   687   632   572   509   449   388   343
+       2200   749   775   802   829   772   752   698   630   570   498   437   379
+       2300   777   805   830   861   840   823   762   680   618   550   480   425
+       2400   804   830   862   893   910   890   825   748   673   597   526   464
+       2500   825   853   880   920   945   950   890   803   725   643   571   497
+       2550   833   870   898   938   964   969   908   819   740   656   582   507 
+    </tableData>
+  </table>
+
+  <!-- Throttle \ MAP -->
+  <table name="C_MAP" type="internal">
+    <tableData>
+       0.00       0
+       0.30   34.78
+       0.80   54.91
+       1.00   61.00
+    </tableData>
+  </table>   
+</piston_engine>

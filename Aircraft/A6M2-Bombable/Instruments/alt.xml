@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!-- 
+1 ft  =  0.3048 m 
+1 m = 3.2808399 ft
+-->
+
+<PropertyList>
+  <path>alt.ac</path>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>ALT.needle100</object-name>
+    <property>/instrumentation/altimeter/indicated-altitude-m</property>
+    <factor>0.72</factor>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>ALT.needle1000</object-name>
+    <property>/instrumentation/altimeter/indicated-altitude-m</property>
+    <factor>0.072</factor>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  
+  <animation>
+  <type>pick</type>
+  <object-name>ALT.minus</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>true</repeatable>
+    <interval-sec>0.1</interval-sec>
+     <binding>
+       <command>property-adjust</command>
+       <property>/instrumentation/altimeter/setting-inhg</property>
+       <step>-0.01</step>
+       <min>26.0</min>
+       <max>33.0</max>
+       <wrap>false</wrap>
+     </binding>
+  </action>
+  <action>
+    <button>1</button>
+    <repeatable>true</repeatable>
+    <interval-sec>0.1</interval-sec>
+     <binding>
+       <command>property-adjust</command>
+       <property>/instrumentation/altimeter/setting-inhg</property>
+       <step>-0.1</step>
+       <min>26.0</min>
+       <max>33.0</max>
+       <wrap>false</wrap>
+     </binding>
+  </action>
+</animation>
+
+  <animation>
+  <type>pick</type>
+  <object-name>ALT.plus</object-name>
+  <action>
+    <button>0</button>
+    <repeatable>true</repeatable>
+    <interval-sec>0.1</interval-sec>
+     <binding>
+       <command>property-adjust</command>
+       <property>/instrumentation/altimeter/setting-inhg</property>
+       <step>0.01</step>
+       <min>26.0</min>
+       <max>33.0</max>
+       <wrap>false</wrap>
+     </binding>
+  </action>
+  <action>
+    <button>1</button>
+    <repeatable>true</repeatable>
+    <interval-sec>0.1</interval-sec>
+     <binding>
+       <command>property-adjust</command>
+       <property>/instrumentation/altimeter/setting-inhg</property>
+       <step>0.1</step>
+       <min>26.0</min>
+       <max>33.0</max>
+       <wrap>false</wrap>
+     </binding>
+  </action>
+</animation>
+
+
+</PropertyList>

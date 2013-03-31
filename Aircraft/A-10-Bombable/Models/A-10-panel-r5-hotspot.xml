@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE PropertyList SYSTEM "panel.dtd">
+
+
+<PropertyList>
+
+ <name>A-10 r5 Panel Hotspots</name>
+ <background>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</background>
+ <w>1024</w>
+ <h>768</h>
+ <y-offset>0</y-offset>
+
+ <instruments> 
+  <instrument> 
+   <name>r5 panel</name>
+   <y>384</y>
+   <w>1024</w>
+   <h>768</h>
+   <w-base>1024</w-base>
+   <h-base>1024</h-base>
+   <x>512</x>
+
+   <layers> 
+
+    <layer> 
+     <name>background</name>
+     <texture> 
+      <path>Aircraft/A-10-Bombable/Models/transparent-bg.rgb</path>
+      <!-- <path>Aircraft/A-10-Bombable/Models/hotspotgrid.rgb</path> -->
+      <x1>0.0</x1>
+      <y1>0.0</y1>
+      <x2>1.0</x2>
+      <y2>1.0</y2>
+     </texture>
+    </layer>
+
+   </layers>
+
+<!-- define hotspot actions below -->
+
+
+   <actions> 
+
+<!-- cockpit open-close-->
+    <action>
+     <name>cockpit-open</name>
+      <button>0</button>
+      <x>-280</x>
+      <y>225</y>
+      <w>138</w>
+      <h>255</h>
+      <binding>
+       <command>nasal</command>
+       <script>canopy.canopy_switch(1)</script>
+      </binding>
+     </action>
+
+     <action>
+      <name>cockpit-close</name>
+      <button>0</button>
+      <x>-280</x>
+      <y>-65</y>
+      <w>138</w>
+      <h>255</h>
+      <binding>
+       <command>nasal</command>
+       <script>canopy.canopy_switch(-1)</script>
+      </binding>
+     </action>
+     
+   </actions> 
+
+  </instrument>
+ </instruments>
+
+</PropertyList>

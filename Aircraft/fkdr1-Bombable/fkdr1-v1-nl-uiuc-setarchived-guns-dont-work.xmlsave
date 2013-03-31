@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+Fokker Dr.1 (triplane) simulation config.  This file ties together all
+the components used by FGFS to represent the flight data model,
+instrument panel, and external model.
+
+Flight model details: 
+Aircraft/UIUC/fkdr1-v1-nl/README.fkdr1.html
+
+External model details:  
+- Currently no GNU GPL version exists.
+- To obtain an external model, separately download the file
+  fokdr1m2.zip from http://www.flightsim.com.  There are several
+  variants of this which can also be used, namely these files:
+
+  dr-1cfs.zip
+  dr1mp98.zip
+  dr1mpcfs.zip
+  fkdr1blk.zip
+  fokdr-15.zip
+
+- The read the file Aircraft/UIUC/fkdr1-v1-nl/README.fkdr1.html
+
+Last update: Nov 10, 2002 Michael Selig, m-selig@uiuc.edu
+************************************************************************
+-->
+
+<PropertyList>
+
+ <sim>
+
+  <description>Fokker Dr.1 (UIUC)</description>
+  <author>Michael Selig (FDM), Erik Hofman (3D model)</author>
+  <status>production</status>
+
+  <flight-model>larcsim</flight-model>
+  <aero>uiuc</aero>
+  <aircraft-dir>Aircraft/UIUC/fkdr1-v1-nl</aircraft-dir>
+
+  <sound>
+   <path>Aircraft/fkdr1-Bombable/Sounds/fkdr1-sound.xml</path>
+  </sound>
+
+  <panel_2>
+   <path>Aircraft/Generic/Panels/generic-vfr-panel.xml</path>
+   <visibility>true</visibility>
+  </panel_2>
+
+  <virtual-cockpit archive="y">true</virtual-cockpit>
+
+  <panel>
+   <path>Aircraft/Generic/Panels/generic-trans-mini-panel.xml</path>
+   <visibility>true</visibility>
+  </panel>
+
+  <model>
+   <path>Aircraft/fkdr1-Bombable/Models/dr1.xml</path>
+  </model>
+
+  <view n="0">
+   <internal archive="y">true</internal>
+   <config>
+    <x-offset-m archive="y">0.0</x-offset-m>
+    <z-offset-m archive="y">1.20</z-offset-m>
+    <y-offset-m archive="y">0.75</y-offset-m>
+    <default-field-of-view-deg>75</default-field-of-view-deg>
+   </config>
+  </view>
+
+  <view n="1">
+   <config>
+    <eye-heading-deg-path>/orientation/gamma-horiz-deg</eye-heading-deg-path>
+   </config>
+  </view>
+
+  <help>
+   <title>Fokker Dr.1</title>
+  </help>
+
+ </sim>
+</PropertyList>
