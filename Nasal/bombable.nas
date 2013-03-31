@@ -162,7 +162,7 @@ var mpprocesssendqueue = func {
  	
   #we do the settimer first so any runtime errors, etc., below, don't stop the
   # future instances of the timer from being started  
-  settimer (func {mpprocesssendqueue()}, mpTimeDelaySend * (97.48 + rand()/20 ));
+  settimer (func {mpprocesssendqueue()}, mpTimeDelaySend );  # This was experimental: mpTimeDelaySend * (97.48 + rand()/20 )
   
   if (!getprop(MP_share_pp)) return "";
   if (!getprop (MP_broadcast_exists_pp)) return "";
@@ -4818,8 +4818,8 @@ var mp_update_damage = func (myNodeName="", damageRise=0, damageTotal=0, smokeSt
       var smokeStartsize=rand()*10 + 5;
       settimer (func {setprop ("/bombable/fire-particles/smoke-startsize", smokeStartsize); }, 2.5);#turn the big explosion off sorta quickly 
       
-      
-      #explosiveMass_kg=getprop(""~myNodeName~"/bombable/attributes/vulnerabilities/explosiveMass_kg");
+      #this was rem-ed out, not sure why, re-enabling it 2013/03/31
+      explosiveMass_kg=getprop(""~myNodeName~"/bombable/attributes/vulnerabilities/explosiveMass_kg");
       # 
                   
       if (explosiveMass_kg==nil or explosiveMass_kg==0) explosiveMass_kg = 10000; 
@@ -7559,6 +7559,7 @@ var bombable_init_func = func(myNodeName) {
     listenerid=setlistener(myNodeName~MP_message_pp,mpreceive, 0, 0);
     append(listenerids, listenerid);
     
+    #We're using a listener rather than the settimer now, so the line below is removed
     #settimer (func {mpreceive(myNodeName,loopid)}, mpTimeDelayReceive);
     debprint ("Bombable: Setup mpreceive for ", myNodeName);
              
@@ -8279,7 +8280,7 @@ var msgTable={};
 var mpTimeDelayReceive=.12409348; #delay between checking for mp messages in seconds
 var mpTimeDelaySend=.25100234; #delay between sending messages.
 var mpsendqueue=[];
-settimer (func {mpprocesssendqueue()}, 5.2534241); #wait 5 seconds before initial send
+settimer (func {mpprocesssendqueue()}, 5.2534241 + rand()); #wait 5 seconds before initial send; rand makes sure they aren't all exactly synchronized
 
 #Add damage when aircraft is accelerated beyond reasonable bounds
 var damageCheckTime=1 + rand()/10;  
