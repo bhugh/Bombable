@@ -8462,13 +8462,7 @@ print("Bombable: Bombable successfully set up and enabled for multiplayer dogfig
 } 
 
 
+# http://wiki.flightgear.org/Creating_new_Nasal_scripts#Nasal_sub_modules
+# FIXME: handle unloading ?
+var initListener = setlistener("/nasal/bombable/loaded", bombableInit );
 
-#we do the setlistener to wait until various things in FG are initialized
-# which the functions etc in bombableInit depend on.  Then we wait an additional 15 seconds
-
-_setlistener("/sim/signals/nasal-dir-initialized", func {
-
-    #settimer (func {bombableInit()} , 5);
-    bombableInit();
-
-});
