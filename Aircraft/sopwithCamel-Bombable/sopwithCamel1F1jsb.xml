@@ -159,9 +159,18 @@ http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
         <htailarm unit="FT"> 7.75 </htailarm>
         
         
-        <!--Indeed you are correct about the Rudder - it's area was a paltry 4.9 sq. ft. (and fin at 3 sq. ft.) http://www.theaerodrome.com/forum/aircraft/47951-sopwith-camel-myth-2-a.html -->
+        <!--Indeed you are correct about the Rudder - it's area was a paltry 4.9 sq. ft. (and fin at 3 sq. ft.) http://www.theaerodrome.com/forum/aircraft/47951-sopwith-camel-myth-2-a.html 
+        
+        The pathetically small fixed area on the fin/rudder made the problems in yaw even worse. A pilot generally doesn't hold the rudder pedals stiffly enough 
+for the rudder to contribute very much to yaw stability.
+
+        http://www.djaerotech.com/dj_askjd/dj_questions/short_coupled.html  
+         -->
         
         <vtailarea unit="FT2"> 7.90 </vtailarea>
+        <!-- We'll say 3 sq ft for fin plus an additional sq ft for
+        the effect of the rudder -->
+        <!-- <vtailarea unit="FT2"> 4 </vtailarea> -->
         <vtailarm unit="FT"> 4.38 </vtailarm>
 
         <location name="AERORP" unit="IN">
@@ -1173,18 +1182,20 @@ http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
                     <value>-7</value>
                 </product>
             </function>
-			<function name="aero/moment/Pitch_moment_gyroscopic_jsbsim_correction">
-                <description>This reverses the pitch moment due to the gyrosopic action of the propeller, which JSBSim seems to have reversed</description>
-                <product>
-                    <property>moments/m-prop-lbsft</property>
-                    <value>-2</value>
-                </product>
-            </function>
+                  
+      			<function name="aero/moment/Pitch_moment_gyroscopic_jsbsim_correction">
+                      <description>This reverses the pitch moment due to the gyrosopic action of the propeller, which JSBSim seems to have reversed</description>
+                      <product>
+                          <property>moments/m-prop-lbsft</property>
+                          <value>-2</value>
+                      </product>
+           </function>
+           
         </axis>
         <axis name="YAW" unit="LBS*FT">
             <function name="aero/moment/Yaw_beta">
                 <description>Yaw moment due to beta</description>
-                <product>0
+                <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
@@ -1201,7 +1212,7 @@ http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
                     <property>velocities/r-aero-rad_sec</property>
-					<value>0.9</value> <!-- Camel was sensitive & poorly damped in all directions of motion.  Adjusting this 0-1 adjusts this sensitivity. -->
+					          <value>0.9</value> <!-- Camel was sensitive & poorly damped in all directions of motion, particularly in yaw stability, where the pathetically small tail fin doesn't do much and the rudder doesn't do much in terms of damping.  Adjusting this 0-1 adjusts this sensitivity. -->
                     <!-- <value>-0.10</value>  accidentally left this un-remed out and it worked quite well, so  . . . -->
                     <!-- orig: <value>-0.15</value> -->
                     <!-- camel is poorly damped and won't get out of spin/turn automatically if the controls are released.  You have to steer it out. -->
