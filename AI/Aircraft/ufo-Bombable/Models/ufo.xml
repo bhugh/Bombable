@@ -5,19 +5,6 @@
  <path>ufo.ac</path>
 
  <animation>
-  <type>select</type>
-  <condition>
-   <or>
-    <equals>
-     <property>/sim/flight-model</property>
-     <value>ufo</value>
-    </equals>
-    <property>/sim/model/always-show-in-MP</property>
-   </or>
-  </condition>
- </animation>
-
- <animation>
   <type>blend</type>
   <object-name>body</object-name>
   <property>/velocities/airspeed-kt</property>
