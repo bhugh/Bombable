@@ -565,7 +565,10 @@ var damageCheck = func () {
    #  FIAT G.50 had an ultimate factor of 14 g. According to Dottore Eng. Gianni Cattaneo´s Profile booklet on the Macchi C.202, it had an ultimate factor of no less than 15.8 g! That would make it virtually indestructible. Also the Hawker Tempest was strong with its 14+ G strength.
    # http://www.aviastar.org/air/japan/mitsubishi_a6m.php : 
    # Most Japanese fighters were designed to withstand a force of 7g. From 1932 all Japanese warplanes were required to meet a safety load factor of 1.8 so the limit for the A6M had to be 12.6g (1.8x7g).      
-  
+   #
+   # One flaw with FG's blackout/redout is that it instantaneous rather than 
+   # delayed.  IE, even a WW1 pilot could probably withstand a short period of
+   # 8-10 Gs and blackout would happen gradually rather than instantly.
 
 ########################################################
 #Set attributes for main aircraft
@@ -628,9 +631,9 @@ var setAttributes = func (attsObject=nil) {
             enabled: 0,
             parameters: {
               blackout_onset_g: 4,
-              blackout_complete_g: 5,
+              blackout_complete_g: 7,
               redout_onset_g: -2,
-              redout_complete_g: -3
+              redout_complete_g: -5
             }        
           } 
         }
@@ -691,9 +694,9 @@ var setAttributes = func (attsObject=nil) {
               enabled: 1,
               parameters: {
                 blackout_onset_g: 5, #no g-suit in WWI so really 6gs is pushing it
-                blackout_complete_g: 7,
+                blackout_complete_g: 9,
                 redout_onset_g: -2.5,
-                redout_complete_g: -3
+                redout_complete_g: -5
               }        
             }  
           }
@@ -749,9 +752,9 @@ var setAttributes = func (attsObject=nil) {
                 enabled: 1,
                 parameters: {
                   blackout_onset_g: 7, #g-suit allows up to 9Gs, http://en.wikipedia.org/wiki/G-LOC 
-                  blackout_complete_g: 10, #or even 10-12.  Maybe. http://forum.acewings.com/pop_printer_friendly.asp?ARCHIVE=true&TOPIC_ID=3588
+                  blackout_complete_g: 12, #or even 10-12.  Maybe. http://forum.acewings.com/pop_printer_friendly.asp?ARCHIVE=true&TOPIC_ID=3588
                   redout_onset_g: -2,  #however, g-suit doesn't help with red-out.  Source: http://en.wikipedia.org/wiki/Greyout_(medical)
-                  redout_complete_g: -3
+                  redout_complete_g: -5
                 }        
               }  
              }
@@ -808,9 +811,9 @@ var setAttributes = func (attsObject=nil) {
               enabled: 1,
               parameters: {
                 blackout_onset_g: 5, #no g-suit in WWI so really 6gs is pushing it
-                blackout_complete_g: 7,
+                blackout_complete_g: 9,
                 redout_onset_g: -2.5,
-                redout_complete_g: -3
+                redout_complete_g: -5
               }        
             }  
           }   
@@ -865,9 +868,9 @@ var setAttributes = func (attsObject=nil) {
               enabled: 1,
               parameters: {
                 blackout_onset_g: 3,
-                blackout_complete_g: 4,
+                blackout_complete_g: 7,
                 redout_onset_g: -2,
-                redout_complete_g: -3
+                redout_complete_g: -5
               }        
             }  
           }   
@@ -924,9 +927,9 @@ var setAttributes = func (attsObject=nil) {
               enabled: 1,
               parameters: {
                 blackout_onset_g: 3,
-                blackout_complete_g: 4,
+                blackout_complete_g: 7,
                 redout_onset_g: -2,
-                redout_complete_g:-3
+                redout_complete_g:-5
               }        
             }  
           }
@@ -982,10 +985,10 @@ var setAttributes = func (attsObject=nil) {
             redout: {
               enabled: 1,
               parameters: {
-                blackout_onset_g: 4,
-                blackout_complete_g: 5,
+                blackout_onset_g: 3,
+                blackout_complete_g: 7,
                 redout_onset_g: -2,
-                redout_complete_g:-3
+                redout_complete_g:-5
               }        
             }  
           }
@@ -8280,7 +8283,7 @@ var msgTable={};
 var mpTimeDelayReceive=.12409348; #delay between checking for mp messages in seconds
 var mpTimeDelaySend=.25100234; #delay between sending messages.
 var mpsendqueue=[];
-settimer (func {mpprocesssendqueue()}, 5.2534241 + rand()); #wait 5 seconds before initial send; rand makes sure they aren't all exactly synchronized
+settimer (func {mpprocesssendqueue()}, 5.2534241); #wait ~5 seconds before initial send
 
 #Add damage when aircraft is accelerated beyond reasonable bounds
 var damageCheckTime=1 + rand()/10;  
