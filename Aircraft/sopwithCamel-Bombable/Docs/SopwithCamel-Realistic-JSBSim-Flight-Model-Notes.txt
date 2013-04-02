@@ -1,8 +1,8 @@
 SOPWITH CAMEL: A REALISTIC JSBSIM FLIGHT MODEL - NOTES
 
-Version 1.0
+Version 1.1
 
-Brent Hugh, 30 March 2013
+Brent Hugh, 2 April 2013
 
 brent@brenthugh.com
 
@@ -99,8 +99,16 @@ that most other similar aircraft)
 4 Fairly large amounts of left rudder were needed in both L & R turns to 
 correct
 
+NOTE: JSBSim reverses the direction of the gyroscopic effect, so the direction 
+of these effects is reversed. Fixing this problem will have to wait for a fix 
+in JSBSim.
+
 4 Sluggish in left turns. Quicker through 270 degrees to the right than 90 
-degrees to the left. TODO: This may require some more refinement
+degrees to the left. NOTE: Adjusting the stall AOA to 14 degrees seemed to 
+make this far more realistic.
+
+4 Known for stalling/spinning on take-off if inattentive piloting let nose 
+rise during initial LH turn.
 
 4 Sensitive in a turn, if the turn were tightened just a little, it was likely 
 to whip into a tight spin.
@@ -108,10 +116,17 @@ to whip into a tight spin.
 4 All the weight of the engine, guns, and pilot was concentrated in the first 
 seven feet of a short 18-foot fuselage.
 
+3 Spins period of 1-2 seconds
+
+2.5 Loses 150-200 feet per revolution while spinning
+
+3 General spin characteristics similar to Camel; ability to do spin-related 
+maneuvers documented for the Camel--snap rolls, etc.
+
 3.5 Camel's elevator was powerful and sensitive. TODO: May require some 
 further refinement.
 
-3.5 Rudder was too small and relatively ineffective. TODO: May require some 
+3.8 Rudder was too small and relatively ineffective. TODO: May require some 
 further refinement.
 
 4 Accelerating the aircraft caused the nose to climb, and swing to the left.
@@ -120,7 +135,7 @@ further refinement.
 control column, which could not be trimmed out because the aircraft had no 
 pilot-adjustable, moveable horizontal stabilize
 
-3.7 Moving the stick forward to enter a dive caused the Camel to yaw left 
+3.8 Moving the stick forward to enter a dive caused the Camel to yaw left 
 because of gyroscopic force, and correcting this yaw with right rudder caused 
 the nose to pitch down sharply. TODO: Effect is definitely there but may 
 require some refinement
@@ -157,8 +172,12 @@ in the sky, and faster than any other WWI aircraft I have flown.
 
 4 Tail heavy with full fuel
 
-2 Thin airfoil shape affects lift, drag, AOA of stall, etc., and the effects 
-are quite different than for later aircraft with thicker wings
+3 In level flight at 100 mph indicated, just a hint of rudder being required 
+for straight flight. TODO: Ver. 1.0 req. more aileron than rudder.
+
+3.6 Thin airfoil shape affects lift, drag, AOA of stall, etc., and the effects 
+are quite different than for later aircraft with thicker wings. Stall speed 
+41.7 knots/14 deg AOA.
 
 3 P factor - evidently the shape of the prop creates a somewhat higher P 
 factor than for later similar aircraft, but the strength of this effect is an 
@@ -229,6 +248,126 @@ the Camel.
 
 ---
 
+R&M 592 Report on Accidents to Certain Aeroplanes with Special Reference to 
+Spinning - Aeronautical Research Committee
+
+*Note: This report refers to the Camel as "A"*
+
+II. BEHAVIOUR OF "A"
+
+4. During the course of the investigation the Committee had the advantage of 
+evidence on the behaviour of various aeroplanes from fourteen pilots with wide 
+flying experience.
+
+5. On many of the most important points their opinion was unanimous. Where 
+differences occurred the contradiction was more apparent than real, and 
+further evidence showed that such difference did not affect the actual 
+manoeuvre. For instance, some pilots make use of the lateral control, but an 
+agree that this does not materially affect the spinning of an aeroplane.
+
+6. All the pilots agreed that the machine A had certain peculiarities which 
+may be summarised as follows :*
+
+GENERAL CHARACTERISICS.
+
+7. (a) Stalling.-A as usually rigged is tail heavy and longitudinally 
+unstable. This is accentuated when a light Le Rhone engine is substituted for 
+a heavier Clerget and/or where guns and ammunition are removed.
+
+During normal horizontal flight, it is necessary to keep a continuous forward 
+pressure of about 14 Ibs. on the control column. Any relaxation of the pilot's 
+effort is therefore likely to end in a stall. Because of the longitudinal 
+instability of the aeroplane engine failure will be followed by a stall unless 
+the pilot dives the machine.
+
+8. (b) Turning.--Most of the pilots, in the course of their evidence drew 
+attention to the fact that a steeply-banked right hand turn requires full left 
+rudder. This is accounted for by gyroscopic effect.
+
+9. The unsymmetrical forces and couples on an aeroplane arise from engine 
+torque, slipstream and the gyroscopic couple. The first two, torque and 
+slipstream, may produce an unsymmetric setting of the ailerons and rudder 
+respectively. They do not produce effects which depend on the rate of turning 
+to any appreciable extent. The gyroscopic couple alone is capable of 
+explaining the effect mentioned above.
+
+10. The propeller, viewed from the pilot's seat, turns clockwise, and when the 
+aeroplane is turning to the right it tends to put its nose down as a 
+consequence of the gyroscopic couple. The tendency is countered by left rudder 
+and back (or top) elevator. Turning to the left, the nose of the aeroplane 
+tends to go up, and this effect is countered by left rudder and forward (or 
+bottom) elevator.
+
+From the evidence of the witnesses it is apparent that practically all flyers 
+feel strongly the need of a larger rudder surface.
+
+14. (d) Looping.-In the case of A all violent use of the controls must be 
+avoided. With the stick pulled too hard back, the machine will fail to 
+complete the loop. Further, if a straight loop is required, left rudder must 
+be used to counteract gyroscopic effect, and it was stated by one witness that 
+the rudder was barely sufficient for this manoeuvre.
+
+15 (e) Spinning.-The general method adopted when getting into a tight hand 
+spin is :* (i) Cut off engine.
+
+(ii) Pull back control stick.
+
+(iii) Put on right rudder. This describes the action usually taken, but the 
+essential feature is that the machine is slowed down until it stalls, when the 
+normal sequence is a spin.
+
+16. There is general agreement as to the position of the controls when in a 
+spin. The essential feature is that the stick is kept hard back; the position 
+of rudder and ailerons is relatively unimportant.
+
+17. The normal method of coming out of a spin is with the control stick 
+slightly forward and other controls neutral. In this position the spin will 
+soon stop, out the nose of the machine must be held down until flying speed is 
+attained, when the stick should be pulled gently back, and the machine is 
+flattened out.
+
+In the case of an emergency, the spin can be stopped more rapidly by putting 
+the stick forward and reversing the rudder, but in this case a violent 
+manoeuvre is induced, and want of skill may lead to the machine dropping back 
+into the reverse spin.
+
+18. It appears to be established that the rotation cannot be reversed without 
+an intermediate period, during which the machine is re-stalled. This does not 
+require the fuselage to be brought to a horizontal position.
+
+19. As usually rigged, the aeroplane A will not come out of the spin with 
+hands off, and will only come out slowly, if at all, with all the controls 
+held strictly central.
+
+21. There is no aeroplane at present in use which spins faster than A; its 
+time period is 1 to 2 seconds, and the loss of height per turn 150 to 200 feet.
+
+23. Accidents due to spinning.-The Committee have considered 41 accidents to 
+machine A due to stalling and spinning. These accidents can be divided into 
+two groups :* Group (i) includes accidents due to stalls at low level. Group 
+(ii) includes accidents due to spins continued to the ground from a high 
+level. A classified list will be found in Appendix IV.
+
+24. On all aeroplanes loss of control occurs when stalled. At a low level this 
+results in a nose dive or spin, and an accident ensues as lack of head room 
+precludes the completion of the manoeuvre before the ground is reached. 
+Accidents in group (0 belong to this category. The common feature is that the 
+stall was unintentional, the primary cause of the stall varying (e.g., engine 
+failure, faulty turn, general inexperience).
+
+38. In cases where previous dual instruction on A is impossible the movements 
+necessary in a spin must be impressed so forcibly on the pupil that they will 
+return to his mind subconsciously when the difficulty arises. The routine 
+method is :
+
+(i) Stick forward and central and rudder central.
+(ii) Wait for the machine to acquire flying speed.
+(iii) Pull out gently."
+
+Source: http://www.theaerodrome.com/forum/aircraft/56275-question-ways-get-killed-sopwith-camel-4.html
+
+---
+
 Max sustained turn rate is about 76 deg/sec. That is near stall speed, level 
 flight, at sea level. p. 7 
 
@@ -240,13 +379,13 @@ http://home.comcast.net/~clipper-108/AIAAPaper2005-119.pdf
 ---
 
 "I lived its quick response - it was so remarkably swift and sensitive that it 
-demanded constant attention. The torque caused the nose to rise in aleft-hand 
-turn and rop in aright-hand turn. Fairly large amounts of left rudder were 
-needed in bothturns to correct for these idiosyncrasis. The tiny biplane was 
-so snesitive in a turn, however, that if the turn were tightened just a little,
- it was likely to whip into a tight spin - quickly and without warning. Oddly 
-this very ease for spining was used in combat by many pilots to shake a 
-persisten German from their tails. sopwith Came vs Fokker Dr 1: Western Front 
+demanded constant attention. The torque caused the nose to rise in a left-hand 
+turn and drop in a right-hand turn. Fairly large amounts of left rudder were 
+needed in both turns to correct for these idiosyncrasis. The tiny biplane was 
+so sensitive in a turn, however, that if the turn were tightened just a little,
+it was likely to whip into a tight spin - quickly and without warning. Oddly 
+this very ease for spinning was used in combat by many pilots to shake a 
+persisten German from their tails. Sopwith Camel vs Fokker Dr 1: Western Front 
 1917-18 by Jon Guttman, Harry Dempsey, quoting from mark Curtis Kinney's 
 memoir, I Flew a Camel
 
@@ -302,8 +441,7 @@ flying time used it as a lethal weapon.
 ---
 
 http://www.theaerodrome.com/forum/2001/11306-sopwith-camel-flight-characteristics-3.html
-In 
-those notes are a description of when and why the mixture had to be adjusted. 
+In those notes are a description of when and why the mixture had to be adjusted. 
 If memory serves, it was perilously low to the ground, under 250 feet. The 
 shift to left rudder would have to have taken place either just before or just 
 after this, because the whole point of changing the mixture was that the 
@@ -348,8 +486,8 @@ became airborn I found that I had full left rudder on. (This was the answer
 always, as I afterwards found, and I was never in trouble again from this 
 cause)"
 
-August 98 issue of FLight journal has the flying of the Camel by Rich King. 
-160 Hp Gnome engine (yes, rotary) qoute:
+August 98 issue of Flight journal has the flying of the Camel by Rich King. 
+160 Hp Gnome engine (yes, rotary), quote:
 
 Right rudder is needed to keep the Camel tracking straight ahead while it is 
 on the runway, and as the tail comes up, I find that my rudder correction was 
@@ -620,6 +758,8 @@ happens when you boot the rudder right at the stall break.
 http://www.djaerotech.com/dj_askjd/dj_questions/short_coupled.html
 
 ---
+
+
 
 Cause of take-off crashes:
 

@@ -1,0 +1,456 @@
+THE MANOEUVRES OF INVERTED FLIGHT
+THE JOURNAL OF THE ROYAL AERONAUTICAL SOCIETY 
+
+PROCEEDINGS 
+SECOND MEETING, 59TH SESSION 
+
+The more stable an aeroplane is in normal flight, the more difficult is the 
+pilot's task of maintaining the inverted position, and vice versa. It is 
+therefore relatively easier to fly unstable aeroplanes like the Sopwith 
+"Camel" and "Snipe" inverted than stable aeroplanes like the S.E.5A. The "Bat 
+Bantam," which is about neutral in stability at normal flying speeds, falls 
+between the two extremes.
+
+While the stability characteristics discussed above are the chief determinant 
+of an aeroplane's behaviour, its balance has a most important effect on the 
+case of inverted flying, or alternatively the ease of recovery. The 
+disposition of the Sopwith "Camel" to remain inverted is weakened by the 
+standard practice of rigging it tail heavy in normal flight, whereby a 
+tendency towards self-righting is introduced. When the "Camel" was rigged so 
+as to balance correctly in normal flight, accidents occurred; for its 
+inclination to follow its natural stability characteristics and remain 
+inverted was thus allowed greater freedom.
+
+Before the behaviour of individual aeroplanes is dealt with, a note on the 
+management of the engine is necessary. The petrol systems of aeroplanes do not 
+make special provision for petrol supply to the engine when inverted. It is 
+only by chance that in one or two aeroplanes petrol continues to be supplied 
+to the engine; and independently of the petrol system a stationary engine with 
+a float carburettor will cease firing almost immediately on inversion. 
+Although the method of attaining the inverted position by means of a half loop 
+is suited to stationary-engined aeroplanes on account of the absence of 
+gyroscopic effect, the wisdom of turning the aeroplane upside down with the 
+stationary engine running and allowing it to cut out, is questionable. A 
+certain amount of petrol is bound to be spilt out, the presence of which is 
+undesirable inside the cowling. Unfortunately an aeroplane cannot be half 
+looped on to its back without the engine running, and Bulman, has frequently 
+done this on the "Bat Bantam" and the S.E.5A for experimental purposes, If 
+petrol can be supplied to it, a rotary engine with a block tube carburettor 
+will continue to fire. The Clerget engine of a Sopwith “Camel” will continue 
+to run for half a minute on petrol contained in the pipes between the tank and 
+the engine. Oil is nearly always spilt into the cowling, and on the Sopwith 
+“Camel” I have had trays fitted to collect it.
+
+(b) Application to Particular Aeroplanes
+
+Standard Sopwith “Camel” The standard Sopwith "Camel" may be inverted by any 
+of the methods referred to above. Inversion by the half loop is attended by 
+the difficulties arising from the gyroscopic effect of the engine, accentuated 
+by the very small rudder. In the second quadrant of an ordinary loop, full 
+left rudder is needed to keep this aeroplane from yawing to the right. The 
+rudder moment, which is then just sufficient to hold the yaw in check, induces 
+a skid to the right. If a loop on a “Camel” is observed by another aeroplane 
+from behind, the "Camel," when held straight by its pilot, is seen to skid 
+bodily sideways. The skid is not, however, appreciated by the pilot in the 
+"Camel." On a stationary-engined aeroplane where there is practically no 
+gyroscopic effect, the pilot knows he has looped straight if he re-enters his 
+own backwash; if on a rotary-engined aeroplane he has held the nose straight 
+he will be displaced laterally and pass it by. Apart from the gyroscopic 
+effect just referred to the "Camel," being rigged tail heavy, behaves sweetly 
+in the first half of a loop. The pilot is merely concerned in releasing his 
+pressure on the control stick and allowing the nose to rise up. By the time he 
+is inverted the control stick is fully back and the rudder is full across to 
+the left. To commence inverted flight, it is sufficient to exert a gentle 
+forward pressure on the control stick. At this moment the gyroscopic effect 
+disappears suddenly, and, if the rudder is not centralised at once, the 
+aeroplane will slew rapidly to the left. To perform this manoeuvre correctly 
+the pilot has to ensure that he has enough speed on top of the loop to prevent 
+an immediate stall, and to co-ordinate his elevator and rudder movements 
+sensitively. A misjudgement either of speed or of control movement is enough 
+to spoil the manoeuvre (see Fig. III).
+
+The above difficulties are reduced if inversion is attained by a half roll. 
+The slow half roll seems most adapted to the flying qualities of the "Camel." 
+In this manoeuvre the pilot cannot, unless he sideslips severely, avoid yawing 
+off his course; as however he yaws the other way in the half roll for recovery,
+ he regains his initial direction of flight. The gyroscopic effect of the 
+engine asserts itself, but is not so difficult to deal with. If the pilot 
+rolls to the right, the nose is forced down and if to the left, it is forced 
+up. As the rudder is so small, a right*-hand roll is easier; for it is better 
+that the nose should drop rather than rise if the limit of rudder control is 
+exceeded. Again, the pilot has greater control over the speed than at the top 
+of the half loop. A convenient speed at which to commence the half roll is 
+between 70 and 90 m.p.h. at half throttle. In half rolling to the right the 
+pilot gently but firmly applies right rudder and right aileron. The “Camel” 
+begins to roll over and to turn to the right. In anticipation of the 
+gyroscopic effect the pilot has previously lifted the nose slightly; as soon, 
+however, as the rudder and elevator interchange functions, he commences to 
+push the control stick forward and turning ceases. As the wings pass the 
+vertical he maintains right aileron, gradually takes off right rudder, and 
+pushes the control stick more forward -until as he approaches the inverted 
+position he takes off right aileron completely and finishes with the control 
+stick slightly forward of the central position. The movement of the control 
+stick amounts to an anti-clockwise circular sweep in the right-hand side of 
+the cockpit. Bulman found that he was able in half rolling to push the control 
+stick forward at an earlier stage, and thus to keep on his course better. When 
+I tried this I induced a. severe side-slip. As however Bulman usually rolls to 
+the left and I to the right it is conceivable that the pilot's instinctive 
+allowance for the gyroscopic effect forms a habit which tends to persist even 
+when the roll is made in the reverse sense to that which is customary. In this 
+connection, it is interesting to note that nearly all pilots are right or 
+left-handed, and that few experience the same ease in performing a complicated 
+manoeuvre to the left and right.
+
+Modified Sopwith "Camel"-The modified "Camel" cou1d be inverted either by half 
+looping or half rolling. In an ordinary loop Its longitudinal stability caused 
+it to behave differently to a standard "Camel." Whereas during the second 
+quadrant the latter came over almost too quickly the modified "Camel" had to 
+be pulled over like the S.E.5A. Again, during the third quadrant, the modified 
+"Camel” dropped its nose more quickly than the standard ,"Camel"; and 
+therefore, in the half looping method of attaining the inverted position, the 
+control stick had to be pushed forward more vigorously to keep the nose from 
+failing. As In the standard "Camel," it was necessary to manipulate the rudder 
+to counteract gyroscopic effect, but the likelihood of spoiling the manoeuvre 
+by a failure to centralise it as inverted flight commenced and the aeroplane 
+became nearly stalled, was less.
+
+I did not try the quick half roll for attaining inverted flight, though it 
+would probably have been attended by no difficulty. In the slow half roll the 
+controls had to be used, as a whole, more vigorously than in the standard 
+"Camel." The movements were similar, with the exception that the control stick 
+had to be pushed forward more definitely to keep the nose up as the aeroplane 
+became inverted. In other words, the modified “Camel” showed characteristics 
+similar to stable aeroplanes like the S. E.5A.
+
+The half looping method is used as described for the "Camel" the commencing 
+speed being 120 to 125 m.p.h., 10 to 15 m.p.h. in excess of that for an 
+ordinary loop. At a point when the centre section spar appears to subtend 
+about 10° to the horizon, the control stick is gently but deliberately pushed 
+forward until the nose is steadied in the inverted. position and held there. 
+Gerrard says that he could keep his engine full on in Inverted flight for a 
+considerable period, and as a result was actually able to climb. If the engine 
+were throttled back the nose fell somewhat and an inverted glide resulted. In 
+this method the pilot is faced with a gyroscopic effect Similar to that 
+noticed in the “Camel” and has to use the same judgment in centralising the 
+rudder at the commencement of Inverted flight. Although the "Snipe" is fitted 
+with a large rotary engine (the B. R.2), It has, relatively to the "Camel," a 
+large rudder which is better suited to counteract the violent gyroscopic 
+effect. The centralisation of the rudder must be a direct consequence of the 
+new conditions set up by the pushing forward of the control stick; and if, 
+after pushing forward the control stick, the pilot is late in centralising the 
+rudder, he stalls on his back with rudder on and introduces the set of 
+conditions favourable to the inverted spin. (See Part III. (l).) Again, If the 
+pilot pushes forward the control stick too late, the nose may have dropped too 
+far, and the angular velocity of the aeroplane have increased so much that he 
+will find it difficult to push the nose up again. At the same time an unstable 
+aeroplane like the "Snipe" will always respond to this correction more kindly 
+than stable aeroplanes and as the involuntary inverted spin is to be avoided, 
+the mistake of pushing forward the control stick too late is the less 
+undesirable.
+
+The slow half roll is most easily performed if the "Snipe" is flown at a speed 
+in the neighbourhood of 100 m.p.h. Gerrard insisted on the necessity of 
+selecting, If possible, some definite point on the horizon in order to 
+stimulate the pilot's sense of direction. In half rolling to the right he 
+pushed the control stick slowly and deliberately over to the right, meanwhile 
+checking the tendency of the aeroplane to yaw off its course by gradually 
+easing the control stick forward. With the steady application of right rudder 
+the aeroplane then commenced to turn slowly over sideways. As the bank became 
+steeper the control stick was eased more forward still, especially after the 
+wings had passed the vertical. At this point Gerrard gradually reversed his 
+rudder (gave left rudder) until by the time that the aeroplane was completely 
+inverted he had centralised it again. It will be noted that this use of 
+reversed rudder in the final stages of the slow half roll differs from that in 
+the "Camel," where the rudder was employed in varying degree but always in the 
+same sense as the rotation of the aeroplane. Though unusual, this method was 
+applied by Scholefield to the S.E.5A. It at least shows the difference of 
+technique employed by various pilots. Gerrard's forward movement of the 
+control stick in the "Snipe" before the wings passed the vertical agrees with 
+Bulman's in the "Camel"
+
+3 The Effect of the Controls in Inverted Flight
+
+(b) Application to Particular Aeroplanes
+
+Standard Sopwith "Camel."-I flew the standard Sopwith "Camel'" inverted and 
+found that although it answered less sensitively to the elevator than in 
+normal flight, the difference was less than I expected. I was unable to fly it 
+slower than 65 m.p.h. inverted, at which speed it stalled. To fly inverted at 
+any given speed the position of the control stick is slightly forward of that 
+for the corresponding speed in normal flight; at 75 m.p.h. inverted the 
+control stick is just forward of the central position. As far as I could 
+detect, at low speeds the lateral control disappeared first, and near stalling 
+the aeroplane showed a strong tendency to drop the right wing when inverted. 
+If I could not check this dropping at an early stage the aeroplane frequently 
+fell out from the inverted position in a half roll with severe sideslip. I 
+found it quite possible to watch the airspeed indicator when inverted and fly 
+steadily at a given speed. The tendency of the' right wing to drop was 
+particularly noticeable just after the half roll to become inverted.
+
+I attempted to examine the stability characteristics inverted with engine off. 
+The aeroplane was tail heavy in normal flight, and seemed to have a stable 
+trimming speed at about 90 m.p.h. in inverted flight with engine off. This I 
+investigated by abandoning the control stick when inverted, meanwhile steering 
+with the rudder. The aeroplane settled down to what appeared to be a steady 
+glide at 90 m.p.h. with "hands off." This observation, however, should be 
+accepted with the greatest caution, owing to the shortness of the period 
+during which the aeroplane could be allowed to glide-while the trimming speed 
+was under observation. The trimming speed was observed by producing an 
+artificial disturbance in the neighbourhood of the supposed attitude of 
+balance and investigating the nature of the oscillation set up. During 
+inverted flight this is not an easy matter, as it is a physical strain to 
+remain inverted for a sufficiently long time. It seemed however that if the 
+control stick were pushed forward and released the speed tended to rise again 
+towards 90 m.p.h. and what is more important, if the control stick were pulled 
+slightly back and released the speed tended to drop and the nose to rise; in 
+other words the aeroplane actually wanted to remain inverted. Nevertheless the 
+control force required to upset this condition was very small, and the “Camel” 
+is not highly stable inverted.
+
+The inverted stall is a matter of interest. If the “Camel” is stalled in the 
+inverted position, it drops its nose quite definitely and shows the stalling 
+characteristics associated with longitudinal stability; Whereas in normal 
+flight its stall shows the characteristics associated with instability, and is 
+of a delayed and gradual character.
+
+4 Resuming Normal Flight 
+(b) Application to Particular Aeroplanes
+
+Standard Sopwith "Camel."-To resume normal flight on the "Camel" by means of a 
+half loop the pilot is compelled to lose some height, probably a minimum of 
+300ft. As explained before, he can make a quick recovery only by swinging the 
+aeroplane round without allowing it to gather speed in an inverted dive. The 
+”Camel” tends to go into this high speed inverted dive less easily than more 
+heavily loaded or less unstable types. If, however, the inverted dive gains 
+headway, the pilot may lose 1,000 to 2,000ft. before he has resumed normal 
+flight. In my opinion it was the pilot's failure to appreciate the 
+characteristics of this inverted dive that led to many accidents and 
+concurrent reports that the controls were ineffective, or the elevator 
+"blanketed." The aeroplane loses height so rapidly, and the elevator control 
+feels so uneven in swinging the aeroplane round that it was natural for pilots 
+to blame the control. The pilot has undoubtedly to learn what practically 
+amounts to a trick in using the control; and if he is flying below 2,000ft. he 
+may, if inexperienced, quite easily strike the ground in this inverted dive. 
+The behaviour of the aeroplane appears inconsistent; under some conditions it 
+may need a firm deliberate elevator movement and under others a series of 
+gentle ones. The ”Camel” itself is more likely to come round in a series of 
+jerks than to plunge into the high-speed inverted dive. These jerks the pilot 
+is inclined to check too violently, because in the various attitudes through 
+which the aeroplane passes towards recovery the sensitivity of the elevator 
+control varies, and lie cannot easily foresee what effect his control 
+move*ments are going to have. He may overdo the checking movements, in which 
+case the aeroplane will start trying to re-invert itself, and he will lose a 
+great deal of time and height in pulling it round to normal flight. In short, 
+if the rapid low speed recovery is made, all is well; but if it fails, the 
+pilot will meet difficulties that can only be overcome by practice (see Fig. 
+V.).
+
+An experienced pilot can resume normal flight by means of a slow half roll 
+without losing more than 100 to 200ft. of height. He should not commence the 
+manoeuvre too near the inverted stalling speed; on the “Camel” a favourable 
+speed is 80 m.p.h. He gives aileron and rudder in the desired sense of roll 
+and pushes the control stick slightly forward. As mentioned before, Bulman was 
+able to use a further forward position of the control stick than I was. Just 
+after the wings have passed the vertical the pilot has to be careful with his 
+rudder. Its use is determined by his effort to keep the nose of the aeroplane 
+as far as possible in the direction in which the half roll was commenced. The 
+aeroplane will inevitably sideslip and yaw slightly off Its course. As soon as 
+the wings are past the vertical the pilot can pull the control stick back to 
+keep the nose up and gently or rapidly take off aileron, depending on how fast 
+the aeroplane is coming round. If, however, he has lost too much speed, the 
+aeroplane may swing round violently and the ailerons become useless. The 
+motion can then be damped only by pushing the control stick forward again and 
+allowing the nose to drop. To maintain an even rate of roll from start to 
+finish the pilot must use good judgment in timing the control movements.
+
+PART III -SPECIAL INVERTED MANEOUVRES
+
+The Inverted Spin
+
+In reference to accidents on "A" the report of the Accidents Committee, R.& M. 
+617, states " Thirteen accidents in which inverted flight was a feature were 
+examined.... The initial stage of the accidents varied, but in 10 out of 13 
+cases the aeroplane at some period spun on its back."
+
+It was hoped that the inverted spinning associated with these accidents might 
+be reproduced; that the problem of recovery might be solved; that the 
+behaviour of the aeroplane prior to, during and subsequent to the inverted 
+spin might be investigated to see if the control surfaces were sufficiently 
+operative to make consistent and repeated recovery possible; and that a pilot 
+with his brain clear might experience the physiological effects concurrent 
+with inverted spinning.
+
+During the summer of 1920 Bulman was making persistent efforts to reproduce 
+the inverted spin on the Sopwith “Camel” but, curiously enough, he was always 
+unsuccessful for the reason shown later. In the following autumn Gerrard 
+joined the R.A. E. and reported that in 1917 he performed the manoeuvre 
+unintentionally while commencing inverted flight on a Sopwith "Camel" with a 
+standard non-shoulder strap belt. To attain the inverted position he held on 
+to the seat with his left hand, half rolled and pushed the control stick 
+forward (the correct movements). He forgot, however, to centralise the rudder 
+when he became inverted, and went into an inverted spin with the engine off. 
+He was thrown from his seat, still retaining hold with his left hand. To save 
+himself from being thrown out further, his first effort was to grab hold of 
+the seat with his right hand also. Being confused, he seized hold of the 
+pressure pump handle instead, which partially broke away; in fact he nearly 
+pulled it right out. By this time he was getting very low - about 800ft. from 
+the ground - and with a final effort succeeded in reaching the control stick 
+with his right hand, pulled it back and made a recovery just before striking 
+the ground. He did not proceed further with inverted flying until he had 
+obtained and fitted a Curtis shoulder strap belt. Since then he had frequently 
+carried out intentional inverted spins.
+
+On joining the R.A. E. be explained to Bulman how the inverted spin was 
+performed, and Bulman was able to go straight up and reproduce the manoeuvre 
+perfectly. The normal method of including a right-hand inverted spin from the 
+pilots point of view is to push the control stick fully forward into the 
+left-hand corner of the cockpit and to give full right rudder, which means 
+that rudder is given in the desired sense of rotation and aileron against it. 
+For a left-hand inverted spin, the control movements are reversed. In the 
+"Camels" previously flown by Gerrard the consequent motion of the aeroplane 
+was as follows:- The aeroplane did a flat turn inverted, dropped its nose and 
+commenced to spin on its back in a somewhat similar way to a normal spin. 
+Gerrard described the recovery as not essentially abnormal except that the 
+controls bad to be used with the greatest gentleness to prevent the aeroplane 
+coming out with a violent jerk, and that the height loss exceeded that in the 
+recovery from the normal spin. It is best to check the spinning, in the case 
+of a right-hand inverted spin, by moving the control stick across from the 
+front left-hand comer of the cockpit towards the centre of the dashboard 
+(taking off aileron), and by centralising the rudder gradually. The aeroplane 
+may then be eased out of the resultant inverted dive by gently pulling the 
+control stick back. In the case of a left-hand inverted spin the control 
+movements for recovery are made in the opposite sense. In a good recovery the 
+height toss should not exceed that from a normal spin by more than 20 per 
+cent. in a bad recovery it may run into thousands of feet (see Fig. VII.).
+
+The “Camel" on which Bulman had been experimenting showed a strong tendency at 
+low speeds to drop the right wing inverted [Part 11. (3) (b)]. Gerrard flew it 
+and considered that this tendency was more marked than in the “camels” in 
+which be had previously flown. It was this individual peculiarity that seems 
+to have confused Bulman in his initial attempts at inverted spinning. Gerrard 
+found that when the control movements for the inverted spin were made this 
+aeroplane, instead of flat turning on to its back and sliding into a spin 
+immediately, tended to drop the right wing and roll round the right way. If 
+the controls were still held over, it rolled over again on to its back and 
+commenced an inverted spin, by which time the nose had dropped to about 45 
+deg. with the horizontal. In attempting the inverted spin Bulman, finding that 
+the aeroplane rolled round right away, immediately straightened it out in the 
+belief that he had failed, and never guessed that if he persisted an inverted 
+spin would result. Nevertheless when I tried the inverterted spin on this 
+aeroplane, in no case did I experience the tendency to roll out before the 
+Spin had commenced, which must have been due to a slight difference in 
+handling the controls. Bullman lays emphasis on the extraordinary smoothness 
+of the inverted spin. There is no suggestion of "kicking" round, a frequent 
+feature of the normal spin on the "Camel" He also noticed that by taking off 
+ruder slowly he could decrease the rate of rotation.
+
+Although in my initial attempts at inverted night on the Sopwith "Camel” I had 
+several times mishandled the controls, it so happened that I had not, as a 
+result, commenced an involuntary inverted spin. As I was anxious to gain 
+experience of the manoeuvre I carried out a considerable number of inverted 
+spins. I judged that it would be a matter of considerable difficulty to read 
+instruments in this condition; in any case I was compelled to concentrate on 
+reading one at a time. In ordinary inverted flying it is possible to read 
+between two or three instruments at once. Having previously shut off the 
+engine and petrol, I commenced inverted spinning by half rolling gently on to 
+my back at 5,000ft, and producing an inverted glide. I steadied the airspeed 
+to 80 m.p.h. and then gently eased the control stick forward and to my left 
+and gave full right rudder. The aeroplane showed no hesitation in answering. 
+It did a flat turn to the right, and started spinning inverted with the nose 
+fairly well down, in a roughly similar attitude, except for the inversion, top 
+that of a normal spin.
+
+I agree with Bulman that the inverted spin is unlike the characteristic 
+“Camel” spin; it seems both smoother, and there is no “kicking” noticeable. As 
+soon as the spin commenced I felt the negative acceleration increase, and the 
+belt stretched a little. I was able, howver to read the airspeed, which 
+settled down to 90 m.p.h. The pitot head is mounted on the starboard wing 
+strut, which would be the inner one in the spin. Its reading in an incerted 
+spin would probably be subject to a considerable correction.
+
+After spinning for 1,500ft. I gently eased the control stick towards the 
+centre of the dashboard and then backwards, simultaneously centralising the 
+rudder. After what seemed like one and a half turns the rotation slowed up, 
+started again momentarily, and then ceasedl; after which I emerged in an 
+inverted dive. In this dive I attained a considerable speed, over 160 m.p.h., 
+being reluctant to handle the aeroplane roughly and flatten out too violently. 
+This procedure however, involved the sacrifice of about 1,500ft. of height, 
+and my nose crosses the horizon at 2,000ft. Just as in the half-looping 
+recovery from the inverted position, the speed in the inverted dive tends to 
+rise very rapidly, and it is essential always to aim at the low speed 
+recovery. In such dives I have more than once attained speeds in the 
+neighbourhood of 200 m.p.h. During the inverted spin proper the pilot, though 
+subject to violent negative acceleration, is quite able to realise where he is 
+and visualise his attitude; during the recovery and consequent reversal of the 
+sign of apparent gravity, he tends to feel dizzy for a few moments.
+
+One of the most important things to discover about the inverted spin was at 
+least an approximate notion of the loads imposed on the wings, and hence the 
+margin of strength. I was therefore anxious if possible to measure the 
+acceleration in the spin, and had a simple type of spring accelerometer 
+(non-recording} fitted between the guns so that it was close to my face and 
+easy to read. This accelerometer was used by Lindeman in his early spinning 
+experiments. I commenced inverted spinning at 5,000ft. in the same way as 
+before. The indicator of .the accelerometer appeared to rise steadily but 
+quickly to -2G, and to remain there for as long as I was able to watch it. At 
+about 3,500ft. I had intended to make the control movements for recovery. I 
+was, however, beginning to be confused, and think that while centralising the 
+rudder I may have kept the control stick forward or have failed to pull it 
+back enough. When I next appreciated what was happening I was gliding fast on 
+my back at about 120 m.p.h., side*slipping with my right wing down. It took me 
+a few moments to decide whether I was inverted or not, as, having been 
+subjected to large unusual accelerations, my sense of feel seemed partially 
+paralysed. On realising the position I gently eased the aeroplane into an 
+inverted dive and recovered normal flight at just under 2,000ft. I 
+subsequently read the accelerometer in a straight inverted glide, and its 
+reading was approximately -1G.
+
+Up to that time it had been an open question whether it was possible to pass 
+direct from an inverted spin to inverted flight, the normal recovery being an 
+inverted dive. That I did so unintentionally proves the possibility of it; 
+indeed, the manoeuvre virtually amounts to the first phase of an inverted 
+loop. It was unfortunate that I was unable to control myself sufficiently 
+during this period to read the accelerometer, as the reading should have been 
+of interest. The fact that I passed direct into the inverted position in 
+trying to recover from an inverted spin, seems to point to the persistence of 
+habit formed during normal spinning the recovery from which requires the 
+control stick forward. Although I had clearly thought out the whole manoeuvre 
+beforehand, yet when the time came for recovery I failed to make the 
+subconscious effort to pull the control stick back.
+
+I carried out another right hand inverted spin and was able to watch the 
+spring accelerometer more carefully. During the spin the indicator oscillated 
+between -1.8 and -2.2 G, the period of the oscillation being approximately in 
+phase with the rotation of the aeroplane. Bulman then carried out two left 
+hand inverted spins and observed a similar oscillation between -1.6 and -2.4 G.
+
+Later on a recording accelerometer was fitted up and a record that I obtained 
+in a right hand inverted spin is shown diagrammatically in Fig. VIII. For 
+purposes of comparison a record of a straight inverted glide is shown in Fig. 
+IX. The maximum force on the wings during the inverted spin is seen to be -1.7 
+G, a figure lower than that obtained from the non-recording spring 
+accelerometer. Taking into account the conditions under which the latter had 
+to be observed by the pilot, great reliance cannot be placed on the readings 
+taken from it.
+
+I therefore made tests on the standard "Camel" to investigate the influence of 
+aileron. I first tried to induce an inverted spin by flying inverted, pushing 
+the control stick forward without giving aileron and applying full rudder. The 
+”Camel” did not appear to respond quite as readily as with aileron given 
+against the sense of rotation but fell into an inverted spin for about a turn 
+and a half, threw itself violently out and began to gather speed. I then tried 
+again by inducing an inverted spin with aileron against the sense of rotation 
+and slowly moving the ailerons during the spin until they were fully over m 
+the same sense as the rotation. The spin slowed up slightly and became less 
+even, but still persisted until I made the movements for recovery. These tests 
+showed that for inverted spinning the position of the elevators and rudder was 
+more important than that of the ailerons. This point has a distinct bearing on 
+the chances of falling into an involuntary inverted spin by a mishandling of 
+the controls.
+
+3 Conclusions
+
+Time and height are then necessary for recovery, though it is suggested that 
+the standard Sopwith "Camel" may be stable inverted, it is a fact that no 
+control forces of any magnitude are requisite to Overcome the effect of this 
+stability
