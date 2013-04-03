@@ -22,14 +22,15 @@ These operational quirks were openly exploited by combat pilots.
 
 As one writer said:
 
-  I enjoyed flying the Camel, but its vices of control instability, extreme 
-  control sensitivity and pronounced gyroscopic effects all combined to create 
-  the impression of balancing an egg on the point of a needle rather than flying 
-  an aircraft . . .
+I enjoyed flying the Camel, but its vices of control instability, extreme 
+control sensitivity and pronounced gyroscopic effects all combined to create 
+the impression of balancing an egg on the point of a needle rather than flying 
+an aircraft . . .
 
-  It was never forced into manoeuvres - they were executed by
-  light pressure on the controls and subsequently relaxing, or sometimes 
-  reversing, the pressure once the desired rate of response was attained.
+It was never forced into manoeuvres - they were executed by
+
+light pressure on the controls and subsequently relaxing, or sometimes 
+reversing, the pressure once the desired rate of response was attained.
 
 I set out to create a flight model of the Camel that would incorporate as many 
 of the documented combat flight characteristics of the Camel as possible, and 
@@ -55,14 +56,14 @@ Below is a list of Camel flight characteristics implemented in this JSBSim
 flight model, with a rating of the effectiveness of the current implementation 
 on a scale of 1-5:
 
-    1 - Not implemented
-    
-    2 - Partially implemented
-    
-    3 - Well implemented
-    
-    4 - As well implemented as possible, as far as I (a non-pilot) can determine 5 
-    - As well implemented as possible, according to an expert Camel pilot
+1 - Not implemented
+
+2 - Partially implemented
+
+3 - Well implemented
+
+4 - As well implemented as possible, as far as I (a non-pilot) can determine 5 
+- As well implemented as possible, according to an expert Camel pilot
 
 4 Weight, fuel capacity & weight, hp, dimensions and other technical details 
 implemented as described in attached article, 'The Sopwith "Camel"', The 
@@ -101,7 +102,10 @@ correct
 
 NOTE: JSBSim reverses the direction of the gyroscopic effect, so the direction 
 of these effects is reversed. Fixing this problem will have to wait for a fix 
-in JSBSim.
+in JSBSim. In the meanwhile many effects/quirks as described in the literature 
+must be reversed (ie, pilots took of and turned left, leading to nose rising & 
+stall; in JSBSim Camel, take off & turn right for the same effect). Also L and 
+R must be swapped in many notes & comments below.
 
 4 Sluggish in left turns. Quicker through 270 degrees to the right than 90 
 degrees to the left. NOTE: Adjusting the stall AOA to 14 degrees seemed to 
@@ -116,12 +120,21 @@ to whip into a tight spin.
 4 All the weight of the engine, guns, and pilot was concentrated in the first 
 seven feet of a short 18-foot fuselage.
 
-3 Spins period of 1-2 seconds
+3.5 Spins: Period of 1-2 seconds.
 
-2.5 Loses 150-200 feet per revolution while spinning
+3 Loses 150-200 feet per revolution while spinning. NOTE: Loses about 125ft 
+per revolution, may need further tweaking.
 
-3 General spin characteristics similar to Camel; ability to do spin-related 
-maneuvers documented for the Camel--snap rolls, etc.
+4 Exit spin by gentle forward pressure in the stick, then *gradually* pull 
+out. AC will *sometimes* self-recover from a spin, but many times not.
+
+2.5 General spin characteristics similar to Camel; ability to do spin-related 
+maneuvers documented for the Camel--snap rolls, etc. Note that 'snap rolls' as 
+often described in relation to the Camel appear to not be true aerobatic snap 
+rolls as we would perform today (too vigorous for the Camel's light airframe) 
+but a kind of roll coordinated between rudder & aileron.
+
+2.5 In inverted flight, possible to stall and get into an inverted spin.
 
 3.5 Camel's elevator was powerful and sensitive. TODO: May require some 
 further refinement.
@@ -129,11 +142,16 @@ further refinement.
 3.8 Rudder was too small and relatively ineffective. TODO: May require some 
 further refinement.
 
+3.8 Straight/forward flight requires slight right rudder at all times.
+
+3.8 Roll for turns initiated by rudder (due to large adverse yaw/drag of 
+ailerons); ailerons use to control roll in turns rather than initiate.
+
 4 Accelerating the aircraft caused the nose to climb, and swing to the left.
 
 4 At 110 miles per hour, there was about 15 to 20 pounds of back force on the 
 control column, which could not be trimmed out because the aircraft had no 
-pilot-adjustable, moveable horizontal stabilize
+pilot-adjustable, moveable horizontal stabilizer.
 
 3.8 Moving the stick forward to enter a dive caused the Camel to yaw left 
 because of gyroscopic force, and correcting this yaw with right rudder caused 
@@ -153,11 +171,16 @@ With a 15 mph headwind, JSBSim Camel now matches this takeoff almost exactly.
 The rollout matches pretty well, too--though obviously much depends on the 
 exact surface and other details.
 
-4 Right rudder needed to keep AC on course early in roll-out
+3.5 Right rudder needed to keep AC on course early in roll-out.
 
-3.7 Left rudder needed later in roll-out as speed increases. NOTE: The JSBSim 
-doesn't currently require *full* L rudder, as some sources indicate, so some 
-refinement may be needed or these sources may be slightly exaggerating.
+3 Left rudder needed later in roll-out as speed increases. NOTE: The JSBSim 
+current requires R rudder on takeoff, not left, and not quite full rudder. Not 
+certain of the reason for this.
+
+3 Rudder loses effectiveness as soon as it drops on landing. NOTE: JSBSim 
+implements steering in the taildragger when it's touching ground. This may not 
+be 100% authentic, but otherwise it's just impossible to maneuver the Camel on 
+the ground in FG!
 
 3.7 In a wind of 10 to 15 knots you are airborne in a couple of plane lengths 
 at 35 mph. TODO: JSBSim is currently just a little over, this--airborn at 40 
@@ -172,10 +195,17 @@ in the sky, and faster than any other WWI aircraft I have flown.
 
 4 Tail heavy with full fuel
 
-3 In level flight at 100 mph indicated, just a hint of rudder being required 
-for straight flight. TODO: Ver. 1.0 req. more aileron than rudder.
+3.5 Ineffective ailerons: Slow roll/ailerons only with level flight requires 
+23 seconds to complete--if it can be done at all (it requires a special 
+technique).
 
-3.6 Thin airfoil shape affects lift, drag, AOA of stall, etc., and the effects 
+3.5 Ailerons induce 'awe-inspiring' opposite yaw (ie, yaw to the R on L roll) 
+and much drag.
+
+4 In level flight at 100 mph indicated, just a hint of rudder being required 
+for straight flight.
+
+3.7 Thin airfoil shape affects lift, drag, AOA of stall, etc., and the effects 
 are quite different than for later aircraft with thicker wings. Stall speed 
 41.7 knots/14 deg AOA.
 
@@ -190,7 +220,7 @@ nose heavy. Requires further tweaking.
 4 As you slow down over the top of the loop you must feed in rudder against 
 the torque.
 
-2.5 On strafing runs, as soon as the airspeed reaches 130 to 140 mph the nose 
+3.8 On strafing runs, as soon as the airspeed reaches 130 to 140 mph the nose 
 begins to hunt up and down, and the elevator becomes extremely sensitive. I 
 feel this action is due largely to the square windshield between the two 
 Vickers guns, causing a substantial burble over the tail surfaces. TODO: 
@@ -208,19 +238,20 @@ hard to L instead of R. This can likely be tweaked in the model.
 half-loop was a often-used maneuver to reverse direction).
 
 4 Twin Vickers machine guns, 400 round capacity (historically 250-400 seems to 
-have been the range), best known realistic mass, ballistic, and
-aerodynamic characteristics for rounds, firing rate, characteristics of tracer 
-rounds, etc. Historically realistic re-loading scenario (requires landing, 
-full stop, engine off). See camel-alternative-submodels.xml for information 
-and documentation. NOTE: Aerodynamic characteristics of machine gun rounds 
-could be tweaked if better data were available; tracer visuals could be made 
+have been the range), best known realistic mass, ballistic, and aerodynamic 
+characteristics for rounds, firing rate, characteristics of tracer rounds, 
+etc. Historically realistic re-loading scenario (requires landing, full stop, 
+engine off). See camel-alternative-submodels.xml for information and 
+documentation. NOTE: Aerodynamic characteristics of machine gun rounds could 
+be tweaked if better data were available; tracer visuals could be made
 more realistic.
 
-2 Mixture needed constant manual adjustment; first adjustment about 250 about 
+1 Mixture needed constant manual adjustment; first adjustment about 250 about 
 ground on liftoff. TODO: Mixture is does not require the constant adjustment 
-described by Camel pilots--it acts more as a typical modern auto-mixture. I'm 
-not sure if JSBSIM can do this more realistically out of the box; this may 
-require custom Nasal programming to implement.
+described by Camel pilots--it's got an auto-mixture. I'm not sure if JSBSIM 
+can do this more realistically out of the box; this may require custom Nasal 
+programming to implement.
+
 
 2.5 Control of engine thrust via blip switch and magneto rather than throttle. 
 NOTE: Pilots can simulate the realistic historical way of controlling the 
@@ -233,10 +264,18 @@ connect the joystick throttle control to the mixture, allowing constant
 adjustment of the mixture as necessary, and leave throttle always at full with 
 engine power adjusted by magnetos and blip switch.
 
+2 Engine power with both magnetos or one magneto matches historical engines. 
+NOTE: The one-magneto setting doesn't seem to match the historical Clerget 
+power, not exactly sure how to address this.
+
 1 Engine start. JSBSim engine start requires a very extended cranking period. 
 Camel engines were notoriously difficult to start, but given the manual engine 
 starting methods of the day, they must have started either with a quick crank 
 or not at all.
+
+1 Engine runs out of fuel/stops when inverted. On slow roll (23 seconds), 
+engine stops just after wings vertical and starts again soon after regaining 
+erect flight.
 
 
 DOCUMENTS
