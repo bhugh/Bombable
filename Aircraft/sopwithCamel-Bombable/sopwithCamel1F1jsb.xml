@@ -563,7 +563,7 @@ for the rudder to contribute very much to yaw stability.
                 So what we're going to do is put in sense=1 here to get correct p_factor and torque effects, but then put in a correction down in the aero section
 				to correct the moments, which JSBSim seems to have reversed.
                 -->
-                <sense>1</sense>
+                <sense>-1</sense>
                 <location unit="IN">
                     <x> 0 </x>
                     <y> 0 </y>
@@ -959,6 +959,19 @@ for the rudder to contribute very much to yaw stability.
             </function>
         </axis>
         <axis name="ROLL" unit="LBS*FT">
+            <!-- This is to compensate for the fact the JSBSim has the direction of the gyroscopic moment from the propellor/engine 
+            reversed.  So we're switching sense to -1 to compensate, but then Torque is reversed.  So
+            We're using this function to reverse the torque. -->
+             
+     		    <function name="aero/moment/Roll_moment_prop_torque_jsbsim_correction">
+                <description>This reverses the roll moment of the propeller, which we have reversed to compensate for the reversed sense of the gyroscopic moment in JSBSim</description>
+                <product>
+                    <property>moments/l-prop-lbsft</property>
+                    <value>-2</value>
+                </product>
+            </function>
+            
+        
             <function name="aero/moment/Roll_beta">
                 <description>Roll moment due to beta</description>
                 <product>
