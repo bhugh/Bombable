@@ -827,6 +827,17 @@ for the rudder to contribute very much to yaw stability.
                         <!-- Stall speed for the Camel is 48mph or 41.7 knots per wikipedia.  This corresponds to about 14 degrees of alpha -->
                         <!-- Experimenting with 15.5 instead. -->
                         <independentVar>aero/alpha-deg</independentVar>
+                        <!-- <tableData>
+                          -90         1.5 
+                          -20         0.9        
+                          -15.5         0.051       
+                          0           0.0378      
+                          15.5          0.051
+                          20          0.9
+                          90          1.5         
+                        </tableData> -->
+                        <!-- Drag curve above is very abrupt from 15.5 - degrees
+                        This is a more realistic type of drag curve. -->
                         <tableData>
                           -90         1.5 
                           -20         0.9        
@@ -838,7 +849,7 @@ for the rudder to contribute very much to yaw stability.
                         </tableData>
                     </table>
                 </product>
-            </function>
+            </function> 
             <function name="aero/force/Drag_induced">
                 <description>Induced drag</description>
                 <product>
