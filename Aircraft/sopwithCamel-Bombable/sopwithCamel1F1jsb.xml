@@ -795,6 +795,7 @@ for the rudder to contribute very much to yaw stability.
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCLge</property>
                     <table>
+                        <!--
                         <independentVar>aero/alpha-rad</independentVar>
                         <tableData>
                           -0.2          -0.5        
@@ -803,6 +804,50 @@ for the rudder to contribute very much to yaw stability.
                           0.3           1.03        
                           0.6           0.4         
                         </tableData>
+                        -->
+                        <!-- the lift data is based on wind tunnel data from:
+                          On the Effect of Cutting a Hole in the Top Plan of a Biplane
+                          By C.H. Powell, Repots and Memoranda (New Series), No. 419, Feb 1918
+                          That includes data for the wings only, so it has been
+                          massaged to approximate the entire AC and also extended
+                          to create data for -90 to 90 degrees.  See 
+                          Camel-JSBSim-calcs-2011-10D.xls in Docs directory for details.
+                        -->  
+ 
+                        <independentVar>aero/alpha-deg</independentVar>
+                        <tableData>                        
+                          -90	0
+                          -60	-0.075
+                          -30	-0.3
+                          -20	-0.45
+                          -14	-0.384
+                          -12	-0.33675
+                          -10	-0.28425
+                          -8	-0.2295
+                          -6	-0.1833
+                          -4	-0.087
+                          -3	0.0363
+                          -2	0.0135
+                          -1	0.0603
+                          0	0.111
+                          1	0.16905
+                          2	0.22905
+                          3	0.28425
+                          4	0.33675
+                          5	0.384
+                          6	0.4305
+                          8	0.5175
+                          10	0.5925
+                          12	0.672
+                          14	0.7425
+                          16	0.7965
+                          18	0.7995
+                          20	0.7815
+                          30	0.525
+                          60	0.225
+                          90	0
+                        </tableData>
+                        
                     </table>
                 </product>
             </function>
@@ -838,7 +883,7 @@ for the rudder to contribute very much to yaw stability.
                         </tableData> -->
                         <!-- Drag curve above is very abrupt from 15.5 - degrees
                         This is a more realistic type of drag curve. -->
-                        <tableData>
+                        <!-- <tableData>
                           -90         1.5 
                           -20         0.9        
                           -15.5         0.051       
@@ -847,6 +892,48 @@ for the rudder to contribute very much to yaw stability.
                           20          0.9
                           90          1.5         
                         </tableData>
+                        -->
+                        <!-- The drag data is based on wind tunnel data from:
+                          On the Effect of Cutting a Hole in the Top Plan of a Biplane
+                          By C.H. Powell, Repots and Memoranda (New Series), No. 419, Feb 1918
+                          That includes data for the wings only, so it has been
+                          massaged to meet the known zero-lift drag value for the Camel of .0378
+                          and also extended to create data for -90 to 90 degrees.  See 
+                          Camel-JSBSim-calcs-2011-10D.xls in Docs directory for details.
+                        -->                          
+                        <tableData>
+                          -90	6.082758621
+                          -60	3.04137931
+                          -30	0.868965517
+                          -20	0.260689655
+                          -14	0.167275862
+                          -12	0.139034483
+                          -10	0.115137931
+                          -8	0.093413793
+                          -6	0.079075862
+                          -4	0.056265517
+                          -3	0.048444828
+                          -2	0.043231034
+                          -1	0.040189655
+                          0	0.0378
+                          1	0.037365517
+                          2	0.038017241
+                          3	0.040406897
+                          4	0.044751724
+                          5	0.051051724
+                          6	0.058437931
+                          8	0.075165517
+                          10	0.093848276
+                          12	0.11492069
+                          14	0.137948276
+                          16	0.167927586
+                          18	0.236575862
+                          20	0.328034483
+                          30	0.868965517
+                          60	3.04137931
+                          90	6.082758621
+                        </tableData>
+                        
                     </table>
                 </product>
             </function> 
