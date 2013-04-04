@@ -87,8 +87,15 @@ the results are very close, definitely show the characteristics of the Camel
 close enough to be within the bounds of individual variation of production 
 Camels. TODO: Tweak dive rate/speed to better match historical Camel.
 
-3.5 Max sustained turn rate about 76 deg/sec (near stall speed, level flight, 
-sea level). TODO: Re-check turn rate.
+3 Max sustained turn rate about 76 deg/sec, ie 360 degrees in 4.7 seconds 
+(near stall speed, level flight, sea level). NOTE: Current best time is about 
+8-10 seconds; not sure what causes the drag/stall when the turn right is higher than 
+that.
+
+
+3 Able to turn through 360 degrees (including roll in/out) in 8-10 seconds as 
+reported by WWI era Camel pilots. NOTE: Currently 12 seconds with 14 degree 
+critical angle of attack. Experimenting with 15.5 cAOA to see if it helps.
 
 4 Quick/light response to controls
 
@@ -99,13 +106,6 @@ that most other similar aircraft)
 
 4 Fairly large amounts of left rudder were needed in both L & R turns to 
 correct
-
-NOTE: JSBSim reverses the direction of the gyroscopic effect, so the direction 
-of these effects is reversed. Fixing this problem will have to wait for a fix 
-in JSBSim. In the meanwhile many effects/quirks as described in the literature 
-must be reversed (ie, pilots took of and turned left, leading to nose rising & 
-stall; in JSBSim Camel, take off & turn right for the same effect). Also L and 
-R must be swapped in many notes & comments below.
 
 4 Sluggish in left turns. Quicker through 270 degrees to the right than 90 
 degrees to the left. NOTE: Adjusting the stall AOA to 14 degrees seemed to 
