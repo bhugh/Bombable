@@ -62,8 +62,10 @@ on a scale of 1-5:
 
 3 - Well implemented
 
-4 - As well implemented as possible, as far as I (a non-pilot) can determine 5 
-- As well implemented as possible, according to an expert Camel pilot
+4 - As well implemented as possible, as far as I (a non-pilot) can determine 
+
+5 - As well implemented as possible, according to an expert Camel pilot
+
 
 4 Weight, fuel capacity & weight, hp, dimensions and other technical details 
 implemented as described in attached article, 'The Sopwith "Camel"', The 
@@ -79,19 +81,23 @@ Camel pilot.
 4 Speed, RPM, horsepower of climbing and horizontal flight closes matches 
 published number. See for example the speed/climb rate graphs comparing the 
 JSBSim Camel and a historical 1917 Camel in the Docs subdirectory, file 
-Camel-JSBSim-calcs-2011-10D.xls NOTE: The numbers to not match exactly, of 
-course--tweaking parameters in JSBSim you can match any single parameter 
-exactly put not several parameters of different types exactly. Nevertheless 
-the results are very close, definitely show the characteristics of the Camel 
-(vs any of the other similar aircraft of the period) and in fact is probably 
-close enough to be within the bounds of individual variation of production 
-Camels. TODO: Tweak dive rate/speed to better match historical Camel.
+Camel-JSBSim-calcs-2011-10D.xls NOTE: 2013/04/07, with new lift/drag tables 
+need to re-check the speed/climb rates to make sure they still match 
+historical records NOTE: The numbers to not match exactly, of course--tweaking 
+parameters in JSBSim you can match any single parameter exactly put not 
+several parameters of different types exactly. Nevertheless the results are 
+very close, definitely show the characteristics of the Camel (vs any of the 
+other similar aircraft of the period) and in fact is probably close enough to 
+be within the bounds of individual variation of production Camels. TODO: Tweak 
+dive rate/speed to better match historical Camel.
 
 3 Max sustained turn rate about 76 deg/sec, ie 360 degrees in 4.7 seconds 
 (near stall speed, level flight, sea level). NOTE: Current best time is about 
 8-10 seconds; not sure what causes the drag/stall when the turn right is higher than 
 that.
 
+4 Flown basically with rudder and elevator; rudder initiates turns etc and 
+ailerons only used as assist; many pilots didn't use ailerons much.
 
 3 Able to turn through 360 degrees (including roll in/out) in 8-10 seconds as 
 reported by WWI era Camel pilots. NOTE: Currently 12 seconds with 14 degree 
@@ -134,7 +140,9 @@ often described in relation to the Camel appear to not be true aerobatic snap
 rolls as we would perform today (too vigorous for the Camel's light airframe) 
 but a kind of roll coordinated between rudder & aileron.
 
-2.5 In inverted flight, possible to stall and get into an inverted spin.
+4 Possible to fly inverted.
+
+3 In inverted flight, possible to stall and get into an inverted spin.
 
 3.5 Camel's elevator was powerful and sensitive. TODO: May require some 
 further refinement.
