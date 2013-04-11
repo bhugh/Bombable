@@ -151,12 +151,22 @@ http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
     </fileheader>
 
     <metrics>
-        <wingarea unit="FT2"> 231 </wingarea>
+        <!-- wing area 19.76 m^2 per sopwith-camel-specs-drawings-2-2.jpg, see docs directory-->
+        <wingarea unit="FT2"> 212.6948698 </wingarea>
         <wingspan unit="FT"> 26.91 </wingspan>
+        <!-- wing chord calculated by measuring drawing sopwith-camel-specs-drawings-2-2.jpg; see calculations at Camel-JSBSim-calcs-2011-10D.xls sheet Camel Dimensions -->
         <chord unit="FT"> 4.5045 </chord>
         <wing_incidence unit=""> 2.5 </wing_incidence>
+        
+        
+        <!-- htailarea calculated by measuring drawing sopwith-camel-specs-drawings-2-2.jpg; see calculations at Camel-JSBSim-calcs-2011-10D.xls sheet Camel Dimensions
+          But we assume 13.1 ft2 for htail, plus about half of elevator area (11.8 ft2) because the
+          elevator is there but unless the pilot is holding it absolutely steady it doesn't really work to 
+          stabilize as well as a fixed surface. -->
         <htailarea unit="FT2"> 19.6 </htailarea>
-        <htailarm unit="FT"> 7.75 </htailarm>
+        
+        <!-- htailarm calculated by measuring drawing sopwith-camel-specs-drawings-2-2.jpg; see calculations at Camel-JSBSim-calcs-2011-10D.xls sheet Camel Dimensions -->
+        <htailarm unit="FT"> 12.38 </htailarm>
         
         
         <!--Indeed you are correct about the Rudder - it's area was a paltry 4.9 sq. ft. (and fin at 3 sq. ft.) http://www.theaerodrome.com/forum/aircraft/47951-sopwith-camel-myth-2-a.html 
@@ -171,7 +181,8 @@ for the rudder to contribute very much to yaw stability.
         <!-- We'll say 3 sq ft for fin plus an additional 2 sq ft for
         the effect of the rudder -->
         <vtailarea unit="FT2"> 5 </vtailarea> 
-        <vtailarm unit="FT"> 4.38 </vtailarm>
+        <!-- htailarm calculated by measuring drawing sopwith-camel-specs-drawings-2-2.jpg; see calculations at Camel-JSBSim-calcs-2011-10D.xls sheet Camel Dimensions -->
+        <vtailarm unit="FT"> 13.66 </vtailarm>
 
         <location name="AERORP" unit="IN">
             <x> 60 </x>
@@ -1638,7 +1649,8 @@ for the rudder to contribute very much to yaw stability.
                         90     0.1
                         </tableData>
                     </table> 
-                    -->                   
+                    -->
+                                       
                     <!-- Asymmetric stall; you lose rudder as a stall in beta occurs -->
                     <!-- Based p51d-jsbsim.xml -->
                     <table>
