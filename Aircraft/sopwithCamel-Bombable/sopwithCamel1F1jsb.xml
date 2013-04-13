@@ -908,84 +908,54 @@ for the rudder to contribute very much to yaw stability.
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <table>
-                        <!-- We could model stall of one wing independent of the other here, if we knew what the conditions were that caused the stalls, such as one wing stalling at a different alpha angle than the other -->
-                        <!-- Stall speed for the Camel is 48mph or 41.7 knots per wikipedia.  This corresponds to about 14 degrees of alpha -->
-                        <!-- Experimenting with 15.5 instead. -->
-                        <independentVar>aero/alpha-deg</independentVar>
-                        <!-- <tableData>
-                          -90         1.5 
-                          -20         0.9        
-                          -15.5         0.051       
-                          0           0.0378      
-                          15.5          0.051
-                          20          0.9
-                          90          1.5         
-                        </tableData> -->
-                        <!-- Drag curve above is very abrupt from 15.5 - degrees
-                        This is a more realistic type of drag curve. -->
-                        <!-- <tableData>
-                          -90         1.5 
-                          -20         0.9        
-                          -15.5         0.051       
-                          0           0.0378      
-                          15.5          0.051
-                          20          0.9
-                          90          1.5         
-                        </tableData>
-                        -->
-                        <!-- The drag data is based on wind tunnel data from:
-                          On the Effect of Cutting a Hole in the Top Plan of a Biplane
-                          By C.H. Powell, Repots and Memoranda (New Series), No. 419, Feb 1918
-                          That includes data for the wings only, so it has been
-                          massaged to meet the known zero-lift drag value for the Camel of .0378
-                          and also extended to create data for -90 to 90 degrees.  See 
-                          Camel-JSBSim-calcs-2011-10D.xls in Docs directory for details.
-                        -->                          
-                        <tableData>
-                            -90	5.318592965
-                            -60	2.659296482
-                            -30	0.759798995
-                            -20	0.227939698
-                            -14	0.146261307
-                            -12	0.121567839
-                            -10	0.100673367
-                            -8	0.081678392
-                            -6	0.069141709
-                            -4	0.049196985
-                            -3	0.042358794
-                            -2	0.0378
-                            -1	0.035140704
-                            0	0.033051256
-                            1	0.032671357
-                            2	0.033241206
-                            3	0.035330653
-                            4	0.039129648
-                            5	0.044638191
-                            6	0.051096482
-                            8	0.065722613
-                            10	0.082058291
-                            12	0.100483417
-                            14	0.12061809
-                            16	0.146831156
-                            18	0.206855276
-                            20	0.286824121
-                            30	0.759798995
-                            60	2.659296482
-                            90	5.318592965
-                        </tableData>
-                        
-                    </table>
+                    <!--  Zero Lift Drag Coefficient for Camel is 0.0378 per http://en.wikipedia.org/wiki/Sopwith_Camel-->
+                    <!-- This is tweaked below to give us our known top speed of 115MPH/99.8kts in level flight @ sea level 
+                         it might be better to tweak the engine/propulsion instead but this is working for now. -->
+                    <value>0.0478 </value>
                 </product>
             </function> 
+
             <function name="aero/force/Drag_induced">
                 <description>Induced drag</description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>aero/cl-squared</property>
-                    <property>aero/function/kCDge</property>                    
-                    <value>0.04</value>
+                    <property>aero/function/kCDge</property>
+                    <table>
+                        <independentVar>aero/alpha-deg</independentVar>                    
+                        <tableData>
+                            -90	3.4785
+                            -60	1.7285
+                            -30	0.4785
+                            -20	0.1285
+                            -14	0.07475
+                            -12	0.0585
+                            -10	0.04475
+                            -8	0.03225
+                            -6	0.024
+                            -4	0.010875
+                            -3	0.006375
+                            -2	0.003375
+                            -1	0.001625
+                            0	0.00025
+                            1	0
+                            2	0.000375
+                            3	0.00175
+                            4	0.00425
+                            5	0.007875
+                            6	0.012125
+                            8	0.02175
+                            10	0.0325
+                            12	0.044625
+                            14	0.057875
+                            16	0.075125
+                            18	0.114625
+                            20	0.16725
+                            30	0.4785
+                            60	1.7285
+                            90	3.4785
+                        </tableData>
+                    </table>   
                 </product>
             </function>
             <function name="aero/force/Drag_mach">
@@ -1251,7 +1221,7 @@ for the rudder to contribute very much to yaw stability.
                     <table>
                         <independentVar>velocities/mach</independentVar>
                         <tableData>
-                          0             0.07          
+                          0             0.08          
                           2             0.01       
                         </tableData>
                     </table>
