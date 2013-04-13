@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-	<sim include="help.xml">
+	<sim include="help-jsbsim.xml">
 		<description type="string">Sopwith Camel 1F.1 (JSBSim, Historically Accurate FDM &amp; Weapons, Bombable-compatible)</description>
 		<author type="string">AJ MacLeod, Vivian Meazza, Brent Hugh (Historically accurate JSBSim FDM &amp; weapons, Bombable compatibility)</author>
 		<status type="string">Production, guns work</status>

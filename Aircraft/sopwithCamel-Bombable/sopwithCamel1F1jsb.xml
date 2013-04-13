@@ -1289,7 +1289,8 @@ for the rudder to contribute very much to yaw stability.
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
-                    <value>0.005</value>
+                    <!-- Aeromatic 0.01 -->
+                    <value>0.01</value>
                 </product>
             </function>
             <!--
