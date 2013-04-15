@@ -510,7 +510,7 @@ var accelerationDamage = func {
       
       if (accelDamageMultiplier_PercentPerSecond==nil) accelDamageMultiplier_PercentPerSecond=8;
       
-      #debprint ("Bombable: Accel checking ", a, " ", currAccel_g, " ", accelDamageThreshold_g, " ", accelWarningThreshold_g," ", accelDamageMultiplier_PercentPerSecond);
+      debprint ("Bombable: Accel checking ", a, " ", currAccel_g, " ", accelDamageThreshold_g, " ", accelWarningThreshold_g," ", accelDamageMultiplier_PercentPerSecond);
 
       if (warning_enabled and currAccel_g > accelWarningThreshold_g ) {
           var msg="G-force warning: "~ round( currAccel_g ) ~"g";
@@ -524,7 +524,7 @@ var accelerationDamage = func {
 
       if (damage_enabled and currAccel_g > accelDamageThreshold_g ) {
           mainAC_add_damage( accelDamageMultiplier_PercentPerSecond * (currAccel_g -accelDamageThreshold_g)/100,
-          0, "gforce", "" ~ sprintf("%1.2f", currAccel_g*10 ) ~ "g force damaged airframe!" );
+          0, "gforce", "" ~ sprintf("%1.2f", currAccel_g ) ~ "g force damaged airframe!" );
         
       }
 }
