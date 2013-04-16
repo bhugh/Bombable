@@ -1,8 +1,8 @@
 SOPWITH CAMEL: A REALISTIC JSBSIM FLIGHT MODEL - NOTES
 
-Version 1.1
+Version 1.3
 
-Brent Hugh, 2 April 2013
+Brent Hugh, 15 April 2013
 
 brent@brenthugh.com
 
@@ -93,8 +93,8 @@ dive rate/speed to better match historical Camel.
 
 3 Max sustained turn rate about 76 deg/sec, ie 360 degrees in 4.7 seconds 
 (near stall speed, level flight, sea level). NOTE: Current best time is about 
-8-10 seconds; not sure what causes the drag/stall when the turn right is higher than 
-that.
+8-10 seconds; not sure what causes the drag/stall when the turn right is higher 
+than that.
 
 4 Flown basically with rudder and elevator; rudder initiates turns etc and 
 ailerons only used as assist; many pilots didn't use ailerons much.
@@ -140,7 +140,8 @@ often described in relation to the Camel appear to not be true aerobatic snap
 rolls as we would perform today (too vigorous for the Camel's light airframe) 
 but a kind of roll coordinated between rudder & aileron.
 
-4 Possible to fly inverted.
+3.7 Possible to fly inverted.  Stalls at about 65 mph/56 knots when flying 
+inverted. TODO: It stalls about 59 knots, may require some tweaking.
 
 3 In inverted flight, possible to stall and get into an inverted spin.
 
@@ -254,11 +255,12 @@ documentation. NOTE: Aerodynamic characteristics of machine gun rounds could
 be tweaked if better data were available; tracer visuals could be made
 more realistic.
 
-1 Mixture needed constant manual adjustment; first adjustment about 250 about 
-ground on liftoff. TODO: Mixture is does not require the constant adjustment 
-described by Camel pilots--it's got an auto-mixture. I'm not sure if JSBSIM 
-can do this more realistically out of the box; this may require custom Nasal 
-programming to implement.
+3.5 Mixture needed constant manual adjustment; first adjustment about 250 ft 
+above ground on liftoff. For highest realism, switch on manual mixture
+using the Camel menu. TODO: Mixture and throttle adjustments are not as
+tweaky as described by Camel pilots. Mixture lever or dial isn't implemented;
+a simple Flightgear menu display current mixture & RPM when manual mixture is 
+enabled.
 
 
 2.5 Control of engine thrust via blip switch and magneto rather than throttle. 
@@ -276,15 +278,32 @@ engine power adjusted by magnetos and blip switch.
 NOTE: The one-magneto setting doesn't seem to match the historical Clerget 
 power, not exactly sure how to address this.
 
-1 Engine start. JSBSim engine start requires a very extended cranking period. 
-Camel engines were notoriously difficult to start, but given the manual engine 
-starting methods of the day, they must have started either with a quick crank 
-or not at all.
+4 Engine start. Camel engines were notoriously difficult to start. Given the 
+manual engine starting methods of the day, they must have started either with a 
+quick crank or not at all. NOTE: This is modeled by an approx. .5-1.5 second 
+cranking period, initiated by the 's' key, which starts the engine about 1/4 
+of attempts.
 
-1 Engine runs out of fuel/stops when inverted. On slow roll (23 seconds), 
-engine stops just after wings vertical and starts again soon after regaining 
-erect flight.
+4 Engine runs out of fuel/stops when inverted or pulling negative Gs.   On  slow
+roll (23 seconds), engine stops just  after  wings  vertical  and  starts  again
+soon after regaining erect flight.   NOTE:  This  is  implemented  via  a  Nasal
+routine that tracks fuel in a simple carburetor. Fuel  flows  or  out  depending
+on the forces involved and when the carburetor  runs  out  of  fuel  the  engine
+sputters and stops until the carburetor refills. 
 
+SPECIFICATIONS
+
+Cruising speed for Camel with 130 HP Clerget, per SopwithCamelSpecs-1955.pdf - 
+Flight, "Sopwith Camel", 22 April 1955, is
+
+                          115 mph @ 6500 ft
+                          113 mph @ 10000 ft
+                          106.5 mph @ 15000 ft
+                         
+                         Climb to
+                          6500 ft = 6 min 0 sec
+                          10000 ft = 10 min 35 sec
+                          15000 ft = 20 min 40 sec
 
 DOCUMENTS
 A number of relevant documents and notes, including facsimiles, articles, and 
@@ -314,48 +333,6 @@ agree that this does not materially affect the spinning of an aeroplane.
 
 6. All the pilots agreed that the machine A had certain peculiarities which 
 may be summarised as follows :*
-
-GENERAL CHARACTERISICS.
-
-7. (a) Stalling.-A as usually rigged is tail heavy and longitudinally 
-unstable. This is accentuated when a light Le Rhone engine is substituted for 
-a heavier Clerget and/or where guns and ammunition are removed.
-
-During normal horizontal flight, it is necessary to keep a continuous forward 
-pressure of about 14 Ibs. on the control column. Any relaxation of the pilot's 
-effort is therefore likely to end in a stall. Because of the longitudinal 
-instability of the aeroplane engine failure will be followed by a stall unless 
-the pilot dives the machine.
-
-8. (b) Turning.--Most of the pilots, in the course of their evidence drew 
-attention to the fact that a steeply-banked right hand turn requires full left 
-rudder. This is accounted for by gyroscopic effect.
-
-9. The unsymmetrical forces and couples on an aeroplane arise from engine 
-torque, slipstream and the gyroscopic couple. The first two, torque and 
-slipstream, may produce an unsymmetric setting of the ailerons and rudder 
-respectively. They do not produce effects which depend on the rate of turning 
-to any appreciable extent. The gyroscopic couple alone is capable of 
-explaining the effect mentioned above.
-
-10. The propeller, viewed from the pilot's seat, turns clockwise, and when the 
-aeroplane is turning to the right it tends to put its nose down as a 
-consequence of the gyroscopic couple. The tendency is countered by left rudder 
-and back (or top) elevator. Turning to the left, the nose of the aeroplane 
-tends to go up, and this effect is countered by left rudder and forward (or 
-bottom) elevator.
-
-From the evidence of the witnesses it is apparent that practically all flyers 
-feel strongly the need of a larger rudder surface.
-
-14. (d) Looping.-In the case of A all violent use of the controls must be 
-avoided. With the stick pulled too hard back, the machine will fail to 
-complete the loop. Further, if a straight loop is required, left rudder must 
-be used to counteract gyroscopic effect, and it was stated by one witness that 
-the rudder was barely sufficient for this manoeuvre.
-
-15 (e) Spinning.-The general method adopted when getting into a tight hand 
-spin is :* (i) Cut off engine.
 
 (ii) Pull back control stick.
 
@@ -422,6 +399,8 @@ A graph of speed vs climb rate is given for the Camel and four other
 aircraft from the same era (p. 7).  
 
 http://home.comcast.net/~clipper-108/AIAAPaper2005-119.pdf 
+
+Not su
 
 ---
 

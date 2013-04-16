@@ -152,10 +152,23 @@ http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
 
     <metrics>
         <!-- wing area 19.76 m^2 per sopwith-camel-specs-drawings-2-2.jpg, see docs directory-->
+        <!-- Note: per wikipedia winspan is 28.0 ft & wing area is 231 ft^2-->
+        <!-- Per http://aviation.technomuses.ca/collections/artifacts/aircraft/Sopwith2F1Camel/ :
+              Wing Span	8.2 m (26 ft 11 in)
+              Length	5.6 m (18 ft 6 in)
+              Height	2.8 m (9 ft 1 in)
+              Weight, Empty	434 kg (956 lb)
+              Weight, Gross	691 kg (1,523 lb)
+        -->
         <wingarea unit="FT2"> 212.6948698 </wingarea>
         <wingspan unit="FT"> 26.91 </wingspan>
-        <!-- wing chord calculated by measuring drawing sopwith-camel-specs-drawings-2-2.jpg; see calculations at Camel-JSBSim-calcs-2011-10D.xls sheet Camel Dimensions -->
-        <chord unit="FT"> 4.5045 </chord>
+        <!-- wing chord calculated by measuring drawing sopwith-camel-specs-drawings-2-2.jpg; see calculations at Camel-JSBSim-calcs-2011-10D.xls sheet Camel Dimensions. -->
+        <!-- See CamelVsFokker in Docs directory for possibly more accurate figures for all aircraft parts. -->
+        <!-- Does the chord need to be doubled since this is a bi-plane? -->
+        
+        <!-- <chord unit="FT"> 4.5045 </chord> -->
+        <chord unit="FT"> 9.01 </chord>
+        
         <wing_incidence unit=""> 2.5 </wing_incidence>
         
         
@@ -805,6 +818,7 @@ for the rudder to contribute very much to yaw stability.
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCLge</property>
+                    <value>1</value>
                     <table>
                         <!--
                         <independentVar>aero/alpha-rad</independentVar>
@@ -827,36 +841,36 @@ for the rudder to contribute very much to yaw stability.
                         
                         <independentVar>aero/alpha-deg</independentVar>
                         <tableData>                        
-                            -90	0
-                            -60	-0.0875
-                            -30	-0.35
-                            -20	-0.525
-                            -14	-0.448
-                            -12	-0.392875
-                            -10	-0.331625
-                            -8	-0.26775
-                            -6	-0.21385
-                            -4	-0.1015
-                            -3	-0.04235
-                            -2	0.01575
-                            -1	0.07035
-                            0	0.1295
-                            1	0.197225
-                            2	0.267225
-                            3	0.331625
-                            4	0.392875
-                            5	0.448
-                            6	0.50225
-                            8	0.60375
-                            10	0.69125
-                            12	0.784
-                            14	0.86625
-                            16	0.92925
-                            18	0.93275
-                            20	0.91175
-                            30	0.6125
-                            60	0.2625
-                            90	0
+                              -90	0
+                              -60	-0.1
+                              -30	-0.4
+                              -16.66666667	-0.6
+                              -11.66666667	-0.512
+                              -10	-0.449
+                              -8.333333333	-0.379
+                              -6.666666667	-0.306
+                              -5	-0.2444
+                              -3.333333333	-0.116
+                              -2.5	-0.0484
+                              -1.666666667	0.018
+                              -0.833333333	0.0804
+                              0	0.148
+                              0.833333333	0.2254
+                              1.666666667	0.3054
+                              2.5	0.379
+                              3.333333333	0.449
+                              4.166666667	0.512
+                              5	0.574
+                              6.666666667	0.69
+                              8.333333333	0.79
+                              10	0.896
+                              11.66666667	0.99
+                              13.33333333	1.062
+                              15	1.066
+                              16.66666667	1.042
+                              30	0.7
+                              60	0.3
+                              90	0
                         </tableData>                  
                         <!-- The lift data from LesterBoffo -->
                         <!--
@@ -909,9 +923,40 @@ for the rudder to contribute very much to yaw stability.
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <!--  Zero Lift Drag Coefficient for Camel is 0.0378 per http://en.wikipedia.org/wiki/Sopwith_Camel-->
-                    <!-- This is tweaked below to give us our known top speed of 115MPH/99.8kts in level flight @ sea level 
-                         it might be better to tweak the engine/propulsion instead but this is working for now. -->
-                    <value>0.0478 </value>
+                    <!-- Cruising speed for Camel with 130 HP Clerget, per SopwithCamelSpecs-1955.pdf - Flight, "Sopwith Camel", 22 April 1955, is 
+                          115 mph @ 6500 ft      = 99.3 kts      
+                          113 mph @ 10000 ft     = 98.2 kts
+                          106.5 mph @ 15000 ft   = 92.5 kts
+                          
+                          2013/04/13 measured w/ 0.0378 for Cd0:
+                           6500 = 100.4 kts IAS  115.2 KTS GROUNDSPEED   110.8 kts vtrue
+                           10000 = 92.5 kts IAS  110.7 KTS GROUNDSPEED   107.7 kts vtrue
+                           15000 = 82.8 kts IAS  109.2 KTS GROUNDSPEED   104.8 kts vtrue
+                           
+                           2013/04/13 measured w/ 0.0478 for Cd0:
+                           6500 = 91.9 kts IAS   97.49 KTS GROUNDSPEED   101.8 kts vtrue
+                           10000 = 85.7 kts IAS  100.4 KTS GROUNDSPEED   99.9 kts vtrue
+                           15000 = 76.0 kts IAS  91.2  KTS GROUNDSPEED   95.7  kts vtrue
+
+                           2013/04/13, later, measured w/ 0.0378 for Cd0 and numerous other changes to lift/drag to make the 10,000 ft climb perf chart at Camel JSBSim Climb vs Speed1.3a in Camel-JSBSim-calcs-2011-10D.xls:
+                           6500 =  86.5 kts IAS    96.0 kts vtrue
+                           10000 = 81.5 kts IAS    95.3 kts vtrue
+                           15000 = 75.3 kts IAS    95.5 kts vtrue
+                           
+                           2013/04/15
+                           6500 = 100.8 vtrue 
+                           10000 = 96.5 vtrue
+                           15000 = 90.3 vtrue
+                           
+                         
+                         Climb to
+                          6500 ft = 6 min 0 sec
+                          10000 ft = 10 min 35 sec
+                          15000 ft = 20 min 40 sec
+                    
+                    -->
+                  
+                    <value>0.0378 </value>
                 </product>
             </function> 
 
@@ -921,43 +966,45 @@ for the rudder to contribute very much to yaw stability.
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCDge</property>
+                    <value>1.5</value> <!-- because the drag data is from the wings only we use this factor to adjust is so that it matches published speed & climb data for the Camel A/C as a whole -->
                     <table>
                         <independentVar>aero/alpha-deg</independentVar>                    
                         <tableData>
-                            -90	3.4785
-                            -60	1.7285
-                            -30	0.4785
-                            -20	0.1285
-                            -14	0.07475
-                            -12	0.0585
-                            -10	0.04475
-                            -8	0.03225
-                            -6	0.024
-                            -4	0.010875
-                            -3	0.006375
-                            -2	0.003375
-                            -1	0.001625
-                            0	0.00025
-                            1	0
-                            2	0.000375
-                            3	0.00175
-                            4	0.00425
-                            5	0.007875
-                            6	0.012125
-                            8	0.02175
-                            10	0.0325
-                            12	0.044625
-                            14	0.057875
-                            16	0.075125
-                            18	0.114625
-                            20	0.16725
-                            30	0.4785
-                            60	1.7285
-                            90	3.4785
+                              -90	2.79
+                              -60	1.39
+                              -30	0.39
+                              -16.66666667	0.11
+                              -11.66666667	0.067
+                              -10	0.054
+                              -8.333333333	0.043
+                              -6.666666667	0.033
+                              -5	0.0264
+                              -3.333333333	0.005
+                              -2.5	0.003
+                              -1.666666667	0.002
+                              -0.833333333	0.001
+                              0	0
+                              0.833333333	0.001
+                              1.666666667	0.005
+                              2.5	0.00735
+                              3.333333333	0.008075
+                              4.166666667	0.00945
+                              5	0.01275
+                              6.666666667	0.02
+                              8.333333333	0.024
+                              10	0.0315
+                              11.66666667	0.03798
+                              13.33333333	0.048
+                              15	0.075
+                              16.66666667	0.11
+                              30	0.39
+                              60	1.39
+                              90	2.79
                         </tableData>
                     </table>   
                 </product>
             </function>
+            
             <function name="aero/force/Drag_mach">
                 <description>Drag due to mach</description>
                 <product>
@@ -974,6 +1021,7 @@ for the rudder to contribute very much to yaw stability.
                     </table>
                 </product>
             </function>
+            
             <function name="aero/force/Drag_beta">
                 <description>Drag due to sideslip</description>
                 <product>
@@ -1451,7 +1499,7 @@ for the rudder to contribute very much to yaw stability.
             <function name="aero/moment/Pitch_burble">
                 <description>Pitch moment due to burble at high speeds</description>
                 <product>
-                     <value> 400 </value>
+                     <value> 600 </value>
                      <table>
                         <independentVar>velocities/mach</independentVar>
                         <tableData>
@@ -1478,14 +1526,14 @@ for the rudder to contribute very much to yaw stability.
                             0.207   -1
                             0.2083   1
                             0.209   -1.1
-                            0.2101   1.2
+                            0.2101   1.9
                             0.21103 -1.3
-                            0.21202  1.4
+                            0.21202  2.4
                             0.21304 -1.5
                             0.21406  1.6
-                            0.21501 -1.7
+                            0.21501 -2.7
                             0.21605  1.7
-                            0.21703 -1.3
+                            0.21703 -3.3
                             0.21802  1.7
                             0.21904 -1.4
                             0.22006  1.5
@@ -1495,22 +1543,25 @@ for the rudder to contribute very much to yaw stability.
                             0.22405  1.1
                             0.22501 -1.7
                             0.22605  1.7
-                            0.227   -1.9
-                            0.2283   1.7
+                            0.227   -1.9 
+                            0.2277   3
+                            0.2283   -1.7
+                            .2288    2
                             0.229   -1.2
                             0.2301   1.1
                             0.23103 -1.0
                             0.23202  1.8
                             0.23304 -1.4
                             0.23406  1.2
-                            0.23501 -1.1
-                            0.23605  1.0                                                                                                                
+                            0.23501 -1.8
+                            0.23605  1.9                                                                                                                
                             0.24     -1.3
-                            0.25      1
+                            0.25      2
                             0.26     -1.1
-                            0.27      1.4
-                            0.28     -1.1
+                            0.27      2.4
+                            0.28     -1.9
                             0.29      1.5
+                            0.295     -2
                             0.30      0               
                             2      0
 
