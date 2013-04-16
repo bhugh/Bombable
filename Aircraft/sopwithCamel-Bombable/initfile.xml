@@ -4,9 +4,9 @@
   <vbody unit="FT/SEC"> 0 </vbody> 
   <wbody unit="FT/SEC"> 0 </wbody> 
   <phi unit="DEG"> 0 </phi>
-  <theta unit="DEG"> 1.5708 </theta>
+  <theta unit="DEG"> 90 </theta>
   <psi unit="DEG"> 0 </psi>
   <longitude unit="DEG"> 0 </longitude>
   <latitude unit="DEG"> 0 </latitude>
-  <altitude unit="FT"> 0.325459 </altitude>
+  <altitude unit="FT"> 0 </altitude>
 </initialize>

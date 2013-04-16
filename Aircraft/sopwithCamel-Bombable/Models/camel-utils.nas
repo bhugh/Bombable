@@ -104,6 +104,12 @@ initialize = func {
                 }
             } );
 
+    setlistener( "fdm/jsbsim/fcs/automixture-enable", func { displaymixturetoggle();
+    } );
+    
+
+
+
 # set it running on the next update cycle
     settimer( update, 0 );
 
@@ -247,10 +253,15 @@ blipMagswitch:   func{
     # was value !=0 for brakes, but with rudder/pedals the brake values
     # are often not that precise
     # If the brake value rides at 0.0002 then the engine keeps cutting out
-    # Setting the threshold higher solves the problem           
-    if ( me.right_brake.getValue() > 0.25 or me.left_brake.getValue() > 0.25 ) {;
-    me.magnetos.setValue( 0 );
-    setprop("sim/model/camel/blip_switch",1);
+    # Setting the threshold higher solves the problem
+    # camel.inverted_out_of_fuel - see jsbsim.nas - this disables the blip
+    # switch when the camel is out of fuel because it is inverted
+    print ("oof ", camel.inverted_out_of_fuel);                       
+    if ( camel.inverted_out_of_fuel ) return;
+    if ( me.right_brake.getValue() > 0.25 or me.left_brake.getValue() > 0.25 
+            ) {;
+        me.magnetos.setValue( 0 );
+        setprop("sim/model/camel/blip_switch",1);
     } else {
         me.updateMagnetos();
         setprop("sim/model/camel/blip_switch",0);
@@ -271,7 +282,7 @@ blipMagswitch:   func{
         acceleration = "accelerations",
         pilot_g = "pilot-g",
         g_timeratio = "timeratio",
-        pilot_g_damped = "pilot-g-damped",
+        pilot_g_damped = "pilot-gdamped",
         g_min = "pilot-gmin",
         g_max = "pilot-gmax"
         ){
@@ -533,7 +544,68 @@ updateSmoking: func{     # set the smoke value according to the engine condition
     }; #
 
 
-# =============================== end smoke stuff ================================
+# =============================== end smoke stuff ==============================
+
+
+
+#displays message showing whether auto mixture is enabled/disabled.
+var displaymixturetoggle = func {
+    if ( getprop("fdm/jsbsim/fcs/automixture-enable") ){
+      msg="Automixture enabled - attempts to maintain 1250 RPM";
+    } else {
+      msg="Manual mixture enabled (realistic) - use 'm' and 'M' keys to set mixture";
+      
+      settimer( displaymixture, 5 );
+      
+    }
+    camelStatusPopupTip (msg, 5);
+    
+}
+
+var displaymixture = func {
+    if ( ! getprop("fdm/jsbsim/fcs/automixture-enable") ){
+      var mix = getprop ("controls/engines/engine/mixture");
+      var rpm = getprop ("engines/engine/rpm"); 
+      msg = sprintf( "Mixture: %1.0f%%  RPM: %1.0f", mix*100, rpm);
+      camelStatusPopupTip (msg, .6);  #.6 to avoid little display glitches.
+      settimer( displaymixture, .5 );
+    }
+    
+    
+}
+
+# ========== popup dialog message===============================================
+
+tipArgCamel = props.Node.new({ "dialog-name" : "PopTipCamel" });
+currTimerCamel=0;
+  
+var camelStatusPopupTip = func (label, delay = 10, override = nil) {	
+    #return; #gui prob
+    var tmpl = props.Node.new({
+            name : "PopTipCamel", modal : 0, layout : "hbox",
+            y: 210,
+            text : { label : label, padding : 6 }
+    });
+    if (override != nil) tmpl.setValues(override);
+   
+    popdown(tipArgCamel);
+    fgcommand("dialog-new", tmpl);
+    fgcommand("dialog-show", tipArgCamel);
+
+    currTimerCamel += 1;
+    var thisTimerCamel = currTimerCamel;
+
+    # Final argument is a flag to use "real" time, not simulated time
+    settimer(func { if(currTimerCamel == thisTimerCamel) { popdown(tipArgCamel) } }, delay, 1);
+}
+
+var popdown = func ( tipArg ) { 
+  #return; #gui prob
+  fgcommand("dialog-close", tipArg); 
+}
+
+
+# =========================main initializer=====================================
 
 # Fire it up
 
