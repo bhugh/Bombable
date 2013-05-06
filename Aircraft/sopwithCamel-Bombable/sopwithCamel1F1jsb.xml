@@ -6,9 +6,9 @@
 
 JSBSim aerodynamic model for a Sopwith Camel 1F1 
 
-Version: 1.1
+Version: 1.4
 
-Author: Brent Hugh, 2 April 2013
+Author: Brent Hugh, 5 May 2013
 
 Goal: Create a flight model of the Camel that would incorporate as many of the documented combat flight characteristics of the Camel as possible, and in as realistic a way as possible.
 
@@ -147,7 +147,7 @@ http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
         <author> Brent Hugh</author>
         <filecreationdate> 2011-10-29 </filecreationdate>
         <description>Sopwith Camel with Weapons, matches available data for climb, max speed, general handling</description>
-        <version>Version 1.0</version>
+        <version>Version 1.4</version>
     </fileheader>
 
     <metrics>
@@ -160,7 +160,10 @@ http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
               Weight, Empty	434 kg (956 lb)
               Weight, Gross	691 kg (1,523 lb)
         -->
+        <!-- This is sw-sqft used many times below: -->
         <wingarea unit="FT2"> 212.6948698 </wingarea>
+        
+        <!--bw-ft used below: -->
         <wingspan unit="FT"> 26.91 </wingspan>
         <!-- wing chord calculated by measuring drawing sopwith-camel-specs-drawings-2-2.jpg; see calculations at Camel-JSBSim-calcs-2011-10D.xls sheet Camel Dimensions. -->
         <!-- See CamelVsFokker in Docs directory for possibly more accurate figures for all aircraft parts. -->
@@ -198,7 +201,7 @@ for the rudder to contribute very much to yaw stability.
         <vtailarm unit="FT"> 13.66 </vtailarm>
 
         <location name="AERORP" unit="IN">
-            <x> 60 </x>
+            <x> 47 </x>
             <y> 0 </y>
             <z> 0 </z>
         </location>
@@ -226,10 +229,23 @@ for the rudder to contribute very much to yaw stability.
         <iyz unit="KG*M2">0</iyz>
         <ixy unit="KG*M2">0</ixy>
         <emptywt unit="LBS">1210</emptywt>
+        <!-- This was used in ver 1.0-1.3: 
         <location name="CG" unit="IN">
             <x>60</x>
             <y>0</y>
             <z>-5.62</z>
+        </location>
+        -->
+        <!-- Updated CoG info, courtesy Simon,
+         http://www.flightgear.org/forums/viewtopic.php?f=4&t=19584&start=30#p182202 
+          x=111.8cm  = 44.012 in
+          y=0
+          z=8cm (above)
+          -->
+        <location name="CG" unit="IN">
+            <x>44</x>
+            <y>0</y>
+            <z>3.54</z>
         </location>
         
         <pointmass name="Equipment">
@@ -241,6 +257,18 @@ for the rudder to contribute very much to yaw stability.
                 <x> 80 </x>
                 <y> 0 </y>
                 <z> 0 </z>
+            </location>
+        </pointmass>
+       <pointmass name="Castor Oil/Engine Lube">        
+            <form shape="ball">
+               <radius unit="FT"> 1.5 </radius>
+            </form> 
+            <!-- <weight unit="LBS"> 62.31 </weight>-->
+            <weight unit="LBS"> 0 </weight>
+            <location name="just_behind_engine" unit="IN">
+                <x> 30 </x>
+                <y> 0 </y>
+                <z> 10.62 </z>
             </location>
         </pointmass>
     </mass_balance>
@@ -602,15 +630,54 @@ for the rudder to contribute very much to yaw stability.
         </engine>
         <!-- Fuel is behind the pilot, 22 gal, 133.6 lb.  Appears to be
           about half way between nose & tail.  With fuel full, 
-          AC was tailheavy acc to http://www.theaerodrome.com/forum/2000/9166-sopwith-camel-facts-2.html With fuel empty, nose heavy. -->
+          AC was tailheavy acc to http://www.theaerodrome.com/forum/2000/9166-sopwith-camel-facts-2.html With fuel empty, nose heavy. 
+         
+         The above 22 gal figure appears to be incorrect (though 2X22gallon tanks = 37 Imperial Gallons, so perhaps that explains the discrepancy), here is more detail:
+         
+         http://www.theaerodrome.com/forum/aircraft/58481-sopwith-camel-fuel-tank-capacities.html    
+           Bruce Robertson in 'Sopwith - The man and his Aircraft' has the following Fuel and Oil capacities for the Sopwith Camel in his data tables:
+F.1/1 130hp Clerget - 37 galls. of fuel, no oil given.
+TF.1 110 hp Le Rhone - 37 galls. fuel, 2 1/2 galls. oil.
+F.1 150 hp Mono Gnome - 27 1/2 galls. fuel, 5 1/4 galls. oil.
+F.1 180 hp Le Rhone - 26 1/4 galls fuel, 5 1/4 galls. oil.
+F.1 150 hp BR.1 - 37 galls. fuel, 5 1/4 galls. oil.
+F.1 150 hp BR.1 HC - 37 galls. fuel, 5 1/4 galls. oil.
+2F.1 130 hp Clerget - 37 galls. fuel, 5 1/2 galls. oil.
+2F.1 150 hp BR.2 - 37 galls. fuel, 5 1/2 galls. oil.
+
+Jack Bruce's 'British Aeroplanes 1914-1918', page 589, the tankage is - Petrol: main (pressure) tank, 30 gallons; gravity tank, 7 gallons; total 37 gallons. Oil: 6 1/2 gallons. (all imperial).
+
+More: 
+130 HP Clerget - 243 lb.
+110 HP Le Rhone - 252 lb.
+150 HP AR.1 - 250 lb.
+100 HP Gnome Monosoupape - 224 lb.
+150 HP Gnome Monosoupape - 230 lb.
+180 HP Le Rhone - 238 lb.
+
+2.F.1 Camel:
+130 HP Clerget - 286 lb.
+150 HP BR.1 - 223 lb.
+
+Taper Wing Camel:
+130 HP Clerget - 252 lb.
+
+We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the other; plus 6.5 imperial gallons oil just behind engine.  Gasoline is 6.1 lbs per gallon and castor oil is    956 kg/m^3 or 7.97820666 pounds per u.s. gallon.  
+ 30 imp gal = 36.0285 gal = 219.8 lbs
+  7 imp gal = 8.40665 gal = 51.3 lbs
+  6.5 imp gal = 30 liters = 7.81 gal = 62.31 lbs 
+          
+  TODO: Not sure if fuel tanks need more code to draw from one to the other or switch between them.
+  TODO: Oil is just a pointmass & doesn't empty throughout the flight (see Castor Oil below under pointmass).        
+          -->
         <tank type="FUEL">
             <location unit="IN">
                 <x> 90 </x>
                 <y> 0 </y>
                 <z> -5.62 </z>
             </location>
-            <capacity unit="LBS">133.6</capacity>
-            <contents unit="LBS">133.6</contents>
+            <capacity unit="LBS">219.8</capacity>
+            <contents unit="LBS">219.8</contents>
         </tank>
           <tank type="FUEL">
             <location unit="IN">
@@ -618,8 +685,8 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> -5.62 </z>
             </location>
-            <capacity unit="LBS">133.6</capacity>
-            <contents unit="LBS">0</contents>
+            <capacity unit="LBS">51.3</capacity>
+            <contents unit="LBS">51.3</contents>
         </tank>
     </propulsion>
 
@@ -786,7 +853,7 @@ for the rudder to contribute very much to yaw stability.
         </function>
 
         <function name="aero/function/kCLge">
-            <description>Change_in_lift_due_to_ground_effect</description>
+            <description>Change_in_u_due_to_ground_effect</description>
             <product>
                   <table>
                       <independentVar>aero/h_b-mac-ft</independentVar>
@@ -818,7 +885,8 @@ for the rudder to contribute very much to yaw stability.
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCLge</property>
-                    <value>1</value>
+                    <!-- 1.4 candidate <value>1.4</value> -->
+                    <value>1.4</value>
                     <table>
                         <!--
                         <independentVar>aero/alpha-rad</independentVar>
@@ -841,36 +909,36 @@ for the rudder to contribute very much to yaw stability.
                         
                         <independentVar>aero/alpha-deg</independentVar>
                         <tableData>                        
-                              -90	0
-                              -60	-0.1
-                              -30	-0.4
-                              -16.66666667	-0.6
-                              -11.66666667	-0.512
-                              -10	-0.449
-                              -8.333333333	-0.379
-                              -6.666666667	-0.306
-                              -5	-0.2444
-                              -3.333333333	-0.116
-                              -2.5	-0.0484
-                              -1.666666667	0.018
-                              -0.833333333	0.0804
-                              0	0.148
-                              0.833333333	0.2254
-                              1.666666667	0.3054
-                              2.5	0.379
-                              3.333333333	0.449
-                              4.166666667	0.512
-                              5	0.574
-                              6.666666667	0.69
-                              8.333333333	0.79
-                              10	0.896
-                              11.66666667	0.99
-                              13.33333333	1.062
-                              15	1.066
-                              16.66666667	1.042
-                              30	0.7
-                              60	0.3
-                              90	0
+-90	0
+-60	-0.1
+-30	-0.4
+-20	-0.6
+-14	-0.512
+-12	-0.449
+-10	-0.379
+-8	-0.306
+-6	-0.2444
+-4	-0.116
+-3	-0.0484
+-2	0.018
+-1	0.0804
+0	0.148
+1	0.2254
+2	0.3054
+3	0.379
+4	0.449
+5	0.512
+6	0.574
+8	0.69
+10	0.79
+12	0.896
+14	0.99
+16	1.062
+18	1.066
+20	1.042
+30	0.7
+60	0.3
+90	0
                         </tableData>                  
                         <!-- The lift data from LesterBoffo -->
                         <!--
@@ -966,40 +1034,41 @@ for the rudder to contribute very much to yaw stability.
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCDge</property>
-                    <value>1.5</value> <!-- because the drag data is from the wings only we use this factor to adjust is so that it matches published speed & climb data for the Camel A/C as a whole -->
+                    <!-- ver 1.4 candidate <value>1.5</value> --> <!-- because the drag data is from the wings only we use this factor to adjust is so that it matches published speed & climb data for the Camel A/C as a whole -->
+                    <value>1.5</value>
                     <table>
                         <independentVar>aero/alpha-deg</independentVar>                    
                         <tableData>
-                              -90	2.79
-                              -60	1.39
-                              -30	0.39
-                              -16.66666667	0.11
-                              -11.66666667	0.067
-                              -10	0.054
-                              -8.333333333	0.043
-                              -6.666666667	0.033
-                              -5	0.0264
-                              -3.333333333	0.005
-                              -2.5	0.003
-                              -1.666666667	0.002
-                              -0.833333333	0.001
-                              0	0
-                              0.833333333	0.001
-                              1.666666667	0.005
-                              2.5	0.00735
-                              3.333333333	0.008075
-                              4.166666667	0.00945
-                              5	0.01275
-                              6.666666667	0.02
-                              8.333333333	0.024
-                              10	0.0315
-                              11.66666667	0.03798
-                              13.33333333	0.048
-                              15	0.075
-                              16.66666667	0.11
-                              30	0.39
-                              60	1.39
-                              90	2.79
+-90	2.79
+-60	1.39
+-30	0.39
+-20	0.11
+-14	0.067
+-12	0.054
+-10	0.043
+-8	0.033
+-6	0.0264
+-4	0.005
+-3	0.003
+-2	0.002
+-1	0.001
+0	0
+1	0.001
+2	0.005
+3	0.0075
+4	0.0085
+5	0.0105
+6	0.015
+8	0.025
+10	0.032
+12	0.045
+14	0.0633
+16	0.08
+18	0.125
+20	0.22
+30	0.39
+60	1.39
+90	2.79
                         </tableData>
                     </table>   
                 </product>
@@ -1082,9 +1151,15 @@ for the rudder to contribute very much to yaw stability.
                     </abs>
                     <!--Aeromatic for Elevators: 0.02 
                     Each aileron is nearly as large as the Elevator and there
-                    are two of them on each side . . . 
+                    are two of them on each side . . .
+                    Max aileron deflection is about 15 degrees, per 
+                    http://www.theaerodrome.com/forum/replica-aircraft/43868-airdrome-f-1-camel-64.html    
+                    .04 seems to work OK. 
+                     
+                    Ballpark calculations:
+                    Based on idea the fully deployed ailerons are about as draggy as say 1/3 the clean A/C (.0378 drag coefficient, so 0.0126) or as say 2/15 of the total wing drag @ 15 degrees alpha, which would be about .07 * 1.5 * 2/15 = .014
                     -->
-                    <value>0.04</value>
+                    <value>0.007</value>
                 </product>
             </function>
             <function name="aero/force/Drag_right_aileron">
@@ -1099,7 +1174,7 @@ for the rudder to contribute very much to yaw stability.
                     Each aileron is nearly as large as the Elevator and there
                     are two of them on each side . . . 
                     -->
-                    <value>0.04</value>
+                    <value>0.007</value>
                 </product>
             </function>
 
@@ -1136,8 +1211,9 @@ for the rudder to contribute very much to yaw stability.
                     <value>-2</value>
                 </product>
             </function>
-            <!-- --> 
-        
+            
+            
+            <!-- Dihedral --> 
             <function name="aero/moment/Roll_beta">
                 <description>Roll moment due to beta</description>
                 <product>
@@ -1147,23 +1223,24 @@ for the rudder to contribute very much to yaw stability.
                     <property>aero/beta-rad</property>
                     <!-- value>-0.2</value -->
                     <!-- -0.1 according to Aeromatic -->
-                    <value>-0.05</value>
+                    <value>-0.075</value>
                     <!-- Asymmetric stall -->
-                    <!-- This is cribbed directory from p51d-jsbsim.xml for now -->
-                  <!-- <table>                            
+                    <!-- This is cribbed directly from p51d-jsbsim.xml for now -->                  <!--
+                    <table>                            
                         <independentVar lookup="row">aero/alpha-deg</independentVar>
                         <independentVar lookup="column">velocities/vc-kts</independentVar>
                          <tableData>
                                  0  22  38   44   48  52
-                            -35  1  2  8     2    1   1
-                            -10  1  3 14     4    2   1
-                            -8   1  1  1     1    1   1
-                            10.2 1  1  1     1    1   1
-                            11   1  4 25     20   5   1
-                            25   1  4 25     20   3   1
-                            35   1  2 12     9    2   1
+                            -45  1  2  8     2    1   1
+                            -20  1  3 14     4    2   1
+                            -15   1  1  1     1    1   1
+                            15.5 1  1  1     1    1   1
+                            20   1  4 25     20   5   1
+                            30   1  4 25     20   3   1
+                            45   1  2 12     9    2   1
                         </tableData>
-                    </table> --> 
+                    </table>
+                    --> 
                 </product>
             </function>
             <function name="aero/moment/Roll_damp">
@@ -1190,7 +1267,10 @@ for the rudder to contribute very much to yaw stability.
                     3.14 and 6.28 rad per second.
           					-->
                     
-                    <value>0.9</value> 
+                    <!-- <value>0.9</value> -->
+                    
+                    <value>1.9</value><!-- testing -->
+                     
           					<table>
                         <independentVar>velocities/p-aero-rad_sec</independentVar>
                         <tableData>
@@ -1198,16 +1278,36 @@ for the rudder to contribute very much to yaw stability.
                           -6.28        -0.75
 					              	-5           -0.005 
                           -3.14        -0.005     
-                          <!-- -2.5         -0.1 
-                          -0.4         -0.1 -->       
-                          0            -0.35
-                          <!-- 0.4          -0.1           
-                          2.5          -0.1 -->        
+                          -2.5         -0.1 
+                          -0.4         -0.25       
+                          -0.01        -0.35
+                          0            -.4
+                          0.01          -0.35
+                          0.4          -0.25           
+                          2.5          -0.1        
                           3.14         -0.005
 						              5            -0.005
 						              6.28         -0.75
                           100          -0.25
                         </tableData>
+                        
+                        <!--
+                        <tableData>
+                          -100         -0.25
+                          -6.28        -0.75
+					              	-5           -0.005 
+                          -3.14        -0.005     
+                          -2.5         -0.1 
+                          -0.4         -0.1       
+                          0            -0.35
+                          0.4          -0.1           
+                          2.5          -0.1        
+                          3.14         -0.005
+						              5            -0.005
+						              6.28         -0.75
+                          100          -0.25
+                        </tableData>
+                        -->
                     </table>
                     
 
@@ -1225,6 +1325,7 @@ for the rudder to contribute very much to yaw stability.
                     <property>velocities/r-aero-rad_sec</property>
                     <!-- value>0.35</value -->
                     <value>0.08</value>
+                    <value>1</value> <!-- testing -->
                     <!-- Spin on stall -->
                         <!-- This seems to provide the main source of spin/rotation for the aircraft 
                         when it is stalling. In the abscence of wind tunnel data the numbers are a 
@@ -1328,12 +1429,13 @@ for the rudder to contribute very much to yaw stability.
                direction of the change in yaw, ie, spin in the direction the
                AC is already spinning, if any.
             -->
-           <function name="aero/coefficient/Clalpha">
+           <function name="aero/moment/Roll_Clalpha">
                 <description>roll_moment_due_to_alpha</description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
+                    <value>1</value><!-- testing -->
                     <table>
                         <independentVar>velocities/r-aero-rad_sec</independentVar>
                         <tableData>
@@ -1451,7 +1553,7 @@ for the rudder to contribute very much to yaw stability.
                     <!-- Aeromatic value was -12; this is replaced by the value * table value 
                     below, to reduce the damping values for the Camel --> 
                     
-                    <value>-8</value>
+                    <value>-12</value>
                     
                     <table>
                         <independentVar>velocities/q-aero-rad_sec</independentVar>
@@ -1499,7 +1601,8 @@ for the rudder to contribute very much to yaw stability.
             <function name="aero/moment/Pitch_burble">
                 <description>Pitch moment due to burble at high speeds</description>
                 <product>
-                     <value> 600 </value>
+                     <value> 1200 </value>
+                     <urandom/>
                      <table>
                         <independentVar>velocities/mach</independentVar>
                         <tableData>
@@ -1555,14 +1658,173 @@ for the rudder to contribute very much to yaw stability.
                             0.23406  1.2
                             0.23501 -1.8
                             0.23605  1.9                                                                                                                
-                            0.24     -1.3
-                            0.25      2
-                            0.26     -1.1
-                            0.27      2.4
-                            0.28     -1.9
-                            0.29      1.5
-                            0.295     -2
-                            0.30      0               
+                            0.237     -2.3
+                            0.238      4
+                            0.239     -5.1
+                            0.240      6.4
+                            0.241     -7.9
+                            0.242      8.5
+                            0.243     -9
+                            0.244      10
+                            0.245     -12
+                            0.246      14
+                            0.2461      -26.4
+                            0.2462      26.4
+                            0.2463      -26.4
+                            0.2464      26.4
+                            0.2465      -26.4
+                            0.2466      26.4
+                            0.2467      -26.4
+                            0.2468      26.4
+                            0.2469      -26.4
+                            0.24695     26.4                            
+                            0.247     -15.1
+                            0.248      16.4
+                            0.249     -17.9
+                            0.250      28.5
+                            0.251     -25
+                            0.252      25
+                            0.2521      -26.4
+                            0.2522      26.4
+                            0.2523      -26.4
+                            0.2524      26.4
+                            0.2525      -26.4
+                            0.2526      26.4
+                            0.2527      -26.4
+                            0.2528      26.4
+                            0.2529      -26.4
+                            0.25295     26.4                                                                                    
+                            0.253      -20
+                            0.2531      -26.4
+                            0.2532      26.4
+                            0.2533      -26.4
+                            0.2534      26.4
+                            0.2535      -26.4
+                            0.2536      26.4
+                            0.2537      -26.4
+                            0.2538      26.4
+                            0.2539      -26.4
+                            0.25395     26.4                                                                                    
+                            0.254      20
+                            0.2541      -26.4
+                            0.2542      26.4
+                            0.2543      -26.4
+                            0.2544      26.4
+                            0.2545      -26.4
+                            0.2546      26.4
+                            0.2547      -26.4
+                            0.2548      26.4
+                            0.2549      -26.4
+                            0.25495     26.4                                                        
+                            0.255     -25
+                            0.2551      -26.4
+                            0.2552      26.4
+                            0.2553      -26.4
+                            0.2554      26.4
+                            0.2555      -26.4
+                            0.2556      26.4
+                            0.2557      -26.4
+                            0.2558      26.4
+                            0.2559      -26.4
+                            0.25595     26.4                                                        
+                            0.256      20
+                            0.2561      -26.4
+                            0.2562      26.4
+                            0.2563      -26.4
+                            0.2564      26.4
+                            0.2565      -26.4
+                            0.2566      26.4
+                            0.2567      -26.4
+                            0.2568      26.4
+                            0.2569      -26.4
+                            0.25695     26.4                                                        
+                            0.257     -25.1
+                            0.2571      -26.4
+                            0.2572      26.4
+                            0.2573      -26.4
+                            0.2574      26.4
+                            0.2575      -26.4
+                            0.2576      26.4
+                            0.2577      -26.4
+                            0.2578      26.4
+                            0.2579      -26.4
+                            0.25795     26.4                                                                                    
+                            0.258      20.4
+                            0.2581      -26.4
+                            0.2582      26.4
+                            0.2583      -26.4
+                            0.2584      26.4
+                            0.2585      -26.4
+                            0.2586      26.4
+                            0.2587      -26.4
+                            0.2588      26.4
+                            0.2589      -26.4
+                            0.25895     26.4                                                                                    
+                            0.259     -27.9
+                            0.2591      -26.4
+                            0.2592      26.4
+                            0.2593      -26.4
+                            0.2594      26.4
+                            0.2595      -26.4
+                            0.2596      26.4
+                            0.2597      -26.4
+                            0.2598      26.4
+                            0.2599      -26.4
+                            0.25995     26.4                                                                                    
+                            0.260      18.5
+                            0.261     -20
+                            0.262      20
+                            0.263      -22
+                            0.264      15
+                            0.265     -22
+                            0.266      24
+                            0.267     -25.1
+                            0.268      26.4
+                            0.269     -27.9
+                            0.270      28.5
+                            0.271     -29
+                            0.272      20
+                            0.273      -22
+                            0.274      20
+                            0.275     -22
+                            0.276      24
+                            0.277     -35.1
+                            0.278      33.4
+                            0.279     -27.9
+                            0.280      28.5
+                            0.281     -39
+                            0.282      30
+                            0.283      -32
+                            0.284      20
+                            0.285     -22
+                            0.286      24
+                            0.287     -25.1
+                            0.288      26.4
+                            0.289     -27.9
+                            0.290      28.5
+                            0.291     -39
+                            0.292      30
+                            0.293      -32
+                            0.294      30
+                            0.295     -32
+                            0.296      34
+                            0.297     -35.1
+                            0.298      36.4
+                            0.299     -37.9
+                            0.300      38.5
+                            0.301     -39
+                            0.302      30
+                            0.303      -32
+                            0.304      40
+                            0.305     -42
+                            0.306      44
+                            0.307     -45.1
+                            0.308      46.4
+                            0.309     -47.9
+                            0.310      48.5
+                            0.311     -49
+                            0.312      40
+                            0.313      -42              
                             2      0
 
                         </tableData>
@@ -1604,7 +1866,6 @@ for the rudder to contribute very much to yaw stability.
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
-                    <property>velocities/r-aero-rad_sec</property>
                     <!-- Aeromatic value was -0.15; this is replaced by the value * table value 
                     below, to reduce the damping values for the Camel --> 
                     
@@ -1617,26 +1878,56 @@ for the rudder to contribute very much to yaw stability.
 					just keep tailspinning indefinitely, unlike modern aircraft which are designed to naturally recover if you take your hands off the controls); 
 					this is like having a yaw damp of 0 or close to it. 
 					-->
-                    <value>0.9</value> 
+                    
+                    <property>velocities/r-aero-rad_sec</property>
+                    <value>1.9</value> 
                     <table>
                         <independentVar>velocities/r-aero-rad_sec</independentVar>
                         <tableData>
                           -32.14        -0.050
 						              -9            -0.03  
                           -2            -0.003
-						              <!-- -1.57         -0.01        
+						              -1.57         -0.01        
                           -0.7          -0.03                       
-                          -0.25         -0.05 -->        
-                          0             -0.20
-                          <!-- 0.25          -0.05           
+                          -0.25         -0.05
+                          -0.01          -0.40     
+                          0              -0.5
+                          0.01           -0.40
+                          0.25          -0.05           
                           0.7           -0.03
-                          1.57          -0.01 -->       
+                          1.57          -0.01       
 						              2             -0.003
                           9             -0.03
 						              32.14         -0.05        
                         </tableData>
                     </table>
+                    
+                    <!--
+                    <value>0.2</value> 
+                    <table>
+                        <independentVar>velocities/r-aero-rad_sec</independentVar>
+                        <tableData>                    
+                    -32.14	1.607
+                    -9	0.27
+                    -2	0.006
+                    -1.57	0.0157
+                    -0.7	0.03
+                    -0.25	0.05
+                    -0.05	0.2
+                    -0.000001	0.5
+                    0	0
+                    0.000001	-0.5
+                    0.05	-0.2
+                    0.25	-0.05
+                    0.7	-0.03
+                    1.57	-0.0157
+                    2	-0.006
+                    9	-0.27
+                    32.14	-1.607
 
+                    </tableData>
+                  </table>
+                  -->
                     
                 </product>
             </function>
@@ -1648,7 +1939,7 @@ for the rudder to contribute very much to yaw stability.
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
                     <!-- 0.18 - Aeromatic -->
-                    <value>-0.25</value>
+                    <value>-0.18</value>
                     <!-- it became harder & hard to rudder with speed,
                     due to wind pressure -->
                     <table>
@@ -1692,15 +1983,27 @@ for the rudder to contribute very much to yaw stability.
             <function name="aero/moment/Yaw_aileron">
                 <!-- Camels large (but ineffective) 'barn door' ailerons produced 'awe-inspiring'
                 amounts of adverse yaw and also a great deal of drag. With no rudder correction it falls into a deep 
-                side-slip with a few seconds.  http://riseofflight.com/Forum/download/file.php?id=31942&mode=view-->
+                side-slip with a few seconds. 
+                http://riseofflight.com/Forum/download/file.php?id=31942&mode=view
+                Sopwith Camel replica
+
+                extract from P1lot magazine November 1981
+
+                Engine: Warner Super Scarab
+                
+                The rudder and elevator are very light and sensitive while the ailerons are astonishingly heavy, and appear to have practically no effect on anything at all. Heaving the stick from side to side produces a sort of drunken wallowing, like a politician trying to duck out of a commitment. A suspicious glance at the vibrating wings reveals that the ailerons are in fact still connected up -and the sight of them moving sluggishly in the airflow suggests the answer to the conundrum: the Camel has four enormous ailerons, and they are quite simply far too big. Furthermore, they have all the design subtlety of a quartet of barn doors. Frise effect, slotting, balancing, differential -these weren't even words in the aviation dictionary in 1916 when this lady was conceived, if you wanted your aeroplane to roll faster you just made the ailerons bigger. (And then, presumably, wondered why it didn't roll faster ... ) Those huge control surfaces so degrade the airflow over the wings that not only is their primary effect vastly blunted, but at the same time the drag thus engendered is awe-inspiring. Adverse yaw completely overcomes the normal secondary effect of roll, so that if you are so misguided as to take your feet off the Camel's rudder and then bank (say) to the left, the stubby round nose will instantly zap off to the right and keep going.    . . . 
+                
+                Thus I found that the Camel performed tight little loops, well-behaved spins, good stall-turns, and somewhat ponderous barrel rolls. Slow rolls, however, were something else again. She would just about do it if you insisted, but you had to start at nigh on Vne , use both hands to crank on full aileron -and then wait. And wait. And wait. She took 23 seconds to go round (compared to about six seconds in, say, a Chipmunk), and that 23 seconds felt like a fortnight. After the first 100 degrees or so the engine would pack up and you were left rolling in hideous slow motion with only the howl of the wind in the wires for company. Treading the rudder very gently -for only a touch too much out-roll rudder would be enough to overcome the ailerons and stop the roll altogether, leaving you stuck on your back like some helpless airborne turtle -you finally regained erect flight with perhaps 80 mph left ,whereupon you had to wait several more seconds before the Scarab would cough and splutter and belch and finally struggle back to its normal asthmatic blattering. (In the end I did slow rolls at three or four shows before sanity prevailed and I dropped the exercise as being too hard on both the airframe and the nervous system).
+                 http://riseofflight.com/forum/viewtopic.php?f=49&t=30890&start=30 
+                 -->
                 <description>Adverse yaw</description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
-                    <!-- Aeromatic: -0.01 -->
-                    <value>-0.07</value>
+                    <!-- Aeromatic: -0.01  -.07 is QUITE large-->
+                    <value>-0.06</value>
                     <table>
                         <independentVar>velocities/ve-kts</independentVar>
                         <tableData>
@@ -1737,13 +2040,14 @@ for the rudder to contribute very much to yaw stability.
             -->
            <!-- This is based on p51d-jsbsim.xml, modified to produce better/more realistic results for the Camel --> 
             
-           <function name="aero/coefficient/Cnalphabeta">
+           <function name="aero/moment/Yaw_Cnalphabeta">
                 <description>Yaw_moment_due_to_alpha-beta</description>
                 <product>
                     <value> -1.0 </value>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
+                    <value>1</value><!-- testing -->
                     <table>
                         <independentVar lookup="row">aero/alpha-deg</independentVar>
                         <independentVar lookup="column">aero/beta-deg</independentVar>

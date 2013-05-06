@@ -113,7 +113,7 @@ var setCrash= func {
  setCrash_lastPause_systime=setCrash_thisPause_systime;
  if ( timeSinceLastCrash < 3 ) return;
  
- var  crashCause = "Airplane crashed, FlightGear paused ";
+ var  crashCause = "Airplane crashed ";
  var impact = getprop("/fdm/jsbsim/systems/crash-detect/impact");
  var impact_water = getprop("/fdm/jsbsim/systems/crash-detect/impact-water");
  var over_g = getprop("/fdm/jsbsim/systems/crash-detect/over-g");
@@ -168,10 +168,10 @@ var list1 = setlistener ( "/fdm/jsbsim/systems/crash-detect/crashed", func { set
 camel.throttle_save=0;
 var list2 = setlistener ( "/engines/engine/cranking", func {
      # if the engines are cranking and it will start the engines
-     # immediately once out of 3 times, if at least one magneto is on 
+     # immediately 3 out of 4 times, if at least one magneto is on 
        if (getprop("/engines/engine/cranking")  
            and getprop("/controls/engines/engine/starter") 
-           and rand() <.29
+           and rand() < .75
            and getprop("/controls/engines/engine/magnetos") > 0 ) {
          settimer ( func { 
                if (getprop("/engines/engine/cranking") and getprop("/controls/engines/engine/starter"))
