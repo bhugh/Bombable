@@ -1,8 +1,8 @@
 SOPWITH CAMEL: A REALISTIC JSBSIM FLIGHT MODEL - NOTES
 
-Version 1.4
+Version 1.5
 
-Brent Hugh, 5 May 2013
+Brent Hugh, 6 May 2013
 
 brent@brenthugh.com
 
