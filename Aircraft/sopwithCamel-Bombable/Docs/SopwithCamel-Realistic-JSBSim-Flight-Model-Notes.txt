@@ -1,6 +1,6 @@
 SOPWITH CAMEL: A REALISTIC JSBSIM FLIGHT MODEL - NOTES
 
-Version 1.5
+Version 1.6
 
 Brent Hugh, 6 May 2013
 
@@ -88,8 +88,8 @@ parameters in JSBSim you can match any single parameter exactly put not
 several parameters of different types exactly. Nevertheless the results are 
 very close, definitely show the characteristics of the Camel (vs any of the 
 other similar aircraft of the period) and in fact is probably close enough to 
-be within the bounds of individual variation of production Camels. TODO: Retest these items on Ver 1.4; tweak 
-dive rate/speed to better match historical Camel.
+be within the bounds of individual variation of production Camels. TODO: Retest 
+these items on Ver 1.6; tweak dive rate/speed to better match historical Camel.
 
 3 Max sustained turn rate about 76 deg/sec, ie 360 degrees in 4.7 seconds 
 (near stall speed, level flight, sea level). NOTE: Current best time is about 
@@ -112,7 +112,9 @@ that most other similar aircraft)
 correct
 
 4 Sluggish in left turns. Quicker through 270 degrees to the right than 90 
-degrees to the left. NOTE: This is noticeable on flat, level, coordinated turns at steady speed, may not be as dramatic as historic accounts indicate.
+degrees to the left. NOTE: This is noticeable on flat, level, coordinated turns 
+at steady speed, may not be as dramatic as historic accounts indicate.  In Ver. 
+1.6 this effect is more obvious.
 
 4 Known for stalling/spinning on take-off if inattentive piloting let nose 
 rise during initial LH turn.
@@ -123,10 +125,11 @@ to whip into a tight spin.
 4 All the weight of the engine, guns, and pilot was concentrated in the first 
 seven feet of a short 18-foot fuselage.
 
-3.5 Spins: Period of 1-2 seconds.
+3.5 Spins: Period of 1-2 seconds.  In Ver. 1.6 the stall and spin 
+characteristics we re-tweaked; this area may still need more work.
 
 3 Loses 150-200 feet per revolution while spinning. NOTE: Loses about 125ft 
-per revolution, may need further tweaking.
+per revolution, may need further tweaking.  Needs re-checking in ver. 1.6.
 
 4 Exit spin by gentle forward pressure in the stick, then *gradually* pull 
 out. AC will *sometimes* self-recover from a spin, but many times not.
@@ -162,7 +165,7 @@ because of gyroscopic force, and correcting this yaw with right rudder caused
 the nose to pitch down sharply. 
 
 4 Steerable tail skid of the Camel helped to overcome a slight swing to the 
-left as I opened the throttle.  (This seems to be only a feature of replica Camels, however it is implemented in FG as otherwise there is no way to maneuver the A/C on the ground. In WWI ground crew would have been used.)
+left as I opened the throttle.  (This seems to be only a feature of replica Camels, however it is implemented in FG as otherwise there is no way to maneuver the A/C on the ground. In WWI ground crew would have been used instead.)
 
 4 The tail came up at about 20 knots.
 
@@ -206,17 +209,15 @@ technique).  This is reported in a radial engine replica; it is duplicated in Ve
 4 Ailerons induce 'awe-inspiring' opposite yaw (ie, yaw to the R on L roll) 
 and much drag.  
 
-NOTE: The aileron effectiveness seems to be responsible for two oft-noted characteristics of the Camel.  1) On a flat, level, constant-speed turn, the left turn requires aileron to counteract the excessive rudder which is required by the gyroscopic moment of the radial engine, as the turn tightens.  The aileron use results in drag and loss of speed, meaning that you can't tighten the turn as much as you can when turning to the right, where the gyroscopic moment of the engine requires reduced, rather than increased, rudder as the turn tightens. 2) The 23-second slow roll (ie, level, aileron-only type roll)
-
 4 Starting at level flight, adding full left aileron just moves the nose to the right and it stays there. You don't start rolling right until you coordinate with the rudder as well. (And ditto for full R aileron.) 
 
-4 In level flight at 100 mph indicated, just a hint of rudder being required 
+4 In level flight at 100 mph indicated, just a hint of rudder is required 
 for straight flight.
 
 4 Thin airfoil shape affects lift, drag, AOA of stall, etc., and the effects 
 are quite different than for later aircraft with thicker wings. Stall speed: Wikipedia and several other sources report 48 mph/41.7 knots.  However, this does not match up with the Camel's reputed quick turn rate.  Lower stall speed directly equates with quicker turn rate.  A replica Camel reports a stall speed under 40 MPH (35 knots) and Frank Tallman reports stall speed of 35-40 mph (30.4-34.8 knots). A stall speed in this range seems to fit better with the Camel's reported turn rate.  
 
-4 Current (Ver. 1.4) drag/lift uses tweaked historical lift/drag curves for the Camel's wing shape and also the known historical zero-lift drag coefficient for the Camel.  
+4 Current (Ver. 1.4+) drag/lift uses tweaked historical lift/drag curves for the Camel's wing shape and also the known historical zero-lift drag coefficient for the Camel.  
 
 3 P factor - evidently the shape of the prop creates a somewhat higher P 
 factor than for later similar aircraft, but the strength of this effect is an 

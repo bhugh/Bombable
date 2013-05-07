@@ -6,9 +6,9 @@
 
 JSBSim aerodynamic model for a Sopwith Camel 1F1 
 
-Version: 1.5
+Version: 1.6
 
-Author: Brent Hugh, 5 May 2013
+Author: Brent Hugh, 6 May 2013
 
 Goal: Create a flight model of the Camel that would incorporate as many of the documented combat flight characteristics of the Camel as possible, and in as realistic a way as possible.
 
@@ -147,7 +147,7 @@ http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
         <author> Brent Hugh</author>
         <filecreationdate> 2011-10-29 </filecreationdate>
         <description>Sopwith Camel with Weapons, matches available data for climb, max speed, general handling</description>
-        <version>Version 1.5</version>
+        <version>Version 1.6</version>
     </fileheader>
 
     <metrics>
@@ -933,30 +933,30 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
 -90	0
 -60	-0.1
 -30	-0.4
--16.66666667	-0.6
--11.66666667	-0.512
--10	-0.449
--8.333333333	-0.379
--6.666666667	-0.306
--5	-0.2444
--3.333333333	-0.116
--2.5	-0.0484
--1.666666667	0.018
--0.833333333	0.0804
+-20	-0.6
+-14	-0.512
+-12	-0.449
+-10	-0.379
+-8	-0.306
+-6	-0.2444
+-4	-0.116
+-3	-0.0484
+-2	0.018
+-1	0.0804
 0	0.148
-0.833333333	0.2254
-1.666666667	0.3054
-2.5	0.379
-3.333333333	0.449
-4.166666667	0.512
-5	0.574
-6.666666667	0.69
-8.333333333	0.79
-10	0.896
-11.66666667	0.99
-13.33333333	1.062
-15	1.066
-16.66666667	1.042
+1	0.2254
+2	0.3054
+3	0.379
+4	0.449
+5	0.512
+6	0.574
+8	0.69
+10	0.79
+12	0.896
+14	0.99
+16	1.062
+18	1.066
+20	1.042
 30	0.7
 60	0.3
 90	0
@@ -1063,33 +1063,34 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
 -90	2.79
 -60	1.39
 -30	0.39
--16.66666667	0.11
--11.66666667	0.067
--10	0.054
--8.333333333	0.043
--6.666666667	0.033
--5	0.0264
--3.333333333	0.005
--2.5	0.003
--1.666666667	0.002
--0.833333333	0.001
+-20	0.11
+-14	0.067
+-12	0.054
+-10	0.043
+-8	0.033
+-6	0.0264
+-4	0.005
+-3	0.003
+-2	0.002
+-1	0.001
 0	0
-0.833333333	0.001
-1.666666667	0.005
-2.5	0.0075
-3.333333333	0.0085
-4.166666667	0.0105
-5	0.015
-6.666666667	0.025
-8.333333333	0.032
-10	0.045
-11.66666667	0.0633
-13.33333333	0.08
-15	0.125
-16.66666667	0.22
+1	0.001
+2	0.005
+3	0.0075
+4	0.0085
+5	0.0105
+6	0.015
+8	0.025
+10	0.032
+12	0.045
+14	0.0633
+16	0.08
+18	0.125
+20	0.22
 30	0.39
 60	1.39
 90	2.79
+
                         </tableData>
                     </table>   
                 </product>
@@ -1117,6 +1118,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
+                    <value>1.5</value>
                     <table>
                         <!--
                         <independentVar>aero/beta-rad</independentVar>
@@ -1133,11 +1135,17 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                         
                         <independentVar>aero/beta-deg</independentVar>
                         <tableData>
-                          -90           0.5        
-                          -30           0.05        
-                          0             0           
-                          30.0          0.05        
-                          90            0.5        
+                         -180           0
+                         -160           .2
+                          -90           1.2        
+                          -30           0.15    
+                          -10           0.02    
+                          0             0
+                          10            0.02
+                          30.0          0.15        
+                          90            1.2
+                          160           .2
+                          180           0
                         </tableData>
                         
                     </table>
@@ -1180,7 +1188,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     Ballpark calculations:
                     Based on idea the fully deployed ailerons are about as draggy as say 1/3 the clean A/C (.0378 drag coefficient, so 0.0126) or as say 2/15 of the total wing drag @ 15 degrees alpha, which would be about .07 * 1.5 * 2/15 = .014
                     -->
-                    <value>0.017</value>
+                    <value>0.015</value>
                 </product>
             </function>
             <function name="aero/force/Drag_right_aileron">
@@ -1195,7 +1203,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     Each aileron is nearly as large as the Elevator and there
                     are two of them on each side . . . 
                     -->
-                    <value>0.017</value>
+                    <value>0.015</value>
                 </product>
             </function>
 
@@ -1207,8 +1215,20 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <property>aero/beta-rad</property>
-                    <value>-1</value>
+                    <!--Aeromatic: <property>aero/beta-rad</property>
+                    <value>-1</value> -->
+                    
+                    <table>
+                          <independentVar lookup="row">aero/beta-deg</independentVar>
+                          <!-- Based on values from c172p plus generic wing lift graph data-->
+                          <tableData>
+                              -90     0
+                              -15	    0.1370	
+                              0.0000	0.0000	
+                              15	    -0.1370
+                              90      0	
+                          </tableData>
+                      </table>
                 </product>
             </function>
         </axis>
@@ -1218,9 +1238,21 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
             reversed.  So we're switching sense to -1 to compensate, but then Torque is reversed.  So
             We're using this function to reverse the torque. -->
             <!--  Note for dummies:   
-              l = roll
+              X = Axial drag force
+              Y Side Force
+              Z Normal Lift force
+            
+              l = roll (moments)
               m = pitch
               n = yaw
+              
+              p Roll Rate
+              q Pitch Rate
+              r Yaw Rate
+              
+              U Axial Velocity
+              V Lateral Velocity
+              W Normal Velocity
             -->
               
            <!--  rem-ing this out for now --> 
@@ -1241,27 +1273,53 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
-                    <property>aero/beta-rad</property>
+                    <!-- <property>aero/beta-rad</property> plain alpha-rad is OK for small values, but for larger than abs(1) or so, need sin(alpha-rad) instead-->
+                    <!-- <sin>
+                        <property>aero/beta-rad</property>
+                    </sin> -->
+                    
+                    <table>
+                        <independentVar>aero/beta-rad</independentVar>
+                        <tableData>
+                          -3.415            -0
+                          -1                0
+                          -.200             -0.2
+                          0                  0
+                          .2                 0.2
+                          1                0
+                          3.415              0       
+                        </tableData>
+                    </table>
+
+                    
+                    
+
+                    
                     <!-- value>-0.2</value -->
                     <!-- -0.1 according to Aeromatic -->
                     <value>-0.075</value>
                     <!-- Asymmetric stall -->
-                    <!-- This is cribbed directly from p51d-jsbsim.xml for now -->                  <!--
+                    <!-- This is cribbed directly from p51d-jsbsim.xml for now -->                  
+                    <!-- Assymmetric stall - at higher alpha/beta angles the beta starts to destabilize the roll rather than stabilize it-->
+
+                    <!--
                     <table>                            
                         <independentVar lookup="row">aero/alpha-deg</independentVar>
+                        
+                  
                         <independentVar lookup="column">velocities/vc-kts</independentVar>
                          <tableData>
                                  0  22  38   44   48  52
-                            -45  1  2  8     2    1   1
-                            -20  1  3 14     4    2   1
-                            -15   1  1  1     1    1   1
-                            15.5 1  1  1     1    1   1
-                            20   1  4 25     20   5   1
-                            30   1  4 25     20   3   1
-                            45   1  2 12     9    2   1
+                            -45  -1 -1.1  -2     -1    -1   -1
+                            -14.5  -1  -1.1 -2     -2    -1   -1
+                            -13   1  1  1     1    1   1
+                            13 1  1  1     1    1   1
+                            14.5   -1  -1.1 -2     -2   -2   -1
+                            30   -1  -1.1 -2     -2   -1.5   -1
+                            45   -1  -1 -2     -2.5    -1   -1
                         </tableData>
                     </table>
-                    --> 
+                    -->
                 </product>
             </function>
             <function name="aero/moment/Roll_damp">
@@ -1299,13 +1357,15 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                           -6.28        -0.75
 					              	-5           -0.005 
                           -3.14        -0.005     
-                          -2.5         -0.1 
-                          -0.1         -0.1       
-                          -0.01        -0.35
-                          0            -.4
-                          0.01          -0.35
-                          0.1          -0.1           
-                          2.5          -0.1        
+                          -1.9         -0.05
+                    
+                          -1.1         -0.25       
+                          -0.01        -0.27
+                          0            -.3
+                          0.01          -0.27
+                          1.1          -0.25 
+                              
+                          1.9          -0.05        
                           3.14         -0.005
 						              5            -0.005
 						              6.28         -0.75
@@ -1344,9 +1404,9 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
                     <property>velocities/r-aero-rad_sec</property>
-                    <value>0.35</value>
-                    <!-- <value>0.08</value> -->
-                    <value>1</value> <!-- testing -->
+                    <!-- value>0.35</value -->
+                    <value>0.1</value>
+                    <value>0</value> <!-- testing -->
                     <!-- Spin on stall -->
                         <!-- This seems to provide the main source of spin/rotation for the aircraft 
                         when it is stalling. In the abscence of wind tunnel data the numbers are a 
@@ -1362,17 +1422,17 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                         <independentVar lookup="column">velocities/vc-kts</independentVar>
                         <tableData>
                                  0   13  28  38  48  70  100   150
-                            -45  -1 -2 -12  -6   -8   -5  -3    -1.5
-                            -35  -1 -4 -20  -20  -20  -12 -6    -3
-                            -32  -1 -4 -20  -20  -20  -12 -6    -3
-                            -15.5  -1 -1 -1   -1   -1   -1  -1  -1
-                            -13.5  0 0   0    0    0    0  0     0
+                            -45  -1 -2 -3  -2.5   -3   -1.5  -1    -1.5
+                            -35  -1 -2 -4  -4  -4  -3 -2    -1.5
+                            -30  -1 -2 -4  -4  -4  -3 -2    -1.5
+                            -14.5  -1 -2 -3   -3   -3   -2  -1.5  -1
+                            -13  0 0   0    0    0    0  0     0
                              0     0 0   0    0    0    0  0     0
-                            13.5   0 0   0    0    0    0  0     0
-                            15.5   1  1  1     1    1   1   1     1
-                            32   1  4  20    20   20  12  6     3
-                            35   1  4  20    20   20  12  6     3
-                            45   1  2  12    8    8   5   3     1.5
+                            13   0 0   0    0    0    0  0     0
+                            14.5   1  2  3     3    3   2   1.5     1
+                            30   1  4  4    4   4  3  2     1.5
+                            35   1  4  4    4   4  3  2     1.5
+                            45   1  2  3    2.5    3   1.5   1     1.5
                         </tableData>
                     </table>
                 </product>
@@ -1387,11 +1447,12 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
 
                     <!-- .08 per aeromatic; Camel had relatively ineffective ailerons;  they
                     are large as 'barn doors' but induce tons of drag & adverse yaw. 23 seconds 
-                    to slow roll - if could even be done at all! -->
+                    to slow roll - if could even be done at all! 
+                    I'm taking this to mean that, being far larger in surface area than ailerons in modern plane, they produce quite a bit of roll but perhaps even more of drag and adverse yaw.-->
                     <table>
                         <independentVar>velocities/mach</independentVar>
                         <tableData>
-                          0             0.09          
+                          0             0.10          
                           2             0.01       
                         </tableData>
                     </table>
@@ -1412,12 +1473,12 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <table>
                         <independentVar lookup="row">aero/alpha-deg</independentVar>
                         <tableData>
-                        -35    0.3
+                        -35    0.05
                         -19    0.3
-                        -15.5    1
-                        15     1
+                        -12    1
+                        12     1
                         19     0.3
-                        35     0.3
+                        35     0.05
                         </tableData>
                     </table>
                 </product>
@@ -1446,9 +1507,10 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                #roll to the left as the stall deepens.
                #this commented out for Camel.
                
-               Camel: The idea of the r-aero-rad-_sec table is to turn the spin in the 
-               direction of the change in yaw, ie, spin in the direction the
+               Camel: The idea of the p-aero-rad-_sec table is to turn the spin in the 
+               direction of the current spin, ie, spin in the direction the
                AC is already spinning, if any.
+               If we were tricky we could probably dot the yaw & spin together or something.
             -->
            <function name="aero/moment/Roll_Clalpha">
                 <description>roll_moment_due_to_alpha</description>
@@ -1456,29 +1518,31 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
-                    <value>1</value><!-- testing -->
+                    <value>300</value><!-- testing -->
                     <table>
                         <independentVar>velocities/r-aero-rad_sec</independentVar>
                         <tableData>
-                          -34.15             1
-                          -.0001             1
+                          -34.15             -1
+                          -.0001             -1
                           0                  0
-                          .0001             -1
-                          34.15             -1       
+                          .0001             1
+                          34.15             1       
                         </tableData>
                     </table>
                     <table>
                         <independentVar lookup="row">aero/alpha-deg</independentVar>
                         <independentVar lookup="column">aero/Re</independentVar>
                         <tableData>
-                                          2500000  5000000  10000000   20000000
-                                 -21.0    0.0    -0.005   -0.0025   -0.00025
-                                 -16      0.0    -0.00025 -0.000125 -0.0000125
-                                 -14      0       0       0         0
+                                          0  5000000  10000000   20000000
+                                 -180.0    0.0    -0.0005   -0.00025   -0.000025                                          
+                                 -24.0    0.0    -0.0005   -0.00025   -0.000025
+                                 -20.8      0.0    -0.00025 -0.000125 -0.0000125
+                                 -16.8      0       0       0         0
                                    0.0    0.0     0.0     0.0       0.0
-                                  14      0       0       0         0
-                                  16      0.0     0.00025 0.000125  0.00000125
-                                  21      0.0     0.0005  0.00025   0.0000025
+                                  16.8      0       0       0         0
+                                  20.8      0.0     0.00025 0.000125  0.00000125
+                                  24      0.0     0.0005  0.00025   0.0000025
+                                  180      0.0     0.0005  0.00025   0.0000025
                         </tableData>
                     </table>
                 </product>
@@ -1493,7 +1557,26 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
-                    <property>aero/alpha-rad</property>
+                    <!-- <property>aero/alpha-rad</property> plain alpha-rad is OK for small values, but for larger than abs(1) or so, need sin(alpha-rad) instead-->
+                    
+                    <table>
+                        <independentVar>aero/alpha-rad</independentVar>
+                        <tableData>
+                          -3.415            -0
+                          -3.4              -2.4
+                          -.200             -0.2
+                          0                  0
+                          .2                 0.2
+                          3.4                2.4
+                          3.415              0       
+                        </tableData>
+                    </table>
+                    
+                    
+                    <!-- <sin>
+                        <property>aero/alpha-rad</property>
+                    </sin> -->
+                    
                     <!-- <value>-0.5</value> orig -->
                     <value>-0.5</value>
                 </product>
@@ -1517,7 +1600,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                                         </tableData>
                                   Camel had a powerful and sensitive elevator      
                             --> 
-                            0      -0.25                      
+                            0      -0.32                      
                             2      -0.1
 
                         </tableData>
@@ -1552,12 +1635,12 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <table>
                         <independentVar lookup="row">aero/alpha-deg</independentVar>
                         <tableData>
-                        -35    0.3
-                        -21    0.3
-                        -16    1
-                        16     1
-                        21     0.3
-                        35     0.3
+                        -50    0.2
+                        -23    0.3
+                        -17.5    1
+                        17.5     1
+                        23     0.3
+                        50     0.2
                         </tableData>
                     </table>
 
@@ -1608,7 +1691,22 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
                     <property>aero/ci2vel</property>
-                    <property>aero/alphadot-rad_sec</property>
+                    <!-- <property>aero/alphadot-rad_sec</property>       -->
+                    
+                    <!-- If this is allowed to grow unrestricted there are pretty nasty results, at slow speed stalls -->
+                    <table>
+                        <independentVar>aero/alphadot-rad_sec</independentVar>
+                        <tableData>
+                          -32.14        -.75  
+
+						              -.5         -.5        
+                          0             0
+                          .5          .5 
+						              32.14         .75        
+                        </tableData>
+                    </table>
+                    
+                    
                     <value>-7</value>
                 </product>
             </function>
@@ -1624,7 +1722,10 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                 <description>Pitch moment due to burble at high speeds</description>
                 <product>
                      <value> 1200 </value>
-                     <urandom/>
+                     <!-- <abs> 
+                       <urandom/>
+                     </abs>
+                     --> 
                      <table>
                         <independentVar>velocities/mach</independentVar>
                         <tableData>
@@ -1876,7 +1977,11 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
-                    <property>aero/beta-rad</property>
+                    <!-- <property>aero/beta-rad</property> plain alpha-rad is OK for small values, but for larger than abs(1) or so, need sin(alpha-rad) instead-->
+                    <sin>
+                        <property>aero/beta-rad</property>
+                    </sin>
+                    
                     <!-- <value>0.12</value> orig -->
                     <value>0.12</value>
                 </product>
@@ -1996,7 +2101,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                         -90    1
                         11     1
                         12     0.2
-                        90     0.1
+                        90     0.2
                         </tableData>
                     </table> 
                     
@@ -2006,12 +2111,12 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <table>
                         <independentVar lookup="row">aero/beta-deg</independentVar>
                         <tableData>
-                        -90    0.2
-                        -40    0.3
-                        -20    1
-                        20     1
-                        40     0.3
-                        90     0.2
+                        -90    0.05
+                        -22    0.3
+                        -17    1
+                        17     1
+                        22     0.3
+                        90     0.05
                         </tableData>
                     </table>
                                         
@@ -2040,7 +2145,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
                     <!-- Aeromatic: -0.01  -.07 is QUITE large-->
-                    <value>-0.0675</value>
+                    <value>-0.06</value>
                     <table>
                         <independentVar>velocities/ve-kts</independentVar>
                         <tableData>
@@ -2080,136 +2185,145 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
            <function name="aero/moment/Yaw_Cnalphabeta">
                 <description>Yaw_moment_due_to_alpha-beta</description>
                 <product>
-                    <value> -1.0 </value>
+                    <value>0</value> <!-- set to 0 to disable for testing; 1 to enable -->
+                    <value> -2.5 </value>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <value>1</value><!-- testing -->
-                    <table>
-                        <independentVar lookup="row">aero/alpha-deg</independentVar>
-                        <independentVar lookup="column">aero/beta-deg</independentVar>
-                        <independentVar lookup="table">aero/Re</independentVar>
-                        <tableData breakPoint="2500000">
-                                     -30     -5      -2      2.5       6      32
-                               -27.0  0.0  0.05      0.03    -0.03     -0.05    0.0
-                               -17.0  0.0  0.05      0.03    -0.03     -0.05    0.0
-                               -16.7  0.0  0.05      0.03    -0.03     -0.05    0.0
-                               -16.3  0.0  0.05      0.03    -0.03     -0.05    0.0
-                               -15.9  0.0  0.05      0.03    -0.03     -0.05    0.0
-                               -15.4  0.0  0.05      0.03    -0.03     -0.05    0.0
-                               -15.0  0.0  0.0       0.0      0.0      0.0      0.0
-                                 0.0  0.0  0.0       0.0      0.0      0.0      0.0
-                                15.5  0.0  0.0       0.0      0.0      0.0      0.0
-                                16.0  0.0  0.001     0.005   -0.005   -0.001    0.0
-                                17.6  0.0  0.0015    0.006   -0.006   -0.0015   0.0
-                                17.8  0.0  0.0025    0.008   -0.008   -0.0025   0.0
-                                18.8  0.0  0.0035    0.01    -0.01    -0.0035   0.0
-                                19.5  0.0  0.005     0.012   -0.012   -0.005    0.0
-                                20.5  0.0  0.00625   0.013   -0.013   -0.00625  0.0
-                                21.5  0.0  0.0075    0.015   -0.015   -0.0075   0.0
-                                27.0  0.0  0.00125   0.005   -0.005   -0.00125  0.0
-                        </tableData>
-                        <tableData breakPoint="5000000">
-                                     -30    -5       -2        2.5          6          32
-                               -27.0 0.0  0.05      0.03      -0.03       -0.05        0.0
-                               -17.0 0.0  0.05      0.03      -0.03       -0.05        0.0
-                               -16.7 0.0  0.05      0.03      -0.03       -0.05        0.0
-                               -16.3 0.0  0.05      0.03      -0.03       -0.05        0.0
-                               -15.9 0.0  0.05      0.03      -0.03       -0.05        0.0
-                               -15.4 0.0  0.005     0.003     -0.003      -0.005       0.0
-                               -15.0 0.0  0.0       0.0        0.0         0.0         0.0
-                                 0.0 0.0  0.0       0.0        0.0         0.0         0.0
-                                15.5 0.0  0.0       0.0        0.0         0.0         0.0
-                                16.0 0.0  0.005     0.01      -0.01       -0.005       0.0
-                                17.6 0.0  0.015     0.01      -0.01       -0.015       0.0
-                                17.8 0.0  0.02      0.015     -0.015      -0.02        0.0
-                                18.8 0.0  0.025     0.02      -0.02       -0.025       0.0
-                                19.5 0.0  0.03      0.023     -0.023      -0.03        0.0
-                                20.5 0.0  0.04      0.026     -0.026      -0.04        0.0
-                                21.5 0.0  0.05      0.03      -0.03       -0.05        0.0
-                                27.0 0.0  0.02      0.01      -0.01       -0.02        0.0
-                        </tableData>
-                        <tableData breakPoint="10000000">
-                                        -30    -5      -2      2.5         6         32
-                               -27.0    0.0  0.05     0.03    -0.03      -0.05       0.0
-                               -17.0    0.0  0.05     0.03    -0.03      -0.05       0.0
-                               -16.7    0.0  0.05     0.03    -0.03      -0.05       0.0
-                               -16.3    0.0  0.05     0.03    -0.03      -0.05       0.0
-                               -15.9    0.0  0.02     0.01    -0.01      -0.02       0.0
-                               -15.4    0.0  0.005    0.003   -0.003     -0.005      0.0
-                               -15.0    0.0  0.0      0.0      0.0        0.0        0.0
-                                 0.0    0.0  0.0      0.0      0.0        0.0        0.0
-                                15.5    0.0  0.0      0.0      0.0        0.0        0.0
-                                16.0    0.0  0.002    0.006   -0.006     -0.002      0.0
-                                17.6    0.0  0.005    0.005   -0.005     -0.005      0.0
-                                17.8    0.0  0.01     0.01    -0.01      -0.01       0.0
-                                18.8    0.0  0.015    0.015   -0.015     -0.015      0.0
-                                19.5    0.0  0.03     0.02    -0.02      -0.03       0.0
-                                20.5    0.0  0.035    0.025   -0.025     -0.035      0.0
-                                21.5    0.0  0.04     0.03    -0.03      -0.04       0.0
-                                27.0    0.0  0.02     0.01    -0.01      -0.02       0.0
-                        </tableData>
-                        <tableData breakPoint="20000000">
-                                        -30    -5        -2       2.5       6        32
-                               -27.0    0.0    0.05     0.03    -0.03     -0.05      0.0
-                               -17.0    0.0    0.05     0.03    -0.03     -0.05      0.0
-                               -16.7    0.0    0.05     0.03    -0.03     -0.05      0.0
-                               -16.3    0.0    0.02     0.01    -0.01     -0.02      0.0
-                               -15.9    0.0    0.005    0.003   -0.003    -0.005     0.0
-                               -15.4    0.0    0.002    0.001   -0.001    -0.002     0.0
-                               -15.0    0.0    0.0      0.0      0.0       0.0       0.0
-                                 0.0    0.0    0.0      0.0      0.0       0.0       0.0
-                                15.5    0.0    0.0      0.0      0.0       0.0       0.0
-                                16.0    0.0    0.0      0.0      0.0       0.0       0.0
-                                17.6    0.0    0.0      0.0      0.0       0.0       0.0
-                                17.8    0.0    0.0      0.0      0.0       0.0       0.0
-                                18.8    0.0    0.01     0.01    -0.01     -0.01      0.0
-                                19.5    0.0    0.02     0.016   -0.016    -0.02      0.0
-                                20.5    0.0    0.03     0.023   -0.023    -0.03      0.0
-                                21.5    0.0    0.05     0.03    -0.03     -0.05      0.0
-                                27.0    0.0    0.02     0.01    -0.01     -0.02      0.0
-                        </tableData>
-                        <tableData breakPoint="30000000">
-                                       -30     -5          -2      2.5     6       32
-                               -27.0   0.0    0.05       0.03    -0.03   -0.05     0.0
-                               -17.0   0.0    0.05       0.03    -0.03   -0.05     0.0
-                               -16.7   0.0    0.02       0.01    -0.01   -0.02     0.0
-                               -16.3   0.0    0.005      0.003   -0.003  -0.005    0.0
-                               -15.9   0.0    0.002      0.001   -0.001  -0.002    0.0
-                               -15.4   0.0    0.0        0.0      0.0     0.0      0.0
-                               -15.0   0.0    0.0        0.0      0.0     0.0      0.0
-                                 0.0   0.0    0.0        0.0      0.0     0.0      0.0
-                                15.5   0.0    0.0        0.0      0.0     0.0      0.0
-                                16.0   0.0    0.0        0.0      0.0     0.0      0.0
-                                17.6   0.0    0.0        0.0      0.0     0.0      0.0
-                                17.8   0.0    0.0        0.0      0.0     0.0      0.0
-                                18.8   0.0    0.0        0.0      0.0     0.0      0.0
-                                19.5   0.0    0.01       0.01    -0.01   -0.01     0.0
-                                20.5   0.0    0.03       0.02    -0.02   -0.03     0.0
-                                21.5   0.0    0.05       0.03    -0.03   -0.05     0.0
-                                27.0   0.0    0.02       0.01    -0.01   -0.02     0.0
-                        </tableData>
-                        <tableData breakPoint="40000000">
-                                         -30     -5       -2       2.5       6      32
-                               -27.0     0.0    0.05     0.03    -0.03     -0.05    0.0
-                               -17.0     0.0    0.05     0.03    -0.03     -0.05    0.0
-                               -16.7     0.0    0.02     0.01    -0.01     -0.02    0.0
-                               -16.3     0.0    0.005    0.003   -0.003    -0.005   0.0
-                               -15.9     0.0    0.002    0.001   -0.001    -0.002   0.0
-                               -15.4     0.0    0.0      0.0      0.0       0.0     0.0
-                               -15.0     0.0    0.0      0.0      0.0       0.0     0.0
-                                 0.0     0.0    0.0      0.0      0.0       0.0     0.0
-                                15.5     0.0    0.0      0.0      0.0       0.0     0.0
-                                16.0     0.0    0.0      0.0      0.0       0.0     0.0
-                                17.6     0.0    0.0      0.0      0.0       0.0     0.0
-                                17.8     0.0    0.0      0.0      0.0       0.0     0.0
-                                18.8     0.0    0.0      0.0      0.0       0.0     0.0
-                                19.5     0.0    0.0      0.0      0.0       0.0     0.0
-                                20.5     0.0    0.03     0.02    -0.02     -0.03    0.0
-                                21.5     0.0    0.05     0.03    -0.03     -0.05    0.0
-                                27.0     0.0    0.02     0.01    -0.01     -0.02    0.0
-                        </tableData>
-                    </table>
+                    <!-- See Yaw_Cnalphabeta Table worksheet in Camel-JSBSim-calcs.xlsx workshop for the original/editable table -->
+
+                    <table>						
+                        <independentVar lookup="row">aero/alpha-deg</independentVar>						
+                        <independentVar lookup="column">aero/beta-deg</independentVar>						
+                        <independentVar lookup="table">aero/Re</independentVar>						
+                        <tableData breakPoint="2500000">						
+						
+	-50	-5	-2	2.5	6	52
+-27	0	0.005	0.003	-0.003	-0.005	0
+-15	0	0.005	0.003	-0.003	-0.005	0
+-14.7	0	0.005	0.003	-0.003	-0.005	0
+-14.3	0	0.005	0.003	-0.003	-0.005	0
+-13.9	0	0.005	0.003	-0.003	-0.005	0
+-13.4	0	0.005	0.003	-0.003	-0.005	0
+-13	0	0	0	0	0	0
+0	0	0	0	0	0	0
+13	0	0	0	0	0	0
+13.5	0	0.001	0.005	-0.005	-0.001	0
+14	0	0.0015	0.006	-0.006	-0.0015	0
+14.4	0	0.0025	0.008	-0.008	-0.0025	0
+14.8	0	0.0035	0.01	-0.01	-0.0035	0
+17.5	0	0.005	0.012	-0.012	-0.005	0
+19.5	0	0.00625	0.013	-0.013	-0.00625	0
+21.5	0	0.0075	0.015	-0.015	-0.0075	0
+27	0	0.00125	0.005	-0.005	-0.00125	0
+</tableData>						
+<tableData	breakPoint="5000000">					
+	-50	-5	-2	2.5	6	52
+-27	0	0.005	0.003	-0.003	-0.005	0
+-15	0	0.005	0.003	-0.003	-0.005	0
+-14.7	0	0.005	0.003	-0.003	-0.005	0
+-14.3	0	0.005	0.003	-0.003	-0.005	0
+-13.9	0	0.005	0.003	-0.003	-0.005	0
+-13.4	0	0.005	0.003	-0.003	-0.005	0
+-13	0	0	0	0	0	0
+0	0	0	0	0	0	0
+13	0	0	0	0	0	0
+13.5	0	0.005	0.01	-0.01	-0.005	0
+14	0	0.015	0.01	-0.01	-0.015	0
+14.4	0	0.02	0.015	-0.015	-0.02	0
+14.8	0	0.025	0.02	-0.02	-0.025	0
+17.5	0	0.03	0.023	-0.023	-0.03	0
+19.5	0	0.04	0.026	-0.026	-0.04	0
+21.5	0	0.05	0.03	-0.03	-0.05	0
+27	0	0.02	0.01	-0.01	-0.02	0
+</tableData>						
+<tableData	breakPoint="10000000">					
+	-50	-5	-2	2.5	6	52
+-27	0	0.005	0.003	-0.003	-0.005	0
+-15	0	0.005	0.003	-0.003	-0.005	0
+-14.7	0	0.005	0.003	-0.003	-0.005	0
+-14.3	0	0.005	0.003	-0.003	-0.005	0
+-13.9	0	0.002	0.001	-0.001	-0.002	0
+-13.4	0	0.0005	0.0003	-0.0003	-0.0005	0
+-13	0	0	0	0	0	0
+0	0	0	0	0	0	0
+13	0	0	0	0	0	0
+13.5	0	0.002	0.006	-0.006	-0.002	0
+14	0	0.005	0.005	-0.005	-0.005	0
+14.4	0	0.01	0.01	-0.01	-0.01	0
+14.8	0	0.015	0.015	-0.015	-0.015	0
+17.5	0	0.03	0.02	-0.02	-0.03	0
+19.5	0	0.035	0.025	-0.025	-0.035	0
+21.5	0	0.04	0.03	-0.03	-0.04	0
+27	0	0.02	0.01	-0.01	-0.02	0
+</tableData>						
+<tableData	breakPoint="20000000">					
+	-50	-5	-2	2.5	6	52
+-27	0	0.005	0.003	-0.003	-0.005	0
+-15	0	0.005	0.003	-0.003	-0.005	0
+-14.7	0	0.005	0.003	-0.003	-0.005	0
+-14.3	0	0.002	0.001	-0.001	-0.002	0
+-13.9	0	0.005	0.003	-0.003	-0.005	0
+-13.4	0	0.002	0.001	-0.001	-0.002	0
+-13	0	0	0	0	0	0
+0	0	0	0	0	0	0
+13	0	0	0	0	0	0
+13.5	0	0	0	0	0	0
+14	0	0	0	0	0	0
+14.4	0	0	0	0	0	0
+14.8	0	0.01	0.01	-0.01	-0.01	0
+17.5	0	0.02	0.016	-0.016	-0.02	0
+19.5	0	0.03	0.023	-0.023	-0.03	0
+21.5	0	0.05	0.03	-0.03	-0.05	0
+27	0	0.02	0.01	-0.01	-0.02	0
+</tableData>						
+<tableData	breakPoint="30000000">					
+	-50	-5	-2	2.5	6	52
+-27	0	0.05	0.03	-0.03	-0.05	0
+-15	0	0.05	0.03	-0.03	-0.05	0
+-14.7	0	0.02	0.01	-0.01	-0.02	0
+-14.3	0	0.005	0.003	-0.003	-0.005	0
+-13.9	0	0.002	0.001	-0.001	-0.002	0
+-13.4	0	0	0	0	0	0
+-13	0	0	0	0	0	0
+0	0	0	0	0	0	0
+13	0	0	0	0	0	0
+13.5	0	0	0	0	0	0
+14	0	0	0	0	0	0
+14.4	0	0	0	0	0	0
+14.8	0	0	0	0	0	0
+17.5	0	0.01	0.01	-0.01	-0.01	0
+19.5	0	0.03	0.02	-0.02	-0.03	0
+21.5	0	0.05	0.03	-0.03	-0.05	0
+27	0	0.02	0.01	-0.01	-0.02	0
+</tableData>						
+<tableData	breakPoint="40000000">					
+	-50	-5	-2	2.5	6	52
+-27	0	0.05	0.03	-0.03	-0.05	0
+-15	0	0.05	0.03	-0.03	-0.05	0
+-14.7	0	0.02	0.01	-0.01	-0.02	0
+-14.3	0	0.005	0.003	-0.003	-0.005	0
+-13.9	0	0.002	0.001	-0.001	-0.002	0
+-13.4	0	0	0	0	0	0
+-13	0	0	0	0	0	0
+0	0	0	0	0	0	0
+13	0	0	0	0	0	0
+13.5	0	0	0	0	0	0
+14	0	0	0	0	0	0
+14.4	0	0	0	0	0	0
+14.8	0	0	0	0	0	0
+17.5	0	0	0	0	0	0
+19.5	0	0.03	0.02	-0.02	-0.03	0
+21.5	0	0.05	0.03	-0.03	-0.05	0
+27	0	0.02	0.01	-0.01	-0.02	0
+						
+                        </tableData>						
+                    </table>						
+
+
+
+
                 </product>
             </function>
             
