@@ -933,30 +933,30 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
 -90	0
 -60	-0.1
 -30	-0.4
--20	-0.6
--14	-0.512
--12	-0.449
--10	-0.379
--8	-0.306
--6	-0.2444
--4	-0.116
--3	-0.0484
--2	0.018
--1	0.0804
+-16.66666667	-0.6
+-11.66666667	-0.512
+-10	-0.449
+-8.333333333	-0.379
+-6.666666667	-0.306
+-5	-0.2444
+-3.333333333	-0.116
+-2.5	-0.0484
+-1.666666667	0.018
+-0.833333333	0.0804
 0	0.148
-1	0.2254
-2	0.3054
-3	0.379
-4	0.449
-5	0.512
-6	0.574
-8	0.69
-10	0.79
-12	0.896
-14	0.99
-16	1.062
-18	1.066
-20	1.042
+0.833333333	0.2254
+1.666666667	0.3054
+2.5	0.379
+3.333333333	0.449
+4.166666667	0.512
+5	0.574
+6.666666667	0.69
+8.333333333	0.79
+10	0.896
+11.66666667	0.99
+13.33333333	1.062
+15	1.066
+16.66666667	1.042
 30	0.7
 60	0.3
 90	0
@@ -1063,30 +1063,30 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
 -90	2.79
 -60	1.39
 -30	0.39
--20	0.11
--14	0.067
--12	0.054
--10	0.043
--8	0.033
--6	0.0264
--4	0.005
--3	0.003
--2	0.002
--1	0.001
+-16.66666667	0.11
+-11.66666667	0.067
+-10	0.054
+-8.333333333	0.043
+-6.666666667	0.033
+-5	0.0264
+-3.333333333	0.005
+-2.5	0.003
+-1.666666667	0.002
+-0.833333333	0.001
 0	0
-1	0.001
-2	0.005
-3	0.0075
-4	0.0085
-5	0.0105
-6	0.015
-8	0.025
-10	0.032
-12	0.045
-14	0.0633
-16	0.08
-18	0.125
-20	0.22
+0.833333333	0.001
+1.666666667	0.005
+2.5	0.0075
+3.333333333	0.0085
+4.166666667	0.0105
+5	0.015
+6.666666667	0.025
+8.333333333	0.032
+10	0.045
+11.66666667	0.0633
+13.33333333	0.08
+15	0.125
+16.66666667	0.22
 30	0.39
 60	1.39
 90	2.79
@@ -1180,7 +1180,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     Ballpark calculations:
                     Based on idea the fully deployed ailerons are about as draggy as say 1/3 the clean A/C (.0378 drag coefficient, so 0.0126) or as say 2/15 of the total wing drag @ 15 degrees alpha, which would be about .07 * 1.5 * 2/15 = .014
                     -->
-                    <value>0.015</value>
+                    <value>0.017</value>
                 </product>
             </function>
             <function name="aero/force/Drag_right_aileron">
@@ -1195,7 +1195,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     Each aileron is nearly as large as the Elevator and there
                     are two of them on each side . . . 
                     -->
-                    <value>0.015</value>
+                    <value>0.017</value>
                 </product>
             </function>
 
@@ -1300,11 +1300,11 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
 					              	-5           -0.005 
                           -3.14        -0.005     
                           -2.5         -0.1 
-                          -0.4         -0.25       
+                          -0.1         -0.1       
                           -0.01        -0.35
                           0            -.4
                           0.01          -0.35
-                          0.4          -0.25           
+                          0.1          -0.1           
                           2.5          -0.1        
                           3.14         -0.005
 						              5            -0.005
@@ -1344,8 +1344,8 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
                     <property>velocities/r-aero-rad_sec</property>
-                    <!-- value>0.35</value -->
-                    <value>0.08</value>
+                    <value>0.35</value>
+                    <!-- <value>0.08</value> -->
                     <value>1</value> <!-- testing -->
                     <!-- Spin on stall -->
                         <!-- This seems to provide the main source of spin/rotation for the aircraft 
@@ -1365,11 +1365,11 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                             -45  -1 -2 -12  -6   -8   -5  -3    -1.5
                             -35  -1 -4 -20  -20  -20  -12 -6    -3
                             -32  -1 -4 -20  -20  -20  -12 -6    -3
-                            -16.5  -1 -1 -1   -1   -1   -1  -1  -1
-                            -15.5  0 0   0    0    0    0  0     0
+                            -15.5  -1 -1 -1   -1   -1   -1  -1  -1
+                            -13.5  0 0   0    0    0    0  0     0
                              0     0 0   0    0    0    0  0     0
-                            15.5   0 0   0    0    0    0  0     0
-                            16.5   1  1  1     1    1   1   1     1
+                            13.5   0 0   0    0    0    0  0     0
+                            15.5   1  1  1     1    1   1   1     1
                             32   1  4  20    20   20  12  6     3
                             35   1  4  20    20   20  12  6     3
                             45   1  2  12    8    8   5   3     1.5
@@ -1391,7 +1391,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <table>
                         <independentVar>velocities/mach</independentVar>
                         <tableData>
-                          0             0.08          
+                          0             0.09          
                           2             0.01       
                         </tableData>
                     </table>
@@ -1472,13 +1472,13 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                         <independentVar lookup="column">aero/Re</independentVar>
                         <tableData>
                                           2500000  5000000  10000000   20000000
-                                 -23.0    0.0    -0.005   -0.0025   -0.00025
-                                 -18      0.0    -0.00025 -0.000125 -0.0000125
-                                 -16      0       0       0         0
+                                 -21.0    0.0    -0.005   -0.0025   -0.00025
+                                 -16      0.0    -0.00025 -0.000125 -0.0000125
+                                 -14      0       0       0         0
                                    0.0    0.0     0.0     0.0       0.0
-                                  16      0       0       0         0
-                                  18      0.0     0.00025 0.000125  0.00000125
-                                  23      0.0     0.0005  0.00025   0.0000025
+                                  14      0       0       0         0
+                                  16      0.0     0.00025 0.000125  0.00000125
+                                  21      0.0     0.0005  0.00025   0.0000025
                         </tableData>
                     </table>
                 </product>
@@ -2040,7 +2040,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
                     <!-- Aeromatic: -0.01  -.07 is QUITE large-->
-                    <value>-0.06</value>
+                    <value>-0.0675</value>
                     <table>
                         <independentVar>velocities/ve-kts</independentVar>
                         <tableData>
