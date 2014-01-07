@@ -1222,14 +1222,23 @@ var reset_damage_fires = func  {
 # TODO if an aircraft is crashing, it stays crashing despite this.
 #
 
-var revitalizeAllAIObjects = func (revitType="aircraft") {
+var revitalizeAllAIObjects = func (revitType="aircraft", preservePosSpeed=0) {
 
      ai = props.globals.getNode ("/ai/models").getChildren();
      
      #var m_per_deg_lat=getprop ("/bombable/sharedconstants/m_per_deg_lat");
      #var m_per_deg_lon=getprop ("/bombable/sharedconstants/m_per_deg_lon");
-     var latPlusMinus=1; if (rand()>.5) latPlusMinus=-1;
-     var lonPlusMinus=1; if (rand()>.5) lonPlusMinus=-1;
+     
+     # This will put the AI objects on a circle with 3000 meters radius 
+     # from the main a/c, at angle relocAngle_deg from the main a/c 
+     var relocAngle_deg=rand()*360;
+     var latPlusMinus=math.sin (relocAngle_deg /rad2degrees) * (3000)/m_per_deg_lat;
+     var lonPlusMinus=math.cos (relocAngle_deg /rad2degrees) * (3000)/m_per_deg_lat;
+     
+     #var latPlusMinus=1; if (rand()>.5) latPlusMinus=-1;
+     #var lonPlusMinus=1; if (rand()>.5) lonPlusMinus=-1;
+     var referenceLat=0;
+     var referenceLon=0;
      var heading_deg = rand() * 360; #it's helpful to have them all going in the same
      #direction, in case AI piloting is turned off (they stay together rather than dispersing)
      var waitTime_sec=0;
@@ -1243,8 +1252,8 @@ var revitalizeAllAIObjects = func (revitType="aircraft") {
         aiName=type ~ "[" ~ elem.getIndex() ~ "]";
         
         #only if bombable initialized
-        #experimental: doing this for ALL aircraft/objects regardless of bombable status.
-        #if (props.globals.getNode ( "/ai/models/"~aiName~"/bombable" ) == nil) continue;
+        #experimental: disable the next line to do this for ALL aircraft/objects regardless of bombable status.
+        if (props.globals.getNode ( "/ai/models/"~aiName~"/bombable" ) == nil) continue;
         
         
         #reset damage, smoke, fires for all objects that have bombable initialized
@@ -1259,24 +1268,58 @@ var revitalizeAllAIObjects = func (revitType="aircraft") {
         #settimer & increased waittime helps avoid segfault that seems to happen
         #to FG too often when many models appear all at once
         #settimer ( func {        
-          newlat_deg = getprop ("/position/latitude-deg") + latPlusMinus * (3000+rand()*500)/m_per_deg_lat ;
-          newlon_deg = getprop ("/position/longitude-deg") + lonPlusMinus * (4000+rand()*500)/m_per_deg_lon;
+        
+                  
+          
+          newlat_deg = getprop ("/position/latitude-deg") + latPlusMinus;
+          newlon_deg = getprop ("/position/longitude-deg") + lonPlusMinus;
+          
+          if (preservePosSpeed){
+            var currLat = getprop ("ai/models/"~aiName~"/position/latitude-deg");
+            var currLon = getprop ("ai/models/"~aiName~"/position/longitude-deg");
+            var old_elev_ft = elev (currLat,currLon);
+            
+            if (referenceLat==0 and referenceLon==0) {
+            
+              referenceLat=currLat;
+              referenceLon=currLon;
+            
+            }
+
+            newlat_deg = newlat_deg + currLat-referenceLat ;
+            newlon_deg = newlon_deg + currLon-referenceLon;
+
+
+          } else {
+            newlat_deg = newlat_deg + (rand() - .5)*500/m_per_deg_lat ;
+            newlon_deg = newlon_deg + (rand() - .5)*500/m_per_deg_lon;
+          }
+          
           setprop ("ai/models/"~aiName~"/position/latitude-deg",  newlat_deg );
           setprop ("ai/models/"~aiName~"/position/longitude-deg",  newlon_deg );
-          elev_ft = elev (newlat_deg,newlon_deg);
+          var elev_ft = elev (newlat_deg,newlon_deg);
+          var currAlt_ft = getprop ("ai/models/"~aiName~"/position/altitude-ft");
         
           if (type=="aircraft") {
-            alt_ft=getprop ("/position/altitude-ft")+100;  
-            if (alt_ft-500<elev_ft) alt_ft=elev_ft+500;
+            if (preservePosSpeed) {
+               alt_ft=currAlt_ft-old_elev_ft + elev_ft;  
+               if (alt_ft-500<elev_ft) alt_ft=elev_ft+500;
+            } else {
+               alt_ft=getprop ("/position/altitude-ft")+100;  
+               if (alt_ft-500<elev_ft) alt_ft=elev_ft+500;
+            }   
           } else {
             alt_ft= elev_ft;
           }
           
           setprop ("ai/models/"~aiName~"/position/altitude-ft", alt_ft);
           setprop ("ai/models/"~aiName~"/controls/flight/target-alt", alt_ft);
-          setprop ("ai/models/"~aiName~"/controls/flight/target-hdg", heading_deg);
-          setprop ("ai/models/"~aiName~"/orientation/true-heading-deg", heading_deg);
-  
+
+          if (! preservePosSpeed) {
+             setprop ("ai/models/"~aiName~"/controls/flight/target-hdg", heading_deg);
+             setprop ("ai/models/"~aiName~"/orientation/true-heading-deg", heading_deg);
+          }
+          
           #setting these stops the relocate function from relocating them back
           setprop("ai/models/"~aiName~"/position/previous/latitude-deg", newlat_deg);
           setprop("ai/models/"~aiName~"/position/previous/longitude-deg", newlon_deg);
@@ -1291,47 +1334,65 @@ var revitalizeAllAIObjects = func (revitType="aircraft") {
         #}, waitTime_sec );
         #waitTime_sec+=4;
          
-        var min_vel_kt=getprop( "ai/models/"~aiName~"/bombable/attributes/velocities/minSpeed_kt");
-        var cruise_vel_kt=getprop( "ai/models/"~aiName~"/bombable/attributes/velocities/cruiseSpeed_kt");
-        var attack_vel_kt=getprop( "ai/models/"~aiName~"/bombable/attributes/velocities/attackSpeed_kt");
-        var max_vel_kt=getprop( "ai/models/"~aiName~"/bombable/attributes/velocities/maxSpeed_kt");
-        
-        #defaults
-        if (type=="aircraft") {
-          if (min_vel_kt==nil or min_vel_kt<1) min_vel_kt=50;
-          if (cruise_vel_kt==nil or cruise_vel_kt<1) {
-               cruise_vel_kt=2*min_vel_kt;
-               #they're at 82% to 102% of your current airspeed
-               var vel=getprop ("/velocities/airspeed-kt") * (.82 + rand()*.2);
-          } else { var vel=0; }    
-          if (attack_vel_kt==nil or attack_vel_kt<=cruise_vel_kt) attack_vel_kt=1.5*cruise_vel_kt;
-          
-          if (max_vel_kt==nil or max_vel_kt<=attack_vel_kt) max_vel_kt=1.5*attack_vel_kt;
-        } else {
-          if (min_vel_kt==nil or min_vel_kt<1) min_vel_kt=10;
-          if (cruise_vel_kt==nil or cruise_vel_kt<1) {
-             cruise_vel_kt=2*min_vel_kt;
-             var vel=15;             
-          } else { var vel=0;}
+        # set the speed--if not preserving speed/position OR if speed is 0 (due to crashing etc) 
+        var currSpeed_kt= getprop ("ai/models/"~aiName~"/velocities/true-airspeed-kt"); 
+
+        if (! preservePosSpeed or currSpeed_kt==0 ) {
+
+            var min_vel_kt=getprop( "ai/models/"~aiName~"/bombable/attributes/velocities/minSpeed_kt");
+            var cruise_vel_kt=getprop( "ai/models/"~aiName~"/bombable/attributes/velocities/cruiseSpeed_kt");
+            var attack_vel_kt=getprop( "ai/models/"~aiName~"/bombable/attributes/velocities/attackSpeed_kt");
+            var max_vel_kt=getprop( "ai/models/"~aiName~"/bombable/attributes/velocities/maxSpeed_kt");
             
-          if (attack_vel_kt==nil or attack_vel_kt<=cruise_vel_kt) attack_vel_kt=1.5*cruise_vel_kt;
-          if (max_vel_kt==nil or max_vel_kt<=attack_vel_kt) max_vel_kt=1.5*attack_vel_kt;
-        }
-        debprint ("vel1:", vel);
-        
-        if (vel<min_vel_kt or vel==0) vel=(attack_vel_kt-cruise_vel_kt)*rand() + cruise_vel_kt;
-        if (vel>max_vel_kt) vel=max_vel_kt;
-        
-        debprint ("vel2:", vel); 
-        setprop ("ai/models/"~aiName~"/velocities/true-airspeed-kt", vel);
-        setprop ("ai/models/"~aiName~"/controls/flight/target-spd", vel);     
-     
+            #defaults
+            if (type=="aircraft") {
+              if (min_vel_kt==nil or min_vel_kt<1) min_vel_kt=50;
+              if (cruise_vel_kt==nil or cruise_vel_kt<1) {
+                   cruise_vel_kt=2*min_vel_kt;
+                   #they're at 82% to 102% of your current airspeed
+                   var vel=getprop ("/velocities/airspeed-kt") * (.82 + rand()*.2);
+              } else { var vel=0; }    
+              if (attack_vel_kt==nil or attack_vel_kt<=cruise_vel_kt) attack_vel_kt=1.5*cruise_vel_kt;
+              
+              if (max_vel_kt==nil or max_vel_kt<=attack_vel_kt) max_vel_kt=1.5*attack_vel_kt;
+            } else {
+              if (min_vel_kt==nil or min_vel_kt<1) min_vel_kt=10;
+              if (cruise_vel_kt==nil or cruise_vel_kt<1) {
+                 cruise_vel_kt=2*min_vel_kt;
+                 var vel=15;             
+              } else { var vel=0;}
+                
+              if (attack_vel_kt==nil or attack_vel_kt<=cruise_vel_kt) attack_vel_kt=1.5*cruise_vel_kt;
+              if (max_vel_kt==nil or max_vel_kt<=attack_vel_kt) max_vel_kt=1.5*attack_vel_kt;
+            }
+            debprint ("vel1:", vel);
+            
+            if (vel<min_vel_kt or vel==0) vel=(attack_vel_kt-cruise_vel_kt)*rand() + cruise_vel_kt;
+            if (vel>max_vel_kt) vel=max_vel_kt;
+            
+            debprint ("vel2:", vel); 
+            setprop ("ai/models/"~aiName~"/velocities/true-airspeed-kt", vel);
+            setprop ("ai/models/"~aiName~"/controls/flight/target-spd", vel);     
+        }    
      }
      
-     if (revitType=="aircraft") {
-        var msg = "All AI Aircraft have damage reset and are at your altitude about 5000 meters off";
+     if ( preservePosSpeed) {
+
+         if (revitType=="aircraft") {
+            var msg = "All AI Aircraft have damage reset and are about 5000 meters off, with their existing speed, direction, and altitude above ground level preserved";
+         } else {
+            var msg = "All AI ground/water craft have damage reset and are about 5000 meters off";
+
+         }
      } else {
-        var msg = "All AI ground/water craft have damage reset and are about 5000 meters off";
+     
+         if (revitType=="aircraft") {
+            var msg = "All AI Aircraft have damage reset and are at your altitude about 5000 meters off";
+         } else {
+            var msg = "All AI ground/water craft have damage reset and are about 5000 meters off";
+         }   
+     
+     
      }   
      
      #many times when the objects are relocated they initialize and
@@ -1617,35 +1678,74 @@ var dialog = {
         lresetSelf.set("equal", 1);                
         lresetSelf.prop().getNode("binding[0]/command", 1).setValue("nasal");
         lresetSelf.prop().getNode("binding[0]/script", 1).setValue("bombable.resetMainAircraftDamage();");
+        lresetSelf.prop().getNode("binding[1]/command", 1).setValue("nasal");
+        lresetSelf.prop().getNode("binding[1]/script", 1).setValue("bombable.bombable_dialog_save();");
+        lresetSelf.prop().getNode("binding[2]/command", 1).setValue("dialog-apply");
+        lresetSelf.prop().getNode("binding[3]/command", 1).setValue("dialog-close");        
+
 
         lresetAI = buttonBar1.addChild("button");
         lresetAI.set("legend", "Reset AI Objects Damage");
         lresetAI.prop().getNode("binding[0]/command", 1).setValue("nasal");
         lresetAI.prop().getNode("binding[0]/script", 1).setValue("bombable.resetAllAIDamage();");
+        lresetAI.prop().getNode("binding[1]/command", 1).setValue("nasal");
+        lresetAI.prop().getNode("binding[1]/script", 1).setValue("bombable.bombable_dialog_save();");
+        lresetAI.prop().getNode("binding[2]/command", 1).setValue("dialog-apply");
+        lresetAI.prop().getNode("binding[3]/command", 1).setValue("dialog-close");        
+        
+
+        var buttonBar2 = me.dialog.addChild("group");
+        buttonBar2.set("layout", "hbox");
+        buttonBar2.set("default-padding", 10);
 
         #respawning often makes AI objects init or reinit, which sometimes
         # includes GUI reinit.  So we need to save/close the dialogue first 
         # thing; otherwise segfault is likely        
-        lrevitAIAir = buttonBar1.addChild("button");
-        lrevitAIAir.set("legend", "Respawn AI Aircraft");
+        lrevitAIAir = buttonBar2.addChild("button");
+        lrevitAIAir.set("legend", "Respawn AI Aircraft Randomly");
         
         lrevitAIAir.prop().getNode("binding[0]/command", 1).setValue("nasal");
-        lrevitAIAir.prop().getNode("binding[0]/script", 1).setValue("bombable.revitalizeAllAIObjects(\"aircraft\");");
+        lrevitAIAir.prop().getNode("binding[0]/script", 1).setValue("bombable.revitalizeAllAIObjects(\"aircraft\",0);");
         lrevitAIAir.prop().getNode("binding[1]/command", 1).setValue("nasal");
         lrevitAIAir.prop().getNode("binding[1]/script", 1).setValue("bombable.bombable_dialog_save();");
         lrevitAIAir.prop().getNode("binding[2]/command", 1).setValue("dialog-apply");
         lrevitAIAir.prop().getNode("binding[3]/command", 1).setValue("dialog-close");        
 
-        lrevitAIObj = buttonBar1.addChild("button");
+        lrevitAIObj = buttonBar2.addChild("button");
         lrevitAIObj.prop().getNode("binding[0]/command", 1).setValue("nasal");
-        lrevitAIObj.prop().getNode("binding[0]/script", 1).setValue("bombable.revitalizeAllAIObjects(\"ship\");");
+        lrevitAIObj.prop().getNode("binding[0]/script", 1).setValue("bombable.revitalizeAllAIObjects(\"ship\", 0);");
         lrevitAIObj.prop().getNode("binding[1]/command", 1).setValue("nasal");
         lrevitAIObj.prop().getNode("binding[1]/script", 1).setValue("bombable.bombable_dialog_save();");
-
-
-        lrevitAIObj.set("legend", "Respawn AI Ground/Water Craft");
+        lrevitAIObj.set("legend", "Respawn AI Ground/Water Craft Randomly");
         lrevitAIObj.prop().getNode("binding[2]/command", 1).setValue("dialog-apply");
         lrevitAIObj.prop().getNode("binding[3]/command", 1).setValue("dialog-close");
+
+        var buttonBar3 = me.dialog.addChild("group");
+        buttonBar3.set("layout", "hbox");
+        buttonBar3.set("default-padding", 10);
+
+        #respawning often makes AI objects init or reinit, which sometimes
+        # includes GUI reinit.  So we need to save/close the dialogue first 
+        # thing; otherwise segfault is likely        
+        lrevitPAIAir = buttonBar3.addChild("button");
+        lrevitPAIAir.set("legend", "Respawn AI Aircraft Preserving Speed/Position");
+        
+        lrevitPAIAir.prop().getNode("binding[0]/command", 1).setValue("nasal");
+        lrevitPAIAir.prop().getNode("binding[0]/script", 1).setValue("bombable.revitalizeAllAIObjects(\"aircraft\",1);");
+        lrevitPAIAir.prop().getNode("binding[1]/command", 1).setValue("nasal");
+        lrevitPAIAir.prop().getNode("binding[1]/script", 1).setValue("bombable.bombable_dialog_save();");
+        lrevitPAIAir.prop().getNode("binding[2]/command", 1).setValue("dialog-apply");
+        lrevitPAIAir.prop().getNode("binding[3]/command", 1).setValue("dialog-close");        
+
+        lrevitPAIObj = buttonBar3.addChild("button");
+        lrevitPAIObj.prop().getNode("binding[0]/command", 1).setValue("nasal");
+        lrevitPAIObj.prop().getNode("binding[0]/script", 1).setValue("bombable.revitalizeAllAIObjects(\"ship\", 1);");
+        lrevitPAIObj.prop().getNode("binding[1]/command", 1).setValue("nasal");
+        lrevitPAIObj.prop().getNode("binding[1]/script", 1).setValue("bombable.bombable_dialog_save();");
+
+        lrevitPAIObj.set("legend", "Respawn AI Ground/Water Craft Preserving Speed/Position");
+        lrevitPAIObj.prop().getNode("binding[2]/command", 1).setValue("dialog-apply");
+        lrevitPAIObj.prop().getNode("binding[3]/command", 1).setValue("dialog-close");
 
 
 #        lresetAI = buttonBar1.addChild("button");
@@ -2562,14 +2662,14 @@ var ground_loop = func( id, myNodeName ) {
              # our target altitude (for aircraft purposes) is the greater of the
              # altitude immediately in front and the altitude from our
              # poor man's lookahead radar. (ie, up to 2 min out at current 
-             # speed).  If the terrain is rising we add 300 to our taret
+             # speed).  If the terrain is rising we add 300 to our target
              # alt just to be on the safe side.                 
              # But if we're crashing, we don't care about
              # what is ahead.                                                 
            lookingAheadAlt_ft=toFrontAlt_ft;
            #debprint ("tofrontalt ft: ", toFrontAlt_ft, " radaraheadalt ", radarAheadAlt_ft);
            # Use the radar lookahead altitude if
-           #  1. higher than elevation fo current location
+           #  1. higher than elevation of current location
            #  2. not damaged
            #  3. we'll end up below our minimumAGL if we continue at 
            #  4. current altitude                                                       
@@ -2990,7 +3090,7 @@ var ground_loop = func( id, myNodeName ) {
    } 
    
    #whatever else, we don't let objects go below their lowest allowed altitude
-   #Maybe they are skidding along on teh ground, but they are not allowed
+   #Maybe they are skidding along on the ground, but they are not allowed
    # to skid along UNDER the ground . . .       
    if (currAlt_ft < objectsLowestAllowedAlt_ft)
       {
@@ -4288,7 +4388,7 @@ var do_acrobatic_loop_loop = func (id, myNodeName, loop_time=20, full_loop_steps
     
     #if we stall out or exceed the maxSpeed or lower than minimum allowed altitude
     #    then we terminate the loop & the dodge
-    if (stalling or currSpeed_kt>vels.maxSpeed_kt or currAlt_m - mainACElev_m < alts.minimumAGL_m ) {
+    if (stalling or currSpeed_kt>vels.maxSpeed_kt or currAlt_m - mainACElev_m < alts.minimumAGL_m + 200 ) {
        setprop(""~myNodeName~"/bombable/dodge-inprogress", 0);
        return;
     }
@@ -4672,8 +4772,14 @@ var dodge = func(myNodeName) {
        # This could be linked to stall speed and maybe some other things.
        # As a first trying we're going with 2X minSpeed_kt as the lowest 
        # loop speed.          
-       vels= attributes[myNodeName].velocities;                                
-       if (currSpeed_kt>2*vels.minSpeed_kt and rand()< skill/7 and skill>=3) {
+       # We're putting a max width & length for doing acrobatics as large
+       # bomber type a/c don't usually do acrobatics & loops.
+       # TODO: This really all needs to be specified per a/c on the bombableinclude
+       # file.
+       vels= attributes[myNodeName].velocities;
+       dims= attributes[myNodeName].dimensions;                                
+       if (currSpeed_kt>2*vels.minSpeed_kt and rand()< skill/7 and skill>=3
+           and dims.length_m < 22 and dims.width_m < 18 ) {
          choose_random_acrobatic(myNodeName);
          return;
        }
@@ -5059,6 +5165,7 @@ var mp_send_damage = func (myNodeName="", damageRise=0 ) {
       var damageValue = getprop(""~myNodeName~"/bombable/attributes/damage");
       if (damageValue==nil) damageValue=0;
       
+      #This next statement appears to be dead/useless code because the callsign is picked up from the getCallSign function below?
       if (myNodeName==""){
         callsign=getprop ("/sim/multiplay/callsign");
       }else {
