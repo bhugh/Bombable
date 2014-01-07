@@ -4280,7 +4280,7 @@ var speed_adjust = func (myNodeName, time_sec ){
       vel1=maxSpeed_kt-airspeed_kt;
       vel2=maxSpeed_kt-termVel_kt;
       
-      add_velocity_fps= - (1-math.abs(vel1/vel2))*grav_fpss*time_sec * sin_pitch*5; 
+      add_velocity_fps= - (1 - (vel1/vel2))*grav_fpss*time_sec * sin_pitch*5; 
       
   
                 
@@ -4413,7 +4413,8 @@ var do_acrobatic_loop_loop = func (id, myNodeName, loop_time=20, full_loop_steps
     
     #if we stall out or exceed the maxSpeed or lower than minimum allowed altitude
     #    then we terminate the loop & the dodge
-    if (stalling or currSpeed_kt>vels.maxSpeed_kt or currAlt_m - mainACElev_m < alts.minimumAGL_m + 200 ) {
+    if (stalling or currSpeed_kt>vels.maxSpeed_kt or currSpeed_kt < vels.minSpeed_kt*1.1 ) {
+       debprint ("Bombable: Exiting loop " ~myNodeName ~ ": ", stalling, " ", currSpeed_kt, "currAlt: ", currAlt_m );
        setprop(""~myNodeName~"/bombable/dodge-inprogress", 0);
        return;
     }
@@ -4461,6 +4462,26 @@ var do_acrobatic_loop_loop = func (id, myNodeName, loop_time=20, full_loop_steps
       curr_vertical_speed_fps - 2*vert_speed_add_per_step_fps, 
       curr_vertical_speed_fps + 2*vert_speed_add_per_step_fps, 
       curr_acrobat_vertical_speed_fps);
+      
+    #If we are below the minimumAGL for this a/c we avoid putting
+    #any more negative vertical speed into the a/c than it already has
+    if (currAlt_m - mainACElev_m < alts.minimumAGL_m) {
+      curr_acrobat_vertical_speed_fps = checkRange (curr_acrobat_vertical_speed_fps, 
+      curr_vertical_speed_fps, 
+      curr_vertical_speed_fps + 2*vert_speed_add_per_step_fps, 
+      curr_acrobat_vertical_speed_fps); 
+    
+    }      
+    
+    #If we are getting close to the minimumAGL for this a/c we limit putting
+    #more negative vertical speed into the a/c than it already has    
+    if (currAlt_m - mainACElev_m < alts.minimumAGL_m + 200) {
+      curr_acrobat_vertical_speed_fps = checkRange (curr_acrobat_vertical_speed_fps, 
+      curr_vertical_speed_fps - vert_speed_add_per_step_fps/2, 
+      curr_vertical_speed_fps + 2*vert_speed_add_per_step_fps, 
+      curr_acrobat_vertical_speed_fps); 
+    
+    }
     
     setprop ("" ~ myNodeName ~ "/velocities/vertical-speed-fps", curr_acrobat_vertical_speed_fps);
     debprint ("Bombable: Acrobatic loop, actual vertfps: ", curr_acrobat_vertical_speed_fps, "previous vertspd:",  curr_vertical_speed_fps);
@@ -4545,9 +4566,10 @@ var choose_random_acrobatic = func (myNodeName){
  var elev_m=elev (lat, lon) * feet2meters;
  var alt_m=getprop ("/position/altitude-ft") * feet2meters;
  var altAGL_m=alt_m-elev_m;
+ var alts= attributes[myNodeName].altitudes;
  
  var direction="up";
- if (altAGL_m>1333 and rand()>.5) direction="down";
+ if (altAGL_m>alts.minimumAGL_m + 100 and rand()>.5) direction="down";
  
  rolldirenter="cc";
  rolldirexit="cc";
@@ -4581,6 +4603,7 @@ var choose_attack_acrobatic = func (myNodeName, dist, myHeading_deg,
     
    var ret=1;
    
+   var alts= attributes[myNodeName].altitudes;
    var skill = calcPilotSkill (myNodeName);
    var time=12  + (7-skill)*2.5 + 30 * math.abs(currAlt_m-targetAlt_m)/10000;
    if (time>45) time=45;
@@ -4595,9 +4618,11 @@ var choose_attack_acrobatic = func (myNodeName, dist, myHeading_deg,
    
    if (time>maxTime) time=maxTime;
 
+   var currElev_m=elev (any_aircraft_position(myNodeName).lat(),geo.aircraft_position(myNodeName).lon() )*feet2meters;        
+
       
    #loops only help if the target is behind us
-   if ( math.abs(deltaHeading_deg) >= 100 ) { 
+   if ( math.abs(deltaHeading_deg) >= 100) { 
    
        var vels = attributes[myNodeName].velocities;
    
@@ -4613,9 +4638,8 @@ var choose_attack_acrobatic = func (myNodeName, dist, myHeading_deg,
        #if target is above us or not enough room below for a loop, 
        # or going too fast to do a downwards loop,  we'll
        # loop upwards, otherwise downwards      
-       var currElev_m=elev (any_aircraft_position(myNodeName).lat(),geo.aircraft_position(myNodeName).lon() )*feet2meters;        
-       if ( currAlt_m-targetAlt_m < 0 or currAlt_m - currElev_m < 1333 or 
-          currSpeed_kt > .8 * vels.maxSpeed_kt ) var direction="up";
+       if ( currAlt_m-targetAlt_m < 0 or currAlt_m - currElev_m < alts.minimumAGL_m + 200 or 
+          currSpeed_kt > .75 * vels.cruiseSpeed_kt ) var direction="up";
        else var direction="down";
        
        #TODO: there is undoubtedly a best direction to choose for these, 
@@ -4658,7 +4682,7 @@ var rudder_roll_climb = func (myNodeName, degrees=15, alt_ft=-20, time=10, roll_
 
    debprint ("Bombable: rudder_roll_climb starting, deg:", degrees," time:", time);
    #var b = props.globals.getNode (""~myNodeName~"/bombable/attributes");
-   alts= attributes[myNodeName].altitudes;
+   var alts= attributes[myNodeName].altitudes;
    
    node= props.globals.getNode(myNodeName);
    var type=node.getName();
@@ -5315,7 +5339,7 @@ var checkAim = func (myNodeName1="", myNodeName2="",
           targetSize_m=nil,  aiAimFudgeFactor=1, maxDistance_m=100, weaponAngle_deg=nil, weaponOffset_m=nil, damageValue=0 ) {
           
   #Weapons malfunction in proportion to the damageValue, to 100% of the time when damage=100%
-  debprint ("Bombable: AI weapons, ", myNodeName1, ", ", myNodeName2);  
+  #debprint ("Bombable: AI weapons, ", myNodeName1, ", ", myNodeName2);  
   if (rand()<damageValue) return 0 ;
   
   #if (myNodeName1=="/environment" or myNodeName1=="environment") myNodeName1="";
