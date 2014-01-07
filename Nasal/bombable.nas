@@ -999,6 +999,11 @@ var setAttributes = func (attsObject=nil) {
 
   props.globals.getNode(""~attributes_pp, 1).setValues(attsObject);
   attributes[""]= attsObject;
+  
+  # We setmaxlatlon here so that it is re-done on reinit--otherwise we
+  #get errors about maxlat being nil 
+  settimer (func { setMaxLatLon("", 500);}, 6.2398471);  
+
   #put the redout properties in place, too; wait a couple of 
   # seconds so we aren't overwritten by the redout.nas subroutine:
   settimer ( func { 
@@ -3527,10 +3532,10 @@ var test_impact = func(changedNode, myNodeName) {
    #  called from: E:/FlightGear 2.10.0/FlightGear/data/Nasal/bombable.nas, line 8350
    #  called from: E:/FlightGear 2.10.0/FlightGear/data/Nasal/globals.nas, line 100
    
-  debug.dump (attributes[myNodeName].dimensions);
+  #debug.dump (attributes[myNodeName].dimensions);
 	
 	var maxLat_deg = attributes[myNodeName].dimensions['maxLat'];
-	var maxLon_deg = attributes[myNodeName].dimensions['maxLon'];
+	var maxLon_deg = attributes[myNodeName].dimensions['maxLon'];  
 
 	#attributes[myNodeName].dimensions.maxLon;
 	
@@ -5310,7 +5315,7 @@ var checkAim = func (myNodeName1="", myNodeName2="",
           targetSize_m=nil,  aiAimFudgeFactor=1, maxDistance_m=100, weaponAngle_deg=nil, weaponOffset_m=nil, damageValue=0 ) {
           
   #Weapons malfunction in proportion to the damageValue, to 100% of the time when damage=100%
-  #debprint ("Bombable: AI weapons, ", myNodeName1);  
+  debprint ("Bombable: AI weapons, ", myNodeName1, ", ", myNodeName2);  
   if (rand()<damageValue) return 0 ;
   
   #if (myNodeName1=="/environment" or myNodeName1=="environment") myNodeName1="";
@@ -5338,7 +5343,7 @@ var checkAim = func (myNodeName1="", myNodeName2="",
 
 	#var maxLon_deg = getprop (""~myNodeName1~"/bombable/attributes/dimensions/maxLon");
 	# 
-	var maxLon_deg = attributes[myNodeName1].dimensions.maxLon;  	
+	var maxLon_deg = attributes[myNodeName1].dimensions['maxLon'];  	
 	
   deltaLon_deg= mlon_deg - alon_deg ;
 	if (abs(deltaLon_deg) > maxDistance_m/m_per_deg_lon )  {
