@@ -27,10 +27,15 @@
     <control-setting axis="/controls/gear/gear-down" value="1"/>
   </approach>
 
-  <cruise speed="280" alt="5000">
-    <control-setting axis="/controls/engines/engine[0]/throttle" value="0.7"/>
-    <control-setting axis="/controls/engines/engine[0]/mixture" value="0.7"/>
-    <control-setting axis="/controls/engines/engine[0]/propeller-pitch" value="0.2"/>
+  <!-- bhugh, 2014/01/06 - I'm tuning this more to maximum speed, which is 330 knots (level flight).   The previous 280 knots/0.7 throttle/0.2 prop setting didn't allow us to reach full max speed in level flight.
+    See: http://www.buckarooshangar.com/flightgear/yasimtut_approach_cruise.html
+    http://en.wikipedia.org/wiki/Grumman_F6F_Hellcat
+    
+  -->
+  <cruise speed="330" alt="5000">
+    <control-setting axis="/controls/engines/engine[0]/throttle" value="1"/>
+    <control-setting axis="/controls/engines/engine[0]/mixture" value="0.75"/>
+    <control-setting axis="/controls/engines/engine[0]/propeller-pitch" value="1"/>
     <control-setting axis="/controls/flight/flaps" value="0"/>
     <control-setting axis="/controls/gear/gear-down" value="0"/>
   </cruise>
