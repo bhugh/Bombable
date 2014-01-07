@@ -105,12 +105,12 @@
           evasions : {               
             dodgeDelayMax_sec : 200, #max time to delay/wait between dodges
             dodgeDelayMin_sec : 100, #minimum time to delay/wait between dodges
-            dodgeMax_deg : 0, #Max amount to turn when dodging
-            dodgeMin_deg : 0, #minimum amount to turn when dodging
+            dodgeMax_deg : 1, #Max amount to turn when dodging
+            dodgeMin_deg : 1, #minimum amount to turn when dodging
             rollRateMax_degpersec : 20, #you can figure this out by rolling the corresponding FG aircraft and timing a 180 or 360 deg roll                                                                  
             dodgeROverLPreference_percent : 50, # Preference for right turns vs. left when dodging.  90% means 90% right turns, 50% means 50% right turns.
-            dodgeAltMin_m : 0, #Aircraft will begin to move up or down 
-            dodgeAltMax_m : 0, #Max & Min are relative to current alt  
+            dodgeAltMin_m : -20, #Aircraft will begin to move up or down 
+            dodgeAltMax_m : 20, #Max & Min are relative to current alt  
           },
           #  
           #########################################
@@ -281,9 +281,9 @@
       bombable.de_overall_initialize( nodeName );        
       bombable.initialize_del( nodeName );
       bombable.ground_del( nodeName );
-      bombable.location_del (nodeName);
+      # bombable.location_del (nodeName);
       bombable.bombable_del( nodeName );
-      bombable.attack_del( nodeName );
+      # bombable.attack_del( nodeName );
       bombable.weapons_del (nodeName);      
 #  </unload>
 
