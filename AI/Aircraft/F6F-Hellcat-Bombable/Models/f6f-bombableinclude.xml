@@ -87,7 +87,7 @@
                                  #level flight for aircraft
             
             maxSpeed_kt : 450 , #Maximum possible speed under dive or downhill conditions, V NE for aircraft
-                                #data: http://www.amazon.com/Grumman-Hellcat-Pilots-Operating-Instructions/dp/1935327291/ref=sr_1_1?s=books&ie=UTF8&qid=1319249394&sr=1-1
+                                #data:          
                                 #see particularly p. 59
                                 #accel limits are +7 and -3 Gs in all situations, and less in some situations
             damagedAltitudeChangeMaxRate_meterspersecond : 30, #max rate to sink or fly downwards when damaged, in meters/second
@@ -152,7 +152,7 @@
           # The attack system makes the AI aircraft turn and fly towards 
           # other aircraft 
           attacks : {               
-            maxDistance_m : 12000, #max distance to turn & attack main aircraft
+            maxDistance_m : 20000, #max distance to turn & attack main aircraft
             minDistance_m : 1600, #min distance to turn & attack main aircraft, 
                #ie, fly away this far before turning to attack again.  If you 
                #make this short it will be more like a turning fighter (Zero),
@@ -160,7 +160,7 @@
                #way out, turns around, etc.
             
             continueAttackAngle_deg : 80, #when within minDistance_m, the aircraft will continue to turn towards the main aircraft and attack *if* if the angle is less than this amount from dead ahead.  A wider angle will make it work more like a twisty/turning fighter, narrower angle more like an energy fighter.
-            altitudeHigherCutoff_m : 10000, # will attack the main aircraft unless this amount higher than it or more
+            altitudeHigherCutoff_m : 15000, # will attack the main aircraft unless this amount higher than it or more
             altitudeLowerCutoff_m : 10000, # will attack the main aircraft unless this amount lower than it or more 
             rollMin_deg : 58, #when turning on attack, roll to this angle min
             rollMax_deg : 79, #when turning on attack, roll to this angle max
@@ -170,8 +170,8 @@
             rollRateMax_degpersec : 65, #you can figure this out by rolling the corresponding FG aircraft and timing a 180 or 360 deg roll                                          
             climbPower : 4500, # How powerful the aircraft is when climbing during an attack; 4000 would be typical for, say a Zero--scale accordingly for others; higher is stronger
             divePower : 9000, # How powerful the aircraft is when diving during and attack; 6000 typical of a Zero--could be much more than climbPower if the aircraft is a weak climber but a strong diver 
-            attackCheckTime_sec : 10, # check for need to attack/correct course this often  
-            attackCheckTimeEngaged_sec : 0.8, # once engaged with enemy, check/update course this frequently                
+            attackCheckTime_sec : 6, # check for need to attack/correct course this often  
+            attackCheckTimeEngaged_sec : 0.6, # once engaged with enemy, check/update course this frequently                
           },
           #  
           #########################################
