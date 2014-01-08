@@ -4241,7 +4241,7 @@ var speed_adjust = func (myNodeName, time_sec ){
     # acceleration during level flight     
     add_velocity_fps =math.sgn (targetSpeed_kt - airspeed_kt) * math.pow(math.abs(fact),0.5) * targetSpeed_kt * time_sec * knots2fps / 70 ; 
     termVel_kt=targetSpeed_kt;
-    #debprint ("Bombable: Speed Adjust, level:", add_velocity_fps*fps2knots );
+    debprint ("Bombable: Speed Adjust, level:", add_velocity_fps*fps2knots, " airspeed: ", airspeed_kt, " termVel: ", termVel_kt, " ", myNodeName );
     
   
   } elsif(sin_pitch>0 ) {
@@ -4280,11 +4280,11 @@ var speed_adjust = func (myNodeName, time_sec ){
       vel1=maxSpeed_kt-airspeed_kt;
       vel2=maxSpeed_kt-termVel_kt;
       
-      add_velocity_fps= - (1 - (vel1/vel2))*grav_fpss*time_sec * sin_pitch*5; 
+      add_velocity_fps= - (1 - (vel1/vel2))*grav_fpss*time_sec * 1.5; 
       
   
                 
-      debprint ("Bombable: Speed Adjust, climbing:", add_velocity_fps*fps2knots );
+      debprint ("Bombable: Speed Adjust, climbing:", add_velocity_fps*fps2knots, " airspeed: ", airspeed_kt, " termVel: ", termVel_kt, " ", myNodeName );
      
   } elsif (sin_pitch<0 ){
   # diving, so we increase our airspeed, tending towards the V(ne)
@@ -4308,8 +4308,8 @@ var speed_adjust = func (myNodeName, time_sec ){
       # may not be realistic but              
       if (termVel_kt>maxSpeed_kt) termVel_kt=maxSpeed_kt; 
                    
-      add_velocity_fps=(1-math.abs(airspeed_kt/termVel_kt))*grav_fpss*time_sec * -sin_pitch;
-      debprint ("Bombable: Speed Adjust, diving:", add_velocity_fps*fps2knots );
+      add_velocity_fps=(1-math.abs(airspeed_kt/termVel_kt))*grav_fpss*time_sec/1.5;
+      debprint ("Bombable: Speed Adjust, diving:", add_velocity_fps*fps2knots, " airspeed: ", airspeed_kt, " termVel: ", termVel_kt, " ", myNodeName );
   
   }   
   
