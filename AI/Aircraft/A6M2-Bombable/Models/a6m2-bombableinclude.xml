@@ -128,7 +128,7 @@
                                #90 degrees = instant turn, unrealistic
                                #up to 80 is usually OK, somewhere in 80-85 starts to be unrealistically fast
                                #>85 is usually very unrealistic.  You must test this in your scenario, however.
-            dodgeMin_deg : 72, #minimum amount to turn when dodging
+            dodgeMin_deg : 69, #minimum amount to turn when dodging
             rollRateMax_degpersec : 55, #you can figure this out by rolling the corresponding FG aircraft and timing a 180 or 360 deg roll                                                                  
             dodgeROverLPreference_percent : 45, # Preference for right turns vs. left when dodging.  90% means 90% right turns, 50% means 50% right turns.
             dodgeAltMax_m : 5000, #Aircraft will begin to move up or down
@@ -153,7 +153,7 @@
             continueAttackAngle_deg : 110, #when within minDistance_m, the aircraft will continue to turn towards the main aircraft and attack *if* if the angle is less than this amount from dead ahead.  A wider angle will make it work more like a twisty/turning fighter, narrower angle more like an energy fighter.
             altitudeHigherCutoff_m : 5000, # will attack the main aircraft unless this amount higher than it or more
             altitudeLowerCutoff_m : 5000, # will attack the main aircraft unless this amount lower than it or more 
-            rollMin_deg : 73, #when turning on attack, roll to this angle min
+            rollMin_deg : 68, #when turning on attack, roll to this angle min
             rollMax_deg : 78, #when turning on attack, roll to this angle max
                                #90 degrees = instant turn, unrealistic
                                #up to 80 is usually OK, somewhere in 80-85 starts to be unrealistically fast
