@@ -1,8 +1,8 @@
 SOPWITH CAMEL: A REALISTIC JSBSIM FLIGHT MODEL - NOTES
 
-Version 1.6
+Version 1.8
 
-Brent Hugh, 6 May 2013
+Brent Hugh, 28 May 2013
 
 brent@brenthugh.com
 
@@ -22,15 +22,14 @@ These operational quirks were openly exploited by combat pilots.
 
 As one writer said:
 
-I enjoyed flying the Camel, but its vices of control instability, extreme 
-control sensitivity and pronounced gyroscopic effects all combined to create 
-the impression of balancing an egg on the point of a needle rather than flying 
-an aircraft . . .
+  I enjoyed flying the Camel, but its vices of control instability, extreme 
+  control sensitivity and pronounced gyroscopic effects all combined to create 
+  the impression of balancing an egg on the point of a needle rather than flying 
+  an aircraft . . .
 
-It was never forced into manoeuvres - they were executed by
-
-light pressure on the controls and subsequently relaxing, or sometimes 
-reversing, the pressure once the desired rate of response was attained.
+  It was never forced into manoeuvres - they were executed by light pressure on 
+  the controls and subsequently relaxing, or sometimes reversing, the pressure 
+  once the desired rate of response was attained.
 
 I set out to create a flight model of the Camel that would incorporate as many 
 of the documented combat flight characteristics of the Camel as possible, and 
@@ -93,7 +92,8 @@ these items on Ver 1.6; tweak dive rate/speed to better match historical Camel.
 
 3 Max sustained turn rate about 76 deg/sec, ie 360 degrees in 4.7 seconds 
 (near stall speed, level flight, sea level). NOTE: Current best time is about 
-8-10 seconds; this matches reported times by Camel pilots of the time and the 4.7 sec/76 deg/sec might not be the most reliable number?
+8-10 seconds; this matches reported times by Camel pilots of the time and the 
+4.7 sec/76 deg/sec might not be the most reliable number?
 
 4 Flown basically with rudder and elevator; rudder initiates turns etc and 
 ailerons only used as assist; many pilots didn't use ailerons much.
@@ -165,7 +165,9 @@ because of gyroscopic force, and correcting this yaw with right rudder caused
 the nose to pitch down sharply. 
 
 4 Steerable tail skid of the Camel helped to overcome a slight swing to the 
-left as I opened the throttle.  (This seems to be only a feature of replica Camels, however it is implemented in FG as otherwise there is no way to maneuver the A/C on the ground. In WWI ground crew would have been used instead.)
+left as I opened the throttle.  (This seems to be only a feature of replica 
+Camels, however it is implemented in FG as otherwise there is no way to 
+maneuver the A/C on the ground. In WWI ground crew would have been used instead.)
 
 4 The tail came up at about 20 knots.
 
@@ -191,7 +193,8 @@ the ground in FG!
 4 In a wind of 10 to 15 knots you are airborne in a couple of plane lengths 
 at 35 mph. 
 
-4 Rate of climb of almost 1,000 feet a minute climbing out of take-off.  TODO: Need to verify/tweak exact climb rates & match to historical data.
+4 Rate of climb of almost 1,000 feet a minute climbing out of take-off.  
+TODO: Need to verify/tweak exact climb rates & match to historical data.
 
 4 Capable of looping, 110 mph required.
 
@@ -204,20 +207,33 @@ in the sky, and faster than any other WWI aircraft I have flown.
 
 4 Ineffective ailerons: Slow roll/ailerons only with level flight requires 
 23 seconds to complete--if it can be done at all (it requires a special 
-technique).  This is reported in a radial engine replica; it is duplicated in Ver. 1.4 almost exactly, with the added feature that roll to the L is noticeable faster/easier than roll to the R, due to large torque of Clerget rotary engine.
+technique).  This is reported in a radial engine replica; it is duplicated in 
+Ver. 1.4 almost exactly, with the added feature that roll to the L is 
+noticeable faster/easier than roll to the R, due to large torque of Clerget 
+rotary engine.
 
 4 Ailerons induce 'awe-inspiring' opposite yaw (ie, yaw to the R on L roll) 
 and much drag.  
 
-4 Starting at level flight, adding full left aileron just moves the nose to the right and it stays there. You don't start rolling right until you coordinate with the rudder as well. (And ditto for full R aileron.) 
+4 Starting at level flight, adding full left aileron just moves the nose to 
+the right and it stays there. You don't start rolling right until you 
+coordinate with the rudder as well. (And ditto for full R aileron.) 
 
 4 In level flight at 100 mph indicated, just a hint of rudder is required 
 for straight flight.
 
 4 Thin airfoil shape affects lift, drag, AOA of stall, etc., and the effects 
-are quite different than for later aircraft with thicker wings. Stall speed: Wikipedia and several other sources report 48 mph/41.7 knots.  However, this does not match up with the Camel's reputed quick turn rate.  Lower stall speed directly equates with quicker turn rate.  A replica Camel reports a stall speed under 40 MPH (35 knots) and Frank Tallman reports stall speed of 35-40 mph (30.4-34.8 knots). A stall speed in this range seems to fit better with the Camel's reported turn rate.  
+are quite different than for later aircraft with thicker wings. Stall speed: 
+Wikipedia and several other sources report 48 mph/41.7 knots.  However, this 
+does not match up with the Camel's reputed quick turn rate.  Lower stall 
+speed directly equates with quicker turn rate.  A replica Camel reports a 
+stall speed under 40 MPH (35 knots) and Frank Tallman reports stall speed of 
+35-40 mph (30.4-34.8 knots). A stall speed in this range seems to fit better 
+with the Camel's reported turn rate.  
 
-4 Current (Ver. 1.4+) drag/lift uses tweaked historical lift/drag curves for the Camel's wing shape and also the known historical zero-lift drag coefficient for the Camel.  
+4 Current (Ver. 1.4+) drag/lift uses tweaked historical lift/drag curves for 
+the Camel's wing shape and also the known historical zero-lift drag 
+coefficient for the Camel.  
 
 3 P factor - evidently the shape of the prop creates a somewhat higher P 
 factor than for later similar aircraft, but the strength of this effect is an 
@@ -284,6 +300,12 @@ soon after regaining erect flight.   NOTE:  This  is  implemented  via  a  Nasal
 routine that tracks fuel in a simple carburetor. Fuel  flows  or  out  depending
 on the forces involved and when the carburetor  runs  out  of  fuel  the  engine
 sputters and stops until the carburetor refills. 
+
+4 Service ceiling 19,600 ft.  Tested in ver. 1.7, by the standard of highest altitude able to sustain 100 fpm climb (1.66 fps).
+
+3.5 The 130HP Clerget Camel was generally lower performance/underperforming for altitudes greater than 10,000-12,000 feet.
+
+
 
 SPECIFICATIONS
 
@@ -377,6 +399,50 @@ agree that this does not materially affect the spinning of an aeroplane.
 
 6. All the pilots agreed that the machine A had certain peculiarities which 
 may be summarised as follows :*
+
+GENERAL CHARACTERISICS.
+
+7. (a) Stalling.-A as usually rigged is tail heavy and longitudinally 
+unstable. This is accentuated when a light Le Rhone engine is substituted for 
+a heavier Clerget and/or where guns and ammunition are removed.
+
+During normal horizontal flight, it is necessary to keep a continuous forward 
+pressure of about 14 Ibs. on the control column. Any relaxation of the pilot's 
+effort is therefore likely to end in a stall. Because of the longitudinal 
+instability of the aeroplane engine failure will be followed by a stall unless 
+the pilot dives the machine.
+
+8. (b) Turning.--Most of the pilots, in the course of their evidence drew 
+attention to the fact that a steeply-banked right hand turn requires full left 
+rudder. This is accounted for by gyroscopic effect.
+
+9. The unsymmetrical forces and couples on an aeroplane arise from engine 
+torque, slipstream and the gyroscopic couple. The first two, torque and 
+slipstream, may produce an unsymmetric setting of the ailerons and rudder 
+respectively. They do not produce effects which depend on the rate of turning 
+to any appreciable extent. The gyroscopic couple alone is capable of 
+explaining the effect mentioned above.
+
+10. The propeller, viewed from the pilot's seat, turns clockwise, and when the 
+aeroplane is turning to the right it tends to put its nose down as a 
+consequence of the gyroscopic couple. The tendency is countered by left rudder 
+and back (or top) elevator. Turning to the left, the nose of the aeroplane 
+tends to go up, and this effect is countered by left rudder and forward (or 
+bottom) elevator.
+
+From the evidence of the witnesses it is apparent that practically all flyers 
+feel strongly the need of a larger rudder surface.
+
+14. (d) Looping.-In the case of A all violent use of the controls must be 
+avoided. With the stick pulled too hard back, the machine will fail to 
+complete the loop. Further, if a straight loop is required, left rudder must 
+be used to counteract gyroscopic effect, and it was stated by one witness that 
+the rudder was barely sufficient for this manoeuvre.
+
+15 (e) Spinning.-The general method adopted when getting into a tight hand 
+spin is :* 
+
+(i) Cut off engine.
 
 (ii) Pull back control stick.
 
@@ -897,6 +963,62 @@ fact that one set of wings are wrapped around the nose, and the other set are
 wrapped around the tail, indicating that the plane was rotating when it hit.
 
 http://www.djaerotech.com/dj_askjd/dj_questions/short_coupled.html
+
+---
+
+Camel Spinning, Camel Gyroscopic couple & rudder effectiveness compared to the 
+SE5a
+
+From: British Aviation, The Great War and Armistice 1915-1918 by Harold 
+Penrose. page 376
+
+Even more worrying were Camel crashes through spinning, for the S.E.5a was 
+comparatively immune when flown under similar circumstances. Camels were 
+usually rigged tail-heavy with full tank and were then longi­tudinally 
+unstable like the D.H.6. This was accentuated when the lighter Le Rhone was 
+substituted for a Clerget, or guns and ammunition were removed. Usually a 
+continuous forward pressure of some 14 lb was re­quired on the control column 
+when in normal horizontal flight; any relaxation ended in a stall, and so did 
+engine failure unless the pilot instantly dived the machine.
+
+In the course of evidence on the machine's behaviour, most pilots drew 
+attention to the necessity of applying full left rudder in a steeply banked 
+right-hand turn. Torque and slipstream pro­duced unsymmetrical settings of 
+aileron and rudder, but not effects dependent on rate of turn to any great 
+extent, the gyroscopic couple alone being capable of that. Propeller and 
+engine revolved clockwise, viewed from the pilot's seat, so when the aeroplane 
+was turning right the gyro­scopic couple put the nose down, countered by top, 
+that is left, rudder and back elevator.
+
+Analysis showed that the effective couple produced by a given setting of the 
+rudder on a Camel was 40 per cent less than for the S.E.5a, whereas the 
+gyroscopic couple to be counteracted was more than twice as great. To make the 
+two machines equally effective would necessi­tate doubling the Camel's rudder 
+area.
+
+It was immediately evident with a Camel that violent use of elevator must be 
+avoided, for when the stick was pulled back too hard the machine would not 
+complete a loop. By contrast, full left rudder could scarcely keep a loop 
+straight, but surprisingly when it came to spinning, the rudder was relatively 
+unimportant. As soon as the stick was pulled hard back and the machine stalled 
+fully it would flick into a spin, but quickly stopped if the column was eased 
+slightly forward with other controls neutral, and could be stopped almost 
+instantly by reversing the rudder as well as giving forward stick -though this 
+induced a violent manoeuvre, and lack of skill could result in the machine 
+entering a reverse spin. If the pilot became dizzy the Camel would not come 
+out of a spin with controls free, and only slowly ifall controls were held 
+central. That forward push on the stick was essential.
+
+---
+
+Flight International 2 May 1968, By RONALD SYKES, DFC
+
+"Pull up into a stall and apply the usual encouragement from the rudder; the 
+Camel will then cartwheel over and then flick into a spin (which, with the 
+stick held right back, will be a fast one). Centralize the controls and after 
+about four more turns the machine will come out of the spin: it can be forced 
+out more quickly, by applying opposite rudder and pushing the stick forward 
+briskly, though this does not always have the desired result."
 
 ---
 
