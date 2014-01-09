@@ -22,7 +22,7 @@ Sources & Acknowledgements: See SopwithCamel-Realistic-JSBSim-Flight-Model-Notes
 
 <!-- Max sustained turn rate is about 76 deg/sec.  That is near stall speed, level flight, at sea level.  http://home.comcast.net/~clipper-108/AIAAPaper2005-119.pdf p. 7 -->
 
-<!-- "I lived its quick response - it was so remarkably swift and sensitive that it demanded constant attention.  The torque caused the nose to rise in a left-hand turn and drop in a right-hand turn.  Fairly large amounts of left rudder were needed in bothturns to correct for these idiosyncrasis. The tiny biplane was so snesitive in a turn, however, that if the turn were tightened just a little, it was likely to whip into a tight spin - quickly and without warning.  Oddly this very ease for spining was used in combat by many pilots to shake a persisten German from their tails. sopwith Came vs Fokker Dr 1: Western Front 1917-18 by Jon Guttman, Harry Dempsey, quoting from mark Curtis Kinney's memoir, I Flew a Camel 
+<!-- "I lived its quick response - it was so remarkably swift and sensitive that it demanded constant attention.  The torque caused the nose to rise in a left-hand turn and drop in a right-hand turn.  Fairly large amounts of left rudder were needed in bothturns to correct for these idiosyncrasis. The tiny biplane was so snesitive in a turn, however, that if the turn were tightened just a little, it was likely to whip into a tight spin - quickly and without warning.  Oddly this very ease for spining was used in combat by many pilots to shake a persistent German from their tails. sopwith Came vs Fokker Dr 1: Western Front 1917-18 by Jon Guttman, Harry Dempsey, quoting from mark Curtis Kinney's memoir, I Flew a Camel 
 
 Here is a description about the Camel's traits from BARKER VC, (via author Wayne Ralph at http://www.theaerodrome.com/forum/2001/11306-sopwith-camel-flight-characteristics.html ):
 
@@ -144,7 +144,7 @@ http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
 <fdm_config name="Sopwith Camel" version="2.0" release="Alpha">
 
     <fileheader>
-        <author> Brent Hugh</author>
+        <author>Aeromatic / Brent Hugh</author>
         <filecreationdate> 2011-10-29 </filecreationdate>
         <description>Sopwith Camel with Weapons, matches available data for climb, max speed, general handling</description>
         <version>Version 1.6</version>
@@ -613,8 +613,9 @@ for the rudder to contribute very much to yaw stability.
 
 				However, as far as p_factor & torque is concerned, JSBSim seems to have it right.
                 
-                So what we're going to do is put in sense=1 here to get correct p_factor and torque effects, but then put in a correction down in the aero section
-				to correct the moments, which JSBSim seems to have reversed.
+                So what we're going to do is put in sense=-1 here to get correct gyroscopic effect, then we will use a function below in the aero section (roll)to correct (reverse) the torque effect, and we will insert a negative p_factor to correct that effect.
+                
+                (In an earlier version I tried using sense=1 and then aero functions to reverse/correct the gyroscopic effect, but that didn't seem to work well, perhaps because the gyroscopic effect is large and can change quite quickly, leading to lag problems.  At any rate, reversing the torque appears to work better, and requires only one function rather than two so it is simpler.)
                 -->
                 <sense>-1</sense>
                 <location unit="IN">
@@ -951,12 +952,12 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
 5	0.512
 6	0.574
 8	0.69
-10	0.79
-12	0.896
-14	0.99
-16	1.062
-18	1.066
-20	1.042
+9	0.79
+10	0.896
+11	0.99
+12	1.062
+14	1.066
+16	1.042
 30	0.7
 60	0.3
 90	0
@@ -1081,12 +1082,12 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
 5	0.0105
 6	0.015
 8	0.025
-10	0.032
-12	0.045
-14	0.0633
-16	0.08
-18	0.125
-20	0.22
+9	0.032
+10	0.045
+11	0.0633
+12	0.08
+14	0.125
+16	0.22
 30	0.39
 60	1.39
 90	2.79
@@ -1139,9 +1140,9 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                          -160           .2
                           -90           1.2        
                           -30           0.15    
-                          -10           0.02    
+                          -10           0.03    
                           0             0
-                          10            0.02
+                          10            0.03
                           30.0          0.15        
                           90            1.2
                           160           .2
@@ -1206,6 +1207,19 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <value>0.015</value>
                 </product>
             </function>
+            
+            <function name="aero/force/Drag_asymmetric_stall">
+                <description>Drag due to one wing stalling before the other</description>
+                <product> 
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <abs>
+                        <property>aero/moment/Yaw_Cnalphabeta</property>
+                    </abs>
+                    <value>0.00014</value>
+                </product>
+            </function>
+              
 
 
         </axis>
@@ -1261,7 +1275,18 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                 <description>This reverses the roll moment of the propeller, which we have reversed to compensate for the reversed sense of the gyroscopic moment in JSBSim</description>
                 <product>
                     <property>moments/l-prop-lbsft</property>
-                    <value>-2</value>
+                    <!-- <value>-2</value> -->
+                    <!-- The table compensates for another JSBSim bug: When the engine is off, 0 RPM, JSBSim still creates considerable roll torque from the engine (!). So when RPM is 0, this simply negates the roll moment from the engine.  When >0, it reverses it. -->
+                    <table>
+                        <independentVar>propulsion/engine/engine-rpm</independentVar>
+                        <tableData>
+                          0      -1
+                          0.1    -2
+                          1000   -2       
+                        </tableData>
+                    </table>
+                    
+                    
                 </product>
             </function>
             
@@ -1322,8 +1347,26 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     -->
                 </product>
             </function>
-            <function name="aero/moment/Roll_damp">
-                <description>Roll moment due to roll rate</description>
+            <function name="aero/moment/Roll_damp_rotation">
+                <!-- camel is poorly damped and won't get out of spin/dive/etc just by releasing the controls -->
+                <description>Roll moment (damping) due to roll rate</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/bw-ft</property>
+                    <property>aero/bi2vel</property>
+                    <property>velocities/p-aero-rad_sec</property>
+                    
+                    <!-- Aeromatic value was -0.4 -->
+                    
+                    <!-- <value>0.9</value> -->
+                    <!-- We should be able to adjust this parameter to give the Camel's known rate of rotation in spins: "Its time period is 1 to 2 seconds, and the loss of height per turn 150 to 200 feet." -->
+                    <value>-.0125</value><!-- testing -->
+                </product>
+            </function>         
+            <function name="aero/moment/Roll_damp_lift">
+                <!-- camel is poorly damped and won't get out of spin/dive/etc just by releasing the controls -->
+                <description>Roll moment (damping) due to lift/wings</description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
@@ -1348,54 +1391,31 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     
                     <!-- <value>0.9</value> -->
                     
-                    <value>1.9</value><!-- testing -->
-                     
-          					<table>
-                        <independentVar>velocities/p-aero-rad_sec</independentVar>
+                    <!-- <value>-.27</value> --> <!-- testing -->
+                    <value>-.27</value>
+                    <!-- "the angle of attack is stable when it is less than the stalling angle.[1][3] The aircraft displays damping in roll.  . . .  the angle of attack is unstable when it is greater than the stalling angle. Any disturbance of the angle of attack on one wing will cause the whole wing to roll spontaneously and continuously." http://en.wikipedia.org/wiki/Autorotation_(fixed-wing_aircraft)   
+                    In short, roll damp is high when the AOA is less than stall, but roll damp greatly decreases when AOA becomes higher than stall.
+                    -->
+                    <table>
+                        <independentVar>aero/alpha-deg</independentVar>
                         <tableData>
-                          -100         -0.25
-                          -6.28        -0.75
-					              	-5           -0.005 
-                          -3.14        -0.005     
-                          -1.9         -0.05
-                    
-                          -1.1         -0.25       
-                          -0.01        -0.27
-                          0            -.3
-                          0.01          -0.27
-                          1.1          -0.25 
-                              
-                          1.9          -0.05        
-                          3.14         -0.005
-						              5            -0.005
-						              6.28         -0.75
-                          100          -0.25
+                          -90         0.001
+                          -35          .001
+                          -18          .1
+                          -15          1
+					              	-13          1 
+                          0            1 
+                          13           1
+                          15           1
+                          18           .1
+                          35          0.001
+                          90          0.001
                         </tableData>
                         
-                        <!--
-                        <tableData>
-                          -100         -0.25
-                          -6.28        -0.75
-					              	-5           -0.005 
-                          -3.14        -0.005     
-                          -2.5         -0.1 
-                          -0.4         -0.1       
-                          0            -0.35
-                          0.4          -0.1           
-                          2.5          -0.1        
-                          3.14         -0.005
-						              5            -0.005
-						              6.28         -0.75
-                          100          -0.25
-                        </tableData>
-                        -->
-                    </table>
-                    
-
-                    <!-- camel is poorly damped and won't get out of spin/dive/etc just by releasing the controls -->
-                    
+                    </table>   
                 </product>
             </function>
+
             <function name="aero/moment/Roll_yaw">
                 <description>Roll moment due to yaw rate</description>
                 <product>
@@ -1507,41 +1527,46 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                #roll to the left as the stall deepens.
                #this commented out for Camel.
                
+               The idea is that one wing stalls before the other.  When it stalls, it loses lift (equivalent of adding roll towards that wing) and adds drag (equivalent of yawing towards that wing)
+
+               
                Camel: The idea of the p-aero-rad-_sec table is to turn the spin in the 
                direction of the current spin, ie, spin in the direction the
                AC is already spinning, if any.
                If we were tricky we could probably dot the yaw & spin together or something.
             -->
            <function name="aero/moment/Roll_Clalpha">
-                <description>roll_moment_due_to_alpha</description>
+                <description>roll_moment_due_to_alpha_and_roll_rate</description>
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
-                    <value>300</value><!-- testing -->
+                    <value>1</value> <!-- for testing, set to 0 to disable or 1 to enable -->
+                    <value>40</value>
                     <table>
-                        <independentVar>velocities/r-aero-rad_sec</independentVar>
+                        <independentVar>velocities/p-aero-rad_sec</independentVar>
+                        <!-- <independentVar lookup="row">aero/beta-deg</independentVar> -->
                         <tableData>
                           -34.15             -1
-                          -.0001             -1
+                          -.25                -1
                           0                  0
-                          .0001             1
-                          34.15             1       
+                          .25                 1
+                          34.15              1       
                         </tableData>
                     </table>
                     <table>
                         <independentVar lookup="row">aero/alpha-deg</independentVar>
                         <independentVar lookup="column">aero/Re</independentVar>
                         <tableData>
-                                          0  5000000  10000000   20000000
+                                          0  1000000  10000000   20000000
                                  -180.0    0.0    -0.0005   -0.00025   -0.000025                                          
-                                 -24.0    0.0    -0.0005   -0.00025   -0.000025
-                                 -20.8      0.0    -0.00025 -0.000125 -0.0000125
-                                 -16.8      0       0       0         0
+                                 -21.0    0.0    -0.0003   -0.00015   -0.000015
+                                 -18.8    0.0    -0.00025 -0.000125 -0.0000125
+                                 -15      0       0       0         0
                                    0.0    0.0     0.0     0.0       0.0
-                                  16.8      0       0       0         0
-                                  20.8      0.0     0.00025 0.000125  0.00000125
-                                  24      0.0     0.0005  0.00025   0.0000025
+                                  15      0       0       0         0
+                                  18.8    0.0     0.00025 0.000125  0.00000125
+                                  21      0.0     0.0003  0.00015   0.0000015
                                   180      0.0     0.0005  0.00025   0.0000025
                         </tableData>
                     </table>
@@ -1552,6 +1577,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
         </axis>
         <axis name="PITCH" unit="LBS*FT">
             <function name="aero/moment/Pitch_alpha">
+                <!-- This is (basically/simplified) the propensity of the tail + body shape to point the nose into the wind in the alpha direction -->
                 <description>Pitch moment due to alpha</description>
                 <product>
                     <property>aero/qbar-psf</property>
@@ -1559,26 +1585,55 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <property>metrics/cbarw-ft</property>
                     <!-- <property>aero/alpha-rad</property> plain alpha-rad is OK for small values, but for larger than abs(1) or so, need sin(alpha-rad) instead-->
                     
-                    <table>
+                    <!-- <table>
                         <independentVar>aero/alpha-rad</independentVar>
                         <tableData>
-                          -3.415            -0
-                          -3.4              -2.4
-                          -.200             -0.2
+                          -3.415            .5
+                          -2.55              1
+                          -1.7               0
+                          -.85              -1
                           0                  0
-                          .2                 0.2
-                          3.4                2.4
-                          3.415              0       
+                          .85                1
+                          1.7                0
+                          2.5                -1
+                          3.415              -.5       
                         </tableData>
                     </table>
-                    
-                    
-                    <!-- <sin>
-                        <property>aero/alpha-rad</property>
-                    </sin> -->
+                    -->
+                    <!-- <table>
+                        <independentVar>aero/alpha-rad</independentVar>
+                        <tableData>
+                          -3.415            0
+                          -.2              -.2
+                          0                 0
+                          .2                .2
+                          3.415             0       
+                        </tableData>
+                    </table>
+                    -->
+                    <!-- The idea is that because of turbulence from the wings, blockage by the body etc. the self-correcting pitch_alpha moment is smaller when alpha is small. -->
+                    <table>
+                        <independentVar>aero/alpha-deg</independentVar>
+                        <tableData>
+                          -180            1
+                          -51             .81
+                          -18             .5
+                          -15             .3
+                          -13             .3
+                          0               .3
+                          13              .3
+                          15              .3
+                          18              .5
+                          51              .8
+                          180             1
+                        </tableData>
+                    </table>
+                    <sin>
+                    <property>aero/alpha-rad</property>
+                    </sin>
                     
                     <!-- <value>-0.5</value> orig -->
-                    <value>-0.5</value>
+                    <value>-.5</value>
                 </product>
             </function>
             
@@ -1646,7 +1701,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
 
                 </product>
             </function>
-            <function name="aero/moment/Pitch_damp">
+            <function name="aero/moment/Pitch_damp_rotation">
                 <description>Pitch moment due to pitch rate</description>
                 <product>
                     <property>aero/qbar-psf</property>
@@ -1658,26 +1713,46 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <!-- Aeromatic value was -12; this is replaced by the value * table value 
                     below, to reduce the damping values for the Camel --> 
                     
-                    <value>-12</value>
+                    <value>-.05</value>
+                    <!-- Camel is pretty poorly damped in most all ways -->
+                </product>
+            </function>
+            
+            <function name="aero/moment/Pitch_damp_lift">
+                <description>Pitch moment due to pitch rate</description>
+                <product>
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/cbarw-ft</property>
+                    <property>aero/ci2vel</property>
+                    <property>velocities/q-aero-rad_sec</property>
+
+                    <!-- Aeromatic value was -12; this is replaced by the value * table value 
+                    below, to reduce the damping values for the Camel --> 
                     
+                    <value>-1</value>
+                                        
+                    <!-- "the angle of attack is stable when it is less than the stalling angle.[1][3] The aircraft displays damping in roll.  . . .  the angle of attack is unstable when it is greater than the stalling angle. Any disturbance of the angle of attack on one wing will cause the whole wing to roll spontaneously and continuously." http://en.wikipedia.org/wiki/Autorotation_(fixed-wing_aircraft)   
+                    In short, pitch damp is high when the AOA is less than stall, but pitch damp greatly decreases when AOA becomes higher than stall.
+                    -->
                     <table>
-                        <independentVar>velocities/q-aero-rad_sec</independentVar>
+                        <independentVar>aero/alpha-deg</independentVar>
                         <tableData>
-                          -32.14        0.2
-						              -9            0.2  
-                          -2            0.02
-						              -1.57         0.2        
-                          -0.7          0.2
-                          -0.25         0.5        
-                          0             1.5
-                          0.25          0.5           
-                          0.7           0.2
-                          1.57          0.2       
-						              2             0.02
-                          9             0.2
-						              32.14         0.2        
+                          -100         0.001
+                          -35          .001
+                          -18          .1
+                          -15          1
+					              	-13          1 
+                          0            1 
+                          13           1
+                          15           1
+                          18           .1
+                          35           .001
+                          100          0.001
                         </tableData>
+                        
                     </table>
+
 
                     <!-- orig: <value>-12</value> -->
                     <!-- Camel is pretty poorly damped in most all ways -->
@@ -1694,6 +1769,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <!-- <property>aero/alphadot-rad_sec</property>       -->
                     
                     <!-- If this is allowed to grow unrestricted there are pretty nasty results, at slow speed stalls -->
+                    
                     <table>
                         <independentVar>aero/alphadot-rad_sec</independentVar>
                         <tableData>
@@ -1707,7 +1783,8 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     </table>
                     
                     
-                    <value>-7</value>
+                    <!-- <value>-7</value> Aeromatic -->
+                    <value>-3.5</value>
                 </product>
             </function>
 
@@ -1721,7 +1798,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
             <function name="aero/moment/Pitch_burble">
                 <description>Pitch moment due to burble at high speeds</description>
                 <product>
-                     <value> 1200 </value>
+                     <value> 600 </value>
                      <!-- <abs> 
                        <urandom/>
                      </abs>
@@ -1972,6 +2049,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
         
         <axis name="YAW" unit="LBS*FT">
             <function name="aero/moment/Yaw_beta">
+                <!-- Basically/simplified, the propensity of the tail area/body to push the a/c nose back into the wind in the YAW direction -->
                 <description>Yaw moment due to beta</description>
                 <product>
                     <property>aero/qbar-psf</property>
@@ -1980,10 +2058,10 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <!-- <property>aero/beta-rad</property> plain alpha-rad is OK for small values, but for larger than abs(1) or so, need sin(alpha-rad) instead-->
                     <sin>
                         <property>aero/beta-rad</property>
-                    </sin>
+                    </sin>       
                     
-                    <!-- <value>0.12</value> orig -->
-                    <value>0.12</value>
+                    <!-- aeromatic <value>0.12</value> orig -->
+                    <value>0.08</value>
                 </product>
             </function>
             <function name="aero/moment/Yaw_damp">
@@ -2013,17 +2091,17 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                         <tableData>
                           -32.14        -0.050
 						              -9            -0.03  
-                          -2            -0.003
+                          -2            -0.008
 						              -1.57         -0.01        
                           -0.7          -0.03                       
                           -0.25         -0.05
-                          -0.01          -0.40     
-                          0              -0.5
-                          0.01           -0.40
+                          -0.01          -0.80     
+                          0              -1.5
+                          0.01           -0.80
                           0.25          -0.05           
                           0.7           -0.03
                           1.57          -0.01       
-						              2             -0.003
+						              2             -0.008
                           9             -0.03
 						              32.14         -0.05        
                         </tableData>
@@ -2155,6 +2233,18 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                           400           0       
                         </tableData>
                     </table>
+                    <table>
+                        <!-- Adverse yaw increases with stall, per http://en.wikipedia.org/wiki/Stall_(flight) -->
+                        <independentVar lookup="row">aero/alpha-deg</independentVar>
+                        <tableData>
+                        -70    0
+                        -25    2
+                        -14    1
+                        14     1
+                        25     2
+                        70     0
+                        </tableData>
+                    </table>
                 </product>                                                 
             </function>
             
@@ -2179,21 +2269,46 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                speed is.
                Which wing is dropped and how hard it
                drops depends on the beta angle.
+               The idea is that one wing stalls before the other.  When it stalls, it loses lift (equivalent of adding roll towards that wing) and adds drag (equivalent of yawing towards that wing)
             -->
            <!-- This is based on p51d-jsbsim.xml, modified to produce better/more realistic results for the Camel --> 
             
            <function name="aero/moment/Yaw_Cnalphabeta">
                 <description>Yaw_moment_due_to_alpha-beta</description>
                 <product>
-                    <value>0</value> <!-- set to 0 to disable for testing; 1 to enable -->
-                    <value> -2.5 </value>
+                    <value>1</value> <!-- set to 0 to disable for testing; 1 to enable -->
+                    <value> -1 </value>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
-                    <value>1</value><!-- testing -->
                     <!-- See Yaw_Cnalphabeta Table worksheet in Camel-JSBSim-calcs.xlsx workshop for the original/editable table -->
-
                     <table>						
+                        <independentVar lookup="row">aero/alpha-deg</independentVar>						
+                        <independentVar lookup="column">aero/beta-deg</independentVar>						
+                        						
+                        <tableData>						
+						
+                              -90	  -20   	-2    	2.5   	20   	90
+                          -90	  0	0.005	  0.003	-0.003	-0.005	 0
+                          -40	  0	0.005	  0.003	-0.003  -0.005	 0
+                          -25.7	0	0.005	  0.003	-0.003	-0.005	 0
+                          -20.3	0	0.005	  0.003	-0.003	-0.005	 0
+                          -17.9	0	0.005	  0.003	-0.003	-0.005	 0
+                          -16.4	0	0.0005	  0.0003	-0.0003	-0.0005	 0
+                          -15	  0	0	0	0	0	0                      
+                            0	0	0	0	0	0	0
+                          15	  0	0	0	0	0	0
+                          16.5	0	0.001	  0.0005	-0.0005 -0.001	 0
+                          17	  0	0.015   0.006	 -0.006	  -0.015	 0
+                          20.4	0	0.025   0.008	 -0.008	  -0.025	 0
+                          21.8	0	0.035   0.01	 -0.01	  -0.035	 0
+                          22.5	0	0.05	  0.012	 -0.012 	-0.05	   0
+                          27.5	0	0.0625	0.013	 -0.013 	-0.0625  0
+                          40.5	0	0.0625 	0.013	 -0.013  	-0.0625	 0
+                          90	  0	0.0125	0.005	 -0.005 	-0.0125  0
+                        </tableData>
+                    </table>   						
+<!--                    <table>						
                         <independentVar lookup="row">aero/alpha-deg</independentVar>						
                         <independentVar lookup="column">aero/beta-deg</independentVar>						
                         <independentVar lookup="table">aero/Re</independentVar>						
@@ -2320,7 +2435,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
 						
                         </tableData>						
                     </table>						
-
+-->
 
 
 
