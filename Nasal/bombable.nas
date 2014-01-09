@@ -1,7 +1,7 @@
 #####################################################
 ## Bombable
 ## Brent Hugh, brent@brenthugh.com
-var bombableVersion = "4.5";
+var bombableVersion = "4.5b";
 ## 
 ## Copyright (C) 2009 - 2011  Brent Hugh  (brent@brenthugh.com)
 ## This file is licensed under the GPL license version 2 or later.
