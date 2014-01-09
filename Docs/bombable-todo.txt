@@ -1,8 +1,8 @@
 TODO LIST FOR BOMBABLE
-(for FlightGear ver 1.9.0, 1.9.1, 2.0, 2.4.0)
+(for FlightGear ver 1.9.0, 1.9.1, 2.0, 2.4.0, 2.6.0, 2.8.0. 2.10.0, 2.12.x)
 
 Brent Hugh, brent@brenthugh.com
-Available at http://brenthugh.com/flightgear/bombable4-2.zip
+Available at http://brenthugh.com/flightgear/bombable4-5b.zip
 
 Some of these have been accomplished--marked with an X.
 

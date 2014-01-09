@@ -1,8 +1,8 @@
-BOMBABLE: FLIGHTGEAR BOMBING RANGE, DOGFIGHTING, AND TANK SCENARIOS, ver 4.5
-(for FlightGear ver 1.9.0, 1.9.1, 2.0, 2.4.0, 2.6.0, 2.8.0, 2.10.0)
+BOMBABLE: FLIGHTGEAR BOMBING RANGE, DOGFIGHTING, AND TANK SCENARIOS, ver 4.5b
+(for FlightGear ver 1.9.0, 1.9.1, 2.0, 2.4.0, 2.6.0, 2.8.0, 2.10.0, 2.12.x)
 
 Brent Hugh, brent@brenthugh.com
-Available at http://brenthugh.com/flightgear/bombable4-5.zip
+Available at http://brenthugh.com/flightgear/bombable4-5b.zip
 
 SHORT INSTRUCTIONS:
 

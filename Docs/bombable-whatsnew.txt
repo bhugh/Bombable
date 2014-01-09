@@ -1,9 +1,89 @@
 WHAT'S NEW WITH BOMBABLE
-(for FlightGear ver 1.9.0, 1.9.1, 2.0, 2.4.0, 2.6.0, 2.8.0, 2.10.0)
+(for FlightGear ver 1.9.0, 1.9.1, 2.0, 2.4.0, 2.6.0, 2.8.0, 2.10.0, 2.12.0, 2.12.1)
 
 Brent Hugh, brent@brenthugh.com
-Available at http://brenthugh.com/flightgear/bombable4-4.zip
+Available at http://brenthugh.com/flightgear/bombable4-5b.zip
 
+4.5b
+------------------------
+ * AIRCRAFT UPDATE: Includes Historically Accurate JSBSim Sopwith Camel 
+ver 1.6.  The new JSBSim Camel, ver. 1.5, was Aircraft of the Month for May 
+2013.  Ver. 1.6 of the JSBSim Camel FDM is improved a great deal thanks to 
+feedback received from users during that month.
+
+  - Both the 1.5 and 1.6 versions of the Camel are included in this package. 
+    Version 1.5 is more conventional while Version 1.6 is more historically 
+    accurate and quirky.
+ 
+  - Version 1.6 is identified as "sopwithCamel-Bombable16".  To fly the 
+    historically accurate flight dynamics model, choose the JSBSim version.  
+    You will find it quite difficult to control and to fly, with many quirks--
+    just as the real, historical Camel.
+  
+  - The YASim version is included as well (both in versions 1.5 and 1.6).  
+    The YASim flight dynamics model for the Camel is more 'plain vanilla' and 
+    flies much like a modern aircraft.  It is much easier to fly--definitely 
+    lacking many of the well documented historical quirks of the real Camel.
+  
+  - Read much more about thie historically accurate JSBSim Camel project in 
+    your Flightgear Aircraft directory: \Aircraft\sopwithCamel-Bombable\Docs  
+   
+ * FLIGHTGEAR 2.12 COMPATIBILITY: Bombable is compatible with FG 2.12.x 
+with only minor adaptations--see below.
+
+ * FLIGHTGEAR AI SCENARIOS, MAJOR UPDATE: A major change in Flightgear 2.12 
+affects Bombable AI scenarios. On Flightgear reset (file/reset in the menu or 
+shift-esc), Flightgear does not re-load any AI scenario you loaded when first 
+starting Flightgear.  So if you start Flightgear with a Bombable AI scenario, 
+then crash before completing it and reset, your scenario just disappears when
+you reset. 
+
+This is easily remedied:  After the re-set, just go to AI/Traffic and Scenario 
+Settings and select the scenario that you wish to use.  You can choose the 
+scenario(s) that you used when you originally started FG -OR- any other 
+scenario you would like to use.
+
+This is part of work by Flightgear developers to improve Flightgear 
+usability--now you can start, stop, or change an AI scenario using the menu. 
+You don't need to quit a re-start Flightgear
+
+ * BOMBABLE IMPROVEMENT, SCENARIO RESPAWNING: Re-spawn any scenario close to 
+you--either re-grouping the scenario aircraft and vehicles near you (with 
+aircraft at your current altitude) -OR- preserve their current relative 
+positions and altitudes.
+
+This new/updated feature is in the Bombable/Options menu.
+
+Together with Flightgear's updated 'live' AI Scenario system, this means 
+you can have ANY of the Bombable scenarios active in ANY location instantly, 
+and switch from any location and any scenario to any other instantly without 
+re-starting Flightgear.  Here is how:
+
+ - Go to AI/Traffic and select or de-select whichever scenarios you wish to 
+   use.  All scenarios with prefix "Bomb-" are designed to work with Bombable.
+ 
+ - Go to Bombable/Bombable Options and click one of the "Respawn" buttons--
+   you have several different options to bring the scenario close to your
+   current location.
+ 
+ - If you choose the 'preserving relative position' options the scenarios 
+   will be brought to your location while preserving the relative position and 
+   altitudes of scenario aircraft.  For instance, the B17 Bombers with F6F 
+   Hellcat Cover scenario will move the B17 bombers in their original formation 
+   and the F6F Hellcats in their original formation several thousand feet higher
+  
+  - To check that scenarios were moved to your location properly, select 
+    "Equipment/Map" and on the map click checkbox 'Traffic'.
+  
+ * UPDATE: Updates/improvements to acrobatic maneuvering of aircraft.
+ 
+ * IMPROVEMENT: Improvements to flight modelling of AI aircraft so that they 
+more closely match the maneuverability and speed of the corresponding 
+Flightgear aircraft when climbing, diving, turning, etc.
+  
+ * BUGS: Numerous minor bugfixes and improvements.     
+
+ 
 4.5
 ------------------------
 Bombable is now compatible with FG 2.10 (as well as 2.8, 2.6 
