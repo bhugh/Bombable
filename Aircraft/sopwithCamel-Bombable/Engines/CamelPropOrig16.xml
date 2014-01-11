@@ -20,13 +20,11 @@
 -->
 
 <propeller name="prop">
-  <!--NOTE: 1 (slug * (ft^2)) = 1.35581795 kg * (m^2) -->
-  <!-- <ixx>  22.01 </ixx> --> <!-- slug * ft^2 Aero-Match generated amount based on 70 lb prop only -->
-  <!-- <ixx>  38.01 </ixx> --><!-- slug * ft^2 first WAG based on performance.  Ver 1.6, 5/6/2013, I'm going back to this because it seems to fit descriptions of performance and characteristics best.  I'm not sure if it if the best estimate or if it just fits in best with various other modelling and design decisions. -->
+  <!-- <ixx>  22.01 </ixx> --> <!-- Aero-Match generated amount based on 70 lb prop only -->
+  <ixx>  38.01 </ixx> <!-- first WAG based on performance.  Ver 1.6, 5/6/2013, I'm going back to this because it seems to fit descriptions of performance and characteristics best.  I'm not sure if it if the best estimate or if it just fits in best with various other modelling and design decisions. -->
   <!-- Prop is 18kg per http://books.google.com/books?id=dM8qAAAAMAAJ&pg=PA791&lpg=PA791&dq=sopwith+camel+%22weight+of+wings%22&source=bl&ots=uQJawBEvdL&sig=ectotxNiSI9A0GR-QleJJ3QOYRY&hl=en&ei=eLvCTpiJJZGpsALDqcSLCw&sa=X&oi=book_result&ct=result&resnum=1&ved=0CBoQ6AEwAA#v=onepage&q=sopwith%20camel%20%22weight%20of%20wings%22&f=false 
   That equals 39.7 pounds and leads to the calculation below.-->
-  <!-- <ixx unit="KG*M2">  20.18 </ixx> --> <!-- See calculation spreadsheet - 12.14 for 18kg prop plus 8.04 for 381 lb clerget (much heavier but also much closer to the center of rotation in than the prop). This is in metric units, kg-m^2.  The rotary engine nearly doubles the moment of inertia compared with inline engine & prop. -->              
-  <ixx unit="KG*M2">  30.18 </ixx>          
+  <!-- <ixx unit="KG*M2">  20.18 </ixx> --> <!-- See calculation spreadsheet - 12.14 for 18kg prop plus 8.04 for 381 lb clerget (much heavier but also much closer to the center of rotation in than the prop). This is in metric units, kg-m^2.  The rotary engine nearly doubles the moment of inertia compared with inline engine & prop. -->                        
   
   <!-- <ixx unit="KG*M2">  12.47 </ixx> --> <!-- "Rough estimate" per historical doc -->
   

@@ -72,7 +72,11 @@ SRC: http://www.theaerodrome.com/forum/2001/10278-clerget-9b-fuel-consumption.ht
  <stroke unit="IN">  6.2992  </stroke>
  <bore unit="IN">    4.72441 </bore>
  <cylinders>         9.0  </cylinders>
- <compression-ratio> 4.0 </compression-ratio> 
+ <!-- Wikipedia: Compression ratio: 9B: 4.56:1, 9Bf: 5.3:1 -->
+ <!-- The compression ratio affects volumetric efficiency at altitude, may need to be tweaked to give proper performance at high altitude and the correct service ceiling -->
+ <compression-ratio> 4 </compression-ratio>  <!-- VER 1.6: 4.0-->
+ <!-- reducing static friction from 1.5 to .5 HP ensures that the prop does not stop while the a/c is moving.  I haven't read of any occurences of the Camel prop stopping during flight (say, during inverted flight) and then not re-starting due to windmilling, so evidently this is how the a/c really did work. -->
+ <static-friction  unit="HP"> 0.1 </static-friction>
  
  
 </piston_engine>
