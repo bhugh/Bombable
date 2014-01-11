@@ -194,7 +194,7 @@
 	</sim>
 
 	<input>
-		<keyboard>
+	  <keyboard include="../Generic/WalkView/walk-view-keys.xml">
 			<!-- map keys for mag switches  -->
 			<key n="123">
 				<name>{</name>
@@ -298,35 +298,35 @@
 					<script>aircraft.livery.dialog.toggle()</script>
 				</binding>
 			</key>
-                        <!-- Fire gun -->
-                        <!-- We do both triggers just to be safe -->
-                        <key n="101">
-                           <name>e</name>
-                           <desc>Gun Trigger</desc> 
-                           <binding>
-                            <command>property-assign</command>
-                            <property>ai/submodels/trigger</property>
-                            <value>true</value>
-                           </binding>
-                           <binding>
-                            <command>property-assign</command>
-                            <property>controls/armament/trigger</property>
-                            <value>true</value>
-                           </binding>
-                           <mod-up>
-                            <binding>
-                             <command>property-assign</command>
-                             <property>ai/submodels/trigger</property>
-                             <value>false</value>
-                            </binding>
-                            <binding>
-                            <command>property-assign</command>
-                            <property>controls/armament/trigger</property>
-                            <value>false</value>
-                           </binding> 
-                           </mod-up>
-                        </key>
-                </keyboard>
+      <!-- Fire gun -->
+      <!-- We do both triggers just to be safe -->
+      <key n="101">
+         <name>e</name>
+         <desc>Gun Trigger</desc> 
+         <binding>
+          <command>property-assign</command>
+          <property>ai/submodels/trigger</property>
+          <value>true</value>
+         </binding>
+         <binding>
+          <command>property-assign</command>
+          <property>controls/armament/trigger</property>
+          <value>true</value>
+         </binding>
+         <mod-up>
+          <binding>
+           <command>property-assign</command>
+           <property>ai/submodels/trigger</property>
+           <value>false</value>
+          </binding>
+          <binding>
+          <command>property-assign</command>
+          <property>controls/armament/trigger</property>
+          <value>false</value>
+         </binding> 
+         </mod-up>
+      </key>
+    </keyboard>
 
 	</input>
 	<yasim>
@@ -345,5 +345,11 @@
 			<file>Aircraft/sopwithCamel-Bombable/Nasal/JSBSim.nas</file>
 			<file>Aircraft/sopwithCamel-Bombable/Nasal/crashmenu.nas</file>
  		</camel>
+		<walkview>
+			<file>Aircraft/Generic/WalkView/walkview.nas</file>
+		</walkview>
+		<walkviews>
+			<file>Aircraft/sopwithCamel/Models/camel-walk-views.nas</file>
+		</walkviews>        
 	</nasal>
 </PropertyList>
