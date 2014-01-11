@@ -350,7 +350,7 @@ for the rudder to contribute very much to yaw stability.
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
         </contact>
-        <contact type="BOGEY" name="LEFT_WING_REAR">
+        <contact type="STRUCTURE" name="LEFT_WING_REAR">
             <location unit="IN">
                 <x> 125 </x>
                 <y> -164 </y>
@@ -365,7 +365,7 @@ for the rudder to contribute very much to yaw stability.
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
         </contact>
-        <contact type="BOGEY" name="RIGHT_WING_REAR">
+        <contact type="STRUCTURE" name="RIGHT_WING_REAR">
             <location unit="IN">
                 <x> 125 </x>
                 <y> 164 </y>
@@ -395,7 +395,7 @@ for the rudder to contribute very much to yaw stability.
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
         </contact>
-        <contact type="BOGEY" name="RIGHT_WING_OUTER_TOP">
+        <contact type="STRUCTURE" name="RIGHT_WING_OUTER_TOP">
             <location unit="IN">
                 <x> 85 </x>
                 <y> 164 </y>
@@ -411,7 +411,7 @@ for the rudder to contribute very much to yaw stability.
             <retractable> 0 </retractable>
         </contact>
 
-        <contact type="BOGEY" name="NOSE">
+        <contact type="STRUCTURE" name="NOSE">
             <location unit="IN">
                 <x> 0 </x>
                 <y> 0 </y>
@@ -427,7 +427,7 @@ for the rudder to contribute very much to yaw stability.
             <retractable> 0 </retractable>
         </contact>
 
-        <contact type="BOGEY" name="PROP_TOP">
+        <contact type="STRUCTURE" name="PROP_TOP">
             <location unit="IN">
                 <x> -10 </x>
                 <y> 0 </y>
@@ -442,7 +442,7 @@ for the rudder to contribute very much to yaw stability.
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
         </contact>
-        <contact type="BOGEY" name="PROP_BOTTOM">
+        <contact type="STRUCTURE" name="PROP_BOTTOM">
             <location unit="IN">
                 <x> -10 </x>
                 <y> 0 </y>
@@ -459,7 +459,7 @@ for the rudder to contribute very much to yaw stability.
         </contact>
 
         
-        <contact type="BOGEY" name="WING_TOP">
+        <contact type="STRUCTURE" name="WING_TOP">
             <location unit="IN">
                 <x> 30 </x>
                 <y> 0 </y>
@@ -475,7 +475,7 @@ for the rudder to contribute very much to yaw stability.
             <retractable> 0 </retractable>
         </contact>
 
-        <contact type="BOGEY" name="WING_TOP_MID_LEFT">
+        <contact type="STRUCTURE" name="WING_TOP_MID_LEFT">
             <location unit="IN">
                 <x> 30 </x>
                 <y> -50 </y>
@@ -491,7 +491,7 @@ for the rudder to contribute very much to yaw stability.
             <retractable> 0 </retractable>
         </contact>
 
-        <contact type="BOGEY" name="WING_TOP_MID_RIGHT">
+        <contact type="STRUCTURE" name="WING_TOP_MID_RIGHT">
             <location unit="IN">
                 <x> 30 </x>
                 <y> 50 </y>
@@ -507,7 +507,7 @@ for the rudder to contribute very much to yaw stability.
             <retractable> 0 </retractable>
         </contact>
 
-        <contact type="BOGEY" name="MIDDLE_UPPER">
+        <contact type="STRUCTURE" name="MIDDLE_UPPER">
             <location unit="IN">
                 <x> 70 </x>
                 <y> 0 </y>
@@ -523,7 +523,7 @@ for the rudder to contribute very much to yaw stability.
             <retractable> 0 </retractable>
         </contact>
 
-        <contact type="BOGEY" name="MIDDLE_BACK_UPPER">
+        <contact type="STRUCTURE" name="MIDDLE_BACK_UPPER">
             <location unit="IN">
                 <x> 130 </x>
                 <y> 0 </y>
@@ -539,7 +539,7 @@ for the rudder to contribute very much to yaw stability.
             <retractable> 0 </retractable>
         </contact>
 
-        <contact type="BOGEY" name="BACK_UPPER">
+        <contact type="STRUCTURE" name="BACK_UPPER">
             <location unit="IN">
                 <x> 180 </x>
                 <y> 0 </y>
@@ -557,7 +557,7 @@ for the rudder to contribute very much to yaw stability.
 
 
 
-        <contact type="BOGEY" name="TAIL_TOP">
+        <contact type="STRUCTURE" name="TAIL_TOP">
             <location unit="IN">
                 <x> 239 </x>
                 <y> 0 </y>

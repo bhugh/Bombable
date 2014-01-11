@@ -9,25 +9,70 @@ var terrain_survol = func (id) {
   var lat = getprop("/position/latitude-deg");
   var lon = getprop("/position/longitude-deg");
   var info = geodinfo(lat, lon);
+  var agl_ft = getprop("/fdm/jsbsim/position/h-agl-ft");
+
       if ( (info != nil) and (info[1] != nil)) { 
           if (info[1].solid ==nil) info[1].solid = 1;
           setprop("/environment/terrain-info/terrain",info[1].solid);   # 1 if solid land, 0 if water
           #the crash-detect subroutine can only read within the /fdim/jsbsim hierarchy so we must put this there as well
           setprop("/fdm/jsbsim/terrain-info/terrain",info[1].solid);   # 1 if solid land, 0 if water
+
+          # we're experimenting with special paramenters for water to make it more realistic.   
+          if (info[1].solid == 0 ) { #ie, over water
+            # if the a/c is far enough under water that the prop strikes water, then the engine quits
+            if (agl_ft < 3.0) setprop ("/controls/engines/engine/magnetos",0);
+            
+            # on water, we 'raise the gear' so that the a/c will appear
+            # to be partially submerged when it lands
+            # this sets the gear contact points to be basically the bottom of the fuselage
+            setprop ("/fdm/jsbsim/gear/unit[0]/z-position",-20);
+            setprop ("/fdm/jsbsim/gear/unit[1]/z-position",-20);
+            setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-13);
+            setprop ("/fdm/jsbsim/contact/unit[11]/z-position",-20); # this is thebottom of the prop; in water it's not really a hard contact point    
+                    
+            
+          } else { # ie, over land
+            # on land we set the gear back to normal levels so that 
+            # the a/c rolls/drags across land
+            # this sets the gear contact points to be the bottom of the
+            # tires/rear dragger
+            setprop ("/fdm/jsbsim/gear/unit[0]/z-position",-65);
+            setprop ("/fdm/jsbsim/gear/unit[1]/z-position",-65);
+            setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-18);   
+            setprop ("/fdm/jsbsim/contact/unit[11]/z-position",-59);       
           
+          }
            
           if (info[1].load_resistance ==nil) info[1].load_resistance = 1e+30;
+          if (info[1].solid == 0 ) info[1].load_resistance = 1; # we're experimenting with special paramenters for water to make it more realistic
           setprop("/environment/terrain-info/terrain-load-resistance",info[1].load_resistance);
           
           if (info[1].friction_factor ==nil) info[1].friction_factor = 1.05; 
+          if (info[1].solid == 0 ) info[1].friction_factor = .9; # we're experimenting with special paramenters for water to make it more realistic
           setprop("/environment/terrain-info/terrain-friction-factor",info[1].friction_factor);
           
-          if (info[1].bumpiness ==nil) info[1].bumpiness = 0;
           
+          if (info[1].bumpiness ==nil) info[1].bumpiness = 0;
+          if (info[1].solid == 0 ) info[1].bumpiness = 5; # we're experimenting with special paramenters for water to make it more realistic
           setprop("/environment/terrain-info/terrain-bumpiness",info[1].bumpiness);
+          
+          
           
           if (info[1].rolling_friction ==nil) info[1].rolling_friction = 0.02;
           
+          # we're experimenting with special paramenters for water to make it more realistic.   
+          if (info[1].solid == 0 ) {
+            var rfriction=.4;
+            if (agl_ft < 5.5) rfriction=.4;
+            if (agl_ft < 4.5) rfriction=.6;
+            if (agl_ft < 3.75) rfriction=.6;
+            if (agl_ft < 3.0) rfriction=.6;
+            if (agl_ft < 2.5) rfriction=.6;
+            if (agl_ft < 2) rfriction=.9;
+            info[1].rolling_friction = rfriction;
+            
+          }
+
           setprop("/environment/terrain-info/terrain-rolling-friction",info[1].rolling_friction);
           
           if (info[1].names ==nil) info[1].names="";

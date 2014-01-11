@@ -33,7 +33,7 @@
 
      <switch name="systems/crash-detect/impact-water">
           <test logic="AND" value="1">
-                position/h-agl-ft lt 4.5
+                position/h-agl-ft lt 2
                 terrain-info/terrain eq 0.0
                 simulation/sim-time-sec gt 1.0
                 velocities/vg-fps lt 10
