@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+
+<!--
+
+
+-->
+
+<PropertyList>
+
+<!-- x/y/z == forward/left/up -->
+
+<!-- wake -->
+<!-- 
+  <model>
+   <name>Hull</name>
+   <path>Effects/wake/wake.xml</path>
+  </model>
+-->
+
+  <model>
+   <name>Left gear wake</name>
+   <path>Effects/wake/wake-left.xml</path>
+  </model>
+
+  <model>
+   <name>Right gear wake</name>
+   <path>Effects/wake/wake-right.xml</path>
+  </model>
+
+  <model>
+   <name>Back gear wake/dust</name>
+   <path>Effects/wake/wake-back.xml</path>
+  </model>
+
+  <model>
+   <name>Left wing bottom wake/dust</name>
+   <path>Effects/wake/wake-leftwing-bottom.xml</path>
+  </model>
+
+  <model>
+   <name>Right wing bottom wake/dust</name>
+   <path>Effects/wake/wake-rightwing-bottom.xml</path>
+  </model>
+
+  <model>
+   <name>Left wing top wake/dust</name>
+   <path>Effects/wake/wake-leftwing-top.xml</path>
+  </model>
+
+  <model>
+   <name>Right wing top wake/dust</name>
+   <path>Effects/wake/wake-rightwing-top.xml</path>
+  </model>
+
+  <model>
+   <name>Middle wing top wake/dust</name>
+   <path>Effects/wake/wake-middlewing-top.xml</path>
+  </model>
+
+  <model>
+   <name>Tail top wake/dust</name>
+   <path>Effects/wake/wake-tail-top.xml</path>
+  </model>
+
+<!--
+  <model>
+   <name>Step spray</name>
+   <path>Effects/wake/spray.xml</path>
+  </model>
+-->
+
+</PropertyList>

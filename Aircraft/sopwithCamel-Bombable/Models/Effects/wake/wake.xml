@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!-- Wake at low speed.
+
+
+     Adapted from :
+
+     Short S.23 Empire flying boat for FlightGear.
+
+     Copyright (C) 2008 - 2010  Anders Gidenstam  (anders(at)gidenstam.org)
+     This file is licensed under the GPL license version 2 or later.
+-->
+
+<PropertyList>
+
+ <particlesystem>
+  <name>Hull wake</name>
+  <type>normal</type>
+  <texture>wake.png</texture>
+  <emissive>false</emissive>
+  <lighting>true</lighting>
+
+  <offsets>
+   <heading-deg>180</heading-deg>
+   <x-m> -11.10 </x-m>                                          <!-- bow -->
+   <y-m>   0.00 </y-m>
+   <z-m>  -3.50 </z-m>                                          <!-- hull tip -->
+  </offsets>
+
+  <attach>world</attach>
+
+  <condition>
+   <and>
+    <greater-than>
+     <property>velocities/groundspeed-kt</property>
+     <value>3.0</value>
+    </greater-than>
+    <less-than-equals>                                          <!-- no wake when on step -->
+     <property>fdm/jsbsim/aero/coefficient/HLstep0</property>
+     <value>20000.0</value>
+    </less-than-equals>
+    <property>/controls/environment/effects</property>
+   </and>
+  </condition>
+
+  <placer>
+   <type>sector</type>                                          <!-- hull wide -->
+   <radius-min-m>0.0</radius-min-m>
+   <radius-max-m>1.7</radius-max-m>
+  </placer>
+
+  <shooter>
+   <theta-min-deg>0.0</theta-min-deg>                           <!-- swirl towards the surface -->
+   <theta-max-deg>20.0</theta-max-deg>
+   <phi-min-deg>-90.0</phi-min-deg>                             <!-- cone behind the hull -->
+   <phi-max-deg>90.0</phi-max-deg>
+   <speed-mps>
+    <value>5.0</value>                                          <!-- water inertia -->
+    <spread>0.50</spread>
+   </speed-mps>
+   <rotation-speed>
+    <x-min-deg-sec>40.0</x-min-deg-sec>
+    <y-min-deg-sec>0</y-min-deg-sec>
+    <z-min-deg-sec>0</z-min-deg-sec>
+    <x-max-deg-sec>70.0</x-max-deg-sec>
+    <y-max-deg-sec>0</y-max-deg-sec>
+    <z-max-deg-sec>0</z-max-deg-sec>
+   </rotation-speed>
+  </shooter>
+
+  <counter>
+   <particles-per-sec>
+    <property>fdm/jsbsim/aero/coefficient/HDhull0</property>
+    <factor>1.0</factor>
+    <spread>50</spread>
+   </particles-per-sec>
+  </counter>
+
+  <align>billboard</align>
+
+  <particle>
+   <start>
+    <color>
+     <red><value>0.841</value></red>                            <!-- foam white -->
+     <green><value>0.905</value></green>
+     <blue><value>0.940</value></blue>
+     <alpha><value>0.5</value></alpha>
+    </color>
+    <size>
+     <value>0.35</value>
+     <spread>0.2</spread>
+    </size>
+   </start>
+   <end>
+    <color>
+     <red><value>0.541</value></red>                            <!-- wave blue -->
+     <green><value>0.605</value></green>
+     <blue><value>0.640</value></blue>
+     <alpha><value>0.0</value></alpha>
+    </color>
+    <size>
+     <value>1.00</value>
+     <spread>0.2</spread>
+    </size>
+   </end>
+
+   <life-sec>
+    <value>20</value>
+   </life-sec>
+   <mass-kg>0.02</mass-kg>
+   <radius-m>0.2</radius-m>
+  </particle>
+
+  <program>
+   <fluid>water</fluid>
+   <gravity>false</gravity>
+   <wind>false</wind>
+  </program>
+ </particlesystem>
+
+ <animation>
+  <type>range</type>
+  <min-m>0</min-m>
+  <max-m>5000</max-m>
+ </animation>
+
+</PropertyList>

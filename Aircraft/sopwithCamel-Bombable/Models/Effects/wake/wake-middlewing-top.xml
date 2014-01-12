@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <params>
+   <drag>fdm/jsbsim/contact/unit[14]/compression-ft</drag>
+  </params>
+
+  <particlesystem include="sponson.xml"/>
+   <offsets>              
+      <x-m> .9 </x-m>
+      <y-m> 0 </y-m>
+      <z-m> 1 </z-m>   
+   </offsets>
+
+  <animation>
+   <type>range</type>
+   <min-m>0</min-m>
+   <max-m>5000</max-m>
+  </animation>
+
+</PropertyList>
