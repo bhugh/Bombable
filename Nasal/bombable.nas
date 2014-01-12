@@ -851,8 +851,8 @@ var setAttributes = func (attsObject=nil) {
             fireExtinguishMaxTime_seconds:30,
             explosiveMass_kg : 735,
             airspeed_damage:{
-              damage_threshold_kt: 185, #max speed, level flight is 100 kt, so this is a guess
-              warning_threshold_kt: 175,
+              damage_threshold_kt: 240, #max speed, level flight is 100 kt, so this is a guess
+              warning_threshold_kt: 210,
               #1 kt over the threshold for 1 second will add 1% damage:
               damage_multiplier_percentpersecond: 0.5
             },
@@ -908,8 +908,9 @@ var setAttributes = func (attsObject=nil) {
             fireExtinguishMaxTime_seconds:100,
             explosiveMass_kg : 735,
             airspeed_damage:{
-              damage_threshold_kt: 195, #max speed, level flight is 103 kt, so this is a guess based on that plus Spad's rep as able to hold together in "swift dives" better than most
-              warning_threshold_kt: 185,
+              #The Spads and SE5's were quoted to dive "well in excess of 200mph" (I'can try to dig up the reference if you like) The Alb's and Nieuports were notorious for shedding lower wings in anything other than a normal dive.  http://www.theaerodrome.com/forum/2000/8286-maximum-dive-speed.html
+              damage_threshold_kt: 290, #max speed, level flight is 103 kt, so this is a guess based on that plus Spad's rep as able to hold together in "swift dives" better than most
+              warning_threshold_kt: 260,
               #1 kt over the threshold for 1 second will add 1% damage:
               damage_multiplier_percentpersecond: 0.4
             },
@@ -5038,7 +5039,8 @@ var mp_send_main_aircraft_damage_update = func (damageRise=0 ) {
 # (This should always be <= our damage total, so it is a failsafe
 # in case of some packet loss)
 var mainAC_add_damage = func (damageRise=0, damageTotal=0, source="", message="") {
-
+  if (!getprop(bomb_menu_pp~"bombable-enabled") ) return 0;
+  
   var damageValue = getprop("/bombable/attributes/damage");
   if (damageValue == nil ) damageValue=0;
   
