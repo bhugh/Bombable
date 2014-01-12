@@ -8,6 +8,12 @@
 
   <particlesystem include="sponson.xml"/>
 
+  <offsets>
+    <x-m>  .762 </x-m>                                          <!-- left landing gear wheel -->
+   <y-m>  -.738124 </y-m>                                          
+   <z-m>  -.8 </z-m>                                          
+ </offsets>
+ 
   <animation>
    <type>range</type>
    <min-m>0</min-m>

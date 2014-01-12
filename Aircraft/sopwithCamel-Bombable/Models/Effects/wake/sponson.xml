@@ -18,32 +18,43 @@
 
   <offsets>
    <heading-deg>180</heading-deg> 
-   <x-m>  .762 </x-m>                                          <!-- left landing gear wheel -->
-   <y-m>  -.738124 </y-m>                                          
-   <z-m>  -.8 </z-m>                                          
   </offsets>
 
   <attach>world</attach>
 
   <condition>
-   <or>
-    <greater-than>
-     <property>velocities/groundspeed-kt</property>
-     <value>0.1</value>
-    </greater-than>
-    <greater-than>
-     <property>velocities/east-relground-fps</property>
-     <value>0.1</value>
-    </greater-than>
-    <greater-than>
-     <property>velocities/down-relground-fps</property>
-     <value>0.1</value>
-    </greater-than>
-    <greater-than>
-     <property>velocities/north-relground-fps</property>
-     <value>0.1</value>
-    </greater-than>
-   </or>
+    <and>
+     <or>
+      <greater-than>
+       <property>velocities/groundspeed-kt</property>
+       <value>0.4</value>
+      </greater-than>
+      <greater-than>
+       <property>velocities/east-relground-fps</property>
+       <value>0.4</value>
+      </greater-than>
+      <greater-than>
+       <property>velocities/down-relground-fps</property>
+       <value>0.4</value>
+      </greater-than>
+      <greater-than>
+       <property>velocities/north-relground-fps</property>
+       <value>0.4</value>
+      </greater-than>
+      <greater-than>
+       <property>/fdm/jsbsim/accelerations/Nz</property>
+       <value>3</value>
+      </greater-than>
+      <equal>
+        <property>environment/terrain-info/terrain</property>
+        <value>0</value>  
+      </equal>
+     </or>
+     <greater-than>
+       <property alias="/params/drag"/>
+       <value>.05</value>
+     </greater-than>
+    </and>  
   </condition>
 
   <!-- <placer>
@@ -52,8 +63,8 @@
   
   <placer>
    <type>sector</type>                                          <!-- hull wide -->
-   <radius-min-m>0.0</radius-min-m>
-   <radius-max-m>.4</radius-max-m>
+   <radius-min-m>-0</radius-min-m>
+   <radius-max-m>0.2</radius-max-m>
   </placer>
 
   <shooter>
@@ -77,10 +88,8 @@
 
   <counter>
    <particles-per-sec>
-    <property alias="/params/drag"/>
-    <factor>200</factor>
-    <max>200</max>
-    <min>0</min>
+    <property>velocities/groundspeed-kt</property>
+    <factor>7.5</factor>
     <spread>5</spread>
    </particles-per-sec>
   </counter>

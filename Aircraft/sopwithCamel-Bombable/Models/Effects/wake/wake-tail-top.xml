@@ -8,9 +8,9 @@
 
   <particlesystem include="sponson.xml"/>
    <offsets>                 
-      <x-m> 6.07 </x-m>
+      <x-m> 4.07 </x-m>
       <y-m> 0 </y-m>
-      <z-m> 1 </z-m>   
+      <z-m> .8 </z-m>   
    </offsets>
 
   <animation>
