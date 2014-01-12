@@ -481,6 +481,7 @@ var speedDamage = func {
 #
 var accelerationDamage = func {
 
+    if (!getprop(bomb_menu_pp~"bombable-enabled") ) return;
     var damage_enabled=getprop (""~GF_damage_menu_pp~"damage_enabled");
     var warning_enabled=getprop (""~GF_damage_menu_pp~"warning_enabled");
     
