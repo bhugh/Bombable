@@ -10,12 +10,40 @@ var terrain_survol = func (id) {
   var lon = getprop("/position/longitude-deg");
   var info = geodinfo(lat, lon);
   var agl_ft = getprop("/fdm/jsbsim/position/h-agl-ft");
+  
+  #We are using groundspeed_kt to set the rate per second that dust & wake 
+  #particles are displayed.  But sometimes under JSBSim groundspeed_kt goes crazy high.
+  #Here we make a limited version of groundspeed that will suit our purposes
+  #and always remain within sane bounds
+  var groundspeed_kt = getprop("/velocities/groundspeed-kt");
+  var groundspeed_kt_trimmed=groundspeed_kt;
+  if (groundspeed_kt_trimmed==nil) groundspeed_kt_trimmed=0;
+  if (groundspeed_kt_trimmed<0) groundspeed_kt_trimmed=0;
+  if (groundspeed_kt_trimmed>75) groundspeed_kt_trimmed=75;
+  setprop("/environment/terrain-info/wake-dust-rate", groundspeed_kt_trimmed);
+  
 
       if ( (info != nil) and (info[1] != nil)) { 
           if (info[1].solid ==nil) info[1].solid = 1;
           setprop("/environment/terrain-info/terrain",info[1].solid);   # 1 if solid land, 0 if water
           #the crash-detect subroutine can only read within the /fdim/jsbsim hierarchy so we must put this there as well
           setprop("/fdm/jsbsim/terrain-info/terrain",info[1].solid);   # 1 if solid land, 0 if water
+
+          # If on water we're going to bolster the wake rate at slow speeds to make more of a splash
+          if (info[1].solid==0 and groundspeed_kt_trimmed<10)
+             setprop("/environment/terrain-info/wake-dust-rate", math.sqrt(math.sqrt(math.sqrt(math.sqrt(groundspeed_kt_trimmed/10))))*10);
+
+          var wheel_speed0_fps=getprop ("/fdm/jsbsim/gear/unit[0]/wheel-speed-fps");
+          var wheel_speed2_fps=getprop ("/fdm/jsbsim/gear/unit[2]/wheel-speed-fps");
+          var wheel_speed_fps=wheel_speed0_fps;
+          if (wheel_speed2_fps> wheel_speed_fps) wheel_speed_fps=wheel_speed2_fps;
+          
+          if (info[1].bumpiness ==nil) info[1].bumpiness = 0;
+          if (info[1].solid == 0 ) info[1].bumpiness = 1.2; # we're making water automatically quite 'bumpy'
+          var bumpinesscoeff=info[1].bumpiness*15;
+          var speedbumpinesscoeff=20;          
+          
+          setprop("/environment/terrain-info/terrain-bumpiness",info[1].bumpiness);
 
           # we're experimenting with special paramenters for water to make it more realistic.   
           if (info[1].solid == 0 ) { #ie, over water
@@ -25,9 +53,11 @@ var terrain_survol = func (id) {
             # on water, we 'raise the gear' so that the a/c will appear
             # to be partially submerged when it lands
             # this sets the gear contact points to be basically the bottom of the fuselage
-            setprop ("/fdm/jsbsim/gear/unit[0]/z-position",-20);
-            setprop ("/fdm/jsbsim/gear/unit[1]/z-position",-20);
-            setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-13);
+            setprop ("/fdm/jsbsim/gear/unit[0]/z-position",-20 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
+            setprop ("/fdm/jsbsim/gear/unit[1]/z-position",-20 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
+            setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-60 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
+            setprop ("/fdm/jsbsim/gear/unit[3]/z-position",-60 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
+            setprop ("/fdm/jsbsim/gear/unit[4]/z-position",-2 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
             setprop ("/fdm/jsbsim/contact/unit[11]/z-position",-20); # this is thebottom of the prop; in water it's not really a hard contact point    
                     
             
@@ -36,9 +66,11 @@ var terrain_survol = func (id) {
             # the a/c rolls/drags across land
             # this sets the gear contact points to be the bottom of the
             # tires/rear dragger
-            setprop ("/fdm/jsbsim/gear/unit[0]/z-position",-65);
-            setprop ("/fdm/jsbsim/gear/unit[1]/z-position",-65);
-            setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-18);   
+            setprop ("/fdm/jsbsim/gear/unit[0]/z-position",-65 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
+            setprop ("/fdm/jsbsim/gear/unit[1]/z-position",-65 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
+            setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-20);
+            setprop ("/fdm/jsbsim/gear/unit[3]/z-position",-20);
+            setprop ("/fdm/jsbsim/gear/unit[4]/z-position",-18 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));   
             setprop ("/fdm/jsbsim/contact/unit[11]/z-position",-59);       
           
           }
@@ -50,12 +82,7 @@ var terrain_survol = func (id) {
           if (info[1].friction_factor ==nil) info[1].friction_factor = 1.05; 
           if (info[1].solid == 0 ) info[1].friction_factor = .9; # we're experimenting with special paramenters for water to make it more realistic
           setprop("/environment/terrain-info/terrain-friction-factor",info[1].friction_factor);
-          
-          
-          if (info[1].bumpiness ==nil) info[1].bumpiness = 0;
-          if (info[1].solid == 0 ) info[1].bumpiness = 5; # we're experimenting with special paramenters for water to make it more realistic
-          setprop("/environment/terrain-info/terrain-bumpiness",info[1].bumpiness);
-          
+                    
           
           
           if (info[1].rolling_friction ==nil) info[1].rolling_friction = 0.02;
@@ -202,6 +229,8 @@ terrain_survol(terrain_survol_loopid);
 restore_throttle = func  { 
     setprop("/controls/engines/engine/throttle", camel.throttle_save);
 }    
+
+
 
 #removelistener(list1);
 var setCrash_lastPause_systime=systime();

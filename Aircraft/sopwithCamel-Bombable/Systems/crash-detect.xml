@@ -4,7 +4,8 @@
 
   <property value="0">systems/crash-detect/crashed</property>
   <property value="1">terrain-info/terrain</property>
-
+  <!--TODO: We could use either switches or nasal code to monitor contact point compression and trigger a crash when any contact point is compressed to unreasonable values.  This would/should eliminate the boinging effect of high speed ground crashes. -->
+  
   <channel name="Over-G">
 
      <switch name="systems/crash-detect/over-g">

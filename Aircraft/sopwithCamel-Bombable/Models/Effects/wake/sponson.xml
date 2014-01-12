@@ -10,7 +10,7 @@
 
 <PropertyList>
 
-  <name>Sponson wake</name>
+  <name>Dust/Wake</name>
   <type>normal</type>
   <texture>wake.png</texture>
   <emissive>false</emissive>
@@ -46,11 +46,11 @@
        <value>3</value>
       </greater-than>
       <equal>
-        <property>environment/terrain-info/terrain</property>
+        <property>environment/terrain-info/terrain</property>    <!--ie, in the water -->
         <value>0</value>  
       </equal>
      </or>
-     <greater-than>
+     <greater-than><!-- this is set by the individual wake files; whether that contact point is compressed or not -->
        <property alias="/params/drag"/>
        <value>.05</value>
      </greater-than>
@@ -86,9 +86,12 @@
    </rotation-speed>
   </shooter>
 
+  <!-- TODO:  Previous we used the compression distance of the contact point to increase the amount of wake/dust.  This worked well except for when JSBSim lets that value get astonishingly large.  Best would be to use a combo of groundspeed & the compression distance, perhaps using a bit of nasal to limit the resulting value to a reasonable range. -->
+  
+  <!-- We generate groundspeed-kt-trimmed in JSBSim.nas.  It always remains between 0 and 75 - something we can't say about groundspeed-kt! -->
   <counter>
    <particles-per-sec>
-    <property>velocities/groundspeed-kt</property>
+    <property>environment/terrain-info/wake-dust-rate</property>
     <factor>7.5</factor>
     <spread>5</spread>
    </particles-per-sec>
