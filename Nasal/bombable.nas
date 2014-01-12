@@ -7696,7 +7696,8 @@ var bombable_init_func = func(myNodeName) {
   #bombableIinit function	
   foreach (var i; bombable.impactReporters) {   
     #debprint ("i: " , i); 		
-	  listenerid=setlistener(i, func ( changedImpactReporterNode ) { 
+	  listenerid=setlistener(i, func ( changedImpactReporterNode ) {
+      if (!getprop(bomb_menu_pp~"bombable-enabled") ) return 0; 
       test_impact( changedImpactReporterNode, myNodeName ); });
     append(listenerids, listenerid);
   
@@ -7711,6 +7712,7 @@ var bombable_init_func = func(myNodeName) {
 
     #what to do when re-set is selected
   setlistener("/sim/signals/reinit", func {
+    if (!getprop(bomb_menu_pp~"bombable-enabled") ) return 0;
     resetBombableDamageFuelWeapons (myNodeName);    
     if (type=="multiplayer") mp_send_damage(myNodeName, 0);
     debprint ("Bombable: Damage level and smoke reset for "~ myNodeName);
@@ -8033,8 +8035,10 @@ var weaponsTrigger_listener = func (changedNode,listenedNode){
   # TODO: there is only one visual effect & one trigger for EVERYTHING for now, so setting the
   # trigger=1 turns on all weapons for all AI/Multiplayer aircraft.
   # Making it turn on/off individually per weapon per aircraft is going to be a 
-  # fair-sized job.        
-  debprint ("Bombable: WeaponsTrigger_listener: ",changedNode.getValue(), " ", changedNode.getPath());           
+  # fair-sized job.
+  
+  if (!getprop(bomb_menu_pp~"bombable-enabled") ) return 0;          
+  # debprint ("Bombable: WeaponsTrigger_listener: ",changedNode.getValue(), " ", changedNode.getPath());           
   if ( changedNode.getValue()) {
     setprop("/bombable/fire-particles/ai-weapon-firing",1);
   } else {
@@ -8521,7 +8525,8 @@ var bombableInit = func {
   #adds the main aircraft to the impact report detection list
   foreach (var i; bombable.impactReporters) {   
   #debprint ("i: " , i); 		
-	  listenerid=setlistener(i, func ( changedImpactReporterNode ) { 
+	  listenerid=setlistener(i, func ( changedImpactReporterNode ) {
+      if (!getprop(bomb_menu_pp~"bombable-enabled") ) return 0;  
       test_impact( changedImpactReporterNode, "" ); });
       #append(listenerids, listenerid);
   
@@ -8568,6 +8573,7 @@ var bombableInit = func {
   setlistener("/sim/crashed", func {
     if (getprop("/sim/crashed")) {
     
+      if (!getprop(bomb_menu_pp~"bombable-enabled") ) return 0;
       mainAC_add_damage(1,1, "crash", "You crashed!");   #adds the damage to the main aircraft
         
       debprint ("Bombable: You crashed - on fire and damage set to 100%");
@@ -8589,17 +8595,17 @@ var bombableInit = func {
   # when a lot of firing is going on)
   #         
   setlistener("/bombable/attributes/damage", func {
-    
+    if (!getprop(bomb_menu_pp~"bombable-enabled") ) return 0;
     settimer (func {mp_send_main_aircraft_damage_update (0)}, 4.36);
      
   });
   setlistener("/bombable/fire-particles/fire-burning", func {
-    
+    if (!getprop(bomb_menu_pp~"bombable-enabled") ) return 0;
     settimer (func {mp_send_main_aircraft_damage_update (0)}, 3.53);
      
   });
   setlistener("/bombable/fire-particles/damagedengine-burning", func {
-    
+    if (!getprop(bomb_menu_pp~"bombable-enabled") ) return 0;
     settimer (func {mp_send_main_aircraft_damage_update (0)}, 4.554);
      
   });
