@@ -2,9 +2,11 @@
 <!-- Adapted from :
 
      Short S.23 Empire flying boat for FlightGear.
+     
+     Which was adapted by:
      Boeing 314 flying boat for FlightGear.
      
-     Copyright (C) 2008 - 2010  Anders Gidenstam  (anders(at)gidenstam.org)
+     And now further adapted for the JSBSim Sopwith Camel.
      This file is licensed under the GPL license version 2 or later.
 -->
 
@@ -22,6 +24,7 @@
 
   <attach>world</attach>
 
+  <!-- TODO: We need a way to turn this off for people who don't want it/framerate issues or whatever -->
   <condition>
     <and>
      <or>
@@ -46,14 +49,10 @@
        <value>3</value>
       </greater-than>
       <equal>
-        <property>environment/terrain-info/terrain</property>    <!--ie, in the water -->
+        <property>environment/terrain-info/terrain</property>    <!--ie, in the water if terrain==0 -->
         <value>0</value>  
       </equal>
      </or>
-     <greater-than><!-- this is set by the individual wake files; whether that contact point is compressed or not -->
-       <property alias="/params/drag"/>
-       <value>.05</value>
-     </greater-than>
     </and>  
   </condition>
 
@@ -64,7 +63,8 @@
   <placer>
    <type>sector</type>                                          <!-- hull wide -->
    <radius-min-m>-0</radius-min-m>
-   <radius-max-m>0.2</radius-max-m>
+   <radius-max-m alias="/params/placer-width"></radius-max-m>
+   
   </placer>
 
   <shooter>
@@ -88,10 +88,10 @@
 
   <!-- TODO:  Previous we used the compression distance of the contact point to increase the amount of wake/dust.  This worked well except for when JSBSim lets that value get astonishingly large.  Best would be to use a combo of groundspeed & the compression distance, perhaps using a bit of nasal to limit the resulting value to a reasonable range. -->
   
-  <!-- We generate groundspeed-kt-trimmed in JSBSim.nas.  It always remains between 0 and 75 - something we can't say about groundspeed-kt! -->
+  <!-- We generate wake-dust-rate in JSBSim.nas.  It always remains between 0 and 75 - something we can't say about groundspeed-kt! -->
   <counter>
    <particles-per-sec>
-    <property>environment/terrain-info/wake-dust-rate</property>
+    <property alias="/params/drag"/>
     <factor>7.5</factor>
     <spread>5</spread>
    </particles-per-sec>
@@ -108,7 +108,7 @@
      <alpha><value>0.5</value></alpha>
     </color>
     <size>
-     <value>0.35</value>
+     <value alias="/params/start-size"></value>
      <spread>0.2</spread>
     </size>
    </start>
@@ -120,7 +120,7 @@
      <alpha><value>0.0</value></alpha>
     </color>
     <size>
-     <value>1.00</value>
+     <value alias="/params/end-size"></value>
      <spread>0.2</spread>
     </size>
    </end>

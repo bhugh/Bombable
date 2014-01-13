@@ -8,7 +8,7 @@
 # Make sure all needed properties are present and accounted
 # for, and that they have sane default values.
 
-aircraft.livery.init("Aircraft/sopwithCamel-Bombable/Models/Liveries",
+aircraft.livery.init("Aircraft/sopwithCamel-Bombable16/Models/Liveries",
                      "sim/model/livery/name",
                      "sim/model/livery/index"
                      );
@@ -257,7 +257,7 @@ blipMagswitch:   func{
     # camel.inverted_out_of_fuel - see jsbsim.nas - this disables the blip
     # switch when the camel is out of fuel because it is inverted
     print ("oof ", camel.inverted_out_of_fuel);                       
-    if ( camel.inverted_out_of_fuel ) return;
+    #if ( camel.inverted_out_of_fuel ) return;
     if ( me.right_brake.getValue() > 0.25 or me.left_brake.getValue() > 0.25 
             ) {;
         me.magnetos.setValue( 0 );

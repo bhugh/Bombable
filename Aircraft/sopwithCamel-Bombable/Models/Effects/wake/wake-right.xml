@@ -3,7 +3,10 @@
 <PropertyList>
 
   <params>
-    <drag>fdm/jsbsim/gear/unit[2]/compression-ft</drag>
+   <drag>/environment/terrain-info/gear/unit[2]/wake-dust-factor</drag>
+   <placer-width>.3</placer-width>
+   <start-size>0.4</start-size>
+   <end-size>1.1</end-size>      
   </params>
 
   <particlesystem include="sponson.xml">

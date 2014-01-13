@@ -4,7 +4,7 @@ var terrain_survol = func (id) {
   var loopid=getprop("/environment/terrain-info/terrain_servol_loopid");
   if (loopid==nil) terrain_survol_loopid=0;
   id==loopid or return;
-  settimer (func {terrain_survol(id)}, 0.12734);  
+  settimer (func {terrain_survol(id)}, 0.25734);  
   
   var lat = getprop("/position/latitude-deg");
   var lon = getprop("/position/longitude-deg");
@@ -20,18 +20,20 @@ var terrain_survol = func (id) {
   if (groundspeed_kt_trimmed==nil) groundspeed_kt_trimmed=0;
   if (groundspeed_kt_trimmed<0) groundspeed_kt_trimmed=0;
   if (groundspeed_kt_trimmed>75) groundspeed_kt_trimmed=75;
-  setprop("/environment/terrain-info/wake-dust-rate", groundspeed_kt_trimmed);
+  var wake_dust_rate=groundspeed_kt_trimmed;
+  setprop("/environment/terrain-info/wake-dust-rate", wake_dust_rate);
   
 
-      if ( (info != nil) and (info[1] != nil)) { 
+      if ( (info != nil) and (info[1] != nil)) {  
           if (info[1].solid ==nil) info[1].solid = 1;
           setprop("/environment/terrain-info/terrain",info[1].solid);   # 1 if solid land, 0 if water
           #the crash-detect subroutine can only read within the /fdim/jsbsim hierarchy so we must put this there as well
           setprop("/fdm/jsbsim/terrain-info/terrain",info[1].solid);   # 1 if solid land, 0 if water
 
-          # If on water we're going to bolster the wake rate at slow speeds to make more of a splash
+          # If on water we're going to #1 double the wake rate because water puts up a bunch of spracy etc. And #2 bolster the wake rate at slow speeds to make more of a splash as the a/c settles into the water etc.
           if (info[1].solid==0 and groundspeed_kt_trimmed<10)
-             setprop("/environment/terrain-info/wake-dust-rate", math.sqrt(math.sqrt(math.sqrt(math.sqrt(groundspeed_kt_trimmed/10))))*10);
+             wake_dust_rate=math.sqrt(math.sqrt(math.sqrt(math.sqrt(groundspeed_kt_trimmed/10))))*20;
+             setprop("/environment/terrain-info/wake-dust-rate", wake_dust_rate);
 
           var wheel_speed0_fps=getprop ("/fdm/jsbsim/gear/unit[0]/wheel-speed-fps");
           var wheel_speed2_fps=getprop ("/fdm/jsbsim/gear/unit[2]/wheel-speed-fps");
@@ -116,8 +118,12 @@ var terrain_survol = func (id) {
         setprop("/environment/terrain-info/terrain-rolling-friction",0.02);
       }
       
-  friction_loop();    
+  #updates friction data for each contact point/gear element based on current location
+  friction_loop();
   
+  #creates a trimmed version of the current compression-ft amount
+  #for each gear setting/element point for use in the wake/dust particle system    
+  contact_point_compression_limiter_loop(0,5,wake_dust_rate);
 }
 
 
@@ -173,6 +179,37 @@ var friction_loop = func {
   
   #print ("Camel/JSBSim: Friction parameters updated");
 }  
+
+#this gets the amount of compression for each contact point or gear element
+#but (important!) trims it down to between min & max
+#this is used in the wake/dust particle system. 
+#
+#Then it multiplies it by a trimmed version of the current groundspeed (
+#calculated above).
+#That way our wake or dust is proportional to both the speed and the amount of 
+#pressure on that contact point. We might be able to add other interesting
+#factors later, such as the type of terrain (water, ground, paved, unpaved, etc)
+#
+#See camel-effect.xml and the files in Models\Effects\wake for more info
+#   
+var contact_point_compression_limiter_loop = func ( min=0, max=5, multiplier=10) {
+
+     for (var n=0;n<getprop("/fdm/jsbsim/gear/num-units"); n+=1) {
+        unitName= "unit[" ~ n ~ "]";
+        
+        #get the value from the Gear OR the contact tree (each element is in one or the other but not both)
+        var compression_ft_trimmed=getprop ( "/fdm/jsbsim/gear/" ~unitName~"/compression-ft" );
+        if (compression_ft_trimmed==nil or compression_ft_trimmed==0 ) compression_ft_trimmed=getprop ( "/fdm/jsbsim/contact/" ~unitName~"/compression-ft" );
+        if (compression_ft_trimmed==nil) compression_ft_trimmed=0;
+        if (compression_ft_trimmed<min) compression_ft_trimmed=min;
+        if (compression_ft_trimmed>max) compression_ft_trimmed=max;
+        var wake_dust_factor=compression_ft_trimmed*multiplier;
+        setprop("/environment/terrain-info/gear/"~unitName~"/compression-ft-trimmed", compression_ft_trimmed);
+        setprop("/environment/terrain-info/gear/"~unitName~"/wake-dust-factor", wake_dust_factor);     
+     }
+}
+
+
 
 var setCrash= func {
  var crashed = getprop("/fdm/jsbsim/systems/crash-detect/crashed");
