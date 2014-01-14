@@ -4,7 +4,7 @@ var terrain_survol = func (id) {
   var loopid=getprop("/environment/terrain-info/terrain_servol_loopid");
   if (loopid==nil) terrain_survol_loopid=0;
   id==loopid or return;
-  settimer (func {terrain_survol(id)}, 0.25734);  
+  settimer (func {terrain_survol(id)}, 0.04734);  
   
   var lat = getprop("/position/latitude-deg");
   var lon = getprop("/position/longitude-deg");
@@ -22,18 +22,19 @@ var terrain_survol = func (id) {
   if (groundspeed_kt_trimmed>75) groundspeed_kt_trimmed=75;
   var wake_dust_rate=groundspeed_kt_trimmed;
   setprop("/environment/terrain-info/wake-dust-rate", wake_dust_rate);
-  
+  if ((info != nil) and info[1].solid==0 and groundspeed_kt_trimmed<10)  {
+             wake_dust_rate=math.sqrt(math.sqrt(math.sqrt(math.sqrt(groundspeed_kt_trimmed/10))))*20; }
+  setprop("/environment/terrain-info/wake-dust-rate", wake_dust_rate); 
+             
 
-      if ( (info != nil) and (info[1] != nil)) {  
+  if ( (info != nil) and (info[1] != nil) ) { #rand()<.1 slows down the rate of bumpiness, which seems to work better than doing it too frequently   
           if (info[1].solid ==nil) info[1].solid = 1;
           setprop("/environment/terrain-info/terrain",info[1].solid);   # 1 if solid land, 0 if water
           #the crash-detect subroutine can only read within the /fdim/jsbsim hierarchy so we must put this there as well
           setprop("/fdm/jsbsim/terrain-info/terrain",info[1].solid);   # 1 if solid land, 0 if water
 
           # If on water we're going to #1 double the wake rate because water puts up a bunch of spracy etc. And #2 bolster the wake rate at slow speeds to make more of a splash as the a/c settles into the water etc.
-          if (info[1].solid==0 and groundspeed_kt_trimmed<10)
-             wake_dust_rate=math.sqrt(math.sqrt(math.sqrt(math.sqrt(groundspeed_kt_trimmed/10))))*20;
-             setprop("/environment/terrain-info/wake-dust-rate", wake_dust_rate);
+          
 
           var wheel_speed0_fps=getprop ("/fdm/jsbsim/gear/unit[0]/wheel-speed-fps");
           var wheel_speed2_fps=getprop ("/fdm/jsbsim/gear/unit[2]/wheel-speed-fps");
@@ -47,36 +48,88 @@ var terrain_survol = func (id) {
           
           setprop("/environment/terrain-info/terrain-bumpiness",info[1].bumpiness);
 
-          # we're experimenting with special paramenters for water to make it more realistic.   
-          if (info[1].solid == 0 ) { #ie, over water
-            # if the a/c is far enough under water that the prop strikes water, then the engine quits
-            if (agl_ft < 3.0) setprop ("/controls/engines/engine/magnetos",0);
-            
-            # on water, we 'raise the gear' so that the a/c will appear
-            # to be partially submerged when it lands
-            # this sets the gear contact points to be basically the bottom of the fuselage
-            setprop ("/fdm/jsbsim/gear/unit[0]/z-position",-20 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
-            setprop ("/fdm/jsbsim/gear/unit[1]/z-position",-20 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
-            setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-60 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
-            setprop ("/fdm/jsbsim/gear/unit[3]/z-position",-60 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
-            setprop ("/fdm/jsbsim/gear/unit[4]/z-position",-2 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
-            setprop ("/fdm/jsbsim/contact/unit[11]/z-position",-20); # this is thebottom of the prop; in water it's not really a hard contact point    
-                    
-            
-          } else { # ie, over land
-            # on land we set the gear back to normal levels so that 
-            # the a/c rolls/drags across land
-            # this sets the gear contact points to be the bottom of the
-            # tires/rear dragger
-            setprop ("/fdm/jsbsim/gear/unit[0]/z-position",-65 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
-            setprop ("/fdm/jsbsim/gear/unit[1]/z-position",-65 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));
-            setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-20);
-            setprop ("/fdm/jsbsim/gear/unit[3]/z-position",-20);
-            setprop ("/fdm/jsbsim/gear/unit[4]/z-position",-18 + (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() > wheel_speed_fps/speedbumpinesscoeff));   
-            setprop ("/fdm/jsbsim/contact/unit[11]/z-position",-59);       
-          
-          }
-           
+          if (rand()<.2) {   # we do the gear height adjustments only part of the time to reduce the frequency of the bumps and make them more realistic
+
+              # we're experimenting with special paramenters for water to make it more realistic.   
+              
+              if (info[1].solid == 0 ) { #ie, over water
+                # if the a/c is far enough under water that the prop strikes water, then the engine quits
+                if (agl_ft < 3.0) setprop ("/controls/engines/engine/magnetos",0);
+                
+                # on water, we 'raise the gear' so that the a/c will appear
+                # to be partially submerged when it lands
+                # this sets the gear contact points to be basically the bottom of the fuselage
+    
+                #R gear & it's protective structure element
+                var bump = (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff);
+                setprop ("/fdm/jsbsim/gear/unit[0]/z-position", -20 + bump );
+                setprop ("/fdm/jsbsim/contact/unit[21]/z-position", -20 + bump );
+                
+                #L gear & it's protective structure element
+                var bump = (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff);
+                setprop ("/fdm/jsbsim/gear/unit[1]/z-position", -20 + bump );
+                setprop ("/fdm/jsbsim/contact/unit[22]/z-position", -20 + bump );
+                
+                #water gear - same bump for both, a bit different than land gear
+                var bump = (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff);
+                setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-60 + bump * 3 );
+                setprop ("/fdm/jsbsim/gear/unit[3]/z-position",-60 + bump * 3 );
+                
+                #tail
+                setprop ("/fdm/jsbsim/gear/unit[4]/z-position",-12 + (bumpinesscoeff 
+    * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff));
+                
+                #prop bottom, prop top, upper wing l, middle, r
+                setprop ("/fdm/jsbsim/contact/unit[9]/z-position",25);
+                setprop ("/fdm/jsbsim/contact/unit[10]/z-position",25);
+                setprop ("/fdm/jsbsim/contact/unit[13]/z-position",-25); # this is the bottom of the prop; in water it's not really a hard contact point                 
+                setprop ("/fdm/jsbsim/contact/unit[12]/z-position",25);
+                setprop ("/fdm/jsbsim/contact/unit[14]/z-position",25);
+                setprop ("/fdm/jsbsim/contact/unit[15]/z-position",25);
+                setprop ("/fdm/jsbsim/contact/unit[16]/z-position",15);
+                setprop ("/fdm/jsbsim/contact/unit[17]/z-position",5);
+                setprop ("/fdm/jsbsim/contact/unit[18]/z-position",0);
+                setprop ("/fdm/jsbsim/contact/unit[19]/z-position",-5);   
+                        
+                
+              } else { # ie, over land
+                # on land we set the gear back to normal levels so that 
+                # the a/c rolls/drags across land
+                # this sets the gear contact points to be the bottom of the
+                # tires/rear dragger
+    
+                #R gear & it's protective structure element
+                var bump = (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff);
+                setprop ("/fdm/jsbsim/gear/unit[0]/z-position",-65 + bump );
+                setprop ("/fdm/jsbsim/contact/unit[21]/z-position",-55 + bump );
+                
+                #L gear & it's protective structure element
+                var bump = (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff);
+                setprop ("/fdm/jsbsim/gear/unit[1]/z-position",-65 + bump );
+                setprop ("/fdm/jsbsim/contact/unit[22]/z-position",-55 + bump );
+    
+    
+                setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-55);  #we set the water gear to -55 here, rather than fully retracting to -20, so that on hard bumps on the solid ground it will emit some dust
+                setprop ("/fdm/jsbsim/gear/unit[3]/z-position",-55);
+                
+                #tail
+                setprop ("/fdm/jsbsim/gear/unit[4]/z-position",-18 + (bumpinesscoeff 
+    * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff));               
+                #prop bottom, prop top, upper wing l, middle, r
+                setprop ("/fdm/jsbsim/contact/unit[9]/z-position",62);
+                setprop ("/fdm/jsbsim/contact/unit[10]/z-position",62);
+                setprop ("/fdm/jsbsim/contact/unit[13]/z-position",-59); 
+                setprop ("/fdm/jsbsim/contact/unit[12]/z-position",59);
+                setprop ("/fdm/jsbsim/contact/unit[14]/z-position",56);
+                setprop ("/fdm/jsbsim/contact/unit[15]/z-position",56);
+                setprop ("/fdm/jsbsim/contact/unit[16]/z-position",56);
+                setprop ("/fdm/jsbsim/contact/unit[16]/z-position",48);
+                setprop ("/fdm/jsbsim/contact/unit[17]/z-position",38);
+                setprop ("/fdm/jsbsim/contact/unit[18]/z-position",32);
+                setprop ("/fdm/jsbsim/contact/unit[19]/z-position",28);       
+              
+              }
+          }     
           if (info[1].load_resistance ==nil) info[1].load_resistance = 1e+30;
           if (info[1].solid == 0 ) info[1].load_resistance = 1; # we're experimenting with special paramenters for water to make it more realistic
           setprop("/environment/terrain-info/terrain-load-resistance",info[1].load_resistance);
@@ -180,6 +233,8 @@ var friction_loop = func {
   #print ("Camel/JSBSim: Friction parameters updated");
 }  
 
+###################################################################
+#COMPRESSION_FT TRIM AND WAKE/DUST FACTOR CALCULATION
 #this gets the amount of compression for each contact point or gear element
 #but (important!) trims it down to between min & max
 #this is used in the wake/dust particle system. 
@@ -192,7 +247,7 @@ var friction_loop = func {
 #
 #See camel-effect.xml and the files in Models\Effects\wake for more info
 #   
-var contact_point_compression_limiter_loop = func ( min=0, max=5, multiplier=10) {
+var contact_point_compression_limiter_loop = func ( min=0, max=5, low_limit=.005, zero_round=.00001, multiplier=10) {                                              
 
      for (var n=0;n<getprop("/fdm/jsbsim/gear/num-units"); n+=1) {
         unitName= "unit[" ~ n ~ "]";
@@ -202,9 +257,13 @@ var contact_point_compression_limiter_loop = func ( min=0, max=5, multiplier=10)
         if (compression_ft_trimmed==nil or compression_ft_trimmed==0 ) compression_ft_trimmed=getprop ( "/fdm/jsbsim/contact/" ~unitName~"/compression-ft" );
         if (compression_ft_trimmed==nil) compression_ft_trimmed=0;
         if (compression_ft_trimmed<min) compression_ft_trimmed=min;
-        if (compression_ft_trimmed>max) compression_ft_trimmed=max;
-        var wake_dust_factor=compression_ft_trimmed*multiplier;
+        if (compression_ft_trimmed>max) compression_ft_trimmed=max;        
         setprop("/environment/terrain-info/gear/"~unitName~"/compression-ft-trimmed", compression_ft_trimmed);
+        
+        # dust effects look pathetic if the number per second gets too pathetically low
+        if (compression_ft_trimmed<zero_round ) compression_ft_trimmed=0;
+        if (compression_ft_trimmed<low_limit and compression_ft_trimmed>0 ) compression_ft_trimmed=low_limit;
+        var wake_dust_factor=compression_ft_trimmed*multiplier;
         setprop("/environment/terrain-info/gear/"~unitName~"/wake-dust-factor", wake_dust_factor);     
      }
 }

@@ -3,7 +3,7 @@
 <PropertyList>
 
   <params>
-   <drag>/environment/terrain-info/gear/unit[11]/wake-dust-factor</drag>
+   <drag>/environment/terrain-info/gear/unit[13]/wake-dust-factor</drag>
    <placer-width>1.3</placer-width>
    <start-size>0.6</start-size>
    <end-size>1.5</end-size>      
@@ -15,7 +15,7 @@
   <offsets>
     <x-m>  -.1 </x-m> 
    <y-m>  0 </y-m>                                          
-   <z-m>  0 </z-m>                                          
+   <z-m>  -1.5 </z-m>                                          
  </offsets>
  
   <animation>

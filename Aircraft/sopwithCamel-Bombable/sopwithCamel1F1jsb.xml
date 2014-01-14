@@ -147,7 +147,7 @@ http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
         <author> Brent Hugh</author>
         <filecreationdate> 2011-10-29 </filecreationdate>
         <description>Sopwith Camel with Weapons, matches available data for climb, max speed, general handling</description>
-        <version>Version 1.6</version>
+        <version>Version 1.9</version>
     </fileheader>
 
     <metrics>
@@ -294,7 +294,34 @@ for the rudder to contribute very much to yaw stability.
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 1000 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 900 </damping_coeff>
-            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 900 </damping_coeff_rebound>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 2000 </damping_coeff_rebound> 
+            
+            <!-- works only in 2.12 onwards; replaces the above 3 parameters-->
+            <!-- strut_force>  
+                <function>
+                    <sum>
+                        <product>
+                            <value> -5400. </value>
+                            <property> gear/unit[2]/compression-ft </property>
+                        </product>
+                        <ifthen>
+                            <ge>
+                                <property> gear/unit[2]/compression-velocity-fps </property>
+                                <value> 0.0 </value>
+                            </ge>
+                            <product>
+                                <value> -160. </value>
+                                <property> gear/unit[2]/compression-velocity-fps </property>
+                            </product>
+                            <product>
+                                <value> -320. </value>
+                                <property> gear/unit[2]/compression-velocity-fps </property>
+                            </product>
+                        </ifthen>
+                    </sum>
+                </function>
+            </strut_force -->
+            
             <max_steer unit="DEG"> 0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
@@ -309,7 +336,35 @@ for the rudder to contribute very much to yaw stability.
             <dynamic_friction> 0.9 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 1000 </spring_coeff>
-            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 900 </damping_coeff_rebound>
+            <damping_coeff unit="LBS/FT/SEC"> 900 </damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 2000 </damping_coeff_rebound>
+            <!-- works only in 2.12 onwards; replaces the above 3 parameters-->
+            <!-- strut_force>  
+                <function>
+                    <sum>
+                        <product>
+                            <value> -5400. </value>
+                            <property> gear/unit[2]/compression-ft </property>
+                        </product>
+                        <ifthen>
+                            <ge>
+                                <property> gear/unit[2]/compression-velocity-fps </property>
+                                <value> 0.0 </value>
+                            </ge>
+                            <product>
+                                <value> -160. </value>
+                                <property> gear/unit[2]/compression-velocity-fps </property>
+                            </product>
+                            <product>
+                                <value> -320. </value>
+                                <property> gear/unit[2]/compression-velocity-fps </property>
+                            </product>
+                        </ifthen>
+                    </sum>
+                </function>
+            </strut_force -->
+
+
             <max_steer unit="DEG"> 0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
@@ -322,7 +377,7 @@ for the rudder to contribute very much to yaw stability.
             </location>
             <static_friction> 0.2 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
-            <rolling_friction> 0.02 </rolling_friction>
+            <rolling_friction> 0.02 </rolling_friction>  #rolling friction for water gear elements is manipulated in JSBSim.nas depending on water depth.
             <spring_coeff unit="LBS/FT"> 35 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 90 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 90 </damping_coeff_rebound>            
@@ -339,7 +394,7 @@ for the rudder to contribute very much to yaw stability.
             </location>
             <static_friction> 0.2 </static_friction>
             <dynamic_friction> 0.2 </dynamic_friction>
-            <rolling_friction> 0.02 </rolling_friction>
+            <rolling_friction> 0.02 </rolling_friction> #rolling friction for water gear elements is manipulated in JSBSim.nas depending on water depth.
             <spring_coeff unit="LBS/FT"> 35 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 90 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 90 </damping_coeff_rebound>            
@@ -354,25 +409,38 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> -18 </z>
             </location>
-            <static_friction> 5 </static_friction>
+            <static_friction> 5 </static_friction>    <!-- this is abnormally high but it seems like there was some reason this was important - perhaps to help with steering? -->
             <dynamic_friction> 5 </dynamic_friction>
             <rolling_friction> .1 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
-            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 195 </damping_coeff_rebound>            
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 400 </damping_coeff_rebound>            
             <max_steer unit="DEG"> -20 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
         </contact>
+        
+        <!-- FRICTION COEFFICIENTS: The friction coefficients for things like wings, tail, body vs the ground are somewhat of a guess, of course, but in the general range indicated by sources like these:
+            http://www.supercivilcd.com/FRICTION.htm
+            http://www.roymech.co.uk/Useful_Tables/Tribology/co_of_frict.htm
+            http://www.engineershandbook.com/Tables/frictioncoefficients.htm
+            http://www.engineeringtoolbox.com/friction-coefficients-d_778.html  
+            http://www.school-for-champions.com/science/friction_coefficient.htm#.UtQCavRDurh
+            
+            JSBSim.nas manipulates the static & dynamic friction components given here by multiplying them by the 'friction_factor' given in Flightgear scenery.  I interpret friction_factor as meaning a factor that alters the given static and dynamic friction of your aircraft surfaces by multiplying it by friction_factor factor, to take into account the different ground surfaces the aircraft surfaces might be sliding over.
+            
+            Flightgear scenery also provides a rolling resistance value, which probably is more meant to be the rolling resistance of a typical tire in that terrain, and probably should simply replace the rolling resistance value that we provide here (though in practice what have done is add them - which makes little practical difference since the rolling resistance of the gear elements here is small.  But since we have one gear element that doesn't actually roll (the tail drag), that approach works better for the Camel FDM. 
+        -->
+                
         <contact type="STRUCTURE" name="LEFT_WING">
             <location unit="IN">
                 <x> 45 </x>
                 <y> -164 </y>
                 <z> -16.62 </z>
             </location>
-            <static_friction> 0.8 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
-            <rolling_friction> 0.5 </rolling_friction>
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 195 </damping_coeff_rebound>            
@@ -386,9 +454,9 @@ for the rudder to contribute very much to yaw stability.
                 <y> 164 </y>
                 <z> -16.62 </z>
             </location>
-            <static_friction> 0.8 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
-            <rolling_friction> 0.5 </rolling_friction>
+            <static_friction> 0.4 </static_friction>               
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 195 </damping_coeff_rebound>            
@@ -402,9 +470,9 @@ for the rudder to contribute very much to yaw stability.
                 <y> -164 </y>
                 <z> -16.62 </z>
             </location>
-            <static_friction> 0.8 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
-            <rolling_friction> 0.5 </rolling_friction>
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 195 </damping_coeff_rebound>            
@@ -418,9 +486,9 @@ for the rudder to contribute very much to yaw stability.
                 <y> 164 </y>
                 <z> -16.62 </z>
             </location>
-            <static_friction> 0.8 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
-            <rolling_friction> 0.5 </rolling_friction>
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 195 </damping_coeff_rebound>            
@@ -434,9 +502,9 @@ for the rudder to contribute very much to yaw stability.
                 <y> -164 </y>
                 <z> 62 </z>
             </location>
-            <static_friction> 0.8 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
-            <rolling_friction> 0.5 </rolling_friction>
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 195 </damping_coeff_rebound>            
@@ -450,9 +518,9 @@ for the rudder to contribute very much to yaw stability.
                 <y> 164 </y>
                 <z> 62 </z>
             </location>
-            <static_friction> 0.8 </static_friction>
-            <dynamic_friction> 0.5 </dynamic_friction>
-            <rolling_friction> 0.5 </rolling_friction>
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 195 </damping_coeff_rebound>            
@@ -463,16 +531,16 @@ for the rudder to contribute very much to yaw stability.
 
         <contact type="STRUCTURE" name="NOSE">
             <location unit="IN">
-                <x> -20 </x>
+                <x> -40 </x>
                 <y> 0 </y>
                 <z> 0 </z>
             </location>
-            <static_friction> 2 </static_friction>
-            <dynamic_friction> 2 </dynamic_friction>
-            <rolling_friction> 2 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
-            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 300 </damping_coeff_rebound>            
+            <static_friction> 0.5 </static_friction>  
+            <dynamic_friction> 0.35 </dynamic_friction>
+            <rolling_friction> 0.35 </rolling_friction>
+            <spring_coeff unit="LBS/FT"> 1500 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 2000 </damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 2000 </damping_coeff_rebound>            
             <max_steer unit="DEG"> 0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
@@ -480,32 +548,32 @@ for the rudder to contribute very much to yaw stability.
 
         <contact type="STRUCTURE" name="PROP_TOP">
             <location unit="IN">
-                <x> -10 </x>
+                <x> 10 </x>
                 <y> 0 </y>
                 <z> 59 </z>
             </location>
-            <static_friction> 2 </static_friction>
-            <dynamic_friction> 2 </dynamic_friction>
-            <rolling_friction> 2 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
-            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 300 </damping_coeff_rebound>            
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
+            <spring_coeff unit="LBS/FT"> 600 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 900 </damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 900 </damping_coeff_rebound>            
             <max_steer unit="DEG"> 0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
         </contact>
         <contact type="STRUCTURE" name="PROP_BOTTOM">
             <location unit="IN">
-                <x> -10 </x>
+                <x> 10 </x>
                 <y> 0 </y>
                 <z> -59 </z>
             </location>
-            <static_friction> 2 </static_friction>
-            <dynamic_friction> 2 </dynamic_friction>
-            <rolling_friction> 2 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
-            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 300 </damping_coeff_rebound>            
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
+            <spring_coeff unit="LBS/FT"> 600 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 900 </damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 900 </damping_coeff_rebound>            
             <max_steer unit="DEG"> 0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
@@ -518,9 +586,9 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> 56 </z>
             </location>
-            <static_friction> 2 </static_friction>
-            <dynamic_friction> 2 </dynamic_friction>
-            <rolling_friction> 2 </rolling_friction>
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 300 </damping_coeff_rebound>            
@@ -535,9 +603,9 @@ for the rudder to contribute very much to yaw stability.
                 <y> -50 </y>
                 <z> 56 </z>
             </location>
-            <static_friction> 2 </static_friction>
-            <dynamic_friction> 2 </dynamic_friction>
-            <rolling_friction> 2 </rolling_friction>
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 300 </damping_coeff_rebound>            
@@ -552,9 +620,9 @@ for the rudder to contribute very much to yaw stability.
                 <y> 50 </y>
                 <z> 56 </z>
             </location>
-            <static_friction> 2 </static_friction>
-            <dynamic_friction> 2 </dynamic_friction>
-            <rolling_friction> 2 </rolling_friction>
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 300 </damping_coeff_rebound>            
@@ -569,9 +637,9 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> 48 </z>
             </location>
-            <static_friction> 2 </static_friction>
-            <dynamic_friction> 2 </dynamic_friction>
-            <rolling_friction> 2 </rolling_friction>
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 300 </damping_coeff_rebound>            
@@ -586,9 +654,9 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> 32 </z>
             </location>
-            <static_friction> 2 </static_friction>
-            <dynamic_friction> 2 </dynamic_friction>
-            <rolling_friction> 2 </rolling_friction>
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 300 </damping_coeff_rebound>            
@@ -603,9 +671,9 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> 28 </z>
             </location>
-            <static_friction> 2 </static_friction>
-            <dynamic_friction> 2 </dynamic_friction>
-            <rolling_friction> 2 </rolling_friction>
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 300 </damping_coeff_rebound>            
@@ -622,9 +690,9 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> 25 </z>
             </location>
-            <static_friction> 2 </static_friction>
-            <dynamic_friction> 2 </dynamic_friction>
-            <rolling_friction> 2 </rolling_friction>
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 300 </damping_coeff_rebound>            
@@ -635,20 +703,20 @@ for the rudder to contribute very much to yaw stability.
 
         <!-- These contact points are designed to protect the BOGEY contact points with STRUCTURE contact points to protect them from impact at angles far from vertical, as described in http://wiki.flightgear.org/JSBSim_GroundReactions
         
-        The problem is that we are manipulating the positions of the BOGEYS in order to provide water landing effects.  This means we can't just put these STRUCTURE elements in the logical spot for them, unless we want to go to the trouble of manipulating their position in the nasal code that handles the water landing situation.  So we just put them in a slightly higher position and avoid the issue.-->
+        Note that the z position of these elements in maniuplated in JSBSim.nas to match the position of the main gear elements, which varies depending on whether we're on water or solid ground.-->
 
         <contact type="STRUCTURE" name="LEFT_MAIN_PROTECTOR">
             <location unit="IN">
                 <x> 10 </x>
                 <y> -39.06 </y>
-                <z> -18 </z>
+                <z> -55 </z>
             </location>
-            <static_friction> 0.99 </static_friction>
-            <dynamic_friction> 0.9 </dynamic_friction>
-            <rolling_friction> 0.02 </rolling_friction>
+            <static_friction> 5 </static_friction>  
+            <dynamic_friction> 5 </dynamic_friction>
+            <rolling_friction> 5 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 1000 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 900 </damping_coeff>
-            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 900 </damping_coeff_rebound>
+            <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 10000 </damping_coeff_rebound>
             <max_steer unit="DEG"> 0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
@@ -657,13 +725,14 @@ for the rudder to contribute very much to yaw stability.
             <location unit="IN">
                 <x> 10 </x>
                 <y> 39.06 </y>
-                <z> -18 </z>
+                <z> -55 </z>
             </location>
-            <static_friction> 0.99 </static_friction>
-            <dynamic_friction> 0.9 </dynamic_friction>
-            <rolling_friction> 0.02 </rolling_friction>
+            <static_friction> 5 </static_friction>  
+            <dynamic_friction> 5 </dynamic_friction>
+            <rolling_friction> 5 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 1000 </spring_coeff>
-            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 900 </damping_coeff_rebound>
+            <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 10000 </damping_coeff_rebound>
             <max_steer unit="DEG"> 0 </max_steer>
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
@@ -675,10 +744,10 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> -2 </z>
             </location>
-            <static_friction> 5 </static_friction>
-            <dynamic_friction> 5 </dynamic_friction>
-            <rolling_friction> .1 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
+            <static_friction> 0.4 </static_friction>  
+            <dynamic_friction> 0.3 </dynamic_friction>
+            <rolling_friction> 0.1 </rolling_friction>
+            <spring_coeff unit="LBS/FT"> 150 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 195 </damping_coeff_rebound>            
             <max_steer unit="DEG"> -20 </max_steer>

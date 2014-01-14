@@ -4,8 +4,8 @@
 
   <params>
    <drag>/environment/terrain-info/gear/unit[10]/wake-dust-factor</drag>
-   <placer-width>1.2</placer-width>
-   <start-size>0.55</start-size>
+   <placer-width>1.5</placer-width>
+   <start-size>0.6</start-size>
    <end-size>1.9</end-size>   
   </params>
 
