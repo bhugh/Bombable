@@ -1,7 +1,7 @@
 #####################################################
 ## Bombable
 ## Brent Hugh, brent@brenthugh.com
-var bombableVersion = "4.5b";
+var bombableVersion = "4.6";
 ## 
 ## Copyright (C) 2009 - 2011  Brent Hugh  (brent@brenthugh.com)
 ## This file is licensed under the GPL license version 2 or later.
@@ -1541,7 +1541,22 @@ var init_bombable_dialog = func () {
            p=props.globals.getNode("/sim/menubar/default/menu["~i~"]");
            if ( typeof(p) == "nil" ) {
               bomb_menuNum=i;
+              print ("Bombable: Found empty menu: " ~ i);
               break;
+           } else {
+              # var l = props.globals.getNode("/sim/menubar/default/menu["~i~"]/name");
+              var n = p.getChild("name");
+              if (typeof(n) != "nil" ) var l = n.getValue();
+              print ("Bombable: Looking at menu found a " ~ typeof(l));
+              
+              #p = records.create_printable_summary(l);
+              if (typeof(l) != "nil") mss= l else mss= "nothing at " ~ i;
+              print ("Bombable: Looking @ menu found: " ~ mss);
+              if ( typeof(l) != "nil" and l == "Bombable") { # aha, we've already set up the menu once before.  So just re-use it. This happens in FG 2016.x etc when the user re-inits.
+                bomb_menuNum=i;
+                print ("Bombable: Found existing Bombable menu: " ~ i);
+                return;
+              }
            }   
          }
         } 
@@ -1552,7 +1567,7 @@ var init_bombable_dialog = func () {
         
         #make the GUI menubar item to select the options menu
         props.globals.getNode ("/sim/menubar/default/menu["~bomb_menuNum~"]/enabled", 1).setBoolValue(1);
-        props.globals.getNode ("/sim/menubar/default/menu["~bomb_menuNum~"]/label", 1).setValue("Bombable");
+        props.globals.getNode ("/sim/menubar/default/menu["~bomb_menuNum~"]/name", 1).setValue("Bombable");
         props.globals.getNode ("/sim/menubar/default/menu["~bomb_menuNum~"]/item/enabled", 1).setBoolValue(1);
         #Note: the label must be distinct from all other labels in the menubar
         #or you will get duplicate functionality with the other menu item
@@ -8483,7 +8498,7 @@ var bombableInit = func {
   #for some reason this isn't work; trying a 5 sec delay to 
   # see if that fixes it.  Something is maybe coming along
   # afterward an overwriting the values?      
-  #settimer (setupBombableMenu, 5.12);
+  # settimer (setupBombableMenu, 5.12);
   setupBombableMenu();
   
 	#these are for the "mothership" not the AI or MP objects
