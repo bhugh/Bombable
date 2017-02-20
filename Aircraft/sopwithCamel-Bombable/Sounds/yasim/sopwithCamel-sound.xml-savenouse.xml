@@ -88,8 +88,8 @@
       </volume>
       <pitch>
         <property>/engines/engine/rpm</property>
-        <factor>0.008</factor>
-        <min>.03</min>
+        <factor>0.0008</factor>
+        <min>.3</min>
         <max>1</max>
         <offset>0.3</offset>
       </pitch>
@@ -132,128 +132,16 @@
       </volume>
       <volume>
         <property>/velocities/airspeed-kt</property>
-        <factor>0.005</factor>
-        <min>0.001</min>
+        <factor>0.03</factor>
+        <min>0.01</min>
         <max>1.5</max>
       </volume>
       <pitch>
         <property>/velocities/airspeed-kt</property>
-        <factor>2.25</factor>
+        <factor>0.05</factor>
         <offset>1.25</offset>
       </pitch>
     </wind>
-
-    <overspeed>
-      <name>overspeed</name>
-      <mode>looped</mode>
-      <path>Sounds/wind1.wav</path>
-      <condition>
-
-                 <greater-than>
-                               <property>/velocities/airspeed-kt</property>
-                               <value>140</value>
-                 </greater-than>
-
-      </condition>      
-      
-      <volume>
-        <property>/velocities/airspeed-kt</property>
-        <factor>0.0015</factor>
-        <offset>-0.21</offset>
-        <min>0.01</min>
-        <max>2.0</max>
-      </volume>
-
-      <pitch>
-        <property>/velocities/airspeed-kt</property>
-        <factor>0.025</factor>        
-      </pitch>
-    </overspeed>    
-
-    <overspeed2>
-      <name>overspeed2</name>
-      <mode>looped</mode>
-      <path>Sounds/wind-8khz.wav</path>
-      <condition>
-
-                 <greater-than>
-                               <property>/velocities/airspeed-kt</property>
-                               <value>160</value>
-                 </greater-than>
-
-      </condition>      
-      
-      <volume>
-        <property>/velocities/airspeed-kt</property>
-        <factor>0.0015</factor>
-        <offset>-0.24</offset>
-        <min>0.01</min>
-        <max>2.0</max>
-      </volume>
-      </overspeed2>
-      
-
-  
-      <overspeed3>
-      <name>overspeed3</name>
-      <mode>looped</mode>
-      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/176235__soundslikewillem__wind-turbine.wav</path>
-      <condition>
-
-                 <greater-than>
-                               <property>/velocities/airspeed-kt</property>
-                               <value>140</value>
-                 </greater-than>
-
-      </condition>      
-      
-      <volume>
-        <property>/velocities/airspeed-kt</property>
-        <factor>0.035</factor>
-        <offset>-3.25</offset>
-        <min>0.01</min>
-        <max>5.0</max>
-      </volume>
-      
-
-      <pitch>
-        <property>/velocities/airspeed-kt</property>
-        <factor>0.007</factor>        
-      </pitch>
-      
-    </overspeed3>    
-    
-    <highg>
-      <name>highg</name>
-      <mode>once</mode>
-      <path>Sounds/crash.wav</path>
-      <condition>
-       <or>
-                 <greater-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>4</value>
-                 </greater-than>                                            
-                 <lesser-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>-3</value>
-                 </lesser-than>
-       </or>
-      </condition>
-      <volume>
-        <property>/fdm/jsbsim/accelerations/Nz</property>
-        <factor>0.05</factor>
-        <offset>0.1</offset>
-        <min>0.1</min>
-        <max>0.4</max>
-      </volume>
-
-      <pitch>
-        <property>/fdm/jsbsim/accelerations/Nz</property>
-        <factor>0.05</factor>
-        <offset>0</offset>
-      </pitch>
-    </highg>
-    
 
     <guns>
       <name>gunfire</name>
@@ -269,11 +157,44 @@
       </volume>
     </guns> 
     
+    <crash>
+      <name>crashed</name>
+      <mode>once</mode>
+      <path>Sounds/crash.wav</path>
+      <!--<path>Aircraft/MPCarrier/Sounds/anchorsAweigh.wav</path>-->
+      <!--<property>/velocities/airspeed-kt</property>-->
+      <condition>        
+                 <property>/sim/crashed</property>
+                 <property>/fdm/jsbsim/systems/crash-detect/crashed</property>
+                 <property>/fdm/jsbsim/systems/crash-detect/impact</property>
+                 <property>/fdm/jsbsim/systems/crash-detect/impact-water</property>
+                 <property>/fdm/jsbsim/systems/crash-detect/over-g</property>               
+      </condition>      
+      <volume>
+        <min>1</min>
+        <max>1</max>
+      </volume>
+    </crash>    
+    <crash>
+      <name>crashed</name>
+      <mode>once</mode>
+      <path>Sounds/crash.wav</path>
+      <!--<path>Aircraft/MPCarrier/Sounds/anchorsAweigh.wav</path>-->
+      <!--<property>/velocities/airspeed-kt</property>-->
+      <condition>              
+                 <property>/fdm/jsbsim/systems/crash-detect/crashed</property>      
+      </condition>      
+      <volume>
+        <min>1</min>
+        <max>1</max>
+      </volume>
+    </crash>    
     <crash1>
       <name>crashed1</name>
       <mode>once</mode>
       <path>Sounds/crash.wav</path>
-      
+      <!--<path>Aircraft/MPCarrier/Sounds/anchorsAweigh.wav</path>-->
+      <!--<property>/velocities/airspeed-kt</property>-->
       <condition>                                                     
                  <property>/sim/crashed</property>                     
       </condition>      
@@ -286,7 +207,8 @@
       <name>crashed1b</name>
       <mode>once</mode>
       <path>Sounds/thunder3.wav</path>
-      
+      <!--<path>Aircraft/MPCarrier/Sounds/anchorsAweigh.wav</path>-->
+      <!--<property>/velocities/airspeed-kt</property>-->
       <condition>                                                     
                  <property>/sim/crashed</property>                     
       </condition>      
@@ -295,19 +217,48 @@
         <max>1</max>
       </volume>
     </crash1b>        
-    
-    <crash1c>
-      <name>crashed1c</name>
+    <crash2>
+      <name>crashed1</name>
       <mode>once</mode>
-      <path>Sounds/wave.wav</path>      
-      <condition>                                                     
-                 <property>/fdm/jsbsim/systems/crash-detect/impact-water</property>                     
+      <path>Sounds/crash.wav</path>
+      <!--<path>Aircraft/MPCarrier/Sounds/anchorsAweigh.wav</path>-->
+      <!--<property>/velocities/airspeed-kt</property>-->
+      <condition>        
+                 <property>/fdm/jsbsim/systems/crash-detect/impact</property>                           
       </condition>      
       <volume>
         <min>1</min>
         <max>1</max>
       </volume>
-    </crash1c>      
+    </crash2>    
+    <crash3>
+      <name>crashed3</name>
+      <mode>once</mode>
+      <path>Sounds/crash.wav</path>
+      <!--<path>Aircraft/MPCarrier/Sounds/anchorsAweigh.wav</path>-->
+      <!--<property>/velocities/airspeed-kt</property>-->
+      <condition>                         
+                 <property>/fdm/jsbsim/systems/crash-detect/impact-water</property>                                
+      </condition>      
+      <volume>
+        <min>1</min>
+        <max>1</max>
+      </volume>
+    </crash3>    
+    <crash4>
+      <name>crashed3</name>
+      <mode>once</mode>
+      <path>Sounds/crash.wav</path>
+      <!--<path>Aircraft/MPCarrier/Sounds/anchorsAweigh.wav</path>-->
+      <!--<property>/velocities/airspeed-kt</property>-->
+      <condition>                                     
+                 <property>/fdm/jsbsim/systems/crash-detect/over-g</property>               
+      </condition>      
+      <volume>
+        <min>1</min>
+        <max>1</max>
+      </volume>
+    </crash4>
   </fx>
 
 </PropertyList>

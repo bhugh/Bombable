@@ -6,9 +6,9 @@
 
 JSBSim aerodynamic model for a Sopwith Camel 1F1 
 
-Version: 1.6
+Version: 1.7
 
-Author: Brent Hugh, 6 May 2013
+Author: Brent Hugh, 18 February 2017
 
 Goal: Create a flight model of the Camel that would incorporate as many of the documented combat flight characteristics of the Camel as possible, and in as realistic a way as possible.
 
@@ -1161,7 +1161,6 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
 60	0.3
 90	0 -->
 
-<!-- values from Camel 1.8:
 -90	0
 -60	-0.1
 -30	-0.4
@@ -1633,6 +1632,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                      
           					<table>
                         <independentVar>velocities/p-aero-rad_sec</independentVar>
+                        <!-- 1.6  The problem with this is that is dampens too much in the ~3 rad/sec rank, thus stopping the spin
                         <tableData>
                           -100         -0.25
                           -6.28        -0.75
@@ -1652,7 +1652,22 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
 						              6.28         -0.75
                           100          -0.25
                         </tableData>
-                        
+                        -->
+                        <tableData>
+                          -100         -0.75
+                          -6          -0.4  
+                          -3          -0.01  
+                          -1.5         -0.005
+                          -1.0         -0.23       
+                          -0.01        -0.27
+                          0            -0.3
+                          0.01         -0.27
+                          1.0          -0.23                               
+                          1.5          -0.005
+                          3            -0.01                                  
+						              6            -0.4						              
+                          100          -0.75
+                        </tableData>
                         <!--
                         <tableData>
                           -100         -0.25
@@ -1803,13 +1818,13 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                         <!-- ver 1.6: <independentVar>velocities/r-aero-rad_sec</independentVar> -->
                         <independentVar>velocities/r-aero-rad_sec</independentVar>
                         <tableData>
-                          -4             -1
-                          -3.415             -5
+                          -6             -.01
+                          -3.415             -0.5
                           -.02             -1
                           0                  0
                           .02             1
-                          3.415             5 
-                          4             1
+                          3.415             0.5 
+                          6             0.01
                                 
                         </tableData>
                     </table>
@@ -1921,13 +1936,22 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     <!-- Asymmetric stall; you lose elevator control as stall deepens -->
                     <table>
                         <independentVar lookup="row">aero/alpha-deg</independentVar>
-                        <tableData>
+                        <!-- <tableData>
                         -50    0.2
                         -24    0.3
                         -17.5    1
                         17.5     1
                         24     0.3
                         50     0.2
+                        </tableData>
+                        -->
+                        <tableData>
+                        -50    0.5
+                        -24    0.8
+                        -17.5    1
+                        17.5     1
+                        24     0.8
+                        50     0.5
                         </tableData>
                     </table>
 
@@ -1951,7 +1975,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                         <independentVar>velocities/q-aero-rad_sec</independentVar>
                         <tableData>
                           -32.14        0.2
-						              -4            0.2  
+						              -20            0.2  <!-- ver 1.6: 4 -->  
                           -2            0.02
 						              -1.57         0.2        
                           -0.7          0.2
@@ -1961,7 +1985,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                           0.7           0.2
                           1.57          0.2       
 						              2             0.02
-                          4             0.2
+                          20             0.2
 						              32.14         0.2        
                         </tableData>
                     </table>
@@ -2398,13 +2422,14 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     </sin>
                     
                     <!-- <value>0.12</value> orig -->
-                    <value>0.06</value>
+                    <!-- <value>0.06</value> 1.6 -->
+                    <value>0.04</value>
                 </product>
             </function>
             <function name="aero/moment/Yaw_damp">
                 <description>Yaw moment due to yaw rate</description>
                 <product>
-                    <property>aero/qbar-psf</property>0
+                    <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>aero/bi2vel</property>
@@ -2416,21 +2441,43 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     <!-- orig: <value>-0.15</value> -->
                     <!-- camel is poorly damped and won't get out of spin/turn automatically if the controls are released.  You have to steer it out. -->
 					<!--this tends to damp or *stop* the yaw, thus the negative numbers (the overall effect is always to reduce the amount of yaw moment).
-					With the Camel, in certain situations the yaw & roll actually won't damp out (ie, when in a tailspin - if you take your hands off the controls it will
+					With the Camel, in certain situations the yaw & roll actually won't damp out (ie, when in a tailspin - if you take your hands off the cdontrols it will
 					just keep tailspinning indefinitely, unlike modern aircraft which are designed to naturally recover if you take your hands off the controls); 
 					this is like having a yaw damp of 0 or close to it. 
+                                                    
+               
+          The physical interpretation here is: As long as it is going straight
+          or with moderate yaw it is stable and yaw tends to damp, but as the spin speeds up it becomes more like just a round ball with less & less resistance to the spin.
+          
+          In order to keep a spin that doesn't damp itself out it seems to need yaw AND roll spin & them both to become undamped at some point.     
+          
+          Also, it seems to be that the spin rates that lead to these un-damped spins should be a fair bit beyond the ability of the ailerons/rudder/elevator to produce in normal flight.  That's why the designers didn't notice & address the problem immediately: Within a certain flight envelope it is all very stable.
 					-->
                     
                     <property>velocities/r-aero-rad_sec</property>
-                    <value>1.9</value> 
+                    <!-- <value>1.9</value>  -->
+                    <value>-0.05</value>
+                    <!-- <value>-0.02</value> --> 
+                     
                     <table>
                         <independentVar>velocities/r-aero-rad_sec</independentVar>
                         <tableData>
+                        
+                           <!-- ver 1.7<B></B>:  -->
+                           
+                          -32.14          0.5
+                          -6              0.2
+                          -2.05           0.05
+                          0               1
+                          2.05            0.05
+                          6               0.2
+						              32.14           0.5                        
+                    
                           <!-- ver 1.6a:  -->
-                          
+                          <!--
                           -32.14        -0.50
                           -4            -0.5
-						              -1.25          -0.06  
+						              -1.25          -0.06              
                           -1            -0.003
 						              -.97         -0.01        
                           -0.7          -0.03                       
@@ -2445,7 +2492,40 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                           1.25           -0.06
                           4             -.5
 						              32.14         -0.5
-                          
+                           -->
+                           <!-- ver 1.7:  -->
+                           <!--
+                          -32.14        -3.50
+                          -4            -0.5
+						              -1.25          -0.06  
+                          -1            -0.003
+						              -.97         -0.01        
+                          -0.7          -0.05                       
+                          -0.25         -0.45
+                          -0.1          -0.70     
+                          0              -0.8
+                          0.1           -0.70
+                          0.25          -0.45           
+                          0.7           -0.05
+                          .97          -0.01       
+						              1             -0.003
+                          1.25           -0.06
+                          4             -.5
+						              32.14         -3.5 -->
+                                                                 
+                          <!--                                                                                                                                  
+                          -32.14        -3.50
+                          -4            -0.5
+						              -1.25          -0.06  
+                          -1            -0.003
+						              -.97          -0.01                                       
+                          0              -0.8
+                          .97          -0.01       
+						              1             -0.003
+                          1.25           -0.06
+                          4             -.5
+						              32.14         -3.5     
+                          -->                                                            
                           <!-- ver 1.6b experiment: Less damp right around stability, doesn't really work quite right  -->
                           <!--
                           -32.14        -0.50
@@ -2465,9 +2545,12 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                           1.25           -0.06
                           4             -.5
 						              32.14         -0.5
-                          -->        
+                          -->     
+                          
                         </tableData>
                     </table>
+                    
+                    
                     
                     <!--
                     <value>0.2</value> 
@@ -2505,7 +2588,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     <property>aero/function/qbar-induced-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
-                    <property>fcs/rudder-pos-rad</property>
+                    <property>fcs/rudder-pos-rad</property>                     
                     <!-- 0.18 - Aeromatic -->
                     <!-- <value>-0.18</value> ver 1.4RC-->
                     <!-- According to a simple calculation (sq ft of rudder/elevator area X distance from CoG) the elevator should have about 2X the effectiveness of the rudder.  This is approx. true for -0.20 here and -1.1 for elevator
@@ -2520,7 +2603,8 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                      Cessna 172 has rudder area 7.43 sq ft, 27ft 2 in in length; Whereas Camel is 4.9 sq ft. X 18ft 6 in in length                    
                     -->
                     <!-- <value>-0.1</value> -->
-                    <value>-0.05</value>  <!--ver 1.6 value .05 -->
+                    <value>-0.075</value>  <!--ver 1.6 value .05 -->
+                    <!-- <value>-0.10</value> -->  <!--trying this based on Sopwith Camel Calculated article, ver 1.7 -->
                     <!-- it became harder & hard to rudder with speed,
                     due to wind pressure -->
                     <!-- <table>
@@ -2629,7 +2713,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
            <function name="aero/moment/Yaw_Cnalphabeta">
                 <description>Yaw_moment_due_to_alpha-beta</description>
                 <product>
-                    <value>0</value> <!-- set to 0 to disable for testing; 1 to enable -->
+                    <value>1</value> <!-- set to 0 to disable for testing; 1 to enable; disabled for 1.6 - let's try enabling it -->
                     <value> -2.5 </value> <!--ver 1.6: -2.5 -->
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>

@@ -300,8 +300,14 @@ var setCrash= func {
  #setprop ("/sim/freeze/master", 1);
 
  camel.dialog.init(450, 0, crashCause); camel.dialog.create(crashCause);
+ view.stepView(1,1); #kicks them out of the A/C
 
  setprop ("/sim/crashed", 1);
+ setprop ("/velocities/airspeed-kt", 0); #make it stop, rather than bouncing etc.
+ #And, just go ahead & make sure . . . 
+ settimer ( func {  setprop ("/velocities/airspeed-kt", 0); }, 0.5);
+ settimer ( func {  setprop ("/velocities/airspeed-kt", 0); }, 1.0);
+ settimer ( func {  setprop ("/velocities/airspeed-kt", 0); }, 1.5);
 
 }
 
@@ -316,6 +322,9 @@ var sink = func (distance_ft, rate_ft_per_cycle, time_sec) {
 }
 
 friction_init();
+# We're disabling JSBSim/FlightGear ground friction stuff because we have our own/better version
+# Reason is that the Camel is designed to land in fields etc & did it all the time.  Whereas modern aircraft, not so much.
+setprop("/sim/fdm/surface/override-level", 1); 
 var terrain_survol_loopid=getprop("/environment/terrain-info/terrain_servol_loopid");
 if (terrain_survol_loopid==nil) terrain_survol_loopid=0;
 terrain_survol_loopid+=1;
@@ -325,8 +334,6 @@ terrain_survol(terrain_survol_loopid);
 restore_throttle = func  { 
     setprop("/controls/engines/engine/throttle", camel.throttle_save);
 }    
-
-
 
 #removelistener(list1);
 var setCrash_lastPause_systime=systime();

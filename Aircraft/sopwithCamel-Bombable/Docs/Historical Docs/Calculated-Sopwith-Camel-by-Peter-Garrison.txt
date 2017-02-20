@@ -1,0 +1,46 @@
+http://www.flyingmag.com/pilots-places/pilots-adventures-more/calculated-sopwith-camel
+
+Pilot Proficiency
+Calculated Sopwith Camel
+
+Putting the famous fighter to a digital test.
+By Peter Garrison April 25, 2014
+Sopwith Camel
+
+Sopwith Camel
+
+** Sopwith Camel (Photo by Gavin Conroy)**
+
+One of the legends clinging to the Sopwith Camel is that it was so reluctant to turn 90 degrees to the right that pilots preferred making a 270 to the left. Now, this is being said about the airplane that is widely regarded as the premier dogfighter of World War I. You have to wonder whether such roundabout tactics were practical when you had a Fokker on your tail.
+
+The cause of this alleged misbehavior was the Camel’s rotary engine. The rotary — not the Mazda or Wankel rotary but the quite distinct type that was used on most of the fighters of World War I — reminds me of those light-bulb-changing jokes in which one person of the nationality to be denigrated climbs the ladder to insert the bulb and then several others turn the ladder. At rest, the rotary looks like any air-cooled radial; in operation, it becomes a blur because the crankshaft stands still and the entire engine — crankcase, cylinders, pistons and all — spins around it.
+
+As topsy-turvy as this arrangement may sound, rotaries were ingeniously engineered and fabricated in great numbers with a skill that makes modern machinists gasp in amazement. They had remarkably high power-to-weight ratios for the time, cooled well during ground operations, and were simple and reliable. Furthermore, almost all of the fighters or “scouts” of the war used them, and they can’t all have been going the long way around to make a right turn.
+
+The rotary’s most notorious vice was its gyroscopic couple. Like any spinning mass, the engine and its attached propeller resisted efforts to change their orientation; when forced, they pulled at a right angle to the pressure applied. In a steeply banked turn to the right, for instance, a Camel wanted to drop its nose toward the ground; you had to use left rudder and back stick to hold it up. In a left turn, the nose wanted to slice upward; you corrected with left rudder and forward stick.
+
+I have the good luck to be friends with Javier Arango, who owns a couple of Camels — one a reproduction, one original. They form part of The Aeroplane Collection, based in Paso Robles, California. Their stablemates include Fokkers, Nieuports, Sopwiths, a SPAD, an S.E.5a and the oldest flyable airplane in the world, a restored Bleriot originally built in the United States in 1911. Almost all are airworthy and use original engines. Javier, who has a Harvard degree in history of science, says the mission of his collection is to gain a deeper understanding of the very rapid evolution of aeronautical technology during the war. The builders of the airplanes, unfortunately for us, were too busy to document it.
+
+A few years ago, Javier and I set out to collect some flight data in order to compare contemporary accounts with objective measurements. One goal was to assess the magnitude of the rotary’s famous gyroscopic couple. Javier himself had not found the Camel’s flight behavior disturbingly asymmetrical, but he knew he was probably unconsciously correcting for it.
+
+We have progressed rather slowly, having so far tested only a Sopwith 1½ Strutter, which is a comparatively big two-seater, and a Camel. A Fokker Triplane will be next. Our equipment consists of an Appareo GAU 1000, which stores a detailed history of flight attitudes and accelerations; a Futek stick-force sensor; and a data logger that stores stick forces, control-surface positions and airspeed.
+
+The Camel is a very small, light machine — 1,300 pounds as tested. It’s roughly comparable to a Cessna 150 but with half again more wing area and who knows how much more drag. On the other hand, with a 160 hp Gnôme engine swinging a 9-foot propeller at 1,200 rpm, the Camel climbs well: We recorded almost 1,700 fpm. The tests, Javier flying, consisted of a series of turns, climbs, dives, and large, abrupt control movements. We investigated speeds down to 35 knots and up to 83, continuous bank angles over 70 degrees, and pitch and yaw rates of between 20 and 30 degrees a second.
+
+The Camel’s agility as a fighter was due in part to its notoriously weak stability in all axes. Its center of gravity was far aft, particularly with full fuel — the 30-gallon tank sat behind the pilot, in lieu of armor. Nevertheless, it must have possessed some longitudinal stability because it had no trim and the pilot had to hold forward stick after takeoff. If it had been neutrally stable or unstable, it would not have sought a preferred pitch attitude.
+
+It had a vestigial fixed fin, an aerodynamically balanced rudder and a rather short aft fuselage. As a result, it didn’t much care which way it pointed. It had no inclinometer — the “ball” of a modern panel — so the pilot relied on the seat of his pants to stay coordinated. Most of the time, Camels were slipping or skidding; this was a good thing, one veteran wrote, because an enemy trying to get a bead on you could not quite tell which way you were going. The ailerons, though large, seem to have been rigged with reverse differential — more down travel than up — so that if you tried to turn with aileron alone, as you can in a modern airplane, you would see lots of yaw in the wrong direction.
+
+Our tests produced a lot of complicated-looking graphs. Some of the most striking are the time histories of steep turns. The airplane rolled into a 60-degree bank to the left or right in about 2½ seconds, but the maximum roll rate, reached only momentarily, was about 40 degrees per second to the left and 30 degrees per second to the right. No surprise there; left roll is torque aided. That the steady turn rate was about the same left and right was not surprising either: All airplanes turn at the same rate in coordinated flight at a given speed and bank angle. The story about the Camel making a left 270 more quickly than a right 90 was evidently just a comical embellishment of the fact that the Camel rolled into a left bank more easily than into a right one.
+
+When a Camel pilot wanted to invert the airplane quickly, he would probably use a snap roll, not an aileron roll. It may in fact be true that the Camel snaps faster to the left than to the right; this is a maneuver that Javier did not test.
+
+To assess the gyroscopic moment, we measured the polar moment of inertia of a 160 Gnôme and its propeller. Putting that number together with rpm and a yaw or pitch rate, it’s easy to calculate the famous gyroscopic couple. For the turn rates we saw in our experiments — which were probably close to the greatest rate that a Camel could maintain continuously for a long time — the moment was about 300 pound-feet. The tail moment arm is around 11 feet, so a tail force of 27 pounds or so would be needed to balance it. That should be well within the capability of the tail at the 70-knot airspeed required to maintain, say, a 3G turn, but it might require significant control-surface deflections.
+
+It was said that a Camel could evade an attacker by maintaining a tight right turn until the opponent grew bored and went away or both airplanes reached the ground. That makes some sense: Dogfights were typically fought while descending, and in a right turn, the gyroscopic couple pulls downward; the controls don’t have to fight against it.
+
+In the next few months, we’ll test the Fokker Triplane to see whether the stories about it — for instance that it “climbed like a monkey” — are really true. Then we’ll put the Camel and the Triplane to a rematch — Excel file versus Excel file.
+
+View our Fokker Aircraft and Sopwith Camel photo gallery here.
+
+We welcome your comments on flyingmag.com. In order to maintain a respectful environment, we ask that all comments be on-topic, respectful and spam-free. All comments made here are public and may be republished by Flying.
