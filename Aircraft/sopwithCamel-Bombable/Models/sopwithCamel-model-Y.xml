@@ -85,6 +85,11 @@
 		<pitch-deg>0</pitch-deg>
 	</offsets>
 
+  <model>
+     <name>Effects</name>
+     <path>Aircraft/sopwithCamel-Bombable/Models/camel_effects.xml</path>
+  </model>
+
 	<model>
 		<path>Aircraft/sopwithCamel-Bombable/Models/clerget-Y.xml</path>
 		<offsets>

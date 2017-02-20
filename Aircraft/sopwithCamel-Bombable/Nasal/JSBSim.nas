@@ -33,7 +33,7 @@ var terrain_survol = func (id) {
           #the crash-detect subroutine can only read within the /fdim/jsbsim hierarchy so we must put this there as well
           setprop("/fdm/jsbsim/terrain-info/terrain",info[1].solid);   # 1 if solid land, 0 if water
 
-          # If on water we're going to #1 double the wake rate because water puts up a bunch of spracy etc. And #2 bolster the wake rate at slow speeds to make more of a splash as the a/c settles into the water etc.
+          # If on water we're going to #1 double the wake rate because water puts up a bunch of spray etc. And #2 bolster the wake rate at slow speeds to make more of a splash as the a/c settles into the water etc.
           
 
           var wheel_speed0_fps=getprop ("/fdm/jsbsim/gear/unit[0]/wheel-speed-fps");
@@ -246,6 +246,12 @@ var friction_loop = func {
 #factors later, such as the type of terrain (water, ground, paved, unpaved, etc)
 #
 #See camel-effect.xml and the files in Models\Effects\wake for more info
+#
+#camel-effect.xml is loaded in the file sopwithCamel-model-Y.xml (or whichever
+#other model file you want to use for the JSBSim Camel - right now it is 
+#sopwithCamel-model-Y.xml, which is specified/loaded in 
+#sopwithCamel-JSBSim-Bombable-set.xml ). Then the effects are 
+#controlled by the code below.
 #   
 var contact_point_compression_limiter_loop = func ( min=0, max=5, low_limit=.005, zero_round=.00001, multiplier=10) {                                              
 
@@ -255,15 +261,24 @@ var contact_point_compression_limiter_loop = func ( min=0, max=5, low_limit=.005
         #get the value from the Gear OR the contact tree (each element is in one or the other but not both)
         var compression_ft_trimmed=getprop ( "/fdm/jsbsim/gear/" ~unitName~"/compression-ft" );
         if (compression_ft_trimmed==nil or compression_ft_trimmed==0 ) compression_ft_trimmed=getprop ( "/fdm/jsbsim/contact/" ~unitName~"/compression-ft" );
+        
         if (compression_ft_trimmed==nil) compression_ft_trimmed=0;
         if (compression_ft_trimmed<min) compression_ft_trimmed=min;
         if (compression_ft_trimmed>max) compression_ft_trimmed=max;        
         setprop("/environment/terrain-info/gear/"~unitName~"/compression-ft-trimmed", compression_ft_trimmed);
         
+        #Units 11, 12 & 13 are the nose & top/bottom of the prop.  If it is 
+        #touching the ground & the engine is running we'll kick up a boatload of dust
+        var engineRPM = getprop("/engines/engine/rpm");
+        var extraMultiplier = 1;
+        if (typeof(engineRPM) != "scalar") engineRPM=0;
+        if ((num(engineRPM) != nil) and (engineRPM>3 ) and (n==11 or n==12 or n==13)) extraMultiplier = 20 * engineRPM/100;
+        #if (engineRPM > 5 and (n==11 or n==12 or n==13)) extraMultiplier = 30 * engineRPM/100;
+        
         # dust effects look pathetic if the number per second gets too pathetically low
         if (compression_ft_trimmed<zero_round ) compression_ft_trimmed=0;
         if (compression_ft_trimmed<low_limit and compression_ft_trimmed>0 ) compression_ft_trimmed=low_limit;
-        var wake_dust_factor=compression_ft_trimmed*multiplier;
+        var wake_dust_factor=compression_ft_trimmed*multiplier*extraMultiplier;
         setprop("/environment/terrain-info/gear/"~unitName~"/wake-dust-factor", wake_dust_factor);     
      }
 }
@@ -300,14 +315,25 @@ var setCrash= func {
  #setprop ("/sim/freeze/master", 1);
 
  camel.dialog.init(450, 0, crashCause); camel.dialog.create(crashCause);
- view.stepView(1,1); #kicks them out of the A/C
+ #view.stepView(1,1); #kicks them out of the A/C ; we'll put them back in at crashmenu.nas if they go back in the plane
+ setprop("/sim/current-view/view-number", 7);
 
  setprop ("/sim/crashed", 1);
- setprop ("/velocities/airspeed-kt", 0); #make it stop, rather than bouncing etc.
+ #setprop ("/velocities/airspeed-kt", 0); #make it stop, rather than bouncing etc.
  #And, just go ahead & make sure . . . 
- settimer ( func {  setprop ("/velocities/airspeed-kt", 0); }, 0.5);
- settimer ( func {  setprop ("/velocities/airspeed-kt", 0); }, 1.0);
- settimer ( func {  setprop ("/velocities/airspeed-kt", 0); }, 1.5);
+ #settimer ( func {  setprop ("/velocities/airspeed-kt", 0); }, 0.5);
+ #settimer ( func {  setprop ("/velocities/airspeed-kt", 0); }, 1.0);
+ #settimer ( func {  setprop ("/velocities/airspeed-kt", 0); }, 1.5);
+
+ #Hmm, apparently we can do this with just the verticle velocity, allowing the a/c to slide along the ground etc., rather than just stopping dead.
+ setprop ("/velocities/speed-down-fps", 0); #make it stop, rather than bouncing etc.
+ #And, just go ahead & make sure . . . 
+ settimer ( func {  setprop ("/velocities/speed-down-fps", 0); }, 0.5);
+ settimer ( func {  setprop ("/velocities/speed-down-fps", 0); }, 1.0);
+ settimer ( func {  setprop ("/velocities/speed-down-fps", 0); }, 1.5);
+ settimer ( func {  setprop ("/velocities/speed-down-fps", 0); }, 2.5);
+ settimer ( func {  setprop ("/velocities/speed-down-fps", 0); }, 4.5);
+ settimer ( func {  setprop ("/velocities/speed-down-fps", 0); }, 7.5);
 
 }
 
