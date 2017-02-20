@@ -1554,8 +1554,8 @@ var init_bombable_dialog = func () {
               print ("Bombable: Looking @ menu found: " ~ mss);
               if ( typeof(l) != "nil" and l == "Bombable") { # aha, we've already set up the menu once before.  So just re-use it. This happens in FG 2016.x etc when the user re-inits.
                 bomb_menuNum=i;
-                print ("Bombable: Found existing Bombable menu: " ~ i);
-                return;
+                print ("Bombable: Found existing Bombable menu; re-initing: " ~ i);
+                break;
               }
            }   
          }
