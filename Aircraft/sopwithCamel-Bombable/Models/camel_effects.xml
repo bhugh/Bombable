@@ -1,7 +1,13 @@
 <?xml version="1.0"?>
 
 <!--
-
+#See JSBSim.nas and the files in Models\Effects\wake for more info
+#
+#camel-effect.xml is loaded in the file sopwithCamel-model-Y.xml (or whichever
+#other model file you want to use for the JSBSim Camel - right now it is 
+#sopwithCamel-model-Y.xml, which is specified/loaded in 
+#sopwithCamel-JSBSim-Bombable-set.xml ). Then the effects are 
+#loaded by the XML below & controlled by the code in JSBSim.nas.
 
 -->
 
@@ -16,6 +22,16 @@
    <path>Effects/wake/wake.xml</path>
   </model>
 -->
+
+  <model>
+   <name>Left gear wheel dust</name>
+   <path>Effects/wake/wheel-dust-left.xml</path>
+  </model>
+
+  <model>
+   <name>Right gear wheel dust</name>
+   <path>Effects/wake/wheel-dust-right.xml</path>
+  </model>
 
   <model>
    <name>Left gear wake</name>

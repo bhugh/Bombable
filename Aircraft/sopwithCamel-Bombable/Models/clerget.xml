@@ -22,12 +22,17 @@
       <type>select</type>
       <object-name>Blade-1</object-name>
       <object-name>Blade-2</object-name>
-      <condition> 
+      <condition>
+       <and> 
         <less-than> 
           <property>/engines/engine[0]/rpm</property>
-          <value>1000</value>
-        </less-than>
-      </condition>
+          <value>750</value>
+        </less-than>           
+        <not>
+			   <property>fdm/jsbsim/systems/crash-detect/prop-strike</property>
+        </not>                                                                          
+       </and>                       
+		 </condition>
     </animation>
 		
     <animation> 
@@ -36,7 +41,7 @@
       <condition> 
         <greater-than> 
           <property>/engines/engine[0]/rpm</property>
-          <value>900</value>
+          <value>700</value>
         </greater-than>
       </condition>
     </animation>

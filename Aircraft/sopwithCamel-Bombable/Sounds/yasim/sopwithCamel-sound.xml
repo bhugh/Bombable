@@ -1,5 +1,41 @@
 <?xml version="1.0"?>
+<!-- 
+Sound credits: 
+#1 Wind Turbine.wav by soundslikewillem
 
+Recording of a wind turbine rotating clockwise.
+The stereo microphones are standing right in front of the huge blades at a 90 degree angle.
+
+https://www.freesound.org/s/176235/
+Creative Commons Attribution-NonCommercial 3.0 Unported License: https://creativecommons.org/licenses/by-nc/3.0/                                   
+ 
+
+#2 Tractor_Gueldner_A20_1940.wav by aUREa 
+Sounds from the engine of a Gueldner A20,
+recorded on February, 19th 2015,
+at Traktormuseum in Uhldingen at Lake Constance / Germany
+
+www.traktormuseum.de
+https://www.freesound.org/s/268777/
+Creative Commons Attribution 3.0 Unported License: https://creativecommons.org/licenses/by/3.0/
+
+
+#3. Wood_Creak_03.wave by dheming
+Metal rod pierced through plywood being slowly moved around. 
+
+https://www.freesound.org/s/177778/
+
+Creative Commons Attribution 3.0 Unported License: https://creativecommons.org/licenses/by/3.0/
+
+
+#4. CrackAndHatch.wav by sonictechtonic 
+Tearing open a watermelon and cracking the rind. The watermelon was close mic'd with an Audix i5 and an AXL guitar contact mic (suction cup variety).
+
+https://www.freesound.org/s/241281/
+
+Creative Commons Attribution 3.0 Unported: https://creativecommons.org/licenses/by/3.0/
+
+-->
 <PropertyList>
 
   <fx>
@@ -254,6 +290,144 @@
       </pitch>
     </highg>
     
+    <highgcreak>
+      <name>highgcreak</name>
+      <mode>looped</mode>
+      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/177778__dheming__wood-creak-03.wav</path>
+      <condition>
+       <or>
+                 <greater-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>2.5</value>
+                 </greater-than>                                            
+                 <lesser-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>-1.75</value>
+                 </lesser-than>
+       </or>
+      </condition>
+
+      <volume>
+        <property>/fdm/jsbsim/accelerations/Nz</property>
+        <factor>3</factor>
+        <offset>3.1</offset>
+        <min>1.1</min>
+        <max>30.4</max>
+      </volume>
+
+      <pitch>
+        <property>/fdm/jsbsim/accelerations/Nz</property>
+        <factor>0.333</factor>
+        <offset>0</offset>
+      </pitch>
+
+    </highgcreak>    
+
+    
+    <highgcreak2>
+      <name>highgcreak</name>
+      <mode>looped</mode>
+      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/177778__dheming__wood-creak-03-creak.wav</path>
+      <condition>
+       <or>
+                 <greater-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>2.2</value>
+                 </greater-than>                                            
+                 <greater-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>2.8</value>
+                 </greater-than>         
+                 <greater-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>3.2</value>
+                 </greater-than>         
+                 <greater-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>3.6</value>
+                 </greater-than>         
+                 <greater-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>4.2</value>
+                 </greater-than>
+                 <greater-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>4.7</value>
+                 </greater-than>         
+                 <greater-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>5.2</value>
+                 </greater-than>         
+                 <greater-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>5.5</value>
+                 </greater-than>         
+                 <greater-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>5.8</value>
+                 </greater-than>                                                                                                                                         
+                 <lesser-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>-2.1</value>
+                 </lesser-than>
+                 <lesser-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>-2.6</value>
+                 </lesser-than>
+                 <lesser-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>-3.1</value>
+                 </lesser-than>
+                 <lesser-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>-3.4</value>
+                 </lesser-than>
+                 <lesser-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>-3.75</value>
+                 </lesser-than>                                                   
+       </or>
+      </condition>
+
+      <volume>
+        <property>/fdm/jsbsim/accelerations/Nz</property>
+        <factor>3</factor>
+        <offset>3.1</offset>
+        <min>1.1</min>
+        <max>30.4</max>
+      </volume>
+
+      <pitch>
+        <property>/fdm/jsbsim/accelerations/Nz</property>
+        <factor>0.333</factor>
+        <offset>0</offset>
+      </pitch>
+
+    </highgcreak2>        
+    
+    <PropellerGroundStrike>
+      <name>propeller_groundstrike</name>
+      <mode>once</mode>
+      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/268777__aurea__tractor-gueldner-a20-1940.wav</path>
+      <condition>
+                 <property>/fdm/jsbsim/systems/crash-detect/prop-strike</property>
+      </condition>      
+      <volume>
+        <property>/engines/engine/rpm</property>
+        <factor>0.05</factor>
+        <offset>-2</offset>
+        <min>0.01</min>
+        <max>5.0</max>
+      </volume>
+      
+
+      <pitch>
+        <property>/engines/engine/rpm</property>
+        <factor>0.00007</factor>        
+      </pitch>
+      
+    </PropellerGroundStrike>
+    
 
     <guns>
       <name>gunfire</name>
@@ -282,6 +456,7 @@
         <max>1</max>
       </volume>
     </crash1>  
+    
     <crash1b>
       <name>crashed1b</name>
       <mode>once</mode>
@@ -294,7 +469,8 @@
         <min>1</min>
         <max>1</max>
       </volume>
-    </crash1b>        
+    </crash1b>  
+          
     
     <crash1c>
       <name>crashed1c</name>
@@ -308,6 +484,25 @@
         <max>1</max>
       </volume>
     </crash1c>      
+    
+    <partbreaking>
+      <name>partbreaking</name>
+      <mode>once</mode>
+      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/241281__sonictechtonic__crackandhatch.wav</path>
+      
+      <condition>                                                
+        <or>     
+                 <property>/fdm/jsbsim/systems/crash-detect/left-gear-broken</property>                     
+                 <property>/fdm/jsbsim/systems/crash-detect/right-gear-broken</property>
+        </or>                 
+      </condition>      
+      <volume>
+        <offset>40</offset>
+        <min>40</min>
+        <max>40</max>
+      </volume>
+    </partbreaking>  
+
   </fx>
 
 </PropertyList>

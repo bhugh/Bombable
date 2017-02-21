@@ -98,19 +98,35 @@ var terrain_survol = func (id) {
                 # this sets the gear contact points to be the bottom of the
                 # tires/rear dragger
     
-                #R gear & it's protective structure element
-                var bump = (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff);
-                setprop ("/fdm/jsbsim/gear/unit[0]/z-position",-65 + bump );
-                setprop ("/fdm/jsbsim/contact/unit[21]/z-position",-55 + bump );
-                
+    
+                var lgearpdist=-65;
+                var lgeardist=-55;
+                var rgearpdist=-65;
+                var rgeardist=-55;
+                var lgearbroken = getprop("/fdm/jsbsim/systems/crash-detect/left-gear-broken");
+                if (lgearbroken) { 
+                   var lgearpdist=-25;
+                   var lgeardist=-25;
+                }
+                var rgearbroken = getprop("/fdm/jsbsim/systems/crash-detect/right-gear-broken");
+                if (rgearbroken) { 
+                   var rgearpdist=-25;
+                   var rgeardist=-25;
+                }
+    
                 #L gear & it's protective structure element
                 var bump = (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff);
-                setprop ("/fdm/jsbsim/gear/unit[1]/z-position",-65 + bump );
-                setprop ("/fdm/jsbsim/contact/unit[22]/z-position",-55 + bump );
+                setprop ("/fdm/jsbsim/gear/unit[0]/z-position",lgearpdist + bump );
+                setprop ("/fdm/jsbsim/contact/unit[21]/z-position",lgeardist + bump );
+                
+                #R gear & it's protective structure element
+                var bump = (bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff);
+                setprop ("/fdm/jsbsim/gear/unit[1]/z-position",rgearpdist + bump );
+                setprop ("/fdm/jsbsim/contact/unit[22]/z-position",rgeardist + bump );
     
     
-                setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-55);  #we set the water gear to -55 here, rather than fully retracting to -20, so that on hard bumps on the solid ground it will emit some dust
-                setprop ("/fdm/jsbsim/gear/unit[3]/z-position",-55);
+                setprop ("/fdm/jsbsim/gear/unit[2]/z-position",lgeardist);  #we set the water gear to -55 here, rather than fully retracting to -20, so that on hard bumps on the solid ground it will emit some dust
+                setprop ("/fdm/jsbsim/gear/unit[3]/z-position",rgeardist);
                 
                 #tail
                 setprop ("/fdm/jsbsim/gear/unit[4]/z-position",-18 + (bumpinesscoeff 
@@ -241,6 +257,7 @@ var friction_loop = func {
 #
 #Then it multiplies it by a trimmed version of the current groundspeed (
 #calculated above).
+#
 #That way our wake or dust is proportional to both the speed and the amount of 
 #pressure on that contact point. We might be able to add other interesting
 #factors later, such as the type of terrain (water, ground, paved, unpaved, etc)
@@ -254,7 +271,10 @@ var friction_loop = func {
 #controlled by the code below.
 #   
 var contact_point_compression_limiter_loop = func ( min=0, max=5, low_limit=.005, zero_round=.00001, multiplier=10) {                                              
-
+     var propcrash=0; #if the prop hits the ground hard, then we're crashed
+     var lgearbroken=0; #if we hit the gear too hard it breaks
+     var rgearbroken=0; #if we hit the gear too hard it breaks
+     
      for (var n=0;n<getprop("/fdm/jsbsim/gear/num-units"); n+=1) {
         unitName= "unit[" ~ n ~ "]";
         
@@ -264,6 +284,9 @@ var contact_point_compression_limiter_loop = func ( min=0, max=5, low_limit=.005
         
         if (compression_ft_trimmed==nil) compression_ft_trimmed=0;
         if (compression_ft_trimmed<min) compression_ft_trimmed=min;
+        
+        if (n==21 and compression_ft_trimmed > 0.3) lgearbroken=1;  #0.2 is very sensitive - for testing
+        if (n==22 and compression_ft_trimmed > 0.3) rgearbroken=1; 
         if (compression_ft_trimmed>max) compression_ft_trimmed=max;        
         setprop("/environment/terrain-info/gear/"~unitName~"/compression-ft-trimmed", compression_ft_trimmed);
         
@@ -272,15 +295,32 @@ var contact_point_compression_limiter_loop = func ( min=0, max=5, low_limit=.005
         var engineRPM = getprop("/engines/engine/rpm");
         var extraMultiplier = 1;
         if (typeof(engineRPM) != "scalar") engineRPM=0;
-        if ((num(engineRPM) != nil) and (engineRPM>3 ) and (n==11 or n==12 or n==13)) extraMultiplier = 20 * engineRPM/100;
+        if ((num(engineRPM) != nil) and (engineRPM>3 ) and (n==11 or n==12 or n==13)) extraMultiplier =  engineRPM/100;
         #if (engineRPM > 5 and (n==11 or n==12 or n==13)) extraMultiplier = 30 * engineRPM/100;
+        
         
         # dust effects look pathetic if the number per second gets too pathetically low
         if (compression_ft_trimmed<zero_round ) compression_ft_trimmed=0;
+        
+        if ((num(engineRPM) != nil) and (engineRPM>3 ) and (n==11 or n==12 or n==13) and compression_ft_trimmed>0.1) propcrash=1;
+        
         if (compression_ft_trimmed<low_limit and compression_ft_trimmed>0 ) compression_ft_trimmed=low_limit;
         var wake_dust_factor=compression_ft_trimmed*multiplier*extraMultiplier;
         setprop("/environment/terrain-info/gear/"~unitName~"/wake-dust-factor", wake_dust_factor);     
      }
+     
+     if (propcrash==1) {
+          #Prop hit the ground hard, so we're crashed now.  TODO: We could differentiate between this & some other types of crashes--make a different 'prop hitting the ground horrible sound', whatever.
+         setprop("/fdm/jsbsim/systems/crash-detect/prop-strike",1);
+         #print ("JSBSim Camel: Prop hit the ground/crashed.");
+     } 
+
+     if (lgearbroken) {
+         setprop("/fdm/jsbsim/systems/crash-detect/left-gear-broken",1); 
+     }
+     if (rgearbroken) {
+         setprop("/fdm/jsbsim/systems/crash-detect/right-gear-broken",1); 
+     }     
 }
 
 
@@ -300,6 +340,7 @@ var setCrash= func {
  var impact = getprop("/fdm/jsbsim/systems/crash-detect/impact");
  var impact_water = getprop("/fdm/jsbsim/systems/crash-detect/impact-water");
  var over_g = getprop("/fdm/jsbsim/systems/crash-detect/over-g");
+ var prop_strike = getprop("/fdm/jsbsim/systems/crash-detect/prop-strike");
  var current_g = getprop("/fdm/jsbsim/accelerations/Nz"); 
  
  if (impact) crashCause ~=" - Ground impact ";
@@ -307,7 +348,8 @@ var setCrash= func {
      crashCause ~=" - Water impact ";
      #Ok, this doesnt' work rem-ing it out.
      #sink(10, .1, .5);
- }   
+ }
+ if (prop_strike) crashCause ~=" - Propeller Strike  ";   
  if (over_g) crashCause ~= sprintf( " - G force %1.1f G exceeded 15G, aircraft destroyed ", current_g);
  
  #freeze/pause/crash
@@ -463,9 +505,4 @@ var list3 = setlistener ( "/accelerations/pilot-gdamped", func {
      }  
   ,0,0 );
   
-
-
-
-
-
 

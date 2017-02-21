@@ -92,7 +92,7 @@
   <counter>
    <particles-per-sec>
     <property alias="/params/drag"/>
-    <factor>.6</factor>
+    <factor>7.5</factor>
     <spread>5</spread>
    </particles-per-sec>
   </counter>
@@ -102,33 +102,43 @@
   <particle>
    <start>
     <color>
-     <red><value alias="/params/start-red">.8</value></red>                            <!-- foam white -->
-     <green><value alias="/params/start-green">.9</value></green>
-     <blue><value alias="/params/start-blue">.9</value></blue>
-     <alpha><value alias="/params/start-alpha">.5</value></alpha>
+     <red><value>0.841</value></red>                            <!-- foam white -->
+     <green><value>0.905</value></green>
+     <blue><value>0.940</value></blue>
+     <alpha>
+            <!-- <value>0.5</value> -->
+            <value alias="/params/start-alpha"></value>
+     </alpha>
     </color>
     <size>
-     <value alias="/params/start-size">0.4</value>
+     <value alias="/params/start-size"></value>
      <spread>0.2</spread>
     </size>
    </start>
    <end>
     <color>
-     <red><value alias="/params/end-red">.5</value></red>                            <!-- wave blue -->
-     <green><value alias="/params/end-green">.6</value></green>
-     <blue><value alias="/params/end-blue">.6</value></blue>
-     <alpha><value alias="/params/end-alpha">0</value></alpha>
+     <red><value>0.541</value></red>                            <!-- wave blue -->
+     <green><value>0.605</value></green>
+     <blue><value>0.640</value></blue>
+     <alpha>
+            <!-- <value>0.0</value> -->
+            <value alias="/params/end-alpha"></value>
+     </alpha>
     </color>
     <size>
-     <value alias="/params/end-size">1.1</value>
+     <value alias="/params/end-size"></value>
      <spread>0.2</spread>
     </size>
    </end>
 
    <life-sec>
-    <value alias="/params/life-sec">20</value>
+    <!-- <value>20</value> -->
+    <value alias="/params/life-sec"></value>
    </life-sec>
-   <mass-kg>0.02</mass-kg>
+   <mass-kg>
+      <value alias="/params/mass-kg"></value>
+            <!-- 0.02 -->
+   </mass-kg>
    <radius-m>0.2</radius-m>
   </particle>
 

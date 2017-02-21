@@ -167,6 +167,8 @@ var crashContinue = func {
     
     #view.stepView(-1,1); #@ crash we kicked them out of the A/C (in JSBSim.nas), now we put them back in
     setprop("/sim/current-view/view-number", 0);
+    resetCrashSettings();
+    
 
 }
 
@@ -176,4 +178,64 @@ var crashRaise = func (distance_ft=100) {
  setprop (elevprop, distance_ft + getprop(elevprop));
  crashContinue();
 
+}                               
+
+var resetCrashSettings = func {
+    var agl=getprop("/fdm/jsbsim/position/h-agl-ft");
+    var pitch_deg = getprop ("/orientation/pitch-deg");
+    var roll_deg = getprop ("/orientation/roll-deg");
+    #This might not work on steep hills or other difficult spots . . . 
+    if (!agl or agl < 4.67 or pitch_deg> 20 or pitch_deg <5 or roll_deg>80 or roll_deg < -80)  {
+        setprop("/fdm/jsbsim/position/h-agl-ft", 4.67); #If wheels are broken we might be below ground level, so move it up before un-breaking the wheels.
+        setprop("/orientation/roll-deg", 0);
+        setprop("/orientation/pitch-deg", 14.5);
+        setprop("/fdm/jsbsim/position/h-agl-ft", 4.67); #re-establish the altitude
+    }  
+    
+    setprop("/fdm/jsbsim/systems/crash-detect/left-gear-broken",0); 
+    setprop("/fdm/jsbsim/systems/crash-detect/right-gear-broken",0);    
+    setprop("/fdm/jsbsim/systems/crash-detect/prop-strike",0);
+
 }
+
+
+##########################################################################
+# Set up listeners to make sure the a/c is set up correctly on re-start
+# re-init, other key points
+#                                           
+setlistener("/sim/signals/reinit", func {
+    resetCrashSettings();
+    print ("Camel: Re-Init, resetting crash settings");
+  });
+
+# action to take when main aircraft un-crashes
+setlistener("/sim/crashed", func {
+if (!getprop("/sim/crashed")) {  # ie, crash has changed & now we are NOT crashed
+   
+   print ("Camel: Un-crashed--resetting damage."); 
+   resetCrashSettings();
+} 
+ 
+});
+
+
+var psloopid=0;
+
+var propStrikeKill = func (id) {
+      id == psloopid or return;
+      setprop("/controls/engines/engine[0]/magnetos",0);
+      setprop("/controls/engines/engine[0]/throttle",0);
+      settimer (func {propStrikeKill(id)},2);
+}
+
+setlistener("/fdm/jsbsim/systems/crash-detect/prop-strike", func {
+  if (getprop("/fdm/jsbsim/systems/crash-detect/prop-strike")) {  # ie prop-strike has just been set
+      print ("Camel: Propeller Strike: Engine destroyed");
+      
+      #Now kill the engine & keep it killed until the prop-strike prop is set to FALSE again      
+      propStrikeKill (psloopid += 1);
+
+   } else {# prop-strike was changed but now it is FALSE so we can turn on the engine again
+      psloopid += 1; # kill the loop that keeps the engine killed 
+   }
+});

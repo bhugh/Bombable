@@ -1,8 +1,8 @@
 SOPWITH CAMEL: A REALISTIC JSBSIM FLIGHT MODEL - NOTES
 
-Version 1.8
+Version 2.0
 
-Brent Hugh, 28 May 2013
+Brent Hugh, 20 February 2017
 
 brent@brenthugh.com
 
@@ -70,12 +70,21 @@ on a scale of 1-5:
 implemented as described in attached article, 'The Sopwith "Camel"', The 
 Automobile, Nov 7, 1918.
 
-4 Best available calculations for moment of inertia of engine/propellor, prop 
+4.1 Best available calculations for moment of inertia of engine/propellor, prop 
 thrust, moment of inertia of aircraft wings and body. See included file 
-Camel-JSBSim-calcs-2011-10D.xls. NOTE: These results could/should be verified 
-and improved by actual measurement and testing of an aircraft, by wind tunnel 
-data, or by extensive testing and feedback of the model by an experienced 
-Camel pilot.
+Camel-JSBSim-calcs-2011-10D.xls. Note that value for gyroscopic moment as measured
+in FG matches quite well with values as measured in an actual Camel in Calculated
+Camel. Flight testing in FG shows that changes from that point even at +50-100% 
+are more in the line of tweaks with a noticable affect on flight performance 
+than complete game-changers.  Just installing a different engine (heavier, lighter,
+different distribution of weight) could have changed gyroscopic effects 10-40%.
+NOTE: These results could/should be verified and improved by actual measurement 
+and testing of an aircraft, by wind tunnel data, or by extensive testing and 
+feedback of the model by an experienced Camel pilot.
+
+4 Although the gyroscopic affects are noticeable, under normal flight conditions 
+and sufficient speed, they are well within the capability of the rudder and 
+other flight surfaces to overcome.  (See Calculated Camel article.)
 
 4 Speed, RPM, horsepower of climbing and horizontal flight closes matches 
 published number. See for example the speed/climb rate graphs comparing the 
@@ -83,38 +92,47 @@ JSBSim Camel and a historical 1917 Camel in the Docs subdirectory, file
 Camel-JSBSim-calcs-2011-10D.xls NOTE: 2013/04/07, with new lift/drag tables 
 need to re-check the speed/climb rates to make sure they still match 
 historical records NOTE: The numbers to not match exactly, of course--tweaking 
-parameters in JSBSim you can match any single parameter exactly put not 
+parameters in JSBSim you can match any single parameter exactly but not 
 several parameters of different types exactly. Nevertheless the results are 
 very close, definitely show the characteristics of the Camel (vs any of the 
 other similar aircraft of the period) and in fact is probably close enough to 
 be within the bounds of individual variation of production Camels. TODO: Retest 
 these items on Ver 1.6; tweak dive rate/speed to better match historical Camel.
 
-3 Max sustained turn rate about 76 deg/sec, ie 360 degrees in 4.7 seconds 
-(near stall speed, level flight, sea level). NOTE: Current best time is about 
-8-10 seconds; this matches reported times by Camel pilots of the time and the 
-4.7 sec/76 deg/sec might not be the most reliable number?
+3.8 Max sustained turn rate about 76 deg/sec, ie 360 degrees in 4.7 seconds 
+(near stall speed, level flight, sea level). NOTE: Current best time for 360 
+degrees is about 8-10 seconds; this matches reported times by Camel pilots of 
+the time and the 4.7 sec/76 deg/sec might not be the most reliable number, or 
+possible only for short bursts, not for a complete 360 degree level turn?  In 2.0 
+we're getting 52 deg/sec, as calculate during a level turn just before stall, 
+presumably similar to the test discussed here.  The limiting factor is the drop 
+of wing during stall & a faster max turn rate could be obtained by tweaking 
+that behavior.
+
+4.1 Able to turn through 360 degrees (including roll in/out) in 8-10 seconds as 
+reported by WWI era Camel pilots.  2.0 is very close to this--about 10.0 seconds
+for right & left 360 degree turns.  This could potentially be brought more to 
+8 seconds by tweaking the wing-drop on stall behavior a little.
 
 4 Flown basically with rudder and elevator; rudder initiates turns etc and 
 ailerons only used as assist; many pilots didn't use ailerons much.
 
-3 Able to turn through 360 degrees (including roll in/out) in 8-10 seconds as 
-reported by WWI era Camel pilots. 
+4.1 Quick/light response to controls
 
-4 Quick/light response to controls
-
-4 The gyroscopic effect causes the nose to rise in a left-hand turn (moreso 
+4.1 The gyroscopic effect causes the nose to rise in a left-hand turn (moreso 
 that most other similar aircraft)
 
-4 The gyroscopic effect causes nose to drop in a right-hand turn
+4.1 The gyroscopic effect causes nose to drop in a right-hand turn
 
-4 Fairly large amounts of left rudder were needed in both L & R turns to 
+4.1 Fairly large amounts of left rudder were needed in both L & R turns to 
 correct
 
 4 Sluggish in left turns. Quicker through 270 degrees to the right than 90 
-degrees to the left. NOTE: This is noticeable on flat, level, coordinated turns 
-at steady speed, may not be as dramatic as historic accounts indicate.  In Ver. 
-1.6 this effect is more obvious.
+degrees to the left.  See Calculate Camel article.  It is debatable what this 
+means--quicker to roll?  Or to turn once rolled?  Flat, level turn or something 
+else? Are there little idiosyncratic ways to turn one way or the other that 
+that pilots often used? In 2.0 a split-S right to turn 180 degrees or even a
+bit more is noticeably quicker to the right than the left, for instance.  
 
 4 Known for stalling/spinning on take-off if inattentive piloting let nose 
 rise during initial LH turn.
@@ -125,49 +143,64 @@ to whip into a tight spin.
 4 All the weight of the engine, guns, and pilot was concentrated in the first 
 seven feet of a short 18-foot fuselage.
 
-3.5 Spins: Period of 1-2 seconds.  In Ver. 1.6 the stall and spin 
-characteristics we re-tweaked; this area may still need more work.
+4 Spins: Period of 1-2 seconds.  
 
-3 Loses 150-200 feet per revolution while spinning. NOTE: Loses about 125ft 
-per revolution, may need further tweaking.  Needs re-checking in ver. 1.6.
+4 Loses 150-200 feet per revolution while spinning. In 2.0, one trial had 2.0 
+seconds per rotation and 418 feet of altitude lost per revolution.  
+Another trail had 1.6 seconds per rotation and 175 feet of altitude lost per 
+rotation. These are pretty clearly in the ballpark of the actual numbers.
 
-4 Exit spin by gentle forward pressure in the stick, then *gradually* pull 
+4.1 Exit spin by gentle forward pressure in the stick, then *gradually* pull 
 out. AC will *sometimes* self-recover from a spin, but many times not.
 
-2.5 General spin characteristics similar to Camel; ability to do spin-related 
-maneuvers documented for the Camel--snap rolls, etc. Note that 'snap rolls' as 
-often described in relation to the Camel appear to not be true aerobatic snap 
-rolls as we would perform today (too vigorous for the Camel's light airframe) 
-but a kind of roll coordinated between rudder & aileron.
+3.5 Flat spins - prone to entering these if the pilot pulls too hard during a 
+turn.
 
-3.7 Possible to fly inverted.  Stalls at about 65 mph/56 knots when flying 
-inverted. TODO: Tweak exact stall speed.
+3.8 General spin characteristics similar to Camel; ability to do spin-related 
+maneuvers documented for the Camel--snap rolls, very quick RH Split-S turns, etc. 
+Note that 'snap rolls' as often described in relation to the Camel appear to not 
+be true aerobatic snap rolls as we would perform today (too vigorous for the 
+Camel's light airframe) but a kind of roll coordinated between rudder & aileron.
 
-3 In inverted flight, possible to stall and get into an inverted spin.
+4.1 Possible to fly inverted.  Stalls at about 65 mph/56 knots when flying 
+inverted.  In ver. 2.0, inverted stall is almost exactly 56 knots. 
+
+3.6 In inverted flight, possible to stall and get into an inverted spin.  In ver. 
+2.0 this is certainly possible though the details of the spin may need tweaking.
 
 3.8 Camel's elevator was powerful and sensitive. 
 
-3.9 Rudder was too small and relatively ineffective.
+3.9 Rudder was too small and relatively ineffective. Per Calculate Camel, it is 
+however very sufficient to overcome gyroscopic forces given normal flight and
+sufficient speed.
 
-3.9 Straight/forward flight requires slight right rudder at all times.
+4.1 Straight/forward flight requires slight right rudder at all times.
 
-3.8 Roll for turns initiated by rudder (due to large adverse yaw/drag of 
+4 Roll for turns initiated by rudder (due to large adverse yaw/drag of 
 ailerons); ailerons use to control roll in turns rather than initiate.
+
+3.9 ~2.5 seconds to roll from level to 60 degrees either left or right (data 
+from Calculated Camel article).  Ver. 2.0 takes 2.6 seconds left & 3.1 seconds 
+right; both may be improvable with practice.
 
 4 Accelerating the aircraft caused the nose to climb, and swing to the left.
 
-4 At 110 miles per hour, there was about 15 to 20 pounds of back force on the 
+4.1 At 110 miles per hour, there was about 15 to 20 pounds of back force on the 
 control column, which could not be trimmed out because the aircraft had no 
-pilot-adjustable, moveable horizontal stabilizer.
+pilot-adjustable, moveable horizontal stabilizer. (Though in FG you can trim it
+out--and to avoid arm cramps, it a probably a good idea to do so.)
 
-3.8 Moving the stick forward to enter a dive caused the Camel to yaw left 
+4 Moving the stick forward to enter a dive caused the Camel to yaw left 
 because of gyroscopic force, and correcting this yaw with right rudder caused 
-the nose to pitch down sharply. 
+the nose to pitch down sharply.  Note that this is more noticeable if near stall
+speed.
 
 4 Steerable tail skid of the Camel helped to overcome a slight swing to the 
-left as I opened the throttle.  (This seems to be only a feature of replica 
-Camels, however it is implemented in FG as otherwise there is no way to 
-maneuver the A/C on the ground. In WWI ground crew would have been used instead.)
+left as I opened the throttle.  (The steerable tail skid seems to be only a 
+feature of replica Camels, not ever used during WWI. However it is implemented 
+in FG as otherwise there is no way to maneuver the A/C on the ground. In WWI 
+ground crew would have been used instead.) TODO: The transition between steerable
+tail skid having control & the tail lift-off/rudder control could be handled better.
 
 4 The tail came up at about 20 knots.
 
@@ -208,7 +241,7 @@ in the sky, and faster than any other WWI aircraft I have flown.
 4 Ineffective ailerons: Slow roll/ailerons only with level flight requires 
 23 seconds to complete--if it can be done at all (it requires a special 
 technique).  This is reported in a radial engine replica; it is duplicated in 
-Ver. 1.4 almost exactly, with the added feature that roll to the L is 
+Ver. 1.4-2.0 almost exactly, with the added feature that roll to the L is 
 noticeable faster/easier than roll to the R, due to large torque of Clerget 
 rotary engine.
 

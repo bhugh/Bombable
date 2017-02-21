@@ -5,9 +5,22 @@
   <params>
    <drag>/environment/terrain-info/gear/unit[12]/wake-dust-factor</drag>
    <placer-width>1.9</placer-width>
-   <start-size>0.3</start-size>
-   <end-size>1.5</end-size>      
+   <start-size>0.4</start-size>
+   <end-size>2.0</end-size>      
+   
+   <start-red>0.641</start-red>                            <!-- foam white -->
+   <start-green>0.705</start-green>
+   <start-blue>0.740</start-blue>
+   <start-alpha>0.35</start-alpha>
+   
+   <end-red>0.441</end-red>                            <!-- wave blue -->
+   <end-green>0.505</end-green>
+   <end-blue>0.540</end-blue>
+   <end-alpha>0</end-alpha>
 
+   
+   <life-sec>20</life-sec>
+   <mass-kg>.02</mass-kg>     
   </params>
 
   <particlesystem include="sponson.xml"/>

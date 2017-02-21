@@ -6,6 +6,20 @@
 
 	<animation>
 		<type>spin</type>
+		<object-name>Blade-1-broken</object-name>
+		<object-name>Blade-2-broken</object-name>
+    <property>engines/engine/rpm</property>
+		<factor>1</factor>
+		<offset>100</offset>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>   
+	</animation>
+ 
+	<animation>
+		<type>spin</type>
 		<object-name>complete_engine</object-name>
 		<property>engines/engine/rpm</property>
 		<factor>1</factor>
@@ -15,19 +29,39 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
-	</animation>
+	</animation> 
 
 	<!-- ***** Propeller ***** -->
 	<animation>
 		<type>select</type>
 		<object-name>Blade-1</object-name>
 		<object-name>Blade-2</object-name>
-		<condition>
-			<less-than>
-				<property>engines/engine[0]/rpm</property>
-				<value>850</value>
-			</less-than>
-		</condition>
+      <condition>
+       <and> 
+        <less-than> 
+          <property>/engines/engine[0]/rpm</property>
+          <value>750</value>
+        </less-than>           
+        <not>
+			   <property>fdm/jsbsim/systems/crash-detect/prop-strike</property>
+        </not>                                                                          
+       </and>                       
+		 </condition>
+	</animation>
+ 
+ 	<animation>
+		<type>select</type>
+		<object-name>Blade-1-broken</object-name>
+		<object-name>Blade-2-broken</object-name>
+      <condition>
+       <and> 
+        <less-than> 
+          <property>/engines/engine[0]/rpm</property>
+          <value>750</value>
+        </less-than>                   
+        <property>fdm/jsbsim/systems/crash-detect/prop-strike</property>                                                                                  
+       </and>                       
+		 </condition>
 	</animation>
 
 
@@ -36,6 +70,6 @@
 	<animation>
 		<type>range</type>
 		<min-m>0</min-m>
-		<max-m>700</max-m>
+		<max-m>1500</max-m>
 	</animation>
 </PropertyList>

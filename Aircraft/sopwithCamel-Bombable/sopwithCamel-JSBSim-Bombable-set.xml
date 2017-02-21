@@ -2,9 +2,9 @@
 
 <PropertyList>
 	<sim include="help-jsbsim.xml">
-		<description type="string">Sopwith Camel 1F.1 (JSBSim, Historically Accurate FDM &amp; Weapons, Bombable-compatible, ver 1.8)</description>
+		<description type="string">Sopwith Camel 1F.1 (JSBSim, Historically Accurate FDM &amp; Weapons, Bombable-compatible, ver 2.0)</description>
 		<author type="string">AJ MacLeod, Vivian Meazza, Brent Hugh (Historically accurate JSBSim FDM &amp; weapons, Bombable compatibility)</author>
-		<status type="string">V1.8: Production, guns work</status>
+		<status type="string">V2.0: Production, guns work</status>
 		<rating>
 			<FDM type="int">4</FDM>
 			<systems type="int">3</systems>
@@ -133,12 +133,65 @@
 													 type="double">1.1044</target-z-offset-m>
 			</config>
 		</view>
+   <!--
+		<view n="105">
+			<name>Ground Crew View</name>
+			<type>lookfrom</type>
+			<config>
+				<internal type="bool">false</internal>
+				<from-model type="bool">false</from-model> -->
+				<!--<from-model-idx type="int">0</from-model-idx>--> <!--
+				<eye-lat-deg-path>/fdm/jsbsim/position/lat-gc-deg</eye-lat-deg-path>
+				<eye-lon-deg-path>/fdm/jsbsim/position/long-gc-deg</eye-lon-deg-path>
+				<eye-alt-ft-path>/fdm/jsbsim/position/terrain-elevation-asl-ft</eye-alt-ft-path>
+				<eye-roll-deg-path>/sim/tower/roll-deg</eye-roll-deg-path>
+				<eye-pitch-deg-path>/sim/tower/pitch-deg</eye-pitch-deg-path>
+				<eye-heading-deg-path>/sim/tower/heading-deg</eye-heading-deg-path>
+				<at-model type="bool">false</at-model>
+				<at-model-idx type="int">0</at-model-idx>
+				<ground-level-nearplane-m type="double">0.1f</ground-level-nearplane-m>
+
+				
+				<heading-offset-deg>180</heading-offset-deg>
+				<x-offset-m>0</x-offset-m>
+				
+				<y-offset-m>-0.0</y-offset-m>
+				
+				<z-offset-m>-10.0</z-offset-m>
+				
+				<pitch-offset-deg>0</pitch-offset-deg>
+				<default-field-of-view-deg>60</default-field-of-view-deg>
+			</config>
+		</view>
+   -->
+  <view n="103">         
+   <name>Ground Crew View</name>
+   <internal>true</internal>
+   <config>
+    <!-- x/y/z == right/up/back -->
+    <from-model type="bool">true</from-model>
+    <from-model-idx type="int">0</from-model-idx>
+    <x-offset-m type="double">  15.00 </x-offset-m>
+    <y-offset-m type="double"> 0.50 </y-offset-m>
+    <z-offset-m type="double"> -1.00 </z-offset-m>
+    <heading-offset-deg type="double"> 0.0 </heading-offset-deg>
+    <pitch-offset-deg type="double"> 0.0 </pitch-offset-deg>
+    <default-field-of-view-deg type="double"> 65 </default-field-of-view-deg>
+   </config>
+  </view>   
 
 		<menubar>
 			<default>
 				<menu n="10">
 					<label>Camel</label>
 					<enabled type="bool">true</enabled>
+					<item>
+						<label>Repair/Un-crash</label>
+						<binding>
+							<command>nasal</command>
+							<script>camel.resetCrashSettings();</script>
+						</binding>
+					</item>                   
           <item>
 						<label>Toggle manual mixture (realistic)</label>
 						<binding>
@@ -173,7 +226,7 @@
 							<command>property-toggle</command>
 							<property>sim/model/camel/show-pennants-flight-commander</property>
 						</binding>
-					</item>
+					</item>                 
 					<item>
 						<label>Reload guns</label>
 						<binding>
@@ -349,7 +402,7 @@
 			<file>Aircraft/Generic/WalkView/walkview.nas</file>
 		</walkview>
 		<walkviews>
-			<file>Aircraft/sopwithCamel/Models/camel-walk-views.nas</file>
+			<file>Aircraft/sopwithCamel-Bombable/Models/camel-walk-views.nas</file>
 		</walkviews>        
 	</nasal>
 </PropertyList>

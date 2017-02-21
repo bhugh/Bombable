@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+<!-- left landing gear wheel; this is the dust for LAND landings -->
+
+<!-- Note that this file is loaded by camel_effects.xml. Drag, place-width & other params are read by sponson.xml - see that file for more details -->
+
+  <params>
+   <drag>/environment/terrain-info/gear/unit[0]/wake-dust-factor</drag>
+   <placer-width>.0005</placer-width>
+   <start-size>0.15</start-size>
+   <end-size>0.15</end-size>      
+
+   <start-red>0.841</start-red>                            <!-- foam white -->
+   <start-green>0.905</start-green>
+   <start-blue>0.940</start-blue>
+   <start-alpha>0.2</start-alpha>
+   
+   <end-red>0.541</end-red>                            <!-- wave blue -->
+   <end-green>0.605</end-green>
+   <end-blue>0.640</end-blue>
+   <end-alpha>0</end-alpha>
+
+   <life-sec>0.25</life-sec>
+   <mass-kg>.03</mass-kg>
+  </params>
+
+  <particlesystem include="sponson.xml"/>
+
+  <offsets>
+    <x-m>  .3 </x-m>                                          <!-- left landing gear wheel -->
+   <y-m>  -.738124 </y-m>                                          
+   <z-m>  -1.3 </z-m>                                          
+ </offsets>
+ 
+  <animation>
+   <type>range</type>
+   <min-m>0</min-m>
+   <max-m>50</max-m>
+  </animation>
+
+</PropertyList>
