@@ -325,9 +325,9 @@
 
 	<nasal>
 		<camel>
-			<file>Aircraft/sopwithCamel-Bombable/Models/camel-utils.nas</file>
-			<file>Aircraft/sopwithCamel-Bombable/Models/fuel.nas</file>
-			<file>Aircraft/sopwithCamel-Bombable/Models/yawstring.nas</file>
+			<file>Aircraft/sopwithCamel-Bombable/Nasal/camel-utils.nas</file>
+			<file>Aircraft/sopwithCamel-Bombable/Nasal/fuel.nas</file>
+			<file>Aircraft/sopwithCamel-Bombable/Nasal/yawstring.nas</file>
 			<file>Aircraft/sopwithCamel-Bombable/Nasal/weapons.nas</file>         
  		</camel>
 	</nasal>

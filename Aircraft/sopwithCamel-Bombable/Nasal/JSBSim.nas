@@ -43,7 +43,7 @@ var terrain_survol = func (id) {
           
           if (info[1].bumpiness ==nil) info[1].bumpiness = 0;
           if (info[1].solid == 0 ) info[1].bumpiness = 1.2; # we're making water automatically quite 'bumpy'
-          var bumpinesscoeff=info[1].bumpiness*15;
+          var bumpinesscoeff=info[1].bumpiness*7;  #15 in 1.8
           var speedbumpinesscoeff=20;          
           
           setprop("/environment/terrain-info/terrain-bumpiness",info[1].bumpiness);
@@ -54,7 +54,7 @@ var terrain_survol = func (id) {
               
               if (info[1].solid == 0 ) { #ie, over water
                 # if the a/c is far enough under water that the prop strikes water, then the engine quits
-                if (agl_ft < 3.0) setprop ("/controls/engines/engine/magnetos",0);
+                if (agl_ft < 3.0) setprop ("/controls/engines/engine/magnetos",0);                                                
                 
                 # on water, we 'raise the gear' so that the a/c will appear
                 # to be partially submerged when it lands
@@ -285,8 +285,8 @@ var contact_point_compression_limiter_loop = func ( min=0, max=5, low_limit=.005
         if (compression_ft_trimmed==nil) compression_ft_trimmed=0;
         if (compression_ft_trimmed<min) compression_ft_trimmed=min;
         
-        if (n==21 and compression_ft_trimmed > 0.3) lgearbroken=1;  #0.2 is very sensitive - for testing
-        if (n==22 and compression_ft_trimmed > 0.3) rgearbroken=1; 
+        if (n==21 and compression_ft_trimmed > 0.5) lgearbroken=1;  #0.2 is very sensitive - for testing
+        if (n==22 and compression_ft_trimmed > 0.5) rgearbroken=1; 
         if (compression_ft_trimmed>max) compression_ft_trimmed=max;        
         setprop("/environment/terrain-info/gear/"~unitName~"/compression-ft-trimmed", compression_ft_trimmed);
         
@@ -302,7 +302,7 @@ var contact_point_compression_limiter_loop = func ( min=0, max=5, low_limit=.005
         # dust effects look pathetic if the number per second gets too pathetically low
         if (compression_ft_trimmed<zero_round ) compression_ft_trimmed=0;
         
-        if ((num(engineRPM) != nil) and (engineRPM>3 ) and (n==11 or n==12 or n==13) and compression_ft_trimmed>0.1) propcrash=1;
+        if ((num(engineRPM) != nil) and (engineRPM>3 ) and (n==11 or n==12 or n==13) and compression_ft_trimmed>0.4) propcrash=1;
         
         if (compression_ft_trimmed<low_limit and compression_ft_trimmed>0 ) compression_ft_trimmed=low_limit;
         var wake_dust_factor=compression_ft_trimmed*multiplier*extraMultiplier;

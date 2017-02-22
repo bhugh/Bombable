@@ -35,6 +35,12 @@ https://www.freesound.org/s/241281/
 
 Creative Commons Attribution 3.0 Unported: https://creativecommons.org/licenses/by/3.0/
 
+#5. Low Rumble by RobertWulfman
+
+https://www.freesound.org/s/220841/
+
+Creative Commons Zero License (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+
 -->
 <PropertyList>
 
@@ -62,7 +68,7 @@ Creative Commons Attribution 3.0 Unported: https://creativecommons.org/licenses/
       </volume>
     </crank>
 
-    <engine>
+    <engineblip>
       <name>engine-blip</name>
       <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/leclerget-blip.wav</path>
       <mode>looped</mode>
@@ -94,8 +100,9 @@ Creative Commons Attribution 3.0 Unported: https://creativecommons.org/licenses/
         <max>1</max>
         <offset>0.3</offset>
       </pitch>
-    </engine>
+    </engineblip>
 
+   
     <engine>
       <name>engine</name>
       <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/leclerget.wav</path>
@@ -107,14 +114,6 @@ Creative Commons Attribution 3.0 Unported: https://creativecommons.org/licenses/
         </not>
         <property>/engines/engine/running</property>
       </condition>
-      <!--<orientation>
-        <x>-0.75</x>
-        <y>0.0</y>
-        <z>-0.17</z>
-        <inner-angle>30.0</inner-angle>
-        <outer-angle>100.0</outer-angle>
-        <outer-gain>0.0</outer-gain>
-      </orientation>-->
       <volume>
         <property>/engines/engine/mp-osi</property>
         <factor>0.035</factor>
@@ -130,9 +129,256 @@ Creative Commons Attribution 3.0 Unported: https://creativecommons.org/licenses/
         <offset>0.3</offset>
       </pitch>
     </engine>
+  
+    <!-- x front, z up, y left in YASim & Y right in JSBsim, not sure which it is here -->
+    
+    <lwheelroll>
+      <name>leftwheelroll</name>
+      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/220841__robertwulfman__low-rumble.wav</path>
+      <mode>looped</mode>
 
+      <condition>
+        <and>
+          <greater-than> 
+                         <property>/gear/gear/compression-ft</property>
+                         <value>0.05</value>
+          </greater-than>
+          <greater-than> 
+                         <property>/gear/gear/rollspeed-ms</property>
+                         <value>0.1</value>
+          </greater-than>
+        </and>
+      </condition>
+         <position> 
+              <x>0.5</x>
+              <y>1.0</y>
+              <z>-1.5</z>
+      </position>
+      
+      <volume>
+        <property>/gear/gear/rollspeed-ms</property> 
+        <factor>0.1</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>0</offset>
+      </volume>
+      
+      <pitch>
+        <property>/gear/gear/rollspeed-ms</property>
+        <factor>0.2</factor>
+        <min>.0001</min>
+        <max>2</max>
+        <offset>0.1</offset>
+      </pitch>
+      
+    </lwheelroll>    
+    <rwheelroll>
+      <name>rightwheelroll</name>
+      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/220841__robertwulfman__low-rumble.wav</path>
+      <mode>looped</mode>
 
+      <condition>
+        <and>
+          <greater-than> 
+                         <property>/gear/gear[1]/compression-ft</property>
+                         <value>0.05</value>
+          </greater-than>
+          <greater-than> 
+                         <property>/gear/gear[1]/rollspeed-ms</property>
+                         <value>0.1</value>
+          </greater-than>
+        </and>
+      </condition>
+         <position> 
+              <x>0.5</x>
+              <y>-1.0</y>
+              <z>-1.5</z>
+      </position>
+      
+      <volume>
+        <property>/gear/gear[1]/rollspeed-ms</property> 
+        <factor>0.1</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>0</offset>
+      </volume>
+      
+      <pitch>
+        <property>/gear/gear[1]/rollspeed-ms</property>
+        <factor>0.2</factor>
+        <min>.0001</min>
+        <max>2</max>
+        <offset>0.1</offset>
+      </pitch>
+    </rwheelroll>    
 
+    <waterlanding>
+      <name>waterlanding</name>
+      <path>Sounds/wind.wav</path>      
+      <mode>looped</mode>
+
+      <condition>
+        <and>
+          <greater-than> 
+                         <property>/gear/gear[3]/compression-ft</property>
+                         <value>0.05</value>
+          </greater-than>
+          <greater-than> 
+                         <property>/gear/gear[3]/rollspeed-ms</property>
+                         <value>0.1</value>
+          </greater-than>
+        </and>
+      </condition>
+      <position> 
+              <x>0.5</x>
+              <y>0.0001</y>
+              <z>-1.5</z>
+      </position>
+      
+      <volume>
+        <property>/gear/gear[3]/rollspeed-ms</property> 
+        <factor>0.1</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>0</offset>
+      </volume>
+      
+      <pitch>
+        <property>/gear/gear[3]/rollspeed-ms</property>
+        <factor>0.2</factor>
+        <min>.0001</min>
+        <max>2</max>
+        <offset>0.1</offset>
+      </pitch>
+      
+    </waterlanding>    
+    <waterlanding2>
+      <name>waterlanding2</name>
+      <path>Sounds/wave.wav</path>      
+      <mode>looped</mode>
+
+      <condition>
+        <and>
+          <greater-than> 
+                         <property>/gear/gear[3]/compression-ft</property>
+                         <value>0.05</value>
+          </greater-than>
+          <greater-than> 
+                         <property>/gear/gear[3]/rollspeed-ms</property>
+                         <value>0.1</value>
+          </greater-than>
+        </and>
+      </condition>
+         <position> 
+              <x>0.5</x>
+              <y>0.0001</y>
+              <z>-1.5</z>
+      </position>
+      
+      <volume>
+        <property>/gear/gear[3]/rollspeed-ms</property> 
+        <factor>0.05</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>0</offset>
+      </volume>
+      
+      <pitch>
+        <property>/gear/gear[3]/rollspeed-ms</property>
+        <factor>0.07</factor>
+        <min>.0001</min>
+        <max>2</max>
+        <offset>0.1</offset>
+      </pitch>
+      
+    </waterlanding2>       
+     
+     
+    <taildrag>
+      <name>taildrag</name>
+      <!-- <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/220841__robertwulfman__low-rumble.wav</path> -->
+      <path>Sounds/wind-8khz.wav</path>
+      <mode>looped</mode>
+
+      <condition>
+        <and>
+          <greater-than> 
+                         <property>/gear/gear[4]/compression-ft</property>
+                         <value>0.05</value>
+          </greater-than>
+          <greater-than> 
+                         <property>/gear/gear[4]/rollspeed-ms</property>
+                         <value>0.1</value>
+          </greater-than>
+        </and>
+      </condition>
+         <position> <!-- x front, z up, y left, as in YASim -->
+              <x>0.5</x>
+              <y>-1.0</y>
+              <z>-1.5</z>
+      </position>
+      
+      
+      <volume>
+        <property>/gear/gear[4]/rollspeed-ms</property> 
+        <factor>0.02</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>0</offset>
+      </volume>
+      
+      <pitch>
+        <property>/gear/gear[4]/rollspeed-ms</property>
+        <factor>0.25</factor>
+        <min>.0001</min>
+        <max>2</max>
+        <offset>0.1</offset>
+      </pitch>
+      
+    </taildrag>
+
+    <taildrag2>
+      <name>taildrag2</name>
+      <path>Sounds/rumble-rough.wav</path>      
+      <mode>looped</mode>
+
+      <condition>
+        <and>
+          <greater-than> 
+                         <property>/gear/gear[4]/compression-ft</property>
+                         <value>0.05</value>
+          </greater-than>
+          <greater-than> 
+                         <property>/gear/gear[4]/rollspeed-ms</property>
+                         <value>0.1</value>
+          </greater-than>
+        </and>
+      </condition>
+         <position> <!-- x front, z up, y left, as in YASim -->
+              <x>0.5</x>
+              <y>-1.0</y>
+              <z>-1.5</z>
+      </position>
+      
+      
+      <volume>
+        <property>/gear/gear[4]/rollspeed-ms</property> 
+        <factor>0.02</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>0</offset>
+      </volume>
+      
+      <pitch>
+        <property>/gear/gear[4]/rollspeed-ms</property>
+        <factor>0.25</factor>
+        <min>.0001</min>
+        <max>2</max>
+        <offset>0.1</offset>
+      </pitch>
+      
+    </taildrag2>         
+  
     <birds>
       <name>birdsong</name>
       <mode>looped</mode>
@@ -154,9 +400,63 @@ Creative Commons Attribution 3.0 Unported: https://creativecommons.org/licenses/
       </volume>
     </birds>
 
+  <groundscrape>
+   <name>groundscrape</name>
+   <mode>looped</mode>
+   <path>Sounds/wind-8khz.wav</path>
+   <condition>
+    <and>
+     <or>
+       <property>gear/gear[5]/wow</property>
+       <property>gear/gear[6]/wow</property>
+       <property>gear/gear[7]/wow</property>
+       <property>gear/gear[8]/wow</property>
+       <property>gear/gear[9]/wow</property>
+       <property>gear/gear[10]/wow</property>
+       <property>gear/gear[11]/wow</property>
+       <property>gear/gear[12]/wow</property>
+       <property>gear/gear[13]/wow</property>
+       <property>gear/gear[14]/wow</property>
+       <property>gear/gear[15]/wow</property>
+       <property>gear/gear[16]/wow</property>
+       <property>gear/gear[17]/wow</property>
+       <property>gear/gear[18]/wow</property>
+       <property>gear/gear[19]/wow</property>
+       <property>gear/gear[20]/wow</property>
+       <property>gear/gear[21]/wow</property>
+       <property>gear/gear[22]/wow</property>
+       <property>gear/gear[23]/wow</property>     
+     </or>
+     <greater-than>
+          <property>velocities/groundspeed-kt</property>
+          <value>0.3</value>
+     </greater-than>
+    </and>
+    <!-- <property>sim/current-view/internal</property> -->
+   </condition>
+   <position> <!-- x front, z up, y left in YASim & Y right in JSBsim, not sure which it is here -->
+    <x>.5</x>
+    <y>1.0</y>
+    <z>-1.5</z>
+   </position>
+   <volume>
+    <property>velocities/groundspeed-kt</property>
+    <type>log</type>
+    <factor>1</factor>
+   </volume>
+   <pitch>
+    <property>velocities/groundspeed-kt</property>    
+    <factor>0.1</factor>
+    <max>1</max>
+    <min>0.2</min>
+    <offset>0</offset>
+   </pitch>
+  </groundscrape>
+
+    
     <wind>
       <name>wind</name>
-      <mode>looped</mode>
+      <mode>looped</mode>      
       <path>Sounds/wind.wav</path>
       <property>/velocities/airspeed-kt</property>
       <volume>
@@ -178,7 +478,67 @@ Creative Commons Attribution 3.0 Unported: https://creativecommons.org/licenses/
         <offset>1.25</offset>
       </pitch>
     </wind>
-
+    
+     
+  <buffet>
+   <name>alpha-buffet</name>
+   <mode>looped</mode>
+       <name>wind</name>
+   <condition>
+    <and>
+      <greater-than>
+       <property>/fdm/jsbsim/aero/alpha-rad</property>
+       <value>0.09</value>
+      </greater-than>
+      <greater-than>
+        <property>/velocities/airspeed-kt</property>
+        <value>25</value>
+      </greater-than>
+     </and> 
+   </condition>
+   <path>Sounds/wind.wav</path>
+   <volume>
+    <property>/fdm/jsbsim/aero/alpha-rad</property>
+    <offset>-0.1</offset>
+    <factor>1.0</factor>
+    <max>1.0</max>
+   </volume>
+   <pitch>
+    <property>/fdm/jsbsim/aero/alpha-rad</property>
+    <factor>0.1</factor>
+   </pitch>
+  </buffet>
+  
+  <buffetbeta>
+   <name>beta-buffet</name>
+   <mode>looped</mode>
+   <name>wind</name>
+   <condition>
+    <and>
+      <greater-than>
+       <property>/fdm/jsbsim/aero/beta-rad</property>
+       <value>0.09</value>
+      </greater-than>
+      <greater-than>
+        <property>/velocities/airspeed-kt</property>
+        <value>25</value>
+      </greater-than>
+     </and>
+   </condition>
+   <path>Sounds/wind.wav</path>
+   <volume>
+    <property>/fdm/jsbsim/aero/beta-rad</property>
+    <offset>-0.1</offset>
+    <factor>1.0</factor>
+    <max>1.0</max>
+   </volume>
+   <pitch>
+    <property>/fdm/jsbsim/aero/beta-rad</property>
+    <factor>0.1</factor>
+   </pitch>
+  </buffetbeta>
+  
+       
     <overspeed>
       <name>overspeed</name>
       <mode>looped</mode>
@@ -317,94 +677,156 @@ Creative Commons Attribution 3.0 Unported: https://creativecommons.org/licenses/
 
       <pitch>
         <property>/fdm/jsbsim/accelerations/Nz</property>
-        <factor>0.333</factor>
+        <factor>0.03</factor>      
         <offset>0</offset>
+        <min>0</min>
+        <max>0.8</max>
       </pitch>
 
     </highgcreak>    
 
     
     <highgcreak2>
-      <name>highgcreak</name>
-      <mode>looped</mode>
+      <name>highgcreak2</name>
+      <mode>once</mode>
       <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/177778__dheming__wood-creak-03-creak.wav</path>
       <condition>
-       <or>
+        <and>
                  <greater-than>
                                <property>/fdm/jsbsim/accelerations/Nz</property>
                                <value>2.2</value>
                  </greater-than>                                            
-                 <greater-than>
+                  <lesser-than>
                                <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>2.8</value>
-                 </greater-than>         
-                 <greater-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>3.2</value>
-                 </greater-than>         
-                 <greater-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>3.6</value>
-                 </greater-than>         
-                 <greater-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>4.2</value>
-                 </greater-than>
-                 <greater-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>4.7</value>
-                 </greater-than>         
-                 <greater-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>5.2</value>
-                 </greater-than>         
-                 <greater-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>5.5</value>
-                 </greater-than>         
-                 <greater-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>5.8</value>
-                 </greater-than>                                                                                                                                         
-                 <lesser-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>-2.1</value>
+                               <value>2.5</value>
                  </lesser-than>
-                 <lesser-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>-2.6</value>
-                 </lesser-than>
-                 <lesser-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>-3.1</value>
-                 </lesser-than>
-                 <lesser-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>-3.4</value>
-                 </lesser-than>
-                 <lesser-than>
-                               <property>/fdm/jsbsim/accelerations/Nz</property>
-                               <value>-3.75</value>
-                 </lesser-than>                                                   
-       </or>
+           </and>
+       
       </condition>
-
+      
       <volume>
         <property>/fdm/jsbsim/accelerations/Nz</property>
         <factor>3</factor>
-        <offset>3.1</offset>
-        <min>1.1</min>
-        <max>30.4</max>
+        <offset>0</offset>
+        <min>1</min>
+        <max>1</max>
       </volume>
-
+     
       <pitch>
         <property>/fdm/jsbsim/accelerations/Nz</property>
-        <factor>0.333</factor>
+        <factor>0.1</factor>
         <offset>0</offset>
+        <min>0.001</min>
+        <max>.8</max>
       </pitch>
-
+      
     </highgcreak2>        
-    
+    <highgcreak2>
+      <name>highgcreak2</name>
+      <mode>once</mode>
+      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/177778__dheming__wood-creak-03-creak.wav</path>
+      <condition>
+        <and>
+                 <greater-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>2.8</value>
+                 </greater-than>                                            
+                  <lesser-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>3.0</value>
+                 </lesser-than>
+           </and>
+       
+      </condition>
+      
+      <volume>
+        <property>/fdm/jsbsim/accelerations/Nz</property>
+        <factor>3</factor>
+        <offset>0</offset>
+        <min>1</min>
+        <max>1</max>
+      </volume>
+     
+      <pitch>
+        <property>/fdm/jsbsim/accelerations/Nz</property>
+        <factor>0.1</factor>
+        <offset>0</offset>
+        <min>0.001</min>
+        <max>.8</max>
+      </pitch>
+      
+    </highgcreak2>    
+    <highgcreak2>
+      <name>highgcreak2</name>
+      <mode>once</mode>
+      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/177778__dheming__wood-creak-03-creak.wav</path>
+      <condition>
+        <and>
+                 <greater-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>3.2</value>
+                 </greater-than>                                            
+                  <lesser-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>3.5</value>
+                 </lesser-than>
+           </and>
+       
+      </condition>
+      
+      <volume>
+        <property>/fdm/jsbsim/accelerations/Nz</property>
+        <factor>3</factor>
+        <offset>0</offset>
+        <min>1</min>
+        <max>1</max>
+      </volume>
+     
+      <pitch>
+        <property>/fdm/jsbsim/accelerations/Nz</property>
+        <factor>0.1</factor>
+        <offset>0</offset>
+        <min>0.001</min>
+        <max>.8</max>
+      </pitch>
+      
+    </highgcreak2>    
+    <highgcreak2>
+      <name>highgcreak2</name>
+      <mode>once</mode>
+      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/177778__dheming__wood-creak-03-creak.wav</path>
+      <condition>
+        <and>
+                 <greater-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>4.0</value>
+                 </greater-than>                                            
+                  <lesser-than>
+                               <property>/fdm/jsbsim/accelerations/Nz</property>
+                               <value>4.2</value>
+                 </lesser-than>
+           </and>
+       
+      </condition>
+      
+      <volume>
+        <property>/fdm/jsbsim/accelerations/Nz</property>
+        <factor>3</factor>
+        <offset>0</offset>
+        <min>1</min>
+        <max>1</max>
+      </volume>
+     
+      <pitch>
+        <property>/fdm/jsbsim/accelerations/Nz</property>
+        <factor>0.1</factor>
+        <offset>0</offset>
+        <min>0.001</min>
+        <max>.8</max>
+      </pitch>
+      
+    </highgcreak2>
+        
     <PropellerGroundStrike>
       <name>propeller_groundstrike</name>
       <mode>once</mode>
@@ -497,10 +919,16 @@ Creative Commons Attribution 3.0 Unported: https://creativecommons.org/licenses/
         </or>                 
       </condition>      
       <volume>
-        <offset>40</offset>
-        <min>40</min>
-        <max>40</max>
+        <property>/fdm/jsbsim/systems/crash-detect/left-gear-broken</property>
+        <offset>1</offset>
+        <min>1</min>
+        <max>1</max>      
       </volume>
+      <!-- <pitch>
+        <value>0.02</value>                
+      </pitch>
+      -->
+
     </partbreaking>  
 
   </fx>

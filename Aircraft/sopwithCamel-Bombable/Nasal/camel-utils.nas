@@ -583,7 +583,7 @@ var nudgeaircraft = func {
     #from the ground.  Maybe not the best way to do it but it seems to work for now . . . 
     var currGroundSpeed=getprop("velocities/groundspeed-kt");
     if (currGroundSpeed < 3 ) setprop("velocities/airspeed-kt", 1);      
-    #adding 1 kt here is about the max we can do without causing over G crashes.
+    #adding 1 kt here is about the mx we can do without causing over G crashes.
 }
 
 var displaymixture = func {

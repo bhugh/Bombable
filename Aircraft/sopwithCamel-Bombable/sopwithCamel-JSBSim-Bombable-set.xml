@@ -6,8 +6,8 @@
 		<author type="string">AJ MacLeod, Vivian Meazza, Brent Hugh (Historically accurate JSBSim FDM &amp; weapons, Bombable compatibility)</author>
 		<status type="string">V2.0: Production, guns work</status>
 		<rating>
-			<FDM type="int">4</FDM>
-			<systems type="int">3</systems>
+			<FDM type="int">4.2</FDM>
+			<systems type="int">3.5</systems>
 			<cockpit type="int">4</cockpit>
 			<model type="int">5</model>
 		</rating>
@@ -40,11 +40,11 @@
 			<!--<texture-path>Aircraft/sopwithCamel-Bombable/Models/Textures</texture-path>-->
 			<camel>
 				<extra-details archive="y"
-											 type="bool">true</extra-details>
+			              type="bool">true</extra-details>
 				<show-pilot archive="y"
 										type="bool">true</show-pilot>
 				<show-pennants-flight-commander archive="y"
-												type="bool">true</show-pennants-flight-commander>
+										type="bool">true</show-pennants-flight-commander>
 			</camel>
 		</model>
 
@@ -165,7 +165,7 @@
 		</view>
    -->
   <view n="103">         
-   <name>Ground Crew View</name>
+   <name>Inspect Aircraft View</name>
    <internal>true</internal>
    <config>
     <!-- x/y/z == right/up/back -->
@@ -174,7 +174,7 @@
     <x-offset-m type="double">  15.00 </x-offset-m>
     <y-offset-m type="double"> 0.50 </y-offset-m>
     <z-offset-m type="double"> -1.00 </z-offset-m>
-    <heading-offset-deg type="double"> 0.0 </heading-offset-deg>
+    <heading-offset-deg type="double"> 90 </heading-offset-deg>
     <pitch-offset-deg type="double"> 0.0 </pitch-offset-deg>
     <default-field-of-view-deg type="double"> 65 </default-field-of-view-deg>
    </config>
@@ -351,6 +351,15 @@
 					<script>aircraft.livery.dialog.toggle()</script>
 				</binding>
 			</key>
+			<!-- Nudge aircraft forward a bit, ie when stuck in the grass -->
+			<key n="110">
+				<name>n</name>
+				<desc>Nudge aircraft (ie, when stuck on the ground)</desc>
+				<binding>
+					<command>nasal</command>
+					<script>camel.nudgeaircraft()</script>
+				</binding>
+			</key>            
       <!-- Fire gun -->
       <!-- We do both triggers just to be safe -->
       <key n="101">
@@ -391,9 +400,9 @@
 
 	<nasal>
 		<camel>
-			<file>Aircraft/sopwithCamel-Bombable/Models/camel-utils.nas</file>
-			<file>Aircraft/sopwithCamel-Bombable/Models/fuel.nas</file>
-			<file>Aircraft/sopwithCamel-Bombable/Models/yawstring.nas</file>
+			<file>Aircraft/sopwithCamel-Bombable/Nasal/camel-utils.nas</file>
+			<file>Aircraft/sopwithCamel-Bombable/Nasal/fuel.nas</file>
+			<file>Aircraft/sopwithCamel-Bombable/Nasal/yawstring.nas</file>
 			<file>Aircraft/sopwithCamel-Bombable/Nasal/weapons.nas</file>         
 			<file>Aircraft/sopwithCamel-Bombable/Nasal/JSBSim.nas</file>
 			<file>Aircraft/sopwithCamel-Bombable/Nasal/crashmenu.nas</file>
@@ -402,7 +411,7 @@
 			<file>Aircraft/Generic/WalkView/walkview.nas</file>
 		</walkview>
 		<walkviews>
-			<file>Aircraft/sopwithCamel-Bombable/Models/camel-walk-views.nas</file>
+			<file>Aircraft/sopwithCamel-Bombable/Nasal/camel-walk-views.nas</file>
 		</walkviews>        
 	</nasal>
 </PropertyList>

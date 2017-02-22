@@ -8,27 +8,27 @@
 		</key>
 		<key>
 			<name>b (or press brakes)</name>
-			<desc>blip switch - both magnetos OFF </desc>
+			<desc>Blip switch - both magnetos OFF </desc>
 		</key>
 		<key>
 			<name>B</name>
-			<desc>toggle chocks</desc>
+			<desc>Toggle chocks</desc>
 		</key>
 		<key>
 			<name>{ }</name>
-			<desc>toggle left/right magneto switch</desc>
+			<desc>Toggle left/right magneto switch.  Magneto switches visible on dash at lower left.</desc>
 		</key>
 		<key>
-			<name>u/U</name>
-			<desc>adjust pilot viewpoint up/down</desc>
+			<name>u/U/ctrl u</name>
+			<desc>Adjust pilot viewpoint up/down, select default pilot viewpoint</desc>
 		</key>
 		<key>
-			<name>ctrl u</name>
-			<desc>select default pilot viewpoint </desc>
+			<name>m/M</name>
+			<desc>Adjust mixture (If manual mixture selected via Camel/Toggle Manual Mixture) (</desc>
 		</key>
 		<key>
 			<name>e</name>
-			<desc>fire guns </desc>
+			<desc>Fire guns </desc>
 			
 		</key>
     <key>
@@ -36,53 +36,64 @@
 			<desc>Change livery</desc>
 			
 		</key>
+   <key>
+			<name>n</name>
+			<desc>Nudge aircraft forward (ie, when taxiing in the grass and stuck)</desc>
+			
+		</key>
+      
+    <key>
+			<name>w,a,s,d,W,A,S,D and mouse</name>
+			<desc>INSPECT AIRCRAFT view:  Move and look around (v/V to select this view; see View/View Options)</desc>
+			
+		</key>
 		<line> </line>
-		<line>Starting</line>
+		<line>STARTING</line>
 		
 		<line>Press { and } once each--so that both L and R magneto switches are in center position.</line>
 		<line>Press and hold the s key for 1.5 seconds. It may take several tries before the engine catches.</line> 
 		<line> </line>
-		<line>Take Off</line>
+		<line>TAKE OFF</line>
 		
-		<line>Zoom the view out so you can see the edges of the runway with your peripheral vision.  As you roll out,</line>
-		<line> you will need just a hair of left rudder to stay on the runway. As the tail lifts off the ground, about</line>
-		
-		<line>45 MPH, the torque of the engine will twist you counter-clockwise--you need a bit of right rudder and right</line>
-		
-    <line>aileron to counter the effect and keep moving in the straight line. </line>
-    <line>Once you are rolling at 50 mph ease the stick back gently to lift off.</line>
-
+		<line>Zoom the view out so you can see the edges of the runway with your peripheral vision.  </line>
+		<line>Easiest, most dependable way to take off: Full throttle, moderate back-pressure on stick to keep </line>
+		<line>tail engaged w/ ground. Use rudder to steer (tail dragging on ground provides most control authority).</line>
+		<line> 3-point lift-off @ 35 KTS; immediately ease stick forward to avoid excessive climb and loss of airspeed.</line>
+    <line>More advanced: Gently lift tail @ 35KTS and continue rolling (or  through 45-50 KTs before lift-off.</line>
+    <line>Crashing on takeoff? Is there a strong crosswind or tailwind? Many real Camel pilots crashed in such conditions.</line>
     <line> </line>
-    <line>The blip switch and magnetos </line>
+    <line>THROTTLE, BLIP SWITCH, AND MAGNETOS</line>
     
-		<line>The blip switch (b) disengages both magnetos and cuts power.</line>
-		<line>Engaging either R or L brake (via keyboard, joystick, or rudder/pedals)</line>
+		<line>Real Camel pilots used a combination throttle, magneto settings, and the blip switch to  achieve desired power</line>
+    <line>settings. Throttle provides a limited range of power settings. The blip switch (b) disengages both magnetos and cuts</line>
+    <line>power totally. Engaging either R or L brake (via keyboard, joystick, or rudder/pedals)</line>
     <line>also engages the blip switch.  Releasing the brake (or releasing the b key)</line>
-    <line>releases the blip switch. Engaging only one magneto ({ or })reduces power.</line>
-    <line>Negative G - Inverted flight </line>
+    <line>releases the blip switch. Engaging only one magneto ({ or })reduces power by about 1/3.</line>
+    <line></line>
     
-		<line>The Camel's fuel system requires gravity to feed fuel to the engine.  If you fly inverted or otherwise pull</line>
-		<line> negative Gs, the engine will run out of fuel after a few seconds.  Once you return to upright flight/</line>
+    <line>NEGATIVE G - INVERTED FLIGHT</line>
     
-    <line>positive Gs the engine will restart after a few seconds.</line>
+		<line>The Camel's fuel system requires gravity to feed fuel to the engine.  If you fly inverted or pull negative Gs, the</line>
+		<line> engine will soon stop.  Once you return to upright flight the engine will start again.</line>
     
 		<line> </line>
-		<line>Approach and landing</line>
+		<line>APPROACH AND LANDING</line>
 		
-		<line>Speed 55 MPH (48 KTS) IAS</line>
-		<line>Throttle OPEN</line>
-		<line>Use the blip switch/magnetos to control speed NOT throttle</line>
-		<line>Blip switch ON/OFF as required</line>
-		<line>Touchdown speed: 50-55 MPH (43-48 KTS) IAS</line>
-		<line>Stall speed 48 MPH (41 KTS)) IAS</line>
+		<line>Approach speed 48 KTS IAS</line>
+		<line>Throttle FULL CLOSED, Magneto 1 OFF, Magneto 2 ON, Blip (b) ON/OFF and sideslip as needed to control speed</line>
+		<line>Touchdown speed: 43-48 KTS IAS</line>
+		<line>Stall speed: 41 KTS IAS</line>
 		<line> </line>
-		<line>Guns</line>
+		<line>GUNS</line>
 		
 		<line>Guns have 400 rounds each, the maximum capacity of the Camel.</line>
 	  <line>Note that guns will not work if AI models are disabled (the bullets</line> 
     <line>and smoke are AI objects - tracer rounds will appear but they won't move).</line>
     <line>Fire with the e key or a joystick trigger linked to /controls/armament/trigger. </line>
     <line>Reload guns: Use the menu--you must be on ground and stopped. </line>
+    
+		<line>MORE HELP </line>
+		<line>Extensive help, tips, documents in the DOCS folder.</line>    
     
 	</help>
 </PropertyList>
