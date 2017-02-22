@@ -1524,10 +1524,11 @@
 			<z>0.0</z>
 		</axis>
 	</animation>
-
+  <!-- Not sure why this is here but there is no corresponding item in camel.ac, so removing it ?  2.0 2017/2/21 
 	<animation>
 		<type>select</type>
 		<object-name>construction</object-name>
 	</animation>
+  -->
 
 </PropertyList>

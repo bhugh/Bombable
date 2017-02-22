@@ -153,7 +153,7 @@ rotation. These are pretty clearly in the ballpark of the actual numbers.
 4.1 Exit spin by gentle forward pressure in the stick, then *gradually* pull 
 out. AC will *sometimes* self-recover from a spin, but many times not.
 
-3.5 Flat spins - prone to entering these if the pilot pulls too hard during a 
+3.8 Flat spins - prone to entering these if the pilot pulls too hard during a 
 turn.
 
 3.8 General spin characteristics similar to Camel; ability to do spin-related 
@@ -202,7 +202,8 @@ in FG as otherwise there is no way to maneuver the A/C on the ground. In WWI
 ground crew would have been used instead.) TODO: The transition between steerable
 tail skid having control & the tail lift-off/rudder control could be handled better.
 
-4 The tail came up at about 20 knots.
+3.5 The tail came up at about 20 knots.  As of 2.0 is it more like 35 kts and
+it is very difficult to handle once the tail is up, even at 35 kts.  (TODO)
 
 4 Lifts off about 35-40 knots
 
@@ -306,16 +307,15 @@ tweaky as described by Camel pilots. Mixture lever or dial isn't implemented;
 a simple Flightgear menu displays current mixture & RPM when manual mixture is 
 enabled.
 
-3.5 Control of engine thrust via blip switch and magneto rather than throttle. 
+4.0 Control of engine thrust via blip switch and magneto rather than throttle. 
 NOTE: Pilots can simulate the realistic historical way of controlling the 
 Camel's engine using this method: Leave throttle at full position at all times;
 manipulate engine power through use of the magnetos and blip switch alone. 
 Engine power with one and with two magnetos engaged is very close to that 
 described in technical specifications; operating with one magneto creates a 
-low-power setting. TODO: A more realistic flight experience would be to 
-connect the joystick throttle control to the mixture, allowing constant 
-adjustment of the mixture as necessary, and leave throttle always at full with 
-engine power adjusted by magnetos and blip switch.
+low-power setting. This is similar to the way (some models) of Camel engines
+operated, via a combination of throttle, mixture, magnetos, and blip switches. 
+Other, more limited, models had only magneto and blip power control options.
 
 3 Engine power with both magnetos or one magneto matches historical engines. 
 NOTE: The one-magneto setting doesn't seem to match the historical Clerget 
@@ -334,9 +334,11 @@ routine that tracks fuel in a simple carburetor. Fuel  flows  or  out  depending
 on the forces involved and when the carburetor  runs  out  of  fuel  the  engine
 sputters and stops until the carburetor refills. 
 
-4 Service ceiling 19,600 ft.  Tested in ver. 1.7, by the standard of highest altitude able to sustain 100 fpm climb (1.66 fps).
+4 Service ceiling 19,600 ft.  Tested in ver. 1.7, by the standard of highest 
+altitude able to sustain 100 fpm climb (1.66 fps).
 
-3.5 The 130HP Clerget Camel was generally lower performance/underperforming for altitudes greater than 10,000-12,000 feet.
+3.5 The 130HP Clerget Camel was generally lower performance/underperforming 
+for altitudes greater than 10,000-12,000 feet.
 
 
 

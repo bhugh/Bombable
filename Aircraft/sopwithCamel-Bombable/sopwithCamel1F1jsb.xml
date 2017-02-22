@@ -566,7 +566,7 @@ for the rudder to contribute very much to yaw stability.
             <location unit="IN">
                 <x> 10 </x>
                 <y> 0 </y>
-                <z> -59 </z>
+                <z> -50 </z> <!-- -59 in ver 1.8  moving it just a bit up to be a bit more forgiving on noseover -->
             </location>
             <static_friction> 0.4 </static_friction>  
             <dynamic_friction> 0.3 </dynamic_friction>
@@ -704,7 +704,7 @@ for the rudder to contribute very much to yaw stability.
         <!-- These contact points are designed to protect the BOGEY contact points with STRUCTURE contact points to protect them from impact at angles far from vertical, as described in http://wiki.flightgear.org/JSBSim_GroundReactions
         
         Note that the z position of these elements in manipulated in JSBSim.nas to match the position of the main gear elements, which varies depending on whether we're on water or solid ground.-->
-
+        
         <contact type="STRUCTURE" name="LEFT_MAIN_PROTECTOR">
             <location unit="IN">
                 <x> 10 </x>
@@ -754,7 +754,7 @@ for the rudder to contribute very much to yaw stability.
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
         </contact>
-
+         
         
     </ground_reactions>
 
@@ -1885,10 +1885,10 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/moment/Pitch_elevator">
                 <description>Pitch moment due to elevator</description>
                 <product>
-                    <!-- <property>aero/qbar-psf</property> -->
+                    <!-- <property>aero/qbar-psf</property> using induced-psf instead bec it includes a factor for prop wash-->
                     <property>aero/function/qbar-induced-psf</property>
-                    <property>metrics/Sw-sqft</property>
-                    <property>metrics/cbarw-ft</property>
+                    <property>metrics/Sw-sqft</property> <!--this is sq footage of wing whereas it would better to start where w/ sq footage of elevator -->
+                    <property>metrics/cbarw-ft</property><!-- similarly, we're using wingspan here, Sw-sqft, whereas really we should be using distance to tail? These don't really make any difference in the end bec. we adjust the strength with a factor based on actual flying/behavior below.  But starting with actual moment arm and sq footage of the rudder would be a more reasonable starting point . . . -->
                     <property>fcs/elevator-pos-rad</property>
                     <table>
                         <independentVar>velocities/mach</independentVar>
@@ -2522,7 +2522,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     
                     <property>velocities/r-aero-rad_sec</property>
                     <!-- <value>1.9</value>  -->
-                    <value>-0.05</value>
+                    <value>-0.05</value>  <!-- ver 1.8 was -0.05 -->
                     <!-- <value>-0.02</value> --> 
                      
                     <table>
@@ -2650,10 +2650,10 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/moment/Yaw_rudder">
                 <description>Yaw moment due to rudder</description>
                 <product>
-                    <!-- <property>aero/qbar-psf</property> -->
+                    <!-- <property>aero/qbar-psf</property> using induced-psf instead bec it includes a factor for prop wash -->
                     <property>aero/function/qbar-induced-psf</property>
-                    <property>metrics/Sw-sqft</property>
-                    <property>metrics/bw-ft</property>
+                    <property>metrics/Sw-sqft</property>  <!-- we're using wing area here, Sw-sqft, whereas really we should be using rudder area ? -->
+                    <property>metrics/bw-ft</property> <!-- similarly, we're using wingspan here, Sw-sqft, whereas really we should be using distance to tail? These don't really make any difference in the end bec. we adjust the strength with a factor based on actual flying/behavior below.  But starting with actual moment arm and sq footage of the rudder would be a more reasonable starting point . . . -->
                     <property>fcs/rudder-pos-rad</property>                     
                     <!-- 0.18 - Aeromatic -->
                     <!-- <value>-0.18</value> ver 1.4RC-->
@@ -2669,7 +2669,10 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                      Cessna 172 has rudder area 7.43 sq ft, 27ft 2 in in length; Whereas Camel is 4.9 sq ft. X 18ft 6 in in length                    
                     -->
                     <!-- <value>-0.1</value> -->
-                    <value>-0.075</value>  <!--ver 1.6 value .05 -->
+                    <value>-0.075</value>  <!--ver 1.6 value .05, ver 1.8 0.075 At takeoff the elevator had fully 10X the authority of the rudder!  So that is probably not realistic.  Perhaps the elevator is too strong & the rudder too weak, and the right value is somewhere in the middle, but rudder should be maybe 1/3 to 1/2 as effective as elevator just based on square footage and geometry? 
+                    2.0 exper: .3 here req .55 in _damp & didn't allow stall.  -->
+                    
+                    
                     <!-- <value>-0.10</value> -->  <!--trying this based on Sopwith Camel Calculated article, ver 1.7 -->
                     <!-- it became harder & hard to rudder with speed,
                     due to wind pressure -->
@@ -2692,7 +2695,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                         -90    0.01
                         -20    1
                         12     1
-                        14     0.7
+                        14     1    <!-- 0.7 in ver 1.8 - reducing to make takeoff more feasible -->
                         90     0.01
                         </tableData>
                     </table> 

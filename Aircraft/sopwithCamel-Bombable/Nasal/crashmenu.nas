@@ -173,15 +173,17 @@ var crashContinue = func {
 }
 
 var crashRaise = func (distance_ft=100) {
-
+ crashContinue();
  var elevprop="/position/altitude-ft";
  setprop (elevprop, distance_ft + getprop(elevprop));
- crashContinue();
+ setprop("/fdm/jsbsim/position/h-agl-ft", distance_ft + getprop(elevprop)); #need to set it here, too, bec. we're using that value in resetCrashSettings() and JSBSim won't have time to update it we get there 
+
 
 }                               
 
 var resetCrashSettings = func {
-    var agl=getprop("/fdm/jsbsim/position/h-agl-ft");
+    var agl_jsb=getprop("/fdm/jsbsim/position/h-agl-ft");
+    var agl =getprop("/position/altitude-agl-ft");
     var pitch_deg = getprop ("/orientation/pitch-deg");
     var roll_deg = getprop ("/orientation/roll-deg");
     #This might not work on steep hills or other difficult spots . . . 
