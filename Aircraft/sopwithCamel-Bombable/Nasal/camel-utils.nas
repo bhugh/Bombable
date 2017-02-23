@@ -261,6 +261,7 @@ blipMagswitch:   func{
        print ("oof ", camel.inverted_out_of_fuel);                       
        if ( camel.inverted_out_of_fuel ) return;
     }
+
     if ( me.right_brake.getValue() > 0.25 or me.left_brake.getValue() > 0.25 
             ) {;
         me.magnetos.setValue( 0 );
