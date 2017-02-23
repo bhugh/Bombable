@@ -2,7 +2,12 @@
 
 <PropertyList>
  <path>puff.ac</path>
-
+ 
+  <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+    <object-name>puff</object-name>    
+  </effect>
+  
  <animation>
   <type>billboard</type>
   <spherical>true</spherical>

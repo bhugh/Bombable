@@ -133,7 +133,7 @@ eda is a complete guess; no data.
     <eda>0.00236354</eda>
   </submodel>
 
-
+  <!--  doing puffs via particle system instead now
 
   <submodel>
     <name>gunsmoke-R</name>
@@ -141,8 +141,7 @@ eda is a complete guess; no data.
     <trigger>controls/armament/trigger</trigger>
     <speed>10</speed>
     <repeat>true</repeat>
-    <delay>0.2466</delay>
-		<!-- count>400</count -->
+    <delay>0.2466</delay>		
 		<count>400</count>
 		<x-offset>1.66</x-offset>
 		<y-offset>0.50045</y-offset>
@@ -152,8 +151,10 @@ eda is a complete guess; no data.
     <eda>10</eda>
     <wind>true</wind>
     <buoyancy>33</buoyancy>
-    <life>3</life>
+    <life>3</life>    
   </submodel>
+  
+  -->
 
 <!-- LEFT bullets, tracers, smoke -->
   <submodel>
@@ -203,7 +204,7 @@ eda is a complete guess; no data.
   </submodel>
 
 
-
+  <!--  doing puffs via particle system instead now
   <submodel>
     <name>gunsmoke-L</name>
     <model>Aircraft/sopwithCamel-Bombable/Models/guns/smoke.xml</model>
@@ -211,7 +212,6 @@ eda is a complete guess; no data.
     <speed>10</speed>
     <repeat>true</repeat>
     <delay>0.2746</delay>
-		<!-- count>400</count-->
 		<count>400</count>
     <x-offset>1.66</x-offset>
 		<y-offset>-0.50045</y-offset>
@@ -223,5 +223,6 @@ eda is a complete guess; no data.
     <buoyancy>33</buoyancy>
     <life>3</life>
   </submodel>
+  -->
 
 </PropertyList>

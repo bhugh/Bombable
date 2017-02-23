@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<particlesystem>
+		<name>gun puffs</name>
+		<texture>wake.png</texture>
+		<emissive>false</emissive>
+		<lighting>false</lighting>
+
+		<offsets>
+			<x-m>-0.9</x-m>
+			<y-m>0</y-m>
+			<z-m>0.644</z-m>
+		</offsets>
+
+		<condition>    
+       <and>
+        <equals> 
+				         <property>controls/armament/trigger</property>  
+				         <value>1</value>
+        </equals>
+        <not-equals>
+                 <property>ai/submodels/submodel/count</property>  <!-- the first gun.  We could also check the 2nd gun, whatever -->
+                 <value>0</value>
+        </not-equals>
+       </and>
+                                                                          
+		</condition>
+
+		<!--<condition>
+			<or>
+				<property>gear/gear[0]/wow</property>
+				<property>gear/gear[2]/wow</property>
+			</or>
+		</condition>
+		<volume>
+			<property>velocities/speed-down-fps</property>
+			<factor>0.05</factor>
+		</volume>
+		<volume>
+			<property>velocities/airspeed-kt</property>
+			<factor>0.01</factor>
+		</volume>-->
+
+		<attach>world</attach>
+
+		<placer>
+			<type>point</type>
+		</placer>
+
+		<shooter>
+			<theta-min-deg>45</theta-min-deg>
+			<theta-max-deg>85</theta-max-deg>
+			<phi-min-deg>-60</phi-min-deg>
+			<phi-max-deg>60</phi-max-deg>
+			<speed-mps>
+				<value>50</value>
+				<spread>5</spread>
+			</speed-mps>
+			<rotation-speed>
+				<x-max-deg-sec>15</x-max-deg-sec>
+				<x-min-deg-sec>-15</x-min-deg-sec>
+				<y-max-deg-sec>15</y-max-deg-sec>
+				<y-min-deg-sec>-15</y-min-deg-sec>
+				<z-max-deg-sec>15</z-max-deg-sec>
+				<z-min-deg-sec>-15</z-min-deg-sec>
+			</rotation-speed>
+		</shooter>
+
+		<counter>
+			<particles-per-sec>
+				<value>20</value>
+				<spread>5</spread>
+			</particles-per-sec>
+		</counter>
+
+		<align>billboard</align>
+
+		<particle>
+			<start>
+				<color>
+					<red>
+						<value>0.95</value>
+					</red>
+					<green>
+						<value>0.95</value>
+					</green>
+					<blue>
+						<value>0.95</value>
+					</blue>
+					<alpha>
+						<value>0.05</value>
+					</alpha>
+				</color>
+				<size>
+					<value>0.03</value>
+				</size>
+			</start>
+			<end>
+				<color>
+					<red>
+						<value>1</value>
+					</red>
+					<green>
+						<value>1</value>
+					</green>
+					<blue>
+						<value>1</value>
+					</blue>
+					<alpha>
+						<value>0.020</value>
+					</alpha>
+				</color>
+				<size>
+					<value>2</value>
+				</size>
+			</end>
+			<life-sec>
+				<value>.25</value>
+			</life-sec>
+			<mass-kg>0.025</mass-kg>
+			<radius-m>0.175</radius-m>
+		</particle>
+
+		<program>
+			<fluid>air</fluid>
+			<gravity>true</gravity>
+			<wind>true</wind>
+		</program>
+
+	</particlesystem>
+
+</PropertyList>

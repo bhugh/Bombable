@@ -1,0 +1,115 @@
+SOPWITH CAMEL: A REALISTIC JSBSIM FLIGHT MODEL - CHANGES & TO DO LIST
+
+Version 2.0
+
+Brent Hugh, 20 February 2017
+
+brent@brenthugh.com
+
+----
+
+===========================
+CHANGES/UPDATES/THINGS DONE
+===========================
+
+VER 2.0
+-------
+
+* Major updates to Flight Dynamics Model, significant better fit to historically 
+reported behavior.  Went through every one of more than 60 characteristics of the Camel I've identified from historical accounts (all listed in the NOTES file 
+in the /docs directory), tested each one, tweaked the FDM a bit here and there 
+to put the final touches on the FDM updates I've been working on over the past two years.  It's very noticeably improved from ver. 1.6 in several areas.
+
+* Ground contact effects: Dust, dirt, wake when wheels, tail, prop, fuselage etc 
+contact the ground or water
+
+* Parts break: Wheels, undercarriage, & prop will break if they contact the 
+ground with too much force. Visual, audio, & physics affects of broken parts are 
+apparent--ie, if you hit the ground too hard the wheel breaks off and you hear it 
+and feel it, and the aircraft behaves differently with no wheel.
+
+* Ground/water crash behavior much improved; solved problems with JSBSim when 
+violent ground crashes occur. Pilot is kicked out of plane in crash,
+explosionsound, smoke/dust clouds, (some) parts break appropriately, somewhat 
+reasonable aircraft physics displayed @ crash (vs previous versions that tended 
+to just 'bounce off the ground')
+
+* Sound effects: Blip, air rushing (useful for detecting stall/overspeed), 
+overspeed whooshing, high G creaks & ominous rumbles, landing gear and 
+taildragger rumble, if you touch a wing it slides, water landings have their own 
+sound effects, buffeting aloft, etc.  Wheel thump on landing, tail dragging (and 
+lifting) sounds, other sounds that help you know what's going on. Sound effects 
+help you make a connection between what you're doing in the aircraft and the 
+world you are interacting with, so I've tried to include sound effects that help 
+you know what is going on with the aircraft. 
+
+* Repair aircraft after crash or parts broken: Available in Camel/Repair menu or 
+automatically completed when appropriate choice is made in 'crash menu'. 
+
+* Improved documentation.
+
+* "Nudge":  If landed and stuck in a field or in the countryside somewhere, and 
+just can't quite get moving, pressing 'n' gives you a little push to get 
+you going and unstuck.
+
+* New 'Inspect Aircraft View' based on FG's WalkView. I quite like this because 
+you can easily maneuver your way to any given spot around the aircraft--behind 
+the tail, in front of the nose, beside the pilot, whatever, and just stay there. 
+Select using 'v' and maneuver with wasd WASD and mouse for view direction.
+
+
+
+==============
+TO DO/WISHLIST
+==============
+
+* Chocks display (B) but don't do anything. Make them act as brakes/keep a/c at a standstill.
+
+* Could make wing/tail etc break or show damage on bad landing
+
+* Transition from tail drag to tail fly @ 20-35-40 KTS is difficult, rudder seems to have insufficient control authority, or some interaction between ground & aero forces.
+
+* Blip: Make sure blip switches on dash always accurately show actual state of blips.  Make sure blip switches are turned on when a/c is repaired, restarted etc & switches show that properly.  Use the camel blip nasal routine instead of just changing the prop directly.
+
+* Engine disable: Right now this is handled by turning off blip switches, leading to confusion
+ 
+* Engine control: JSBSim only allows dialing engine power down by a certain amount when blipping etc, so it is hard to exactly duplicate the various power settings of the Clerget engine.  This could be improved.
+ 
+* Real rotary engines seem to develop their thrust almost instantly when blipped/unblipped, vs the JSBSim engine model which takes a second or two to ramp up. This makes quite a difference in e.g. ground handling.
+ 
+* Engine often stops when blipping, which apparently didn't happen to actual rotary engines as long as the a/c was moving.
+ 
+* Taxiing, beginning of takeoff roll: Currently the tail drag is steerable and has considerable control authority because that is the only way I could figure out how to make taxiing feasible in FG. But real WWI Camels had no steerable tail drag and even today pilots seem to be able to maneuver on the ground quite well using rudder, blip, etc.  So perhaps we can model this more closely; this would also help the takeoff rollout transition from tail drag to rudder control.
+ 
+* Ground effects: Dust could be different colors etc depending on type of ground.
+
+* FUEL: Fix fuel and/or make sure fuel consumption is modelled correctly, weight distribution changes, a/c runs out of fuel appropriately, there is some way to check fuel remaining. Fuel.nas is currently used by may have YASim specific code.
+ 
+* Use struct rather than landing gear to model front gear breakage as the struct detects forces from all directions better than the gear/bogey.
+ 
+* Model wing breakage during high-g maneuvers and/or touching a wing too hard on landing or crash.
+
+* Often (incorrectly) detects view/select airport change as  'crash'.
+ 
+* Low pass filter for 'bumpiness'.
+
+* Fix 'could not find construction' error: Seems to be a spurious entry in 
+sopwithCamel-model-Y.xml
+
+* Re-evaluate/re-check speed, climb rates, etc as compared with original Camel & add these items to the NOTES checklist of historical Camel characteristics.
+ 
+* Some parts of the model don't work well with Rembrandt. 
+ 
+* Inspect Aircraft View keys interfere with a/A for time speedup/slowdown, and perhaps other keys.
+ 
+* Save/restore menu settings on quit/restart
+
+* Spin force in some stall situations may be a bit too strong or too strong too early in the stall
+ 
+* Don't make explosion sound/smoke on 'successful' water landing
+ 
+* Tail dragger sound is a bit inconsistent at low speeds
+ 
+* Refine gyroscopic moment; it may be dialed down too low now. Perhaps it could be made user adjustable in some way.
+ 
+* Taildragger sound could be replaced with something more specific/realistic

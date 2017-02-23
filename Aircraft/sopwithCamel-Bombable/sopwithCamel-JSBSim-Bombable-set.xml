@@ -4,23 +4,23 @@
 	<sim include="help-jsbsim.xml">
 		<description type="string">Sopwith Camel 1F.1 (JSBSim, Historically Accurate FDM &amp; Weapons, Bombable-compatible, ver 2.0)</description>
 		<author type="string">AJ MacLeod, Vivian Meazza, Brent Hugh (Historically accurate JSBSim FDM &amp; weapons, Bombable compatibility)</author>
-		<status type="string">V2.0: Production, guns work</status>
+		<status type="string">V2.0: Production, guns work, Bombable compatible</status>
 		<rating>
 			<FDM type="int">4.2</FDM>
-			<systems type="int">3.5</systems>
+			<systems type="int">4</systems>
 			<cockpit type="int">4</cockpit>
 			<model type="int">5</model>
 		</rating>
 
 		<flight-model>jsb</flight-model>
 		<aero>sopwithCamel1F1jsb</aero>
-
-		<startup>
-			<splash-texture>Aircraft/sopwithCamel-Bombable/splash.rgb</splash-texture>
-		</startup>
-
+  <startup>
+		<splash-texture>JSBSim-camel-splash2a.jpg</splash-texture>
+    <splash-title>JSBSim Sopwith Camel</splash-title>
+  </startup>
+   
 		<sound>
-			<path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/sopwithCamel-sound.xml</path>
+			<path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/sopwithCamel-sound-jsbsim.xml</path>
 		</sound>
 
 		<virtual-cockpit archive="y">true</virtual-cockpit>
@@ -164,6 +164,7 @@
 			</config>
 		</view>
    -->
+  <!-- uses Aircraft\Generic\WalkView\ walkview.nas plus Systems/walk-view-keys.xml plus Nasal/camel-walk-views.nas plus this setup here in -set.xml-->
   <view n="103">         
    <name>Inspect Aircraft View</name>
    <internal>true</internal>
@@ -247,7 +248,7 @@
 	</sim>
 
 	<input>
-	  <keyboard include="../Generic/WalkView/walk-view-keys.xml">
+	  <keyboard include="Systems/walk-view-keys.xml">
 			<!-- map keys for mag switches  -->
 			<key n="123">
 				<name>{</name>
@@ -399,19 +400,17 @@
 	</yasim>
 
 	<nasal>
-		<camel>
+		<camel>  
 			<file>Aircraft/sopwithCamel-Bombable/Nasal/camel-utils.nas</file>
 			<file>Aircraft/sopwithCamel-Bombable/Nasal/fuel.nas</file>
 			<file>Aircraft/sopwithCamel-Bombable/Nasal/yawstring.nas</file>
 			<file>Aircraft/sopwithCamel-Bombable/Nasal/weapons.nas</file>         
 			<file>Aircraft/sopwithCamel-Bombable/Nasal/JSBSim.nas</file>
 			<file>Aircraft/sopwithCamel-Bombable/Nasal/crashmenu.nas</file>
+      <file>Aircraft/sopwithCamel-Bombable/Nasal/camel-walk-views.nas</file>
  		</camel>
 		<walkview>
 			<file>Aircraft/Generic/WalkView/walkview.nas</file>
-		</walkview>
-		<walkviews>
-			<file>Aircraft/sopwithCamel-Bombable/Nasal/camel-walk-views.nas</file>
-		</walkviews>        
+		</walkview>		        
 	</nasal>
 </PropertyList>

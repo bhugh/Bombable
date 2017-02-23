@@ -21,6 +21,11 @@
    </less-than>
   </condition>
  </animation>
+ 
+ <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+    <object-name>PropDisk</object-name>
+  </effect>
 
  <animation>
   <type>select</type>

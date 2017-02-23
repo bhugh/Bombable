@@ -14,7 +14,7 @@
 	</offsets>
 
 	<model>
-		<path>Aircraft/sopwithCamel-Bombable/Models/clerget-Y.xml</path>
+		<path>Ai/Aircraft/sopwithCamel-Bombable/Models/clerget-Y.xml</path>
 		<offsets>
 			<x-m>-0.70</x-m>
 			<y-m>0.0</y-m>
@@ -41,6 +41,70 @@
 			<pitch-deg>0</pitch-deg>
 		</offsets>
 	</model>
+ 
+ <!-- ********* Effects ****** -->
+
+  <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+    <object-name>glass</object-name>
+    <object-name>perspex-panel</object-name>
+    <object-name>Lens</object-name>
+  </effect>
+
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+		<object-name>tube-upper</object-name>
+		<object-name>tube-lower</object-name>
+		<object-name>engine-air-intake</object-name>
+		<object-name>cartridge-chute</object-name>
+	</effect>
+
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+    <object-name>wing-upper</object-name>
+		<object-name>wing-upper-top</object-name>
+ 	</effect>
+  
+  <effect>
+    <inherits-from>Effects/camelreflect-uber</inherits-from>
+    <object-name>wing-lower</object-name>
+    <object-name>tail</object-name>
+		<object-name>rudder</object-name>
+		<object-name>horizontal_stabiliser_fixed</object-name>
+		<object-name>elevator</object-name>
+  </effect>
+
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+		<parameters>
+			<dirt-enabled type="int">1</dirt-enabled>
+			<!--<dirt-factor type="float">0.4</dirt-factor>-->
+		</parameters>
+		<object-name>nose</object-name>
+		<object-name>fuselage-duct</object-name>
+	</effect>
+
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+		<parameters>
+			<dirt-enabled type="int">1</dirt-enabled>
+		</parameters>
+		<object-name>fuselage-mid</object-name>
+		<object-name>fuselage-aft</object-name>
+	</effect>
+
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+		<parameters>
+			<rendering-hint>transparent</rendering-hint>
+			<transparent>true</transparent>
+			<render-bin>
+				<bin-number>10</bin-number>
+				<bin-name>DepthSortedBin</bin-name>
+			</render-bin>
+		</parameters>
+		<object-name>perspex-panel</object-name>
+	</effect>
 
 	<!-- ********* shaders ****** -->
 

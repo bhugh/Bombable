@@ -22,6 +22,10 @@
    <path>Effects/wake/wake.xml</path>
   </model>
 -->
+<model>
+   <name>Gun puffs</name>
+   <path>Effects/wake/gun-puffs.xml</path>
+  </model>
 
   <model>
    <name>Left gear wheel dust</name>

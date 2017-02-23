@@ -249,34 +249,70 @@
 			<pitch-deg>0</pitch-deg>
 		</offsets>
 	</model>
+  <!-- transparent effect needed for Rembrandt -->
+<!-- ********* Effects ****** -->
 
-	<!-- ********* shaders ****** -->
+  <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+    <object-name>glass</object-name>
+    <object-name>perspex-panel</object-name>
+    <object-name>Lens</object-name>
+  </effect>
 
-	<animation>
-		<type>shader</type>
-		<shader>chrome</shader>
-		<texture>Textures/chrome2.rgb</texture>
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
 		<object-name>tube-upper</object-name>
 		<object-name>tube-lower</object-name>
 		<object-name>engine-air-intake</object-name>
 		<object-name>cartridge-chute</object-name>
+	</effect>
 
-	</animation>
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+    <object-name>wing-upper</object-name>
+		<object-name>wing-upper-top</object-name>
+ 	</effect>
+  
+  <effect>
+    <inherits-from>Effects/camelreflect-uber</inherits-from>
+    <object-name>wing-lower</object-name>
+    <object-name>tail</object-name>
+		<object-name>rudder</object-name>
+		<object-name>horizontal_stabiliser_fixed</object-name>
+		<object-name>elevator</object-name>
+  </effect>
 
-	<!--<animation>
-		<type>shader</type>
-		<shader>chrome</shader>
-		<texture>Textures/brass.rgb</texture>
-		<object-name>switch_body</object-name>
-		<object-name>knob</object-name>
-	</animation>-->
-
-	<animation>
-		<type>shader</type>
-		<shader>chrome</shader>
-		<texture>Textures/chrome2.rgb</texture>
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+		<parameters>
+			<dirt-enabled type="int">1</dirt-enabled>
+			<!--<dirt-factor type="float">0.4</dirt-factor>-->
+		</parameters>
 		<object-name>nose</object-name>
-	</animation>
+		<object-name>fuselage-duct</object-name>
+	</effect>
+
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+		<parameters>
+			<dirt-enabled type="int">1</dirt-enabled>
+		</parameters>
+		<object-name>fuselage-mid</object-name>
+		<object-name>fuselage-aft</object-name>
+	</effect>
+
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+		<parameters>
+			<rendering-hint>transparent</rendering-hint>
+			<transparent>true</transparent>
+			<render-bin>
+				<bin-number>10</bin-number>
+				<bin-name>DepthSortedBin</bin-name>
+			</render-bin>
+		</parameters>
+		<object-name>perspex-panel</object-name>
+	</effect>
 
 	<animation>
 		<type>select</type>
@@ -284,6 +320,10 @@
 			<property>sim/model/livery/nose-texture</property>
 		</condition>
 		<object-name>nose-textured</object-name>
+    <!--<object-name>fuselage-cover-plate-S-textured</object-name>
+    <object-name>fuselage-cover-plate-P-textured</object-name>
+    <object-name>fuselage-textured</object-name>
+    <object-name>cowl-textured</object-name>-->
 	</animation>
 
 	<animation>
@@ -294,6 +334,10 @@
 			</not>
 		</condition>
 		<object-name>nose</object-name>
+    <!--<object-name>fuselage-cover-plate-S</object-name>
+    <object-name>fuselage-cover-plate-P</object-name>
+    <object-name>fuselage</object-name>
+    <object-name>cowl</object-name>-->
 	</animation>
 
 	<animation>
@@ -304,6 +348,10 @@
 			</not>
 		</condition>
 		<object-name>nose</object-name>
+    <!--<object-name>fuselage-cover-plate-S</object-name>
+    <object-name>fuselage-cover-plate-P</object-name>
+    <object-name>fuselage</object-name>
+    <object-name>cowl</object-name>-->
 	</animation>
 
 	<!-- removed - causes a bug in plib-->
@@ -319,6 +367,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>rudder</object-name>
+		<object-name>rudder-wires</object-name>
 		<property>controls/flight/rudder</property>
 		<factor>20.0</factor>
 		<center>
@@ -335,7 +384,7 @@
 
 	<animation>
 		<type>rotate</type>
-		<object-name>rudder-control-wire-S</object-name>
+		<object-name>rudder-control-wire-stbd</object-name>
 		<property>controls/flight/rudder</property>
 		<interpolation>
 			<entry>
@@ -365,7 +414,7 @@
 
 	<animation>
 		<type>rotate</type>
-		<object-name>rudder-control-wire-P</object-name>
+		<object-name>rudder-control-wire-port</object-name>
 		<property>controls/flight/rudder</property>
 		<interpolation>
 			<entry>
@@ -478,6 +527,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>aileron-upper-stbd</object-name>
+		<object-name>aileron-upper-stbd-wires</object-name>
 		<property>controls/flight/aileron</property>
 		<factor>20.0</factor>
 		<axis>
@@ -509,7 +559,7 @@
 
 	<animation>
 		<type>rotate</type>
-		<object-name>aileron_wire_top_S</object-name>
+		<object-name>aileron-wire-top-stbd</object-name>
 		<property>controls/flight/aileron</property>
 		<interpolation>
 			<entry>
@@ -540,6 +590,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>aileron-upper-port</object-name>
+		<object-name>aileron-upper-port-wires</object-name>
 		<property>controls/flight/aileron</property>
 		<factor>20.0</factor>
 		<axis>
@@ -571,7 +622,7 @@
 
 	<animation>
 		<type>rotate</type>
-		<object-name>aileron_wire_top_P</object-name>
+		<object-name>aileron-wire-top-port</object-name>
 		<property>controls/flight/aileron</property>
 		<interpolation>
 			<entry>
@@ -602,6 +653,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>aileron-lower-stbd</object-name>
+		<object-name>aileron-lower-stbd-wires</object-name>
 		<property>controls/flight/aileron</property>
 		<factor>20.0</factor>
 		<axis>
@@ -616,7 +668,7 @@
 
 	<animation>
 		<type>rotate</type>
-		<object-name>control-wire-aileron-S</object-name>
+		<object-name>control-wire-aileron-stbd</object-name>
 		<property>controls/flight/aileron</property>
 		<interpolation>
 			<entry>
@@ -647,6 +699,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>aileron-lower-port</object-name>
+		<object-name>aileron-lower-port-wires</object-name>
 		<property>controls/flight/aileron</property>
 		<factor>20.0</factor>
 		<axis>
@@ -661,7 +714,7 @@
 
 	<animation>
 		<type>rotate</type>
-		<object-name>control-wire-aileron-P</object-name>
+		<object-name>control-wire-aileron-port</object-name>
 		<property>controls/flight/aileron</property>
 		<interpolation>
 			<entry>
@@ -694,6 +747,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>elevator</object-name>
+		<object-name>elevator-wires</object-name>
 		<property>controls/flight/elevator</property>
 		<!--		<factor>20.0</factor>-->
 		<interpolation>
@@ -904,11 +958,12 @@
 	</animation>
 
 	<!-- *** LoD for the whole model *** -->
-	<animation>
+  <!-- *** removed for project Rembrandt *** -->
+	<!--<animation>
 		<type>range</type>
 		<min-m>0</min-m>
 		<max-m>10000</max-m>
-	</animation>
+	</animation>-->
 
 	<animation>
 		<type>select</type>
@@ -1062,8 +1117,12 @@
 	<animation>
 		<type>material</type>
 		<object-name>nose-textured</object-name>
-		<property-base>sim/model/livery/material/Nose-Textured</property-base>
-		<texture-prop>texture</texture-prop>
+    <!--<object-name>fuselage-cover-plate-S-textured</object-name>
+    <object-name>fuselage-cover-plate-P-textured</object-name>
+    <object-name>fuselage-textured</object-name>
+    <object-name>cowl-textured</object-name>-->
+    <property-base>sim/model/livery/material/Nose-Textured</property-base>
+    <texture-prop>texture</texture-prop>
 		<texture>Liveries/camel_side.png</texture>
 	</animation>
 
@@ -1524,11 +1583,82 @@
 			<z>0.0</z>
 		</axis>
 	</animation>
-  <!-- Not sure why this is here but there is no corresponding item in camel.ac, so removing it ?  2.0 2017/2/21 
+
+	<animation>
+		<type>pick</type>
+		<visible>true</visible>
+		<object-name>chocks</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<interval-sec>0.1</interval-sec>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/gear/brake-parking</property>
+				<value>0</value>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<visible>true</visible>
+		<object-name>wheel-assmbly-port</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<interval-sec>0.1</interval-sec>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/gear/brake-parking</property>
+				<value>1</value>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<visible>true</visible>
+		<object-name>wheel-assmbly-stbd</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<interval-sec>0.1</interval-sec>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/gear/brake-parking</property>
+				<value>1</value>
+			</binding>
+		</action>
+	</animation>
+
+	<animation>
+		<type>pick</type>
+		<visible>true</visible>
+		<object-name>Blade-1</object-name>
+		<object-name>Blade-2</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>false</repeatable>
+			<interval-sec>0.1</interval-sec>
+			<binding>
+				<command>property-assign</command>
+				<property>controls/engines/engine/starter</property>
+				<value>1</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>controls/engines/engine/starter</property>
+					<value>0</value>
+				</binding>
+			</mod-up>
+		</action>
+	</animation>
+
 	<animation>
 		<type>select</type>
 		<object-name>construction</object-name>
 	</animation>
-  -->
 
 </PropertyList>

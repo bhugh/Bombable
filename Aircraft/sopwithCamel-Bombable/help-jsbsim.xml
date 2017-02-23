@@ -8,7 +8,7 @@
 		</key>
 		<key>
 			<name>b (or press brakes)</name>
-			<desc>Blip switch - both magnetos OFF </desc>
+			<desc>Blip switch - both magnetos OFF - this is the primary method for controlling engine power </desc>
 		</key>
 		<key>
 			<name>B</name>
@@ -43,8 +43,8 @@
 		</key>
       
     <key>
-			<name>w,a,s,d,W,A,S,D and mouse</name>
-			<desc>INSPECT AIRCRAFT view:  Move and look around (v/V to select this view; see View/View Options)</desc>
+			<name>wasdqWASDQ and mouse</name>
+			<desc>In INSPECT AIRCRAFT VIEW:  Move and look around (v/V to select this view; see View/View Options)</desc>
 			
 		</key>
 		<line> </line>
@@ -59,8 +59,8 @@
 		<line>Easiest, most dependable way to take off: Full throttle, moderate back-pressure on stick to keep </line>
 		<line>tail engaged w/ ground. Use rudder to steer (tail dragging on ground provides most control authority).</line>
 		<line> 3-point lift-off @ 35 KTS; immediately ease stick forward to avoid excessive climb and loss of airspeed.</line>
-    <line>More advanced: Gently lift tail @ 35KTS and continue rolling (or  through 45-50 KTs before lift-off.</line>
-    <line>Crashing on takeoff? Is there a strong crosswind or tailwind? Many real Camel pilots crashed in such conditions.</line>
+    <line>More advanced: Gently lift tail @ 35KTS and continue rolling (or in ground effect) through 45-50 KTs before lift-off.</line>
+    <line>Crashing on takeoff? Check weather--many real Camel pilots crashed taking off with strong crosswind or tailwind.</line>
     <line> </line>
     <line>THROTTLE, BLIP SWITCH, AND MAGNETOS</line>
     

@@ -7,6 +7,10 @@
 ##
 #
 ################################################################################
+#
+# uses Aircraft\Generic\WalkView\ walkview.nas plus Systems/walk-view-keys.xml 
+# plus Nasal/camel-walk-views.nas plus setup in -set.xml
+#
 
 # Constraints
 
@@ -14,11 +18,11 @@
 settimer (func {
 
   var groundCrew =
-      walkview.CircularXYSurface.new([0, 0, -1.50], 25.0);
+      walkview.CircularXYSurface.new([0, 0, -1.50], 200.0);
   
   # Create the view managers.
   
-  var groundcrew_walker = walkview.Walker.new("Inspect Aircraft View", groundCrew);
+  groundcrew_walker = walkview.Walker.new("Inspect Aircraft View", groundCrew);
   
 
 }, 3);

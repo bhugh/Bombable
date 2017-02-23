@@ -1,0 +1,252 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<!--
+  Walk view module for FlightGear.
+
+  Copyright (C) 2010 - 2013  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license v2 or later.
+-->
+<PropertyList>
+
+ <!--
+   This module can be used to add suitable key bindings for walk views
+   to any aircraft.
+
+   Usage example:
+
+    Include it in the keybord section of the aircraft's -set file.
+
+      <keyboard include="Aircraft/Generic/WalkView/walk-view-keys.xml">
+
+
+   Note: If the aircraft use other custom key bindings for the same keys
+         the walk view bindings should be merged into the aircraft specific
+         bindings. The walk view API commands return false if not currently
+         in a walk view so the other alternative action can be put in an
+         if statement. E.g.
+             if (!walkview.forward(4.0)) {
+                 # Perform the non-walk view action of this key.
+             }
+ -->
+
+ <!--
+    uses Aircraft\Generic\WalkView\ walkview.nas plus Systems/walk-view-keys.xml plus Nasal/camel-walk-views.nas plus setup in -set.xml
+ -->
+ <!-- Keyboard commands -->
+ <key n="87">
+  <name>W</name>
+  <desc>Walk view: Run forward.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.forward(12.0)) {
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.forward(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+
+ <key n="119">
+  <name>w</name>
+  <desc>Walk view: Walk forward.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.forward(4.0)) {
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.forward(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+
+ <key n="100">
+  <name>d</name>
+  <desc>Walk view: Side step right.</desc>
+  <repeatable type="bool">true</repeatable>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.side_step(4)) {
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.side_step(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+
+ <key n="68">
+  <name>D</name>
+  <desc>Walk view: Fast side step right.</desc>
+  <repeatable type="bool">true</repeatable>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.side_step(12)) {
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.side_step(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+
+ <key n="97">
+  <name>a</name>
+  <desc>Walk view: Side step left.</desc>
+  <repeatable type="bool">true</repeatable>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.side_step(-4)) {
+         controls.speedup(1); 
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.side_step(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+ <key n="65">
+  <name>A</name>
+  <desc>Walk view: Fast side step left.</desc>
+  <repeatable type="bool">true</repeatable>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.side_step(-12)) {
+        controls.speedup(-1);
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.side_step(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+
+ <key n="115">
+  <name>s</name>
+  <desc>Walk view: Walk backwards.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     if (!walkview.forward(-4)) {
+         controls.startEngine(1);
+     }
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.forward(0);
+      controls.startEngine(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+ <!-- Remove this if you for some reason have 2d panels and want the default
+      Swap panels function on 'S'.
+ -->
+ <key n="83">
+  <name>S</name>
+  <desc>Walk view: Walk backwards fast.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+     walkview.forward(-12);
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      walkview.forward(0);
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+ 
+<key n="113">
+  <name>q</name>
+  <desc>Walk view: Move up.</desc>
+  <!-- <repeatable type="bool">true</repeatable> -->
+  <binding>
+   <command>nasal</command>
+   <script>
+             
+                    var wv = walkview.active_walker();
+                    if (wv != nil) {                    
+                       wv.set_eye_height(wv.get_eye_height() + 0.5);
+                    }
+                    
+                    
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>
+      
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+ <key n="81">
+  <name>Q</name>
+  <!-- <repeatable type="bool">true</repeatable> -->
+  <desc>Walk view: Move down.</desc>
+  <binding>
+   <command>nasal</command>
+   <script>
+           
+                    var wv = walkview.active_walker();
+                    if (wv != nil) {                    
+                       wv.set_eye_height(wv.get_eye_height() - 0.5);
+                    }
+          
+           
+   </script>
+  </binding>
+  <mod-up>
+   <binding>
+    <command>nasal</command>
+    <script>        
+    </script>
+   </binding>
+  </mod-up>
+ </key>
+</PropertyList>

@@ -1,3 +1,5 @@
+print ("Camel: Starting JSBSim.nas");
+
 #adjust friction etc per terrain
 var terrain_survol = func (id) {
 

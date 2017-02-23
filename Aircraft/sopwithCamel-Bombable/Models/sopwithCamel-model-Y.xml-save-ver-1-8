@@ -1,0 +1,1598 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+	<path>camel.ac</path>
+	<!--<texture-path>Textures</texture-path>-->
+
+  <!-- Nasal code -->
+	<nasal>
+	  
+
+		<load>
+			<![CDATA[
+			print("LOAD camel basic functions ", cmdarg().getPath());
+			var self = cmdarg();
+			var float0_in = self.getNode("sim/multiplay/generic/float[0]", 1);
+			var float0_out = self.getNode("instrumentation/yawstring[0]", 1);
+
+			var float1_in = self.getNode("sim/multiplay/generic/float[1]", 1);
+			var float1_out = self.getNode("instrumentation/airstring[0]", 1);
+
+			var float2_in = self.getNode("sim/multiplay/generic/float[2]", 1);
+			var float2_out = self.getNode("instrumentation/yawstring-flutter[0]", 1);
+
+			var bool0_out = self.getNode("sim/model/camel/show-pilot[0]", 1);
+			bool0_out.setValue(1);
+
+			var bool0_in = self.getNode("sim/multiplay/generic/int[0]", 1);
+			var bool2_out = self.getNode("sim/model/camel/show-face-mask", 1);
+
+			var bool1_in = self.getNode("sim/multiplay/generic/int[1]", 1);
+			var bool1_out = self.getNode("controls/gear/brake-parking[0]", 1);
+			var bool1a_out = self.getNode("gear/gear[0]/wow", 1);
+			var bool1b_out = self.getNode("gear/gear[1]/wow", 1);
+
+			var livery_update = aircraft.livery_update.new(
+			"Aircraft/sopwithCamel-Bombable/Models/Liveries", 10,
+			func { print("sopwithCamel livery update started") });
+
+			var update = func {
+			#print ("update function running");
+			float0_out.setValue(float0_in.getValue());
+			float1_out.setValue(float1_in.getValue());
+			float2_out.setValue(float2_in.getValue());
+			#print ("update function in: ", float1_in.getValue(), " out ", float1_out.getValue() );
+			settimer (update, 0);
+			}
+
+			var updatebool = func {
+			#print ("update bool function running");
+			#bool0_out.setValue(bool0_in.getValue());
+
+			bool1_out.setValue(bool1_in.getValue());
+			bool1a_out.setValue(bool1_in.getValue());
+			bool1b_out.setValue(bool1_in.getValue());
+
+			bool2_out.setValue(bool0_in.getValue());
+			#print ("update bool function in: ", bool0_in.getValue(), " out: ", bool2_out.getValue() );
+			settimer (updatebool, 10);
+			}
+
+			update();
+			updatebool();
+			]]>
+		</load>
+		<unload>
+			<![CDATA[
+			print("Unloading Camel basic functions, " , cmdarg().getPath());
+			
+						livery_update.stop();
+
+
+
+			]]>
+		</unload>
+ </nasal>  
+
+
+
+
+	<offsets>
+		<x-m>1.1044</x-m>
+		<y-m>0</y-m>
+		<z-m>0</z-m>
+		<pitch-deg>0</pitch-deg>
+	</offsets>
+
+  <model>
+     <name>Effects</name>
+     <path>Aircraft/sopwithCamel-Bombable/Models/camel_effects.xml</path>
+  </model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/clerget-Y.xml</path>
+		<offsets>
+			<x-m>-0.70</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.05</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/stick.xml</path>
+		<offsets>
+			<x-m>0.0900</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.44</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/fuel_controls.xml</path>
+		<offsets>
+			<x-m>0.1374</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.2069</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/tacho-Y.xml</path>
+		<offsets>
+			<x-m>-0.0782</x-m>
+			<y-m>-0.1386</y-m>
+			<z-m>0.3611</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/MkV30hrWatch.xml</path>
+		<offsets>
+			<x-m>-0.0782</x-m>
+			<y-m>0.1168</y-m>
+			<z-m>0.2437</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/pulsometer.xml</path>
+		<offsets>
+			<x-m>-0.0782</x-m>
+			<y-m>-0.2462</y-m>
+			<z-m>0.2440</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/mag_switch_1-Y.xml</path>
+		<offsets>
+			<x-m>-0.0782</x-m>
+			<y-m>-0.1797</y-m>
+			<z-m>0.2423</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/mag_switch_2-Y.xml</path>
+		<offsets>
+			<x-m>-0.0782</x-m>
+			<y-m>-0.1066</y-m>
+			<z-m>0.2423</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/type259compass.xml</path>
+		<offsets>
+			<x-m>-0.0782</x-m>
+			<y-m>0</y-m>
+			<z-m>0.425</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/elliot_clinometer.xml</path>
+		<offsets>
+			<x-m>-0.0782</x-m>
+			<y-m>0</y-m>
+			<z-m>0.3325</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/markVAaltimeter.xml</path>
+		<offsets>
+			<x-m>-0.0782</x-m>
+			<y-m>0</y-m>
+			<z-m>0.2648</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/asi.xml</path>
+		<offsets>
+			<x-m>-0.0782</x-m>
+			<y-m>0.1386</y-m>
+			<z-m>0.3611</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/fakepanel.xml</path>
+		<offsets>
+			<x-m>-0.0775</x-m>
+			<y-m>0</y-m>
+			<z-m>0.04</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/fuel_pressure.xml</path>
+		<offsets>
+			<x-m>-0.0782</x-m>
+			<y-m>0.2331</y-m>
+			<z-m>0.2868</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/vickers.xml</path>
+		<offsets>
+			<x-m>-0.2896</x-m>
+			<y-m>-0.1426</y-m>
+			<z-m>0.5130</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+
+	<model>
+		<path>Aircraft/sopwithCamel-Bombable/Models/vickers.xml</path>
+		<offsets>
+			<x-m>-0.2896</x-m>
+			<y-m>0.1426</y-m>
+			<z-m>0.5130</z-m>
+			<pitch-deg>0</pitch-deg>
+		</offsets>
+	</model>
+  <!-- transparent effect needed for Rembrandt -->
+<!-- ********* Effects ****** -->
+
+  <effect>
+    <inherits-from>Effects/model-transparent</inherits-from>
+    <object-name>glass</object-name>
+    <object-name>perspex-panel</object-name>
+    <object-name>Lens</object-name>
+  </effect>
+
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+		<object-name>tube-upper</object-name>
+		<object-name>tube-lower</object-name>
+		<object-name>engine-air-intake</object-name>
+		<object-name>cartridge-chute</object-name>
+	</effect>
+
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+    <object-name>wing-upper</object-name>
+		<object-name>wing-upper-top</object-name>
+ 	</effect>
+  
+  <effect>
+    <inherits-from>Effects/camelreflect-uber</inherits-from>
+    <object-name>wing-lower</object-name>
+    <object-name>tail</object-name>
+		<object-name>rudder</object-name>
+		<object-name>horizontal_stabiliser_fixed</object-name>
+		<object-name>elevator</object-name>
+  </effect>
+
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+		<parameters>
+			<dirt-enabled type="int">1</dirt-enabled>
+			<!--<dirt-factor type="float">0.4</dirt-factor>-->
+		</parameters>
+		<object-name>nose</object-name>
+		<object-name>fuselage-duct</object-name>
+	</effect>
+
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+		<parameters>
+			<dirt-enabled type="int">1</dirt-enabled>
+		</parameters>
+		<object-name>fuselage-mid</object-name>
+		<object-name>fuselage-aft</object-name>
+	</effect>
+
+	<effect>
+		<inherits-from>Effects/camelreflect-uber</inherits-from>
+		<parameters>
+			<rendering-hint>transparent</rendering-hint>
+			<transparent>true</transparent>
+			<render-bin>
+				<bin-number>10</bin-number>
+				<bin-name>DepthSortedBin</bin-name>
+			</render-bin>
+		</parameters>
+		<object-name>perspex-panel</object-name>
+	</effect>
+
+	<!-- ********* shaders ****** -->
+
+	<animation>
+		<type>shader</type>
+		<shader>chrome</shader>
+		<texture>Textures/chrome2.rgb</texture>
+		<object-name>tube-upper</object-name>
+		<object-name>tube-lower</object-name>
+		<object-name>engine-air-intake</object-name>
+		<object-name>cartridge-chute</object-name>
+
+	</animation>
+
+	<!--<animation>
+		<type>shader</type>
+		<shader>chrome</shader>
+		<texture>Textures/brass.rgb</texture>
+		<object-name>switch_body</object-name>
+		<object-name>knob</object-name>
+	</animation>-->
+
+	<animation>
+		<type>shader</type>
+		<shader>chrome</shader>
+		<texture>Textures/chrome2.rgb</texture>
+		<object-name>nose</object-name>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<condition>
+			<property>sim/model/livery/nose-texture</property>
+		</condition>
+		<object-name>nose-textured</object-name>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<condition>
+			<not>
+				<property>sim/model/livery/nose-texture</property>
+			</not>
+		</condition>
+		<object-name>nose</object-name>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<condition>
+			<not>
+				<property>sim/model/livery/nose-texture</property>
+			</not>
+		</condition>
+		<object-name>nose</object-name>
+	</animation>
+
+	<!-- removed - causes a bug in plib-->
+	<!--<animation>
+		<type>shader</type>
+		<shader>chrome</shader>
+		<texture>Textures/chrome2.rgb</texture>
+		<object-name>glass</object-name>
+	</animation>-->
+
+	<!--	******* Rudder ****** -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>rudder</object-name>
+		<property>controls/flight/rudder</property>
+		<factor>20.0</factor>
+		<center>
+			<x-m>4.0121</x-m>
+			<y-m>0.000000</y-m>
+			<z-m>0.600000</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>rudder-control-wire-S</object-name>
+		<property>controls/flight/rudder</property>
+		<interpolation>
+			<entry>
+				<ind>-1</ind>
+				<dep>19.25</dep>
+			</entry>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>-20</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>4.0326</x-m>
+			<y-m>0.1173</y-m>
+			<z-m>-0.0353</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>rudder-control-wire-P</object-name>
+		<property>controls/flight/rudder</property>
+		<interpolation>
+			<entry>
+				<ind>-1</ind>
+				<dep>20</dep>
+			</entry>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>-19.25</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>4.0326</x-m>
+			<y-m>-0.1173</y-m>
+			<z-m>-0.0353</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+
+	<!-- ****** Tail Skid ******* -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>TailGear</object-name>
+		<property>controls/flight/rudder</property>
+		<factor>20.0</factor>
+		<center>
+			<x-m>3.9455</x-m>
+			<y-m>0.000000</y-m>
+			<z-m>-0.1645</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>tailskid-control-wire-P</object-name>
+		<property>controls/flight/rudder</property>
+		<interpolation>
+			<entry>
+				<ind>-1</ind>
+				<dep>18</dep>
+			</entry>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>-20</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>3.9577</x-m>
+			<y-m>0.0934</y-m>
+			<z-m>-0.2524</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>tailskid-control-wire-S</object-name>
+		<property>controls/flight/rudder</property>
+		<interpolation>
+			<entry>
+				<ind>-1</ind>
+				<dep>20</dep>
+			</entry>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>-18</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>3.9577</x-m>
+			<y-m>-0.0934</y-m>
+			<z-m>-0.2524</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+
+
+	<!--  *** ailerons *** -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>aileron-upper-stbd</object-name>
+		<property>controls/flight/aileron</property>
+		<factor>20.0</factor>
+		<axis>
+			<x1-m>0.1823</x1-m>
+			<y1-m>4.2191</y1-m>
+			<z1-m>1.1002</z1-m>
+			<x2-m>0.1823</x2-m>
+			<y2-m>2.5244</y2-m>
+			<z2-m>1.1020</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>aileron-link-wire-stbd</object-name>
+		<property>controls/flight/aileron</property>
+		<factor>20.0</factor>
+		<center>
+			<x-m>0.5658</x-m>
+			<y-m>3.4198</y-m>
+			<z-m>1.0165</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>aileron_wire_top_S</object-name>
+		<property>controls/flight/aileron</property>
+		<interpolation>
+			<entry>
+				<ind>-1</ind>
+				<dep>-16.5</dep>
+			</entry>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>17.0</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>0.2424</x-m>
+			<y-m>3.4172</y-m>
+			<z-m>1.1373</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>aileron-upper-port</object-name>
+		<property>controls/flight/aileron</property>
+		<factor>20.0</factor>
+		<axis>
+			<x1-m>0.1823</x1-m>
+			<y1-m>-4.2191</y1-m>
+			<z1-m>1.1002</z1-m>
+			<x2-m>0.1823</x2-m>
+			<y2-m>-2.5244</y2-m>
+			<z2-m>1.1020</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>aileron-link-wire-port</object-name>
+		<property>controls/flight/aileron</property>
+		<factor>20.0</factor>
+		<center>
+			<x-m>0.5658</x-m>
+			<y-m>3.4198</y-m>
+			<z-m>1.0164</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>aileron_wire_top_P</object-name>
+		<property>controls/flight/aileron</property>
+		<interpolation>
+			<entry>
+				<ind>-1</ind>
+				<dep>-16.5</dep>
+			</entry>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>17.0</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>0.2424</x-m>
+			<y-m>-3.4172</y-m>
+			<z-m>1.1996</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>aileron-lower-stbd</object-name>
+		<property>controls/flight/aileron</property>
+		<factor>20.0</factor>
+		<axis>
+			<x1-m>0.6699</x1-m>
+			<y1-m>4.2123</y1-m>
+			<z1-m>-0.1679</z1-m>
+			<x2-m>0.6699</x2-m>
+			<y2-m>2.4838</y2-m>
+			<z2-m>-0.3015</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>control-wire-aileron-S</object-name>
+		<property>controls/flight/aileron</property>
+		<interpolation>
+			<entry>
+				<ind>-1</ind>
+				<dep>-20</dep>
+			</entry>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>18.75</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>0.6712</x-m>
+			<y-m>3.4250</y-m>
+			<z-m>-0.3518</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>aileron-lower-port</object-name>
+		<property>controls/flight/aileron</property>
+		<factor>20.0</factor>
+		<axis>
+			<x1-m>0.6699</x1-m>
+			<y1-m>-4.2123</y1-m>
+			<z1-m>-0.1679</z1-m>
+			<x2-m>0.6699</x2-m>
+			<y2-m>-2.4838</y2-m>
+			<z2-m>-0.3015</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>control-wire-aileron-P</object-name>
+		<property>controls/flight/aileron</property>
+		<interpolation>
+			<entry>
+				<ind>-1</ind>
+				<dep>-20</dep>
+			</entry>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>18.75</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>0.6712</x-m>
+			<y-m>-3.4250</y-m>
+			<z-m>-0.3518</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<!--  *** elevator *** -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>elevator</object-name>
+		<property>controls/flight/elevator</property>
+		<!--		<factor>20.0</factor>-->
+		<interpolation>
+			<entry>
+				<ind>-1</ind>
+				<dep>-16.5</dep>
+			</entry>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>13.5</dep>
+			</entry>
+		</interpolation>
+		<axis>
+			<x1-m>3.9735</x1-m>
+			<y1-m>-1.1881</y1-m>
+			<z1-m>0.1617</z1-m>
+			<x2-m>3.9735</x2-m>
+			<y2-m>1.1881</y2-m>
+			<z2-m>0.1617</z2-m>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>elevator-control-wire-lower</object-name>
+		<property>controls/flight/elevator</property>
+		<interpolation>
+			<entry>
+				<ind>-1</ind>
+				<dep>-16.5</dep>
+			</entry>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>13.5</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>3.9733</x-m>
+			<y-m>-0.4104</y-m>
+			<z-m>0.0516</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>elevator-control-wire-upper</object-name>
+		<property>controls/flight/elevator</property>
+		<interpolation>
+			<entry>
+				<ind>-1</ind>
+				<dep>-16.5</dep>
+			</entry>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>13.5</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>3.9733</x-m>
+			<y-m>-0.4104</y-m>
+			<z-m>0.2762</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>rudder_bar</object-name>
+		<property>controls/flight/rudder</property>
+		<factor>15</factor>
+		<center>
+			<x-m>-0.343805</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.36683</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>rudder_bar</object-name>
+		<property>controls/flight/rudder</property>
+		<factor>15</factor>
+		<center>
+			<x-m>-0.343805</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.36683</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>wheel-assmbly-port</object-name>
+		<property>gear/gear/compression-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>20</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>-0.2799</x-m>
+			<y-m>-0.2026</y-m>
+			<z-m>-1.2449</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>wheel-assmbly-stbd</object-name>
+		<property>gear/gear[1]/compression-norm</property>
+		<interpolation>
+			<entry>
+				<ind>0</ind>
+				<dep>0</dep>
+			</entry>
+			<entry>
+				<ind>1</ind>
+				<dep>20</dep>
+			</entry>
+		</interpolation>
+		<center>
+			<x-m>-0.2799</x-m>
+			<y-m>0.2026</y-m>
+			<z-m>-1.2449</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>chocks</object-name>
+		<condition>
+			<property>controls/gear/brake-parking</property>
+			<property>gear/gear/wow</property>
+			<property>gear/gear[1]/wow</property>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>Propeller-Disk</object-name>
+		<condition>
+			<and>
+				<greater-than>
+					<property>engines/engine[0]/rpm</property>
+					<value>750</value>
+				</greater-than>
+				<less-than>
+					<property>engines/engine[0]/rpm</property>
+					<value>1000</value>
+				</less-than>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>blend</type>
+		<object-name>Propeller-Disk</object-name>
+		<property>engines/engine[0]/rpm</property>
+		<factor>0.001</factor>
+		<!--<offset>-0.5</offset>-->
+		<min>0.9</min>
+		<max>1</max>
+	</animation>
+
+	<!-- *** LoD for the whole model *** -->
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>10000</max-m>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>screw-heads</object-name>
+		<object-name>gun-mounting</object-name>
+		<object-name>hand-pump</object-name>
+		<object-name>rigging-wires</object-name>
+		<object-name>screw-heads-brass</object-name>
+		<condition>
+			<property>sim/model/camel/extra-details</property>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>Mask</object-name>
+		<condition>
+			<property>sim/model/camel/show-face-mask</property>
+		</condition>
+	</animation>
+	
+	<animation>
+		<type>select</type>
+		<object-name>pilot</object-name>
+		<condition>
+			<or>
+				<not>
+					<property>sim/model/camel/show-pilot</property>
+				</not>
+				<not>
+					<equals>
+						<property>sim/current-view/view-number</property>
+						<value>0</value>
+					</equals>
+				</not>
+			</or>
+		</condition>
+	</animation>
+ 
+	<animation>
+		<type>select</type>		
+		<object-name>wheel-r</object-name>
+   <object-name>wheel-assmbly-stbd</object-name>
+   <object-name>axle_stbd</object-name>
+		<condition>
+      <not>
+			     <property>fdm/jsbsim/systems/crash-detect/right-gear-broken</property>
+      </not>                                                                                      
+		</condition>
+	</animation>
+ 
+	<animation>
+		<type>select</type>		
+		<object-name>wheel-l</object-name>
+   <object-name>wheel-assmbly-port</object-name>
+   <object-name>axle_port</object-name>   
+		<condition>
+      <not>
+			     <property>fdm/jsbsim/systems/crash-detect/left-gear-broken</property>
+      </not>                                                                                      
+		</condition>
+	</animation>
+	
+  <animation>
+		<type>select</type>		
+   <object-name>strut-cross-bracing</object-name>
+   <object-name>undercarriage-assmbly</object-name>
+   <object-name>undercarriage_bracing_wire</object-name>
+   <object-name>bracing-wires-undercarriage</object-name>
+   <object-name>inner_spar-forward</object-name>
+   <object-name>inner_spar-forward</object-name>
+   <object-name>axle-assmbly</object-name>      
+		<condition>
+      <or>
+           <not>
+			          <property>fdm/jsbsim/systems/crash-detect/right-gear-broken</property>
+           </not>                                                               
+           <not>
+			          <property>fdm/jsbsim/systems/crash-detect/left-gear-broken</property>
+           </not>
+      </or>                       
+		</condition>
+	</animation> 
+
+
+
+	<animation>
+		<type>select</type>
+		<object-name>pennants-flight-commander</object-name>
+		<condition>
+			<property>sim/model/camel/show-pennants-flight-commander</property>
+		</condition>
+	</animation>
+
+	<!-- Material Animations -->
+	<property-base>sim/model/livery</property-base>
+	<texture-prop>texture</texture-prop>
+
+	<animation>
+		<type>material</type>
+		<!--global type="bool">true</global-->
+		<object-name>wing-upper-top</object-name>
+		<property-base>sim/model/livery/material/Wing-Upper-Top</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>Liveries/camel_plan.png</texture>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<!--global type="bool">true</global-->
+		<object-name>tail</object-name>
+		<property-base>sim/model/livery/material/Tail</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>Liveries/camel_plan.png</texture>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<!--global type="bool">true</global-->
+		<object-name>fuselage-aft</object-name>
+		<property-base>sim/model/livery/material/Fuselage-Aft</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>Liveries/camel_side.png</texture>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<!--global type="bool">true</global-->
+		<object-name>wheel-r</object-name>
+		<property-base>sim/model/livery/material/Wheel-R</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>Liveries/camel_side.png</texture>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>wheel-l</object-name>
+		<property-base>sim/model/livery/material/Wheel-L</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>Liveries/camel_side.png</texture>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>rudder-surface</object-name>
+		<property-base>sim/model/livery/material/Rudder-Surface</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>Liveries/camel_side.png</texture>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>nose-textured</object-name>
+		<property-base>sim/model/livery/material/Nose-Textured</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>Liveries/camel_side.png</texture>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>horizontal_stabiliser_fixed</object-name>
+		<property-base>sim/model/livery/material/Horizontal-Stabiliser-Fixed</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>Liveries/camel_plan.png</texture>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>elevator-surface</object-name>
+		<property-base>sim/model/livery/material/Elevator-Surface</property-base>
+		<texture-prop>texture</texture-prop>
+		<texture>Liveries/camel_plan.png</texture>
+	</animation>
+
+	<!--<animation>
+		<type>material</type>
+		-->
+	<!--global type="bool">true</global-->
+	<!--
+		<object-name>Markings-Flap-Port</object-name>
+		<property-base>sim/model/livery/material/Markings-Flap-Port</property-base>
+		<texture-prop>texture</texture-prop>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>wing-upper-stbd-top</object-name>
+		<property-base>sim/model/livery/material/wing-upper-stbd-top</property-base>
+		<texture-prop>texture</texture-prop>
+	</animation>-->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p1-p</object-name>
+		<object-name>p2-p</object-name>
+		<object-name>p3-p</object-name>
+		<object-name>p4-p</object-name>
+		<object-name>p5-p</object-name>
+		<property>instrumentation/yawstring</property>
+		<factor>1.0</factor>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<center>
+			<x-m>0.492425</x-m>
+			<y-m>-2.97635</y-m>
+			<z-m>0.437871</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p1-p</object-name>
+		<object-name>p2-p</object-name>
+		<object-name>p3-p</object-name>
+		<object-name>p4-p</object-name>
+		<object-name>p5-p</object-name>
+		<property>instrumentation/yawstring-flutter</property>
+		<factor>1.0</factor>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<center>
+			<x-m>0.492425</x-m>
+			<y-m>-2.97635</y-m>
+			<z-m>0.437871</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p2-p</object-name>
+		<object-name>p3-p</object-name>
+		<object-name>p4-p</object-name>
+		<object-name>p5-p</object-name>
+		<property>instrumentation/airstring</property>
+		<factor>-1.0</factor>
+		<offset-deg>25</offset-deg>
+		<min-deg>0</min-deg>
+		<max-deg>25</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+		<center>
+			<x-m>0.636724</x-m>
+			<y-m>-2.97201</y-m>
+			<z-m>0.424259</z-m>
+		</center>
+	</animation>
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p2-p</object-name>
+		<object-name>p3-p</object-name>
+		<object-name>p4-p</object-name>
+		<object-name>p5-p</object-name>
+		<property>instrumentation/yawstring-flutter</property>
+		<factor>-1.5</factor>
+		<min-deg>-10</min-deg>
+		<max-deg>10</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<center>
+			<x-m>0.636724</x-m>
+			<y-m>-2.97201</y-m>
+			<z-m>0.424259</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p3-p</object-name>
+		<object-name>p4-p</object-name>
+		<object-name>p5-p</object-name>
+		<property>instrumentation/airstring</property>
+		<factor>-1.0</factor>
+		<offset-deg>25</offset-deg>
+		<min-deg>0</min-deg>
+		<max-deg>25</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+		<center>
+			<x-m>0.779905</x-m>
+			<y-m>-2.97647</y-m>
+			<z-m>0.408186</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p3-p</object-name>
+		<object-name>p4-p</object-name>
+		<object-name>p5-p</object-name>
+		<property>instrumentation/yawstring-flutter</property>
+		<factor>1.5</factor>
+		<min-deg>-10</min-deg>
+		<max-deg>10</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<center>
+			<x-m>0.779905</x-m>
+			<y-m>-2.97647</y-m>
+			<z-m>0.408186</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p4-p</object-name>
+		<object-name>p5-p</object-name>
+		<property>instrumentation/airstring</property>
+		<factor>-1.0</factor>
+		<offset-deg>25</offset-deg>
+		<min-deg>0</min-deg>
+		<max-deg>25</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+		<center>
+			<x-m>0.921374</x-m>
+			<y-m>-2.97647</y-m>
+			<z-m>0.393942</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p4-p</object-name>
+		<object-name>p5-p</object-name>
+		<property>instrumentation/yawstring-flutter</property>
+		<factor>-1.5</factor>
+		<min-deg>-10</min-deg>
+		<max-deg>10</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<center>
+			<x-m>0.921374</x-m>
+			<y-m>-2.97647</y-m>
+			<z-m>0.393942</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p5-p</object-name>
+		<property>instrumentation/yawstring-flutter</property>
+		<factor>1.5</factor>
+		<min-deg>-10</min-deg>
+		<max-deg>10</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<center>
+			<x-m>1.06501</x-m>
+			<y-m>-2.97632</y-m>
+			<z-m>0.379554</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p1-s</object-name>
+		<object-name>p2-s</object-name>
+		<object-name>p3-s</object-name>
+		<object-name>p4-s</object-name>
+		<object-name>p5-s</object-name>
+		<property>instrumentation/yawstring</property>
+		<factor>1.0</factor>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<center>
+			<x-m>0.492425</x-m>
+			<y-m>2.97635</y-m>
+			<z-m>0.437871</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p1-s</object-name>
+		<object-name>p2-s</object-name>
+		<object-name>p3-s</object-name>
+		<object-name>p4-s</object-name>
+		<object-name>p5-s</object-name>
+		<property>instrumentation/yawstring-flutter</property>
+		<factor>1.0</factor>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<center>
+			<x-m>0.492425</x-m>
+			<y-m>2.97635</y-m>
+			<z-m>0.437871</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p2-s</object-name>
+		<object-name>p3-s</object-name>
+		<object-name>p4-s</object-name>
+		<object-name>p5-s</object-name>
+		<property>instrumentation/airstring</property>
+		<factor>-1.0</factor>
+		<offset-deg>25</offset-deg>
+		<min-deg>0</min-deg>
+		<max-deg>25</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+		<center>
+			<x-m>0.636724</x-m>
+			<y-m>2.97201</y-m>
+			<z-m>0.424259</z-m>
+		</center>
+	</animation>
+
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p2-s</object-name>
+		<object-name>p3-s</object-name>
+		<object-name>p4-s</object-name>
+		<object-name>p5-s</object-name>
+		<property>instrumentation/yawstring-flutter</property>
+		<factor>-1.5</factor>
+		<min-deg>-10</min-deg>
+		<max-deg>10</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<center>
+			<x-m>0.636724</x-m>
+			<y-m>2.97201</y-m>
+			<z-m>0.424259</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p3-s</object-name>
+		<object-name>p4-s</object-name>
+		<object-name>p5-s</object-name>
+		<property>instrumentation/airstring</property>
+		<factor>-1.0</factor>
+		<offset-deg>25</offset-deg>
+		<min-deg>0</min-deg>
+		<max-deg>25</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+		<center>
+			<x-m>0.779905</x-m>
+			<y-m>2.97647</y-m>
+			<z-m>0.408186</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p3-s</object-name>
+		<object-name>p4-s</object-name>
+		<object-name>p5-s</object-name>
+		<property>instrumentation/yawstring-flutter</property>
+		<factor>1.5</factor>
+		<min-deg>-10</min-deg>
+		<max-deg>10</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<center>
+			<x-m>0.779905</x-m>
+			<y-m>2.97647</y-m>
+			<z-m>0.408186</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p4-s</object-name>
+		<object-name>p5-s</object-name>
+		<property>instrumentation/airstring</property>
+		<factor>-1.0</factor>
+		<offset-deg>25</offset-deg>
+		<min-deg>0</min-deg>
+		<max-deg>25</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+		<center>
+			<x-m>0.921374</x-m>
+			<y-m>2.97647</y-m>
+			<z-m>0.393942</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p4-s</object-name>
+		<object-name>p5-s</object-name>
+		<property>instrumentation/yawstring-flutter</property>
+		<factor>-1.5</factor>
+		<min-deg>-10</min-deg>
+		<max-deg>10</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<center>
+			<x-m>0.921374</x-m>
+			<y-m>2.97647</y-m>
+			<z-m>0.393942</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>p5-s</object-name>
+		<property>instrumentation/yawstring-flutter</property>
+		<factor>1.5</factor>
+		<min-deg>-10</min-deg>
+		<max-deg>10</max-deg>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+		<center>
+			<x-m>1.06501</x-m>
+			<y-m>2.97632</y-m>
+			<z-m>0.379554</z-m>
+		</center>
+	</animation>
+
+	<animation>
+		<type>spin</type>
+		<object-name>wheel-l</object-name>
+		<property>gear/gear/rollspeed-ms</property>
+		<factor>26.8994</factor>
+		<center>
+			<x-m>-0.276999</x-m>
+			<y-m>-0.769777</y-m>
+			<z-m>-1.23008</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>-1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>spin</type>
+		<object-name>wheel-r</object-name>
+		<property>gear/gear[1]/rollspeed-ms</property>
+		<factor>26.8994</factor>
+		<center>
+			<x-m>-0.276999</x-m>
+			<y-m>0.769777</y-m>
+			<z-m>-1.23008</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>-1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+  <!-- Not sure why this is here but there is no corresponding item in camel.ac, so removing it ?  2.0 2017/2/21 
+	<animation>
+		<type>select</type>
+		<object-name>construction</object-name>
+	</animation>
+  -->
+
+</PropertyList>

@@ -256,8 +256,11 @@ blipMagswitch:   func{
     # Setting the threshold higher solves the problem
     # camel.inverted_out_of_fuel - see jsbsim.nas - this disables the blip
     # switch when the camel is out of fuel because it is inverted
-    print ("oof ", camel.inverted_out_of_fuel);                       
-    if ( camel.inverted_out_of_fuel ) return;
+    # we first check if camel.inverted_out_of_fuel is defined bec. JSBSim uses it but (for now) not YASim 
+    if (defined("camel.inverted_out_of_fuel")) {
+       print ("oof ", camel.inverted_out_of_fuel);                       
+       if ( camel.inverted_out_of_fuel ) return;
+    }
     if ( me.right_brake.getValue() > 0.25 or me.left_brake.getValue() > 0.25 
             ) {;
         me.magnetos.setValue( 0 );

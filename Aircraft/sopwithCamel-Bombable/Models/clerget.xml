@@ -4,6 +4,11 @@
 	<path>clerget.ac</path>
 	<texture-path>Textures</texture-path>
 
+  <effect>
+          <inherits-from>Effects/model-transparent</inherits-from>
+          <object-name>Propeller-Disk</object-name>
+  </effect>   
+
 	<animation> 
 		<type>spin</type>
 		<object-name>complete_engine</object-name>
@@ -18,22 +23,7 @@
 	</animation>
 	
 	<!-- ***** Propeller ***** -->
-    <animation> 
-      <type>select</type>
-      <object-name>Blade-1</object-name>
-      <object-name>Blade-2</object-name>
-      <condition>
-       <and> 
-        <less-than> 
-          <property>/engines/engine[0]/rpm</property>
-          <value>750</value>
-        </less-than>           
-        <not>
-			   <property>fdm/jsbsim/systems/crash-detect/prop-strike</property>
-        </not>                                                                          
-       </and>                       
-		 </condition>
-    </animation>
+
 		
     <animation> 
       <type>select</type>
@@ -55,6 +45,41 @@
       <min>0.0</min>
       <max>1</max>
     </animation>
+
+	<!-- ***** Propeller ***** -->
+	<animation>
+		<type>select</type>
+		<object-name>Blade-1</object-name>
+		<object-name>Blade-2</object-name>
+      <condition>
+       <and> 
+        <less-than> 
+          <property>/engines/engine[0]/rpm</property>
+          <value>750</value>
+        </less-than>           
+        <not>
+			   <property>fdm/jsbsim/systems/crash-detect/prop-strike</property>
+        </not>                                                                          
+       </and>                       
+		 </condition>
+	</animation>
+ 
+ 	<animation>
+		<type>select</type>
+		<object-name>Blade-1-broken</object-name>
+		<object-name>Blade-2-broken</object-name>
+      <condition>
+       <and> 
+        <less-than> 
+          <property>/engines/engine[0]/rpm</property>
+          <value>750</value>
+        </less-than>                   
+        <property>fdm/jsbsim/systems/crash-detect/prop-strike</property>                                                                                  
+       </and>                       
+		 </condition>
+	</animation>
+
+    
 
 	<!-- *** LoD *** -->
 	<animation> 
