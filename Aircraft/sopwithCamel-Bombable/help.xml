@@ -4,7 +4,7 @@
 		<title>Camel 1F1</title>
 		<key>
 			<name>s</name>
-			<desc>Start</desc>
+			<desc>Start engine (OR: Click propeller/center of dash)</desc>
 		</key>
 		<key>
 			<name>b (or press brakes)</name>
@@ -12,7 +12,7 @@
 		</key>
 		<key>
 			<name>B</name>
-			<desc>toggle chocks</desc>
+			<desc>Toggle chocks (OR: click chocks/wheels with mouse)</desc>
 		</key>
 		<key>
 			<name>{ }</name>

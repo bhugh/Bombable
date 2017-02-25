@@ -927,35 +927,14 @@
 			<property>controls/gear/brake-parking</property>
 			<property>gear/gear/wow</property>
 			<property>gear/gear[1]/wow</property>
+      <less-than>
+                   <property>velocities/groundspeed-kt</property>
+                   <value>0.5</value>
+      </less-than>
 		</condition>
 	</animation>
 
-	<animation>
-		<type>select</type>
-		<object-name>Propeller-Disk</object-name>
-		<condition>
-			<and>
-				<greater-than>
-					<property>engines/engine[0]/rpm</property>
-					<value>750</value>
-				</greater-than>
-				<less-than>
-					<property>engines/engine[0]/rpm</property>
-					<value>1000</value>
-				</less-than>
-			</and>
-		</condition>
-	</animation>
 
-	<animation>
-		<type>blend</type>
-		<object-name>Propeller-Disk</object-name>
-		<property>engines/engine[0]/rpm</property>
-		<factor>0.001</factor>
-		<!--<offset>-0.5</offset>-->
-		<min>0.9</min>
-		<max>1</max>
-	</animation>
 
 	<!-- *** LoD for the whole model *** -->
   <!-- *** removed for project Rembrandt *** -->
@@ -1583,7 +1562,7 @@
 			<z>0.0</z>
 		</axis>
 	</animation>
-  <!-- Not sure why this is here but there is no corresponding item in camel.ac, so removing it ?  2.0 2017/2/21 
+
 	<animation>
 		<type>pick</type>
 		<visible>true</visible>
@@ -1660,6 +1639,5 @@
 		<type>select</type>
 		<object-name>construction</object-name>
 	</animation>
-  -->
 
 </PropertyList>

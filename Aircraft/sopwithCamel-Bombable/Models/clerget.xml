@@ -21,6 +21,19 @@
 			<z>0</z>
 		</axis>
 	</animation>
+
+	<animation> 
+		<type>spin</type>
+		<object-name>Propeller-Disk</object-name>
+		<property>engines/engine/rpm</property>
+		<factor>0.5</factor>
+		<offset>100</offset>
+		<axis> 
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation> 
 	
 	<!-- ***** Propeller ***** -->
 
@@ -40,8 +53,8 @@
       <type>blend</type>
       <object-name>Propeller-Disk</object-name>
       <property>/engines/engine[0]/rpm</property>
-      <factor>0.0005</factor>
-      <offset>-0.5</offset>
+      <factor>0.0000144</factor>
+      <!-- <offset>-0.5</offset> -->
       <min>0.0</min>
       <max>1</max>
     </animation>
@@ -57,6 +70,22 @@
           <property>/engines/engine[0]/rpm</property>
           <value>750</value>
         </less-than>           
+        <not>
+			   <property>fdm/jsbsim/systems/crash-detect/prop-strike</property>
+        </not>                                                                          
+       </and>                       
+		 </condition>
+	</animation>
+ 
+ 	<animation>
+		<type>select</type>
+		<object-name>Propeller-Disk</object-name>		
+      <condition>
+       <and> 
+        <greater-than> 
+          <property>/engines/engine[0]/rpm</property>
+          <value>750</value>
+        </greater-than>           
         <not>
 			   <property>fdm/jsbsim/systems/crash-detect/prop-strike</property>
         </not>                                                                          

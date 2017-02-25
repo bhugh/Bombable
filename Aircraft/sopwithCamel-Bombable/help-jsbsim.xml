@@ -4,7 +4,7 @@
 		<title>Camel 1F1 - JSBSim</title>
 		<key>
 			<name>s</name>
-			<desc>Start</desc>
+			<desc>Start engine (OR: Click propeller/center of dash)</desc>
 		</key>
 		<key>
 			<name>b (or press brakes)</name>
@@ -12,7 +12,7 @@
 		</key>
 		<key>
 			<name>B</name>
-			<desc>Toggle chocks</desc>
+			<desc>Toggle chocks (OR: click chocks/wheels with mouse)</desc>
 		</key>
 		<key>
 			<name>{ }</name>
@@ -44,55 +44,66 @@
       
     <key>
 			<name>wasdqWASDQ and mouse</name>
-			<desc>In INSPECT AIRCRAFT VIEW:  Move and look around (v/V to select this view; see View/View Options)</desc>		
+			<desc>In INSPECT AIRCRAFT VIEW:  Move and look around (v/V to select this view; see View/View Options)</desc>
+			
 		</key>
+    <key>
+			<name>Camel Menu</name>
+			<desc>Repair/restore aircraft (must be on ground/stopped), hide pilot and cockpit clutter, more</desc>
+			
+		</key>   
 		<line> </line>
-		<line>STARTING</line>
+		<line>STARTING OUT</line>
 		
 		<line>Press { and } once each--so that both L and R magneto switches are in center position.</line>
-		<line>Press and hold the s key for 1.5 seconds. It may take several tries before the engine catches.</line> 
+		<line>Press and hold the 's' key for 1.5 seconds. It may take several tries before the engine catches.</line>
+    <line>If you spawn in on the ground, chocks are in place. Shift-B to remove.  </line> 
 		<line> </line>
-		<line>TAKE OFF</line>
-		
+   
+		<line>TAKE OFF</line>		
 		<line>Zoom the view out so you can see the edges of the runway with your peripheral vision.  </line>
 		<line>Easiest, most dependable way to take off: Full throttle, moderate back-pressure on stick to keep </line>
 		<line>tail engaged w/ ground. Use rudder to steer (tail dragging on ground provides most control authority).</line>
 		<line> 3-point lift-off @ 35 KTS; immediately ease stick forward to avoid excessive climb and loss of airspeed.</line>
     <line>More advanced: Gently lift tail @ 35KTS and continue rolling (or in ground effect) through 45-50 KTs before lift-off.</line>
-    <line>Crashing on takeoff? Check weather--many real Camel pilots crashed taking off with strong crosswind or tailwind.</line>
+    <line>Crashing on takeoff? Check weather--many real Camel pilots crashed on take-off with strong crosswind or tailwind.</line>
     <line> </line>
-    <line>THROTTLE, BLIP SWITCH, AND MAGNETOS</line>
     
-		<line>Real Camel pilots used a combination throttle, magneto settings, and the blip switch to  achieve desired power</line>
+    <line>THROTTLE, BLIP SWITCH, AND MAGNETOS</line>    
+		<line>Real Camel pilots used a combination of throttle, magneto settings, and the blip switch to achieve desired power</line>
     <line>settings. Throttle provides a limited range of power settings. The blip switch (b) disengages both magnetos and cuts</line>
     <line>power totally. Engaging either R or L brake (via keyboard, joystick, or rudder/pedals)</line>
-    <line>also engages the blip switch.  Releasing the brake (or releasing the b key)</line>
-    <line>releases the blip switch. Engaging only one magneto ({ or })reduces power by about 1/3.</line>
+    <line>also engages the blip switch.  Releasing the brake (or releasing the 'b' key)</line>
+    <line>releases the blip switch. Engaging only one magneto ('{' or '}') reduces power by about 1/3.</line>
+    <line>Note the power differences when you blip magneto 1 vs magneto 2 vs magnetos 1/2 together. You can add no or full throttle to each</line>
+    <line>of the three magneto settings, giving essentially six distinct power settings with just a little fine tuning control </line>
+    <line>for each via the throttle--very similar to the power settings and controls of authentic rotary engines.</line>        
     <line></line>
     
     <line>NEGATIVE G - INVERTED FLIGHT</line>
-    
 		<line>The Camel's fuel system requires gravity to feed fuel to the engine.  If you fly inverted or pull negative Gs, the</line>
-		<line> engine will soon stop.  Once you return to upright flight the engine will start again.</line>
-    
+		<line>engine will soon stop.  Once you return to upright flight fuel will flow and the engine will start again.</line>
 		<line> </line>
-		<line>APPROACH AND LANDING</line>
-		
-		<line>Approach speed 48 KTS IAS</line>
-		<line>Throttle FULL CLOSED, Magneto 1 OFF, Magneto 2 ON, Blip (b) ON/OFF and sideslip as needed to control speed</line>
-		<line>Touchdown speed: 43-48 KTS IAS</line>
-		<line>Stall speed: 41 KTS IAS</line>
+   
+		<line>APPROACH AND LANDING</line>	
+		<line>Throttle FULL CLOSED, Magneto 1 ON, Magneto 2 OFF. Control engine power via Blip Switch (b); Engine is typically mostly OFF</line>
+    <line>(via Blip) on approach. Note relatively steep glid slope. Sideslip as needed to control speed. If you need emergency full power,</line>
+    <line>add Magneto 2 and/or throttle.</line>
+		<line>Approach speed 55 KTS : Threshhold speed 48 KTS : Touchdown speed: 43-48 KTS (all IAS)</line>    
+		<line>Stall speed: 41 KTS IAS, however significant Ground Effect will allow you to touch down at ~35-40 KTS IAS.</line>
 		<line> </line>
+   
 		<line>GUNS</line>
-		
 		<line>Guns have 400 rounds each, the maximum capacity of the Camel.</line>
-	  <line>Note that guns will not work if AI models are disabled (the bullets</line> 
-    <line>and smoke are AI objects - tracer rounds will appear but they won't move).</line>
-    <line>Fire with the e key or a joystick trigger linked to /controls/armament/trigger. </line>
+    <line>Fire with the 'e' key or a joystick trigger linked to /controls/armament/trigger. </line>
     <line>Reload guns: Use the menu--you must be on ground and stopped. </line>
-    
-		<line>MORE HELP </line>
-		<line>Extensive help, tips, documents in the DOCS folder.</line>    
+   
+    <line> </line> 
+		<line>MISC </line>
+    <line>Taxiing: In windy conditions, use elevator to hold tail firmly down for better steering authority. At high RPM, prop wash</line>
+    <line>gives some rudder and elevator authority even at near stand-still. Use this plus the burst of power from Blip to</line>
+    <line>help maneuver and taxi over bumps. Don't forget 'n' for nudge when you get stuck.</line>
+    <line>Extensive help, tips, documents in the DOCS folder.</line>    
     
 	</help>
 </PropertyList>

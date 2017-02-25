@@ -186,17 +186,22 @@ var resetCrashSettings = func {
     var agl =getprop("/position/altitude-agl-ft");
     var pitch_deg = getprop ("/orientation/pitch-deg");
     var roll_deg = getprop ("/orientation/roll-deg");
+    var groundspeed_kt = getprop ("/velocities/groundspeed-kt");
     #This might not work on steep hills or other difficult spots . . . 
-    if (!agl or agl < 4.67 or pitch_deg> 20 or pitch_deg <5 or roll_deg>80 or roll_deg < -80)  {
-        setprop("/fdm/jsbsim/position/h-agl-ft", 4.67); #If wheels are broken we might be below ground level, so move it up before un-breaking the wheels.
+    if (typeof(agl) != "nil" and typeof(groundspeed_kt) != "nil" and agl < 5.67 and groundspeed_kt < 1.5 and groundspeed_kt > -1.5 ) { #only do the stuff below if on the ground & stopped
+        setprop("/fdm/jsbsim/position/h-agl-ft", 4.77); #If wheels are broken we might be below ground level, so move it up before un-breaking the wheels.
         setprop("/orientation/roll-deg", 0);
         setprop("/orientation/pitch-deg", 14.5);
-        setprop("/fdm/jsbsim/position/h-agl-ft", 4.67); #re-establish the altitude
+        setprop("/fdm/jsbsim/position/h-agl-ft", 4.77); #re-establish the altitude
     }  
     
     setprop("/fdm/jsbsim/systems/crash-detect/left-gear-broken",0); 
     setprop("/fdm/jsbsim/systems/crash-detect/right-gear-broken",0);    
     setprop("/fdm/jsbsim/systems/crash-detect/prop-strike",0);
+    
+    camel.terrain_servol_loop_start(); #re-start the terrain/friction/bumpiness etc - needed here to be sure the landing gear etc is in the right position    
+    
+    camel.magneto.updateMagnetos(); #make sure actual magneto settings match the state of the visible switches 
 
 }
 
@@ -211,15 +216,16 @@ setlistener("/sim/signals/reinit", func {
   });
 
 # action to take when main aircraft un-crashes
-setlistener("/sim/crashed", func {
-if (!getprop("/sim/crashed")) {  # ie, crash has changed & now we are NOT crashed
+settimer ( func { #wait a few seconds to start this because this is still early in the init process  
+  setlistener("/sim/crashed", func {
+  if (!getprop("/sim/crashed")) {  # ie, crash has changed & now we are NOT crashed
+     
+     print ("Camel: Un-crashed--resetting damage."); 
+     resetCrashSettings();
+  } 
    
-   print ("Camel: Un-crashed--resetting damage."); 
-   resetCrashSettings();
-} 
- 
-});
-
+  });
+}, 3);
 
 var psloopid=0;
 
@@ -232,7 +238,7 @@ var propStrikeKill = func (id) {
 
 setlistener("/fdm/jsbsim/systems/crash-detect/prop-strike", func {
   if (getprop("/fdm/jsbsim/systems/crash-detect/prop-strike")) {  # ie prop-strike has just been set
-      print ("Camel: Propeller Strike: Engine destroyed");
+      #print ("Camel: Propeller Strike: Engine destroyed");
       
       #Now kill the engine & keep it killed until the prop-strike prop is set to FALSE again      
       propStrikeKill (psloopid += 1);

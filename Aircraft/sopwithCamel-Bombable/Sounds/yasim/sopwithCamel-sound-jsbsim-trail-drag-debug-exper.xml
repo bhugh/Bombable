@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!-- 
+Sound credits: 
+#1 Wind Turbine.wav by soundslikewillem
+
+Recording of a wind turbine rotating clockwise.
+The stereo microphones are standing right in front of the huge blades at a 90 degree angle.
+
+https://www.freesound.org/s/176235/
+Creative Commons Attribution-NonCommercial 3.0 Unported License: https://creativecommons.org/licenses/by-nc/3.0/                                   
+ 
+
+#2 Tractor_Gueldner_A20_1940.wav by aUREa 
+Sounds from the engine of a Gueldner A20,
+recorded on February, 19th 2015,
+at Traktormuseum in Uhldingen at Lake Constance / Germany
+
+www.traktormuseum.de
+https://www.freesound.org/s/268777/
+Creative Commons Attribution 3.0 Unported License: https://creativecommons.org/licenses/by/3.0/
+
+
+#3. Wood_Creak_03.wave by dheming
+Metal rod pierced through plywood being slowly moved around. 
+
+https://www.freesound.org/s/177778/
+
+Creative Commons Attribution 3.0 Unported License: https://creativecommons.org/licenses/by/3.0/
+
+
+#4. CrackAndHatch.wav by sonictechtonic 
+Tearing open a watermelon and cracking the rind. The watermelon was close mic'd with an Audix i5 and an AXL guitar contact mic (suction cup variety).
+
+https://www.freesound.org/s/241281/
+
+Creative Commons Attribution 3.0 Unported: https://creativecommons.org/licenses/by/3.0/
+
+#5. Low Rumble by RobertWulfman
+
+https://www.freesound.org/s/220841/
+
+Creative Commons Zero License (public domain): https://creativecommons.org/publicdomain/zero/1.0/
+
+-->
+<PropertyList>
+
+  <fx>
+
+
+     
+    <taildrag>
+      <name>taildrag</name>
+      <!-- <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/220841__robertwulfman__low-rumble.wav</path> -->
+      <path>Sounds/wind-8khz.wav</path>
+      <mode>looped</mode>
+
+      <condition>
+        <and>
+          <greater-than> 
+                         <property>/gear/gear[4]/compression-ft</property>
+                         <value>0.06</value>
+          </greater-than>
+          <greater-than> 
+                         <property>/gear/gear[4]/rollspeed-ms</property>
+                         <value>0.1</value>
+          </greater-than>           
+          
+          <!-- <property>/gear/gear[4]/wow</property> -->
+          
+        </and>
+      </condition>
+         <position> <!-- x front, z up, y left, as in YASim -->
+              <x>-11.5</x>
+              <y>0.01</y>
+              <z>-1.5</z>
+      </position>
+      
+      
+      <volume>
+        <property>/gear/gear[4]/rollspeed-ms</property> 
+        <factor>0.8</factor>
+        <min>0.05</min>              
+        <max>1.0</max>
+        <offset>0</offset>
+      </volume>
+      <volume>
+        <property>/gear/gear[4]/compression-ft</property>
+        <factor>0.8</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>0.06</offset>
+      </volume>      
+      
+      <pitch>
+        <property>/gear/gear[4]/rollspeed-ms</property>
+        <factor>0.025</factor>
+        <min>.0001</min>
+        <max>2</max>
+        <offset>0.1</offset>
+      </pitch>
+      
+    </taildrag>
+
+    <taildrag2>
+      <name>taildrag2</name>
+      <path>Sounds/rumble-rough.wav</path>      
+      <mode>looped</mode>
+
+      <condition>
+        <and>
+          <greater-than> 
+                         <property>/gear/gear[4]/compression-ft</property>
+                         <value>0.06</value>
+          </greater-than>
+          <greater-than> 
+                         <property>/gear/gear[4]/rollspeed-ms</property>
+                         <value>0.1</value>
+          </greater-than>
+       </and>           
+          
+          <!-- <property>/gear/gear[4]/wow</property>        </and> -->
+      </condition>
+         <position> <!-- x front, z up, y left, as in YASim -->
+              <x>-11.5</x>
+              <y>.001</y>
+              <z>-1.5</z>
+      </position>
+      
+      
+      <volume>
+        <property>/gear/gear[4]/rollspeed-ms</property> 
+        
+        <factor>0.62</factor>
+        <min>0.03</min>              
+        <max>1.0</max>
+        <offset>0</offset>
+      </volume>
+      <volume>
+        <property>/gear/gear[4]/compression-ft</property>
+        
+        <factor>0.8</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>0.06</offset>
+      </volume>        
+      
+      <pitch>
+        <property>/gear/gear[4]/rollspeed-ms</property> <!-- about 0.6 of kts -->
+        <factor>0.025</factor>
+        <min>.0001</min>
+        <max>2</max>
+        <offset>0.1</offset>
+      </pitch>
+      
+    </taildrag2>      
+    
+    <taildragthump>
+      <name>taildragthump</name>
+      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/241281__sonictechtonic__crackandhatch.wav</path>
+     
+      <mode>once</mode>
+
+      <condition>
+
+          <greater-than> 
+                         <property>/gear/gear[4]/compression-ft</property>
+                         <value>0.06</value>
+          </greater-than>
+          
+          
+          <!-- <property>/gear/gear[4]/wow</property>        </and> -->
+      </condition>
+         <position> <!-- x front, z up, y left, as in YASim -->
+              <x>-11.5</x>
+              <y>.001</y>
+              <z>-1.5</z>
+      </position>
+      
+      
+      <volume>
+        <property>/fdm/jsbsim/gear/unit[4]/compression-velocity-fps</property> 
+        <factor>0.2</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>-0.06</offset>
+      </volume>
+ <!--      
+      <pitch>
+        <property>/gear/gear[4]/rollspeed-ms</property> >
+        <property>/fdm/jsbsim/gear/unit[4]/compression-velocity-fps</property>
+        <factor>0.2</factor>
+        <min>0.9</min>
+        <max>1.1</max>
+        <offset>1</offset>
+      </pitch>
+ -->     
+    </taildragthump>         
+  
+
+  </fx>
+
+</PropertyList>

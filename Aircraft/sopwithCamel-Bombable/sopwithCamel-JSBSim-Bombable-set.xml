@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-	<sim include="help-jsbsim.xml">
+	<sim include="help-jsbsim.xml"> 
 		<description type="string">Sopwith Camel 1F.1 (JSBSim, Historically Accurate FDM &amp; Weapons, Bombable-compatible, ver 2.0)</description>
 		<author type="string">AJ MacLeod, Vivian Meazza, Brent Hugh (Historically accurate JSBSim FDM &amp; weapons, Bombable compatibility)</author>
 		<status type="string">V2.0: Production, guns work, Bombable compatible</status>
@@ -14,9 +14,10 @@
 
 		<flight-model>jsb</flight-model>
 		<aero>sopwithCamel1F1jsb</aero>
+   
   <startup>
-		<splash-texture>JSBSim-camel-splash2a.jpg</splash-texture>
-    <splash-title>JSBSim Sopwith Camel</splash-title>
+		<splash-texture>JSBSim-camel-splash2d-JSBSim.rgb</splash-texture>
+    <splash-title>JSBSim Sopwith Camel (Bombable Compatible)</splash-title>
   </startup>
    
 		<sound>

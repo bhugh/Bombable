@@ -73,24 +73,43 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
       <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/leclerget-blip.wav</path>
       <mode>looped</mode>
       <condition>
-        <property>/controls/engines/engine/blip_switch</property>
-        <not>
-          <property>/engines/engine/running</property>
-        </not>
+        <!-- <property>/controls/engines/engine/blip_switch</property> OK, it's not really pressing the blip switch that causes the sound, but rather that the engine is turning over & some or all of the magnetos are off.
+        Doing it this way also allows us to add in some 'blip' sound when just when of the magnetos is off, which is realistic.-->
+        <and>      
+          <less-than>
+                        <property>controls/engines/engine/magnetos</property>
+                         <value>3</value>
+          </less-than>
+          
+          <!-- <not>
+            <property>/engines/engine/running</property>
+          </not> -->
+          <greater-than>
+            <property>/engines/engine/rpm</property>
+            <value>120</value>
+          </greater-than>
+         </and> 
       </condition>
       <volume>
         <property>/engines/engine/mp-osi</property>
         <factor>0.035</factor>
-        <min>0.15</min>
+        <min>0.65</min>
         <max>1.0</max>
-        <offset>0.15</offset>
+        <offset>0.25</offset>
       </volume>
       <pitch>
+        <!--
         <property>/engines/engine/rpm</property>
         <factor>0.0008</factor>
         <min>.3</min>
         <max>1</max>
-        <offset>0.3</offset>
+        <offset>0.3</offset>                 -->
+        
+        <property>/engines/engine/rpm</property>
+        <factor>0.0003666</factor>
+        <min>.03</min>
+        <max>1.5</max>
+        <offset>.4</offset> <!-- was: 0.3 -->
       </pitch>
     </engineblip>
 
@@ -98,27 +117,26 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
     <engine>
       <name>engine</name>
       <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/leclerget.wav</path>
-      <mode>looped</mode>
-      <property>/engines/engine/running</property>
+      <mode>looped</mode>      
       <condition>
-        <not>
-          <property>/controls/engines/engine/blip_switch</property>
-        </not>
-        <property>/engines/engine/running</property>
+        <and> 
+          <property>/engines/engine/running</property>
+          <property>controls/engines/engine/magnetos</property>        
+        </and>
       </condition>
       <volume>
         <property>/engines/engine/mp-osi</property>
         <factor>0.035</factor>
-        <min>0.15</min>
+        <min>0.65</min>
         <max>1.0</max>
-        <offset>0.05</offset>
+        <offset>0.25</offset>
       </volume>
       <pitch>
         <property>/engines/engine/rpm</property>
-        <factor>0.008</factor>
+        <factor>0.000666</factor>
         <min>.03</min>
         <max>1</max>
-        <offset>0.3</offset>
+        <offset>.6</offset> <!-- was: 0.3 -->
       </pitch>
     </engine>
   
@@ -321,15 +339,22 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
       
       <volume>
         <property>/gear/gear[4]/rollspeed-ms</property> 
-        <factor>0.1</factor>
-        <min>0</min>              
+        <factor>0.8</factor>
+        <min>0.05</min>              
         <max>1.0</max>
         <offset>0</offset>
       </volume>
+      <volume>
+        <property>/gear/gear[4]/compression-ft</property>
+        <factor>0.8</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>0.06</offset>
+      </volume>      
       
       <pitch>
         <property>/gear/gear[4]/rollspeed-ms</property>
-        <factor>0.25</factor>
+        <factor>0.025</factor>
         <min>.0001</min>
         <max>2</max>
         <offset>0.1</offset>
@@ -365,22 +390,74 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
       
       <volume>
         <property>/gear/gear[4]/rollspeed-ms</property> 
-        <factor>0.08</factor>
-        <min>0</min>              
+        
+        <factor>0.62</factor>
+        <min>0.03</min>              
         <max>1.0</max>
         <offset>0</offset>
       </volume>
+      <volume>
+        <property>/gear/gear[4]/compression-ft</property>
+        
+        <factor>0.8</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>0.06</offset>
+      </volume>        
       
       <pitch>
-        <property>/gear/gear[4]/rollspeed-ms</property>
-        <factor>0.25</factor>
+        <property>/gear/gear[4]/rollspeed-ms</property> <!-- about 0.6 of kts -->
+        <factor>0.025</factor>
         <min>.0001</min>
         <max>2</max>
         <offset>0.1</offset>
       </pitch>
       
-    </taildrag2>         
-  
+    </taildrag2>      
+    
+    <taildragthump>
+      <name>taildragthump</name>
+      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/241281__sonictechtonic__crackandhatch.wav</path>
+     
+      <mode>once</mode>
+
+      <condition>
+
+          <greater-than> 
+                         <property>/gear/gear[4]/compression-ft</property>
+                         <value>0.06</value>
+          </greater-than>
+          
+          
+          <!-- <property>/gear/gear[4]/wow</property>        </and> -->
+      </condition>
+         <position> <!-- x front, z up, y left, as in YASim -->
+              <x>-11.5</x>
+              <y>.001</y>
+              <z>-1.5</z>
+      </position>
+      
+      
+      <volume>
+        <property>/fdm/jsbsim/gear/unit[4]/compression-velocity-fps</property>
+        <type>sqrt</type> 
+        <factor>0.6</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>0</offset>
+      </volume>
+ <!--      
+      <pitch>
+        <property>/gear/gear[4]/rollspeed-ms</property> >
+        <property>/fdm/jsbsim/gear/unit[4]/compression-velocity-fps</property>
+        <factor>0.2</factor>
+        <min>0.9</min>
+        <max>1.1</max>
+        <offset>1</offset>
+      </pitch>
+ -->     
+    </taildragthump>
+      
     <birds>
       <name>birdsong</name>
       <mode>looped</mode>
@@ -451,7 +528,7 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
     <property>velocities/groundspeed-kt</property>    
     <factor>0.1</factor>
     <max>1</max>
-    <min>0.2</min>
+    <min>0.1</min>
     <offset>0</offset>
    </pitch>
   </groundscrape>
@@ -509,6 +586,8 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
    <pitch>
     <property>/fdm/jsbsim/aero/alpha-rad</property>
     <factor>0.1</factor>
+    <min>0.01</min>
+    <max>2</max>
    </pitch>
   </buffet>
   
@@ -538,6 +617,8 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
    <pitch>
     <property>/fdm/jsbsim/aero/beta-rad</property>
     <factor>0.1</factor>
+    <min>0.01</min>
+    <max>2</max>
    </pitch>
   </buffetbeta>
   
@@ -632,10 +713,10 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
                                <property>/fdm/jsbsim/accelerations/Nz</property>
                                <value>4</value>
                  </greater-than>                                            
-                 <lesser-than>
+                 <less-than>
                                <property>/fdm/jsbsim/accelerations/Nz</property>
                                <value>-3</value>
-                 </lesser-than>
+                 </less-than>
        </or>
       </condition>
       <volume>
@@ -663,10 +744,10 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
                                <property>/fdm/jsbsim/accelerations/Nz</property>
                                <value>2.5</value>
                  </greater-than>                                            
-                 <lesser-than>
+                 <less-than>
                                <property>/fdm/jsbsim/accelerations/Nz</property>
                                <value>-1.75</value>
-                 </lesser-than>
+                 </less-than>
        </or>
       </condition>
 
@@ -699,10 +780,10 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
                                <property>/fdm/jsbsim/accelerations/Nz</property>
                                <value>2.2</value>
                  </greater-than>                                            
-                  <lesser-than>
+                  <less-than>
                                <property>/fdm/jsbsim/accelerations/Nz</property>
                                <value>2.5</value>
-                 </lesser-than>
+                 </less-than>
            </and>
        
       </condition>
@@ -719,7 +800,7 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
         <property>/fdm/jsbsim/accelerations/Nz</property>
         <factor>0.1</factor>
         <offset>0</offset>
-        <min>0.001</min>
+        <min>0.1</min>
         <max>.8</max>
       </pitch>
       
@@ -734,10 +815,10 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
                                <property>/fdm/jsbsim/accelerations/Nz</property>
                                <value>2.8</value>
                  </greater-than>                                            
-                  <lesser-than>
+                  <less-than>
                                <property>/fdm/jsbsim/accelerations/Nz</property>
                                <value>3.0</value>
-                 </lesser-than>
+                 </less-than>
            </and>
        
       </condition>
@@ -754,7 +835,7 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
         <property>/fdm/jsbsim/accelerations/Nz</property>
         <factor>0.1</factor>
         <offset>0</offset>
-        <min>0.001</min>
+        <min>0.1</min>
         <max>.8</max>
       </pitch>
       
@@ -769,10 +850,10 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
                                <property>/fdm/jsbsim/accelerations/Nz</property>
                                <value>3.2</value>
                  </greater-than>                                            
-                  <lesser-than>
+                  <less-than>
                                <property>/fdm/jsbsim/accelerations/Nz</property>
                                <value>3.5</value>
-                 </lesser-than>
+                 </less-than>
            </and>
        
       </condition>
@@ -789,7 +870,7 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
         <property>/fdm/jsbsim/accelerations/Nz</property>
         <factor>0.1</factor>
         <offset>0</offset>
-        <min>0.001</min>
+        <min>0.1</min>
         <max>.8</max>
       </pitch>
       
@@ -804,10 +885,10 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
                                <property>/fdm/jsbsim/accelerations/Nz</property>
                                <value>4.0</value>
                  </greater-than>                                            
-                  <lesser-than>
+                  <less-than>
                                <property>/fdm/jsbsim/accelerations/Nz</property>
                                <value>4.2</value>
-                 </lesser-than>
+                 </less-than>
            </and>
        
       </condition>
@@ -824,7 +905,7 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
         <property>/fdm/jsbsim/accelerations/Nz</property>
         <factor>0.1</factor>
         <offset>0</offset>
-        <min>0.001</min>
+        <min>0.1</min>
         <max>.8</max>
       </pitch>
       
@@ -933,6 +1014,94 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
       -->
 
     </partbreaking>  
+    
+    <switch_clickL>
+      <name>switch_clickL</name>
+      <mode>once</mode>
+      <path>Sounds/click.wav</path>
+      <property>/controls/engines/engine/mag-switch-left</property>
+       <pitch>
+         <property>/controls/engines/engine/mag-switch-left</property>
+         <factor>-0.03</factor>
+        <offset>1.3</offset>
+        <min>0</min>
+        <max>0.5</max>      
+      </pitch>
+      <!-- <pitch>
+        <value>0.5</value>                
+      </pitch> -->
+      
+
+    </switch_clickL>
+     
+    <switch_clickR>
+      <name>switch_clickR</name>
+      <mode>once</mode>
+      <path>Sounds/click.wav</path>
+      <property>/controls/engines/engine/mag-switch-right</property>            
+       <pitch>
+         <property>/controls/engines/engine/mag-switch-right</property>
+         <factor>-0.04</factor>
+        <offset>1.31</offset>
+        <min>0</min>
+        <max>0.6</max>      
+      </pitch>
+      <!-- <pitch>
+        <value>0.5</value>                
+      </pitch> -->
+      
+
+    </switch_clickR>      
+    <switch_click_offL>
+      <name>switch_click_offL</name>
+      <mode>once</mode>
+      <path>Sounds/click.wav</path>                                             
+      <condition>
+
+           <not>
+                <property>/controls/engines/engine/mag-switch-left</property>
+           </not>
+
+       </condition>            
+       <pitch>
+         <property>/controls/engines/engine/mag-switch-left</property>
+         <factor>-0.03</factor>
+        <offset>1.3</offset>
+        <min>0</min>
+        <max>0.5</max>      
+      </pitch>
+      <!-- <pitch>
+        <value>0.5</value>                
+      </pitch> -->
+      
+
+    </switch_click_offL>  
+ 
+    <switch_click_offR>
+      <name>switch_click_offR</name>
+      <mode>once</mode>
+      <path>Sounds/click.wav</path>                                             
+      <condition>
+
+
+           <not>
+                <property>/controls/engines/engine/mag-switch-right</property>
+           </not>
+
+       </condition>            
+       <pitch>
+         <property>/controls/engines/engine/mag-switch-right</property>
+         <factor>-0.04</factor>
+        <offset>1.31</offset>
+        <min>0</min>
+        <max>0.5</max>      
+      </pitch>
+      <!-- <pitch>
+        <value>0.5</value>                
+      </pitch> -->
+      
+
+    </switch_click_offR>        
 
   </fx>
 

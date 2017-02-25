@@ -12,7 +12,6 @@
 # plus Nasal/camel-walk-views.nas plus setup in -set.xml
 #
 
-
 # Constraints
 
 #seems to be running before view is initiated?
@@ -24,4 +23,6 @@ settimer (func {
   # Create the view managers.
   
   groundcrew_walker = walkview.Walker.new("Inspect Aircraft View", groundCrew);
+  
+
 }, 3);

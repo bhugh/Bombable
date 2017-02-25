@@ -13,7 +13,7 @@
 
 	<!-- ***** Propeller ***** -->
 		
-    <animation> 
+   <!-- <animation> 
       <type>select</type>
       <object-name>Propeller-Disk</object-name>
       <condition> 
@@ -23,6 +23,7 @@
         </greater-than>
       </condition>
     </animation>
+   -->
      
 	<animation>
 		<type>select</type>
@@ -56,15 +57,32 @@
 		 </condition>
 	</animation>
  
-    <animation> 
-      <type>blend</type>
-      <object-name>Propeller-Disk</object-name>
-      <property>/engines/engine[0]/rpm</property>
-      <factor>0.0005</factor>
-      <offset>-0.5</offset>
-      <min>0.0</min>
-      <max>1</max>
-    </animation>
+	<animation>
+		<type>select</type>
+		<object-name>Propeller-Disk</object-name>
+		<condition>
+			<and>
+				<greater-than>
+					<property>engines/engine[0]/rpm</property>
+					<value>700</value>
+				</greater-than>
+				<less-than>
+					<property>engines/engine[0]/rpm</property>
+					<value>1500</value>
+				</less-than>
+			</and>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>blend</type>
+		<object-name>Propeller-Disk</object-name>
+		<property>engines/engine[0]/rpm</property>
+		<factor>0.0006</factor>
+		<!--<offset>-0.5</offset>-->
+		<min>0.4</min>
+		<max>1</max>
+	</animation>
  
 	<animation>
 		<type>spin</type>
@@ -83,6 +101,19 @@
 	<animation>
 		<type>spin</type>
 		<object-name>complete_engine</object-name>
+		<property>engines/engine/rpm</property>
+		<factor>1</factor>
+		<offset>100</offset>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation> 
+ 
+ 	<animation>
+		<type>spin</type>
+		<object-name>Propeller-Disk</object-name>
 		<property>engines/engine/rpm</property>
 		<factor>1</factor>
 		<offset>100</offset>

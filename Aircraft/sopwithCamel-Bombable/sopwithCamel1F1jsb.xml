@@ -409,13 +409,26 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> -18 </z>
             </location>
-            <static_friction> 5 </static_friction>    <!-- this is abnormally high but it seems like there was some reason this was important - perhaps to help with steering? -->
-            <dynamic_friction> 5 </dynamic_friction>
+            <static_friction> 1 </static_friction><!-- 1.6: 5. This is abnormally high but it seems like there was some reason this was important - perhaps to help with steering? -->
+            <dynamic_friction> 1 </dynamic_friction> <!-- 1.6: 5. This is abnormally high but it seems like there was some reason this was important - perhaps to help with steering? -->
             <rolling_friction> .1 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 400 </damping_coeff_rebound>            
             <max_steer unit="DEG"> -20 </max_steer>
+            
+            <!-- 2017/02/24 - an experiment - should explore this more, at least as an option to be more authentic to the WWI model with no steerable tail -->
+            <!-- <static_friction> 5 </static_friction>
+            <dynamic_friction> 5 </dynamic_friction>
+            <rolling_friction> .1 </rolling_friction>
+            <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 400 </damping_coeff_rebound>            
+            <max_steer unit="DEG"> -5 </max_steer>
+            -->
+            
+            
+            
             <brake_group> NONE </brake_group>
             <retractable> 0 </retractable>
         </contact>
@@ -566,7 +579,7 @@ for the rudder to contribute very much to yaw stability.
             <location unit="IN">
                 <x> 10 </x>
                 <y> 0 </y>
-                <z> -50 </z> <!-- -59 in ver 1.8  moving it just a bit up to be a bit more forgiving on noseover -->
+                <z> -52 </z> <!-- -59 in ver 1.8  moving it just a bit up to be a bit more forgiving on noseover. NOTE that this is override in jsbsim.nas, so change BOTH! -->
             </location>
             <static_friction> 0.4 </static_friction>  
             <dynamic_friction> 0.3 </dynamic_friction>
@@ -707,7 +720,7 @@ for the rudder to contribute very much to yaw stability.
         
         <contact type="STRUCTURE" name="LEFT_MAIN_PROTECTOR">
             <location unit="IN">
-                <x> 10 </x>
+                <x> 40 </x> <!--2.0alpha1: 10 -->
                 <y> -39.06 </y>
                 <z> -55 </z>
             </location>
@@ -723,7 +736,7 @@ for the rudder to contribute very much to yaw stability.
         </contact>
         <contact type="STRUCTURE" name="RIGHT_MAIN_PROTECTOR">
             <location unit="IN">
-                <x> 10 </x>
+                <x> 40 </x> <!--2.0alpha1: 10 -->
                 <y> 39.06 </y>
                 <z> -55 </z>
             </location>

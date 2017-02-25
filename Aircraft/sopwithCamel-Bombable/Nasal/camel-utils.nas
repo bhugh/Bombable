@@ -178,7 +178,7 @@ set: func ( pos ) {# operate fuel cock
 # Class that specifies magneto functions
 #
 Magneto = {
-    new : func ( name = "magneto",
+    new : func ( name = "magneto",                            
     right = "controls/engines/engine/mag-switch-right",
     left = "controls/engines/engine/mag-switch-left",
     magnetos = "controls/engines/engine/magnetos",
@@ -200,6 +200,7 @@ Magneto = {
 
 updateMagnetos: func{     # set the magneto value according to the switch positions
 # print("updating Magnetos");
+                  var save_magnetos=me.magnetos.getValue();
                 if (me.left.getValue() and me.right.getValue()){                  # both
                     me.magnetos.setValue( 3 );
                 }
@@ -213,6 +214,14 @@ updateMagnetos: func{     # set the magneto value according to the switch positi
                     me.magnetos.setValue( 0 );            # none
                 }
 
+                #doing this 'speed burst' only for blip switch for now - that way we can use
+                #a magneto switch for more gentle blipping ie at landing
+                var new_magnetos = me.magnetos.getValue();
+                #if (me.magnetos.getValue()==3 and new_magnetos > save_magnetos + 1){
+                if ((getprop("velocities/groundspeed-kt")>25 or getprop("engines/engine/rpm")>50) and !getprop("fdm/jsbsim/systems/crash-detect/prop-strike") and (getprop("engines/engine/rpm")<201 or new_magnetos-save_magnetos>=2)) setprop("/fdm/jsbsim/propulsion/set-running", -1); #real Camel engines didn't just stop running while the blip switch was pressed, as long as the a/c OR prop was moving the instant the blip was released there was power.  Also this helps provide the immediate thrust of power that rotary engines were able to develop when blip was released.  We're doing it here same as when the blip switch is released because the physical effect was same for both. 
+                
+                #}
+                
     }, # end function
 
 setleftMagswitch:   func ( left ) {
@@ -258,10 +267,9 @@ blipMagswitch:   func{
     # switch when the camel is out of fuel because it is inverted
     # we first check if camel.inverted_out_of_fuel is defined bec. JSBSim uses it but (for now) not YASim 
     if (defined("camel.inverted_out_of_fuel")) {
-       print ("oof ", camel.inverted_out_of_fuel);                       
+       #print ("oof ", camel.inverted_out_of_fuel);                       
        if ( camel.inverted_out_of_fuel ) return;
     }
-
     if ( me.right_brake.getValue() > 0.25 or me.left_brake.getValue() > 0.25 
             ) {;
         me.magnetos.setValue( 0 );
@@ -269,6 +277,14 @@ blipMagswitch:   func{
         setprop("controls/engines/engine/blip_switch",1); # This one seems to affect the engine AND also the sound.xml file uses it to cut in the blipped engine sound
     } else {
         me.updateMagnetos();
+        
+        # if magnetos are on & engine running & on ground, and moving slowly, we'll give a 'nudge' here
+        # if (me.magnetos.getValue() > 0 and getprop("engines/engine/rpm")>100) {
+            var currGroundSpeed=getprop("velocities/groundspeed-kt");
+            if (currGroundSpeed < 3 ) setprop("velocities/airspeed-kt", 0.333);      
+
+        #}
+        # actually this gets done in updateMagnetos; don't need to do again: if (getprop("velocities/groundspeed-kt")>20 or getprop("engines/engine/rpm")>10 and !getprop("fdm/jsbsim/systems/crash-detect/prop-strike")) setprop("/fdm/jsbsim/propulsion/set-running", -1); #real Camel engines didn't just stop rotating while the blip switch was pressed, and (apparently) they never had trouble restarting an engine after a blip. As long as the a/c OR prop was moving the instant the blip was released there was power.  Also this helps provide the *immediate* thrust of power that rotary engines were able to develop when blip was released - much quicker ramp-up than the typical engine JSBSim is modeling here. 
         setprop("sim/model/camel/blip_switch",0);
         setprop("controls/engines/engine/blip_switch",0);
     }
@@ -586,7 +602,7 @@ var nudgeaircraft = func {
     #are sitting still on the ground.  But still, setting prop of airspeed to even 1mph will get you 'unstuck'
     #from the ground.  Maybe not the best way to do it but it seems to work for now . . . 
     var currGroundSpeed=getprop("velocities/groundspeed-kt");
-    if (currGroundSpeed < 3 ) setprop("velocities/airspeed-kt", 1);      
+    if (currGroundSpeed < 3 ) setprop("velocities/airspeed-kt", 0.75);      
     #adding 1 kt here is about the mx we can do without causing over G crashes.
 }
 

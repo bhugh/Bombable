@@ -2,6 +2,7 @@
 
 <PropertyList>
 	<sim include="help.xml">
+    <variant-of>sopwithCamel-JSBSim-Bombable</variant-of>
 		<description type="string">Sopwith Camel 1F.1 (YASim, Guns/Bombable)</description>
 		<author type="string">AJ MacLeod, Vivian Meazza, Brent Hugh (Bombable compatibility, weapons dialogs)</author>
 		<status type="string">early production, guns work</status>
@@ -9,9 +10,10 @@
 		<flight-model>yasim</flight-model>
 		<aero>sopwithCamel1F1</aero>
 
-		<startup>
-			<splash-texture>Aircraft/sopwithCamel-Bombable/splash.rgb</splash-texture>
-		</startup>
+  <startup>
+		<splash-texture>JSBSim-camel-splash2d-YASim.rgb</splash-texture>
+    <splash-title>YASim Sopwith Camel (Bombable Compatible)</splash-title>
+  </startup>
 
 		<sound>
 			<path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/sopwithCamel-sound.xml</path>
