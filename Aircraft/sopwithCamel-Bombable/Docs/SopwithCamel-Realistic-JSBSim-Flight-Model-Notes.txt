@@ -70,46 +70,77 @@ on a scale of 1-5:
 implemented as described in attached article, 'The Sopwith "Camel"', The 
 Automobile, Nov 7, 1918.
 
-4.1 Best available calculations for moment of inertia of engine/propellor, prop 
+4.2 Best available calculations for moment of inertia of engine/propellor, prop 
 thrust, moment of inertia of aircraft wings and body. See included file 
-Camel-JSBSim-calcs-2011-10D.xls. Note that value for gyroscopic moment as measured
-in FG matches quite well with values as measured in an actual Camel in Calculated
-Camel. Flight testing in FG shows that changes from that point even at +50-100% 
-are more in the line of tweaks with a noticable affect on flight performance 
-than complete game-changers.  Just installing a different engine (heavier, lighter,
-different distribution of weight) could have changed gyroscopic effects 10-40%.
+Camel-JSBSim-calcs-2011-10D.xls. Note that value for gyroscopic moment as 
+measured in FG matches quite well with values as measured in an actual Camel in 
+Calculated Sopwith Camel article (see Docs folder). Flight testing in FG shows 
+that changes from that point even at +50-100% are more in the line of tweaks 
+with a noticable affect on flight performance than complete game-changers.  Just 
+installing a different engine (heavier, lighter, different distribution of 
+weight) could have changed gyroscopic effects 10-40%.
+
 NOTE: These results could/should be verified and improved by actual measurement 
 and testing of an aircraft, by wind tunnel data, or by extensive testing and 
 feedback of the model by an experienced Camel pilot.
 
-4 Although the gyroscopic affects are noticeable, under normal flight conditions 
+4.2 Although the gyroscopic affects are noticeable, under normal flight conditions 
 and sufficient speed, they are well within the capability of the rudder and 
 other flight surfaces to overcome.  (See Calculated Camel article.)
 
-4 Speed, RPM, horsepower of climbing and horizontal flight closes matches 
+4.8 Speed, RPM, horsepower of climbing and horizontal flight closely matches 
 published number. See for example the speed/climb rate graphs comparing the 
 JSBSim Camel and a historical 1917 Camel in the Docs subdirectory, file 
-Camel-JSBSim-calcs-2011-10D.xls NOTE: 2013/04/07, with new lift/drag tables 
-need to re-check the speed/climb rates to make sure they still match 
-historical records NOTE: The numbers to not match exactly, of course--tweaking 
-parameters in JSBSim you can match any single parameter exactly but not 
-several parameters of different types exactly. Nevertheless the results are 
-very close, definitely show the characteristics of the Camel (vs any of the 
-other similar aircraft of the period) and in fact is probably close enough to 
-be within the bounds of individual variation of production Camels. TODO: Retest 
-these items on Ver 1.6; tweak dive rate/speed to better match historical Camel.
+Camel-JSBSim-calcs-2011-10D.xls 
 
-3.8 Max sustained turn rate about 76 deg/sec, ie 360 degrees in 4.7 seconds 
-(near stall speed, level flight, sea level). NOTE: Current best time for 360 
-degrees is about 8-10 seconds; this matches reported times by Camel pilots of 
-the time and the 4.7 sec/76 deg/sec might not be the most reliable number, or 
-possible only for short bursts, not for a complete 360 degree level turn?  In 2.0 
-we're getting 52 deg/sec, as calculate during a level turn just before stall, 
-presumably similar to the test discussed here.  The limiting factor is the drop 
-of wing during stall & a faster max turn rate could be obtained by tweaking 
-that behavior.
+Real Sopwith Camel:
+                          115 mph @ 6500 ft
+                          113 mph @ 10000 ft
+                          106.5 mph @ 15000 ft
+                         
+                         Climb to
+                          6500 ft = 6 min 0 sec
+                          10000 ft = 10 min 35 sec
+                          15000 ft = 20 min 40 sec
 
-4.1 Able to turn through 360 degrees (including roll in/out) in 8-10 seconds as 
+JSBSim Camel 2.0: 
+                          100.5 kts @ 500 ft  - 115.7 mph
+                          102.1 kts @ 6500 ft - 117.5 mph
+                          99.6 kts @ 10000 ft - 114.6 mph
+                          94.4 kts @ 15000 ft -  108.5 mph
+
+So, each of these values is within 2.5 mph of the historically measured value.
+
+                         Climb to
+                          6500 ft = 6 min 47 sec
+                          10000 ft = 10 min 19 sec
+                          15000 ft = 20 min 19 sec
+                          
+The climbing times, as well as the speeds at various altitudes, are a pretty 
+reasonable match given that each individual aircraft varied in its precise 
+specifications, and we are not certain of the precise protocol the test pilots 
+followed in measuring these values. Values vary 1-2 mph in either direction 
+in any given test, even in JSBSim. So the numbers we see here are well within
+the measurement error bars of the historical data.
+
+I'm assuming that airspeed numbers given in historical documents above are 
+"true airspeed": http://wiki.flightgear.org/Aircraft_speed The JSBSim speeds 
+given are also true airspeed ("vtrue"--on the property tree at 
+/fdm/jsbsim/velocities/vtrue-kts). So don't expect those exact values to 
+show up on your airspeed indicator, unless you are at sea level.                           
+
+4.0 Max sustained turn rate about 76 deg/sec, ie 360 degrees in 4.7 seconds 
+(near stall speed, level flight, sea level). NOTE: Current best time in FG for 
+360 degrees is about 8-10 seconds; this matches reported times by Camel pilots 
+of  the time and the 4.7 sec/76 deg/sec might not be the most reliable number, 
+or possible only for short bursts, not for a complete 360 degree level turn?  In 
+2.0 we're getting 52 deg/sec, as calculated during a level turn just before 
+stall, presumably similar to the test discussed here.  The limiting factor is 
+the drop of wing during stall & a faster max turn rate could be obtained by 
+weaking that behavior.  However, that conflicts with known data about max
+alpha degrees of the wing profile. 
+
+4.2 Able to turn through 360 degrees (including roll in/out) in 8-10 seconds as 
 reported by WWI era Camel pilots.  2.0 is very close to this--about 10.0 seconds
 for right & left 360 degree turns.  This could potentially be brought more to 
 8 seconds by tweaking the wing-drop on stall behavior a little.
@@ -117,47 +148,49 @@ for right & left 360 degree turns.  This could potentially be brought more to
 4 Flown basically with rudder and elevator; rudder initiates turns etc and 
 ailerons only used as assist; many pilots didn't use ailerons much.
 
-4.1 Quick/light response to controls
+4.2 Quick/light response to controls
 
-4.1 The gyroscopic effect causes the nose to rise in a left-hand turn (moreso 
+4.3 The gyroscopic effect causes the nose to rise in a left-hand turn (moreso 
 that most other similar aircraft)
 
-4.1 The gyroscopic effect causes nose to drop in a right-hand turn
+4.3 The gyroscopic effect causes nose to drop in a right-hand turn
 
-4.1 Fairly large amounts of left rudder were needed in both L & R turns to 
+4.3 Fairly large amounts of left rudder were needed in both L & R turns to 
 correct
 
 4 Sluggish in left turns. Quicker through 270 degrees to the right than 90 
-degrees to the left.  See Calculate Camel article.  It is debatable what this 
-means--quicker to roll?  Or to turn once rolled?  Flat, level turn or something 
-else? Are there little idiosyncratic ways to turn one way or the other that 
-that pilots often used? In 2.0 a split-S right to turn 180 degrees or even a
-bit more is noticeably quicker to the right than the left, for instance.  
+degrees to the left.  See Calculated Sopwith Camel article.  It is debatable 
+what this means--quicker to roll?  Or to turn once rolled?  Flat, level turn or 
+something else? Are there little idiosyncratic ways to turn one way or the 
+other that that pilots often used? In 2.0 a split-S right to turn 180 degrees or 
+even a bit more is noticeably quicker to the right than the left, for instance.  
 
-4 Known for stalling/spinning on take-off if inattentive piloting let nose 
+4.1 Known for stalling/spinning on take-off if inattentive piloting let nose 
 rise during initial LH turn.
 
-4 Sensitive in a turn, if the turn were tightened just a little, it was likely 
+4.2 Sensitive in a turn, if the turn were tightened just a little, it was likely 
 to whip into a tight spin.
 
 4 All the weight of the engine, guns, and pilot was concentrated in the first 
 seven feet of a short 18-foot fuselage.
 
-4 Spins: Period of 1-2 seconds.  
+4.2 Spins: Period of 1-2 seconds.  
 
-4 Loses 150-200 feet per revolution while spinning. In 2.0, one trial had 2.0 
+4.2 Loses 150-200 feet per revolution while spinning. In 2.0, one trial had 2.0 
 seconds per rotation and 418 feet of altitude lost per revolution.  
 Another trail had 1.6 seconds per rotation and 175 feet of altitude lost per 
 rotation. These are pretty clearly in the ballpark of the actual numbers.
 
-4.1 Exit spin by gentle forward pressure in the stick, then *gradually* pull 
+4.2 Exit spin by gentle forward pressure in the stick, then *gradually* pull 
 out. AC will *sometimes* self-recover from a spin, but many times not.
 
-3.8 Flat spins - prone to entering these if the pilot pulls too hard during a 
+4.2 Flat spins - prone to entering these if the pilot pulls too hard during a 
 turn.
 
 3.8 General spin characteristics similar to Camel; ability to do spin-related 
-maneuvers documented for the Camel--snap rolls, very quick RH Split-S turns, etc. 
+maneuvers documented for the Camel--snap rolls, very quick RH Split-S turns, 
+etc. 
+
 Note that 'snap rolls' as often described in relation to the Camel appear to not 
 be true aerobatic snap rolls as we would perform today (too vigorous for the 
 Camel's light airframe) but a kind of roll coordinated between rudder & aileron.
@@ -165,77 +198,79 @@ Camel's light airframe) but a kind of roll coordinated between rudder & aileron.
 4.1 Possible to fly inverted.  Stalls at about 65 mph/56 knots when flying 
 inverted.  In ver. 2.0, inverted stall is almost exactly 56 knots. 
 
-3.6 In inverted flight, possible to stall and get into an inverted spin.  In ver. 
-2.0 this is certainly possible though the details of the spin may need tweaking.
+4.0 In inverted flight, possible to stall and get into an inverted spin.  In ver.  
 
-3.8 Camel's elevator was powerful and sensitive. 
+4.0 Camel's elevator was powerful and sensitive. 
 
-3.9 Rudder was too small and relatively ineffective. Per Calculate Camel, it is 
+4.0 Rudder was too small and relatively ineffective. Per Calculate Camel, it is 
 however very sufficient to overcome gyroscopic forces given normal flight and
 sufficient speed.
 
-4.1 Straight/forward flight requires slight right rudder at all times.
+4.2 Straight/forward flight requires slight right rudder at all times.
 
-4 Roll for turns initiated by rudder (due to large adverse yaw/drag of 
+4.1 Roll for turns initiated by rudder (due to large adverse yaw/drag of 
 ailerons); ailerons use to control roll in turns rather than initiate.
 
-3.9 ~2.5 seconds to roll from level to 60 degrees either left or right (data 
-from Calculated Camel article).  Ver. 2.0 takes 2.6 seconds left & 3.1 seconds 
-right; both may be improvable with practice.
+4.1 ~2.5 seconds to roll from level to 60 degrees either left or right (data 
+from Calculated Camel article).  Ver. 2.0 takes 2.6 seconds left & 2.1 seconds 
+right.
 
-4 Accelerating the aircraft caused the nose to climb, and swing to the left.
+4.4 Accelerating the aircraft caused the nose to climb, and swing to the left.
 
 4.1 At 110 miles per hour, there was about 15 to 20 pounds of back force on the 
 control column, which could not be trimmed out because the aircraft had no 
 pilot-adjustable, moveable horizontal stabilizer. (Though in FG you can trim it
 out--and to avoid arm cramps, it a probably a good idea to do so.)
 
-4 Moving the stick forward to enter a dive caused the Camel to yaw left 
+4.2 Moving the stick forward to enter a dive caused the Camel to yaw left 
 because of gyroscopic force, and correcting this yaw with right rudder caused 
 the nose to pitch down sharply.  Note that this is more noticeable if near stall
 speed.
 
-4 Steerable tail skid of the Camel helped to overcome a slight swing to the 
+4.1 Steerable tail skid of the Camel helped to overcome a slight swing to the 
 left as I opened the throttle.  (The steerable tail skid seems to be only a 
 feature of replica Camels, not ever used during WWI. However it is implemented 
 in FG as otherwise there is no way to maneuver the A/C on the ground. In WWI 
-ground crew would have been used instead.) TODO: The transition between steerable
-tail skid having control & the tail lift-off/rudder control could be handled better.
+ground crew would have been used instead.) 
 
-3.5 The tail came up at about 20 knots.  As of 2.0 is it more like 35 kts and
+4.2 The tail came up at about 20 knots.  As of 2.0 is it more like 35 kts and
 it is very difficult to handle once the tail is up, even at 35 kts.  (TODO)
 
 4 Lifts off about 35-40 knots
 
-4 Able to take off & land in a very short distance, especially on a field and 
+4.2 Able to take off & land in a very short distance, especially on a field and 
 with a headwind--see for instance: http://www.youtube.com/watch?v=VT9wtDNiKaI 
 With a 15 mph headwind, JSBSim Camel now matches this takeoff almost exactly. 
 The rollout matches pretty well, too--though obviously much depends on the 
 exact surface and other details.
 
-3.5 Right rudder needed to keep AC on course early in roll-out.
+4.0 Right rudder needed to keep AC on course early in roll-out.
 
-3 Left rudder needed later in roll-out as speed increases. NOTE: The JSBSim 
+4.0 Left rudder needed later in roll-out as speed increases. NOTE: The JSBSim 
 current requires R rudder on takeoff, not left, and not quite full rudder. Not 
 certain of the reason for this.
 
-3 Rudder loses effectiveness as soon as it drops on landing. NOTE: JSBSim 
-implements steering in the taildragger when it's touching ground. This may not 
-be 100% authentic, but otherwise it's just impossible to maneuver the Camel on 
-the ground in FG!
+Both of the above effects are dependent on wind direction and other details
+of the takeoff. But in windless conditions, both are quite noticeable.  The
+steerable tail drag in the JSBSim Camel changes some of the characteristics 
+of early roll-out. For example, some Camel pilots would start roll-out with 
+full rudder applied, gradually releasing it as speed and control authority 
+increased. This isn't possible in JSBSim simply because the steerable tail
+drag exerts too much control.
 
-4 In a wind of 10 to 15 knots you are airborne in a couple of plane lengths 
+3 Rudder loses effectiveness as soon as it drops on landing. 
+
+4.5 In a wind of 10 to 15 knots you are airborne in a couple of plane lengths 
 at 35 mph. 
 
 4 Rate of climb of almost 1,000 feet a minute climbing out of take-off.  
-TODO: Need to verify/tweak exact climb rates & match to historical data.
 
-4 Capable of looping, 110 mph required.
+4.5 Capable of looping, 110 mph required.
 
 4 Being slightly tail-heavy it goes up and over in an incredibly small circle 
 in the sky, and faster than any other WWI aircraft I have flown.
 
-4 Tail heavy with full fuel
+4.2 Tail heavy with full fuel
 
 4 Slightly nose heavy with empty fuel. 
 
@@ -253,7 +288,7 @@ and much drag.
 the right and it stays there. You don't start rolling right until you 
 coordinate with the rudder as well. (And ditto for full R aileron.) 
 
-4 In level flight at 100 mph indicated, just a hint of rudder is required 
+4.1 In level flight at 100 mph indicated, just a hint of rudder is required 
 for straight flight.
 
 4 Thin airfoil shape affects lift, drag, AOA of stall, etc., and the effects 
@@ -265,6 +300,8 @@ stall speed under 40 MPH (35 knots) and Frank Tallman reports stall speed of
 35-40 mph (30.4-34.8 knots). A stall speed in this range seems to fit better 
 with the Camel's reported turn rate.  
 
+The JSBSim 2.0 Camel has a stall speed in the 35-40 mph range (30-35 kts).
+
 4 Current (Ver. 1.4+) drag/lift uses tweaked historical lift/drag curves for 
 the Camel's wing shape and also the known historical zero-lift drag 
 coefficient for the Camel.  
@@ -273,23 +310,30 @@ coefficient for the Camel.
 factor than for later similar aircraft, but the strength of this effect is an 
 open question.
 
-4 As you slow down over the top of the loop you must feed in rudder against 
+4.2 As you slow down over the top of the loop you must feed in rudder against 
 the torque.
 
-4 On strafing runs, as soon as the airspeed reaches 130 to 140 mph the nose 
+4.1 On strafing runs, as soon as the airspeed reaches 130 to 140 mph the nose 
 begins to hunt up and down, and the elevator becomes extremely sensitive. I 
 feel this action is due largely to the square windshield between the two 
 Vickers guns, causing a substantial burble over the tail surfaces.
 
-3.9 In stalls at 35 to 40 mph the nose drops frighteningly fast and hard to 
+3.9 "In stalls at 35 to 40 mph the nose drops frighteningly fast and hard to 
 the right, but you also get control back quickly, although a surprising amount 
 of altitude has been lost. I have had the pleasure of limited dog fighting 
 with other WWI fighters, and there are none that can stay with a Camel in a 
-turn. TODO: JSBSim model stalls almost exactly as described, but nose drops 
-hard to L instead of R. This can likely be tweaked in the model.
+turn." JSBSim model stalls almost exactly as described, but nose tends to 
+drop down and to the left, rather than to the right.  This is in large measure
+because of the gyroscopic effect of the rotating engine.  Particularly when
+the engine is off or engine RPMs are low, it can drop to the right OR left. 
+This is a detail first-hand report, but it is difficult to know the exact 
+configuration--and particularly the engine--of the aircraft flown. Some 
+configurations or engines may tend to drop the nose to the right in a stall. 
 
-4 Very quick half-roll (a touch of left rudder for a half roll, then a quick 
-half-loop was a often-used maneuver to reverse direction).
+4 "Very quick half-roll (a touch of left rudder for a half roll, then a quick 
+half-loop was a often-used maneuver to reverse direction)."  In Ver. 2.0 the
+quick half-loop is possible in either direction, though both have certain 
+quirks the pilot must deal with.
 
 4 Twin Vickers machine guns, 400 round capacity (historically 250-400 seems to 
 have been the range), best known realistic mass, ballistic, and aerodynamic 
@@ -300,45 +344,51 @@ documentation. NOTE: Aerodynamic characteristics of machine gun rounds could
 be tweaked if better data were available; tracer visuals could be made
 more realistic.
 
-3.8 Mixture needed constant manual adjustment; first adjustment about 250 ft 
+2.5 Mixture needed constant manual adjustment; first adjustment about 250 ft 
 above ground on liftoff. For highest realism, switch on manual mixture
 using the Camel menu. TODO: Mixture and throttle adjustments are not as
 tweaky as described by Camel pilots. Mixture lever or dial isn't implemented;
 a simple Flightgear menu displays current mixture & RPM when manual mixture is 
-enabled.
+enabled. So we have a mixture control but it is rudimentary and doesn't seem
+to mirror the way mixture in a real Camel would work.
 
-4.0 Control of engine thrust via blip switch and magneto rather than throttle. 
+4.3 Control of engine thrust via blip switch and magneto rather than throttle. 
 NOTE: Pilots can simulate the realistic historical way of controlling the 
-Camel's engine using this method: Leave throttle at full position at all times;
-manipulate engine power through use of the magnetos and blip switch alone. 
-Engine power with one and with two magnetos engaged is very close to that 
-described in technical specifications; operating with one magneto creates a 
-low-power setting. This is similar to the way (some models) of Camel engines
-operated, via a combination of throttle, mixture, magnetos, and blip switches. 
-Other, more limited, models had only magneto and blip power control options.
+Camel's engine using this method: Generally manipulate engine power through use 
+of the magnetos and blip switch; use throttle only for a bit of fine tuning
+on top of that.
+ 
+In Ver. 2.0, engine power with one and with two magnetos engaged is very close 
+to that described in technical specifications: Operating with the left magneto creates about 4/9 max RPM. Right magneto gives 5/9 RPM. This gives 3 basic 
+power settings--each can be fine tuned further via the throttle. 
 
-3 Engine power with both magnetos or one magneto matches historical engines. 
-NOTE: The one-magneto setting doesn't seem to match the historical Clerget 
-power, not exactly sure how to address this given JSBSim's propulsion model.
+This is similar to the way (some models) of Camel engines operated, via a 
+combination of throttle, mixture, magnetos, and blip switches. Other, more 
+limited, models had only magneto and blip power control options with no
+throttle at all.
+
+4 Engine power with both magnetos or one magneto matches historical engines. 
+We now have three distinct settings--some research & testing may be required
+to determine whether the power output of each setting matches the 
+historically accurate amount.
 
 4 Engine start. Camel engines were notoriously difficult to start. Given the 
 manual engine starting methods of the day, they must have started either with a 
-quick crank or not at all. NOTE: This is modeled by an approx. .5-1.5 second 
+quick crank or not at all. NOTE: This is modeled by an approx. 0.2 second 
 cranking period, initiated by the 's' key, which starts the engine about 1/4 
-of attempts.
+of attempts.  Engine can also be started by clicking the propeller with the 
+mouse.
 
-4 Engine runs out of fuel/stops when inverted or pulling negative Gs.   On  slow
+4.2 Engine runs out of fuel/stops when inverted or pulling negative Gs.   On  slow
 roll (23 seconds), engine stops just  after  wings  vertical  and  starts  again
-soon after regaining erect flight.   NOTE:  This  is  implemented  via  a  Nasal
-routine that tracks fuel in a simple carburetor. Fuel  flows  or  out  depending
-on the forces involved and when the carburetor  runs  out  of  fuel  the  engine
-sputters and stops until the carburetor refills. 
+soon after regaining erect flight. Fully implemented in Ver. 2.0.  
 
 4 Service ceiling 19,600 ft.  Tested in ver. 1.7, by the standard of highest 
 altitude able to sustain 100 fpm climb (1.66 fps).
 
-3.5 The 130HP Clerget Camel was generally lower performance/underperforming 
-for altitudes greater than 10,000-12,000 feet.
+3.9 The 130HP Clerget Camel was generally lower performance/underperforming 
+for altitudes greater than 10,000-12,000 feet.  This is implemented, but
+could be tested and tweaked further to match exact historical performance.
 
 
 
@@ -355,6 +405,18 @@ Flight, "Sopwith Camel", 22 April 1955, is
                           6500 ft = 6 min 0 sec
                           10000 ft = 10 min 35 sec
                           15000 ft = 20 min 40 sec
+                          
+Sopwith Camel Vs Fokker Dr I: Western Front 1917-18
+ By Jon Guttman, p. 25, gives these values:
+  
+    112.5 mph @ 10000 ft
+    106 mph at 15000
+    6500 ft = 6 min 0 sec
+    10000 ft = 10 min 35 sec
+    15000 ft = 21 min 5 sec
+    
+We're assuming that all airspeed numbers above are "true airspeed": http://wiki.flightgear.org/Aircraft_speed - so don't expect so see them show up on your airspeed indicator (except at sea level). 
+                              
 
 DOCUMENTS
 A number of relevant documents and notes, including facsimiles, articles, and 

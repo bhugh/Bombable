@@ -2,9 +2,17 @@ SOPWITH CAMEL: A REALISTIC JSBSIM FLIGHT MODEL - CHANGES & TO DO LIST
 
 Version 2.0
 
-Brent Hugh, 20 February 2017
+Brent Hugh, 25 February 2017
 
 brent@brenthugh.com
+
+In this document:
+
+ - CHANGES/UPDATES/THINGS DONE, by version
+     - Ver 2.0
+     - VER 2.0 ENGINE UPDATE - DETAIL & PRACTICAL CONSIDERATIONS FOR PILOTS
+
+ - TO DO/WISHLIST
 
 ----
 
@@ -18,15 +26,17 @@ VER 2.0
 * Major updates to Flight Dynamics Model, significant better fit to historically 
 reported behavior.  Went through every one of more than 60 characteristics of the Camel I've identified from historical accounts (all listed in the NOTES file 
 in the /docs directory), tested each one, tweaked the FDM a bit here and there 
-to put the final touches on the FDM updates I've been working on over the past two years.  It's very noticeably improved from ver. 1.6 in several areas.
+to put the final touches on the FDM updates I've been working on over the past 
+two years.  It's very noticeably improved from ver. 1.6 in several areas.
 
 * Ground contact effects: Dust, dirt, wake when wheels, tail, prop, fuselage etc 
 contact the ground or water
 
+* Major updates and improvements to realism of engine managment and blipping. Additionally, you can now clearly hear the difference between different engine settings, RPM levels, blip settings, etc. See detailed explanation below.
+
 * Parts break: Wheels, undercarriage, & prop will break if they contact the 
 ground with too much force. Visual, audio, & physics affects of broken parts are 
-apparent--ie, if you hit the ground too hard the wheel breaks off and you hear it 
-and feel it, and the aircraft behaves differently with no wheel.
+apparent--ie, if you hit the ground too hard the wheel breaks off and you hear it and feel it, and the aircraft behaves differently with no wheel.
 
 * Ground/water crash behavior much improved; solved problems with JSBSim when 
 violent ground crashes occur. Pilot is kicked out of plane in crash,
@@ -41,7 +51,13 @@ sound effects, buffeting aloft, etc.  Wheel thump on landing, tail dragging (and
 lifting) sounds, other sounds that help you know what's going on. Sound effects 
 help you make a connection between what you're doing in the aircraft and the 
 world you are interacting with, so I've tried to include sound effects that help 
-you know what is going on with the aircraft. 
+you know what is going on with the aircraft.
+
+* Project Rembrandt compatibility: The model is now Rembrandt-ready and looks 
+great when run with Project Rembrandt rendering. Thanks to FG Camel authors 
+for creating/updating the Camel model used here.  Project Rembrandt allows a 
+better graphics experience for those with higher-end systems, including shadow 
+rendering etc. (Complete, ver. 2.0)
 
 * Repair aircraft after crash or parts broken: Available in Camel/Repair menu or 
 automatically completed when appropriate choice is made in 'crash menu'. 
@@ -57,59 +73,131 @@ you can easily maneuver your way to any given spot around the aircraft--behind
 the tail, in front of the nose, beside the pilot, whatever, and just stay there. 
 Select using 'v' and maneuver with wasd WASD and mouse for view direction.
 
+* Chocks: Chocks actually work and are placed by default when you initially spawn in on the ground. Activate/deactivate via Shift-B.
+
+Various bug fixes and minor updates completed in this release:
+
+X Often (incorrectly) detects view/select airport change as  'crash'.  (Complete, ver. 2.0)
+ 
+X Low pass filter for 'bumpiness'.  Still bumpy but a smoother type of bumps. (Complete, ver. 2.0)
+ 
+X Inspect Aircraft View keys interfere with a/A for time speedup/slowdown, and perhaps other keys. (Fixed, ver. 2.0)
+
+X Taildragger sound could be replaced with something more specific/realistic. Also a 'thump' sound added when the tail hits hard. (Complete, ver. 2.0)
+
+X Tail dragger sound is a bit inconsistent at low speeds (Fixed, ver. 2.0)
+
+VER 2.0 ENGINE UPDATE - DETAILS & PRACTICAL CONSIDERATIONS FOR PILOTS
+--------------------------------------------------------------------
+
+* Major updates and improvements to realism of engine managment and blip switches: Rotary engines develop a large amount of thrust very quickly when the blip switch is replaced. JSBSim's engine model wants to slowly ramp-up engine power over a few seconds. In Ver. 2.0 we have found a good workaround for develop quick "blip thrust" that is such an essential characteristic of the Camel (and rotary engined small aircraft in general).
+
+Try taxiing with magnetos and throttle set to full power, while blipping on and off--you will see a big difference in Camel 2.0.
+
+Additionally, the engine now has three distinct power settings based on magneto switchs: switch 1 (low power), switch 2 (medium power), and both switches (full power).  Switch 1 is weakest and blipping it on/off results in low power addition--perfect for trimming approach to landing etc. Switch 2 brings a greater power surge when blipped on/off. Switches 1&2 together provide the greatest power. The blip effect is the same whether operated from the switch or via the blip switch (ie, switch 1 on/off is the same as switch 1 on plus blip switch on/off).
+
+In a real rotary Camel engine, the power differential was created by turning off spark to various cylinders. The blip switch turned off all spark, magneto 1 turns on some cylinders (usually just lower than half; rotary engines always had an odd number of cylinders), magneto 2 turns on more cyclinders (usually the ones turned off by magneto 1 are turned on by magneto 2 and vice-versa) and magneto 1+2 turns on spark to all cylinders.  Fuel and oil continue to turn to all cylinders regardless of magneto settings, but just flipping a magneto switch or two gave very quick and very large changes in thrust.
+
+Additionally, in Ver. 2.0 the engine stays running as long as the aircraft is moving or the engine has any RPMs.  In Ver. 1.8 the engine would sometimes cut out, requiring a mid-air re-start, when blipped in some situations. The current 2.0 behavior is more consistent with operations in the real Camel.
+
+Typical operating procedure:
+
+ - 1. Low power (i.e, landing): Magneto switch 1 on, control power on/off with Blip switch (or with Switch 1 on/off)
+ - 2. Moderate power: Magneto switch 2 on, control power on/off with Blip switch (or Switch 2 on/off)
+ - 3. Full power: Magneto switches 1 and 2 on, control power on/off with Blip switch
+ - Each of these three settings can be further fine tuned via the throttle.  This gives essentially three more power settings
+ - Additionally, the blip switch gives a 'no power' setting
+
+This gives a total of 7 distinct power settings by operating the various switches plus throttle high/low, with some additional fine tuning available via the throttle.  This is very, very similar system to that used in several rotary engines used in the Camel. Some engines included only magneto power control and entirely omitted the throttle.  But most included a throttle for fine tuning. In practice magneto power control--ie, blipping--was used routinely during high workload situations (taxiing, takeoff, approach and landing) but the throttle could be used to fine tune the engine during cruise or in special situations.
+
+Taxiing and takeoff: Both magnetos engaged, full throttle, blip engine. Blipping the full power engine, engine torque etc, plus prop wash on the rudder and elevator, allowed pilots to move the tail and get around airfields quite well, even without a steerable tail drag.  Now you can duplicate much of that same functionality in FlightGear.
+
+In windy conditions, use elevator to hold tail firmly down for better steering authority. 
+
+Use 'n' to nudge the aircraft a bit while taxiing, especially away from regular airfields.  This is the equivalent of calling your aircrew to push you out of a hole.
+
+Landing: 
+
+Throttle OPEN to 50% OPEN depending on preference & conditions. Magneto 1 ON, 
+Magneto 2 OFF. Control engine power via Blip Switch (b); Engine is typically 
+mostly OFF (via Blip) on approach. Note relatively steep glide slope (often 
+described as 'almost 45 degree' though that is slightly exaggerated). Sideslip 
+as needed to control speed. If you need emergency full power, add Magneto 2 and/
+or full throttle.
+
+Approach speed 55 KTS (63 mph) : Threshhold speed 48 KTS (55 mph) : Touchdown speed: 35 KTS (40 mph)
+
+Stall speed: 31 KTS (35 mph) IAS.
 
 
 ==============
 TO DO/WISHLIST
 ==============
 
-* Chocks display (B) but don't do anything. Make them act as brakes/keep a/c at a standstill.
 
-* Could make wing/tail etc break or show damage on bad landing
+* Could make wing, tail, other parts break or show damage on bad landing
 
-* Transition from tail drag to tail fly @ 20-35-40 KTS is difficult, rudder seems to have insufficient control authority, or some interaction between ground & aero forces.
+* Transition from tail drag to tail fly @ 20-35-40 KTS is difficult, rudder seems to have insufficient control authority, or some interaction between ground & aero forces. [some improvement to this in ver 2.0]
 
-* Blip: Make sure blip switches on dash always accurately show actual state of blips.  Make sure blip switches are turned on when a/c is repaired, restarted etc & switches show that properly.  Use the camel blip nasal routine instead of just changing the prop directly.
+* Engine disable: Right now this is handled by turning off magneto switches but not changing the visual state of the switches, leading to confusion.  Some interaction with the Bombable add-on here.
+ 
+* Engine control: Ver. 2.0 is greatly improved over 1.8, but perhaps some way can be found to cajole JSBSim into duplicating magneto power settings even more accurately.  Maybe JSBSim boost could be used to give more distinct engine power
+settings.
 
-* Engine disable: Right now this is handled by turning off blip switches, leading to confusion
+* Engine loss of power at high altitudes - JSBSim compression setting could 
+possibly use some refining it implement this feature this way rather than
+the way it is currently implemented in JSBSim.  Additionally, tweaking the
+compression settings should help the issue with the
+'mixture needs adjustment at 250 feet' in the real Camel that isn't happening 
+yet in the JSBSim Camel.  In general, we have a mixture setting and it needs
+to be tweaked at certain altitudes, but it doesn't exactly correspond with 
+the mixture settings that a real Camel would have needed.
+
+* Engine heating/overheating isn't implemented.
  
-* Engine control: JSBSim only allows dialing engine power down by a certain amount when blipping etc, so it is hard to exactly duplicate the various power settings of the Clerget engine.  This could be improved.
- 
-* Real rotary engines seem to develop their thrust almost instantly when blipped/unblipped, vs the JSBSim engine model which takes a second or two to ramp up. This makes quite a difference in e.g. ground handling.
- 
-* Engine often stops when blipping, which apparently didn't happen to actual rotary engines as long as the a/c was moving.
- 
-* Taxiing, beginning of takeoff roll: Currently the tail drag is steerable and has considerable control authority because that is the only way I could figure out how to make taxiing feasible in FG. But real WWI Camels had no steerable tail drag and even today pilots seem to be able to maneuver on the ground quite well using rudder, blip, etc.  So perhaps we can model this more closely; this would also help the takeoff rollout transition from tail drag to rudder control.
+* Apparently long periods of blipping could foul the engine - this isn't 
+modelled yet.
+
+* Engine power @ various magneto settings: We now have three distinct settings--
+some research & testing may be required to determine whether the power output of 
+each setting matches the historically accurate amount.
+  
+* Taxiing, beginning of takeoff roll: Currently the tail drag is steerable and has considerable control authority because that is the only way I could figure out how to make taxiing feasible in FG. But real WWI Camels had no steerable tail drag and even today pilots seem to be able to maneuver on the ground quite well using rudder, blip, etc.  So perhaps we can model this more closely; this would also help the takeoff rollout transition from tail drag to rudder control.  [Large improvements to this situation in Ver. 2.0 but perhaps even more realism can be attained.]
  
 * Ground effects: Dust could be different colors etc depending on type of ground.
 
 * FUEL: Fix fuel and/or make sure fuel consumption is modelled correctly, weight distribution changes, a/c runs out of fuel appropriately, there is some way to check fuel remaining. Fuel.nas is currently used by may have YASim specific code.
  
-* Use struct rather than landing gear to model front gear breakage as the struct detects forces from all directions better than the gear/bogey.
+* Generally improve ground interactions, structure breakage, etc.
  
-* Model wing breakage during high-g maneuvers and/or touching a wing too hard on landing or crash.
-
-* Often (incorrectly) detects view/select airport change as  'crash'.
- 
-* Low pass filter for 'bumpiness'.
+* Model wing breakage during high-g maneuvers and/or touching a wing too hard on landing or crash, damage from crashing on the nose, damage from gunfire/weapons in various parts?
 
 * Fix 'could not find construction' error: Seems to be a spurious entry in 
 sopwithCamel-model-Y.xml
 
-* Re-evaluate/re-check speed, climb rates, etc as compared with original Camel & add these items to the NOTES checklist of historical Camel characteristics.
- 
-* Some parts of the model don't work well with Rembrandt. 
- 
-* Inspect Aircraft View keys interfere with a/A for time speedup/slowdown, and perhaps other keys.
- 
+* Re-evaluate/re-check speed, climb rates, etc as compared with original Camel & add these items to the NOTES checklist of historical Camel characteristics.  They were checked & improved in ver. 2.0 but further refinement of characteristics at different altitudes, climb rates, etc is still possible.
+  
 * Save/restore menu settings on quit/restart
 
 * Spin force in some stall situations may be a bit too strong or too strong too early in the stall
  
-* Don't make explosion sound/smoke on 'successful' water landing
- 
-* Tail dragger sound is a bit inconsistent at low speeds
+* Don't make explosion sound/smoke on 'successful' water landing 
  
 * Refine gyroscopic moment; it may be dialed down too low now. Perhaps it could be made user adjustable in some way.
  
-* Taildragger sound could be replaced with something more specific/realistic
+* Implement wing flexer module?  Even though it seems a little overkill for such a small, well braced aircraft, getting the 3d model to have separate & rotatable wings is also a good step towards being able to show wing damage. http://wiki.flightgear.org/Wingflexer Technical Report of the Advisory committee for aeronautics for the year 1915 - 1916: "Tests of wings of BE2a No.226 (1 October 1912) the wing was loaded to a factor of safety of 6. Maximum deflections of 2.28 inches for "Front" at "A" (I assume at the outboard interplane strut on the front spar ?) and 4.35 inches for "Rear" at "B" (I assume on the at the outboard interplane strut on the rear spar?) were recorded.
+
+* Integrate the JSBSim Camel into FGData so it is an officially adopted FG Aircraft 
+ 
+* JSBSim Camel seems to have a lower framerate than some other aircraft under 
+Rembrandt, only when sitting in cockpit; figure out why & see if it can be 
+fixed.
+ 
+* Don't do the 'nudge' thing on blip or 'n' when the chocks are in--sometimes
+it will push you out of the chocks.
+
+* Make a companion aircraft from the same era, matched in FG development and 
+capabilities, as a ideal dogfighting partner?  Perhaps the Fokker Dr. 1 or 
+Fokker D.IV? Pfalz D.III? Albatros D.III?  (Dr.1 is probably best?  It's the 
+classic match up.)
+

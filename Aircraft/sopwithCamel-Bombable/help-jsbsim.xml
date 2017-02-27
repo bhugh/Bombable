@@ -8,15 +8,15 @@
 		</key>
 		<key>
 			<name>b (or press brakes)</name>
-			<desc>Blip switch - both magnetos OFF - this is the primary method for controlling engine power </desc>
-		</key>
-		<key>
-			<name>B</name>
-			<desc>Toggle chocks (OR: click chocks/wheels with mouse)</desc>
+			<desc>Blip switch - both magnetos OFF - blip and magnetos are the primary method for controlling engine power </desc>
 		</key>
 		<key>
 			<name>{ }</name>
 			<desc>Toggle left/right magneto switch.  Magneto switches visible on dash at lower left.</desc>
+		</key>
+		<key>
+			<name>B</name>
+			<desc>Toggle chocks (OR: click chocks/wheels with mouse)</desc>
 		</key>
 		<key>
 			<name>u/U/ctrl u</name>
@@ -24,7 +24,7 @@
 		</key>
 		<key>
 			<name>m/M</name>
-			<desc>Adjust mixture (If manual mixture selected via Camel/Toggle Manual Mixture) (</desc>
+			<desc>Adjust mixture (If manual mixture selected via menu Camel/Toggle Manual Mixture) </desc>
 		</key>
 		<key>
 			<name>e</name>
@@ -64,33 +64,32 @@
 		<line>Zoom the view out so you can see the edges of the runway with your peripheral vision.  </line>
 		<line>Easiest, most dependable way to take off: Full throttle, moderate back-pressure on stick to keep </line>
 		<line>tail engaged w/ ground. Use rudder to steer (tail dragging on ground provides most control authority).</line>
-		<line> 3-point lift-off @ 35 KTS; immediately ease stick forward to avoid excessive climb and loss of airspeed.</line>
-    <line>More advanced: Gently lift tail @ 35KTS and continue rolling (or in ground effect) through 45-50 KTs before lift-off.</line>
+		<line>3-point lift-off @ 35 KTS (40 mph); immediately ease stick forward to avoid excessive climb and loss of airspeed.</line>
+    <line>More advanced: Gently lift tail @ 35KTS and continue rolling (or in ground effect) through 45-50 KTS before lift-off.</line>
     <line>Crashing on takeoff? Check weather--many real Camel pilots crashed on take-off with strong crosswind or tailwind.</line>
     <line> </line>
     
     <line>THROTTLE, BLIP SWITCH, AND MAGNETOS</line>    
 		<line>Real Camel pilots used a combination of throttle, magneto settings, and the blip switch to achieve desired power</line>
     <line>settings. Throttle provides a limited range of power settings. The blip switch (b) disengages both magnetos and cuts</line>
-    <line>power totally. Engaging either R or L brake (via keyboard, joystick, or rudder/pedals)</line>
-    <line>also engages the blip switch.  Releasing the brake (or releasing the 'b' key)</line>
-    <line>releases the blip switch. Engaging only one magneto ('{' or '}') reduces power by about 1/3.</line>
-    <line>Note the power differences when you blip magneto 1 vs magneto 2 vs magnetos 1/2 together. You can add no or full throttle to each</line>
-    <line>of the three magneto settings, giving essentially six distinct power settings with just a little fine tuning control </line>
-    <line>for each via the throttle--very similar to the power settings and controls of authentic rotary engines.</line>        
+    <line>power totally. Engaging either R or L brake (via keyboard, joystick, or rudder/pedals) also engages the blip switch.</line>
+    <line>Releasing the brake (or releasing the 'b' key) releases the blip switch. Engaging only one magneto ('{' or '}') </line> 
+    <line>reduces engine RPM to just under half (L magneto) and just over half (F magneto).</line>
+    <line>This gives you 3 distinct power settings via magneto (L, R, or both)--you can fine-tune each of them with the throttle.</line>
+    <line>Note that L magneto ON/R magneto OFF + Blip switch gives you very fine low-power control for, e.g., approach and landing.</line>        
     <line></line>
     
     <line>NEGATIVE G - INVERTED FLIGHT</line>
 		<line>The Camel's fuel system requires gravity to feed fuel to the engine.  If you fly inverted or pull negative Gs, the</line>
-		<line>engine will soon stop.  Once you return to upright flight fuel will flow and the engine will start again.</line>
+		<line>engine will soon stop.  Once you return to upright flight, fuel will flow and the engine will start again.</line>
 		<line> </line>
    
 		<line>APPROACH AND LANDING</line>	
-		<line>Throttle FULL CLOSED, Magneto 1 ON, Magneto 2 OFF. Control engine power via Blip Switch (b); Engine is typically mostly OFF</line>
-    <line>(via Blip) on approach. Note relatively steep glid slope. Sideslip as needed to control speed. If you need emergency full power,</line>
-    <line>add Magneto 2 and/or throttle.</line>
-		<line>Approach speed 55 KTS : Threshhold speed 48 KTS : Touchdown speed: 43-48 KTS (all IAS)</line>    
-		<line>Stall speed: 41 KTS IAS, however significant Ground Effect will allow you to touch down at ~35-40 KTS IAS.</line>
+		<line>Throttle HALF TO FULL OPEN, Magneto 1 ON, Magneto 2 OFF. Control engine power via Blip Switch (b); Engine is typically mostly OFF</line>
+    <line>(via Blip) on approach. Note relatively steep glide slope. Sideslip as needed to control speed. If you need emergency full power,</line>
+    <line>add Magneto 2 and throttle.</line>
+		<line>Approach speed 55 KTS (63 mph) : Threshhold speed 48 KTS (55 mph) : Touchdown speed: 35 KTS (40 mph) (all IAS)</line>    
+		<line>Stall speed: 31 KTS (35 mph) IAS</line>
 		<line> </line>
    
 		<line>GUNS</line>

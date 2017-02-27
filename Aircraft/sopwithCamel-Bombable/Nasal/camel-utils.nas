@@ -214,12 +214,11 @@ updateMagnetos: func{     # set the magneto value according to the switch positi
                     me.magnetos.setValue( 0 );            # none
                 }
 
-                #doing this 'speed burst' only for blip switch for now - that way we can use
-                #a magneto switch for more gentle blipping ie at landing
+                #doing this 'speed burst' only when RIGHT magneto switch engaged/disengaged now. That way settings with the R magneto have more power whereas blips with L magneto only are more sedate.
                 var new_magnetos = me.magnetos.getValue();
                 #if (me.magnetos.getValue()==3 and new_magnetos > save_magnetos + 1){
-                if ((getprop("velocities/groundspeed-kt")>25 or getprop("engines/engine/rpm")>50) and !getprop("fdm/jsbsim/systems/crash-detect/prop-strike") and (getprop("engines/engine/rpm")<201 or new_magnetos-save_magnetos>=2)) setprop("/fdm/jsbsim/propulsion/set-running", -1); #real Camel engines didn't just stop running while the blip switch was pressed, as long as the a/c OR prop was moving the instant the blip was released there was power.  Also this helps provide the immediate thrust of power that rotary engines were able to develop when blip was released.  We're doing it here same as when the blip switch is released because the physical effect was same for both. 
-                
+                if ((getprop("velocities/groundspeed-kt")>25 or getprop("engines/engine/rpm")>50) and !getprop("fdm/jsbsim/systems/crash-detect/prop-strike") and (getprop("engines/engine/rpm")<160 or new_magnetos-save_magnetos>=2)) setprop("/fdm/jsbsim/propulsion/set-running", -1); #real Camel engines didn't just stop running while the blip switch was pressed, as long as the a/c OR prop was moving the instant the blip was released there was power.  Also this helps provide the immediate thrust of power that rotary engines were able to develop when blip was released.  We're doing it here same as when the blip switch is released because the physical effect was same for both. 
+              #was getprop("engines/engine/rpm")<201 but experimenting w/ different engine settings so it can perhaps be not required, so setting it to <1.  This number should be coordinated with <idlerpm> in Clerget9B.xml and set to 80% of whatever that value is.  
                 #}
                 
     }, # end function

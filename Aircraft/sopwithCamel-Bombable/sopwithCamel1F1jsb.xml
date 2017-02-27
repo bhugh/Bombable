@@ -1020,21 +1020,74 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
             </aerosurface_scale>
 
         </channel>
-
+           <property value="1">fcs/mag-switch-right</property>
+           <property value="1">fcs/mag-switch-left</property>
         <channel name="Throttle">
+       
+            <!-- LIMITING throttle some on the lower end to mimic the more crude type throttle controls available on the rotary engines.  Basically, our full throttle throw controls only the upper 50% of the throttle; we can't reach the lower 50%, which mimics the fact that you couldn't really throttle down rotary engines to a low idle etc -->
+            <aerosurface_scale name="throttle-cmd-limit">
+                <input>fcs/throttle-cmd-norm</input>
+                 <zero_centered>false</zero_centered> 
+                <domain>
+                  <min> 0 </min>   <!-- If omitted, default is -1.0 -->
+                  <max> 1 </max>   <!-- If omitted, default is  1.0 -->
+                </domain>
+                <range>
+                  <min> 0.5 </min>   <!-- If omitted, default is 0 -->
+                  <max> 1 </max>   <!-- If omitted, default is 0 -->
+                </range>                                
+                            
+          </aerosurface_scale>
+          
+          <!-- if the right magneto is OFF we limit the throttle by about 1/9
+          this is to duplicate the effect the real magnetos had, where one reduced engine power by about 4/9, the other reduced it by 5/9 
+          JSBSim engine / Clerget9B.xml / only allows us to consider the power 
+          reduction from one magneto, so here is where we work in the 2nd one --> 
+          <scheduled_gain name="fcs/throttle_limit_by_magento">
+                <input>fcs/throttle-cmd-limit</input>
+                <table>
+                    <independentVar>fcs/mag-switch-right</independentVar>
+                      <tableData>
+                      0 .8
+                      1  1                      
+                      </tableData>
+                 </table>                 
+            
+            </scheduled_gain>        
             <!-- This is a bit of a kludge to reduce the Camel service ceiling to 19,600 ft, and reduce performance above 12,000 as reported at the time. 
             This function simply reduces throttle at these altitudes to give lower engine performance.-->
-            <scheduled_gain name="fcs/pitch_scheduled_gain_1">
-                <input>fcs/throttle-cmd-norm</input>
+            <!-- starting the limit @ 15000 gives FAR too high performance in climb  11000 or 10000 or maybe even lower is better.  However, starting the limit below 10000 may interfere with the reported airspeed @ 10000 ft
+            15000 .9285 gives our desired 92.5 knots TAS at 15000. 
+            13944 1 gives pretty much straight line dropoff in engine between 13944 & 19600  
+            And now, after testing & implementing this approach to the ceiling
+            for several versions, now in Ver. 2.0 it seems to be unneeded. With
+            the table set to flat '1's the ceiling is 19600 almost exactly.
+            
+            It's possible to work up to 20000 or 21000 but the margin is very,
+            very narrow and that type of altitude is not very usable for any
+            practical purpose.
+            
+            -->
+            <scheduled_gain name="fcs/throttle_limit_by_altitude">
+                <input>fcs/throttle_limit_by_magento</input>
                 <table>
                     <independentVar>atmosphere/pressure-altitude</independentVar>
                       <tableData>
+                      <!-- 
                       -10000 1
-                      11000  1
+                      13944  1
+                      15000 .9285
                       19600  .58
+                      -->
+                      -10000 1
+                      13944  1
+                      15000  1
+                      19600  1
                       </tableData>
-                 </table>
+                 </table>                 
+
                  <output>fcs/throttle-pos-norm</output>
+            
             </scheduled_gain>
 
         </channel>
@@ -1349,10 +1402,12 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCDge</property>
                     <!-- ver 1.4 candidate <value>1.5</value> --> <!-- because the drag data is from the wings only we use this factor to adjust is so that it matches published speed & climb data for the Camel A/C as a whole -->
-                    <value>1.5</value>
+                    <value>2</value> <!-- 1.8 value: 1.5. Trying 2.0 for ver. 2.0 bec the climb rate @ low speeds seems too high, plus stall speed a bit too high-->
                     <table>
                         <independentVar>aero/alpha-deg</independentVar>                    
+
                         <tableData>
+<!-- ver 1.8 drag data:     -->
 -90	2.79
 -60	1.39
 -30	0.39
@@ -1383,6 +1438,44 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
 30	0.39
 60	1.39
 90	2.79
+
+
+<!-- 2.0 trial data: this data was tweaked from the above in the range 4-6 degrees to see if we can address an anomaly where the speed/climb @ 4.5-6 deg AoA seems abnormally high -->
+<!--
+-90	2.79
+-60	1.39
+-30	0.39
+-20	0.11
+-14	0.067
+-12	0.054
+-10	0.043
+-8	0.033
+-6	0.0264
+-4	0.005
+-3	0.003
+-2	0.002
+-1	0.001
+0	0
+1	0.001
+2	0.005
+3	0.0075
+4	0.01152
+5	0.0135
+6	0.017
+8	0.025
+10	0.032
+12	0.045
+14	0.0633
+16	0.08
+18	0.125
+20	0.22
+30	0.39
+60	1.39
+90	2.79
+-->
+
+
+
 
                         </tableData>
                     </table>   

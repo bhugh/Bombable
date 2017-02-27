@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<name>Ultra Minimal Aircraft Hud</name>
+	<enable3d>true</enable3d>
+ 
+       <font>
+        <name type="string">Helvetica.txf</name>
+        <size type="float">14</size>
+      </font>
+
+	
+  <aiming-reticle>
+  		<x>0</x>
+  		<y>0</y>
+  </aiming-reticle>
+
+	<label>
+		<name>airspeed</name>
+		<x>159</x>
+		<y>-183</y>
+		<halign>left</halign>
+		<format>Airspeed   %5.0f mph</format>
+		<input>
+			<property>/velocities/airspeed-kt</property>
+		</input>
+   <factor>1.15078</factor> 
+	</label>
+
+	<label>
+		<name>altitude</name>
+		<x>159</x>
+		<y>-198</y>
+		<halign>left</halign>
+		<format>Altitude    %5.0f ft</format>
+		<input>
+			<property>/position/altitude-ft</property>
+		</input>
+	</label>
+
+	<label>
+		<name>heading</name>
+		<x>159</x>
+		<y>-213</y>
+		<halign>left</halign>
+		<format>Heading    %5.1f deg</format>
+		<input>
+			<property>/orientation/heading-deg</property>
+		</input>
+	</label>
+ 	<import>
+		<path>Huds/Instruments/gload.xml</path>
+		<x-offset>225</x-offset>
+		<y-offset>-235</y-offset>
+	</import>
+ 
+</PropertyList>

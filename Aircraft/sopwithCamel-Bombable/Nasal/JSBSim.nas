@@ -43,6 +43,14 @@ var terrain_survol = func (id) {
   var agl_ft = getprop("/fdm/jsbsim/position/h-agl-ft");
   var agl_ft_alt = getprop("/position/altitude-agl-ft");
   
+  #transfer the mag switch settings, which we can then use to control the engine in various ways
+  var l_mag = getprop ("/controls/engines/engine/mag-switch-left");
+  var r_mag = getprop ("/controls/engines/engine/mag-switch-right");
+  if (typeof(l_mag)=="nil") l_mag=0;
+  if (typeof(r_mag)=="nil") r_mag=0;
+  setprop ("fdm/jsbsim/fcs/mag-switch-left", l_mag);
+  setprop ("fdm/jsbsim/fcs/mag-switch-right", r_mag);
+  
   #all the below  has to do with friction, dust, ground contact etc so if we're way about the ground we're just going to skip it all.  We check in /position, too bec. sometimes one or the other of  ttem freaks out  
   if (typeof(agl_ft)!="nil" and agl_ft > 100 and typeof(agl_ft_alt)!="nil" and agl_ft_alt > 100 ) return; 
   
@@ -620,10 +628,15 @@ var list3 = setlistener ( "/accelerations/pilot-gdamped", func {
               camel.fuel_reserve = 0;
        
        }                 
+       var blipped = getprop("sim/model/camel/blip_switch");           
        if (camel.fuel_reserve >= camel.fuel_reserve_amount and 
           camel.inverted_out_of_fuel==1) {  
            
-           camel.magneto.updateMagnetos();
+           #turn the engine back on ONLY IF BLIP SWITCH IS NOT DEPRESSED. 
+           #if blip switch is depressed, the engines will turn back on when it
+           #is released now.           
+           if (typeof(blipped)=="nil" or !blipped) camel.magneto.updateMagnetos();
+           
            camel.inverted_out_of_fuel=0;
            #print ("Camel: Un-inverted, blipping engine back on");
            #print ( camel.curr_pilot_g);
@@ -651,8 +664,10 @@ var list3 = setlistener ( "/accelerations/pilot-gdamped", func {
             #print ("Camel: Sputtering off");
        }  else if (camel.fuel_reserve < camel.lower_sputter and 
           camel.inverted_out_of_fuel==0 and (rand() < time_elapsed*20)) {
-           if (rand()< (camel.fuel_reserve/camel.lower_sputter) )
-               camel.magneto.updateMagnetos();
+           if (rand()< (camel.fuel_reserve/camel.lower_sputter) ) {
+               #don't de-sputter if the blip switch is on . . . 
+               if (typeof(blipped)=="nil" or !blipped) camel.magneto.updateMagnetos();
+           }    
            else camel.magneto.magnetos.setValue(0);
            #print ("Camel: Sputtering on");         
        }     

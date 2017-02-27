@@ -59,22 +59,24 @@ SRC: http://www.theaerodrome.com/forum/2001/10278-clerget-9b-fuel-consumption.ht
   <displacement unit="IN3"> 993.8 </displacement>
   <maxhp unit="HP">        130.00 </maxhp>
   <cycles>         4.0 </cycles>
-  <idlerpm>      300.0 </idlerpm>
+  <idlerpm>       50.0 </idlerpm> <!-- was 250, then 200.  If the RPM gets too var below this the engine stops.  But it seems to effect idle power, too:  	This value affects the throttle fall off and the engine stops running if it is slowed below 80% of this value. The engine starts running when it reaches 80% of this value. 
+  
+  Setting this quite low allows the engine to re-start again when the RPM is quite low, which is realistic for a Clerget.  But, it allows allows a super-low power idle on throttle alone, which is not very realistic.  But, we can just limit throttle throw in jsb.xml, solving that problem.-->
   <maxrpm>      1250.0 </maxrpm>
   <maxthrottle>    1.0 </maxthrottle><!-- Deprecated -->
   <minthrottle>    0.1 </minthrottle><!-- Deprecated -->
-  <sparkfaildrop>  0.17 </sparkfaildrop>
+  <sparkfaildrop>  0.44444 </sparkfaildrop> <!-- this is the percentage drop in horsepower for single magneto operation. For a rotary engine, usually on magneto switch activated 5 cylinders & the other, the remaining 4 cyclinders.  So we're saying one magneto is  4/9 power drop, or 5/9 of total power. We don't have as good a way of simulating the 4/9 power setting here, unfortunately.-->
   
   <volumetric-efficiency> 0.673 </volumetric-efficiency>
 <!-- Optional items that affect engine performance -->
  <!-- Defining <bsfc> over-rides the built-in horsepower calculations -->
-<bsfc unit="LBS/HP*HR"> 0.54 </bsfc> <!-- 0.5617525 is the calculated amount but the JSBSim manual says that JSBSim incorporates some of this internally so the number may need to be reduced some.  0.353 gives the rated top speed of 116 kts for the Camel at high rpm with unaltered CamelProp.xml.  But with the adjusted CamelProp C_THRUST values it is more like .50-->
+<bsfc unit="LBS/HP*HR"> 0.54 </bsfc> <!-- 0.5617525 is the calculated amount but the JSBSim manual says that JSBSim incorporates some of this internally so the number may need to be reduced some.  0.353 gives the rated top speed of 116 kts for the Camel at high rpm with unaltered CamelProp.xml.  But with the adjusted CamelProp C_THRUST values it is more like .50--> 
  <stroke unit="IN">  6.2992  </stroke>
  <bore unit="IN">    4.72441 </bore>
  <cylinders>         9.0  </cylinders>
  <!-- Wikipedia: Compression ratio: 9B: 4.56:1, 9Bf: 5.3:1 -->
  <!-- The compression ratio affects volumetric efficiency at altitude, may need to be tweaked to give proper performance at high altitude and the correct service ceiling -->
- <!-- reducing static friction from 1.5 to .5 HP ensures that the prop does not stop while the a/c is moving.  I haven't read of any occurences of the Camel prop stopping during flight (say, during inverted flight) and then not re-starting due to windmilling, so evidently this is how the a/c really did work. -->
+ <!-- reducing static friction from 1.5 to .5  (and then, later after experimentation, 0.1) HP helps ensures that the prop does not stop while the a/c is moving.  I haven't read of any occurences of the Camel prop stopping during flight (say, during inverted flight) and then not re-starting due to windmilling, so evidently this is how the a/c really did work. -->
  <static-friction  unit="HP"> 0.1 </static-friction>
  <compression-ratio> 4.0 </compression-ratio> 
  

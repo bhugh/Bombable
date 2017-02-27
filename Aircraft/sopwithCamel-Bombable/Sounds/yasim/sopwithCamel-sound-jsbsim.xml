@@ -159,7 +159,7 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
           </greater-than>
         </and>
       </condition>
-         <position> 
+      <position> 
               <x>0.5</x>
               <y>1.0</y>
               <z>-1.5</z>
@@ -220,7 +220,89 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
         <max>2</max>
         <offset>0.1</offset>
       </pitch>
-    </rwheelroll>    
+    </rwheelroll>  
+    <lwheelthump>
+      <name>lwheelthump</name>
+      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/241281__sonictechtonic__crackandhatch.wav</path>
+     
+      <mode>once</mode>
+
+      <condition>
+
+          <greater-than> 
+                         <property>/gear/gear[0]/compression-ft</property>
+                         <value>0.06</value>
+          </greater-than>
+          
+          
+          <!-- <property>/gear/gear[4]/wow</property>        </and> -->
+      </condition>
+      <position> 
+              <x>0.5</x>
+              <y>1.0</y>
+              <z>-1.5</z>
+      </position>      
+      
+      <volume>
+        <property>/fdm/jsbsim/gear/unit[0]/compression-velocity-fps</property>
+        <type>sqrt</type> 
+        <factor>0.6</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>0</offset>
+      </volume>
+ <!--      
+      <pitch>
+        <property>/gear/gear[4]/rollspeed-ms</property> >
+        <property>/fdm/jsbsim/gear/unit[4]/compression-velocity-fps</property>
+        <factor>0.2</factor>
+        <min>0.9</min>
+        <max>1.1</max>
+        <offset>1</offset>
+      </pitch>
+ -->     
+    </lwheelthump>      
+    <rwheelthump>
+      <name>rwheelthump</name>
+      <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/241281__sonictechtonic__crackandhatch.wav</path>
+     
+      <mode>once</mode>
+
+      <condition>
+
+          <greater-than> 
+                         <property>/gear/gear[1]/compression-ft</property>
+                         <value>0.06</value>
+          </greater-than>
+          
+          
+          <!-- <property>/gear/gear[4]/wow</property>        </and> -->
+      </condition>
+      <position> 
+              <x>0.5</x>
+              <y>-1.0</y>
+              <z>-1.5</z>
+      </position>      
+      
+      <volume>
+        <property>/fdm/jsbsim/gear/unit[1]/compression-velocity-fps</property>
+        <type>sqrt</type> 
+        <factor>0.6</factor>
+        <min>0</min>              
+        <max>1.0</max>
+        <offset>0</offset>
+      </volume>
+ <!--      
+      <pitch>
+        <property>/gear/gear[4]/rollspeed-ms</property> >
+        <property>/fdm/jsbsim/gear/unit[4]/compression-velocity-fps</property>
+        <factor>0.2</factor>
+        <min>0.9</min>
+        <max>1.1</max>
+        <offset>1</offset>
+      </pitch>
+ -->     
+    </rwheelthump>      
 
     <!-- gear[3] will compress during water landing OR hard ground landing so this sound should be appropriate either way -->
     <waterlanding>
