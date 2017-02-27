@@ -13,6 +13,8 @@
   <aiming-reticle>
   		<x>0</x>
   		<y>0</y>
+      <width>1</width>                
+      <height>1</height>      
   </aiming-reticle>
 
 	<label>
