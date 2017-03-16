@@ -46,6 +46,8 @@
 										type="bool">false</show-pilot>
 				<show-pennants-flight-commander userarchive="y"
 										type="bool">true</show-pennants-flight-commander>
+        <show-face-mask userarchive="y"
+										type="bool">false</show-face-mask>                                                                                                                
 			</camel>
 		</model>
 

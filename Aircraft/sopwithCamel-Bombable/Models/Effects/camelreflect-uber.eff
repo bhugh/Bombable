@@ -5,15 +5,15 @@
 
 	<parameters>
 		<!-- Reflection -->
-		<reflection-enabled type="int">1</reflection-enabled>
+		<reflection-enabled type="int">0</reflection-enabled>
 		<reflect-map-enabled type="int">0</reflect-map-enabled>
 		<reflection-dynamic type="int">1</reflection-dynamic>
 
 		<reflection-fresnel type="float">0.1</reflection-fresnel>
 		<reflection-rainbow type="float">0.05</reflection-rainbow>
-		<reflection-noise type="float">0.1</reflection-noise>
+		<reflection-noise type="float">0.9</reflection-noise>
 		<reflection-correction type="float">-0.3</reflection-correction>
-		<ambient-correction type="float">0.2</ambient-correction>
+		<ambient-correction type="float">0</ambient-correction>
 
 		<texture n="4">
 			<image>/Aircraft/sopwithCamel/Models/Textures/reflectmap.png</image>

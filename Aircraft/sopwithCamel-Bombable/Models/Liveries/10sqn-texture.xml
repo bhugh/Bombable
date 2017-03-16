@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+	<sim>
+		<model>
+			<camel>
+				<show-pennants-flight-commander type="bool">true</show-pennants-flight-commander>
+			</camel>
+			<livery>
+				<name type="string">10 (N)Sqn (textured)</name>
+				<index type="int">1</index>
+				<nose-texture type="bool">false</nose-texture>
+				<material>
+					<Wing-Upper-Top>
+						<texture type="string">Liveries/camel_plan-texture.png</texture>
+					</Wing-Upper-Top>
+					<Horizontal-Stabiliser-Fixed>
+						<texture type="string">Liveries/camel_plan-texture.png</texture>
+					</Horizontal-Stabiliser-Fixed>
+					<Elevator-Surface>
+						<texture type="string">Liveries/camel_plan-texture.png</texture>
+					</Elevator-Surface>
+					<Tail>
+						<texture type="string">Liveries/camel_side-texture.png</texture>
+					</Tail>
+					<Fuselage-Aft>
+						<texture type="string">Liveries/camel_side-texture.png</texture>
+					</Fuselage-Aft>
+					<Wheel-R>
+						<texture type="string">Liveries/camel_side-texture.png</texture>
+					</Wheel-R>
+					<Wheel-L>
+						<texture type="string">Liveries/camel_side-texture.png</texture>
+					</Wheel-L>
+					<Rudder-Surface>
+						<texture type="string">Liveries/camel_side-texture.png</texture>
+					</Rudder-Surface>
+					<Nose-Textured>
+							<texture type="string">Liveries/camel_side-texture.png</texture>
+					</Nose-Textured>
+				</material>
+			</livery>
+		</model>
+	</sim>
+</PropertyList>

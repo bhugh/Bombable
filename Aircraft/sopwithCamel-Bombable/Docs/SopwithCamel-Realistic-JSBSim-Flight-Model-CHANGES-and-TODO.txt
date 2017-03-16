@@ -129,19 +129,44 @@ Approach speed 55 KTS (63 mph) : Threshhold speed 48 KTS (55 mph) : Touchdown sp
 
 Stall speed: 31 KTS (35 mph) IAS.
 
+UPDATE: 2.0delta: 1st hand reports of stall speed @35-40 mph are at odds with 
+official reports listing stall speed at 41 KTS (48 mph). Re-read of these 
+suggests that these aircraft may be lightened or stripped down in a few ways 
+(no guns, no ammo, no bombs, perhaps a lighter engine, etc) which suggests 
+that the varyingly reported stall speeds may simply be the result of 
+aircraft loaded down or fully loaded in combat configuration. The intent 
+here is to replicate the fully combat-loaded configuration, so rebalancing 
+of configuration & engine to 41 KTS (48 mph) stall speed has been 
+accomplished for 2.0delta.  Now the stall speed is 48 mph (slightly less 
+when in ground effect), TAS speed at 6500, 10000, and 15,000 feet is met 
+very closely, and climb time to 6500 ft, 10000 ft, and 15000 ft is also 
+modeled very closely. In addition, this is done while using the historical 
+engineering data for lift and zero-lift drag coefficient, without 
+any alterations or adjustment needed. Lift-drag ratio is much closer to 
+that reported in historical records, as well.  
+
 
 ==============
 TO DO/WISHLIST
 ==============
 
+* Tracers look like long rods instead of glowing streaks
+
+* "Realism mode" (probably for Bombable?) where unlimited ammo, warping your 
+current position, etc are disallowed.
+
+* Don't start engine/kick starter if blip switch is depressed & a magneto is 
+switched, or if both magnetos are off & blip switch released.
+
+* Smoke keeps coming off wings etc on some occasions even when in air (fix issue with no update to wake-dust-factor when the a/c is more than 100 ft altitude AGL).
 
 * Could make wing, tail, other parts break or show damage on bad landing
 
-* Transition from tail drag to tail fly @ 20-35-40 KTS is difficult, rudder seems to have insufficient control authority, or some interaction between ground & aero forces. [some improvement to this in ver 2.0]
+X Transition from tail drag to tail fly @ 20-35-40 KTS is difficult, rudder seems to have insufficient control authority, or some interaction between ground & aero forces. [some improvement to this in ver 2.0]
 
 * Engine disable: Right now this is handled by turning off magneto switches but not changing the visual state of the switches, leading to confusion.  Some interaction with the Bombable add-on here.
  
-* Engine control: Ver. 2.0 is greatly improved over 1.8, but perhaps some way can be found to cajole JSBSim into duplicating magneto power settings even more accurately.  Maybe JSBSim boost could be used to give more distinct engine power
+X Engine control: Ver. 2.0 is greatly improved over 1.8, but perhaps some way can be found to cajole JSBSim into duplicating magneto power settings even more accurately.  Maybe JSBSim boost could be used to give more distinct engine power
 settings.
 
 * Engine loss of power at high altitudes - JSBSim compression setting could 
@@ -158,7 +183,7 @@ the mixture settings that a real Camel would have needed.
 * Apparently long periods of blipping could foul the engine - this isn't 
 modelled yet.
 
-* Engine power @ various magneto settings: We now have three distinct settings--
+X Engine power @ various magneto settings: We now have three distinct settings--
 some research & testing may be required to determine whether the power output of 
 each setting matches the historically accurate amount.
   

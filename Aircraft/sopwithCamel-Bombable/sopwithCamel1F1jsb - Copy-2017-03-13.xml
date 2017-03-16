@@ -160,10 +160,9 @@ http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
               Weight, Empty	434 kg (956 lb)
               Weight, Gross	691 kg (1,523 lb)
         -->
-        <!-- ver 1.8: 212.6948698 --> 
         <!-- This is Sw-sqft used many times below: -->
-        <!-- 2.0gamma exper: <wingarea unit="FT2"> 231 </wingarea> -->
-        <wingarea unit="FT2"> 231 </wingarea> <!-- 2.0delta: putting this back to 212.69 from 231 bec it seems to make our control surfaces problematic, but then we'll correct for the difference in drag in that section. -->         
+        <wingarea unit="FT2"> 212.6948698 </wingarea>
+        
         <!--bw-ft used below: -->
         <wingspan unit="FT"> 26.91 </wingspan>
         <!-- wing chord calculated by measuring drawing sopwith-camel-specs-drawings-2-2.jpg; see calculations at Camel-JSBSim-calcs-2011-10D.xls sheet Camel Dimensions. -->
@@ -203,7 +202,7 @@ for the rudder to contribute very much to yaw stability.
         <vtailarm unit="FT"> 13.66 </vtailarm>
 
         <location name="AERORP" unit="IN">
-            <x> 44 </x>   <!-- 2.0gamma 47; trying 44 to replicate nose up attitude with full fuel -->
+            <x> 47 </x>
             <y> 0 </y>
             <z> 0 </z>
         </location>
@@ -230,7 +229,6 @@ for the rudder to contribute very much to yaw stability.
         <ixz unit="KG*M2">0</ixz>
         <iyz unit="KG*M2">0</iyz>
         <ixy unit="KG*M2">0</ixy>
-        <!-- experiment: unloaded (reducing weight by about 300 lbs cuts stall speed from ~48 mph to ~40 mph) <emptywt unit="LBS">1010</emptywt> -->
         <emptywt unit="LBS">1210</emptywt>
         <!-- This was used in ver 1.0-1.3: 
         <location name="CG" unit="IN">
@@ -254,7 +252,7 @@ for the rudder to contribute very much to yaw stability.
         <pointmass name="Equipment">
             <form shape="ball">
                <radius unit="FT"> 3 </radius>
-            </form>             
+            </form> 
             <weight unit="LBS"> 90 </weight>
             <location name="cockpit_rear" unit="IN">
                 <x> 80 </x>
@@ -786,7 +784,6 @@ for the rudder to contribute very much to yaw stability.
                 <yaw> 0 </yaw>
             </orient>
             <feed>0</feed>
-            <feed>1</feed>
             <thruster file="CamelProp">
                 <!--OK, the docs say that sense =1 for CW propeller as seen
                 from the cockpit.  The camel has a CW propeller by every example
@@ -870,19 +867,8 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
           
   TODO: Not sure if fuel tanks need more code to draw from one to the other or switch between them.
   TODO: Oil is just a pointmass & doesn't empty throughout the flight (see Castor Oil below under pointmass).        
-       <priority> - not sure it works?
           -->
-          <tank type="FUEL" number="0">
-            <location unit="IN">
-                <x> 60 </x> 
-                <y> 0 </y>
-                <z> -5.62 </z>
-            </location>
-            <capacity unit="LBS">51.3</capacity>
-            <contents unit="LBS">51.3</contents>
-            <priority>1</priority> <!-- gravity tank, it feeds first -->
-        </tank>
-        <tank type="FUEL" number="1">
+        <tank type="FUEL">
             <location unit="IN">
                 <x> 90 </x>
                 <y> 0 </y>
@@ -890,36 +876,24 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
             </location>
             <capacity unit="LBS">219.8</capacity>
             <contents unit="LBS">219.8</contents>
-            <priority>2</priority>
         </tank>
-
+          <tank type="FUEL">
+            <location unit="IN">
+                <x> 60 </x>
+                <y> 0 </y>
+                <z> -5.62 </z>
+            </location>
+            <capacity unit="LBS">51.3</capacity>
+            <contents unit="LBS">51.3</contents>
+        </tank>
     </propulsion>
 
     <flight_control name="FCS: Camel">
 
         <channel name="Pitch">
-            <!-- squaring joystick input to give greater sensitivity in the center of the range -->
-            <fcs_function name="elevator-cmd-sqred">
-               <input>fcs/elevator-cmd-norm</input>
-               <function>
-                 <product>                                  
-                  <abs>
-                            <property>fcs/elevator-cmd-norm</property>               
-                  </abs>                                 
-                  <abs>
-                            <property>fcs/elevator-cmd-norm</property>               
-                  </abs>                  
-                 </product>
-               </function>
-               <clipto> 
-                 <min> -1 </min> 
-                 <max> 1 </max> 
-               </clipto>                           
-               <output>fcs/elevator-cmd-sqred</output>                   
-            </fcs_function >
-             
+
             <summer name="Pitch Trim Sum">
-              <input>fcs/elevator-cmd-sqred</input>
+              <input>fcs/elevator-cmd-norm</input>
               <input>fcs/pitch-trim-cmd-norm</input>
               <clipto>
                 <min>-1</min>
@@ -952,29 +926,9 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
         </channel>
 
         <channel name="Roll">
-        
-            <!-- squaring joystick input to give greater sensitivity in the center of the range -->
-            <fcs_function name="aileron-cmd-sqred">
-               <input>fcs/aileron-cmd-norm</input>
-               <function>
-                 <product>                                  
-                  <abs>
-                            <property>fcs/aileron-cmd-norm</property>               
-                  </abs>
-                  <abs>
-                            <property>fcs/aileron-cmd-norm</property>               
-                  </abs>                                                    
-                 </product>
-               </function>
-               <clipto> 
-                 <min> -1 </min> 
-                 <max> 1 </max> 
-               </clipto>                           
-               <output>fcs/aileron-cmd-sqred</output>                   
-            </fcs_function >        
 
             <summer name="Roll Trim Sum">
-              <input>fcs/aileron-cmd-sqred</input>
+              <input>fcs/aileron-cmd-norm</input>
               <input>fcs/roll-trim-cmd-norm</input>
               
               <!-- This bias value just trims out the ailerons a bit so that
@@ -1035,28 +989,9 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
         </channel>
 
         <channel name="Yaw">
-        
-            <fcs_function name="rudder-cmd-sqred">
-               <input>fcs/rudder-cmd-norm</input>
-               <function>
-                 <product>                                  
-                  <abs>
-                            <property>fcs/rudder-cmd-norm</property>               
-                  </abs>                                 
-                  <abs>
-                            <property>fcs/rudder-cmd-norm</property>               
-                  </abs>                                 
-                 </product>
-               </function>
-               <clipto> 
-                 <min> -1 </min> 
-                 <max> 1 </max> 
-               </clipto>                           
-               <output>fcs/rudder-cmd-sqred</output>                   
-            </fcs_function >         
 
             <summer name="Rudder Command Sum">
-              <input>fcs/rudder-cmd-sqred</input>
+              <input>fcs/rudder-cmd-norm</input>
               <input>fcs/yaw-trim-cmd-norm</input>
               <clipto>
                 <min>-0.35</min>
@@ -1091,7 +1026,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
            <property value="1">fcs/mag-switch-left</property>
         <channel name="Throttle">
        
-            <!-- LIMITING throttle some on the lower end to mimic the more crude type throttle controls available on the rotary engines.  Basically, our full throttle throw controls only the upper 50% or less of the throttle; we can't reach the lower 50%, which mimics the fact that you couldn't really throttle down rotary engines to a low idle etc -->
+            <!-- LIMITING throttle some on the lower end to mimic the more crude type throttle controls available on the rotary engines.  Basically, our full throttle throw controls only the upper 50% of the throttle; we can't reach the lower 50%, which mimics the fact that you couldn't really throttle down rotary engines to a low idle etc -->
             <aerosurface_scale name="throttle-cmd-limit">
                 <input>fcs/throttle-cmd-norm</input>
                  <zero_centered>false</zero_centered> 
@@ -1100,7 +1035,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                   <max> 1 </max>   <!-- If omitted, default is  1.0 -->
                 </domain>
                 <range>
-                  <min> 0.85 </min>   <!-- If omitted, default is 0 -->
+                  <min> 0.5 </min>   <!-- If omitted, default is 0 -->
                   <max> 1 </max>   <!-- If omitted, default is 0 -->
                 </range>                                
                             
@@ -1109,15 +1044,13 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
           <!-- if the right magneto is OFF we limit the throttle by about 1/9
           this is to duplicate the effect the real magnetos had, where one reduced engine power by about 4/9, the other reduced it by 5/9 
           JSBSim engine / Clerget9B.xml / only allows us to consider the power 
-          reduction from one magneto, so here is where we work in the 2nd one
-          Adjust this in concert with sparkfaildrop in Clerget9B.xml 
-          --> 
+          reduction from one magneto, so here is where we work in the 2nd one --> 
           <scheduled_gain name="fcs/throttle_limit_by_magento">
                 <input>fcs/throttle-cmd-limit</input>
                 <table>
                     <independentVar>fcs/mag-switch-right</independentVar>
                       <tableData>
-                      0 .865 <!-- ver 2.0gamma: 0.8 -->
+                      0 .8
                       1  1                      
                       </tableData>
                  </table>                 
@@ -1242,8 +1175,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCLge</property>
                     <!-- 1.4 candidate <value>1.4</value> -->
-                    <!-- ver 1.8 value: 1.4 -->
-                    <value>1.0</value>
+                    <value>1.4</value>
                     <table>
                         <!--
                         <independentVar>aero/alpha-rad</independentVar>
@@ -1417,7 +1349,6 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     <property>metrics/Sw-sqft</property>
                     <property>fcs/elevator-pos-rad</property>
                     <!-- Aeromatic: <value>0.15</value> -->
-                    <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 --> 
                     <value>0.05</value>
                 </product>
             </function>
@@ -1473,9 +1404,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCDge</property>
                     <!-- ver 1.4 candidate <value>1.5</value> --> <!-- because the drag data is from the wings only we use this factor to adjust is so that it matches published speed & climb data for the Camel A/C as a whole -->
-                    <value>2</value> <!-- 1.8 value: 1.5. Trying 2.0 for ver. 2.0 bec the climb rate @ low speeds seems too high, plus stall speed a bit too high
-                    2.0gamma: 2.  Trying 1, just to see.
-                    -->
+                    <value>2</value> <!-- 1.8 value: 1.5. Trying 2.0 for ver. 2.0 bec the climb rate @ low speeds seems too high, plus stall speed a bit too high-->
                     <table>
                         <independentVar>aero/alpha-deg</independentVar>                    
 
@@ -1621,7 +1550,6 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     </abs>
                     <!--Aeromatic: 0.02 -->
                     <value>0.015</value>
-                    <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 -->                    
                 </product>
             </function>
             
@@ -1675,7 +1603,6 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 -->
                     <!--Aeromatic: <property>aero/beta-rad</property>
                     <value>-1</value> -->
                     <value>2</value> <!-- 1.6b experiment -->
@@ -1922,7 +1849,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
-                    <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 -->
+
                     <!-- .08 per aeromatic; Camel had relatively ineffective ailerons;  they
                     are large as 'barn doors' but induce tons of drag & adverse yaw. 23 seconds 
                     to slow roll - if could even be done at all! 
@@ -1968,7 +1895,6 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/rudder-pos-rad</property>
-                    <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 -->
                     <!-- Aeromatic 0.01 -->
                     <value>0.01</value>
                 </product>
@@ -2038,7 +1964,6 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                 <product>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
-                    <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 -->
                     <property>metrics/cbarw-ft</property>
                     <!-- <property>aero/alpha-rad</property> plain alpha-rad is OK for small values, but for larger than abs(1) or so, need sin(alpha-rad) instead-->
                     
@@ -2070,10 +1995,9 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                 <product>
                     <!-- <property>aero/qbar-psf</property> using induced-psf instead bec it includes a factor for prop wash-->
                     <property>aero/function/qbar-induced-psf</property>
-                    <property>metrics/Sw-sqft</property> <!--this is sq footage of wing whereas it would better to start where w/ sq footage of elevator -->                    
+                    <property>metrics/Sw-sqft</property> <!--this is sq footage of wing whereas it would better to start where w/ sq footage of elevator -->
                     <property>metrics/cbarw-ft</property><!-- similarly, we're using wingspan here, Sw-sqft, whereas really we should be using distance to tail? These don't really make any difference in the end bec. we adjust the strength with a factor based on actual flying/behavior below.  But starting with actual moment arm and sq footage of the rudder would be a more reasonable starting point . . . -->
                     <property>fcs/elevator-pos-rad</property>
-                    <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 -->                    
                     <table>
                         <independentVar>velocities/mach</independentVar>
                         <tableData>
@@ -2674,9 +2598,8 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     </sin>
                     
                     <!-- <value>0.12</value> orig -->
-                    <!-- <value>0.06</value> 1.6 -->                    
+                    <!-- <value>0.06</value> 1.6 -->
                     <value>0.04</value>
-                    <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 -->                    
                 </product>
             </function>
             <function name="aero/moment/Yaw_damp">
@@ -2710,9 +2633,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     <property>velocities/r-aero-rad_sec</property>
                     <!-- <value>1.9</value>  -->
                     <value>-0.05</value>  <!-- ver 1.8 was -0.05 -->
-                    <!-- <value>-0.02</value> -->
-                    
-                    <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 --> 
+                    <!-- <value>-0.02</value> --> 
                      
                     <table>
                         <independentVar>velocities/r-aero-rad_sec</independentVar>
@@ -2869,15 +2790,13 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                         <independentVar>velocities/ve-kts</independentVar>
                         <tableData>
                           0              0
-                          50             1                                       
+                          50             1
                           105           0.95
                           180           0.5
                           500           0       
                         </tableData>
                     </table>
                     -->
-                    
-                    <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 -->
 
                     <!-- Rudder effectiveness lost as soon as tail sets down on landing -->                    
                     <table>
@@ -2932,8 +2851,8 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
-                    <!-- Aeromatic: -0.01  -.07 is QUITE large ver 1.6a: -0.06-->                   <!-- 2.0gamme: -0.04.  Seems a bit high, so trying -0.03 for 2.0delta.  Also we increased Sw-sqft, which auto-increased this by almost 10%-->
-                    <value>-0.03</value>
+                    <!-- Aeromatic: -0.01  -.07 is QUITE large ver 1.6a: -0.06-->
+                    <value>-0.04</value>
                     <table>
                         <independentVar>velocities/ve-kts</independentVar>
                         <tableData>

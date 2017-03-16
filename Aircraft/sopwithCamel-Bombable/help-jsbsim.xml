@@ -89,7 +89,7 @@
     <line>(via Blip) on approach. Note relatively steep glide slope. Sideslip as needed to control speed. If you need emergency full power,</line>
     <line>add Magneto 2 and throttle.</line>
 		<line>Approach speed 55 KTS (63 mph) : Threshhold speed 48 KTS (55 mph) : Touchdown speed: 35 KTS (40 mph) (all IAS)</line>    
-		<line>Stall speed: 31 KTS (35 mph) IAS</line>
+		<line>Stall speed: 31-35 KTS (35-40 mph) IAS</line>
 		<line> </line>
    
 		<line>GUNS</line>
@@ -99,10 +99,12 @@
    
     <line> </line> 
 		<line>MISC </line>
-    <line>Taxiing: In windy conditions, use elevator to hold tail firmly down for better steering authority. At high RPM, prop wash</line>
+    <line>TAXIING: In windy conditions, use elevator to hold tail firmly down for better steering authority. At high RPM, prop wash</line>
     <line>gives some rudder and elevator authority even at near stand-still. Use this plus the burst of power from Blip to</line>
     <line>help maneuver and taxi over bumps. Don't forget 'n' for nudge when you get stuck.</line>
+    <line>STALL: Push forward firmly on the stick, gain airspeed. Vigorously oppose any spin (rudder and ailerons).  It may help to blip</line>
+    <line>engine off, reducing torque and gyroscopic moment. You will lose ~500 ft altitude or more.</line>
     <line>Extensive help, tips, documents in the DOCS folder.</line>    
     
 	</help>
-</PropertyList>
+</PropertyList>                          

@@ -65,7 +65,8 @@ SRC: http://www.theaerodrome.com/forum/2001/10278-clerget-9b-fuel-consumption.ht
   <maxrpm>      1250.0 </maxrpm>
   <maxthrottle>    1.0 </maxthrottle><!-- Deprecated -->
   <minthrottle>    0.1 </minthrottle><!-- Deprecated -->
-  <sparkfaildrop>  0.44444 </sparkfaildrop> <!-- this is the percentage drop in horsepower for single magneto operation. For a rotary engine, usually on magneto switch activated 5 cylinders & the other, the remaining 4 cyclinders.  So we're saying one magneto is  4/9 power drop, or 5/9 of total power. We don't have as good a way of simulating the 4/9 power setting here, unfortunately.-->
+  <sparkfaildrop>  0.292 </sparkfaildrop> <!-- this is the percentage drop in horsepower for single magneto operation. For a rotary engine, usually on magneto switch activated 5 cylinders & the other, the remaining 4 cyclinders.  So we're saying one magneto is  4/9 power drop, or 5/9 of total power. We don't have as good a way of simulating the 4/9 power setting here, unfortunately, but we do it instead in sopwithCamel1F1jsb.xml under <scheduled_gain name="fcs/throttle_limit_by_magento"> where we just scale down the throttle by about 1/9.
+  ver 2.0gamma: 0.44444  Trying .17 again. .17 gives about 81 hp whereas we need about 62 hp to similate 5/9 power, so trying 0.32 which gives 57 hp.  Trying 0.295 which gives about 60-61 hp. -->
   
   <volumetric-efficiency> 0.673 </volumetric-efficiency>
 <!-- Optional items that affect engine performance -->
@@ -76,9 +77,15 @@ SRC: http://www.theaerodrome.com/forum/2001/10278-clerget-9b-fuel-consumption.ht
  <cylinders>         9.0  </cylinders>
  <!-- Wikipedia: Compression ratio: 9B: 4.56:1, 9Bf: 5.3:1 -->
  <!-- The compression ratio affects volumetric efficiency at altitude, may need to be tweaked to give proper performance at high altitude and the correct service ceiling -->
- <!-- reducing static friction from 1.5 to .5  (and then, later after experimentation, 0.1) HP helps ensures that the prop does not stop while the a/c is moving.  I haven't read of any occurences of the Camel prop stopping during flight (say, during inverted flight) and then not re-starting due to windmilling, so evidently this is how the a/c really did work. -->
+ <!-- reducing static friction from 1.5 to .5  (and then, later after experimentation, 0.1) HP helps ensures that the prop does not stop while the a/c is moving.  I haven't read of any occurrences of the Camel prop stopping during flight (say, during inverted flight) and then not re-starting due to windmilling, so evidently this is how the a/c really did work. -->
  <static-friction  unit="HP"> 0.1 </static-friction>
- <compression-ratio> 4.0 </compression-ratio> 
+ 
+ <!-- 1.8, 2.0gamma: 4.0.   Per Wikipedia it is 4.56 so we're goign to try that 4.56 seesm to helps some but wikipedia lists 5.2 for 9Bf so we'll try that -->
+ <compression-ratio> 3.0 </compression-ratio> <!-- the compression ratio affects the change in volumetric efficiency with altitude --> 
+ 
+ <man-press-lag>0.01</man-press-lag>  <!--Delay in seconds for manifold pressure changes to take effect after the throttle is moved or the RPM changes. Default is 1 second.  -->
+ <starter-torque>140</starter-torque> <!-- A value specifying the zero RPM torque in lb*ft the starter motor provides. Current default value is 40% of the maximum horsepower value. -->
+ <starter-rpm>1250</starter-rpm> <!-- A value specifying the maximum RPM the unloaded starter motor can achieve. Loads placed on the engine by the propeller and throttle will further limit RPM achieved in practice. The actual RPM needs to be more than idlerpm * 0.8 for the engine to start running. -->
  
  
 </piston_engine>
