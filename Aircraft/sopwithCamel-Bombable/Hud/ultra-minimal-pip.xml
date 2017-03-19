@@ -19,41 +19,86 @@
 
 	<label>
 		<name>airspeed</name>
-		<x>159</x>
-		<y>-183</y>
-		<halign>left</halign>
-		<format>Airspeed   %5.0f mph</format>
+		<x>245</x>
+		<y>-215</y>
+		<halign>right</halign>
+		<format>%5.0fmph</format>
 		<input>
 			<property>/velocities/airspeed-kt</property>
+      <factor>1.15078</factor>
 		</input>
-   <factor>1.15078</factor> 
+    
 	</label>
 
 	<label>
 		<name>altitude</name>
-		<x>159</x>
-		<y>-198</y>
-		<halign>left</halign>
-		<format>Altitude    %5.0f ft</format>
+		<x>299</x>
+		<y>-214</y>
+		<halign>right</halign>
+		<format>%5.0fft</format>
 		<input>
 			<property>/position/altitude-ft</property>
 		</input>
 	</label>
+ <label>
+		<name>Blip</name>
+		<x>325</x>
+		<y>-214</y>
+    <condition>
+			<property>/controls/engines/engine/blip_switch</property>
+		</condition>
+		<halign>right</halign>
+		<format>B</format>
+		
+	</label>
+ 
+	<label>
+		<name>MagL</name>
+		<x>333</x>
+		<y>-214</y>
+    <condition>
+			<property>/controls/engines/engine/mag-switch-left</property>
+		</condition>
+		<halign>right</halign>
+		<format>*</format>
+		
+	</label> 
+ <label>
+		<name>MagR</name>
+		<x>341</x>
+		<y>-214</y>
+   <condition>
+			<property>/controls/engines/engine/mag-switch-right</property>
+		</condition>
+		<halign>right</halign>
+		<format>*</format>		
+	</label> 
 
 	<label>
 		<name>heading</name>
-		<x>159</x>
-		<y>-213</y>
-		<halign>left</halign>
-		<format>Heading    %5.1f deg</format>
+		<x>242</x>
+		<y>-229</y>
+		<halign>right</halign>
+		<format>%3.0fdeg</format>
 		<input>
 			<property>/orientation/heading-deg</property>
 		</input>
 	</label>
  	<import>
 		<path>Huds/Instruments/gload.xml</path>
-		<x-offset>225</x-offset>
+		<x-offset>275</x-offset>
 		<y-offset>-235</y-offset>
 	</import>
- 
-</PropertyList>
+ 	<label>
+		<name>throttle</name>
+		<x>351</x>
+		<y>-228</y>
+		<halign>right</halign>
+		<format>%3.0f%%</format>
+		<input>
+			<property>/controls/engines/engine/throttle</property>
+      <factor>100</factor>      
+		</input>
+	</label>
+  
+  </PropertyList>

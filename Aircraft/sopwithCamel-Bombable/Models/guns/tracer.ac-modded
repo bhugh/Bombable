@@ -1,17 +1,17 @@
 AC3Db
-MATERIAL "ac3dmat1" rgb 1 1 1  amb 1 1 1  emis 1 1 1  spec 0.2 0.2 0.2  shi 12  trans 0
+MATERIAL "ac3dmat1" rgb  1 1 1  amb 1 1 1  emis 1 1 1  spec 0 0 0  shi 1  trans 0.4
 OBJECT world
 kids 1
 OBJECT poly
 name "trace"
 crease 45.000000
 numvert 7
--20 0.02 -0.034642
--20 -0.02 -0.034644
--20 -0.04 0
--20 -0.02 0.034642
--20 0.02 0.034644
--20 0.04 0
+-60 0.01 -0.017321
+-60 -0.01 -0.017321
+-60 -0.02 0
+-60 -0.01 0.017321
+-60 0.01 0.017321
+-60 0.01 0
 0 0 0
 numsurf 9
 SURF 0x0

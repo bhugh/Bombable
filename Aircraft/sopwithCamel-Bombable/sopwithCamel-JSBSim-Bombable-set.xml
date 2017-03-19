@@ -14,6 +14,7 @@
 
 		<flight-model>jsb</flight-model>
 		<aero>sopwithCamel1F1jsb</aero>
+    <model-hz type="double">120.0</model-hz> <!-- experiment; 120hz is usual-->
    
   <startup>
 		<splash-texture>JSBSim-camel-splash2d-JSBSim.rgb</splash-texture>
@@ -47,9 +48,20 @@
 				<show-pennants-flight-commander userarchive="y"
 										type="bool">true</show-pennants-flight-commander>
         <show-face-mask userarchive="y"
-										type="bool">false</show-face-mask>                                                                                                                
+										type="bool">false</show-face-mask>    
+        <show-shadow userarchive="y"
+										type="bool">true</show-shadow>                                                                                                        
+                                                                                                                                
 			</camel>
 		</model>
+   
+   <systems>
+   <!-- used by the ALS volume shadow routine -->
+    <property-rule n="101">
+       <name>altitude-agl-m</name>
+       <path>Aircraft/sopwithCamel-Bombable/Systems/altitudeAGL.xml</path>
+    </property-rule>
+    </systems>
 
 		<ai>
 			<engines>
@@ -222,6 +234,13 @@
 						<binding>
 							<command>property-toggle</command>
 							<property>sim/model/camel/show-face-mask</property>
+						</binding>
+					</item>
+          <item>
+						<label>Show Shadow (ALS mode)</label>
+						<binding>
+							<command>property-toggle</command>
+							<property>sim/model/camel/show-shadow</property>
 						</binding>
 					</item>
 					<item>

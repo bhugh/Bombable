@@ -153,11 +153,11 @@ reload_guns  = func {
          or getprop ( r_gun_ammo_count)== -1 ) {
     
     setprop ( r_gun_ammo_count, 400); #ammo r
-    setprop ( r_gun_ammo_count, 400); #ammo l
+    setprop ( l_gun_ammo_count, 400); #ammo l
     setprop ( r_gun_tracer_count, 100); #tracer r
-    setprop ( r_gun_tracer_count, 100); #tracer l
+    setprop ( l_gun_tracer_count, 100); #tracer l
     setprop ( r_gun_smoke_count, 400); #smoke r
-    setprop ( r_gun_smoke_count, 400); #smoke l
+    setprop ( l_gun_smoke_count, 400); #smoke l
     
     gui.popupTip ("Guns reloaded--an ammunition belt with 400 rounds in each gun.", 5)
     
@@ -183,11 +183,11 @@ unlimited_guns = func {
 
     
     setprop ( r_gun_ammo_count, -1); #ammo r
-    setprop ( r_gun_ammo_count, -1); #ammo l
+    setprop ( l_gun_ammo_count, -1); #ammo l
     setprop ( r_gun_tracer_count, -1); #tracer r
-    setprop ( r_gun_tracer_count, -1); #tracer l
+    setprop ( l_gun_tracer_count, -1); #tracer l
     setprop ( r_gun_smoke_count, -1); #smoke r
-    setprop ( r_gun_smoke_count, -1); #smoke l
+    setprop ( l_gun_smoke_count, -1); #smoke l
 
    
     gui.popupTip ("Guns set to unlimited mode--definitely not realistic and only for testing!  Select 'Reload Guns' to revert to limited ammo.",7)

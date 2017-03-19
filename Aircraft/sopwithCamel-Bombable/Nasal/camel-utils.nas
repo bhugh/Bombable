@@ -38,10 +38,10 @@ generic_float2_Node = props.globals.getNode("sim/multiplay/generic/float[2]", 1)
 generic_float2_Node.setValue(0);
 
 sim_model_camel_show_pilot_Node = props.globals.getNode("sim/model/camel/show-pilot[0]", 1);
-sim_model_camel_show_pilot_Node.setBoolValue(1);
+#sim_model_camel_show_pilot_Node.setBoolValue(1);  #this is a user save/default now
 
 sim_model_camel_show_face_mask_Node = props.globals.getNode("sim/model/camel/show-face-mask[0]", 1);
-sim_model_camel_show_face_mask_Node.setBoolValue(0);
+#sim_model_camel_show_face_mask_Node.setBoolValue(0); #this is a user save/default now
 
 generic_bool0_Node = props.globals.getNode("sim/multiplay/generic/int[0]", 1);
 generic_bool0_Node.setBoolValue(0);
@@ -200,7 +200,13 @@ Magneto = {
 
 updateMagnetos: func{     # set the magneto value according to the switch positions
 # print("updating Magnetos");
-                  var save_magnetos=me.magnetos.getValue();
+
+                 #print ("Updating Magnetos ", getprop("controls/engines/engine/blip_switch"));
+                  if (getprop("controls/engines/engine/blip_switch")==1) {
+                    me.magnetos.setValue( 0 );
+                    return; #If the blip switch is down all magnetos are off/can't switch them
+                }
+                var save_magnetos=me.magnetos.getValue();
                 if (me.left.getValue() and me.right.getValue()){                  # both
                     me.magnetos.setValue( 3 );
                 }
@@ -217,8 +223,19 @@ updateMagnetos: func{     # set the magneto value according to the switch positi
                 #doing this 'speed burst' only when RIGHT magneto switch engaged/disengaged now. That way settings with the R magneto have more power whereas blips with L magneto only are more sedate.
                 var new_magnetos = me.magnetos.getValue();
                 #if (me.magnetos.getValue()==3 and new_magnetos > save_magnetos + 1){
-                if ((getprop("velocities/groundspeed-kt")>25 or getprop("engines/engine/rpm")>50) and !getprop("fdm/jsbsim/systems/crash-detect/prop-strike") and (getprop("engines/engine/rpm")<160 or new_magnetos-save_magnetos>=2)) setprop("/fdm/jsbsim/propulsion/set-running", -1); #real Camel engines didn't just stop running while the blip switch was pressed, as long as the a/c OR prop was moving the instant the blip was released there was power.  Also this helps provide the immediate thrust of power that rotary engines were able to develop when blip was released.  We're doing it here same as when the blip switch is released because the physical effect was same for both. 
+                if (
+                    (getprop("velocities/groundspeed-kt")>25 or getprop("engines/engine/rpm")>50) 
+                    and !getprop("fdm/jsbsim/systems/crash-detect/prop-strike")                     
+                    and (getprop("engines/engine/rpm")<160 or new_magnetos-save_magnetos>=2) 
+                    #and getprop("controls/engines/engine/blip_switch")<1)  #don't do the 'zoom' if blip switch is depressed 
+                    and new_magnetos >= save_magnetos #don't do the 'zoom' unless a magneto has been turned ON; ie don't do it when a switch is turned OFF
+                    and new_magnetos > 0 #don't do the zoom unless at least one magneto is on (otherwise we sometimes get a 'zoom' on releasing the Blip Switch even though all magnetos are OFF                 
+                    )
+                    setprop("/fdm/jsbsim/propulsion/set-running", -1); 
+                    
+                    #real Camel engines didn't just stop running while the blip switch was pressed, as long as the a/c OR prop was moving the instant the blip was released there was power.  Also this helps provide the immediate thrust of power that rotary engines were able to develop when blip was released.  We're doing it here same as when the blip switch is released because the physical effect was same for both. 
               #was getprop("engines/engine/rpm")<201 but experimenting w/ different engine settings so it can perhaps be not required, so setting it to <1.  This number should be coordinated with <idlerpm> in Clerget9B.xml and set to 80% of whatever that value is.  
+              
                 #}
                 
     }, # end function
@@ -275,6 +292,8 @@ blipMagswitch:   func{
         setprop("sim/model/camel/blip_switch",1);
         setprop("controls/engines/engine/blip_switch",1); # This one seems to affect the engine AND also the sound.xml file uses it to cut in the blipped engine sound
     } else {
+        setprop("sim/model/camel/blip_switch",0);
+        setprop("controls/engines/engine/blip_switch",0);
         me.updateMagnetos();
         
         # if magnetos are on & engine running & on ground, and moving slowly, we'll give a 'nudge' here
@@ -284,8 +303,7 @@ blipMagswitch:   func{
 
         #}
         # actually this gets done in updateMagnetos; don't need to do again: if (getprop("velocities/groundspeed-kt")>20 or getprop("engines/engine/rpm")>10 and !getprop("fdm/jsbsim/systems/crash-detect/prop-strike")) setprop("/fdm/jsbsim/propulsion/set-running", -1); #real Camel engines didn't just stop rotating while the blip switch was pressed, and (apparently) they never had trouble restarting an engine after a blip. As long as the a/c OR prop was moving the instant the blip was released there was power.  Also this helps provide the *immediate* thrust of power that rotary engines were able to develop when blip was released - much quicker ramp-up than the typical engine JSBSim is modeling here. 
-        setprop("sim/model/camel/blip_switch",0);
-        setprop("controls/engines/engine/blip_switch",0);
+
     }
 
 # print ("blip out right ", me.right.getValue()," left ", me.left.getValue());

@@ -31,6 +31,8 @@ var terrain_servol_loop_start = func () {
   terrain_survol(terrain_survol_loopid);
 }
 
+var SCJ_readytoquit=0;
+
 #main loop: adjust friction etc per terrain etc
 var terrain_survol = func (id) {
 
@@ -52,7 +54,16 @@ var terrain_survol = func (id) {
   setprop ("fdm/jsbsim/fcs/mag-switch-right", r_mag);
   
   #all the below  has to do with friction, dust, ground contact etc so if we're way about the ground we're just going to skip it all.  We check in /position, too bec. sometimes one or the other of  ttem freaks out  
-  if (typeof(agl_ft)!="nil" and agl_ft > 100 and typeof(agl_ft_alt)!="nil" and agl_ft_alt > 100 ) return; 
+  if (typeof(agl_ft)!="nil" and agl_ft > 100 and typeof(agl_ft_alt)!="nil" and agl_ft_alt > 100 )  {
+     #We do one more time through the loop after exceeeding 100 ft AGL just to make sure all smoke is turned off
+     if (SCJ_readytoquit) {
+        return;
+     }
+     else SCJ_readytoquit=1;
+  } else {
+     SCJ_readytoquit=0;
+  } 
+  
   
   var lat = getprop("/position/latitude-deg");
   var lon = getprop("/position/longitude-deg");
@@ -180,13 +191,13 @@ var terrain_survol = func (id) {
                 var bump = left_bump_lowpass.filter ((bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff));
                 setprop ("/fdm/jsbsim/gear/unit[0]/z-position",lgearpdist + bump );
                 setprop ("/fdm/jsbsim/contact/unit[21]/z-position",lgeardist + bump );
-                print ("Camel: LBump " ~ bump); 
+                #print ("Camel: LBump " ~ bump); 
                 
                 #R gear & it's protective structure element
                 var bump = right_bump_lowpass.filter ((bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff));
                 setprop ("/fdm/jsbsim/gear/unit[1]/z-position",rgearpdist + bump );
                 setprop ("/fdm/jsbsim/contact/unit[22]/z-position",rgeardist + bump );
-                print ("Camel: RBump " ~ bump);
+                #print ("Camel: RBump " ~ bump);
     
                 setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-20);  #Experiment: We set the water gear to -55 here, rather than fully retracting to -20, so that on hard bumps on the solid ground it will emit some dust. But this caused problems when the water gear hit land/dirt & caused a lot of friction plus took some of the load (making the crash data look strange), so un-doing it.
                 setprop ("/fdm/jsbsim/gear/unit[3]/z-position",-20);
@@ -287,7 +298,7 @@ var friction_init = func {
     if (x==nil) x=0; 
     setprop ("/environment/terrain-info/gear/unit["~n~"]/rolling_friction_coeff_aircraft", x );
     
-    print ("Camel/JSBSim: Aircraft friction parameters initialized");
+    #print ("Camel/JSBSim: Aircraft friction parameters initialized");
   } 
 }  
 

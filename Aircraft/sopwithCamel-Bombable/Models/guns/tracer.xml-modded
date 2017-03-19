@@ -2,7 +2,7 @@
 
 <PropertyList>
   <path>tracer.ac</path>
-
+  <!--
   <animation>
     <type>dist-scale</type>
     <name>7.62 tracer</name>
@@ -10,23 +10,34 @@
     <interpolation>
 	<entry>
 		<ind>0</ind>
-		<dep>10</dep>
+		<dep>20</dep>
 	</entry>
 	<entry>
 		<ind>400</ind>
-		<dep>10</dep>
+		<dep>20</dep> 
 	</entry>
 	<entry>
-		<ind>1000</ind>
+		<ind>800</ind>
 		<dep>10</dep>
 	</entry>
     </interpolation>
   </animation>
+  -->
   
   <animation>
-  <type>rotate</type>
+             <name>7.62 tracer</name>
+             <object-name>trace</object-name>
+             <type>scale</type>
+             <x-offset>20</x-offset>
+             <y-offset>20</y-offset>
+             <z-offset>20</z-offset>
+ </animation>
+  
+  <animation>
   <object-name>trace</object-name>
-  <property>sim/time/elapsed-sec</property>
+  <type>spin</type>
+  <!-- <property>sim/time/elapsed-sec</property> -->
+  <property>sim/time/delta-sec</property>
   <factor>10047</factor>  
   <center>
    <x-m>0</x-m>
@@ -38,5 +49,5 @@
    <y>0</y>
    <z>0</z>
   </axis>
- </animation>  
+ </animation>
 </PropertyList>

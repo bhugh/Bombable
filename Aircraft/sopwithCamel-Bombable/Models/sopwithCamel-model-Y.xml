@@ -89,6 +89,11 @@
      <name>Effects</name>
      <path>Aircraft/sopwithCamel-Bombable/Models/camel_effects.xml</path>
   </model>
+  
+  <model>
+     <name>Shadow</name>
+     <path>Aircraft/sopwithCamel-Bombable/Models/Effects/shadow/camel_shadow.xml</path>
+  </model>
 
 	<model>
 		<path>Aircraft/sopwithCamel-Bombable/Models/clerget-Y.xml</path>

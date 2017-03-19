@@ -1023,7 +1023,12 @@ Creative Commons Zero License (public domain): https://creativecommons.org/publi
       <path>Aircraft/sopwithCamel-Bombable/Sounds/yasim/vickers.wav</path>
       <condition>
         <property>controls/armament/trigger</property>
-        <property>ai/submodels/submodel/count</property>
+        <or> 
+             <property>ai/submodels/submodel/count</property>
+             <property>ai/submodels/submodel[1]/count</property>
+             <property>ai/submodels/submodel[2]/count</property>
+             <property>ai/submodels/submodel[3]/count</property>
+        </or>
       </condition>
       <volume>
         <factor>1.2</factor>

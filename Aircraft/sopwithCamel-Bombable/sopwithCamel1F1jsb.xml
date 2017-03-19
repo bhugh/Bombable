@@ -225,8 +225,13 @@ for the rudder to contribute very much to yaw stability.
          design feature so remains unchanged. --> 
         <!-- <ixx unit="SLUG*FT2">708</ixx> -->
         <ixx unit="SLUG*FT2">740</ixx>
+        <!--2.0gamma values -->
         <iyy unit="SLUG*FT2">182.7</iyy>
         <izz unit="SLUG*FT2">366.9</izz>
+        
+        <!-- experiment for 2.0delta, putting these values up a bit.  It causes strange stall/spin behavior, so boing back to the 2.0gamma values -->
+        <!-- <iyy unit="SLUG*FT2">365.4</iyy>
+        <izz unit="SLUG*FT2">733.8</izz> -->
         <ixz unit="KG*M2">0</ixz>
         <iyz unit="KG*M2">0</iyz>
         <ixy unit="KG*M2">0</ixy>
@@ -832,6 +837,8 @@ for the rudder to contribute very much to yaw stability.
         <!-- Fuel is behind the pilot, 22 gal, 133.6 lb.  Appears to be
           about half way between nose & tail.  With fuel full, 
           AC was tailheavy acc to http://www.theaerodrome.com/forum/2000/9166-sopwith-camel-facts-2.html With fuel empty, nose heavy. 
+          
+         UPDATE: Per sopwith-camel-specs-drawings-2-2.jpg main fuel tank is about 80.9 inches behind tip of nose/propeller, and may 1-3 inches above the centerline.  Aux fuel tank is about 78 inches back & higher, say 18 inches above the centerline.
          
          The above 22 gal figure appears to be incorrect (though 2X22gallon tanks = 37 Imperial Gallons, so perhaps that explains the discrepancy), here is more detail:
          
@@ -872,6 +879,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
   TODO: Oil is just a pointmass & doesn't empty throughout the flight (see Castor Oil below under pointmass).        
        <priority> - not sure it works?
           -->
+          <!-- 2.0gamma version
           <tank type="FUEL" number="0">
             <location unit="IN">
                 <x> 60 </x> 
@@ -880,13 +888,35 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
             </location>
             <capacity unit="LBS">51.3</capacity>
             <contents unit="LBS">51.3</contents>
-            <priority>1</priority> <!-- gravity tank, it feeds first -->
+            <priority>1</priority> 
         </tank>
         <tank type="FUEL" number="1">
             <location unit="IN">
                 <x> 90 </x>
                 <y> 0 </y>
                 <z> -5.62 </z>
+            </location>
+            <capacity unit="LBS">219.8</capacity>
+            <contents unit="LBS">219.8</contents>
+            <priority>2</priority>
+        </tank>
+        -->
+        
+        <tank type="FUEL" number="0">
+            <location unit="IN">
+                <x> 78 </x> 
+                <y> 0 </y>
+                <z> 18 </z>
+            </location>
+            <capacity unit="LBS">51.3</capacity>
+            <contents unit="LBS">51.3</contents>
+            <priority>1</priority> <!-- gravity tank, it feeds first -->
+        </tank>
+        <tank type="FUEL" number="1">
+            <location unit="IN">
+                <x> 80.9 </x>
+                <y> 0 </y>
+                <z> 3 </z>
             </location>
             <capacity unit="LBS">219.8</capacity>
             <contents unit="LBS">219.8</contents>
@@ -906,9 +936,9 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                   <abs>
                             <property>fcs/elevator-cmd-norm</property>               
                   </abs>                                 
-                  <abs>
+                  <!-- <abs>
                             <property>fcs/elevator-cmd-norm</property>               
-                  </abs>                  
+                  </abs> -->                  
                  </product>
                </function>
                <clipto> 
@@ -961,9 +991,9 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                   <abs>
                             <property>fcs/aileron-cmd-norm</property>               
                   </abs>
-                  <abs>
+                  <!-- <abs>
                             <property>fcs/aileron-cmd-norm</property>               
-                  </abs>                                                    
+                  </abs> -->                                                    
                  </product>
                </function>
                <clipto> 
@@ -1043,9 +1073,9 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                   <abs>
                             <property>fcs/rudder-cmd-norm</property>               
                   </abs>                                 
-                  <abs>
+                  <!-- <abs>
                             <property>fcs/rudder-cmd-norm</property>               
-                  </abs>                                 
+                  </abs> -->                                 
                  </product>
                </function>
                <clipto> 
@@ -1243,7 +1273,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
                     <property>aero/function/kCLge</property>
                     <!-- 1.4 candidate <value>1.4</value> -->
                     <!-- ver 1.8 value: 1.4 -->
-                    <value>1.0</value>
+                    <value>1.05</value>  <!-- was 1.0 for 2.0gamma, but backing up to 1.1. It won't do loops easily, for one thing.  We don't have any lift for body or tail, for another. Maybe  it could be 1.05 or something. -->
                     <table>
                         <!--
                         <independentVar>aero/alpha-rad</independentVar>
@@ -1473,7 +1503,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCDge</property>
                     <!-- ver 1.4 candidate <value>1.5</value> --> <!-- because the drag data is from the wings only we use this factor to adjust is so that it matches published speed & climb data for the Camel A/C as a whole -->
-                    <value>2</value> <!-- 1.8 value: 1.5. Trying 2.0 for ver. 2.0 bec the climb rate @ low speeds seems too high, plus stall speed a bit too high
+                    <value>1.5</value> <!-- 1.8 value: 1.5. Trying 2.0 for ver. 2.0 bec the climb rate @ low speeds seems too high, plus stall speed a bit too high
                     2.0gamma: 2.  Trying 1, just to see.
                     -->
                     <table>

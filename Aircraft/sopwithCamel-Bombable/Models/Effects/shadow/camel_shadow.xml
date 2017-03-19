@@ -1,0 +1,134 @@
+<PropertyList>
+
+    <path>camel_shadow15.ac</path>
+    <nopreview/>
+<!--
+    <offsets>
+        <pitch-deg>3</pitch-deg>
+        <z-m>-0.04</z-m>
+    </offsets>
+-->
+
+  <animation>
+    <!-- opaque objects -->
+    <!-- transparent objects -->
+    <object-name>camel_shadow</object-name>
+    <type>select</type>
+    <condition>
+      <not>
+        <property>/sim/rendering/rembrandt/enabled</property>
+      </not>
+      <property>/sim/rendering/shaders/skydome</property>      
+      <property>/sim/model/camel/show-shadow</property>
+    </condition>
+  </animation>
+  
+ <animation>
+  <object-name>camel_shadow</object-name>
+  <type>range</type>
+  <min-m>0</min-m>
+  <max-m>2000</max-m>
+ </animation>  
+  
+  <effect>
+    <inherits-from>Aircraft/sopwithCamel-Bombable/Models/Effects/shadow/shadow-vol</inherits-from>
+    <object-name>camel_shadow</object-name>
+  </effect>
+
+  <animation>
+    <type>noshadow</type>
+    <object-name>camel_shadow</object-name>
+  </animation>
+  
+  <!-- yaw -->
+  <!--
+  <animation>
+    <type>rotate</type>
+    <object-name>camel_shadow</object-name>
+    <property>/fdm/jsbsim/attitude/psi-deg</property>
+    <factor>-0.0</factor>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>0</y>
+      <z>1</z>
+    </axis>
+  </animation>
+  -->
+
+
+  <!-- pitch -->
+  <animation>
+    <type>rotate</type>
+    <object-name>camel_shadow</object-name>
+    <property>/orientation/pitch-deg</property>
+    <condition>
+      <not>
+        <property>/sim/rendering/shaders/skydome</property>
+      </not>
+    </condition>    
+  
+    <factor>-1.0</factor>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <!-- roll -->
+  <animation>
+    <type>rotate</type>
+    <object-name>camel_shadow</object-name>    
+    <property>/orientation/roll-deg</property>   
+    <condition>
+      <not>
+        <property>/sim/rendering/shaders/skydome</property>
+      </not>
+    </condition>     
+    <factor>1.0</factor>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+    </center>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <!--Translate to ground level  -->
+  <animation>
+   <type>translate</type>
+   <object-name>camel_shadow</object-name>
+   <condition>
+    <not>
+      <property>/sim/rendering/shaders/skydome</property>
+    </not>
+   </condition>
+   <property>/position/altitude-agl-ft</property>
+   <factor>-0.3048</factor>
+   <center>
+     <x-m>0</x-m>
+     <y-m>0</y-m>
+     <z-m>0</z-m>
+   </center>
+   <axis>
+     <x>0</x>
+     <y>0</y>
+     <z>1</z>
+   </axis>
+  </animation>
+
+</PropertyList>

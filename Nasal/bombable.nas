@@ -1236,11 +1236,24 @@ var revitalizeAllAIObjects = func (revitType="aircraft", preservePosSpeed=0) {
      #var m_per_deg_lat=getprop ("/bombable/sharedconstants/m_per_deg_lat");
      #var m_per_deg_lon=getprop ("/bombable/sharedconstants/m_per_deg_lon");
      
-     # This will put the AI objects on a circle with 3000 meters radius 
+     # This will put the AI objects on a circle with 5000 meters radius 
      # from the main a/c, at angle relocAngle_deg from the main a/c 
      var relocAngle_deg=rand()*360;
      var latPlusMinus=math.sin (relocAngle_deg /rad2degrees) * (5000)/m_per_deg_lat;
-     var lonPlusMinus=math.cos (relocAngle_deg /rad2degrees) * (5000)/m_per_deg_lat;
+     var lonPlusMinus=math.cos (relocAngle_deg /rad2degrees) * (5000)/m_per_deg_lat;  
+     
+     
+     var min_dist_km=getprop(bomb_menu_pp~"dispersal-dist-min_km");
+     if (typeof(min_dist_km)=="nil" or min_dist_km=="" or min_dist_km==0) min_dist_km=1;
+
+     var max_dist_km=getprop(bomb_menu_pp~"dispersal-dist-max_km");
+     if (typeof(max_dist_km)=="nil" or max_dist_km=="" or max_dist_km==0 or max_dist_km<min_dist_km) max_dist_km=16;
+     
+     setprop(bomb_menu_pp~"dispersal-dist-min_km",min_dist_km);
+     setprop(bomb_menu_pp~"dispersal-dist-max_km",max_dist_km);
+                
+     var min_dist_m=1000*min_dist_km;      
+     var max_dist_m=1000*max_dist_km;
      
      #var latPlusMinus=1; if (rand()>.5) latPlusMinus=-1;
      #var lonPlusMinus=1; if (rand()>.5) lonPlusMinus=-1;
@@ -1257,6 +1270,20 @@ var revitalizeAllAIObjects = func (revitType="aircraft", preservePosSpeed=0) {
         if (type != revitType) continue;
         
         aiName=type ~ "[" ~ elem.getIndex() ~ "]";
+        
+        #Disperse within a given radius
+        if (preservePosSpeed==2) {        
+           # This will put the AI objects within a circle with 15000 meters radius 
+           # from the main a/c
+
+           var dist = math.sqrt(rand())*(max_dist_m - min_dist_m) + min_dist_m;
+           var relocAngle_deg=rand()*360;
+           var latPlusMinus=math.sin (relocAngle_deg /rad2degrees) * (dist)/m_per_deg_lat;
+           var lonPlusMinus=math.cos (relocAngle_deg /rad2degrees) * (dist)/m_per_deg_lat;
+
+           var heading_deg = rand() * 360; 
+        }           
+
         
         #only if bombable initialized
         #experimental: disable the next line to do this for ALL aircraft/objects regardless of bombable status.
@@ -1284,7 +1311,7 @@ var revitalizeAllAIObjects = func (revitType="aircraft", preservePosSpeed=0) {
           newlat_deg = getprop ("/position/latitude-deg") + latPlusMinus;
           newlon_deg = getprop ("/position/longitude-deg") + lonPlusMinus;
           
-          if (preservePosSpeed){
+          if (preservePosSpeed==1){
             var currLat = getprop ("ai/models/"~aiName~"/position/latitude-deg");
             var currLon = getprop ("ai/models/"~aiName~"/position/longitude-deg");
             var old_elev_ft = elev (currLat,currLon);
@@ -1311,9 +1338,21 @@ var revitalizeAllAIObjects = func (revitType="aircraft", preservePosSpeed=0) {
           var currAlt_ft = getprop ("ai/models/"~aiName~"/position/altitude-ft");
         
           if (type=="aircraft") {
-            if (preservePosSpeed) {
+            if (preservePosSpeed==1) {
                alt_ft=currAlt_ft-old_elev_ft + elev_ft;  
                if (alt_ft-500<elev_ft) alt_ft=elev_ft+500;
+               
+            } else if (preservePosSpeed==2) {
+               var min_alt_ft=elev_ft+500;
+               
+               var main_alt_ft=getprop ("/position/altitude-ft");
+               var max_alt_ft=main_alt_ft*2;
+               if (max_alt_ft < 2*min_alt_ft) max_alt_ft = 2*min_alt_ft;
+               if (max_alt_ft < 10000) max_alt_ft=16000;
+               if (max_alt_ft > 45000) max_alt_ft=45000;
+               
+               alt_ft= rand()* (max_alt_ft-min_alt_ft) + min_alt_ft; 
+                                              
             } else {
                alt_ft=getprop ("/position/altitude-ft")+100;  
                if (alt_ft-500<elev_ft) alt_ft=elev_ft+500;
@@ -1325,7 +1364,7 @@ var revitalizeAllAIObjects = func (revitType="aircraft", preservePosSpeed=0) {
           setprop ("ai/models/"~aiName~"/position/altitude-ft", alt_ft);
           setprop ("ai/models/"~aiName~"/controls/flight/target-alt", alt_ft);
 
-          if (! preservePosSpeed) {
+          if (preservePosSpeed==0 or preservePosSpeed==2) {
              setprop ("ai/models/"~aiName~"/controls/flight/target-hdg", heading_deg);
              setprop ("ai/models/"~aiName~"/orientation/true-heading-deg", heading_deg);
           }
@@ -1347,7 +1386,7 @@ var revitalizeAllAIObjects = func (revitType="aircraft", preservePosSpeed=0) {
         # set the speed--if not preserving speed/position OR if speed is 0 (due to crashing etc) 
         var currSpeed_kt= getprop ("ai/models/"~aiName~"/velocities/true-airspeed-kt"); 
 
-        if (! preservePosSpeed or currSpeed_kt==0 ) {
+        if (preservePosSpeed==0 or currSpeed_kt==0 ) {
 
             var min_vel_kt=getprop( "ai/models/"~aiName~"/bombable/attributes/velocities/minSpeed_kt");
             var cruise_vel_kt=getprop( "ai/models/"~aiName~"/bombable/attributes/velocities/cruiseSpeed_kt");
@@ -1386,7 +1425,7 @@ var revitalizeAllAIObjects = func (revitType="aircraft", preservePosSpeed=0) {
         }    
      }
      
-     if ( preservePosSpeed) {
+     if ( preservePosSpeed==1) {
 
          if (revitType=="aircraft") {
             var msg = numRespawned ~ " AI Aircraft have damage reset and are about 5000 meters off, with their existing speed, direction, and altitude above ground level preserved";
@@ -1394,6 +1433,13 @@ var revitalizeAllAIObjects = func (revitType="aircraft", preservePosSpeed=0) {
             var msg = numRespawned ~ " AI ground/water craft have damage reset and are about 5000 meters off";
 
          }
+     } else if ( preservePosSpeed==2) {
+         if (revitType=="aircraft") {
+            var msg = numRespawned ~ " AI Aircraft have damage reset and are at various locations and altitudes within about 15,000 meters";
+         } else {
+            var msg = numRespawned ~ " AI ground/water craft have damage reset and are at various locations within about 15,000 meters";
+         }   
+                   
      } else {
      
          if (revitType=="aircraft") {
@@ -1727,7 +1773,7 @@ var dialog = {
         # includes GUI reinit.  So we need to save/close the dialogue first 
         # thing; otherwise segfault is likely        
         lrevitAIAir = buttonBar2.addChild("button");
-        lrevitAIAir.set("legend", "Respawn AI Aircraft Grouped");
+        lrevitAIAir.set("legend", "Respawn AI Aircraft Grouped Near You");
         lrevitAIAir.set("tooltip", "Place all AI Aircraft in a group near your location.");
         
         lrevitAIAir.prop().getNode("binding[0]/command", 1).setValue("nasal");
@@ -1742,7 +1788,7 @@ var dialog = {
         lrevitAIObj.prop().getNode("binding[0]/script", 1).setValue("bombable.revitalizeAllAIObjects(\"ship\", 0);");
         lrevitAIObj.prop().getNode("binding[1]/command", 1).setValue("nasal");
         lrevitAIObj.prop().getNode("binding[1]/script", 1).setValue("bombable.bombable_dialog_save();");
-        lrevitAIObj.set("legend", "Respawn AI Ground/Water Craft Grouped");
+        lrevitAIObj.set("legend", "Respawn AI Ground/Water Craft Grouped Near You");
         lrevitAIObj.prop().getNode("binding[2]/command", 1).setValue("dialog-apply");
         lrevitAIObj.prop().getNode("binding[3]/command", 1).setValue("dialog-close");
 
@@ -1754,7 +1800,7 @@ var dialog = {
         # includes GUI reinit.  So we need to save/close the dialogue first 
         # thing; otherwise segfault is likely        
         lrevitPAIAir = buttonBar3.addChild("button");
-        lrevitPAIAir.set("legend", "Respawn AI Aircraft Preserving Relative Position");
+        lrevitPAIAir.set("legend", "Respawn AI Aircraft Near You, Preserve Relative Position");
         
         lrevitPAIAir.prop().getNode("binding[0]/command", 1).setValue("nasal");
         lrevitPAIAir.prop().getNode("binding[0]/script", 1).setValue("bombable.revitalizeAllAIObjects(\"aircraft\",1);");
@@ -1769,10 +1815,46 @@ var dialog = {
         lrevitPAIObj.prop().getNode("binding[1]/command", 1).setValue("nasal");
         lrevitPAIObj.prop().getNode("binding[1]/script", 1).setValue("bombable.bombable_dialog_save();");
 
-        lrevitPAIObj.set("legend", "Respawn AI Ground/Water Craft Preserving Relative Position");
+        lrevitPAIObj.set("legend", "Respawn AI Ground/Water Craft Near You, Preserve Relative Position");
         lrevitPAIObj.set("tooltip", "Respawn AI Ground/Water Craft Preserving Relative Position");
         lrevitPAIObj.prop().getNode("binding[2]/command", 1).setValue("dialog-apply");
         lrevitPAIObj.prop().getNode("binding[3]/command", 1).setValue("dialog-close");
+
+        var buttonBar4 = me.dialog.addChild("group");
+        buttonBar4.set("layout", "hbox");
+        buttonBar4.set("default-padding", 10);
+        lrevitDISAir = buttonBar4.addChild("button");
+        lrevitDISAir.set("legend", "Respawn AI Aircraft Near You, Dispersed");
+        
+        lrevitDISAir.prop().getNode("binding[0]/command", 1).setValue("nasal");
+        lrevitDISAir.prop().getNode("binding[0]/script", 1).setValue("settimer ( func {bombable.revitalizeAllAIObjects(\"aircraft\",2); }, 1);"); #settimer so there is time for the distance values to be put on the prop. tree
+        lrevitDISAir.prop().getNode("binding[1]/command", 1).setValue("nasal");
+        lrevitDISAir.prop().getNode("binding[1]/script", 1).setValue("bombable.bombable_dialog_save();");
+        lrevitDISAir.prop().getNode("binding[2]/command", 1).setValue("dialog-apply");
+        lrevitDISAir.prop().getNode("binding[3]/command", 1).setValue("dialog-close");        
+
+        lrevitDISObj = buttonBar4.addChild("button");
+        lrevitDISObj.prop().getNode("binding[0]/command", 1).setValue("nasal");
+        lrevitDISObj.prop().getNode("binding[0]/script", 1).setValue("settimer ( func {bombable.revitalizeAllAIObjects(\"ship\",2); }, 1);");
+        lrevitDISObj.prop().getNode("binding[1]/command", 1).setValue("nasal");
+        lrevitDISObj.prop().getNode("binding[1]/script", 1).setValue("bombable.bombable_dialog_save();");
+
+        lrevitDISObj.set("legend", "Respawn AI Ground/Water Craft Near You, Dispersed");
+        lrevitDISObj.set("tooltip", "Respawn AI Ground/Water Craft Preserving Relative Position");
+        lrevitDISObj.prop().getNode("binding[2]/command", 1).setValue("dialog-apply");
+        lrevitDISObj.prop().getNode("binding[3]/command", 1).setValue("dialog-close");   
+        
+        var buttonBar5 = me.dialog.addChild("group");
+        buttonBar5.set("layout", "hbox");
+        buttonBar5.set("default-padding", 10);
+        lrevitDISmin = buttonBar5.addChild("input");
+        lrevitDISmin.set("label", "Min dispersal distance (km)");
+        lrevitDISmin.set("property", bomb_menu_pp~"dispersal-dist-min_km");     
+        lrevitDISmin.set("default", "1");
+        lrevitDISmax = buttonBar5.addChild("input");
+        lrevitDISmax.set("label", "Max dispersal distance (km)");
+        lrevitDISmax.set("property", bomb_menu_pp~"dispersal-dist-max_km");
+        lrevitDISmax.set("default", "16");
 
 
 #        lresetAI = buttonBar1.addChild("button");
@@ -4258,7 +4340,7 @@ var speed_adjust = func (myNodeName, time_sec ){
     # acceleration during level flight     
     add_velocity_fps =math.sgn (targetSpeed_kt - airspeed_kt) * math.pow(math.abs(fact),0.5) * targetSpeed_kt * time_sec * knots2fps / 70 ; 
     termVel_kt=targetSpeed_kt;
-    debprint ("Bombable: Speed Adjust, level:", add_velocity_fps*fps2knots, " airspeed: ", airspeed_kt, " termVel: ", termVel_kt, " ", myNodeName );
+    #debprint ("Bombable: Speed Adjust, level:", add_velocity_fps*fps2knots, " airspeed: ", airspeed_kt, " termVel: ", termVel_kt, " ", myNodeName );
     
   
   } elsif(sin_pitch>0 ) {

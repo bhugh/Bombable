@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<PropertyList>
+   <filter>
+      <type>gain</type>
+      <gain>0.3048</gain> <!-- was .3048 but increasing to .32 puts the shadow more on the ground for the Camel -->
+      <input>/position/altitude-agl-ft</input>
+      <reference>0.01</reference>
+      <output>/position/altitude-agl-m</output>
+   </filter>
+</PropertyList>
