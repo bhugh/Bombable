@@ -12,7 +12,7 @@
 		</key>
 		<key>
 			<name>{ }</name>
-			<desc>Toggle left/right magneto switch.  Magneto switches visible on dash at lower left.</desc>
+			<desc>Toggle left/right magneto switch. 4/9 and 5/9 power settings, respectively.  Magneto switches visible on dash at lower left.</desc>
 		</key>
 		<key>
 			<name>B</name>
@@ -43,7 +43,7 @@
 		</key>
       
     <key>
-			<name>wasdqWASDQ and mouse</name>
+			<name>WwAaSsDdQq and mouse</name>
 			<desc>In INSPECT AIRCRAFT VIEW:  Move and look around (v/V to select this view; see View/View Options)</desc>
 			
 		</key>
@@ -55,18 +55,18 @@
 		<line> </line>
 		<line>STARTING OUT</line>
 		
-		<line>Press { and } once each--so that both L and R magneto switches are in center position.</line>
-		<line>Press and hold the 's' key for 1.5 seconds. It may take several tries before the engine catches.</line>
-    <line>If you spawn in on the ground, chocks are in place. Shift-B to remove.  </line> 
+		<line>Press { and } once each - so that both L and R magneto switches are in upward position. Check that Blip Switch ('b' key,</line>
+		<line>visible button on Camel's joystick handle) is disengaged. Check throttle @ 100%.  Press and hold the 's' key for 0.5 seconds.</line>
+    <line>It may take several tries before the engine catches. If you spawn in on the ground, chocks are in place. Shift-B to remove.  </line> 
 		<line> </line>
    
 		<line>TAKE OFF</line>		
-		<line>Zoom the view out so you can see the edges of the runway with your peripheral vision.  </line>
+		<line>Always take off directly INTO wind regardless of runway configuration. Zoom view full out; steer via peripheral vision.  </line>
 		<line>Easiest, most dependable way to take off: Full throttle, moderate back-pressure on stick to keep </line>
 		<line>tail engaged w/ ground. Use rudder to steer (tail dragging on ground provides most control authority).</line>
-		<line>3-point lift-off @ 35 KTS (40 mph); immediately ease stick forward to avoid excessive climb and loss of airspeed.</line>
-    <line>More advanced: Gently lift tail @ 35KTS and continue rolling (or in ground effect) through 45-50 KTS before lift-off.</line>
-    <line>Crashing on takeoff? Check weather--many real Camel pilots crashed on take-off with strong crosswind or tailwind.</line>
+		<line>3-point lift-off @ 40-45 KTS (45-50 mph); immediately ease stick forward to avoid excessive climb, loss of airspeed, stall.</line>
+    <line>More advanced/Calm conditions: Gently lift tail @ 30-35 mph and continue rolling (or in ground effect) through 50-55 mph before lift-off.</line>
+    <line>Crashing on takeoff? Check wind and weather - many real Camel pilots crashed on take-off/landing with strong crosswind or tailwind.</line>
     <line> </line>
     
     <line>THROTTLE, BLIP SWITCH, AND MAGNETOS</line>    
@@ -74,8 +74,8 @@
     <line>settings. Throttle provides a limited range of power settings. The blip switch (b) disengages both magnetos and cuts</line>
     <line>power totally. Engaging either R or L brake (via keyboard, joystick, or rudder/pedals) also engages the blip switch.</line>
     <line>Releasing the brake (or releasing the 'b' key) releases the blip switch. Engaging only one magneto ('{' or '}') </line> 
-    <line>reduces engine RPM to just under half (L magneto) and just over half (F magneto).</line>
-    <line>This gives you 3 distinct power settings via magneto (L, R, or both)--you can fine-tune each of them with the throttle.</line>
+    <line>reduces engine power to just under half (L magneto) and just over half (R magneto).</line>
+    <line>This gives you 3 distinct power settings via magneto (L, R, or both) - you can fine-tune each of them with the throttle.</line>
     <line>Note that L magneto ON/R magneto OFF + Blip switch gives you very fine low-power control for, e.g., approach and landing.</line>        
     <line></line>
     
@@ -85,17 +85,18 @@
 		<line> </line>
    
 		<line>APPROACH AND LANDING</line>	
-		<line>Throttle HALF TO FULL OPEN, Magneto 1 ON, Magneto 2 OFF. Control engine power via Blip Switch (b); Engine is typically mostly OFF</line>
-    <line>(via Blip) on approach. Note relatively steep glide slope. Sideslip as needed to control speed. If you need emergency full power,</line>
-    <line>add Magneto 2 and throttle.</line>
-		<line>Approach speed 55 KTS (63 mph) : Threshhold speed 48 KTS (55 mph) : Touchdown speed: 35 KTS (40 mph) (all IAS)</line>    
-		<line>Stall speed: 31-35 KTS (35-40 mph) IAS</line>
+    <line>Land directly into wind regardless of runway layout. Throttle FULL OPEN, L Magneto ON, R Magneto OFF. Control engine </line>
+    <line>power via Blip Switch (b); Engine is typically mostly OFF (via Blip) on approach. Note relatively steep glide slope. Sideslip as needed</line>
+    <line>to control speed. On runout, hold tail firmly down to act as brake.</line>
+    <line>Unstable or ground loop on landing? Just add full power (R Magneto ON) and go around.</line>
+		<line>Approach speed 55 KTS (60-65 mph) : Threshhold speed 48 KTS (55 mph) : Touchdown speed: 40 KTS (45-50 mph)</line>    
+		<line>Stall speed 41 KTS (48 mph) : Best Climb speed 55 KTS (60-65 mph) (all IAS)</line>
 		<line> </line>
    
 		<line>GUNS</line>
 		<line>Guns have 400 rounds each, the maximum capacity of the Camel.</line>
     <line>Fire with the 'e' key or a joystick trigger linked to /controls/armament/trigger. </line>
-    <line>Reload guns: Use the menu--you must be on ground and stopped. </line>
+    <line>Reload guns: Use the Camel Menu - you must be on ground, stopped, engine off. </line>
    
     <line> </line> 
 		<line>MISC </line>
@@ -104,6 +105,7 @@
     <line>help maneuver and taxi over bumps. Don't forget 'n' for nudge when you get stuck.</line>
     <line>STALL: Push forward firmly on the stick, gain airspeed. Vigorously oppose any spin (rudder and ailerons).  It may help to blip</line>
     <line>engine off, reducing torque and gyroscopic moment. You will lose ~500 ft altitude or more.</line>
+    <line>TRIM: Real Camels had no trim mechanism and were tail heavy with full fuel - nose heavy with low fuel. Beware of stall @ full fuel!</line>
     <line>Extensive help, tips, documents in the DOCS folder.</line>    
     
 	</help>

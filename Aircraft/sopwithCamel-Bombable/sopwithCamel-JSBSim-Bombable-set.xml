@@ -237,7 +237,7 @@
 						</binding>
 					</item>
           <item>
-						<label>Show Shadow (ALS mode)</label>
+						<label>Toggle Shadow (ALS mode)</label>
 						<binding>
 							<command>property-toggle</command>
 							<property>sim/model/camel/show-shadow</property>

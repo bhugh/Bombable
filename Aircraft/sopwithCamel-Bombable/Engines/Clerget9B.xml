@@ -68,6 +68,24 @@ SRC: http://www.theaerodrome.com/forum/2001/10278-clerget-9b-fuel-consumption.ht
   <sparkfaildrop>  0.292 </sparkfaildrop> <!-- this is the percentage drop in horsepower for single magneto operation. For a rotary engine, usually on magneto switch activated 5 cylinders & the other, the remaining 4 cyclinders.  So we're saying one magneto is  4/9 power drop, or 5/9 of total power. We don't have as good a way of simulating the 4/9 power setting here, unfortunately, but we do it instead in sopwithCamel1F1jsb.xml under <scheduled_gain name="fcs/throttle_limit_by_magento"> where we just scale down the throttle by about 1/9.
   ver 2.0gamma: 0.44444  Trying .17 again. .17 gives about 81 hp whereas we need about 62 hp to similate 5/9 power, so trying 0.32 which gives 57 hp.  Trying 0.295 which gives about 60-61 hp. -->
   
+  <!-- Bomber: https://forum.flightgear.org/viewtopic.php?f=4&t=19584&sid=d48b8ac30cc7b65ddd5c5186d45cb448&start=90#p307159
+
+17 Mar 2017 tested at sea level 15 deg C
+
+1288rpm
+122.8hp
+14.73gph
+
+right mag only = 49.8hp @ 14.73gph
+left mag only = 21.1hp @ 10.5gph
+
+With your engine you might want to consider a Ve of 0.55 and a BSFC of 0.423
+
+which would give you
+130hp
+12.04gph
+-->
+  
   <volumetric-efficiency> 0.673 </volumetric-efficiency>
 <!-- Optional items that affect engine performance -->
  <!-- Defining <bsfc> over-rides the built-in horsepower calculations -->

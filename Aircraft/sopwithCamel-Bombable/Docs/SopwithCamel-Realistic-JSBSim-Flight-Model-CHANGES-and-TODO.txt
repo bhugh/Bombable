@@ -2,14 +2,14 @@ SOPWITH CAMEL: A REALISTIC JSBSIM FLIGHT MODEL - CHANGES & TO DO LIST
 
 Version 2.0
 
-Brent Hugh, 25 February 2017
+Brent Hugh, 19 March 2017
 
 brent@brenthugh.com
 
 In this document:
 
  - CHANGES/UPDATES/THINGS DONE, by version
-     - Ver 2.0
+     - Ver 2.0 Updates & What's New
      - VER 2.0 ENGINE UPDATE - DETAIL & PRACTICAL CONSIDERATIONS FOR PILOTS
 
  - TO DO/WISHLIST
@@ -75,6 +75,9 @@ Select using 'v' and maneuver with wasd WASD and mouse for view direction.
 
 * Chocks: Chocks actually work and are placed by default when you initially spawn in on the ground. Activate/deactivate via Shift-B.
 
+* SHADOWS! Fuselage shadow now displays, when using ALS graphics mode (View/
+Rendering Options/Check "ALS")
+
 Various bug fixes and minor updates completed in this release:
 
 X Often (incorrectly) detects view/select airport change as  'crash'.  (Complete, ver. 2.0)
@@ -86,6 +89,19 @@ X Inspect Aircraft View keys interfere with a/A for time speedup/slowdown, and p
 X Taildragger sound could be replaced with something more specific/realistic. Also a 'thump' sound added when the tail hits hard. (Complete, ver. 2.0)
 
 X Tail dragger sound is a bit inconsistent at low speeds (Fixed, ver. 2.0)
+
+X Tracers look like long rods instead of glowing streaks. (Fixed 2.0delta)
+
+X Don't start engine/kick starter if blip switch is depressed & a magneto is 
+switched, or if both magnetos are off & blip switch released.
+
+X Smoke keeps coming off wings etc on some occasions even when in air (fix issue with no update to wake-dust-factor when the a/c is more than 100 ft altitude AGL).
+
+X Transition from tail drag to tail fly @ 20-35-40 KTS is difficult, rudder seems to have insufficient control authority, or some interaction between ground & aero forces. [some improvement to this in ver 2.0]
+
+X Engine control: Ver. 2.0 is greatly improved over 1.8, but perhaps some way can be found to cajole JSBSim into duplicating magneto power settings even more accurately.  Maybe JSBSim boost could be used to give more distinct engine power
+settings.
+
 
 VER 2.0 ENGINE UPDATE - DETAILS & PRACTICAL CONSIDERATIONS FOR PILOTS
 --------------------------------------------------------------------
@@ -125,50 +141,44 @@ described as 'almost 45 degree' though that is slightly exaggerated). Sideslip
 as needed to control speed. If you need emergency full power, add Magneto 2 and/
 or full throttle.
 
-Approach speed 55 KTS (63 mph) : Threshhold speed 48 KTS (55 mph) : Touchdown speed: 35 KTS (40 mph)
+Approach speed 55 KTS (63 mph) : Threshhold speed 48 KTS (55 mph) : Touchdown speed: 40 KTS (45-50 mph)
 
-Stall speed: 31 KTS (35 mph) IAS.
+Stall speed: 41 KTS (48 mph) IAS.
 
 UPDATE: 2.0delta: 1st hand reports of stall speed @35-40 mph are at odds with 
 official reports listing stall speed at 41 KTS (48 mph). Re-read of these 
 suggests that these aircraft may be lightened or stripped down in a few ways 
-(no guns, no ammo, no bombs, perhaps a lighter engine, etc) which suggests 
-that the varyingly reported stall speeds may simply be the result of 
-aircraft loaded down or fully loaded in combat configuration. The intent 
-here is to replicate the fully combat-loaded configuration, so rebalancing 
-of configuration & engine to 41 KTS (48 mph) stall speed has been 
-accomplished for 2.0delta.  Now the stall speed is 48 mph (slightly less 
-when in ground effect), TAS speed at 6500, 10000, and 15,000 feet is met 
-very closely, and climb time to 6500 ft, 10000 ft, and 15000 ft is also 
-modeled very closely. In addition, this is done while using the historical 
-engineering data for lift and zero-lift drag coefficient, without 
-any alterations or adjustment needed. Lift-drag ratio is much closer to 
-that reported in historical records, as well.  
+(no guns, no ammo, no bombs, perhaps a lighter engine, smaller fuel load or 
+only partically filled, etc) which suggests that the varyingly reported stall 
+speeds may simply be the result of aircraft loaded down or fully loaded in 
+combat configuration. The intent here is to replicate the fully combat-loaded 
+configuration, so rebalancing of configuration & engine to 41 KTS (48 mph) stall 
+speed has been accomplished for 2.0delta.  Now the stall speed is 48 mph (
+slightly less when in ground effect, and even less when fuel is low), TAS 
+speed at 6500, 10000, and 15,000 feet is met very closely, and climb time to 
+6500 ft, 10000 ft, and 15000 ft is also modeled very closely. In addition, this 
+is done while using the historical engineering data for lift and zero-lift drag 
+coefficient, without any alterations or adjustment needed. Lift-drag ratio is 
+much closer to that reported in historical records, as well.  
 
 
 ==============
 TO DO/WISHLIST
 ==============
 
-* Tracers look like long rods instead of glowing streaks
-
 * "Realism mode" (probably for Bombable?) where unlimited ammo, warping your 
-current position, etc are disallowed.
-
-* Don't start engine/kick starter if blip switch is depressed & a magneto is 
-switched, or if both magnetos are off & blip switch released.
-
-* Smoke keeps coming off wings etc on some occasions even when in air (fix issue with no update to wake-dust-factor when the a/c is more than 100 ft altitude AGL).
+current position, outside views, etc are disallowed.
 
 * Could make wing, tail, other parts break or show damage on bad landing
+ 
+* ALS fuselage shadow currently displays directly under the aircraft. An update could make it display at the currect angle per the sun's position. (Various
+FG technical considerations prevent this from being easy to implement right 
+now.)
 
-X Transition from tail drag to tail fly @ 20-35-40 KTS is difficult, rudder seems to have insufficient control authority, or some interaction between ground & aero forces. [some improvement to this in ver 2.0]
+* Cockpit shadows.
 
 * Engine disable: Right now this is handled by turning off magneto switches but not changing the visual state of the switches, leading to confusion.  Some interaction with the Bombable add-on here.
  
-X Engine control: Ver. 2.0 is greatly improved over 1.8, but perhaps some way can be found to cajole JSBSim into duplicating magneto power settings even more accurately.  Maybe JSBSim boost could be used to give more distinct engine power
-settings.
-
 * Engine loss of power at high altitudes - JSBSim compression setting could 
 possibly use some refining it implement this feature this way rather than
 the way it is currently implemented in JSBSim.  Additionally, tweaking the
@@ -178,20 +188,26 @@ yet in the JSBSim Camel.  In general, we have a mixture setting and it needs
 to be tweaked at certain altitudes, but it doesn't exactly correspond with 
 the mixture settings that a real Camel would have needed.
 
-* Engine heating/overheating isn't implemented.
+* Engine heating/overheating isn't implemented.  Need some kind of dial or indicator?
+ 
+* Implement other engine controls--mixture, pressurizing fuel tank, etc--that required constant attention and often distracted pilots at crucial moments, as commonly described by Camel pilots.
  
 * Apparently long periods of blipping could foul the engine - this isn't 
 modelled yet.
 
-X Engine power @ various magneto settings: We now have three distinct settings--
+* Engine power @ various magneto settings: We now have three distinct settings--
 some research & testing may be required to determine whether the power output of 
-each setting matches the historically accurate amount.
+each setting matches the historically accurate amount.  Improved in 2.0 delta
+but may require more research/work.
   
 * Taxiing, beginning of takeoff roll: Currently the tail drag is steerable and has considerable control authority because that is the only way I could figure out how to make taxiing feasible in FG. But real WWI Camels had no steerable tail drag and even today pilots seem to be able to maneuver on the ground quite well using rudder, blip, etc.  So perhaps we can model this more closely; this would also help the takeoff rollout transition from tail drag to rudder control.  [Large improvements to this situation in Ver. 2.0 but perhaps even more realism can be attained.]
  
+* Some ground interactions at slow speed especially, and involving the tail drag especially, seem perhaps too sticky or bumpy. 
+
 * Ground effects: Dust could be different colors etc depending on type of ground.
 
-* FUEL: Fix fuel and/or make sure fuel consumption is modelled correctly, weight distribution changes, a/c runs out of fuel appropriately, there is some way to check fuel remaining. Fuel.nas is currently used by may have YASim specific code.
+* FUEL: Fix fuel and/or make sure fuel consumption is modelled correctly, weight distribution changes, a/c runs out of fuel appropriately, there is some way to check fuel remaining. Fuel.nas is currently used by may have YASim specific code. Fuel usage is working and at least reasonable accurate. 2.0delta upgraded
+fuel tank location & mass to be more accurate.
  
 * Generally improve ground interactions, structure breakage, etc.
  
@@ -219,7 +235,8 @@ Rembrandt, only when sitting in cockpit; figure out why & see if it can be
 fixed.
  
 * Don't do the 'nudge' thing on blip or 'n' when the chocks are in--sometimes
-it will push you out of the chocks.
+it will push you out of the chocks.  Improved in 2.0delta but may require more 
+work.
 
 * Make a companion aircraft from the same era, matched in FG development and 
 capabilities, as a ideal dogfighting partner?  Perhaps the Fokker Dr. 1 or 

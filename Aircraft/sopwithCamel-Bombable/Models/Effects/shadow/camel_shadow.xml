@@ -1,6 +1,6 @@
 <PropertyList>
 
-    <path>camel_shadow15.ac</path>
+    <path>camel_shadow16.ac</path>
     <nopreview/>
 <!--
     <offsets>
@@ -27,8 +27,37 @@
   <object-name>camel_shadow</object-name>
   <type>range</type>
   <min-m>0</min-m>
-  <max-m>2000</max-m>
+  <max-m>1000</max-m>
  </animation>  
+ 
+ <animation>
+  <object-name>camel_shadow</object-name>
+  <type>blend</type>
+  <!-- <condition>
+   <greater-than>
+    <property>/position/altitude-agl-ft</property>
+    <value>-200</value>
+   </greater-than>
+  </condition>          -->
+  <value>1</value>
+  <!-- <property>/position/gear-agl-ft</property>
+  <factor>1</factor>
+        <min>0.0</min>
+      <max>1</max>
+      
+      -->  
+  <!--
+  <expression>  
+      <sum>
+        <value>-0.2<value>
+        <product>
+          <property>/position/altitude-agl-ft</property>
+          <factor>0.001</factor>
+        </product>      
+      </sum>
+
+  </expression>  -->    
+ </animation> 
   
   <effect>
     <inherits-from>Aircraft/sopwithCamel-Bombable/Models/Effects/shadow/shadow-vol</inherits-from>

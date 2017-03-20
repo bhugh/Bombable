@@ -20,6 +20,14 @@ uniform float gear_clearance;
 const float EarthRadius = 5800000.0;
 const float terminator_width = 200000.0;
 
+
+float snoise(vec4 v)
+  {
+    float fl = ( (v.x + v.y + v.z) *1000000); 
+    return fl - floor(fl); 
+  }
+
+
 void rotationMatrixPR(in float sinRx, in float cosRx, in float sinRy, in float cosRy, out mat4 rotmat ) //, out mat4 rotmatinv)
 {
 	rotmat = mat4(	cosRy ,	sinRx * sinRy ,	cosRx * sinRy ,	0.0,
@@ -120,22 +128,32 @@ void main()
 
     //flatten it
     pos.z =  0.05 * pos.z;
-    
+    float xymult=1;
     float mult=1;
-    if (roll > 90 || roll <-90) mult=1;    
+    //if (roll > 90 || roll <-90) mult=1;    
     
     if (alt_agl < 2)  {
        if (roll > 90 || roll <-90)    {
          pos.z = -alt_agl + 0.125 + .2 + 0.05 * pos.z;  //when upside down the origin is a bit further off from the ground
+         xymult= (-alt_agl + 0.125 + .2)/alt_agl; 
        }  
        else {
          pos.z = -alt_agl + 0.125 + 0.05 * pos.z;
+         xymult= (-alt_agl + 0.125)/alt_agl;
        }
     }
-    else 
+    else if (alt_agl < 85) 
     {
          pos.z = mult * ( -0.9* alt_agl) + 0.05 * pos.z ; //keep it a bit above the ground so it doesn't disappear, when we are high enough to not notice
+         xymult= -0.9*alt_agl;
     }    
+    else  
+    {
+         pos.z = mult * ( -76.5) + 0.05 * pos.z ; //above ~85 meters AGL (at a factor of 0.9*AGL) it disappears so we are going to just keep it there & make it smaller. -76.5 = 85*-0.9
+         pos.xy = pos.xy * (7225/alt_agl/alt_agl); //85*85=7225, creates a seamless transition from above if statement to this one when AGL=85m.
+         xymult= -76.5;
+    }
+    
 
     
          
@@ -146,16 +164,26 @@ void main()
     //now rotate it back so that the flattened model is parallel to the ground
     //pos =  RotMatPR_Inv * pos;
     
-    pos = RotMatPR_Rev * pos;
+    //pos.xy += xymult * ( lightFull.xy-pos.xy)/(lightFull.z-pos.z);
     
+    
+    
+    pos = RotMatPR_Rev * pos;
+
+    //vec4 lightFull4 = (gl_ModelViewMatrixInverse * gl_LightSource[0].position);
+    //lightFull4 = RotMatPR * lightFull4;
+    //pos.xy += lightFull.xy * xymult/lightFull.z;
+        
     //pos.z  = 0.05 * (vertex.z + gear_clearance);
 
     // pos.z = pos.z - offset;
     //pos.xy -= lightFull.xy * 0.98* (alt_agl + vertex.z + gear_clearance)/lightFull.z;
     
     //pos.xy -= lightFull.xy * (vertex.z)/lightFull.z;
+    //pos.xy +=  lightFull.xy * (pos.z)/lightFull.z;
+    
 
-
+    if (alt_agl < 6 && snoise(pos)<0.001) pos.z -= -.125; //experimental, trying to get our shadow to have a bit of thickness to cover up the seam with the ground.
     
     
     /*

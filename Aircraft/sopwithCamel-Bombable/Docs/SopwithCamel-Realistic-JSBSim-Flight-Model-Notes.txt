@@ -2,7 +2,7 @@ SOPWITH CAMEL: A REALISTIC JSBSIM FLIGHT MODEL - NOTES
 
 Version 2.0
 
-Brent Hugh, 20 February 2017
+Brent Hugh, 19 March 2017
 
 brent@brenthugh.com
 
@@ -96,7 +96,7 @@ Camel-JSBSim-calcs-2011-10D.xls
 Real Sopwith Camel:
                           115 mph @ 6500 ft
                           113 mph @ 10000 ft
-                          106.5 mph @ 15000 ft
+                          106.5 mph @ 15000 ft (All True Airspeed (TAS)
                          
                          Climb to
                           6500 ft = 6 min 0 sec
