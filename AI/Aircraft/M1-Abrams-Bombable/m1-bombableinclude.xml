@@ -19,7 +19,7 @@
 			#listener function to change livery color if value is change (via dialogue for instance)
 			var m1_change_color = func(myTankNodeName) {
           
-          return;
+#          return;
           
           var damageValue = getprop(""~myTankNodeName~"/bombable/attributes/damage");
           if (damageValue==nil ) damageValue=0;
@@ -30,9 +30,9 @@
           else var base_color = "Models/camo";
           
           bombable.set_livery (cmdarg().getPath(), 
-             base_color~".png", 
+            [ base_color~".png",
              base_color~"2.png", 
-             base_color~"3.png");
+             base_color~"3.png" ]);
           
           
       		if((damageValue >= 0.15) and (damageValue < 1.0))

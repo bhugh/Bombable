@@ -5,8 +5,8 @@
  <description>S.P.A.D. VII</description>
  <author>Emmanuel BARANGER (3D/FDM), Brent Hugh (Bombable)</author>
 
- <path>../../../../Aircraft/SPAD-VII-Bombable/Models/spadvii.ac</path> 
- <texture-path>../../../../Aircraft/SPAD-VII-Bombable/Models/Liveries</texture-path>
+ <path>Aircraft/SPAD-VII-Bombable/Models/spadvii.ac</path> 
+ <texture-path>Aircraft/SPAD-VII-Bombable/Models/Liveries</texture-path>
 
  
   <animation>

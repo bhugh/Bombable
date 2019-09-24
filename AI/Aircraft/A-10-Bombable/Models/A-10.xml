@@ -6,8 +6,8 @@
 <PropertyList include="A-10-bombableinclude.xml">
 
 
-	<path>../../../../Aircraft/A-10-Bombable/Models/A10-004-015l3.ac</path>
-    <texture-path>../../../../Aircraft/A-10-Bombable/Models</texture-path>
+	<path>Aircraft/A-10-Bombable/Models/A10-004-015l3.ac</path>
+    <texture-path>Aircraft/A-10-Bombable/Models</texture-path>
 
 
 	<!-- Select the external loads as appropriate -->
