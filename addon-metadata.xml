@@ -32,7 +32,7 @@
 
         <license>
             <designation type="string">GNU GPL version 2 or later</designation>
-	    <file type="string">FGData/Docs/COPYING</file>
+	    <file type="string">Docs/COPYING</file>
             <url type="string">https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html</url>
         </license>
 
