@@ -234,7 +234,7 @@
   </controls>
   
   <input>
-    <keyboard include="../../Input/Keyboard/carrier-bindings.xml">
+    <keyboard include="Input/Keyboard/carrier-bindings.xml">
       <key n="2">
         <name>Ctrl-B</name>
         <desc>Toggle engine boost.</desc>
