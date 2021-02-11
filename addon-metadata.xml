@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+    <meta>
+        <file-type type="string">FlightGear add-on metadata</file-type>
+        <format-version type="int">1</format-version>
+    </meta>
+
+    <addon>
+        <identifier type="string">a.bhugh.Bombable</identifier>
+        <name type="string">Bombable</name>
+        <version type="string">4.7.1</version>
+
+        <authors>
+            <author>
+                <name type="string">Brent Hugh</name>
+                <email type="string"></email>
+                <url type="string"></url>
+            </author>
+        </authors>
+
+        <maintainers>
+            <maintainer>
+                <name type="string">Brent Hugh</name>
+                <email type="string"></email>
+                <url type="string"></url>
+            </maintainer>
+        </maintainers>
+
+        <short-description type="string">Bombable turns FlightGear into a combat flight simulator.</short-description>
+        <long-description type="string">Bombable is an addon for FlightGear that adds bombs, weapons, damage, fire, and explosion effects to FlightGear that work with the main aircraft, scenery, AI aircraft and other AI objects, and multiplayer aircraft objects</long-description>
+
+        <license>
+            <designation type="string">GNU GPL version 2 or later</designation>
+	    <file type="string">FGData/Docs/COPYING</file>
+            <url type="string">https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html</url>
+        </license>
+
+        <min-FG-version type="string">2018.3.0</min-FG-version>
+        <max-FG-version type="string">none</max-FG-version>
+
+        <urls>
+            <home-page type="string">http://wiki.flightgear.org/Bombable</home-page>
+            <download type="string"><![CDATA[ https://forum.flightgear.org/viewtopic.php?f=6&t=5742&p=43772#p43772 ]]></download>
+            <support type="string"><![CDATA[ https://forum.flightgear.org/viewtopic.php?f=6&t=5742&p=43772#p43772 ]]></support>
+            <code-repository type="string">https://github.com/bhugh/Bombable</code-repository>
+        </urls>
+
+        <tags>
+            <tag type="string">bombable</tag>
+            <tag type="string">combat</tag>
+        </tags>
+    </addon>
+</PropertyList>
