@@ -33,10 +33,11 @@ The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, 
 <!-- B-17s -->
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-2</callsign>
 			<name>B17_2</name>
-      <model type="string">AI/Aircraft/B-17-Bombable/Models/b17.xml</model>
+      <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">39.6802</latitude>
 			<longitude type="double">-120.2772</longitude>
 			<altitude type="double">8000</altitude>
@@ -46,10 +47,11 @@ The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, 
     </entry>
         
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-1</callsign>
 			<name>B17_1</name>
-      <model type="string">AI/Aircraft/B-17-Bombable/Models/b17.xml</model>
+      <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">39.6804</latitude>
 			<longitude type="double">-120.2776</longitude>
 			<altitude type="double">8000</altitude>
@@ -61,10 +63,11 @@ The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, 
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-3</callsign>
 			<name>B17_3</name>
-      <model type="string">AI/Aircraft/B-17-Bombable/Models/b17.xml</model>
+      <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">39.6806</latitude>
 			<longitude type="double">-120.2780</longitude>
 			<altitude type="double">8000</altitude>
@@ -74,10 +77,11 @@ The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, 
     </entry>
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-4</callsign>
 			<name>B17_4</name>
-      <model type="string">AI/Aircraft/B-17-Bombable/Models/b17.xml</model>
+      <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">39.6804</latitude>
 			<longitude type="double">-120.2784</longitude>
 			<altitude type="double">8000</altitude>
@@ -89,10 +93,11 @@ The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, 
 
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-6</callsign>
 			<name>B17_6</name>
-      <model type="string">AI/Aircraft/B-17-Bombable/Models/b17.xml</model>
+      <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">39.6802</latitude>
 			<longitude type="double">-120.2788</longitude>
 			<altitude type="double">8000</altitude>
@@ -105,10 +110,11 @@ The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, 
 
 <!--  First Zero Squadron -->
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Agate</callsign>
 			<name>F6F21</name>
-      <model type="string">AI/Aircraft/F6F-Hellcat-Bombable/Models/f6f.xml</model>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f.xml</model>
       <latitude type="double">39.6551097548720</latitude>
 			<longitude type="double">-120.2784</longitude>
 			<altitude type="double">13000</altitude>
@@ -120,10 +126,11 @@ The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, 
     </entry>
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Tampa 3</callsign>
 			<name>F6F3</name>
-      <model type="string">AI/Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
       <latitude type="double">39.6551097548720</latitude>
 			<longitude type="double">-120.2776</longitude>
 			<altitude type="double">13000</altitude>
@@ -134,10 +141,11 @@ The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, 
     </entry>
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Steele 5</callsign>
 			<name>F6F4</name>
-      <model type="string">AI/Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
       <latitude type="double">39.6551097548720</latitude>
 			<longitude type="double">-120.2772</longitude>
 			<altitude type="double">13000</altitude>
@@ -149,10 +157,11 @@ The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, 
     
     <!--  Second Zero Squadron -->    
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>99 Sniper</callsign>
 			<name>F6FA</name>
-      <model type="string">AI/Aircraft/F6F-Hellcat-Bombable/Models/f6f-royalnavy.xml</model>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-royalnavy.xml</model>
       <latitude type="double">39.6315</latitude>
 			<longitude type="double">-120.2780</longitude>
 			<altitude type="double">14000</altitude>
@@ -163,10 +172,11 @@ The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, 
     </entry>
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Ginger 30</callsign>
 			<name>F6FB</name>
-      <model type="string">AI/Aircraft/F6F-Hellcat-Bombable/Models/f6f-royalnavy.xml</model>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-royalnavy.xml</model>
       <latitude type="double">39.6315</latitude>
 			<longitude type="double">-120.2784</longitude>
 			<altitude type="double">14000</altitude>
@@ -177,10 +187,11 @@ The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, 
     </entry>
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>99 Mohawk</callsign>                
 			<name>F6FC</name>
-      <model type="string">AI/Aircraft/F6F-Hellcat-Bombable/Models/f6f-VF-27.xml</model>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-VF-27.xml</model>
       <latitude type="double">39.6315</latitude>
 			<longitude type="double">-120.2788</longitude>
 			<altitude type="double">14000</altitude>

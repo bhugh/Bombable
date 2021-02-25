@@ -22,10 +22,11 @@ Suggestion: Turn multiplayer mode off.  Marin Ranch is close to KSFO and you'll 
     
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel29</callsign>
 			<name>Camel29</name>
-      <model type="string">AI/Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model-Y.xml</model> 
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model-Y.xml</model> 
       <latitude type="double">38.0168100</latitude>
 			<longitude type="double">-122.4868</longitude>
 			<altitude type="double">250</altitude>
@@ -36,10 +37,11 @@ Suggestion: Turn multiplayer mode off.  Marin Ranch is close to KSFO and you'll 
     </entry>
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel32</callsign>
 			<name>Camel32</name>
-      <model type="string">AI/Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model> 
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model> 
       <latitude type="double">38.0178950</latitude>
 			<longitude type="double">-122.49059</longitude>
 			<altitude type="double">203</altitude>
@@ -53,10 +55,11 @@ Suggestion: Turn multiplayer mode off.  Marin Ranch is close to KSFO and you'll 
     <!-- ScrubbyPC style camels to go with them  -->
     
         <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel42</callsign>
 			<name>Camel31</name>
-      <model type="string">AI/Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model_scrubbypc.xml</model> 
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model_scrubbypc.xml</model> 
       <latitude type="double">38.0142950</latitude>
 			<longitude type="double">-122.4819</longitude>
 			<altitude type="double">259</altitude>

@@ -13,10 +13,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
 		<!-- COLUMN 1 (moving column)-->
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_22</callsign>
 			<name>tank1_22</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
       <latitude type="double">39.14506020477</latitude>
 			<longitude type="double">-94.5186</longitude>
 			<altitude>765</altitude>
@@ -26,10 +27,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     </entry>
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_24</callsign>
 			<name>tank1_24</name>
-      <model type="string">AI/Aircraft/jeep-Bombable/Models/Jeep.xml</model>
+      <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model>
       <latitude type="double">39.14506020477</latitude>
 			<longitude type="double">-94.5198</longitude>
 			<altitude>765</altitude>
@@ -42,10 +44,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>Unarmored tank1_23</callsign>
 			<name>tank1_23</name>
-			<model type="string">AI/Aircraft/M1-Abrams-Bombable/m1-unarmored.xml</model>
+			<model type="string">Aircraft/M1-Abrams-Bombable/m1-unarmored.xml</model>
       <latitude type="double">39.14506020477</latitude>
 			<longitude type="double">-94.5188</longitude>
 			<altitude type="double">765</altitude>
@@ -58,9 +61,10 @@ Install this scenario in the FlightGear/data/AI directory.</description>
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
 			<name>B17_3</name>
-      <model type="string">AI/Aircraft/B-17-Bombable/Models/b17.xml</model>
+      <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
 			<altitude type="double">5100</altitude>
       <speed>182</speed>      
       <callsign>b17-2</callsign>
@@ -71,10 +75,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
 			<name>B17_2-stationary</name>
 			<callsign>b17-2-stationary</callsign>
-      <model type="string">AI/Aircraft/B-17-Bombable/Models/b17.xml</model>
+      <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
 			<altitude type="double">5100</altitude>
       <speed>0</speed>      
       
@@ -89,10 +94,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>A6M2-1</callsign>
 			<name>A6M21</name>
-      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
+      <model type="string">Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
       
       <latitude type="double">39.00536020477</latitude>
 			<longitude type="double">-94.5162</longitude>
@@ -102,10 +108,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     </entry>
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>A6M2-1-stationary</callsign>
 			<name>A6M21-stationary</name>
-      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
+      <model type="string">Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
       
       <latitude type="double">39.00536020477</latitude>
 			<longitude type="double">-94.5162</longitude>
@@ -115,10 +122,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     </entry>
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Fokker 1</callsign>
 			<name>Fokker1</name>
-      <model type="string">AI/Aircraft/fkdr1-Bombable/Models/dr1.xml</model>
+      <model type="string">Aircraft/fkdr1-Bombable/Models/dr1.xml</model>
       <latitude type="double">39.24536020477</latitude>
 			<longitude type="double">-94.5152</longitude>
 			<altitude type="double">900</altitude>
@@ -132,10 +140,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel30</callsign>
 			<name>Camel30</name>        
-      <model type="string">AI/Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model> 
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model> 
       <latitude type="double">39.24536020477</latitude>
 			<longitude type="double">-94.5150</longitude>
 			<altitude type="double">900</altitude>
@@ -147,10 +156,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     
 
      <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>SPAD3</callsign>
 			<name>SPAD3</name>
-      <model type="string">AI/Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model> 
+      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model> 
       <latitude type="double">39.24536020477</latitude>
 			<longitude type="double">-94.5148</longitude>
 			<altitude type="double">900</altitude>
@@ -162,10 +172,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     
  
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Fokker 1</callsign>
 			<name>Fokker1</name>
-      <model type="string">AI/Aircraft/fkdr1-Bombable/Models/dr1.xml</model>
+      <model type="string">Aircraft/fkdr1-Bombable/Models/dr1.xml</model>
       <latitude type="double">39.24536020477</latitude>
 			<longitude type="double">-94.5152</longitude>
 			<altitude type="double">1800</altitude>
@@ -179,10 +190,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel30</callsign>
 			<name>Camel30</name>        
-      <model type="string">AI/Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model> 
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model> 
       <latitude type="double">39.24536020477</latitude>
 			<longitude type="double">-94.5150</longitude>
 			<altitude type="double">1800</altitude>
@@ -194,10 +206,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     
 
      <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>SPAD3</callsign>
 			<name>SPAD3</name>
-      <model type="string">AI/Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model> 
+      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model> 
       <latitude type="double">39.24536020477</latitude>
 			<longitude type="double">-94.5148</longitude>
 			<altitude type="double">1800</altitude>
@@ -212,10 +225,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>ferry1_20</callsign>
 			<name>ferry1_20</name>
-      <model type="string">AI/Aircraft/Ferry-Bombable/FerryBoat2.xml</model>
+      <model type="string">Aircraft/Ferry-Bombable/FerryBoat2.xml</model>
       <latitude type="double">39.14736020477</latitude>
 			<longitude type="double">-94.5132</longitude>
 			<altitude>600</altitude>
@@ -226,10 +240,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     </entry>
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Cessna1_20</callsign>
 			<name>Cessna1_20</name>
-      <model type="string">AI/Aircraft/c172-Bombable/c-fgfs.xml</model>
+      <model type="string">Aircraft/c172-Bombable/c-fgfs.xml</model>
       <latitude type="double">39.34536020477</latitude>
 			<longitude type="double">-94.5172</longitude>
 			<altitude>900</altitude>
@@ -240,10 +255,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     </entry>    
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Cessna1_20-stationary</callsign>
 			<name>Cessna1_20-stationary</name>
-      <model type="string">AI/Aircraft/c172-Bombable/c-fgfs.xml</model>
+      <model type="string">Aircraft/c172-Bombable/c-fgfs.xml</model>
       <latitude type="double">39.34536020477</latitude>
 			<longitude type="double">-94.5172</longitude>
 			<altitude>1800</altitude>
@@ -254,10 +270,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     </entry>    
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Warthog1_23</callsign>
 			<name>Warthog1_23</name>
-      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model>
+      <model type="string">Aircraft/A-10-Bombable/Models/A-10.xml</model>
       <latitude type="double">39.34536020477</latitude>
 			<longitude type="double">-94.5152</longitude>
 			<altitude type="double">900</altitude>
@@ -268,10 +285,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     </entry>
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Warthog1_23-stationary</callsign>
 			<name>Warthog1_23-stationary</name>
-      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model>
+      <model type="string">Aircraft/A-10-Bombable/Models/A-10.xml</model>
       <latitude type="double">39.34536020477</latitude>
 			<longitude type="double">-94.5152</longitude>
 			<altitude type="double">1800</altitude>
@@ -283,10 +301,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Steele 5</callsign>
 			<name>F6F4</name>
-      <model type="string">AI/Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
       <latitude type="double">39.44536020477</latitude>
 			<longitude type="double">-94.51762</longitude>
 			<altitude type="double">1000</altitude>
@@ -297,10 +316,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     </entry>       
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Steele 50-stationary</callsign>
 			<name>Steele 50-stationary</name>
-      <model type="string">AI/Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
       <latitude type="double">39.44536020477</latitude>
 			<longitude type="double">-94.51762</longitude>
 			<altitude type="double">1800</altitude>
@@ -312,10 +332,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     
     		<!-- aircraft -->
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Glarg</callsign>
 			<name>Glarg</name>
-      <model type="string">AI/Aircraft/ufo-Bombable/Models/ufo.xml</model>
+      <model type="string">Aircraft/ufo-Bombable/Models/ufo.xml</model>
       <latitude type="double">39.44536020477</latitude>
 			<longitude type="double">-94.51712</longitude>
 			<altitude type="double">1000</altitude>
@@ -326,10 +347,11 @@ Install this scenario in the FlightGear/data/AI directory.</description>
     </entry>
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Glarg-stationary</callsign>
 			<name>Glarg-stationary</name>
-      <model type="string">AI/Aircraft/ufo-Bombable/Models/ufo.xml</model>
+      <model type="string">Aircraft/ufo-Bombable/Models/ufo.xml</model>
       <latitude type="double">39.44536020477</latitude>
 			<longitude type="double">-94.51712</longitude>
 			<altitude type="double">1800</altitude>

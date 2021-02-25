@@ -21,10 +21,11 @@ Any aircraft that shoots guns or drops bombs can damage the Zeros and B-17.  A g
 
 <!--  Zero Squadron -->
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>A6M2-1</callsign>
 			<name>A6M21</name>
-      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
+      <model type="string">Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
       <latitude type="double">37.9051097548720</latitude>
 			<longitude type="double">-122.4614</longitude>
 			<altitude type="double">10000</altitude>
@@ -36,10 +37,11 @@ Any aircraft that shoots guns or drops bombs can damage the Zeros and B-17.  A g
     </entry>
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>A6M2-3</callsign>
 			<name>A6M23</name>
-      <model type="string">AI/Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
+      <model type="string">Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
       <latitude type="double">37.9051097548720</latitude>
 			<longitude type="double">-122.4606</longitude>
 			<altitude type="double">10000</altitude>

@@ -20,10 +20,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
 		
 		<!-- COLUMN 1 (moving column)-->
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>jeep1_20</callsign>
 			<name>jeep1_20</name>
-      <model type="string">AI/Aircraft/jeep-Bombable/Models/Jeep.xml</model>
+      <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model>
       <latitude type="double">38.08406020477</latitude>
 			<longitude type="double">-120.4176</longitude>
 			<altitude>5350</altitude>
@@ -32,10 +33,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <heading type="double">45</heading>
     </entry>
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>jeep1_21</callsign>
 			<name>jeep1_21</name>
-      <model type="string">AI/Aircraft/jeep-Bombable/Models/Jeep.xml</model>
+      <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model>
       <latitude type="double">38.08406020477</latitude>
 			<longitude type="double">-120.4180</longitude>
 			<altitude>5350</altitude>
@@ -44,10 +46,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <heading type="double">76</heading>
     </entry>
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>jeep1_22</callsign>
 			<name>jeep1_22</name>
-      <model type="string">AI/Aircraft/jeep-Bombable/Models/Jeep.xml</model> 
+      <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model> 
       <latitude type="double">38.08406020477</latitude>
 			<longitude type="double">-120.4186</longitude>
 			<altitude>5350</altitude>
@@ -56,10 +59,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <heading type="double">45</heading>
     </entry>
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>jeep1_23</callsign>
 			<name>jeep1_23</name>
-      <model type="string">AI/Aircraft/jeep-Bombable/Models/Jeep.xml</model>
+      <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model>
       <latitude type="double">38.08406020477</latitude>
 			<longitude type="double">-120.4188</longitude>
 			<altitude type="double">5350</altitude>
@@ -68,10 +72,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <heading type="double">45</heading>
     </entry>
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>jeep1_24</callsign>
 			<name>jeep1_24</name>
-      <model type="string">AI/Aircraft/jeep-Bombable/Models/Jeep.xml</model>
+      <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model>
       <latitude type="double">38.08406020477</latitude>
 			<longitude type="double">-120.4198</longitude>
 			<altitude>5350</altitude>
@@ -80,10 +85,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <heading type="double">45</heading>
     </entry>
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>jeep1_25</callsign>
 			<name>jeep1_25</name>
-      <model type="string">AI/Aircraft/jeep-Bombable/Models/Jeep.xml</model> 
+      <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model> 
       <latitude type="double">38.08406020477</latitude>
 			<longitude type="double">-120.4192</longitude>
 			<altitude>5350</altitude>
@@ -94,10 +100,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_26</callsign>
 			<name>tank1_26</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
       <latitude type="double">38.08436020477</latitude>
 			<longitude type="double">-120.4192</longitude>
 			<altitude>5350</altitude>
@@ -108,10 +115,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_27</callsign>
 			<name>tank1_27</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
       <latitude type="double">38.08436020477</latitude>
 			<longitude type="double">-120.4182</longitude>
 			<altitude>5350</altitude>
@@ -122,10 +130,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_28</callsign>
 			<name>tank1_28</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
       <latitude type="double">38.08436020477</latitude>
 			<longitude type="double">-120.4172</longitude>
 			<altitude>5350</altitude>
@@ -136,10 +145,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_29</callsign>
 			<name>tank1_29</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
       <latitude type="double">38.08436020477</latitude>
 			<longitude type="double">-120.4162</longitude>
 			<altitude>5350</altitude>
@@ -150,10 +160,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_30</callsign>
 			<name>tank1_30</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
       <latitude type="double">38.08436020477</latitude>
 			<longitude type="double">-120.4152</longitude>
 			<altitude>5350</altitude>

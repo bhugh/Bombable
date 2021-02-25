@@ -20,10 +20,11 @@ Any aircraft that shoots guns or drops bombs can damage the Warthogs.  The Fairc
 		
 		<!-- COLUMN 1 (moving column)-->
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Warthog1_20</callsign>
 			<name>Warthog1_20</name>
-      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model>
+      <model type="string">Aircraft/A-10-Bombable/Models/A-10.xml</model>
       <latitude type="double">37.608720</latitude>
 			<longitude type="double">-122.3076</longitude>
 			<altitude type="double">309</altitude>
@@ -35,10 +36,11 @@ Any aircraft that shoots guns or drops bombs can damage the Warthogs.  The Fairc
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Warthog1_23</callsign>
 			<name>Warthog1_23</name>
-      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model>
+      <model type="string">Aircraft/A-10-Bombable/Models/A-10.xml</model>
       <latitude type="double">37.608200</latitude>
 			<longitude type="double">-122.2988</longitude>
 			<altitude type="double">309</altitude>
@@ -50,10 +52,11 @@ Any aircraft that shoots guns or drops bombs can damage the Warthogs.  The Fairc
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Warthog1_26</callsign>
 			<name>Warthog1_26</name>
-      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model> 
+      <model type="string">Aircraft/A-10-Bombable/Models/A-10.xml</model> 
       <latitude type="double">37.608470</latitude>
 			<longitude type="double">-122.2692</longitude>
 			<altitude type="double">309</altitude>
@@ -66,10 +69,11 @@ Any aircraft that shoots guns or drops bombs can damage the Warthogs.  The Fairc
     
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Warthog1_29</callsign>
 			<name>Warthog1_29</name>
-      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model> 
+      <model type="string">Aircraft/A-10-Bombable/Models/A-10.xml</model> 
       <latitude type="double">37.608100</latitude>
 			<longitude type="double">-122.2368</longitude>
 			<altitude type="double">309</altitude>
@@ -81,10 +85,11 @@ Any aircraft that shoots guns or drops bombs can damage the Warthogs.  The Fairc
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Warthog1_30</callsign>
 			<name>Warthog1_30</name>        
-      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model> 
+      <model type="string">Aircraft/A-10-Bombable/Models/A-10.xml</model> 
       <latitude type="double">37.608950</latitude>
 			<longitude type="double">-122.2059</longitude>
 			<altitude type="double">309</altitude>
@@ -95,10 +100,11 @@ Any aircraft that shoots guns or drops bombs can damage the Warthogs.  The Fairc
     </entry>
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Warthog1_31</callsign>
 			<name>Warthog1_31</name>
-      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model> 
+      <model type="string">Aircraft/A-10-Bombable/Models/A-10.xml</model> 
       <latitude type="double">37.608950</latitude>
 			<longitude type="double">-122.1759</longitude>
 			<altitude type="double">98</altitude>
@@ -109,10 +115,11 @@ Any aircraft that shoots guns or drops bombs can damage the Warthogs.  The Fairc
     </entry>
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Warthog1_32</callsign>
 			<name>Warthog1_32</name>
-      <model type="string">AI/Aircraft/A-10-Bombable/Models/A-10.xml</model> 
+      <model type="string">Aircraft/A-10-Bombable/Models/A-10.xml</model> 
       <latitude type="double">37.608950</latitude>
 			<longitude type="double">-122.14059</longitude>
 			<altitude type="double">90</altitude>

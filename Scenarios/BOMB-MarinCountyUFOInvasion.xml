@@ -22,10 +22,11 @@ Suggestion: Turn multiplayer mode off.  Marin Ranch is close to KSFO and you'll 
 		
 		<!-- aircraft -->
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Mrrmphk</callsign>
 			<name>Mrrmphk</name>
-      <model type="string">AI/Aircraft/ufo-Bombable/Models/ufo.xml</model>
+      <model type="string">Aircraft/ufo-Bombable/Models/ufo.xml</model>
       <latitude type="double">38.024</latitude>
 			<longitude type="double">-122.51</longitude>
 			<altitude type="double">3100</altitude>
@@ -39,10 +40,11 @@ Suggestion: Turn multiplayer mode off.  Marin Ranch is close to KSFO and you'll 
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Glarg</callsign>
 			<name>Glarg</name>        
-      <model type="string">AI/Aircraft/ufo-Bombable/Models/ufo.xml</model> 
+      <model type="string">Aircraft/ufo-Bombable/Models/ufo.xml</model> 
       <latitude type="double">38.0228950</latitude>
 			<longitude type="double">-122.4959</longitude>
 			<altitude type="double">3125</altitude>
@@ -54,10 +56,11 @@ Suggestion: Turn multiplayer mode off.  Marin Ranch is close to KSFO and you'll 
     
 
      <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Slork</callsign>
 			<name>Slork</name>        
-      <model type="string">AI/Aircraft/ufo-Bombable/Models/ufo.xml</model> 
+      <model type="string">Aircraft/ufo-Bombable/Models/ufo.xml</model> 
       <latitude type="double">38.04</latitude>
 			<longitude type="double">-122.51</longitude>
 			<altitude type="double">3115</altitude>

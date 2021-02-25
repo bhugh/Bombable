@@ -30,10 +30,11 @@ The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, 
 
 <!--  First Hellcate Squadron -->
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Agate</callsign>
 			<name>F6F21</name>
-      <model type="string">AI/Aircraft/F6F-Hellcat-Bombable/Models/f6f.xml</model>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f.xml</model>
       <latitude type="double">39.6551097548720</latitude>
 			<longitude type="double">-120.2784</longitude>
 			<altitude type="double">13000</altitude>
@@ -45,10 +46,11 @@ The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, 
     </entry>
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Tampa 3</callsign>
 			<name>F6F3</name>
-      <model type="string">AI/Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
       <latitude type="double">39.6551097548720</latitude>
 			<longitude type="double">-120.2776</longitude>
 			<altitude type="double">13000</altitude>

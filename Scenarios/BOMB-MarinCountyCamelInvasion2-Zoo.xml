@@ -24,10 +24,11 @@ Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and T
 		
 		<!-- COLUMN 1 (moving column)-->
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel20</callsign>
 			<name>Camel20</name>
-      <model type="string">AI/Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model>
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model>
       <latitude type="double">38.01099548720</latitude>
 			<longitude type="double">-122.4876</longitude>
 			<altitude type="double">170</altitude>
@@ -40,10 +41,11 @@ Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and T
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Fokker 1</callsign>
 			<name>Fokker1</name>
-      <model type="string">AI/Aircraft/Models/fkdr1/dr1.xml</model>
+      <model type="string">Aircraft/Models/fkdr1/dr1.xml</model>
       <latitude type="double">37.0119878200</latitude>
 			<longitude type="double">-122.4888</longitude>
 			<altitude type="double">209</altitude>
@@ -55,10 +57,11 @@ Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and T
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>SPAD1</callsign>
 			<name>SPAD1</name>
-      <model type="string">AI/Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model> 
+      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model> 
       <latitude type="double">38.0181470</latitude>
 			<longitude type="double">-122.4792</longitude>
 			<altitude type="double">224</altitude>
@@ -71,10 +74,11 @@ Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and T
     
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel29</callsign>
 			<name>Camel29</name>
-      <model type="string">AI/Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model-Y.xml</model> 
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model-Y.xml</model> 
       <latitude type="double">38.0168100</latitude>
 			<longitude type="double">-122.4868</longitude>
 			<altitude type="double">200</altitude>
@@ -86,10 +90,11 @@ Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and T
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Fokker 8</callsign>
 			<name>Fokker8</name>        
-      <model type="string">AI/Aircraft/fkdr1-Bombable/Models/dr1.xml</model> 
+      <model type="string">Aircraft/fkdr1-Bombable/Models/dr1.xml</model> 
       <latitude type="double">38.0138950</latitude>
 			<longitude type="double">-122.4959</longitude>
 			<altitude type="double">159</altitude>
@@ -100,10 +105,11 @@ Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and T
     </entry>
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>SPAD2</callsign>
 			<name>SPAD2</name>
-      <model type="string">AI/Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model> 
+      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model> 
       <latitude type="double">38.0118950</latitude>
 			<longitude type="double">-122.4859</longitude>
 			<altitude type="double">259</altitude>
@@ -114,10 +120,11 @@ Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and T
     </entry>
     
         <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel32</callsign>
 			<name>Camel32</name>
-      <model type="string">AI/Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model> 
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model> 
       <latitude type="double">38.0178950</latitude>
 			<longitude type="double">-122.49059</longitude>
 			<altitude type="double">203</altitude>
@@ -128,10 +135,11 @@ Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and T
     </entry>
 
      <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel31</callsign>
 			<name>Camel31</name>
-      <model type="string">AI/Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model-Y.xml</model> 
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model-Y.xml</model> 
       <latitude type="double">38.0158950</latitude>
 			<longitude type="double">-122.4959</longitude>
 			<altitude type="double">370</altitude>
@@ -142,10 +150,11 @@ Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and T
     </entry>
 
      <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>SPAD3</callsign>
 			<name>SPAD3</name>
-      <model type="string">AI/Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model> 
+      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model> 
       <latitude type="double">38.0178950</latitude>
 			<longitude type="double">-122.4959</longitude>
 			<altitude type="double">105</altitude>
@@ -158,10 +167,11 @@ Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and T
     <!-- ScrubbyPC style camels to go with them  -->
     
         <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel42</callsign>
 			<name>Camel31</name>
-      <model type="string">AI/Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model_scrubbypc.xml</model> 
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model_scrubbypc.xml</model> 
       <latitude type="double">38.0112950</latitude>
 			<longitude type="double">-122.4819</longitude>
 			<altitude type="double">259</altitude>
@@ -172,10 +182,11 @@ Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and T
     </entry>
     
         <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel43</callsign>
 			<name>Camel32</name>
-      <model type="string">AI/Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model_scrubbypc.xml</model> 
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model_scrubbypc.xml</model> 
       <latitude type="double">38.0172950</latitude>
 			<longitude type="double">-122.49859</longitude>
 			<altitude type="double">203</altitude>
@@ -186,10 +197,11 @@ Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and T
     </entry>
 
      <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Fokker 2</callsign>
 			<name>Fokker2</name>
-      <model type="string">AI/Aircraft/fkdr1-Bombable/Models/dr1.xml</model> 
+      <model type="string">Aircraft/fkdr1-Bombable/Models/dr1.xml</model> 
       <latitude type="double">38.0152950</latitude>
 			<longitude type="double">-122.4939</longitude>
 			<altitude type="double">376</altitude>
@@ -200,10 +212,11 @@ Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and T
     </entry>
 
      <entry>
+      <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Fokker 3</callsign>
 			<name>Fokker2</name>
-      <model type="string">AI/Aircraft/fkdr1-Bombable/Models/dr1.xml</model> 
+      <model type="string">Aircraft/fkdr1-Bombable/Models/dr1.xml</model> 
       <latitude type="double">38.0172950</latitude>
 			<longitude type="double">-122.4909</longitude>
 			<altitude type="double">105</altitude>

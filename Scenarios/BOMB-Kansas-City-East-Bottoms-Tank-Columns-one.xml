@@ -13,15 +13,16 @@ To damage the tanks takes a direct hit from a machine gun or heavy gun, or a clo
 			
 Approximate lat and long of starting point of the tank formation: 39.145,-94.518
 			
-Install this scenario in the FlightGear/data/AI directory.  The scenario requires the improved M-1 Abrams Tank AI model to be installed in FG/AI/Aircraft.		
+Install this scenario in the FlightGear/data/AI directory.  The scenario requires the improved M-1 Abrams Tank AI model to be installed in FG/Aircraft.		
 
 Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchild A-10 Thunderbolt is a great choice - http://wiki.flightgear.org/index.php/Fairchild_A-10 </description>
 		<!-- COLUMN 1 (moving column)-->
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_20</callsign>
 			<name>tank1_20</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.14506020477</latitude>
 			<longitude type="double">-94.5176</longitude>
 			<altitude>765</altitude>
@@ -30,10 +31,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <heading type="double">197</heading>
     </entry>
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_21</callsign>
 			<name>tank1_21</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.14506020477</latitude>
 			<longitude type="double">-94.5180</longitude>
 			<altitude>765</altitude>
@@ -42,10 +44,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <heading type="double">197</heading>
     </entry>
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_22</callsign>
 			<name>tank1_22</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
       <latitude type="double">39.14506020477</latitude>
 			<longitude type="double">-94.5186</longitude>
 			<altitude>765</altitude>
@@ -54,10 +57,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <heading type="double">197</heading>
     </entry>
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_23</callsign>
 			<name>tank1_23</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.14506020477</latitude>
 			<longitude type="double">-94.5188</longitude>
 			<altitude type="double">765</altitude>
@@ -66,10 +70,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <heading type="double">197</heading>
     </entry>
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_24</callsign>
 			<name>tank1_24</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.14506020477</latitude>
 			<longitude type="double">-94.5198</longitude>
 			<altitude>765</altitude>
@@ -78,10 +83,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <heading type="double">197</heading>
     </entry>
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_25</callsign>
 			<name>tank1_25</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
       <latitude type="double">39.14506020477</latitude>
 			<longitude type="double">-94.5192</longitude>
 			<altitude>765</altitude>
@@ -92,10 +98,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_26</callsign>
 			<name>tank1_26</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
       <latitude type="double">39.14536020477</latitude>
 			<longitude type="double">-94.5192</longitude>
 			<altitude>765</altitude>
@@ -106,10 +113,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_27</callsign>
 			<name>tank1_27</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
       <latitude type="double">39.14536020477</latitude>
 			<longitude type="double">-94.5182</longitude>
 			<altitude>765</altitude>
@@ -120,10 +128,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_28</callsign>
 			<name>tank1_28</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
       <latitude type="double">39.14536020477</latitude>
 			<longitude type="double">-94.5172</longitude>
 			<altitude>765</altitude>
@@ -134,10 +143,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_29</callsign>
 			<name>tank1_29</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
       <latitude type="double">39.14536020477</latitude>
 			<longitude type="double">-94.5162</longitude>
 			<altitude>765</altitude>
@@ -148,10 +158,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_30</callsign>
 			<name>tank1_30</name>
-      <model type="string">AI/Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
       <latitude type="double">39.14536020477</latitude>
 			<longitude type="double">-94.5152</longitude>
 			<altitude>765</altitude>

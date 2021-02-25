@@ -18,10 +18,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
 		
 		<!-- COLUMN 1 (moving column)-->
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>ferry1_20</callsign>
 			<name>ferry1_20</name>
-      <model type="string">AI/Aircraft/Ferry-Bombable/FerryBoat2.xml</model>
+      <model type="string">Aircraft/Ferry-Bombable/FerryBoat2.xml</model>
       <latitude type="double">37.608720</latitude>
 			<longitude type="double">-122.3076</longitude>
 			<altitude>-3</altitude>
@@ -33,10 +34,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>ferry1_23</callsign>
 			<name>ferry1_23</name>
-      <model type="string">AI/Aircraft/Ferry-Bombable/FerryBoat1.xml</model>
+      <model type="string">Aircraft/Ferry-Bombable/FerryBoat1.xml</model>
       <latitude type="double">37.608200</latitude>
 			<longitude type="double">-122.2988</longitude>
 			<altitude type="double">-3</altitude>
@@ -48,10 +50,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
 
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>ferry1_26</callsign>
 			<name>ferry1_26</name>
-      <model type="string">AI/Aircraft/Ferry-Bombable/FerryBoat2.xml</model> 
+      <model type="string">Aircraft/Ferry-Bombable/FerryBoat2.xml</model> 
       <latitude type="double">37.608470</latitude>
 			<longitude type="double">-122.2692</longitude>
 			<altitude>-3</altitude>
@@ -64,10 +67,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
     
 
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>ferry1_29</callsign>
 			<name>ferry1_29</name>
-      <model type="string">AI/Aircraft/Ferry-Bombable/FerryBoat1.xml</model> 
+      <model type="string">Aircraft/Ferry-Bombable/FerryBoat1.xml</model> 
       <latitude type="double">37.608100</latitude>
 			<longitude type="double">-122.2368</longitude>
 			<altitude>-3</altitude>
@@ -79,10 +83,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
     
     
     <entry>
+      <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>ferry1_30</callsign>
 			<name>ferry1_30</name>
-      <model type="string">AI/Aircraft/Ferry-Bombable/FerryBoat2.xml</model> 
+      <model type="string">Aircraft/Ferry-Bombable/FerryBoat2.xml</model> 
       <latitude type="double">37.608950</latitude>
 			<longitude type="double">-122.2059</longitude>
 			<altitude>-3</altitude>
