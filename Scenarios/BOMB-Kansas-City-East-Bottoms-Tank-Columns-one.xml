@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
   <scenario>
+    <name>Bombable: (KMKC) Another 11 M1 tanks at East Bottoms near Kansas City</name>
     <description>This scenario puts a formation of M1 Abrams tanks headed due south.
        
 The M1 Abrams are air-to-ground targets, you can damage them with bombs or heavy guns.  Can you stop them before they reach downtown Kansas City?

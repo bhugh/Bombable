@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
   <scenario>
+    <name>Bombable: (KSFO) Cessnas (armed) near San Francisco</name>
     <description>This scenario puts a fleet of Cessnas in the skies of San Francisco Bay near the San Francisco International Airport (KSFO).
 
 The fleet starts just east of the airport and proceeds on a northerly heading at 1300 feet AGL.  If you take off runway 1R or 1L, when you get airborne look to your right and you will see a row of Cessnas there.

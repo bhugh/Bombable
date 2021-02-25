@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
   <scenario>
+    <name>Bombable: (CA35) B-17s with Hellcat escorts over Marin County</name>
     <description>This scenario puts a squadron of B-17 bombers, with two squadrons of Grumman F6F Hellcats flying cover, over the Marin Ranch Airport, CA35.
 		
 Your mission is to down the bombers and the fighters - which will swarm and attack you.

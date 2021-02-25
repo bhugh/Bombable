@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
   <scenario>
+    <name>Bombable: (KSUN) 11 more M1 tanks near Sun Valley</name>
     <description>This scenario puts a division of M1 Abrams tanks moving through the mountains near Sun Valley, Idaho near Friedman Memorial Airport, KSUN.
        
 The M1 Abrams are air-to-ground targets, you can damage them with bombs or heavy guns.  It is very challenging to track and target the tanks moving through the mountains and valleys.

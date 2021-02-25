@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
   <scenario>
+    <name>Bombable: (CA35) B-17s escorted by Zeroes over Marin Ranch CA</name>
     <description>This scenario puts a squadron of B-17 bombers, with two squadrons of A6M2 Zeros flying cover, over the Marin Ranch Airport, CA35.
 		
 Your mission is to down the bombers and the fighters - which will swarm and attack you.

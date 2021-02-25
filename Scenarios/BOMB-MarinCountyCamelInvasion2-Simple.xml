@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
   <scenario>
+    <name>Bombable: (CA35) 3 Camel over Marin County</name>
     <description>This scenario puts three of Sopwith Camels in the skies over Marin County, starting at the Marin Ranch Airport, CA35.
 
 If you take off from runway 22 of the Marin Ranch Airport (CA35), the planes will be directly above you and around the airport as you take off.  The planes will find and start to attack you.

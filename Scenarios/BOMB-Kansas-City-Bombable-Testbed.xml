@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
   <scenario>
+    <name>Bombable: (KMKC) every bombable aircraft near Kansas City for testing</name>
     <description>This scenario puts every bombable aircraft and object in place near KMKC airport.
 
 One of each type is moving and one stationary.

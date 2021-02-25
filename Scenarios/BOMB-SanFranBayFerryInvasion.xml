@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
   <scenario>
+    <name>Bombable: (KSFO) Ferries (with AA defenses!) near San Francisco</name>
     <description>This scenario puts a fleet of ferries in San Francisco Bay near the San Francisco International Airport (KSFO).
 
 The ferry fleet starts just east of the airport and proceeds on a northerly heading. Start on Runway 1R or 1L and you should see the ships just as you come off the end of the runway.

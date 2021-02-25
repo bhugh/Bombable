@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
   <scenario>
+    <name>Bombable: (O22) 11 more M1 tanks near Columbia</name>
     <description>This scenario puts a division of M1 Abrams tanks moving through the mountains near the Columbia, CA, Airport (022).
 
 The tank formation starts in a deep valley.  To find the valley start on Runway 35 of the Columbia Airport (022) and proceed due north, heading 360.  Soon you will see a deep valley with a river running down it (actually and arm of New Melones Lake).  The tank formation starts there and moves north-north-east from there at a heading of 32.5 degrees at 6 MPH.  This mostly keeps them in the bottom of the deep valley, making them very difficult to locate and hit.

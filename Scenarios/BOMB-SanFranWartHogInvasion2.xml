@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
   <scenario>
+    <name>Bombable: (KSFO) 7 A-10 near San Francisco</name>
     <description>This scenario puts a fleet of Warthogs in the skies of San Francisco Bay near the San Francisco International Airport (KSFO).
 
 The fleet starts just east of the airport and proceeds on a northerly heading at 1300 feet AGL.  If you take off runway 1R or 1L, climb to 300 feet and turn right to heading 90.  In front of you will be the contrails of several Warthogs moving in a generally easterly direction through the hills.

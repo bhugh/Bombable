@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
   <scenario>
+    <name>Bombable: (CA35) Lots of Camels, SPADs and DR1 over Marin County</name>
     <description>This scenario puts a fleet of Sopwith Camels, SPAD VIIs, and Fokker DR 1 Triplanes in the skies over Marin County, starting at the Marin Ranch Airport, CA35.
 
 If you take off from runway 22 of the Marin Ranch Airport (CA35), the planes will be directly above you as you take off, headed in a westerly direction.

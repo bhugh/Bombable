@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
   <scenario>
+    <name>Bombable: (KLXT) 12 easy M1 tanks near the runway</name>
     <description>
 			This scenario puts many M1 Abrams tanks at the Lee's Summit Airport, KLXT.
       
@@ -167,8 +168,21 @@
       <speed>0.001</speed>
       <heading type="double">90</heading>
     </entry>
-    <entry><search-order>PREFER_AI</search-order><type>ship</type><callsign>tank11</callsign><name>tank11</name><heading type="double">240</heading><pitch type="double">-0.2</pitch><roll type="double">0.9</roll>CVC
-			<model type="string">Aircraft/M1-Abrams-Bombable/m1-unarmored.xml</model><latitude type="double">38.9593061</latitude><longitude type="double">-94.37451143</longitude><altitude type="double">1005</altitude><speed>0.001</speed><heading type="double">90</heading></entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>tank11</callsign>
+      <name>tank11</name>
+      <heading type="double">240</heading>
+      <pitch type="double">-0.2</pitch>
+      <roll type="double">0.9</roll>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1-unarmored.xml</model>
+      <latitude type="double">38.9593061</latitude>
+      <longitude type="double">-94.37451143</longitude>
+      <altitude type="double">1005</altitude>
+      <speed>0.001</speed>
+      <heading type="double">90</heading>
+    </entry>
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
