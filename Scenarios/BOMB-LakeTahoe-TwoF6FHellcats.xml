@@ -1,6 +1,7 @@
-<?xml version="1.0"?> <PropertyList> 
-<scenario> 
-<description>
+<?xml version="1.0"?>
+<PropertyList>
+  <scenario>
+    <description>
 This scenario puts two Grumman F6F Hellcats in the Sierra Nevada mountains near Lake Tahoe.
 
 Your mission is to down the fighters - which will swarm and attack you.
@@ -25,42 +26,34 @@ Any aircraft that shoots guns or drops bombs can damage the F6F and B-17. A good
 
 The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, and more resistant to damage. In WW2, the F6F held a 13:1 kill ratio over the Zero. So if you fly the Zero against the F6F, you have your work cut out for you!
 </description>
-		
-
-
-<!--  First Hellcate Squadron -->
+    <!--  First Hellcate Squadron -->
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Agate</callsign>
-			<name>F6F21</name>
+      <name>F6F21</name>
       <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f.xml</model>
       <latitude type="double">39.6551097548720</latitude>
-			<longitude type="double">-120.2784</longitude>
-			<altitude type="double">13000</altitude>
+      <longitude type="double">-120.2784</longitude>
+      <altitude type="double">13000</altitude>
       <speed>260</speed>
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
-      
     </entry>
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Tampa 3</callsign>
-			<name>F6F3</name>
+      <name>F6F3</name>
       <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
       <latitude type="double">39.6551097548720</latitude>
-			<longitude type="double">-120.2776</longitude>
-			<altitude type="double">13000</altitude>
+      <longitude type="double">-120.2776</longitude>
+      <altitude type="double">13000</altitude>
       <speed>245</speed>
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
     </entry>
-    
-    
-        
-	</scenario>
+  </scenario>
 </PropertyList>

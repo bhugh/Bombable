@@ -1,6 +1,7 @@
-<?xml version="1.0"?> <PropertyList> 
-<scenario> 
-<description>
+<?xml version="1.0"?>
+<PropertyList>
+  <scenario>
+    <description>
 This scenario puts a squadron of B-17 bombers, with two squadrons of Grumman F6F Hellcats flying cover, in the Sierra Nevadamountains near Lake Tahoe.
 
 Your mission is to down the bombers and the fighters - which willswarm and attack you.
@@ -29,180 +30,157 @@ Any aircraft that shoots guns or drops bombs can damage the F6F and B-17. A good
 
 The F6F was a superior fighter to the A6M2--faster, with more powerful weapons, and more resistant to damage. In WW2, the F6F held a 13:1 kill ratio over the Zero. So if you fly the Zero against the F6F, you have your work cut out for you!
 </description>
-		
-<!-- B-17s -->
-
+    <!-- B-17s -->
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-2</callsign>
-			<name>B17_2</name>
+      <name>B17_2</name>
       <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">39.6802</latitude>
-			<longitude type="double">-120.2772</longitude>
-			<altitude type="double">8000</altitude>
+      <longitude type="double">-120.2772</longitude>
+      <altitude type="double">8000</altitude>
       <speed>182</speed>
       <bank type="double">0</bank>
       <heading type="double">10</heading>
     </entry>
-        
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-1</callsign>
-			<name>B17_1</name>
+      <name>B17_1</name>
       <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">39.6804</latitude>
-			<longitude type="double">-120.2776</longitude>
-			<altitude type="double">8000</altitude>
+      <longitude type="double">-120.2776</longitude>
+      <altitude type="double">8000</altitude>
       <speed>182</speed>
       <bank type="double">0</bank>
       <heading type="double">10</heading>
     </entry>
-
-
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-3</callsign>
-			<name>B17_3</name>
+      <name>B17_3</name>
       <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">39.6806</latitude>
-			<longitude type="double">-120.2780</longitude>
-			<altitude type="double">8000</altitude>
+      <longitude type="double">-120.2780</longitude>
+      <altitude type="double">8000</altitude>
       <speed>182</speed>
       <bank type="double">0</bank>
       <heading type="double">10</heading>
     </entry>
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-4</callsign>
-			<name>B17_4</name>
+      <name>B17_4</name>
       <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">39.6804</latitude>
-			<longitude type="double">-120.2784</longitude>
-			<altitude type="double">8000</altitude>
+      <longitude type="double">-120.2784</longitude>
+      <altitude type="double">8000</altitude>
       <speed>182</speed>
       <bank type="double">0</bank>
       <heading type="double">10</heading>
     </entry>
-    
-
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-6</callsign>
-			<name>B17_6</name>
+      <name>B17_6</name>
       <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">39.6802</latitude>
-			<longitude type="double">-120.2788</longitude>
-			<altitude type="double">8000</altitude>
+      <longitude type="double">-120.2788</longitude>
+      <altitude type="double">8000</altitude>
       <speed>182</speed>
       <bank type="double">0</bank>
       <heading type="double">10</heading>
     </entry>
-
-
-
-<!--  First Zero Squadron -->
+    <!--  First Zero Squadron -->
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Agate</callsign>
-			<name>F6F21</name>
+      <name>F6F21</name>
       <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f.xml</model>
       <latitude type="double">39.6551097548720</latitude>
-			<longitude type="double">-120.2784</longitude>
-			<altitude type="double">13000</altitude>
+      <longitude type="double">-120.2784</longitude>
+      <altitude type="double">13000</altitude>
       <speed>260</speed>
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
-      
     </entry>
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Tampa 3</callsign>
-			<name>F6F3</name>
+      <name>F6F3</name>
       <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
       <latitude type="double">39.6551097548720</latitude>
-			<longitude type="double">-120.2776</longitude>
-			<altitude type="double">13000</altitude>
+      <longitude type="double">-120.2776</longitude>
+      <altitude type="double">13000</altitude>
       <speed>245</speed>
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
     </entry>
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Steele 5</callsign>
-			<name>F6F4</name>
+      <name>F6F4</name>
       <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
       <latitude type="double">39.6551097548720</latitude>
-			<longitude type="double">-120.2772</longitude>
-			<altitude type="double">13000</altitude>
+      <longitude type="double">-120.2772</longitude>
+      <altitude type="double">13000</altitude>
       <speed>259</speed>
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
-    </entry>    
-    
-    <!--  Second Zero Squadron -->    
+    </entry>
+    <!--  Second Zero Squadron -->
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>99 Sniper</callsign>
-			<name>F6FA</name>
+      <name>F6FA</name>
       <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-royalnavy.xml</model>
       <latitude type="double">39.6315</latitude>
-			<longitude type="double">-120.2780</longitude>
-			<altitude type="double">14000</altitude>
+      <longitude type="double">-120.2780</longitude>
+      <altitude type="double">14000</altitude>
       <speed>245</speed>
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
     </entry>
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Ginger 30</callsign>
-			<name>F6FB</name>
+      <name>F6FB</name>
       <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-royalnavy.xml</model>
       <latitude type="double">39.6315</latitude>
-			<longitude type="double">-120.2784</longitude>
-			<altitude type="double">14000</altitude>
+      <longitude type="double">-120.2784</longitude>
+      <altitude type="double">14000</altitude>
       <speed>255</speed>
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
     </entry>
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
-      <callsign>99 Mohawk</callsign>                
-			<name>F6FC</name>
+      <callsign>99 Mohawk</callsign>
+      <name>F6FC</name>
       <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-VF-27.xml</model>
       <latitude type="double">39.6315</latitude>
-			<longitude type="double">-120.2788</longitude>
-			<altitude type="double">14000</altitude>
-      <speed>250</speed>                 
+      <longitude type="double">-120.2788</longitude>
+      <altitude type="double">14000</altitude>
+      <speed>250</speed>
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
     </entry>
-
-    
-    
-        
-	</scenario>
+  </scenario>
 </PropertyList>

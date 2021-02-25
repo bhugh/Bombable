@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
-	<scenario>
-		<description>This scenario puts a fleet of ferries in San Francisco Bay near the San Francisco International Airport (KSFO).
+  <scenario>
+    <description>This scenario puts a fleet of ferries in San Francisco Bay near the San Francisco International Airport (KSFO).
 
 The ferry fleet starts just east of the airport and proceeds on a northerly heading. Start on Runway 1R or 1L and you should see the ships just as you come off the end of the runway.
 
@@ -15,88 +15,76 @@ Install this scenario in the FlightGear/data/AI directory.
 
 Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchild A-10 Thunderbolt is a great choice - http://wiki.flightgear.org/index.php/Fairchild_A-10
 		</description>
-		
-		<!-- COLUMN 1 (moving column)-->
+    <!-- COLUMN 1 (moving column)-->
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>ferry1_20</callsign>
-			<name>ferry1_20</name>
+      <name>ferry1_20</name>
       <model type="string">Aircraft/Ferry-Bombable/FerryBoat2.xml</model>
       <latitude type="double">37.608720</latitude>
-			<longitude type="double">-122.3076</longitude>
-			<altitude>-3</altitude>
+      <longitude type="double">-122.3076</longitude>
+      <altitude>-3</altitude>
       <speed>25.0</speed>
       <rudder type="double">-40</rudder>
       <bank type="double">-40</bank>
       <heading type="double">355</heading>
     </entry>
-
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>ferry1_23</callsign>
-			<name>ferry1_23</name>
+      <name>ferry1_23</name>
       <model type="string">Aircraft/Ferry-Bombable/FerryBoat1.xml</model>
       <latitude type="double">37.608200</latitude>
-			<longitude type="double">-122.2988</longitude>
-			<altitude type="double">-3</altitude>
+      <longitude type="double">-122.2988</longitude>
+      <altitude type="double">-3</altitude>
       <speed>25.0</speed>
       <rudder type="double">-35</rudder>
       <bank type="double">-35</bank>
       <heading type="double">350</heading>
     </entry>
-
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>ferry1_26</callsign>
-			<name>ferry1_26</name>
-      <model type="string">Aircraft/Ferry-Bombable/FerryBoat2.xml</model> 
+      <name>ferry1_26</name>
+      <model type="string">Aircraft/Ferry-Bombable/FerryBoat2.xml</model>
       <latitude type="double">37.608470</latitude>
-			<longitude type="double">-122.2692</longitude>
-			<altitude>-3</altitude>
+      <longitude type="double">-122.2692</longitude>
+      <altitude>-3</altitude>
       <speed>25.0</speed>
       <rudder type="double">55</rudder>
       <bank type="double">55</bank>
       <heading type="double">338</heading>
     </entry>
-    
-    
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>ferry1_29</callsign>
-			<name>ferry1_29</name>
-      <model type="string">Aircraft/Ferry-Bombable/FerryBoat1.xml</model> 
+      <name>ferry1_29</name>
+      <model type="string">Aircraft/Ferry-Bombable/FerryBoat1.xml</model>
       <latitude type="double">37.608100</latitude>
-			<longitude type="double">-122.2368</longitude>
-			<altitude>-3</altitude>
+      <longitude type="double">-122.2368</longitude>
+      <altitude>-3</altitude>
       <speed>24.0</speed>
       <rudder type="double">61</rudder>
       <bank type="double">61</bank>
-      <heading type="double">330</heading>          
+      <heading type="double">330</heading>
     </entry>
-    
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>ferry1_30</callsign>
-			<name>ferry1_30</name>
-      <model type="string">Aircraft/Ferry-Bombable/FerryBoat2.xml</model> 
+      <name>ferry1_30</name>
+      <model type="string">Aircraft/Ferry-Bombable/FerryBoat2.xml</model>
       <latitude type="double">37.608950</latitude>
-			<longitude type="double">-122.2059</longitude>
-			<altitude>-3</altitude>
+      <longitude type="double">-122.2059</longitude>
+      <altitude>-3</altitude>
       <speed>26.0</speed>
       <rudder type="double">-394</rudder>
       <bank type="double">-394</bank>
       <heading type="double">325</heading>
     </entry>
-
-
-	</scenario>	
+  </scenario>
 </PropertyList>

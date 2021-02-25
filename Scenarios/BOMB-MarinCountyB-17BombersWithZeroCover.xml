@@ -1,7 +1,7 @@
-<?xml version="1.0"?>           
+<?xml version="1.0"?>
 <PropertyList>
-	<scenario>
-		<description>This scenario puts a squadron of B-17 bombers, with two squadrons of A6M2 Zeros flying cover, over the Marin Ranch Airport, CA35.
+  <scenario>
+    <description>This scenario puts a squadron of B-17 bombers, with two squadrons of A6M2 Zeros flying cover, over the Marin Ranch Airport, CA35.
 		
 Your mission is to down the bombers and the fighters - which will swarm and attack you.
 
@@ -23,202 +23,157 @@ Any aircraft that shoots guns or drops bombs can damage the Zeros and B-17.  A g
 
 (And OK - Zeros covering B-17s isn't exactly historically accurate - but this scenario illustrates what the Bombable package can do now.)
 		</description>
-		
-<!-- B-17s -->
-
+    <!-- B-17s -->
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-2</callsign>
-			<name>B17_2</name>
+      <name>B17_2</name>
       <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">37.9102</latitude>
-			<longitude type="double">-122.4672</longitude>
-			<altitude type="double">5100</altitude>
+      <longitude type="double">-122.4672</longitude>
+      <altitude type="double">5100</altitude>
       <speed>182</speed>
-      
-                                                
       <bank type="double">0</bank>
       <heading type="double">10</heading>
     </entry>
-        
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-1</callsign>
-			<name>B17_1</name>
+      <name>B17_1</name>
       <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">37.9104</latitude>
-			<longitude type="double">-122.4676</longitude>
-			<altitude type="double">5100</altitude>
+      <longitude type="double">-122.4676</longitude>
+      <altitude type="double">5100</altitude>
       <speed>182</speed>
-      
-    
       <bank type="double">0</bank>
       <heading type="double">10</heading>
     </entry>
-
-
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-3</callsign>
-			<name>B17_3</name>
+      <name>B17_3</name>
       <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">37.9106</latitude>
-			<longitude type="double">-122.4680</longitude>
-			<altitude type="double">5100</altitude>
+      <longitude type="double">-122.4680</longitude>
+      <altitude type="double">5100</altitude>
       <speed>182</speed>
-      
-    
       <bank type="double">0</bank>
       <heading type="double">10</heading>
     </entry>
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-4</callsign>
-			<name>B17_4</name>
+      <name>B17_4</name>
       <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">37.9104</latitude>
-			<longitude type="double">-122.4684</longitude>
-			<altitude type="double">5100</altitude>
+      <longitude type="double">-122.4684</longitude>
+      <altitude type="double">5100</altitude>
       <speed>182</speed>
-      
-    
       <bank type="double">0</bank>
       <heading type="double">10</heading>
     </entry>
-    
-
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>B17-6</callsign>
-			<name>B17_6</name>
+      <name>B17_6</name>
       <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
       <latitude type="double">37.9102</latitude>
-			<longitude type="double">-122.4688</longitude>
-			<altitude type="double">5100</altitude>
+      <longitude type="double">-122.4688</longitude>
+      <altitude type="double">5100</altitude>
       <speed>182</speed>
-      
-    
       <bank type="double">0</bank>
       <heading type="double">10</heading>
     </entry>
-
-
-
-<!--  First Zero Squadron -->
+    <!--  First Zero Squadron -->
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>A6M2-1</callsign>
-			<name>A6M21</name>
+      <name>A6M21</name>
       <model type="string">Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
       <latitude type="double">37.9051097548720</latitude>
-			<longitude type="double">-122.4684</longitude>
-			<altitude type="double">10000</altitude>
+      <longitude type="double">-122.4684</longitude>
+      <altitude type="double">10000</altitude>
       <speed>250</speed>
-      
-           
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
-      
     </entry>
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>A6M2-3</callsign>
-			<name>A6M23</name>
+      <name>A6M23</name>
       <model type="string">Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
       <latitude type="double">37.9051097548720</latitude>
-			<longitude type="double">-122.4676</longitude>
-			<altitude type="double">10000</altitude>
+      <longitude type="double">-122.4676</longitude>
+      <altitude type="double">10000</altitude>
       <speed>261</speed>
-      
-           
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
     </entry>
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>A6M2-4</callsign>
-			<name>A6M24</name>
+      <name>A6M24</name>
       <model type="string">Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
       <latitude type="double">37.9051097548720</latitude>
-			<longitude type="double">-122.4672</longitude>
-			<altitude type="double">10000</altitude>
+      <longitude type="double">-122.4672</longitude>
+      <altitude type="double">10000</altitude>
       <speed>265</speed>
-      
-           
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
-    </entry>    
-    
-    <!--  Second Zero Squadron -->    
+    </entry>
+    <!--  Second Zero Squadron -->
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>A6M2-A</callsign>
-			<name>A6M2A</name>
+      <name>A6M2A</name>
       <model type="string">Aircraft/A6M2-Bombable/Models/a6m2b-green.xml</model>
       <latitude type="double">37.8915</latitude>
-			<longitude type="double">-122.4680</longitude>
-			<altitude type="double">12000</altitude>
+      <longitude type="double">-122.4680</longitude>
+      <altitude type="double">12000</altitude>
       <speed>250</speed>
-      
-           
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
     </entry>
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>A6M2-B</callsign>
-			<name>A6M2B</name>
+      <name>A6M2B</name>
       <model type="string">Aircraft/A6M2-Bombable/Models/a6m2b-green.xml</model>
       <latitude type="double">37.8915</latitude>
-			<longitude type="double">-122.4684</longitude>
-			<altitude type="double">12000</altitude>
+      <longitude type="double">-122.4684</longitude>
+      <altitude type="double">12000</altitude>
       <speed>257</speed>
-      
-           
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
     </entry>
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>A6M2-C</callsign>
-			<name>A6M2C</name>
+      <name>A6M2C</name>
       <model type="string">Aircraft/A6M2-Bombable/Models/a6m2b-green.xml</model>
       <latitude type="double">37.8915</latitude>
-			<longitude type="double">-122.4688</longitude>
-			<altitude type="double">12000</altitude>
+      <longitude type="double">-122.4688</longitude>
+      <altitude type="double">12000</altitude>
       <speed>258</speed>
-      
-           
       <bank type="double">0</bank>
       <heading type="double">10</heading>
       <performance-class>ww2_fighter</performance-class>
     </entry>
-
-    
-    
-        
-	</scenario>
+  </scenario>
 </PropertyList>

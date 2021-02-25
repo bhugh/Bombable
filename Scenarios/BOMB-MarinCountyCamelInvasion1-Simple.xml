@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
-	<scenario>
-		<description>This scenario puts a Sopwith Camel, a SPAD VII, and a Fokker DR 1 Triplane in the skies over Marin County, starting at the Marin Ranch Airport, CA35.
+  <scenario>
+    <description>This scenario puts a Sopwith Camel, a SPAD VII, and a Fokker DR 1 Triplane in the skies over Marin County, starting at the Marin Ranch Airport, CA35.
 
 If you take off from runway 22 of the Marin Ranch Airport (CA35), the planes will be directly above you as you take off.  The three planes will find and attack you.
 
@@ -17,56 +17,45 @@ Any aircraft that shoots guns or drops bombs can damage the aircraft.  A great c
 
 Suggestion: Turn multiplayer mode off.  Marin Ranch is close to KSFO and you'll pick up all the multiplayer action there, greatly slowing your framerate.
 		</description>
-		
-		<!-- aircraft -->
+    <!-- aircraft -->
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Fokker 1</callsign>
-			<name>Fokker1</name>
+      <name>Fokker1</name>
       <model type="string">Aircraft/fkdr1-Bombable/Models/dr1.xml</model>
       <latitude type="double">38.024</latitude>
-			<longitude type="double">-122.51</longitude>
-			<altitude type="double">170</altitude>
+      <longitude type="double">-122.51</longitude>
+      <altitude type="double">170</altitude>
       <speed>70</speed>
-    
       <bank type="double">-10</bank>
       <heading type="double">280</heading>
     </entry>
-
-
-    
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel30</callsign>
-			<name>Camel30</name>        
-      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model> 
+      <name>Camel30</name>
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model>
       <latitude type="double">38.0228950</latitude>
-			<longitude type="double">-122.4959</longitude>
-			<altitude type="double">159</altitude>
+      <longitude type="double">-122.4959</longitude>
+      <altitude type="double">159</altitude>
       <speed>85</speed>
-
       <bank type="double">10</bank>
       <heading type="double">301</heading>
     </entry>
-    
-
-     <entry>
+    <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>SPAD3</callsign>
-			<name>SPAD3</name>
-      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model> 
+      <name>SPAD3</name>
+      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model>
       <latitude type="double">38.04</latitude>
-			<longitude type="double">-122.51</longitude>
-			<altitude type="double">305</altitude>
+      <longitude type="double">-122.51</longitude>
+      <altitude type="double">305</altitude>
       <speed>92</speed>
-
       <bank type="double">10</bank>
       <heading type="double">293</heading>
     </entry>
-        
-	</scenario>
+  </scenario>
 </PropertyList>

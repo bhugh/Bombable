@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
-	<scenario>
-		<description>This scenario puts a formation of M1 Abrams tanks roaming the East Bottoms area near the Missouri River in Kansas City, Missouri.
+  <scenario>
+    <description>This scenario puts a formation of M1 Abrams tanks roaming the East Bottoms area near the Missouri River in Kansas City, Missouri.
        
 The M1 Abrams are air-to-ground targets, you can damage them with bombs or heavy guns.  
 			
@@ -19,91 +19,81 @@ Install this scenario in the FlightGear/data/AI directory.  The scenario require
 
 Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchild A-10 Thunderbolt is a great choice - http://wiki.flightgear.org/index.php/Fairchild_A-10
 		</description>
- <!-- Circulators (go round in circles in one general area) -->
-
+    <!-- Circulators (go round in circles in one general area) -->
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank2_06</callsign>
-			<name>tank2_06</name>
-      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <name>tank2_06</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.14506020477</latitude>
-			<longitude type="double">-94.5192</longitude>
-			<altitude>765</altitude>
-    <speed>4.0</speed>
+      <longitude type="double">-94.5192</longitude>
+      <altitude>765</altitude>
+      <speed>4.0</speed>
       <rudder type="double">-100.0</rudder>
       <heading type="double">190</heading>
     </entry>
-
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank2_07</callsign>
-			<name>tank2_07</name>
-      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <name>tank2_07</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.14536020477</latitude>
-			<longitude type="double">-94.5192</longitude>
-			<altitude>765</altitude>
+      <longitude type="double">-94.5192</longitude>
+      <altitude>765</altitude>
       <speed>4.5</speed>
       <rudder type="double">80.0</rudder>
       <heading type="double">220</heading>
     </entry>
-    
-    
-        <entry>
+    <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank2_08</callsign>
-			<name>tank2_08</name>
-      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <name>tank2_08</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.14536020477</latitude>
-			<longitude type="double">-94.5182</longitude>
-			<altitude>765</altitude>
+      <longitude type="double">-94.5182</longitude>
+      <altitude>765</altitude>
       <speed>3.5</speed>
       <rudder type="double">-70.0</rudder>
       <heading type="double">140</heading>
     </entry>
-    
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank2_09</callsign>
-			<name>tank2_09</name>
-      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <name>tank2_09</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.14536020477</latitude>
-			<longitude type="double">-94.5172</longitude>
-			<altitude>765</altitude>
+      <longitude type="double">-94.5172</longitude>
+      <altitude>765</altitude>
       <speed>4.0</speed>
       <rudder type="double">83.0</rudder>
       <heading type="double">96</heading>
     </entry>
-
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank3_01</callsign>
-			<name>tank3_01</name>
-      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <name>tank3_01</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.14966020477</latitude>
-			<longitude type="double">-94.5156</longitude>
-			<altitude>765</altitude>
+      <longitude type="double">-94.5156</longitude>
+      <altitude>765</altitude>
       <speed>6.0</speed>
       <rudder type="double">90.0</rudder>
       <heading type="double">100</heading>
     </entry>
-
-		<entry>
+    <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank3_02</callsign>
-			<name>tank3_02</name>
-      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <name>tank3_02</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.15106020477</latitude>
-			<longitude type="double">-94.5111</longitude>
-			<altitude>765</altitude>
+      <longitude type="double">-94.5111</longitude>
+      <altitude>765</altitude>
       <speed>7.0</speed>
       <rudder type="double">90</rudder>
       <heading type="double">180</heading>
@@ -112,25 +102,24 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank3_03</callsign>
-			<name>tank3_03</name>
-      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <name>tank3_03</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.15056020477</latitude>
-			<longitude type="double">-94.5118</longitude>
-			<altitude>765</altitude>
+      <longitude type="double">-94.5118</longitude>
+      <altitude>765</altitude>
       <speed>6.0</speed>
       <rudder type="double">90</rudder>
       <heading type="double">220</heading>
     </entry>
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank3_04</callsign>
-			<name>tank3_04</name>
-      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <name>tank3_04</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.15206020477</latitude>
-			<longitude type="double">-94.5168</longitude>
-			<altitude>765</altitude>
+      <longitude type="double">-94.5168</longitude>
+      <altitude>765</altitude>
       <speed>8.0</speed>
       <rudder type="double">85</rudder>
       <heading type="double">155</heading>
@@ -139,11 +128,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank3_04</callsign>
-			<name>tank3_04</name>
-      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <name>tank3_04</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.15206020477</latitude>
-			<longitude type="double">-94.5148</longitude>
-			<altitude>765</altitude>
+      <longitude type="double">-94.5148</longitude>
+      <altitude>765</altitude>
       <speed>6.0</speed>
       <rudder type="double">90</rudder>
       <heading type="double">255</heading>
@@ -152,11 +141,11 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank3_05</callsign>
-			<name>tank3_05</name>
-      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <name>tank3_05</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.15266020477</latitude>
-			<longitude type="double">-94.5168</longitude>
-			<altitude>765</altitude>
+      <longitude type="double">-94.5168</longitude>
+      <altitude>765</altitude>
       <speed>6.4</speed>
       <rudder type="double">98</rudder>
       <heading type="double">300</heading>
@@ -165,18 +154,14 @@ Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchil
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank3_06</callsign>
-			<name>tank3_06</name>
-      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <name>tank3_06</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.15296020477</latitude>
-			<longitude type="double">-94.5168</longitude>
-			<altitude>765</altitude>
+      <longitude type="double">-94.5168</longitude>
+      <altitude>765</altitude>
       <speed>5.0</speed>
       <rudder type="double">80</rudder>
       <heading type="double">40</heading>
     </entry>
-
-
-
-  
-	</scenario>
+  </scenario>
 </PropertyList>

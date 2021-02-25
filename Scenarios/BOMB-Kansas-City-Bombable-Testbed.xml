@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <PropertyList>
-	<scenario>
-		<description>This scenario puts every bombable aircraft and object in place near KMKC airport.
+  <scenario>
+    <description>This scenario puts every bombable aircraft and object in place near KMKC airport.
 
 One of each type is moving and one stationary.
 
@@ -10,356 +10,291 @@ This scenario is used for testing.
 Approximate lat and long of starting point of the tank formation: 39.145,-94.518
 			
 Install this scenario in the FlightGear/data/AI directory.</description>
-		<!-- COLUMN 1 (moving column)-->
-
+    <!-- COLUMN 1 (moving column)-->
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_22</callsign>
-			<name>tank1_22</name>
-      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model> 
+      <name>tank1_22</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
       <latitude type="double">39.14506020477</latitude>
-			<longitude type="double">-94.5186</longitude>
-			<altitude>765</altitude>
+      <longitude type="double">-94.5186</longitude>
+      <altitude>765</altitude>
       <speed>4.0</speed>
       <rudder type="double">20.0</rudder>
       <heading type="double">90</heading>
     </entry>
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>tank1_24</callsign>
-			<name>tank1_24</name>
+      <name>tank1_24</name>
       <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model>
       <latitude type="double">39.14506020477</latitude>
-			<longitude type="double">-94.5198</longitude>
-			<altitude>765</altitude>
+      <longitude type="double">-94.5198</longitude>
+      <altitude>765</altitude>
       <speed>4.0</speed>
       <rudder type="double">20.0</rudder>
       <heading type="double">90</heading>
     </entry>
-
-
-
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>Unarmored tank1_23</callsign>
-			<name>tank1_23</name>
-			<model type="string">Aircraft/M1-Abrams-Bombable/m1-unarmored.xml</model>
+      <name>tank1_23</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1-unarmored.xml</model>
       <latitude type="double">39.14506020477</latitude>
-			<longitude type="double">-94.5188</longitude>
-			<altitude type="double">765</altitude>
+      <longitude type="double">-94.5188</longitude>
+      <altitude type="double">765</altitude>
       <speed>0</speed>
       <rudder type="double">20.0</rudder>
       <heading type="double">90</heading>
     </entry>
-
-
-
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
-			<name>B17_3</name>
+      <name>B17_3</name>
       <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
-			<altitude type="double">5100</altitude>
-      <speed>182</speed>      
+      <altitude type="double">5100</altitude>
+      <speed>182</speed>
       <callsign>b17-2</callsign>
       <latitude type="double">39.00536020477</latitude>
-			<longitude type="double">-94.5192</longitude>
+      <longitude type="double">-94.5192</longitude>
       <heading type="double">90</heading>
     </entry>
-    
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
-			<name>B17_2-stationary</name>
-			<callsign>b17-2-stationary</callsign>
+      <name>B17_2-stationary</name>
+      <callsign>b17-2-stationary</callsign>
       <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
-			<altitude type="double">5100</altitude>
-      <speed>0</speed>      
-      
+      <altitude type="double">5100</altitude>
+      <speed>0</speed>
       <latitude type="double">39.00536020477</latitude>
-			<longitude type="double">-94.5182</longitude>
-			<altitude>900</altitude>
+      <longitude type="double">-94.5182</longitude>
+      <altitude>900</altitude>
       <heading type="double">90</heading>
     </entry>
-    
-    
-
-
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>A6M2-1</callsign>
-			<name>A6M21</name>
+      <name>A6M21</name>
       <model type="string">Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
-      
       <latitude type="double">39.00536020477</latitude>
-			<longitude type="double">-94.5162</longitude>
-			<altitude>5200</altitude>
+      <longitude type="double">-94.5162</longitude>
+      <altitude>5200</altitude>
       <speed>158</speed>
       <heading type="double">90</heading>
     </entry>
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>A6M2-1-stationary</callsign>
-			<name>A6M21-stationary</name>
+      <name>A6M21-stationary</name>
       <model type="string">Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
-      
       <latitude type="double">39.00536020477</latitude>
-			<longitude type="double">-94.5162</longitude>
-			<altitude>900</altitude>
+      <longitude type="double">-94.5162</longitude>
+      <altitude>900</altitude>
       <speed>0</speed>
       <heading type="double">90</heading>
     </entry>
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Fokker 1</callsign>
-			<name>Fokker1</name>
+      <name>Fokker1</name>
       <model type="string">Aircraft/fkdr1-Bombable/Models/dr1.xml</model>
       <latitude type="double">39.24536020477</latitude>
-			<longitude type="double">-94.5152</longitude>
-			<altitude type="double">900</altitude>
+      <longitude type="double">-94.5152</longitude>
+      <altitude type="double">900</altitude>
       <speed>70</speed>
-    
       <bank type="double">-10</bank>
       <heading type="double">90</heading>
     </entry>
-
-
-    
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel30</callsign>
-			<name>Camel30</name>        
-      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model> 
+      <name>Camel30</name>
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model>
       <latitude type="double">39.24536020477</latitude>
-			<longitude type="double">-94.5150</longitude>
-			<altitude type="double">900</altitude>
+      <longitude type="double">-94.5150</longitude>
+      <altitude type="double">900</altitude>
       <speed>85</speed>
-
       <bank type="double">10</bank>
       <heading type="double">90</heading>
     </entry>
-    
-
-     <entry>
+    <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>SPAD3</callsign>
-			<name>SPAD3</name>
-      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model> 
+      <name>SPAD3</name>
+      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model>
       <latitude type="double">39.24536020477</latitude>
-			<longitude type="double">-94.5148</longitude>
-			<altitude type="double">900</altitude>
+      <longitude type="double">-94.5148</longitude>
+      <altitude type="double">900</altitude>
       <speed>102</speed>
-
       <bank type="double">10</bank>
       <heading type="double">90</heading>
     </entry>
-    
- 
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Fokker 1</callsign>
-			<name>Fokker1</name>
+      <name>Fokker1</name>
       <model type="string">Aircraft/fkdr1-Bombable/Models/dr1.xml</model>
       <latitude type="double">39.24536020477</latitude>
-			<longitude type="double">-94.5152</longitude>
-			<altitude type="double">1800</altitude>
+      <longitude type="double">-94.5152</longitude>
+      <altitude type="double">1800</altitude>
       <speed>0</speed>
-    
       <bank type="double">-10</bank>
       <heading type="double">90</heading>
     </entry>
-
-
-    
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Camel30</callsign>
-			<name>Camel30</name>        
-      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model> 
+      <name>Camel30</name>
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model>
       <latitude type="double">39.24536020477</latitude>
-			<longitude type="double">-94.5150</longitude>
-			<altitude type="double">1800</altitude>
+      <longitude type="double">-94.5150</longitude>
+      <altitude type="double">1800</altitude>
       <speed>0</speed>
-
       <bank type="double">10</bank>
       <heading type="double">90</heading>
     </entry>
-    
-
-     <entry>
+    <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>SPAD3</callsign>
-			<name>SPAD3</name>
-      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model> 
+      <name>SPAD3</name>
+      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model>
       <latitude type="double">39.24536020477</latitude>
-			<longitude type="double">-94.5148</longitude>
-			<altitude type="double">1800</altitude>
+      <longitude type="double">-94.5148</longitude>
+      <altitude type="double">1800</altitude>
       <speed>0</speed>
-
       <bank type="double">10</bank>
       <heading type="double">90</heading>
     </entry>
-    
-
-
-
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>ship</type>
       <callsign>ferry1_20</callsign>
-			<name>ferry1_20</name>
+      <name>ferry1_20</name>
       <model type="string">Aircraft/Ferry-Bombable/FerryBoat2.xml</model>
       <latitude type="double">39.14736020477</latitude>
-			<longitude type="double">-94.5132</longitude>
-			<altitude>600</altitude>
+      <longitude type="double">-94.5132</longitude>
+      <altitude>600</altitude>
       <speed>0.01</speed>
       <rudder type="double">-40</rudder>
       <bank type="double">-40</bank>
       <heading type="double">355</heading>
     </entry>
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Cessna1_20</callsign>
-			<name>Cessna1_20</name>
+      <name>Cessna1_20</name>
       <model type="string">Aircraft/c172-Bombable/c-fgfs.xml</model>
       <latitude type="double">39.34536020477</latitude>
-			<longitude type="double">-94.5172</longitude>
-			<altitude>900</altitude>
+      <longitude type="double">-94.5172</longitude>
+      <altitude>900</altitude>
       <speed>110.0</speed>
-    
       <bank type="double">-10</bank>
       <heading type="double">90</heading>
-    </entry>    
-
+    </entry>
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Cessna1_20-stationary</callsign>
-			<name>Cessna1_20-stationary</name>
+      <name>Cessna1_20-stationary</name>
       <model type="string">Aircraft/c172-Bombable/c-fgfs.xml</model>
       <latitude type="double">39.34536020477</latitude>
-			<longitude type="double">-94.5172</longitude>
-			<altitude>1800</altitude>
+      <longitude type="double">-94.5172</longitude>
+      <altitude>1800</altitude>
       <speed>0</speed>
-    
       <bank type="double">-10</bank>
       <heading type="double">90</heading>
-    </entry>    
-
+    </entry>
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Warthog1_23</callsign>
-			<name>Warthog1_23</name>
+      <name>Warthog1_23</name>
       <model type="string">Aircraft/A-10-Bombable/Models/A-10.xml</model>
       <latitude type="double">39.34536020477</latitude>
-			<longitude type="double">-94.5152</longitude>
-			<altitude type="double">900</altitude>
+      <longitude type="double">-94.5152</longitude>
+      <altitude type="double">900</altitude>
       <speed>170.0</speed>
-     
       <bank type="double">-10</bank>
       <heading type="double">90</heading>
     </entry>
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Warthog1_23-stationary</callsign>
-			<name>Warthog1_23-stationary</name>
+      <name>Warthog1_23-stationary</name>
       <model type="string">Aircraft/A-10-Bombable/Models/A-10.xml</model>
       <latitude type="double">39.34536020477</latitude>
-			<longitude type="double">-94.5152</longitude>
-			<altitude type="double">1800</altitude>
+      <longitude type="double">-94.5152</longitude>
+      <altitude type="double">1800</altitude>
       <speed>0</speed>
-     
       <bank type="double">-10</bank>
       <heading type="double">90</heading>
     </entry>
-    
-    
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Steele 5</callsign>
-			<name>F6F4</name>
+      <name>F6F4</name>
       <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
       <latitude type="double">39.44536020477</latitude>
-			<longitude type="double">-94.51762</longitude>
-			<altitude type="double">1000</altitude>
+      <longitude type="double">-94.51762</longitude>
+      <altitude type="double">1000</altitude>
       <speed>180</speed>
       <bank type="double">0</bank>
       <heading type="double">90</heading>
       <performance-class>ww2_fighter</performance-class>
-    </entry>       
-    
+    </entry>
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Steele 50-stationary</callsign>
-			<name>Steele 50-stationary</name>
+      <name>Steele 50-stationary</name>
       <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
       <latitude type="double">39.44536020477</latitude>
-			<longitude type="double">-94.51762</longitude>
-			<altitude type="double">1800</altitude>
+      <longitude type="double">-94.51762</longitude>
+      <altitude type="double">1800</altitude>
       <speed>0</speed>
       <bank type="double">0</bank>
       <heading type="double">90</heading>
       <performance-class>ww2_fighter</performance-class>
-    </entry>  
-    
-    		<!-- aircraft -->
+    </entry>
+    <!-- aircraft -->
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Glarg</callsign>
-			<name>Glarg</name>
+      <name>Glarg</name>
       <model type="string">Aircraft/ufo-Bombable/Models/ufo.xml</model>
       <latitude type="double">39.44536020477</latitude>
-			<longitude type="double">-94.51712</longitude>
-			<altitude type="double">1000</altitude>
+      <longitude type="double">-94.51712</longitude>
+      <altitude type="double">1000</altitude>
       <speed>100</speed>
-    
-      
       <heading type="double">90</heading>
     </entry>
-
     <entry>
       <search-order>PREFER_AI</search-order>
       <type>aircraft</type>
       <callsign>Glarg-stationary</callsign>
-			<name>Glarg-stationary</name>
+      <name>Glarg-stationary</name>
       <model type="string">Aircraft/ufo-Bombable/Models/ufo.xml</model>
       <latitude type="double">39.44536020477</latitude>
-			<longitude type="double">-94.51712</longitude>
-			<altitude type="double">1800</altitude>
+      <longitude type="double">-94.51712</longitude>
+      <altitude type="double">1800</altitude>
       <speed>0</speed>
-    
-      
       <heading type="double">90</heading>
-    </entry>     
-		
-	</scenario>
+    </entry>
+  </scenario>
 </PropertyList>
