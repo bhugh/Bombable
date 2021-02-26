@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<PropertyList>
+  <scenario>
+    <name>Bombable: (O22) 6 Jeeps and 5 M1 tanks near Columbia</name>
+    <description>This scenario puts a division of Jeeps and M1 Abrams tanks moving through the mountains near the Columbia, CA, Airport (022).
+
+The Jeep and tank formation starts in a deep valley.  To find the valley start on Runway 35 of the Columbia Airport (022) and proceed due north, heading 360.  Soon you will see a deep valley with a river running down it (actually and arm of New Melones Lake).  The tank formation starts there and moves north-north-east from there at a heading of 76 degrees at 6 MPH.  This leads them up a steep hill which makes them fairly easy to pick off.
+        
+The M1 Abrams are air-to-ground targets, you can damage them with bombs or heavy guns.  It is very challenging to track and target the tanks moving through the mountains and valleys.
+
+When you bomb and shoot the tanks they will slow down, finally catch fire, and then stop completely (to see the smoke and fire you must have Particles enabled in View/Rendering Options).
+
+To damage the tanks takes a direct hit from a machine gun or heavy gun, or a close strike by a heavy bomb.
+
+To find the tanks:  Start at the northwest end of the runway at Friedman Memorial Airport in Halley, Idaho, and look in the mountains directly to the east.  A formation of 11 tanks will be there, moving in an east-northeasterly direction.
+
+Install this scenario in the FlightGear/data/AI directory.
+
+Any aircraft that shoots guns or drops bombs can damage the tanks.  The Fairchild A-10 Thunderbolt is a great choice - http://wiki.flightgear.org/index.php/Fairchild_A-10
+		</description>
+    <!-- COLUMN 1 (moving column)-->
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>jeep1_20</callsign>
+      <name>jeep1_20</name>
+      <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model>
+      <latitude type="double">38.08406020477</latitude>
+      <longitude type="double">-120.4176</longitude>
+      <altitude>5350</altitude>
+      <speed>6.0</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">45</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>jeep1_21</callsign>
+      <name>jeep1_21</name>
+      <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model>
+      <latitude type="double">38.08406020477</latitude>
+      <longitude type="double">-120.4180</longitude>
+      <altitude>5350</altitude>
+      <speed>6.0</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">76</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>jeep1_22</callsign>
+      <name>jeep1_22</name>
+      <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model>
+      <latitude type="double">38.08406020477</latitude>
+      <longitude type="double">-120.4186</longitude>
+      <altitude>5350</altitude>
+      <speed>6.0</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">45</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>jeep1_23</callsign>
+      <name>jeep1_23</name>
+      <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model>
+      <latitude type="double">38.08406020477</latitude>
+      <longitude type="double">-120.4188</longitude>
+      <altitude type="double">5350</altitude>
+      <speed>6.0</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">45</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>jeep1_24</callsign>
+      <name>jeep1_24</name>
+      <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model>
+      <latitude type="double">38.08406020477</latitude>
+      <longitude type="double">-120.4198</longitude>
+      <altitude>5350</altitude>
+      <speed>6.0</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">45</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>jeep1_25</callsign>
+      <name>jeep1_25</name>
+      <model type="string">Aircraft/jeep-Bombable/Models/Jeep.xml</model>
+      <latitude type="double">38.08406020477</latitude>
+      <longitude type="double">-120.4192</longitude>
+      <altitude>5350</altitude>
+      <speed>6.0</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">45</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>tank1_26</callsign>
+      <name>tank1_26</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
+      <latitude type="double">38.08436020477</latitude>
+      <longitude type="double">-120.4192</longitude>
+      <altitude>5350</altitude>
+      <speed>6.0</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">45</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>tank1_27</callsign>
+      <name>tank1_27</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
+      <latitude type="double">38.08436020477</latitude>
+      <longitude type="double">-120.4182</longitude>
+      <altitude>5350</altitude>
+      <speed>6.0</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">45</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>tank1_28</callsign>
+      <name>tank1_28</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
+      <latitude type="double">38.08436020477</latitude>
+      <longitude type="double">-120.4172</longitude>
+      <altitude>5350</altitude>
+      <speed>6.0</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">45</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>tank1_29</callsign>
+      <name>tank1_29</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
+      <latitude type="double">38.08436020477</latitude>
+      <longitude type="double">-120.4162</longitude>
+      <altitude>5350</altitude>
+      <speed>6.0</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">45</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>ship</type>
+      <callsign>tank1_30</callsign>
+      <name>tank1_30</name>
+      <model type="string">Aircraft/M1-Abrams-Bombable/m1.xml</model>
+      <latitude type="double">38.08436020477</latitude>
+      <longitude type="double">-120.4152</longitude>
+      <altitude>5350</altitude>
+      <speed>6.0</speed>
+      <rudder type="double">0</rudder>
+      <heading type="double">45</heading>
+    </entry>
+  </scenario>
+</PropertyList>

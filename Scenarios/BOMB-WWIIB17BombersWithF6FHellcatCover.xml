@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<PropertyList>
+  <scenario>
+    <name>Bombable: (CA35) B-17s with Hellcat escorts over Marin County</name>
+    <description>This scenario puts a squadron of B-17 bombers, with two squadrons of Grumman F6F Hellcats flying cover, over the Marin Ranch Airport, CA35.
+		
+Your mission is to down the bombers and the fighters - which will swarm and attack you.
+
+Take off from **runway 4** of the Marin Ranch Airport (CA35) immediately when FlightGear starts up.  Fly straight off the end of the runway, heading 40 degrees, climb at full power maintaining 110 knots.  As you pass through about 3500 feet you will see the bomber squadron off your starboard wing.  As you pass through 5000 it will be close to straight ahead.
+
+The bombers are headed in a northerly direction at about 5000 feet and near the B-17's optimal crusing speed of 182 knots.  The fighters will be lurking somewhere above them--you don't need to worry about finding them, because if you find the bombers, the fighter escort will find *you*.  
+
+The B-17s and F6Fs are air-to-air targets. You can damage them with heavy guns, machine guns, or other armament.
+  
+To damage the aircraft takes one or more direct hits from a machine gun or heavy gun, or a close strike by a heavy bomb.   
+
+The F6F is well shielded and a fairly difficult target to destroy, especially for an A6M2 Zero. B-17s heavier, better shielded, and more difficult to damage.
+
+Install this scenario in the FlightGear/data/AI directory.
+
+Suggestion: Turn multiplayer mode off.  Marin Ranch is close to KSFO and you'll pick up all the multiplayer action there, greatly slowing your framerate.
+
+Any aircraft that shoots guns or drops bombs can damage the F6F and B-17.  A great historically appropriate choice is to use the A6M2 aircraft included in this distribution; the F6F will also work well. 
+		</description>
+    <!-- B-17s -->
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>B17-2</callsign>
+      <name>B17_2</name>
+      <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
+      <latitude type="double">37.9102</latitude>
+      <longitude type="double">-122.4672</longitude>
+      <altitude type="double">5100</altitude>
+      <speed>182</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>B17-1</callsign>
+      <name>B17_1</name>
+      <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
+      <latitude type="double">37.9104</latitude>
+      <longitude type="double">-122.4676</longitude>
+      <altitude type="double">5100</altitude>
+      <speed>182</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>B17-3</callsign>
+      <name>B17_3</name>
+      <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
+      <latitude type="double">37.9106</latitude>
+      <longitude type="double">-122.4680</longitude>
+      <altitude type="double">5100</altitude>
+      <speed>182</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>B17-4</callsign>
+      <name>B17_4</name>
+      <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
+      <latitude type="double">37.9104</latitude>
+      <longitude type="double">-122.4684</longitude>
+      <altitude type="double">5100</altitude>
+      <speed>182</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>B17-6</callsign>
+      <name>B17_6</name>
+      <model type="string">Aircraft/B-17-Bombable/Models/b17.xml</model>
+      <latitude type="double">37.9102</latitude>
+      <longitude type="double">-122.4688</longitude>
+      <altitude type="double">5100</altitude>
+      <speed>182</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+    </entry>
+    <!--  First Zero Squadron -->
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>Agate</callsign>
+      <name>F6F21</name>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f.xml</model>
+      <latitude type="double">37.9051097548720</latitude>
+      <longitude type="double">-122.4684</longitude>
+      <altitude type="double">10000</altitude>
+      <speed>250</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+      <performance-class>ww2_fighter</performance-class>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>Tampa 3</callsign>
+      <name>F6F3</name>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
+      <latitude type="double">37.9051097548720</latitude>
+      <longitude type="double">-122.4676</longitude>
+      <altitude type="double">10000</altitude>
+      <speed>261</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+      <performance-class>ww2_fighter</performance-class>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>Steele 5</callsign>
+      <name>F6F4</name>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-unitedstatesnavy.xml</model>
+      <latitude type="double">37.9051097548720</latitude>
+      <longitude type="double">-122.4672</longitude>
+      <altitude type="double">10000</altitude>
+      <speed>265</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+      <performance-class>ww2_fighter</performance-class>
+    </entry>
+    <!--  Second Zero Squadron -->
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>99 Sniper</callsign>
+      <name>F6FA</name>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-royalnavy.xml</model>
+      <latitude type="double">37.8915</latitude>
+      <longitude type="double">-122.4680</longitude>
+      <altitude type="double">12000</altitude>
+      <speed>250</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+      <performance-class>ww2_fighter</performance-class>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>Ginger 30</callsign>
+      <name>F6FB</name>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-royalnavy.xml</model>
+      <latitude type="double">37.8915</latitude>
+      <longitude type="double">-122.4684</longitude>
+      <altitude type="double">12000</altitude>
+      <speed>257</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+      <performance-class>ww2_fighter</performance-class>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>99 Mohawk</callsign>
+      <name>F6FC</name>
+      <model type="string">Aircraft/F6F-Hellcat-Bombable/Models/f6f-VF-27.xml</model>
+      <latitude type="double">37.8915</latitude>
+      <longitude type="double">-122.4688</longitude>
+      <altitude type="double">12000</altitude>
+      <speed>258</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+      <performance-class>ww2_fighter</performance-class>
+    </entry>
+  </scenario>
+</PropertyList>

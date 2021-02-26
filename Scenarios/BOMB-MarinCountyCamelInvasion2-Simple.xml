@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<PropertyList>
+  <scenario>
+    <name>Bombable: (CA35) 3 Camel over Marin County</name>
+    <description>This scenario puts three of Sopwith Camels in the skies over Marin County, starting at the Marin Ranch Airport, CA35.
+
+If you take off from runway 22 of the Marin Ranch Airport (CA35), the planes will be directly above you and around the airport as you take off.  The planes will find and start to attack you.
+
+The Camels are air-to-air targets, you can damage them with heavy guns, machine guns, or other armament.
+  
+When you shoot or bomb the Camels they will catch fire, slow down, fall, and finally crash (to see the smoke and fire you must have Particles enabled in View/Rendering Options).
+
+To damage the aircraft takes one or more direct hits from a machine gun or heavy gun, or a close strike by a heavy bomb.   The Camels are fairly easy targets for heavy guns or bombs, less so for light bombs--similar to a Cessna C172 in difficulty to kill.
+
+Install this scenario in the FlightGear/data/AI directory.
+
+Any aircraft that shoots guns or drops bombs can damage the Camels, SPADs, and Triplanes.  A great choice is to use the Sopwith Camel aircraft included in this distribution, which has working machine guns and several other improvements/fixes over the current CVS version of the Sopwith.
+
+Suggestion: Turn multiplayer mode off.  Marin Ranch is close to KSFO and you'll pick up all the multiplayer action there, greatly slowing your framerate.
+		</description>
+    <!-- COLUMN 1 (moving column)-->
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>Camel29</callsign>
+      <name>Camel29</name>
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model-Y.xml</model>
+      <latitude type="double">38.0168100</latitude>
+      <longitude type="double">-122.4868</longitude>
+      <altitude type="double">250</altitude>
+      <speed>55</speed>
+      <bank type="double">10</bank>
+      <heading type="double">292</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>Camel32</callsign>
+      <name>Camel32</name>
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model>
+      <latitude type="double">38.0178950</latitude>
+      <longitude type="double">-122.49059</longitude>
+      <altitude type="double">203</altitude>
+      <speed>69</speed>
+      <bank type="double">5</bank>
+      <heading type="double">305</heading>
+    </entry>
+    <!-- ScrubbyPC style camels to go with them  -->
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>Camel42</callsign>
+      <name>Camel31</name>
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model_scrubbypc.xml</model>
+      <latitude type="double">38.0142950</latitude>
+      <longitude type="double">-122.4819</longitude>
+      <altitude type="double">259</altitude>
+      <speed>69</speed>
+      <bank type="double">10</bank>
+      <heading type="double">272</heading>
+    </entry>
+  </scenario>
+</PropertyList>

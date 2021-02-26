@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<PropertyList>
+  <scenario>
+    <name>Bombable: (CA35) 2 A6M2 over Marin County</name>
+    <description>This scenario puts two A6M2 Zeros over the Marin Ranch Airport, CA35.
+		
+Take off from **runway 4** of the Marin Ranch Airport (CA35) immediately when FlightGear starts up.  Fly straight off the end of the runway, heading 40 degrees, climb at full power maintaining 110 knots.  As you pass through about 3500 feet you will see the bomber squadron off your starboard wing.  As you pass through 5000 it will be close to straight ahead.
+
+The Zeros are air-to-air targets. You can damage them with heavy guns, machine guns, or other armament.
+  
+To damage the aircraft takes one or more direct hits from a machine gun or heavy gun, or a close strike by a heavy bomb.   
+
+Install this scenario in the FlightGear/data/AI directory.
+
+Suggestion: Turn multiplayer mode off.  Marin Ranch is close to KSFO and you'll pick up all the multiplayer action there, greatly slowing your framerate.
+
+Any aircraft that shoots guns or drops bombs can damage the Zeros and B-17.  A great choice is to use the A6M2 aircraft included in this distribution. 
+		</description>
+    <!--  Zero Squadron -->
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>A6M2-1</callsign>
+      <name>A6M21</name>
+      <model type="string">Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
+      <latitude type="double">37.9051097548720</latitude>
+      <longitude type="double">-122.4614</longitude>
+      <altitude type="double">10000</altitude>
+      <speed>250</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+      <performance-class>ww2_fighter</performance-class>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>A6M2-3</callsign>
+      <name>A6M23</name>
+      <model type="string">Aircraft/A6M2-Bombable/Models/a6m2-anim.xml</model>
+      <latitude type="double">37.9051097548720</latitude>
+      <longitude type="double">-122.4606</longitude>
+      <altitude type="double">10000</altitude>
+      <speed>261</speed>
+      <bank type="double">0</bank>
+      <heading type="double">10</heading>
+      <performance-class>ww2_fighter</performance-class>
+    </entry>
+  </scenario>
+</PropertyList>
