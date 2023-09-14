@@ -6,9 +6,9 @@
 
 JSBSim aerodynamic model for a Sopwith Camel 1F1 
 
-Version: 2.0
+Version: 2.1alpha
 
-Author: Brent Hugh, 20 February 2017
+Author: Brent Hugh, 9 Sept 2023
 
 Goal: Create a flight model of the Camel that would incorporate as many of the documented combat flight characteristics of the Camel as possible, and in as realistic a way as possible.
 
@@ -29,7 +29,7 @@ Here is a description about the Camel's traits from BARKER VC, (via author Wayne
 Quote:
 
 All the weight of the engine, guns, and pilot was concentrated in the first seven feet of a short 18-foot fuselage. The various models of rotary engine fitted to the Camel, from a 110-hp Le Rhone, to a 130-hp Clerget, to a 150-hp Bentley, had the propeller attached to the engine crankcase and the crankshaft to the aircraft so that the propeller and engine revolved together at more than 1250 rpm. This heavy whirling engine was lubricated continually by castor oil which was not recycled, but rather was burned in the combustion process and vented overboard, soaking the aircraft, the pilot's flying suit, helmet and goggles.
-The gyroscopic forces that were generated varied in intensity based on a complex interaction of engine rpm, aircraft speed, and control input. The scout had a different character turning left or right, as did all the rotary-engined aeroplanes, but the Camel to an extreme degree. It was sluggish in left turns and the nose always pitched up, while right turns were very quick, with the nose dropping sharply. Without plenty of top (ie, left) rudder to correct the pitch down, it would spin.
+The gyroscopic forces that were generated varied in intensity based on a complex interaction of engine rpm, aircraft speed, and control input. The scout had a different charactering left or right, as did all the rotary-engined aeroplanes, but the Camel to an extreme degree. It was sluggish in left turns and the nose always pitched up, while right turns were very quick, with the nose dropping sharply. Without plenty of top (ie, left) rudder to correct the pitch down, it would spin.
 A Camel pilot had to apply left rudder turning left or right, the amount varying with aircraft speed and engine rpm. Since the engine rotation countered the input of left stick and rudder, some pilots made all turns to the right because the aircraft was quicker through 270 degrees, than 90 degrees to the left. The Camel's elevator was powerful and sensitive, while the rudder was too small and relatively ineffective.
 Coordinated turns demanded a fine touch. Correcting sideslip, the tendency of the aeroplane to slide to the inside of a banked turn, by applying opposite rudder, caused the Camel to tighten up in the turn. In steep turns over 45 degrees of bank, the aircraft tended to pitch up its nose, and tighten up its bank angle as speed reduced, requiring continual adjustments in the amount of forward pressure on the stick with engine rpm changes. In the words of test pilot W/C Paul A. Hartman, RCAF, the Camel has no 'dynamic longitudinal stability' in steep turns.
 Accelerating the aircraft caused the nose to climb, and swing to the left. At 110 miles per hour, there was about 15 to 20 pounds of back force on the control column, which could not be trimmed out because the aircraft had no pilot-adjustable, moveable horizontal stabilizer. Therefore, Camel pilots had to fly two-to-three hour missions, continually applying forward pressure just to maintain level flight. Letting go resulted in the aircraft pitching up, and rolling inverted to the right. Moving the stick forward to enter a dive caused the Camel to yaw left because of gyroscopic force, and correcting this yaw with right rudder caused the nose to pitch down sharply. By today's standards the Camel was completely unacceptable, and yet many pilots of 1917-8, most with under 100 hours of flying time used it as a lethal weapon.
@@ -141,13 +141,13 @@ Re speed:"...a Camel was a wonderful machine in a scrap. If only it had been fif
 http://www.theaerodrome.com/forum/aircraft/45869-sopwith-camel-myth-6.html
 
 -->
-<fdm_config name="Sopwith Camel" version="2.0" release="Alpha">
+<fdm_config name="Sopwith Camel" version="2.1" release="Alpha">
 
     <fileheader>
         <author> Brent Hugh</author>
-        <filecreationdate> 2017-02-20 </filecreationdate>
+        <filecreationdate> 2023-09-09 </filecreationdate>
         <description>Sopwith Camel with Weapons, matches available data for climb, max speed, general handling</description>
-        <version>Version 2.0</version>
+        <version>Version 2.1alpha</version>
     </fileheader>
 
     <metrics>
@@ -299,9 +299,9 @@ for the rudder to contribute very much to yaw stability.
             <static_friction> 0.99 </static_friction>
             <dynamic_friction> 0.9 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 1000 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 900 </damping_coeff>
-            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 2000 </damping_coeff_rebound> 
+            <spring_coeff unit="LBS/FT"> 2000 </spring_coeff>      <!-- spring, DC, DCR were 1000, 900, 2000 in 2.0.  Trying to double them to prevent the structures (high friction) from rubbing the ground when the a/c tilts slightly R or L  on takeoff.  9/2023, 2.1-->
+            <damping_coeff unit="LBS/FT/SEC"> 1800 </damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 4000 </damping_coeff_rebound> 
             
             <!-- works only in 2.12 onwards; replaces the above 3 parameters-->
             <!-- strut_force>  
@@ -342,9 +342,9 @@ for the rudder to contribute very much to yaw stability.
             <static_friction> 0.99 </static_friction>
             <dynamic_friction> 0.9 </dynamic_friction>
             <rolling_friction> 0.02 </rolling_friction>
-            <spring_coeff unit="LBS/FT"> 1000 </spring_coeff>
-            <damping_coeff unit="LBS/FT/SEC"> 900 </damping_coeff>
-            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 2000 </damping_coeff_rebound>
+            <spring_coeff unit="LBS/FT"> 2000 </spring_coeff>
+            <damping_coeff unit="LBS/FT/SEC"> 1800 </damping_coeff>
+            <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 4000 </damping_coeff_rebound>
             <!-- works only in 2.12 onwards; replaces the above 3 parameters-->
             <!-- strut_force>  
                 <function>
@@ -459,8 +459,8 @@ for the rudder to contribute very much to yaw stability.
                 <z> -16.62 </z>
             </location>
             <static_friction> 0.4 </static_friction>  
-            <dynamic_friction> 0.3 </dynamic_friction>
-            <rolling_friction> 0.3 </rolling_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
+            <rolling_friction> 0.1 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 195 </damping_coeff_rebound>            
@@ -475,8 +475,8 @@ for the rudder to contribute very much to yaw stability.
                 <z> -16.62 </z>
             </location>
             <static_friction> 0.4 </static_friction>               
-            <dynamic_friction> 0.3 </dynamic_friction>
-            <rolling_friction> 0.3 </rolling_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
+            <rolling_friction> 0.1 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 195 </damping_coeff_rebound>            
@@ -491,8 +491,8 @@ for the rudder to contribute very much to yaw stability.
                 <z> -16.62 </z>
             </location>
             <static_friction> 0.4 </static_friction>  
-            <dynamic_friction> 0.3 </dynamic_friction>
-            <rolling_friction> 0.3 </rolling_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
+            <rolling_friction> 0.1 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 195 </damping_coeff_rebound>            
@@ -507,8 +507,8 @@ for the rudder to contribute very much to yaw stability.
                 <z> -16.62 </z>
             </location>
             <static_friction> 0.4 </static_friction>  
-            <dynamic_friction> 0.3 </dynamic_friction>
-            <rolling_friction> 0.3 </rolling_friction>
+            <dynamic_friction> 0.2 </dynamic_friction>
+            <rolling_friction> 0.1 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 195 </damping_coeff>
             <damping_coeff_rebound type="SQUARE" unit="LBS/FT2/SEC2"> 195 </damping_coeff_rebound>            
@@ -606,8 +606,8 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> 56 </z>
             </location>
-            <static_friction> 0.4 </static_friction>  
-            <dynamic_friction> 0.3 </dynamic_friction>
+            <static_friction> 0.8 </static_friction>  
+            <dynamic_friction> 0.6 </dynamic_friction>
             <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
@@ -623,8 +623,8 @@ for the rudder to contribute very much to yaw stability.
                 <y> -50 </y>
                 <z> 56 </z>
             </location>
-            <static_friction> 0.4 </static_friction>  
-            <dynamic_friction> 0.3 </dynamic_friction>
+            <static_friction> 0.8 </static_friction>  
+            <dynamic_friction> 0.6 </dynamic_friction>
             <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
@@ -640,8 +640,8 @@ for the rudder to contribute very much to yaw stability.
                 <y> 50 </y>
                 <z> 56 </z>
             </location>
-            <static_friction> 0.4 </static_friction>  
-            <dynamic_friction> 0.3 </dynamic_friction>
+            <static_friction> 0.8 </static_friction>  
+            <dynamic_friction> 0.6 </dynamic_friction>
             <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
@@ -657,8 +657,8 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> 48 </z>
             </location>
-            <static_friction> 0.4 </static_friction>  
-            <dynamic_friction> 0.3 </dynamic_friction>
+            <static_friction> 0.8 </static_friction>  
+            <dynamic_friction> 0.6 </dynamic_friction>
             <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
@@ -674,8 +674,8 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> 32 </z>
             </location>
-            <static_friction> 0.4 </static_friction>  
-            <dynamic_friction> 0.3 </dynamic_friction>
+            <static_friction> 0.8 </static_friction>  
+            <dynamic_friction> 0.6 </dynamic_friction>
             <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
@@ -691,8 +691,8 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> 28 </z>
             </location>
-            <static_friction> 0.4 </static_friction>  
-            <dynamic_friction> 0.3 </dynamic_friction>
+            <static_friction> 0.8 </static_friction>  
+            <dynamic_friction> 0.6 </dynamic_friction>
             <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
@@ -710,8 +710,8 @@ for the rudder to contribute very much to yaw stability.
                 <y> 0 </y>
                 <z> 25 </z>
             </location>
-            <static_friction> 0.4 </static_friction>  
-            <dynamic_friction> 0.3 </dynamic_friction>
+            <static_friction> 0.8 </static_friction>  
+            <dynamic_friction> 0.6 </dynamic_friction>
             <rolling_friction> 0.3 </rolling_friction>
             <spring_coeff unit="LBS/FT"> 200 </spring_coeff>
             <damping_coeff unit="LBS/FT/SEC"> 300 </damping_coeff>
@@ -1198,6 +1198,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
     
     <system file="crash-detect"/>
     <system file="automixture"/>
+    <system file="tie-down"/>
     
     <aerodynamics>
             <function name="aero/function/kCDge">
@@ -1268,6 +1269,7 @@ We're modeling the 130 HP Clerget here, so 30 imp. gal in one tank and 7 in the 
             <function name="aero/force/Lift_alpha">
                 <description>Lift due to alpha</description>
                 <product>
+                    <property>systems/tie-down-factor</property>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCLge</property>
@@ -1443,6 +1445,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/force/Lift_elevator">
                 <description>Lift due to Elevator Deflection</description>
                 <product>
+                   <property>systems/tie-down-factor</property>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>fcs/elevator-pos-rad</property>
@@ -1456,6 +1459,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/force/Drag_basic">
                 <description>Drag at zero lift</description>
                 <product>
+                   <property>systems/tie-down-factor</property>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <!--  Zero Lift Drag Coefficient for Camel is 0.0378 per http://en.wikipedia.org/wiki/Sopwith_Camel-->
@@ -1499,6 +1503,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/force/Drag_induced">
                 <description>Induced drag</description>
                 <product>
+                   <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>aero/function/kCDge</property>
@@ -1588,6 +1593,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/force/Drag_mach">
                 <description>Drag due to mach</description>
                 <product>
+                   <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <table>
@@ -1605,6 +1611,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/force/Drag_beta">
                 <description>Drag due to sideslip</description>
                 <product>
+                   <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <value>1.5</value>
@@ -1625,15 +1632,15 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                         <independentVar>aero/beta-deg</independentVar>
                         <tableData>
                          -180           0
-                         -160           .2
-                          -90           1.2        
+                         -160           .15
+                          -90           .3 <!-- see note below -->        
                           -30           0.15    
                           -10           0.02    
                           0             0
                           10            0.02
                           30.0          0.15        
-                          90            1.2
-                          160           .2
+                          90            .3  <!-- was 1.2, but drag when 90 deg to wind seems disproportationately huge.  Changing to 0.3 9/2023 -->
+                          160           .15
                           180           0
                         </tableData>
                         
@@ -1644,6 +1651,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/force/Drag_elevator">
                 <description>Drag due to Elevator Deflection</description>
                 <product> 
+                   <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <abs>
@@ -1663,6 +1671,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/force/Drag_left_aileron">
                 <description>Drag due to Left Aileron Deflection</description>
                 <product> 
+                   <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <abs>
@@ -1684,6 +1693,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/force/Drag_right_aileron">
                 <description>Drag due to Right Aileron Deflection</description>
                 <product> 
+                   <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <abs>
@@ -1696,6 +1706,30 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     <value>0.006</value>  <!-- ver 1.6 value .015 -->
                 </product>
             </function>
+            
+            <function name="aero/force/Drag_roll_rate">
+                <description>Drag due to fast roll rate roiling the air, causing wings to stall etc</description>
+                <product>
+                   <property>systems/tie-down-factor</property>                
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <value>0.15</value> <!-- started with 1.5, this was HUGELY too high and you could never get out of a spin bec. you stayed below stall speed no matter what.  Going to 1/10th that means this is a little higher than basic and induced drag in this kind of situation, which is still perhaps a bit too high 9/2023 -->
+                    <table>
+                       <independentVar>velocities/p-aero-rad_sec</independentVar>                    
+                    
+                        <tableData>
+                            -20       1                          
+                            -6.5      0.43       
+                            -3        0.001
+                            0            0
+                            3         0.001
+                            6.5       0.43                               						              
+                            20        1
+                        </tableData>
+                        
+                    </table>
+                </product>
+            </function>
 
 
         </axis>
@@ -1703,6 +1737,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/force/Side_beta">
                 <description>Side force due to beta</description>
                 <product>
+                   <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 -->
@@ -1758,9 +1793,10 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             -->
             
             <!-- Dihedral --> 
-            <function name="aero/moment/Roll_beta">
-                <description>Roll moment due to beta</description>
-                <product>
+            <function name="aero/moment/Roll_beta_alpha">
+                <description>Roll moment due to beta, which is increased when when alpha increases/in stall</description>
+                <product>                
+                    <property>systems/tie-down-factor</property>
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
@@ -1779,6 +1815,53 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                           .2                 0.2
                           1                0
                           3.415              0       
+                        </tableData>
+                    </table>
+                    
+                        <value>4</value>  <!-- to adjust the table to =1 at -8 and 10 degrees. Was 3, now 8 -->
+                        <table>
+                        
+                        <!-- the roll/spin during stall is caused by the fact
+                        that one wing will stall first, causing drag on that 
+                        side preferentially, which then causes more yaw,
+                        which causes more beta, which further stalls the wing,
+                        etc.  Point is, the roll moment due to beta increases
+                        by A LOT as stall deepens.  Once both wings are stalled the differential decreases. -->
+                        <independentVar>aero/alpha-deg</independentVar>
+                        <tableData>
+                            -90	0.25
+                            -26 0.25
+                            -24	0.33
+                            -22	0.43
+                            -18	0.54
+                            -14	0.67
+                            -12	0.54
+                            -10	0.43
+                            -8	0.33
+                            -6	0.25
+                            -5  0.25
+                            -4	0.25
+                            -3	0.25
+                            -2	0.25
+                            -1	0.25
+                            0	0.25
+                            1	0.25
+                            2	0.25
+                            3	0.25
+                            4	0.25
+                            5	0.25
+                            6	0.25
+                            8	0.29
+                            10	0.32
+                            12	0.45
+                            14	0.633
+                            16	0.8
+                            18	1
+                            20	0.8
+                            22  0.6
+                            24  0.4
+                            26  0.25
+                            90  0.25     
                         </tableData>
                     </table>
 
@@ -1817,6 +1900,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/moment/Roll_damp">
                 <description>Roll moment due to roll rate</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
@@ -1865,6 +1949,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                           100          -0.25
                         </tableData>
                         -->
+                        <!-- 2.0 version - seems to allow pilots to too easily slip into a regular (controlled) aileron roll at 2 seconds per revolution, when in reality that fast a roll was nearly impossible. 
                         <tableData>
                           -100         -0.75
                           -6          -0.4  
@@ -1878,6 +1963,26 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                           1.5          -0.005
                           3            -0.01                                  
 						              6            -0.4						              
+                          100          -0.75
+                        </tableData>
+                        -->
+                        <tableData>
+                          -100         -0.75
+                          -6.8          -0.4
+                          -6.3          -0.01   
+                          -4          -0.001 <!-- 9/11/2023 was -.01, moving to -.001 to keep the roll going once it's in this range -->  
+                          -1.9         -0.005 <!-- 9/11/2009 adjustment, was 1.25 and 2.0, 1.2 and 1.9 just to tighten it up *slightly* -->
+                          -1.2         -0.2  <!-- was -1.2 -.23, but now added .0.6 so that by say .7 we lose our damp quite a bit. .6/.7 is where a stall/spin starts -->
+                          -0.4         -0.23
+                          -0.01        -0.27
+                          0            -0.3
+                          0.01         -0.27
+                          0.4          -0.23   <!-- see cojmments above -->                             
+                          1.2          -0.2
+                          1.9          -0.005
+                          4            -0.001 
+                          6.3          -0.01                        
+						  6.8            -0.4						              
                           100          -0.75
                         </tableData>
                         <!--
@@ -1904,9 +2009,35 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     
                 </product>
             </function>
+                        <!-- when the tie-down in placed, we want to dampen out pitch, roll, yaw moments rapidly -->
+            <!-- this will only be operative when tie-down-factor == 0, ie when all other pitch moments are disabled -->
+            <function name="aero/moment/Roll_damp_tiedown">
+                <description>Yaw moment due to yaw rate</description>
+                <product>
+                    <sum>
+                            <value>1</value>
+                            <product>
+                                <property>systems/tie-down-factor</property>
+                                <value>-1</value>
+                            </product>
+                    </sum>                
+                        
+                    
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/bw-ft</property>
+                    <property>aero/bi2vel</property>
+                    <property>velocities/p-aero-rad_sec</property>                                                       
+
+                    
+                    <value>-1.5</value>  <!-- Aeromatic value was -0.15; -->
+                </product>
+            </function>
+            
             <function name="aero/moment/Roll_yaw">
                 <description>Roll moment due to yaw rate</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
@@ -1948,6 +2079,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/moment/Roll_aileron">
                 <description>Roll moment due to aileron</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
@@ -1994,6 +2126,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/moment/Roll_rudder">
                 <description>Roll moment due to rudder</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
@@ -2018,10 +2151,12 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                
                Camel: The idea of the r-aero-rad-_sec table is to turn the spin in the 
                direction the yaw is moving, ie if we're yawing towards the left wing then we drop the left wing. 
+               The reason is, if you're yawing towards the left wing, then the airspeed of the right wing is faster, thus it produces more lift.  The left wing is going slower, thus less lift.  If we get into a stall situation (thus the involvement of alpha) then the differential can become very important, as the right wing is flying while the left wing is in stall, and generally producing less lift.  Thus a rolling moment. 
             -->
            <function name="aero/moment/Roll_Clalpha">
-                <description>roll_moment_due_to_alpha</description>
+                <description>roll_moment_due_to_yaw_rate_and_alpha</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
@@ -2030,7 +2165,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     <table>
                         <!-- ver 1.6: <independentVar>velocities/r-aero-rad_sec</independentVar> -->
                         <independentVar>velocities/r-aero-rad_sec</independentVar>
-                        <tableData>
+                        <!-- 2.1alpha 9/2023, trying to keep the stall spin going a bit better <tableData>
                           -6             -.01
                           -3.415             -0.5
                           -.02             -1
@@ -2040,15 +2175,40 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                           6             0.01
                                 
                         </tableData>
+                        -->
+                        <tableData>
+                          -6             -.01
+                          -3.415             -0.8
+                          -.02             -1
+                          0                  0
+                          .02             1
+                          3.415             0.8 
+                          6             0.01
+                                
+                        </tableData>
+                        
                     </table>
                     <table>
                         <independentVar lookup="row">aero/alpha-deg</independentVar>
                         <independentVar lookup="column">aero/Re</independentVar>
-                        <tableData>
+                        <!-- 2.0 - seems to go into inverted stall too hard/easily (ie, when pushing stick forward rather than pushing back) <tableData>
                                           0  1000000  10000000   20000000
                                  -180.0    0.0    -0.0005   -0.00025   -0.000025                                          
                                  -24.0    0.0    -0.0005   -0.00025   -0.000025
                                  -17.8      0.0    -0.00025 -0.000125 -0.0000125
+                                 -11.8      0       0       0         0
+                                   0.0    0.0     0.0     0.0       0.0
+                                  11.8      0       0       0         0
+                                  17.8      0.0     0.00025 0.000125  0.00000125
+                                  24      0.0     0.0005  0.00025   0.0000025
+                                  180      0.0     0.0005  0.00025   0.0000025
+                        </tableData>
+                        -->
+                        <tableData>
+                                          0  1000000  10000000   20000000
+                                 -180.0    0.0    -0.0005   -0.00025   -0.000025                                          
+                                 -24.0    0.0    -0.00005   -0.000025   -0.000025
+                                 -17.8      0.0    -0.000025 -0.0000125 -0.0000125
                                  -11.8      0       0       0         0
                                    0.0    0.0     0.0     0.0       0.0
                                   11.8      0       0       0         0
@@ -2066,6 +2226,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/moment/Pitch_alpha">
                 <description>Pitch moment due to alpha</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 -->
@@ -2098,6 +2259,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/moment/Pitch_elevator">
                 <description>Pitch moment due to elevator</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <!-- <property>aero/qbar-psf</property> using induced-psf instead bec it includes a factor for prop wash-->
                     <property>aero/function/qbar-induced-psf</property>
                     <property>metrics/Sw-sqft</property> <!--this is sq footage of wing whereas it would better to start where w/ sq footage of elevator -->                    
@@ -2175,6 +2337,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/moment/Pitch_damp">
                 <description>Pitch moment due to pitch rate</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
@@ -2210,9 +2373,35 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                 </product>
             </function>
             
+            <!-- when the tie-down in placed, we want to dampen out pitch, roll, yaw moments rapidly -->
+            <!-- this will only be operative when tie-down-factor == 0, ie when all other pitch moments are disabled -->
+            <function name="aero/moment/Pitch_damp_tiedown">
+                <description>Pitch moment due to pitch rate when tied down</description>
+                <product>
+                    <sum>
+                            <value>1</value>
+                            <product>
+                                <property>systems/tie-down-factor</property>
+                                <value>-1</value>
+                            </product>
+                    </sum>                
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/cbarw-ft</property>
+                    <property>aero/ci2vel</property>
+                    <property>velocities/q-aero-rad_sec</property>
+
+                    <!-- Aeromatic value was -12; this is replaced by the value * table value 
+                    below, to reduce the damping values for the Camel --> 
+                    
+                    <value>-5</value>
+                </product>
+            </function>
+            
             <function name="aero/moment/Pitch_alphadot">
                 <description>Pitch moment due to alpha rate</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/cbarw-ft</property>
@@ -2233,7 +2422,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     </table>
                     
                     
-                    <value>-7</value>
+                    <value>-7</value>      <!-- was -7 prior to 9/2023, trying to lower it to calm behavior a bit by -3, didn't work, back to -7 -->
                 </product>
             </function>
 
@@ -2244,9 +2433,10 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             We're modeling it here as simply reduced elevator effectiveness starting at 
             that speed (130 mph = 0.17 mach) - which may not be the best way. -->                            
                     
-                        <function name="aero/moment/Pitch_burble">
+            <function name="aero/moment/Pitch_burble">
                 <description>Pitch moment due to burble at high speeds</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                      <value> 1200 </value> <!-- ver 1.6: 1200 -->
                      <!-- <abs> 
                        <urandom/>
@@ -2695,6 +2885,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/moment/Yaw_beta">
                 <description>Yaw moment due to beta</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
@@ -2705,13 +2896,14 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     
                     <!-- <value>0.12</value> orig -->
                     <!-- <value>0.06</value> 1.6 -->                    
-                    <value>0.04</value>
+                    <value>0.08</value> <!-- 2.0, was .04 but trying to raise it a bit to help it be a bit more stable. 9/2023 -->
                     <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 -->                    
                 </product>
             </function>
             <function name="aero/moment/Yaw_damp">
                 <description>Yaw moment due to yaw rate</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
@@ -2735,6 +2927,8 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
           In order to keep a spin that doesn't damp itself out it seems to need yaw AND roll spin & them both to become undamped at some point.     
           
           Also, it seems to be that the spin rates that lead to these un-damped spins should be a fair bit beyond the ability of the ailerons/rudder/elevator to produce in normal flight.  That's why the designers didn't notice & address the problem immediately: Within a certain flight envelope it is all very stable.
+          Yaw rate usually produces a moment that reduces yaw (by a small amount).  However when we get into stall, that changes (thus the involvement of alpha).  At stall, the wing we are yawing towards will stall while the other one continues to fly, thus creating a large yaw force in the direction of the yaw movement.
+        
 					-->
                     
                     <property>velocities/r-aero-rad_sec</property>
@@ -2744,19 +2938,21 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     
                     <!-- <value>0.921</value> --> <!-- to compensate for Sw-sqft of 212.6948698 vs 231 - most things tuned for 212.7 but now 231 --> 
                      
-                    <table>
+                     <!-- this table was a first crack at the idea that yaw rate does not always reduce yaw.  However, let's go with the alpha/stall approach -->
+                    <!-- <table>
                         <independentVar>velocities/r-aero-rad_sec</independentVar>
                         <tableData>
                         
-                           <!-- ver 1.7<B></B>:  -->
+                           ; ver 1.7<B></B>:  
                            
                           -32.14          0.5
                           -6              0.2
-                          -1.75           0.05    <!-- 1.6c exper: 2.1-->
-                          0               1.5      <!-- 1.6c exper: 1.0 -->
-                          1.75            0.05     <!-- 1.6c exper: 2.1-->
+                          -1.75           0.05     ; 1.6c exper: 2.1 
+                          0               1.5      ; 1.6c exper: 1.0 
+                          1.75            0.05     ; 1.6c exper: 2.1
                           6               0.2
-						              32.14           0.5                        
+						              32.14           0.5  
+                                      -->                      
                     
                           <!-- ver 1.6a:  -->
                           <!--
@@ -2831,9 +3027,10 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                           4             -.5
 						              32.14         -0.5
                           -->     
-                          
+                 <!--                          
                         </tableData>
                     </table>
+                    -->
                     
                     
                     
@@ -2863,12 +3060,89 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     </tableData>
                   </table>
                   -->
+                  
+                  
+                  <value>4</value>  <!-- to adjust the table to =1 in the normal flight regime.  Once we enter stall however the effect is greatly increased, as one wing is stalled (massive drag) while the other is still flying (normal low flying drag) -->
+                        <table>
+                        
+                        <!-- the roll/spin during stall is caused by the fact
+                        that one wing will stall first, causing drag on that 
+                        side preferentially, which then causes more yaw,
+                        which causes more beta, which further stalls the wing,
+                        etc.  Point is, the yaw moment due to rate rate normally dampens yaw but as we get into a stall situation that reverses dramatically.  However, as both wings stall then it evens out again. -->
+                        <independentVar>aero/alpha-deg</independentVar>
+                        <tableData>
+                            -90	0.25
+                            -35 0.15
+                            -30 0.05
+                            -28 -0.05
+                            -26 -0.15
+                            -24	-0.25
+                            -22	-0.35
+                            -18	-0.25
+                            -14	-0.15
+                            -12	-0.05
+                            -10	0.05
+                            -8	0.15
+                            -6	0.25
+                            -5  0.25
+                            -4	0.25
+                            -3	0.25
+                            -2	0.25
+                            -1	0.25
+                            0	0.25
+                            1	0.25
+                            2	0.25
+                            3	0.25
+                            4	0.25
+                            5	0.25
+                            6	0.25
+                            8	0.20
+                            10	0.15
+                            12	0.1
+                            14	0.0
+                            16	-0.1
+                            18	-0.2
+                            20	-0.3
+                            22  -0.4
+                            24  -0.3
+                            26  -0.2
+                            28 -0.1
+                            30  0
+                            32  0.05
+                            35  0.15
+                            90  0.25       
+                        </tableData>
+                    </table>
                     
+                </product>
+            </function>
+            <!-- when the tie-down in placed, we want to dampen out pitch, roll, yaw moments rapidly -->
+            <!-- this will only be operative when tie-down-factor == 0, ie when all other pitch moments are disabled -->
+            <function name="aero/moment/Yaw_damp_tiedown">
+                <description>Yaw moment due to yaw rate</description>
+                <product>
+                    <sum>
+                            <value>1</value>
+                            <product>
+                                <property>systems/tie-down-factor</property>
+                                <value>-1</value>
+                            </product>
+                    </sum>                
+                    <property>aero/qbar-psf</property>
+                    <property>metrics/Sw-sqft</property>
+                    <property>metrics/bw-ft</property>
+                    <property>aero/bi2vel</property>
+                    <property>velocities/r-aero-rad_sec</property>                                                           
+
+                    
+                    <value>-0.6</value>  <!-- Aeromatic value was -0.15; -->
                 </product>
             </function>
             <function name="aero/moment/Yaw_rudder">
                 <description>Yaw moment due to rudder</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <!-- <property>aero/qbar-psf</property> using induced-psf instead bec it includes a factor for prop wash -->
                     <property>aero/function/qbar-induced-psf</property>
                     <property>metrics/Sw-sqft</property>  <!-- we're using wing area here, Sw-sqft, whereas really we should be using rudder area ? -->
@@ -2922,7 +3196,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                     </table> 
                     
                                        
-                    <!-- Asymmetric stall; you lose rudder as a stall in beta occurs -->
+                    <!-- Asymmetric stall; you lose rudder as a stall in `` occurs -->
                     <!-- Based p51d-jsbsim.xml -->
                     <table>
                         <independentVar lookup="row">aero/beta-deg</independentVar>
@@ -2941,6 +3215,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                 </product>
             </function>
             <function name="aero/moment/Yaw_aileron">
+                            
                 <!-- Camels large (but ineffective) 'barn door' ailerons produced 'awe-inspiring'
                 amounts of adverse yaw and also a great deal of drag. With no rudder correction it falls into a deep 
                 side-slip with a few seconds. 
@@ -2958,12 +3233,14 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
                  -->
                 <description>Adverse yaw</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>
                     <property>fcs/left-aileron-pos-rad</property>
-                    <!-- Aeromatic: -0.01  -.07 is QUITE large ver 1.6a: -0.06-->                   <!-- 2.0gamme: -0.04.  Seems a bit high, so trying -0.03 for 2.0delta.  Also we increased Sw-sqft, which auto-increased this by almost 10%-->
-                    <value>-0.03</value>
+                    <!-- Aeromatic: -0.01  -.07 is QUITE large ver 1.6a: -0.06-->                   <!-- 2.0gamme: -0.04.  Seems a bit high, so trying -0.03 for 2.0delta.  Also we increased Sw-sqft, which auto-increased this by almost 10%
+                    2.1alpha 9/2023 - reducing this sa bit to -0.02-->
+                    <value>-0.02</value>
                     <table>
                         <independentVar>velocities/ve-kts</independentVar>
                         <tableData>
@@ -3003,6 +3280,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
            <function name="aero/moment/Yaw_Cnalphabeta">
                 <description>Yaw_moment_due_to_alpha-beta</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <value>1</value> <!-- set to 0 to disable for testing; 1 to enable; disabled for 1.6 - let's try enabling it -->
                     <value> -2.5 </value> <!--ver 1.6: -2.5 -->
                     <property>aero/qbar-psf</property>
@@ -3164,6 +3442,7 @@ TODO: Not sure if the core values here for drag & lift in ver 1.8 are really our
             <function name="aero/moment/Yaw_roll">
                 <description>Yaw moment due to roll rate</description>
                 <product>
+                    <property>systems/tie-down-factor</property>                
                     <property>aero/qbar-psf</property>
                     <property>metrics/Sw-sqft</property>
                     <property>metrics/bw-ft</property>

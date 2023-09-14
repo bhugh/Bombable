@@ -27,6 +27,10 @@
 			<desc>Adjust mixture (If manual mixture selected via menu Camel/Toggle Manual Mixture) </desc>
 		</key>
 		<key>
+			<name>n/N/CTRL-N/B/g/G</name>
+			<desc>Carrier operations keys: n, N, ctrl-n to maneuver on deck, n to boost takeoff roll, B to arrest landing and chock the a/c in place, then g to tie down. G unties when time to take off or taxi.</desc>  
+		</key>        
+		<key>
 			<name>e</name>
 			<desc>Fire guns </desc>
 			
@@ -37,8 +41,8 @@
 			
 		</key>
    <key>
-			<name>n</name>
-			<desc>Nudge aircraft forward (ie, when taxiing in the grass and stuck)</desc>
+			<name>n/N/ctrl n</name>
+			<desc>Crew commands to nudge aircraft forward (n), backward (N), push tail down (ctrl-n) - ie, when taxiing in the grass and stuck, to assist moving around airport/carrier. n can give a small boost to takeoff when needed (rough ground).</desc>
 			
 		</key>
       
@@ -106,6 +110,7 @@
     <line>STALL: Push forward firmly on the stick, gain airspeed. Vigorously oppose any spin (rudder and ailerons).  It may help to blip</line>
     <line>engine off, reducing torque and gyroscopic moment. You will lose ~500 ft altitude or more.</line>
     <line>TRIM: Real Camels had no trim mechanism and were tail heavy with full fuel - nose heavy with low fuel. Beware of stall @ full fuel!</line>
+    <line>CARRIERS: Carrier-compatible for takeoff and landing in light-moderate wind. Use keys n/N/CTRL-N/B/g/G as outlined above.</line>
     <line>Extensive help, tips, documents in the DOCS folder.</line>    
     
 	</help>

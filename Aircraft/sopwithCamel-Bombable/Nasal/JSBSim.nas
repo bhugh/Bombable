@@ -5,8 +5,18 @@ print ("Camel: Starting JSBSim.nas");
 #VARIOUS INITIALIZERS for routines below 
 #
 
-#start with chocks in by default
+####start with chocks in by default
 setprop("controls/gear/brake-parking",1);
+
+####but start with tie-down **un**tied
+setprop("fdm/jsbsim/systems/tie-down-factor", 1); # handline of tie-down-factor is now handled by a listener to always be 1 - tie-down, but we can still set it to 1 here just for safety (but do it BEFORE setting tie-down)
+setprop("controls/gear/tie-down", 0);
+
+#### also note: systems/tie-down.xml - which exists mostly to ensure that the property fdm/jsbsim/systems/tie-down-factor is initialized and set to 1 at the time the FDM starts.  If it is set to 0 or doesn't exist, the entire FDM will malfunction rather badly
+
+setlistener( "sim/signals/fdm-initialized", func { camel.tieDown(1); } );
+ #now however, tie it down.  1=force the tiedown 
+
 
 var right_bump_lowpass = aircraft.lowpass.new(0.2);
 var left_bump_lowpass = aircraft.lowpass.new(0.2);
@@ -53,7 +63,7 @@ var terrain_survol = func (id) {
   setprop ("fdm/jsbsim/fcs/mag-switch-left", l_mag);
   setprop ("fdm/jsbsim/fcs/mag-switch-right", r_mag);
   
-  #all the below  has to do with friction, dust, ground contact etc so if we're way about the ground we're just going to skip it all.  We check in /position, too bec. sometimes one or the other of  ttem freaks out  
+  #all the below  has to do with friction, dust, ground contact etc so if we're way about the ground we're just going to skip it all.  We check in /position, too bec. sometimes one or the other of  them freaks out  
   if (typeof(agl_ft)!="nil" and agl_ft > 100 and typeof(agl_ft_alt)!="nil" and agl_ft_alt > 100 )  {
      #We do one more time through the loop after exceeeding 100 ft AGL just to make sure all smoke is turned off
      if (SCJ_readytoquit) {
@@ -64,10 +74,22 @@ var terrain_survol = func (id) {
      SCJ_readytoquit=0;
   } 
   
-  
+  var ground_elev_m = getprop ("/position/ground-elev-m");  
   var lat = getprop("/position/latitude-deg");
   var lon = getprop("/position/longitude-deg");
   var info = geodinfo(lat, lon);
+  
+  # 0=water, 1=land, 2=aircraft carrier
+  # aircraft carrier we detect if #1. geod[1].solid = 0/water AND 
+  # #2. ground_elever_m > 0.  Specifically the a/c carrier is usually @ 20 meters or so, but there is weird stuff around it like that wake that might be at like 1 meter or so.  For safe, we can say >1.5 meters
+  
+  var solid = 1;
+  if (info != nil and info[1] != nil) {
+    if (info[1].solid == nil) info[1].solid = 1;
+    if (info[1].solid == 0 and ground_elev_m > 1.5) info[1].solid = 2;
+    solid = info[1].solid;
+  }
+  
   
   
   
@@ -79,20 +101,24 @@ var terrain_survol = func (id) {
   var groundspeed_kt_trimmed=groundspeed_kt;
   if (groundspeed_kt_trimmed==nil) groundspeed_kt_trimmed=0;
   
+  var tiedDown = camel.getTieDown();
+  
   var chocksin=0;
   #implement chocks.
-  if (groundspeed_kt_trimmed < 1 and groundspeed_kt_trimmed > -1 and getprop("controls/gear/brake-parking") and agl_ft < 4.6 and agl_ft > 0 ) {
-    setprop("velocities/airspeed-kt", 0);
+  if ( tiedDown or ( ( (groundspeed_kt_trimmed < 0.5 and groundspeed_kt_trimmed > -0.5  and agl_ft < 3 and agl_ft > 0 ) or  isAircraftOnGroundSlow()) and getprop("controls/gear/brake-parking")  )) {
+    if (getCurrentTerrain() != 2 ) setprop("velocities/airspeed-kt", 0);
     chocksin=1;
-    camelStatusPopupTip ("Chocks are in - Shift-B to remove", 0.2);
+    if (tiedDown == 0) camelStatusPopupTip ("Chocks are in - Shift-B to remove", 0.2);
     
-  } else setprop("controls/gear/brake-parking", 0); # if flying etc turn chocks off 
+  } else setprop("controls/gear/brake-parking", 0); # if flying etc turn chocks off
+  
+  if (tiedDown) camel.tieDown(); 
   
   if (groundspeed_kt_trimmed<0) groundspeed_kt_trimmed=0;
   if (groundspeed_kt_trimmed>75) groundspeed_kt_trimmed=75;
   var wake_dust_rate=groundspeed_kt_trimmed;
   setprop("/environment/terrain-info/wake-dust-rate", wake_dust_rate);
-  if ((info != nil) and info[1].solid==0 and groundspeed_kt_trimmed<10)  {
+  if (solid == 0 and (groundspeed_kt_trimmed<10 or groundspeed_kt_trimmed > 45) )  {
              wake_dust_rate=math.sqrt(math.sqrt(math.sqrt(math.sqrt(groundspeed_kt_trimmed/10))))*20; }
   setprop("/environment/terrain-info/wake-dust-rate", wake_dust_rate); 
              
@@ -100,10 +126,10 @@ var terrain_survol = func (id) {
     
 
   if ( (info != nil) and (info[1] != nil) ) { #rand()<.1 slows down the rate of bumpiness, which seems to work better than doing it too frequently   
-          if (info[1].solid ==nil) info[1].solid = 1;
-          setprop("/environment/terrain-info/terrain",info[1].solid);   # 1 if solid land, 0 if water
+          
+          setprop("/environment/terrain-info/terrain",solid);   # 1 if solid land, 0 if water, 2 if carrier
           #the crash-detect subroutine can only read within the /fdim/jsbsim hierarchy so we must put this there as well
-          setprop("/fdm/jsbsim/terrain-info/terrain",info[1].solid);   # 1 if solid land, 0 if water
+          setprop("/fdm/jsbsim/terrain-info/terrain",solid);   # 1 if solid land, 0 if water, 2 if carrier
 
           # If on water we're going to #1 double the wake rate because water puts up a bunch of spray etc. And #2 bolster the wake rate at slow speeds to make more of a splash as the a/c settles into the water etc.
           
@@ -114,19 +140,50 @@ var terrain_survol = func (id) {
           if (wheel_speed2_fps> wheel_speed_fps) wheel_speed_fps=wheel_speed2_fps;
           
           if (info[1].bumpiness ==nil) info[1].bumpiness = 0;
-          if (info[1].solid == 0 ) info[1].bumpiness = 1.2; # we're making water automatically quite 'bumpy'
-          var bumpinesscoeff=info[1].bumpiness*7;  #15 in 1.8
-          var speedbumpinesscoeff=20;          
+          if (solid == 0 ) info[1].bumpiness = 1.2; # we're making water automatically quite 'bumpy'
+          if (solid == 2 ) info[1].bumpiness = 0.001; # And an a/c carrier by contrast is super-smooth
+          var bumpinesscoeff=info[1].bumpiness*3;  #15 in 1.8, and 7 in 2.0
+          var speedbumpinesscoeff=30;  # higher # makes less bumps (?)          
           
           setprop("/environment/terrain-info/terrain-bumpiness",info[1].bumpiness);
+          
+          var raise_pct = 1;  # how much to raise the skids due to water. 1=no raise; 0=fully raised
 
-          if (rand()<.2) {   # we do the gear height adjustments only part of the time to reduce the frequency of the bumps and make them more realistic
+          if (rand()<.2) {  # we do the gear height adjustments only part of the time to reduce the frequency of the bumps and make them more realistic
 
-              # we're experimenting with special paramenters for water to make it more realistic.   
+                
               
-              if (info[1].solid == 0 ) { #ie, over water
+              var lgearpdist=-65;
+              var lgeardist=-55;
+              var rgearpdist=-65;
+              var rgeardist=-55;
+              var lgearbroken = getprop("/fdm/jsbsim/systems/crash-detect/left-gear-broken");
+              if (lgearbroken) { 
+                 var lgearpdist=-25;
+                 var lgeardist=-25;
+              }
+              var rgearbroken = getprop("/fdm/jsbsim/systems/crash-detect/right-gear-broken");
+              if (rgearbroken) { 
+                 var rgearpdist=-25;
+                 var rgeardist=-25;
+              }
+              var tgeardist=-20; 
+              
+              # we're experimenting with special paramenters for water to make it more realistic.
+              
+              if (solid == 0 ) { #ie, over water
                 # if the a/c is far enough under water that the prop strikes water, then the engine quits
-                if (agl_ft < 3.0) setprop ("/controls/engines/engine/magnetos",0);                                                
+                if (agl_ft < 3.0) setprop ("/controls/engines/engine/magnetos",0);
+  
+                # So if you hit the water going fast, it is just like ground, wheels will dig in, you'll probably flip over etc.
+                # But if you are going slow the wheels will just sink in
+                
+                raise_pct = groundspeed_kt_trimmed - 40;
+                if (raise_pct < 0) raise_pct = 0;
+                if (raise_pct > 20) raise_pct = 20;
+                raise_pct = raise_pct/20;
+                var gear_raise_pct = raise_pct*1.1; # actually raise the gear somewhat, 50%, on water regardless.  But it will have a higher friction factor etc.
+                bumpinesscoeff = bumpinesscoeff + bumpinesscoeff * raise_pct;  # more bumpy in case hitting water at high speed
                 
                 # on water, we 'raise the gear' so that the a/c will appear
                 # to be partially submerged when it lands
@@ -134,19 +191,19 @@ var terrain_survol = func (id) {
     
                 #L gear & it's protective structure element
                 var bump = left_bump_lowpass.filter ((bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff));
-                setprop ("/fdm/jsbsim/gear/unit[0]/z-position", -20 + bump );
-                setprop ("/fdm/jsbsim/contact/unit[21]/z-position", -20 + bump );
+                setprop ("/fdm/jsbsim/gear/unit[0]/z-position", gear_raise_pct * ( lgearpdist +20 ) -20 + bump );
+                setprop ("/fdm/jsbsim/contact/unit[21]/z-position", gear_raise_pct * ( lgeardist +20 ) -20 + bump );
                                
                 #R gear & it's protective structure element
                 var bump = right_bump_lowpass.filter((bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff));
-                setprop ("/fdm/jsbsim/gear/unit[1]/z-position", -20 + bump );
-                setprop ("/fdm/jsbsim/contact/unit[22]/z-position", -20 + bump );
+                setprop ("/fdm/jsbsim/gear/unit[1]/z-position", gear_raise_pct * ( rgearpdist +20 ) -20 + bump );
+                setprop ("/fdm/jsbsim/contact/unit[22]/z-position", gear_raise_pct * ( rgeardist +20 ) -20 + bump );
                 
                 
                 #water gear - same bump for both, a bit different than land gear
                 var bump = tail_bump_lowpass.filter((bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff));
-                setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-60 + bump * 3 );
-                setprop ("/fdm/jsbsim/gear/unit[3]/z-position",-60 + bump * 3 );
+                setprop ("/fdm/jsbsim/gear/unit[2]/z-position", gear_raise_pct * ( tgeardist + 60 ) - 60 + bump * 3 );
+                setprop ("/fdm/jsbsim/gear/unit[3]/z-position", gear_raise_pct * ( tgeardist + 60 ) - 60 + bump * 3 );
                 
                 #tail
                 setprop ("/fdm/jsbsim/gear/unit[4]/z-position",-12 + (bumpinesscoeff 
@@ -172,20 +229,7 @@ var terrain_survol = func (id) {
                 # tires/rear dragger
     
     
-                var lgearpdist=-65;
-                var lgeardist=-55;
-                var rgearpdist=-65;
-                var rgeardist=-55;
-                var lgearbroken = getprop("/fdm/jsbsim/systems/crash-detect/left-gear-broken");
-                if (lgearbroken) { 
-                   var lgearpdist=-25;
-                   var lgeardist=-25;
-                }
-                var rgearbroken = getprop("/fdm/jsbsim/systems/crash-detect/right-gear-broken");
-                if (rgearbroken) { 
-                   var rgearpdist=-25;
-                   var rgeardist=-25;
-                }
+
     
                 #L gear & it's protective structure element
                 var bump = left_bump_lowpass.filter ((bumpinesscoeff * rand()-bumpinesscoeff)*(rand() < wheel_speed_fps/speedbumpinesscoeff));
@@ -199,8 +243,8 @@ var terrain_survol = func (id) {
                 setprop ("/fdm/jsbsim/contact/unit[22]/z-position",rgeardist + bump );
                 #print ("Camel: RBump " ~ bump);
     
-                setprop ("/fdm/jsbsim/gear/unit[2]/z-position",-20);  #Experiment: We set the water gear to -55 here, rather than fully retracting to -20, so that on hard bumps on the solid ground it will emit some dust. But this caused problems when the water gear hit land/dirt & caused a lot of friction plus took some of the load (making the crash data look strange), so un-doing it.
-                setprop ("/fdm/jsbsim/gear/unit[3]/z-position",-20);
+                setprop ("/fdm/jsbsim/gear/unit[2]/z-position",tgeardist);  #Experiment: We set the water gear to -55 here, rather than fully retracting to -20, so that on hard bumps on the solid ground it will emit some dust. But this caused problems when the water gear hit land/dirt & caused a lot of friction plus took some of the load (making the crash data look strange), so un-doing it.
+                setprop ("/fdm/jsbsim/gear/unit[3]/z-position",tgeardist);
                 
                 #tail
                 var bump = left_bump_lowpass.filter ((bumpinesscoeff 
@@ -222,11 +266,14 @@ var terrain_survol = func (id) {
               }
           }     
           if (info[1].load_resistance ==nil) info[1].load_resistance = 1e+30;
-          if (info[1].solid == 0 ) info[1].load_resistance = 1; # we're experimenting with special paramenters for water to make it more realistic
+          if (solid == 0 ) info[1].load_resistance = 1; # we're experimenting with special paramenters for water to make it more realistic
           setprop("/environment/terrain-info/terrain-load-resistance",info[1].load_resistance);
           
           if (info[1].friction_factor ==nil) info[1].friction_factor = 1.05; 
-          if (info[1].solid == 0 ) info[1].friction_factor = .9; # we're experimenting with special paramenters for water to make it more realistic
+          if (solid == 0 ) info[1].friction_factor = .9; # we're experimenting with special paramenters for water to make it more realistic
+          if (solid == 2 ) info[1].friction_factor = .5; # aircraft carriers pretty smooth & slick
+          
+          if (camel.getTieDown() == 1) info[1].friction_factor = 100; 
           setprop("/environment/terrain-info/terrain-friction-factor",info[1].friction_factor);
                     
           
@@ -234,19 +281,29 @@ var terrain_survol = func (id) {
           if (info[1].rolling_friction ==nil) info[1].rolling_friction = 0.02;
           
           # we're experimenting with special paramenters for water to make it more realistic.   
-          if (info[1].solid == 0 ) {
-            var rfriction=.4;
-            if (agl_ft < 5.5) rfriction=.4;
-            if (agl_ft < 4.5) rfriction=.6;
-            if (agl_ft < 3.75) rfriction=.6;
-            if (agl_ft < 3.0) rfriction=.6;
-            if (agl_ft < 2.5) rfriction=.6;
-            if (agl_ft < 2) rfriction=.9;
+          if (solid == 0 ) {
+            var rfriction = 0.9;
+            if (raise_pct < 0.1) {
+              var rfriction=.4;
+              if (agl_ft < 5.5) rfriction=.4;
+              if (agl_ft < 4.5) rfriction=.6;
+              if (agl_ft < 3.75) rfriction=.6;
+              if (agl_ft < 3.0) rfriction=.6;
+              if (agl_ft < 2.5) rfriction=.6;
+              if (agl_ft < 2) rfriction=.9;
+            }
             info[1].rolling_friction = rfriction;
             
           }
+          if (solid == 2 ) { # somewhat, just slightly, higher friction for carriers so you can stop more easily
+          
+           info[1].rolling_friction = 0.07;
+          
+          }          
+          
 
-          if (chocksin) setprop("/environment/terrain-info/terrain-rolling-friction",1); # if chocks are in, rolling friction is at max! 
+          if (chocksin )  setprop("/environment/terrain-info/terrain-rolling-friction",25); # if chocks are in, rolling friction is at max!     #2023/09, was 1 but trying 5 to see if we can get actual dead stop w/ chocks
+          else if (camel.getTieDown() == 1 )  setprop("/environment/terrain-info/terrain-rolling-friction",100); # if chocks are in, rolling friction is at max!     #2023/09, was 1 but trying 5 to see if we can get actual dead stop w/ chocks
           else setprop("/environment/terrain-info/terrain-rolling-friction",info[1].rolling_friction);
           
           if (info[1].names ==nil) info[1].names="";
@@ -261,8 +318,8 @@ var terrain_survol = func (id) {
         setprop("/environment/terrain-info/terrain-friction-factor",1.05);
         setprop("/environment/terrain-info/terrain-bumpiness",0);
         setprop("/environment/terrain-info/terrain-rolling-friction",0.02);        
-        if (chocksin) setprop("/environment/terrain-info/terrain-rolling-friction",1); # if chocks are in, rolling friction is at max! 
-        else setprop("/environment/terrain-info/terrain-rolling-friction",0.02);
+        if (chocksin )  setprop("/environment/terrain-info/terrain-rolling-friction",25); # if chocks are in, rolling friction is at max!     #2023/09, was 1 but trying 5 to see if we can get actual dead stop w/ chocks
+        if (camel.getTieDown() == 1 )  setprop("/environment/terrain-info/terrain-rolling-friction",100); # if chocks are in, rolling friction is at max!     #2023/09, was 1 but trying 5 to see if we can get actual dead stop w/ chocks                
       }
       
   #updates friction data for each contact point/gear element based on current location
@@ -271,6 +328,31 @@ var terrain_survol = func (id) {
   #creates a trimmed version of the current compression-ft amount
   #for each gear setting/element point for use in the wake/dust particle system    
   contact_point_compression_limiter_loop(0,5,wake_dust_rate);
+}
+
+var isAircraftOnGroundSlow = func {
+
+    #slow groundspeed
+   var AGL_m=getprop("position/altitude-agl-m");
+   var currGroundSpeed=getprop("velocities/down-relground-fps");
+   if (currGroundSpeed == nil) currGroundSpeed = 0;
+   if (math.abs(currGroundSpeed) < 0.5 and AGL_m < 3) return 1;
+   
+   #OR on a/c carrier and little/no vertical speed
+   var currVerticalSpeed=getprop("velocities/vertical-speed-fps");
+   if (currVerticalSpeed == nil) currVerticalSpeed=0;
+   var currTerrain=getprop("/environment/terrain-info/terrain");
+   if (currTerrain == nil) currTerrain == 1;
+   if (math.abs(currVerticalSpeed)<0.1 and currTerrain == 2 and math.abs(currGroundSpeed) < 30 and AGL_m < 4) return 1; #terrain==2 is aircraft carrier
+   return 0;
+   
+}
+
+
+var getCurrentTerrain = func {
+var currTerrain=getprop("/environment/terrain-info/terrain");
+   if (currTerrain == nil) currTerrain == 1;
+   return currTerrain;
 }
 
 
@@ -357,8 +439,10 @@ var friction_loop = func {
 #controlled by the code below.
 #   
 var contact_point_compression_limiter_loop = func ( min=0, max=5, low_limit=.005, zero_round=.00001, multiplier=10) {                                              
-
-     
+          
+      var terrain = getprop("/environment/terrain-info/terrain");
+      if (terrain == nil) terrain = 1;   #0=water, 1=land, 2=aircraft carrier
+          
      for (var n=0;n<getprop("/fdm/jsbsim/gear/num-units"); n+=1) {
         unitName= "unit[" ~ n ~ "]";
         
@@ -386,7 +470,9 @@ var contact_point_compression_limiter_loop = func ( min=0, max=5, low_limit=.005
         if (compression_ft_trimmed<zero_round ) compression_ft_trimmed=0;
         
         if (compression_ft_trimmed<low_limit and compression_ft_trimmed>0 ) compression_ft_trimmed=low_limit;
-        var wake_dust_factor=compression_ft_trimmed*multiplier*extraMultiplier;
+        var cft =compression_ft_trimmed;
+        if (terrain == 0 and cft > low_limit and cft > (max-min)*0.1 + min) cft = max; #for water we always go with max dust/water kicked up 
+        var wake_dust_factor=cft*multiplier*extraMultiplier;
         setprop("/environment/terrain-info/gear/"~unitName~"/wake-dust-factor", wake_dust_factor);     
      }
   
@@ -536,7 +622,7 @@ var setCrash= func {
 
  camel.dialog.init(450, 0, crashCause); camel.dialog.create(crashCause);
  #view.stepView(1,1); #kicks them out of the A/C ; we'll put them back in at crashmenu.nas if they go back in the plane
- setprop("/sim/current-view/view-number", 7);
+ setprop("/sim/current-view/view-number", 1);
 
  setprop ("/sim/crashed", 1);
  #setprop ("/velocities/airspeed-kt", 0); #make it stop, rather than bouncing etc.
@@ -545,7 +631,7 @@ var setCrash= func {
  #settimer ( func {  setprop ("/velocities/airspeed-kt", 0); }, 1.0);
  #settimer ( func {  setprop ("/velocities/airspeed-kt", 0); }, 1.5);
 
- #Hmm, apparently we can do this with just the verticle velocity, allowing the a/c to slide along the ground etc., rather than just stopping dead.
+ #Hmm, apparently we can do this with just the vertical velocity, allowing the a/c to slide along the ground etc., rather than just stopping dead.
  #setprop ("/velocities/speed-down-fps", 0); #make it stop, rather than bouncing etc.  But remming this out so that it happens only after 0.15 sec or so, to allow all 'consequences' to happen, like breaking things
  #And, just go ahead & make sure . . .
  settimer ( func {  setprop ("/velocities/speed-down-fps", 0); }, 0.15); 

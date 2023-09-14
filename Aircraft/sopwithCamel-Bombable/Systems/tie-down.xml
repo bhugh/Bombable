@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<system name="tie-down">
+
+  <property value="1">systems/tie-down-factor</property>  <!-- When set to 1, all aerodynamic forces work as usual.  Set to 0, all forces go to 0.-->
+
+</system>

@@ -4,7 +4,7 @@
 	<sim include="help-jsbsim.xml"> 
 		<description type="string">Sopwith Camel 1F.1 (JSBSim, Historically Accurate FDM &amp; Weapons, Bombable-compatible, ver 2.0)</description>
 		<author type="string">AJ MacLeod, Vivian Meazza, Brent Hugh (Historically accurate JSBSim FDM &amp; weapons, Bombable compatibility)</author>
-		<status type="string">V2.0: Production, guns work, Bombable compatible</status>
+		<status type="string">V2.1: Production, guns work, Bombable compatible</status>
 		<rating>
 			<FDM type="int">4.2</FDM>
 			<systems type="int">4</systems>
@@ -270,6 +270,7 @@
 	</sim>
 
 	<input>
+      <!-- <keyboard include="Input/Keyboard/carrier-bindings.xml"></keyboard> -->
 	  <keyboard include="Systems/walk-view-keys.xml">
 			<!-- map keys for mag switches  -->
 			<key n="123">
@@ -380,9 +381,44 @@
 				<desc>Nudge aircraft (ie, when stuck on the ground)</desc>
 				<binding>
 					<command>nasal</command>
-					<script>camel.nudgeaircraft()</script>
+					<script>camel.nudgeaircraft(1)</script>
 				</binding>
-			</key>            
+			</key>
+            <!-- Nudge aircraft forward a bit, ie when stuck in the grass -->
+			<key n="78">
+				<name>N</name>
+				<desc>Nudge aircraft (more)</desc>
+				<binding>
+					<command>nasal</command>
+					<script>camel.nudgeaircraft(-1)</script>
+				</binding>
+			</key> 
+                        <!-- Nudge aircraft tail down, little downward wind blast -->
+			<key n="14">
+				<name>CTRL-N</name>
+				<desc>Nudge aircraft tail down</desc>
+				<binding>
+					<command>nasal</command>
+					<script>camel.downNudge(1)</script>
+				</binding>
+			</key>
+            <!--  -->
+			<key n="103">
+				<name>g</name>
+				<desc>Tie down (when slow/stopped)</desc>
+				<binding>
+					<command>nasal</command>
+					<script>camel.tieDown()</script>
+				</binding>
+			</key>
+             <key n="71">
+				<name>G</name>
+				<desc>Remove Tie Down</desc>
+				<binding>
+					<command>nasal</command>
+					<script>camel.removeTieDown()</script>
+				</binding>
+			</key>           
       <!-- Fire gun -->
       <!-- We do both triggers just to be safe -->
       <key n="101">
@@ -411,6 +447,63 @@
          </binding> 
          </mod-up>
       </key>
+      
+       <key n="67">
+   <name>C</name>
+   <desc>Catapult Launch Command.</desc>
+   <binding>
+     <command>property-assign</command>
+     <property>/controls/gear/catapult-launch-cmd</property>
+     <value type="bool">true</value>
+   </binding>
+   <mod-up>
+     <binding>
+       <command>property-assign</command>
+       <property>/controls/gear/catapult-launch-cmd</property>
+       <value type="bool">false</value>
+     </binding>
+   </mod-up>
+ </key>
+
+ <!-- map keys for launch-bar -->
+ <key n="76">
+   <name>L</name>
+   <desc>Launch-bar engage.</desc>
+   <binding>
+     <command>property-assign</command>
+     <property>/controls/gear/launchbar</property>
+     <value type="bool">true</value>
+   </binding>
+   <mod-up>
+     <binding>
+       <command>property-assign</command>
+       <property>/controls/gear/launchbar</property>
+       <value type="bool">false</value>
+     </binding>
+   </mod-up>
+ </key>
+
+ <!-- map keys for arrester hook -->
+ <key n="79">
+   <name>O</name>
+   <desc>Hook down.</desc>
+   <binding>
+     <command>property-assign</command>
+     <property>controls/gear/tailhook</property>
+     <value type="double">1.0</value>
+   </binding>
+ </key>
+
+ <key n="111">
+   <name>o</name>
+   <desc>Hook Up.</desc>
+   <binding>
+     <command>property-assign</command>
+     <property>controls/gear/tailhook</property>
+     <value type="double">0.0</value>
+   </binding>
+ </key>
+
     </keyboard>
 
 	</input>

@@ -153,8 +153,11 @@ var dialog = {
 
 var crashReset = func {
 
-  crashContinue();
-  fgcommand ("reinit");
+  #crashContinue();
+  #fgcommand ("reinit"); #9/2023, this doesnt' seem to work any more
+  
+  settimer(func {fgcommand ("reset"); }, 0.2); #crashes, so trying a little delay?
+  #fgcommand ("reset"); #9/2023, this is what is found in menu file/reset
 
 }
 
@@ -177,9 +180,10 @@ var crashRaise = func (distance_ft=100) {
  var elevprop="/position/altitude-ft";
  setprop (elevprop, distance_ft + getprop(elevprop));
  setprop("/fdm/jsbsim/position/h-agl-ft", distance_ft + getprop(elevprop)); #need to set it here, too, bec. we're using that value in resetCrashSettings() and JSBSim won't have time to update it we get there 
-
-
-}                               
+ setprop("velocities/airspeed-kt", 5); #just a very slight nudge forward, for some reason it actually results in a much larger initial velocity      
+    
+}
+                             
 
 var resetCrashSettings = func {
     var agl_jsb=getprop("/fdm/jsbsim/position/h-agl-ft");
@@ -188,7 +192,7 @@ var resetCrashSettings = func {
     var roll_deg = getprop ("/orientation/roll-deg");
     var groundspeed_kt = getprop ("/velocities/groundspeed-kt");
     #This might not work on steep hills or other difficult spots . . . 
-    if (typeof(agl) != "nil" and typeof(groundspeed_kt) != "nil" and agl < 5.67 and groundspeed_kt < 1.5 and groundspeed_kt > -1.5 ) { #only do the stuff below if on the ground & stopped
+    if ((typeof(agl) != "nil" and typeof(groundspeed_kt) != "nil" and agl < 5.67 and groundspeed_kt < 1.5 and groundspeed_kt > -1.5) or isAircraftOnCarrierStopped() ) { #only do the stuff below if on the ground & stopped
         setprop("/fdm/jsbsim/position/h-agl-ft", 4.77); #If wheels are broken we might be below ground level, so move it up before un-breaking the wheels.
         setprop("/orientation/roll-deg", 0);
         setprop("/orientation/pitch-deg", 14.5);
@@ -203,6 +207,17 @@ var resetCrashSettings = func {
     
     camel.magneto.updateMagnetos(); #make sure actual magneto settings match the state of the visible switches 
 
+}
+
+var isAircraftOnCarrierStopped = func {
+   
+   #OR on a/c carrier and little/no vertical speed
+   var currVerticalSpeed=getprop("velocities/vertical-speed-fps");
+   var currTerrain=getprop("/environment/terrain-info/terrain");
+   if (currTerrain == nil) currTerrain == 1;
+   if (currVerticalSpeed<0.5 and currTerrain == 2) return 1; #terrain==2 is aircraft carrier
+   return 0;
+   
 }
 
 

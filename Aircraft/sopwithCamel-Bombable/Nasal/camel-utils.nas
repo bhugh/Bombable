@@ -1,6 +1,6 @@
 #####################################################################################
 #                                                                                   #
-#  this script contains a number of utilities for use with the Camel (YASim fdm)    #
+#  this script contains a number of utilities for use with the Camel (both YASim & JSBSim fdm)    #
 #                                                                                   #
 #####################################################################################
 
@@ -105,6 +105,38 @@ initialize = func {
             } );
 
     setlistener( "fdm/jsbsim/fcs/automixture-enable", func { displaymixturetoggle();
+    } );
+    
+    ###### Set up gear/tie-down in the proper state (OFF) whenever the sim is restarted/reset.  But then, DO tie down if appropriate (stopped on ground etc)
+    setlistener("/sim/signals/reinit", func {
+        setprop("fdm/jsbsim/systems/tie-down-factor", 1); # handline of tie-down-factor is now handled by a listener to always be 1 - tie-down, but we can still set it to 1 here just for safety (but do it BEFORE setting tie-down - because if the listener is activated/working, it will change tie-down-factor at the moment tie-down is set)
+        setprop("controls/gear/tie-down", 0);  
+        
+        camel.terrain_servol_loop_start(); # need to do this before running  tieDown() as it sets the terrain variables properly. 
+        
+        var res = tieDown(1); 
+        
+        #sometimes it doesn't work, presumably things not quite  initialized, so 
+        #try it again a couple times
+        if (res != 1)  settimer(func { 
+        
+            var res = tieDown(1);
+            if (res != 1)  settimer(func {tieDown(1);}, 0.05);
+        
+        }, 0);
+        
+        camelStatusPopupTip ("camel-utils: JUST RE-INITED!!", 1); 
+        print ("camel-utils: JUST RE-INITED!!");
+    });
+    
+    #### also note: systems/tie-down.xml - which exists mostly to ensure that the property fdm/jsbsim/systems/tie-down-factor is initialized and set to 1 at the time the FDM starts.  If it is set to 0 or doesn't exist, the entire FDM will malfunction rather badly
+    
+    ####Set up a listener to handle coordination of gear/tie-down and jsbsim/systems/tie-down-factor    
+    # gear/tie-down is whether tie-down for the a/c is activated. 1=on, 0=off  
+    # tie-down-factor is for convenience when applying the tie-down to jsbsim
+    # forces and moments, it is always 1 - tie-down, ie, 0 then tie-down is activated, 1 when not.  In the FDM it is multiplied to all moments like roll, pitch, yaw, so 1 leaves them as-is and 0 neutralizes all those forces/moments
+    setlistener( "controls/gear/tie-down", func {var td = getprop("controls/gear/tie-down"); if (td == nil) td = 0;   
+      setprop("fdm/jsbsim/systems/tie-down-factor", 1-td);
     } );
     
 
@@ -296,10 +328,12 @@ blipMagswitch:   func{
         setprop("controls/engines/engine/blip_switch",0);
         me.updateMagnetos();
         
-        # if magnetos are on & engine running & on ground, and moving slowly, we'll give a 'nudge' here
+        # if magnetos are on & engine running & on ground, and moving slowly, we'll give a SMALL 'nudge' here
         # if (me.magnetos.getValue() > 0 and getprop("engines/engine/rpm")>100) {
-            var currGroundSpeed=getprop("velocities/groundspeed-kt");
-            if (currGroundSpeed < 3 ) setprop("velocities/airspeed-kt", 0.333);      
+            
+            # the nudge thing doesn't work well on the carrier
+            #if (isAircraftOnGroundSlow_NotOnCarrier()) setprop("velocities/airspeed-kt", 0.333); 
+            if (me.magnetos.getValue() > 0 and getprop("engines/engine/rpm")>100) {nudgeaircraft (0.1);} #better way     
 
         #}
         # actually this gets done in updateMagnetos; don't need to do again: if (getprop("velocities/groundspeed-kt")>20 or getprop("engines/engine/rpm")>10 and !getprop("fdm/jsbsim/systems/crash-detect/prop-strike")) setprop("/fdm/jsbsim/propulsion/set-running", -1); #real Camel engines didn't just stop rotating while the blip switch was pressed, and (apparently) they never had trouble restarting an engine after a blip. As long as the a/c OR prop was moving the instant the blip was released there was power.  Also this helps provide the *immediate* thrust of power that rotary engines were able to develop when blip was released - much quicker ramp-up than the typical engine JSBSim is modeling here. 
@@ -585,7 +619,116 @@ updateSmoking: func{     # set the smoke value according to the engine condition
 
 # =============================== end smoke stuff ==============================
 
+# ============================tie down=========================
 
+var tieDown = func  (force = 0) {
+
+    var canTieDown = 0;
+    var tiedDown = getTieDown();
+    var currTerrain=getprop("/environment/terrain-info/terrain");
+    var AGL_ft=getprop("position/altitude-agl-ft"); #-ft is initialized earlier on for some reason?
+    if (AGL_ft == nil) AGL_ft = 0;
+    
+    #We often don't have the right terrain right at startup, it takes a few seconds       
+    if ((force) and AGL_ft < 12) canTieDown = 1;
+    
+    #the a/c carriers are just at 20m AGL.  So if we're that height when starting or restartin, this is likely the explanation
+    else if (force and AGL_ft > 50 and AGL_ft < 75) canTieDown = 1;
+    
+    else if (tiedDown and AGL_ft < 100) canTieDown = 1;
+    else {
+      
+        
+                 #slow groundspeed
+                 print ("iAOGS");
+                 
+                 var currGroundSpeed=getprop("velocities/groundspeed-kt");
+                 
+                 
+                 print ("Camel: tiedown:  AGL " ~ AGL_ft ~ " GspeedKT " ~ currGroundSpeed);
+                 if (currTerrain != 2 and (math.abs(currGroundSpeed) < 3 and  AGL_ft < 12)) canTieDown = 1;
+                 else {
+              
+                     #OR on a/c carrier and little/no vertical speed
+                     var currVerticalSpeed=getprop("velocities/vertical-speed-fps"); # or velocities/down-relground-fps
+                     
+                     if (currTerrain == nil) currTerrain == 1;
+                     print ("Camel: tiedown:  terrain " ~ currTerrain ~ " vertSpeed " ~ math.abs(currVerticalSpeed));
+                     if (currTerrain == 2 and (math.abs(currVerticalSpeed) < 0.3 and math.abs(currGroundSpeed) < 30 and AGL_ft < 12)) canTieDown = 1; #terrain==2 is aircraft carrier
+                      else {return 0;}
+               }
+       }
+   
+
+   if (canTieDown == 0) {
+      print("Camel: Can't tie down now...");
+      return 0;
+      }
+
+      #print ("Tied down . . . ");      
+      setprop("controls/gear/tie-down", 1);    
+      #setprop("fdm/jsbsim/systems/tie-down-factor", 0);   # this is handled by a listener now.
+        
+      setprop("/environment/terrain-info/terrain-rolling-friction",100);
+      setprop("/environment/terrain-info/terrain-friction-factor",100 );
+      
+      #gnd_alt_ft = getprop ("/position/ground-elev-ft");
+      #setprop("/position/altitude-ft", gnd_alt_ft + 5.41);
+      setprop("/velocities/speed-down-fps", 0.00);
+      #setprop("orientation/roll-rate-degps", 0);
+      #setprop("orientation/pitch-rate-degps", 0);
+      #setprop("orientation/yaw-rate-degps", 0);
+
+      if (currTerrain != 2) {
+          setprop("velocities/uBody-fps", 0);
+          setprop("velocities/vBody-fps", 0);
+          setprop("velocities/wBody-fps", 0);
+          setprop("velocities/speed-east-fps", 0);
+          setprop("velocities/speed-north-fps", 0);
+          setprop("velocities/speed-down-fps", 0);
+          setprop("velocities/east-relground-fps", 0);          
+          setprop("velocities/down-relground-fps", 0);
+          setprop("velocities/down-relground-fps", 0);
+          setprop("velocities/groundspeed-kt", 0);
+      }
+
+      
+      #if (getCurrentTerrain() != 2 ) setprop("velocities/airspeed-kt", 0);    
+    camelStatusPopupTip ("Aircraft is tied down. Shift-G to untie", 1);
+    
+    return 1;
+
+
+}
+
+var removeTieDown = func {
+
+     setprop("fdm/jsbsim/systems/tie-down-factor", 1); # still do this here for safety, in case the listener gets disrupted somehow
+     if (getTieDown() == 1) {
+      setprop("controls/gear/tie-down", 0);
+      #setprop("fdm/jsbsim/systems/tie-down-factor", 0);   # this is handled by a listener now.   
+        
+      camelStatusPopupTip ("Aircraft tie-down removed.", 2);
+     }
+
+}
+
+var getTieDown = func {
+    var tiedDown = getprop("controls/gear/tie-down");
+    if (tiedDown == nil)  {
+        tiedDown = 0;
+        setprop("controls/gear/tie-down", tiedDown);
+    }
+    return tiedDown;
+}
+
+var getCurrentTerrain = func {
+var currTerrain=getprop("/environment/terrain-info/terrain");
+   if (currTerrain == nil) currTerrain == 1;
+   return currTerrain;
+}
+
+# =========================end tie down=========================
 
 #displays message showing whether auto mixture is enabled/disabled.
 var displaymixturetoggle = func {
@@ -613,14 +756,80 @@ var displaymixture = func {
     
 }
 
-#nudge aircraft a bit, ie if it is stuck in the grass
-var nudgeaircraft = func {
-    #Ok, this is odd, because if it is windy etc the groundspeed will often show 15-20 kts when you
-    #are sitting still on the ground.  But still, setting prop of airspeed to even 1mph will get you 'unstuck'
-    #from the ground.  Maybe not the best way to do it but it seems to work for now . . . 
-    var currGroundSpeed=getprop("velocities/groundspeed-kt");
-    if (currGroundSpeed < 3 ) setprop("velocities/airspeed-kt", 0.75);      
-    #adding 1 kt here is about the mx we can do without causing over G crashes.
+#nudge aircraft a bit, ie if it is stuck in the grass etc
+var nudgeaircraft = func (amt = 1) {
+    
+    #BETTER way
+    var tiedDown = getTieDown();
+    var parking_brake = getprop("controls/gear/brake-parking");
+    print ("Camel: Trying to nudge by " ~ amt ~ " parking: " ~ parking_brake ~ "onGroundSlow " ~ isAircraftOnGroundSlow() );
+    if (parking_brake == 1 or tiedDown) return;
+    
+   #slow groundspeed
+   print ("iAOGS");
+   var AGL_m=getprop("position/altitude-agl-m");
+   var currGroundSpeed=getprop("velocities/groundspeed-kt");
+   var currTerrain=getprop("/environment/terrain-info/terrain");
+   
+   print ("Camel: OnGroundSlow:  AGL " ~ AGL_m ~ " GspeedKT " ~ currGroundSpeed);
+   if (currTerrain != 2 and (math.abs(currGroundSpeed) >= 3 or  AGL_m >= 3)) return;
+
+   #OR on a/c carrier and little/no vertical speed
+   var currVerticalSpeed=getprop("velocities/vertical-speed-fps"); # or velocities/down-relground-fps
+   
+   if (currTerrain == nil) currTerrain == 1;
+   print ("Camel: OnGroundSlow:  terrain " ~ currTerrain ~ " vertSpeed " ~ math.abs(currVerticalSpeed));
+   if (currTerrain == 2 and (math.abs(currVerticalSpeed) > 0.5 or math.abs(currGroundSpeed) > 30 or AGL_m >= 3)) return; #terrain==2 is aircraft carrier 
+    
+    
+    #if (isAircraftOnGroundSlow() == 1) 
+    doNudge(amt); 
+    
+}
+
+var doNudge = func (amt = 1) {
+
+   var roll_friction = getprop("/environment/terrain-info/terrain-rolling-friction");
+   var curr_uBody = getprop("velocities/uBody-fps");
+   var curr_wBody = getprop("velocities/wBody-fps");
+   
+   
+   var sgn = math.sgn(amt);
+   if (roll_friction > 0.3) amt = amt * 1.2; 
+   var next_uBody = curr_uBody + amt * 4;
+   if (sgn * next_uBody < sgn * amt*4) next_uBody = amt * 4; 
+   var next_wBody = curr_wBody - 2;
+   if (next_wBody > -2) next_wBody = -2;
+   var final_wBody = curr_wBody + 7;
+   if (next_wBody < 7) next_wBody = 7;
+    
+   setprop("velocities/uBody-fps", next_uBody);  # forward direction (into wind)
+   
+   #setprop("velocities/wBody-fps", next_wBody);
+   #settimer(func {setprop("velocities/wBody-fps", final_wBody); }, 0.5);
+   #if (amt > 1.5 ) {
+   
+    #settimer(func {setprop("velocities/wBody-fps", final_wBody - 1 ); }, 0.8); # downwards direction, which helps to keep it from going nose-over, sent just a bit later
+    #settimer(func {setprop("velocities/wBody-fps", final_wBody - 1); }, 1.2); # downwards direction, which helps to keep it from going nose-over, sent just a bit later
+   #}
+   
+   print ("Camel: Nudged by " ~ amt);
+   
+}
+
+var downNudge = func (amt = 1) {
+
+   if (!isAircraftOnGroundSlow()) return;
+
+      
+   var curr_wBody = getprop("velocities/wBody-fps");
+       
+   var next_wBody = curr_wBody + 6 * amt;
+   if (next_wBody < 6 * amt) next_wBody = 6 * amt;
+   
+   setprop("velocities/wBody-fps", next_wBody);
+      
+   print ("Camel: Down-nudged by " ~ amt);   
 }
 
 var displaymixture = func {
@@ -633,6 +842,35 @@ var displaymixture = func {
     }
     
     
+}
+
+var isAircraftOnGroundSlow = func {
+   #slow groundspeed
+   print ("iAOGS");
+   var AGL_ft=getprop("position/altitude-agl-ft");
+   var currGroundSpeed=getprop("velocities/groundspeed-kt");
+   print ("Camel: OnGroundSlow:  AGL " ~ AGL_ft ~ " GspeedKT " ~ currGroundSpeed);
+   if (math.abs(currGroundSpeed) < 3 and AGL_ft < 12) return 1;
+   
+   
+   
+   #OR on a/c carrier and little/no vertical speed
+   var currVerticalSpeed=getprop("velocities/vertical-speed-fps"); # or velocities/down-relground-fps
+   var currTerrain=getprop("/environment/terrain-info/terrain");
+   if (currTerrain == nil) currTerrain == 1;
+   print ("Camel: OnGroundSlow:  terrain " ~ currTerrain ~ " vertSpeed " ~ math.abs(currVerticalSpeed));
+   if (math.abs(currVerticalSpeed) < 0.5 and currTerrain == 2 and math.abs(currGroundSpeed) < 30 and AGL_ft < 12) return 1; #terrain==2 is aircraft carrier
+   return 0;
+   
+}
+
+var isAircraftOnGroundSlow_NotOnCarrier = func {
+   #slow groundspeed
+   var currGroundSpeed=getprop("velocities/groundspeed-kt");
+   if (currGroundSpeed < 3 ) return 1;
+   
+   return 0;
+   
 }
 
 # ========== popup dialog message===============================================
