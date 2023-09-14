@@ -1,7 +1,7 @@
 #####################################################
 ## Bombable
 ## Brent Hugh, brent@brenthugh.com
-var bombableVersion = "4.6";
+var bombableVersion = "4.7.1";
 ## 
 ## Copyright (C) 2009 - 2011  Brent Hugh  (brent@brenthugh.com)
 ## This file is licensed under the GPL license version 2 or later.
@@ -1625,8 +1625,6 @@ var init_bombable_dialog = func () {
         props.globals.getNode ("/sim/menubar/default/menu["~bomb_menuNum~"]/item[1]/label", 1).setValue("Bombable Statistics"); #must be unique name from all others in the menubar or they both pop up together
         props.globals.getNode ("/sim/menubar/default/menu["~bomb_menuNum~"]/item[1]/binding/command", 1).setValue("nasal");
         props.globals.getNode ("/sim/menubar/default/menu["~bomb_menuNum~"]/item[1]/binding/script", 1).setValue("bombable.records.display_results()");
-        
-        
         
        #reinit makes the property changes to both the GUI & input become active
        #the delay is to avoid a segfault under dev version of FlightGear, 2010/09/07
@@ -6945,7 +6943,7 @@ records.display_results = func {
         me.show_totals_dialog(); 
       
 }
-  
+
 records.add_property_tree = func (location, hash ) {    
        # not working, we have spaces in our names
        props.globals.getNode(location,1).removeChildren();
@@ -8736,9 +8734,11 @@ print("Bombable: Bombable successfully set up and enabled for multiplayer dogfig
 #we do the setlistener to wait until various things in FG are initialized
 # which the functions etc in bombableInit depend on.  Then we wait an additional 15 seconds
 
-_setlistener("/sim/signals/nasal-dir-initialized", func {
+var fdm_init_listener = _setlistener("/sim/signals/fdm-initialized", func {
+  removelistener(fdm_init_listener);
 
-    #settimer (func {bombableInit()} , 5);
-    bombableInit();
+  bombableInit();
 
+  print("Bombable initalized");
 });
+

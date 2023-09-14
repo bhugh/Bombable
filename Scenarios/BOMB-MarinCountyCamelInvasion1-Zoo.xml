@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<PropertyList>
+  <scenario>
+    <name>Bombable: (CA35) Lots of Camels, SPADs and DR1 over Marin County</name>
+    <description>This scenario puts a fleet of Sopwith Camels, SPAD VIIs, and Fokker DR 1 Triplanes in the skies over Marin County, starting at the Marin Ranch Airport, CA35.
+
+If you take off from runway 22 of the Marin Ranch Airport (CA35), the planes will be directly above you as you take off, headed in a westerly direction.
+
+The aircraft are air-to-air targets, you can damage them with heavy guns, machine guns, or (if you can hit them!) heavy bombs.
+  
+When you shoot or bomb the aircraft they will catch fire, slow down, fall, and finally crash (to see the smoke and fire you must have Particles enabled in View/Rendering Options).
+
+To damage the aircraft takes one or more direct hits from a machine gun or heavy gun, or a close strike by a heavy bomb.   The Camels are fairly easy targets for heavy guns or bombs, less so for light bombs--similar to a Cessna C172 in difficulty to kill.
+
+Install this scenario in the FlightGear/data/AI directory.
+
+Any aircraft that shoots guns or drops bombs can damage the aircraft.  A great choice is to use the Sopwith Camel aircraft included in this distribution, which has working machine guns and several other improvements/fixes over the current CVS version of the Sopwith.
+		</description>
+    <!-- COLUMN 1 (moving column)-->
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>Fokker 1</callsign>
+      <name>Fokker1</name>
+      <model type="string">Aircraft/fkdr1-Bombable/Models/dr1.xml</model>
+      <latitude type="double">37.99548720</latitude>
+      <longitude type="double">-122.4776</longitude>
+      <altitude type="double">170</altitude>
+      <speed>70</speed>
+      <bank type="double">-10</bank>
+      <heading type="double">280</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>Camel23</callsign>
+      <name>Camel23</name>
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model-Y.xml</model>
+      <latitude type="double">37.9878200</latitude>
+      <longitude type="double">-122.4788</longitude>
+      <altitude type="double">209</altitude>
+      <speed>80</speed>
+      <bank type="double">-10</bank>
+      <heading type="double">290</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>SPAD1</callsign>
+      <name>SPAD1</name>
+      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model>
+      <latitude type="double">38.0001470</latitude>
+      <longitude type="double">-122.4792</longitude>
+      <altitude type="double">224</altitude>
+      <speed>90</speed>
+      <bank type="double">-10</bank>
+      <heading type="double">277</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>Fokker 2</callsign>
+      <name>Fokker2</name>
+      <model type="string">Aircraft/fkdr1-Bombable/Models/dr1.xml</model>
+      <latitude type="double">38.0188100</latitude>
+      <longitude type="double">-122.4868</longitude>
+      <altitude type="double">200</altitude>
+      <speed>88</speed>
+      <bank type="double">10</bank>
+      <heading type="double">292</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>Camel30</callsign>
+      <name>Camel30</name>
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model.xml</model>
+      <latitude type="double">38.0228950</latitude>
+      <longitude type="double">-122.4959</longitude>
+      <altitude type="double">159</altitude>
+      <speed>85</speed>
+      <bank type="double">10</bank>
+      <heading type="double">301</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>SPAD2</callsign>
+      <name>SPAD2</name>
+      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model>
+      <latitude type="double">38.0398950</latitude>
+      <longitude type="double">-122.4859</longitude>
+      <altitude type="double">259</altitude>
+      <speed>74</speed>
+      <bank type="double">10</bank>
+      <heading type="double">279</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>Fokker 3</callsign>
+      <name>Fokker3</name>
+      <model type="string">Aircraft/fkdr1-Bombable/Models/dr1.xml</model>
+      <latitude type="double">38.0418950</latitude>
+      <longitude type="double">-122.47059</longitude>
+      <altitude type="double">203</altitude>
+      <speed>93</speed>
+      <bank type="double">5</bank>
+      <heading type="double">305</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>Camel31</callsign>
+      <name>Camel31</name>
+      <model type="string">Aircraft/sopwithCamel-Bombable/Models/sopwithCamel-model-Y.xml</model>
+      <latitude type="double">38.0508950</latitude>
+      <longitude type="double">-122.4959</longitude>
+      <altitude type="double">370</altitude>
+      <speed>91</speed>
+      <bank type="double">10</bank>
+      <heading type="double">283</heading>
+    </entry>
+    <entry>
+      <search-order>PREFER_AI</search-order>
+      <type>aircraft</type>
+      <callsign>SPAD3</callsign>
+      <name>SPAD3</name>
+      <model type="string">Aircraft/SPAD-VII-Bombable/Models/spadvii.xml</model>
+      <latitude type="double">38.0608950</latitude>
+      <longitude type="double">-122.4759</longitude>
+      <altitude type="double">105</altitude>
+      <speed>89</speed>
+      <bank type="double">10</bank>
+      <heading type="double">293</heading>
+    </entry>
+  </scenario>
+</PropertyList>
